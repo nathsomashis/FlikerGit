@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+		<title> SmartAdmin </title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+			
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- Basic Styles -->
+		<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
+
+		<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production-plugins.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.min.css">
+
+		<!-- SmartAdmin RTL Support -->
+		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> 
+
+		<!-- We recommend you use "your_style.css" to override SmartAdmin
+		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+
+		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
+
+		<!-- FAVICONS -->
+		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+		<!-- GOOGLE FONT -->
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+		<!-- Specifying a Webpage Icon for Web Clip 
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+		<link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="img/splash/touch-icon-ipad-retina.png">
+		
+		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!-- Startup image for web apps -->
+		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+		<link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+		<link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+		
+		<style>
+      /* ==========================================================================
+          Demo using Bootstrap 3.3.4 and jQuery 1.11.2
+          You don't need any of the following styles for the form to work properly, 
+          these are just helpers for the demo/test page.
+        ========================================================================== */
+
+      #wrapper { 
+        width:595px;
+        margin:0 auto;
+      }
+      legend {
+        margin-top: 20px;
+      }
+      #attribution {
+        font-size:12px;
+        color:#999;
+        padding:20px;
+        margin:20px 0;
+        border-top:1px solid #ccc;
+      }
+      #O_o { 
+        text-align: center; 
+        background: #33577b;
+        color: #b4c9dd;
+        border-bottom: 1px solid #294663;
+      }
+      #O_o a:link, #O_o a:visited {
+        color: #b4c9dd;
+        border-bottom: #b4c9dd;
+        display: block;
+        padding: 8px;
+        text-decoration: none;
+      }
+      #O_o a:hover, #O_o a:active {
+        color: #fff;
+        border-bottom: #fff;
+        text-decoration: none;
+      }
+      @media only screen and (max-width: 620px), only screen and (max-device-width: 620px) {
+        #wrapper {
+          width: 90%;
+        }
+        legend {
+          font-size: 24px;
+          font-weight: 500;
+        }
+      }
+      </style>
+
+	</head>
+	
+	<!--
+
+	TABLE OF CONTENTS.
+	
+	Use search to find needed section.
+	
+	===================================================================
+	
+	|  01. #CSS Links                |  all CSS links and file paths  |
+	|  02. #FAVICONS                 |  Favicon links and file paths  |
+	|  03. #GOOGLE FONT              |  Google font link              |
+	|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
+	|  05. #BODY                     |  body tag                      |
+	|  06. #HEADER                   |  header tag                    |
+	|  07. #PROJECTS                 |  project lists                 |
+	|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
+	|  09. #MOBILE                   |  mobile view dropdown          |
+	|  10. #SEARCH                   |  search field                  |
+	|  11. #NAVIGATION               |  left panel & navigation       |
+	|  12. #RIGHT PANEL              |  right panel userlist          |
+	|  13. #MAIN PANEL               |  main panel                    |
+	|  14. #MAIN CONTENT             |  content holder                |
+	|  15. #PAGE FOOTER              |  page footer                   |
+	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  17. #PLUGINS                  |  all scripts and plugins       |
+	
+	===================================================================
+	
+	-->
+	
+	<!-- #BODY -->
+	<!-- Possible Classes
+
+		* 'smart-style-{SKIN#}'
+		* 'smart-rtl'         - Switch theme mode to RTL
+		* 'menu-on-top'       - Switch to top navigation (no DOM change required)
+		* 'no-menu'			  - Hides the menu completely
+		* 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+		* 'fixed-header'      - Fixes the header
+		* 'fixed-navigation'  - Fixes the main menu
+		* 'fixed-ribbon'      - Fixes breadcrumb
+		* 'fixed-page-footer' - Fixes footer
+		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+	-->
+	<body class="">
+
+    <div id="wrapper">
+      
+      <form action="#" method="post" id="sign-up_area" role="form">
+        <legend>Demo form using Bootstrap 3.3.4</legend>
+        <fieldset>
+
+        
+
+        
+
+        <!-- Begin cloned email section -->
+        <div id="entry1" class="clonedInput_1">
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="label_email control-label" for="email_address">Email:</label>
+            <input id="email_address" name="email_address" type="text" placeholder="like this: billybob@example.com" class="input_email form-control">
+          </div>
+        </div><!-- end #entry1 -->
+        <!-- Button (Double) -->
+        <p>
+        <button type="button" id="btnAdd_1" name="btnAdd" class="btn btn-primary">Add email</button>
+          <button type="button" id="btnDel_1" name="btnDel" class="btn btn-danger"><span class="ui-button-text">Remove email</span></button>
+        </p>
+
+        <!-- Begin cloned phone section -->
+        <div id="phone1" class="clonedInput_2">
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="label_phone control-label" for="phone_number">Phone:</label>
+            <input id="phone_number" name="phone_number" type="tel" class="input_phone form-control" placeholder="Phone number">
+          </div>
+        </div><!-- end #entry2 -->
+        <!-- Button (Double) -->
+        <p>
+        <button type="button" id="btnAdd_2" name="btnAdd_2" class="btn btn-primary">Add phone</button>
+          <button type="button" id="btnDel_2" name="btnDel_2" class="btn btn-danger">Remove phone</button>
+        </p>
+
+        
+
+        <!-- Button -->
+        <p>
+          <button id="submit_button" name="submit_button" class="btn btn-primary">Submit</button>
+        </p>
+
+        </fieldset>
+        </form>
+        
+    </div> <!-- end wrapper -->
+
+		
+		<!-- END SHORTCUT AREA -->
+
+		<!--================================================== -->
+
+		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
+
+		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script>
+			if (!window.jQuery) {
+				document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
+			}
+		</script>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script>
+			if (!window.jQuery.ui) {
+				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+			}
+		</script>
+
+		<!-- IMPORTANT: APP CONFIG -->
+		<script src="js/app.config.js"></script>
+
+		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
+
+		<!-- BOOTSTRAP JS -->
+		<script src="js/bootstrap/bootstrap.min.js"></script>
+
+		<!-- CUSTOM NOTIFICATION -->
+		<script src="js/notification/SmartNotification.min.js"></script>
+
+		<!-- JARVIS WIDGETS -->
+		<script src="js/smartwidgets/jarvis.widget.min.js"></script>
+
+		<!-- EASY PIE CHARTS -->
+		<script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+		<!-- SPARKLINES -->
+		<script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+		<!-- JQUERY VALIDATE -->
+		<script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+		<!-- JQUERY MASKED INPUT -->
+		<script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+		<!-- JQUERY SELECT2 INPUT -->
+		<script src="js/plugin/select2/select2.min.js"></script>
+
+		<!-- JQUERY UI + Bootstrap Slider -->
+		<script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+		<!-- browser msie issue fix -->
+		<script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+		<!-- FastClick: For mobile devices -->
+		<script src="js/plugin/fastclick/fastclick.min.js"></script>
+
+		<!--[if IE 8]>
+
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+		<![endif]-->
+
+		<!-- Demo purpose only -->
+		<!-- <script src="js/demo.min.js"></script> -->
+
+
+		<script type="text/javascript" src="js/clone-form-td-multiple.js"></script>
+
+		<!-- MAIN APP JS FILE -->
+		<script src="js/app.min.js"></script>
+
+		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+		<!-- Voice command : plugin -->
+		<script src="js/speech/voicecommand.min.js"></script>
+
+		<!-- SmartChat UI : plugin -->
+		<script src="js/smart-chat-ui/smart.chat.ui.min.js"></script>
+		<script src="js/smart-chat-ui/smart.chat.manager.min.js"></script>
+
+		<!-- PAGE RELATED PLUGIN(S) -->
+		<script src="js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+		<script src="js/plugin/fuelux/wizard/wizard.min.js"></script>
+		
+
+		<script type="text/javascript">
+		
+		// DO NOT REMOVE : GLOBAL FUNCTIONS!
+		
+		$(document).ready(function() {
+			
+			pageSetUp();
+			
+			
+	
+			//Bootstrap Wizard Validations
+
+			  var $validator = $("#wizard-1").validate({
+			    
+			    rules: {
+			      email: {
+			        required: true,
+			        email: "Your email address must be in the format of name@domain.com"
+			      },
+			      fname: {
+			        required: true
+			      },
+			      lname: {
+			        required: true
+			      },
+			      country: {
+			        required: true
+			      },
+			      city: {
+			        required: true
+			      },
+			      postal: {
+			        required: true,
+			        minlength: 4
+			      },
+			      wphone: {
+			        required: true,
+			        minlength: 10
+			      },
+			      hphone: {
+			        required: true,
+			        minlength: 10
+			      }
+			    },
+			    
+			    messages: {
+			      fname: "Please specify your First name",
+			      lname: "Please specify your Last name",
+			      email: {
+			        required: "We need your email address to contact you",
+			        email: "Your email address must be in the format of name@domain.com"
+			      }
+			    },
+			    
+			    highlight: function (element) {
+			      $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+			    },
+			    unhighlight: function (element) {
+			      $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+			    },
+			    errorElement: 'span',
+			    errorClass: 'help-block',
+			    errorPlacement: function (error, element) {
+			      if (element.parent('.input-group').length) {
+			        error.insertAfter(element.parent());
+			      } else {
+			        error.insertAfter(element);
+			      }
+			    }
+			  });
+			  
+			  $('#bootstrap-wizard-1').bootstrapWizard({
+			    'tabClass': 'form-wizard',
+			    'onNext': function (tab, navigation, index) {
+			      var $valid = $("#wizard-1").valid();
+			      if (!$valid) {
+			        $validator.focusInvalid();
+			        return false;
+			      } else {
+			        $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass(
+			          'complete');
+			        $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step')
+			        .html('<i class="fa fa-check"></i>');
+			      }
+			    }
+			  });
+			  
+		
+			// fuelux wizard
+			  var wizard = $('.wizard').wizard();
+			  
+			  wizard.on('finished', function (e, data) {
+			    //$("#fuelux-wizard").submit();
+			    //console.log("submitted!");
+			    $.smallBox({
+			      title: "Congratulations! Your form was submitted",
+			      content: "<i class='fa fa-clock-o'></i> <i>1 seconds ago...</i>",
+			      color: "#5F895F",
+			      iconSmall: "fa fa-check bounce animated",
+			      timeout: 4000
+			    });
+			    
+			  });
+
+		
+		})
+
+		</script>
+
+		<!-- Your GOOGLE ANALYTICS CODE Below -->
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+				_gaq.push(['_trackPageview']);
+			
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
+
+	</body>
+
+</html>
