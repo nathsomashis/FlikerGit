@@ -5,7 +5,7 @@
 <html lang="en-us" id="extr-page">
 	<head>
 		<meta charset="utf-8">
-		<title> SmartAdmin</title>
+		<title> Register</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -45,7 +45,7 @@
 
 		<!-- #GOOGLE FONT -->
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
-
+		<!-- <link href="https://fonts.googleapis.com/css?family=Lemonada:400italic,700italic,300,400,700" rel="stylesheet"> -->
 		<!-- #APP SCREEN / ICONS -->
 		<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
@@ -70,6 +70,53 @@
 		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
 
+		<style>
+			/*
+			 * Glyphicons
+			 *
+			 * Special styles for displaying the icons and their classes in the docs.
+			 */
+		
+			.bs-glyphicons {
+				padding-left: 0;
+				padding-bottom: 1px;
+				margin-bottom: 20px;
+				list-style: none;
+				overflow: hidden;
+			}
+			.bs-glyphicons li {
+				float: left;
+				width: 25%;
+				height: 115px;
+				padding: 10px;
+				margin: 0 -1px -1px 0;
+				font-size: 12px;
+				line-height: 1.4;
+				text-align: center;
+				border: 1px solid #ddd;
+			}
+			.bs-glyphicons .glyphicon {
+				margin-top: 5px;
+				margin-bottom: 10px;
+				font-size: 24px;
+			}
+			.bs-glyphicons .glyphicon-class {
+				display: block;
+				text-align: center;
+			}
+			.bs-glyphicons li:hover {
+				background-color: rgba(86,61,124,.1);
+			}
+		
+			@media (min-width: 768px) {
+				.bs-glyphicons li {
+					width: 12.5%;
+				}
+			}
+		
+		</style>
+
+
 	</head>
 	
 	<body id="login">
@@ -78,12 +125,12 @@
 			<!--<span id="logo"></span>-->
 
 			<div id="logo-group">
-				<span id="logo"> <img src="img/logo.png" alt="SmartAdmin"> </span>
+				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
 
 				<!-- END AJAX-DROPDOWN -->
 			</div>
 
-			<span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Already registered?</span> <a href="login.html" class="btn btn-danger">Sign In</a> </span>
+			<span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Already registered?</span> <a href="dashboard?" class="btn btn-danger">Sign In</a> </span>
 
 		</header>
 
@@ -93,36 +140,97 @@
 			<div id="content" class="container">
 
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 hidden-xs hidden-sm">
-						<h1 class="txt-color-red login-header-big">SmartAdmin</h1>
-						<div class="hero">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 " style="height: 100%">
+						<div class="hero" style="height: 100% ">
 
-							<div class="pull-left login-desc-box-l">
-								<h4 class="paragraph-header">It's Okay to be Smart. Experience the simplicity of SmartAdmin, everywhere you go!</h4>
-								<div class="login-app-icons">
-									<a href="javascript:void(0);" class="btn btn-danger btn-sm">Frontend Template</a>
-									<a href="javascript:void(0);" class="btn btn-danger btn-sm">Find out more</a>
+							<div class="col-xs-12 col-sm-14 col-md-14 col-lg-7" style="height: 100%; width: 100%">
+				
+									<!-- well -->
+									<div class="well">
+										
+										<div id="myCarousel-2" class="carousel slide">
+											<ol class="carousel-indicators">
+												<li data-target="#myCarousel-2" data-slide-to="0" class="active"></li>
+												<li data-target="#myCarousel-2" data-slide-to="1" class=""></li>
+												<li data-target="#myCarousel-2" data-slide-to="2" class=""></li>
+											</ol>
+											<div class="carousel-inner">
+												<!-- Slide 1 -->
+												<div class="item active">
+													<img src="<c:url value='/resources/img/demo/m3.jpg' />" alt="">
+													<div class="carousel-caption caption-right">
+														<h4>Title 1</h4>
+														<p>
+															Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+														</p>
+														<br>
+														<a href="javascript:void(0);" class="btn btn-info btn-sm">Read more</a>
+													</div>
+												</div>
+												<!-- Slide 2 -->
+												<div class="item">
+													<img src="<c:url value='/resources/img/demo/m1.jpg' />" alt="">
+													<div class="carousel-caption caption-left">
+														<h4>Title 2</h4>
+														<p>
+															Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+														</p>
+														<br>
+														<a href="javascript:void(0);" class="btn btn-danger btn-sm">Read more</a>
+													</div>
+												</div>
+												<!-- Slide 3 -->
+												<div class="item">
+													<img src="<c:url value='/resources/img/demo/m2.jpg' />" alt="">
+													<div class="carousel-caption">
+														<h4>A very long thumbnail title here to fill the space</h4>
+														<br>
+													</div>
+												</div>
+											</div>
+											<a class="left carousel-control" href="#myCarousel-2" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a>
+											<a class="right carousel-control" href="#myCarousel-2" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a>
+										</div>
+				
+									</div>
+									<!-- end well-->
+				
 								</div>
-							</div>
-							
-							<img src="img/demo/iphoneview.png" alt="" class="pull-right display-image" style="width:210px">
-							
+								
 						</div>
-
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<h5 class="about-heading">About SmartAdmin - Are you up to date?</h5>
-								<p>
-									Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.
-								</p>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<h5 class="about-heading">Not just your average template!</h5>
-								<p>
-									Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi voluptatem accusantium!
-								</p>
-							</div>
-						</div>
+						<div style="margin-top: 20">
+				
+									<div class="col-sm-4">
+				
+										<div class="well well-sm bg-color-darken txt-color-white text-center">
+											<h5><span class="glyphicon glyphicon-briefcase"></span></h5>
+											<code>JOBS</code>
+										</div>
+				
+									</div>
+				
+									<div class="col-sm-4">
+				
+										<div class="well well-sm bg-color-teal txt-color-white text-center">
+											<h5><span class="glyphicon glyphicon-book"></span></h5>
+											<code>
+												COURSES</code>
+										</div>
+				
+									</div>
+				
+									<div class="col-sm-4">
+				
+										<div class="well well-sm bg-color-pinkDark txt-color-white text-center">
+											<h5><span class="glyphicon glyphicon-share"></span></h5>
+											<code>
+												WALL</code>
+										</div>
+				
+									</div>
+				
+								</div>
+						
 
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
@@ -214,7 +322,6 @@
 							</form>
 
 						</div>
-						<p class="note text-center">*FREE Registration ends on October 2015.</p>
 						<h5 class="text-center">- Or sign in using -</h5>
 						<ul class="list-inline text-center">
 							<li>
@@ -570,7 +677,7 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 					// Ajax form submition
 					submitHandler : function(form) {
 						$(form).ajaxSubmit({
-							url: 'register?username='+emailid+'&password='+passwordid, 
+							url: 'register?email='+email+'&username='+username+'&password='+password+'&firstname'+firstname+'&lastname='+lastname+'&gender'+gender+'&request'+request+'&subscription'+subscription+'&terms'+terms, 
 							type: 'post',
 							success : function() {
 								$("#smart-form-register").addClass('submited');

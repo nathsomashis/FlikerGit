@@ -61,11 +61,11 @@ public class TestDataEntry {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
 		
-		User user1 = new User("Somashis", "lamborgini@5");
-		User user2 = new User("Reetesh", "century@5");
+		/*User user1 = new User("Somashis", "lamborgini@5");
+		User user2 = new User("Reetesh", "century@5");*/
 		
-		mongoOperation.save(user1);
-		mongoOperation.save(user2);
+		/*mongoOperation.save(user1);
+		mongoOperation.save(user2);*/
 		
 	}
 	

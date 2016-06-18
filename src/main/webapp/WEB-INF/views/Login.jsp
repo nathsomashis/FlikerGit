@@ -5,7 +5,7 @@
 <html lang="en-us" id="extr-page">
 	<head>
 		<meta charset="utf-8">
-		<title> SmartAdmin</title>
+		<title> Login</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -91,36 +91,27 @@
 
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
-						<h1 class="txt-color-red login-header-big">SmartAdmin</h1>
+						<!-- <h1 class="txt-color-red login-header-big">Fliker</h1> -->
 						<div class="hero">
 
-							<div class="pull-left login-desc-box-l">
-								<h4 class="paragraph-header">It's Okay to be Smart. Experience the simplicity of SmartAdmin, everywhere you go!</h4>
-								<div class="login-app-icons">
-									<a href="javascript:void(0);" class="btn btn-danger btn-sm">Frontend Template</a>
-									<a href="javascript:void(0);" class="btn btn-danger btn-sm">Find out more</a>
+							<div class="pull-left login-desc-box-l" style="height: 100%; width: 100%">
+								<div class="login-app-icons" style="height: 100%; width: 100%;margin-top: 0px;" >
+									<img src="<c:url value='/resources/img/old-letters-436503_1920.jpg' />" style="height: 100%; width: 100%;" >
+									
 								</div>
 							</div>
 							
-							<img src="img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px">
-
 						</div>
 
 						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<h5 class="about-heading">About SmartAdmin - Are you up to date?</h5>
+							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-12">
 								<p>
-									Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.
-								</p>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<h5 class="about-heading">Not just your average template!</h5>
-								<p>
-									Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi voluptatem accusantium!
+									<script type="text/javascript" src="http://www.brainyquote.com/link/quotebr.js"></script>
+									<small><i><a href="http://www.brainyquote.com/quotes_of_the_day.html" target="_blank">more Quotes</a></i></small>
 								</p>
 							</div>
 						</div>
-
+  
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
 						<div class="well no-padding">
@@ -165,17 +156,6 @@
 						
 						<h5 class="text-center"> - Or sign in using -</h5>
 															
-							<ul class="list-inline text-center">
-								<li>
-									<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
-								</li>
-							</ul>
 						
 					</div>
 				</div>
@@ -267,7 +247,7 @@
 					
 					submitHandler : function(form) {
 						$(form).ajaxSubmit({
-							url: 'login?username='+emailid+'&password='+passwordid, 
+							url: 'login?email='+email+'&password='+passwordid, 
 							type: 'post',
 							success : function() {
 								$("#login-form").addClass('submited');
