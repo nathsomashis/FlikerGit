@@ -1,18 +1,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html lang="en-us">
-	<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
 		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
-		<title> Create New Post </title>
+		<title> Organizations </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+		
 		<!-- #CSS Links -->
 		<!-- Basic Styles -->
 		<link href='<c:url value="/resources/css/bootstrap.min.css" />' rel="stylesheet">
@@ -30,7 +28,7 @@
 
 		<!-- SmartAdmin RTL Support -->
 		<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">  -->
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> --> 
 
 		<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
@@ -38,6 +36,7 @@
 
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
+		<link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet">
 
 		<!-- #FAVICONS -->
 		<link href='<c:url value="/resources/img/favicon/favicon.ico" />' rel="shortcut icon" type="image/x-icon">
@@ -51,9 +50,9 @@
 		<!-- #APP SCREEN / ICONS -->
 		<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-		<link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">	 
+			 <link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">
 		<!-- <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon">
+		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon" sizes="76x76">
 		<!-- <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png"> -->
 		<link href='<c:url value="/resources/img/splash/touch-icon-iphone-retina.png" />' rel="apple-touch-icon" sizes="120x120">
 		<!-- <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png"> -->
@@ -65,18 +64,15 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<!-- Startup image for web apps -->
-<!-- 		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-landscape.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
+		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
+		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
 		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
-
-		
-		
+		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
 
 	</head>
-	
+
 	<!--
 
 	TABLE OF CONTENTS.
@@ -96,12 +92,11 @@
 	|  09. #MOBILE                   |  mobile view dropdown          |
 	|  10. #SEARCH                   |  search field                  |
 	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #RIGHT PANEL              |  right panel userlist          |
-	|  13. #MAIN PANEL               |  main panel                    |
-	|  14. #MAIN CONTENT             |  content holder                |
-	|  15. #PAGE FOOTER              |  page footer                   |
-	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  17. #PLUGINS                  |  all scripts and plugins       |
+	|  12. #MAIN PANEL               |  main panel                    |
+	|  13. #MAIN CONTENT             |  content holder                |
+	|  14. #PAGE FOOTER              |  page footer                   |
+	|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  16. #PLUGINS                  |  all scripts and plugins       |
 	
 	===================================================================
 	
@@ -123,7 +118,7 @@
 	-->
 	<body class="">
 
-		<!-- HEADER -->
+		<!-- #HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
@@ -196,7 +191,6 @@
 				<!-- end dropdown-menu-->
 
 			</div>
-			
 			<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
@@ -388,7 +382,7 @@
 					<li>
 						<a href="dashboardanalysis?"><i class="fa fa-lg fa-fw fa-briefcase"></i> <span class="menu-item-parent">DASHBOARD</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
 					</li>
-					<li class="">
+					<li class="active">
 						<a href="dashboardsocial?"><i class="fa fa-lg fa-fw fa-retweet "></i> <span class="menu-item-parent">WALL</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
 					</li>
 					
@@ -398,10 +392,10 @@
 					<li>
 						<a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i> <span class="menu-item-parent">TIMELINE</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
 					</li>
-					<li class="active">
-						<a href="createpost?" title="NewPost"><i class="fa fa-lg fa-fw fa-inbox txt-color-blue" ></i><span class="menu-item-parent">NEWPOST</span></a>
+					<li>
+								<a href="createpost?" title="NewPost"><i class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">NEWPOST</span></a>
 					</li>
-					<li class="">
+					<li class="active">
 						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">COURSE</span></a>
 						<ul>
 							<li class="">
@@ -413,8 +407,8 @@
 							<li class="">
 								<a href="createcourse?" title="NewCourse"><i class="fa fa-plus-square"></i><span class="menu-item-parent">NEWCOURSE</span></a>
 							</li>
-							<li class="">
-								<a href="organizations?" title="Organizations"><i class="fa fa-group"></i><span class="menu-item-parent">ORGANIZATIONS</span></a>
+							<li class="active">
+								<a href="organizations?" title="NewCourse"><i class="fa fa-group txt-color-blue"></i><span class="menu-item-parent">ORGANIZATIONS</span></a>
 							</li>
 						</ul>	
 					</li>
@@ -428,7 +422,7 @@
 								<a href="jobanalysis?" title="NewJob"><i class="fa fa-suitcase"></i><span class="menu-item-parent">JOBSDASH</span></a>
 							</li>
 							<li class="">
-								<a href="createjob?" title="NewJob"><i class="fa fa-plus-square"></i><span class="menu-item-parent">NEWJOB</span></a>
+								<a href="createjob?" title="NewJob"><i class="fa fa-tags"></i><span class="menu-item-parent">NEWJOB</span></a>
 							</li>
 							<li class="">
 								<a href="companies?" title="Companies"><i class="fa fa-group"></i><span class="menu-item-parent">COMPANIES</span></a>
@@ -589,7 +583,8 @@
 
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
-		
+
+			<!-- RIBBON -->
 			<div id="ribbon">
 
 				<span class="ribbon-button-alignment"> 
@@ -600,7 +595,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li><a href="hello?name=Eric?">Home</li><li>New Post</li>
+					<li><a href="hello?name=Eric?">Home</li><li>Course</li><li>Organizations</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -616,46 +611,117 @@
 				</span> -->
 
 			</div>
+			<!-- END RIBBON -->
 
-			<div>
-					
-					<!-- widget edit box -->
-					<div class="jarviswidget-editbox">
-						<!-- This area used as dropdown edit box -->
-						
-					</div>
-					<!-- end widget edit box -->
-					
-					<!-- widget content -->
-					<div class="widget-body no-padding">
-						
-						<form id="order-form" class="smart-form" novalidate="novalidate" encrypt="multipart/form-data" method="post" action="filePost?">
-							<header>
-								New Post
-							</header>
-							<fieldset>
-								<section>
-									<div class="input input-file">
-										<span class="button"><input id="file" type="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" placeholder="Include some files" readonly="">
-									</div>
-								</section>
+			<!-- MAIN CONTENT -->
+			<div id="content">
 
-								<!-- <section>
-									<label class="textarea"> <i class="icon-append fa fa-comment"></i> 										
-										<textarea rows="5" name="comment" placeholder="Tell us about your project"></textarea> 
-									</label>
-								</section> -->
-							</fieldset>
-							<footer>
-								<button type="submit" class="btn btn-primary">
-									Publish
-								</button>
-							</footer>
-						</form>
+<div class="row hidden-mobile">
+	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa-fw fa fa-puzzle-piece"></i> 
+			App Views <span>>
+			Gallery </span></h1>
+	</div>
 
-					</div>
-
+	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-align-right">
+		<div class="page-title">
+			<a href="javascript:void(0);" class="btn btn-default">Upload</a>
+			<a href="javascript:void(0);" class="btn btn-default">Load Library</a>
 		</div>
+	</div>
+</div>
+
+<!-- row -->
+<div class="row">
+
+	<!-- SuperBox -->
+	<div class="superbox col-sm-12">
+		<div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-1.jpg" data-img="img/superbox/superbox-full-1.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-2.jpg" data-img="img/superbox/superbox-full-2.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Bridge of Edgen" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-3.jpg" data-img="img/superbox/superbox-full-3.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Lines of Friendship" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-4.jpg" data-img="img/superbox/superbox-full-4.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="My new car!" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-5.jpg" data-img="img/superbox/superbox-full-5.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Study Time" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-6.jpg" data-img="img/superbox/superbox-full-6.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="San Francisco Bridge"  class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-7.jpg" data-img="img/superbox/superbox-full-7.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="New Styla"  class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-8.jpg" data-img="img/superbox/superbox-full-8.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Cristpta"  class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-9.jpg" data-img="img/superbox/superbox-full-9.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Cristine Dine"  class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-10.jpg" data-img="img/superbox/superbox-full-10.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Mosaic Clock"  class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-11.jpg" data-img="img/superbox/superbox-full-11.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Elegance"  class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-12.jpg" data-img="img/superbox/superbox-full-12.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="China Town"  class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-13.jpg" data-img="img/superbox/superbox-full-13.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Sky Diving"  class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-14.jpg" data-img="img/superbox/superbox-full-14.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Country Music"  class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-15.jpg" data-img="img/superbox/superbox-full-15.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="You are late!" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-16.jpg" data-img="img/superbox/superbox-full-16.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Royal Bengle Tiger" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-17.jpg" data-img="img/superbox/superbox-full-17.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Snowpine" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-18.jpg" data-img="img/superbox/superbox-full-18.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Hop Jop Mop" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-19.jpg" data-img="img/superbox/superbox-full-19.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Party Girls" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-20.jpg" data-img="img/superbox/superbox-full-20.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Dragon Fly" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-21.jpg" data-img="img/superbox/superbox-full-21.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Kinds Road" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-22.jpg" data-img="img/superbox/superbox-full-22.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Tokyo" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-23.jpg" data-img="img/superbox/superbox-full-23.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Rome" class="superbox-img">
+		</div><!--
+		--><div class="superbox-list">
+			<img src="img/superbox/superbox-thumb-24.jpg" data-img="img/superbox/superbox-full-24.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Traning" class="superbox-img">
+		</div>
+		<div class="superbox-float"></div>
+	</div>
+	<!-- /SuperBox -->
+	
+	<div class="superbox-show" style="height:300px; display: none"></div>
+
+</div>
+
+	<!-- end row -->
+
+			</div>
+			<!-- END MAIN CONTENT -->
+
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -663,7 +729,7 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> © 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> Â© 2014-2015</span>
 				</div>
 
 				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
@@ -743,7 +809,6 @@
 		<!-- END SHORTCUT AREA -->
 
 		<!--================================================== -->
-		
 
 		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
@@ -823,6 +888,7 @@
 
 		<!-- Demo purpose only -->
 		<!-- <script src="js/demo.min.js"></script> -->
+		<script src="<c:url value='/resources/js/demo.min.js' />"></script>
 
 		<!-- MAIN APP JS FILE -->
 		<script src="<c:url value='/resources/js/app.min.js' />"></script>
@@ -838,65 +904,85 @@
 		<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
-		
-		
+
+		<!-- PAGE RELATED PLUGIN(S) 
+		<script src="..."></script>-->
 
 		<script type="text/javascript">
+
+			$(document).ready(function() {
+			 	
+				/* DO NOT REMOVE : GLOBAL FUNCTIONS!
+				 *
+				 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+				 *
+				 * // activate tooltips
+				 * $("[rel=tooltip]").tooltip();
+				 *
+				 * // activate popovers
+				 * $("[rel=popover]").popover();
+				 *
+				 * // activate popovers with hover states
+				 * $("[rel=popover-hover]").popover({ trigger: "hover" });
+				 *
+				 * // activate inline charts
+				 * runAllCharts();
+				 *
+				 * // setup widgets
+				 * setup_widgets_desktop();
+				 *
+				 * // run form elements
+				 * runAllForms();
+				 *
+				 ********************************
+				 *
+				 * pageSetUp() is needed whenever you load a page.
+				 * It initializes and checks for all basic elements of the page
+				 * and makes rendering easier.
+				 *
+				 */
+				
+				 pageSetUp();
+				 
+				/*
+				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
+				 * eg alert("my home function");
+				 * 
+				 * var pagefunction = function() {
+				 *   ...
+				 * }
+				 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
+				 * 
+				 * TO LOAD A SCRIPT:
+				 * var pagefunction = function (){ 
+				 *  loadScript(".../plugin.js", run_after_loaded);	
+				 * }
+				 * 
+				 * OR
+				 * 
+				 * loadScript(".../plugin.js", run_after_loaded);
+				 */
+				 
+				 
+				 $("#notedown").on("click", function(){
+					    alert("form has been submitted.");
+					     var note = $('textarea#notemessage').val();
+						
+					    
+					    $.ajax({
+					    	url: "dailynotes?note="+note, 
+							success : function() {
+								
+							} 	
+					    
+				 });
+					  
+					    $('textarea#notemessage').val(" ");
+				 });
+				 
+				
+			})
 		
-		// DO NOT REMOVE : GLOBAL FUNCTIONS!
-		
-		$(document).ready(function() {
-			
-			pageSetUp();
-			
-			var files;
-			
-			function handleFileSelect(evt) {
-			    files = evt.target.files; // FileList object
-
-			    // files is a FileList of File objects. List some properties.
-			    /* var output = [];
-			    for (var i = 0, f; f = files[i]; i++) {
-			      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-			                  f.size, ' bytes, last modified: ',
-			                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-			                  '</li>');
-			    }
-			    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-			  } */
-
-			  document.getElementById('files').addEventListener('change', handleFileSelect, false);
-			
-			$("#order-form").submit(function(event) {
-
-			      /* stop form from submitting normally */
-			      event.preventDefault();
-
-			      var formData = new FormData($('#order-form')[0]);
-			      
-			      /* get some values from elements on the page: */
-			      $.ajax({
-		                url: "filePost?file="+files,
-		                type: 'POST',
-		                data : formData,
-		                paramName: "file",
-		                success: function(result) {
-		                    // ... Process the result ...
-		                },
-		                cache: false,
-		                contentType: false,
-		                processData: false
-		            });
-
-			      /* Alerts the results */
-			      /* posting.done(function( data ) {
-			        alert('success');
-			      }); */
-			    });
-
-		
-		})
-
 		</script>
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->

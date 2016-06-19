@@ -100,5 +100,41 @@ public class LoginController {
 		return "forward:/dashboardsocial";
 		
 	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(){
+		
+		System.out.println("In the logout Controller");
+		
+		ModelAndView mv = new ModelAndView("/Login");
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping("/forgotpassword")
+	public ModelAndView forgetpassword(@RequestParam(value = "name", required = false, defaultValue = "World") String name){
+		
+		System.out.println("In the Login register Controller");
+		
+		ModelAndView mv = new ModelAndView("/ForgetPassword");
+		
+		mv.addObject("name", name);
+		return mv;
+		
+	}
+	
+	@RequestMapping("/resetpassword")
+	public ModelAndView resetpassword(@RequestParam(value = "name", required = false, defaultValue = "World") String name){
+		
+		System.out.println("In the Login register Controller");
+		
+		ModelAndView mv = new ModelAndView("/Confirm");
+		
+		mv.addObject("name", name);
+		return mv;
+		
+	}
+	
 
 }

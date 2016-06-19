@@ -35,6 +35,7 @@ public class JobsController {
 		return mv;
 	}
 	
+	
 	@ResponseBody()
 	@RequestMapping(value = "/jobs/getJobsList")
 	@Produces(MediaType.APPLICATION_JSON)

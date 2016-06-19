@@ -115,39 +115,36 @@
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
 						<div class="well no-padding">
-							<form action="login?" id="login-form" class="smart-form client-form">
+							<form action="login.html" id="login-form" class="smart-form client-form">
 								<header>
-									Sign In
+									Forgot Password
 								</header>
 
 								<fieldset>
 									
 									<section>
-										<label class="label">E-mail</label>
-										<label class="input"> <i class="icon-append fa fa-user"></i>
-											<input id='emailid' type="email" name="email">
-											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b></label>
+										<label class="label">Enter your email address</label>
+										<label class="input"> <i class="icon-append fa fa-envelope"></i>
+											<input type="email" name="email">
+											<b class="tooltip tooltip-top-right"><i class="fa fa-envelope txt-color-teal"></i> Please enter email address for password reset</b></label>
 									</section>
-
 									<section>
-										<label class="label">Password</label>
-										<label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input id='passwordid' type="password" name="password">
-											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
+										<span class="timeline-seperator text-center text-primary"> <span class="font-sm">OR</span> 
+									</section>
+									<section>
+										<label class="label">Your Username</label>
+										<label class="input"> <i class="icon-append fa fa-user"></i>
+											<input type="text" name="username">
+											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Enter your username</b> </label>
 										<div class="note">
-											<a href="forgotpassword?">Forgot password?</a>
+											<a href="dashboard?">I remembered my password!</a>
 										</div>
 									</section>
 
-									<section>
-										<label class="checkbox">
-											<input type="checkbox" name="remember" checked="">
-											<i></i>Stay signed in</label>
-									</section>
 								</fieldset>
 								<footer>
-									<button id='submitid' type="submit" class="btn btn-primary">
-										Sign in
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-refresh"></i> Reset Password
 									</button>
 								</footer>
 							</form>
@@ -156,6 +153,17 @@
 						
 						<h5 class="text-center"> - Or sign in using -</h5>
 															
+										<ul class="list-inline text-center">
+											<li>
+												<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
+											</li>
+											<li>
+												<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
+											</li>
+											<li>
+												<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
+											</li>
+										</ul>
 						
 					</div>
 				</div>

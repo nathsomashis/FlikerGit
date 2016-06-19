@@ -171,30 +171,27 @@
 			</div>
 
 			<!-- projects dropdown -->
-			<div class="project-context hidden-xs">
+			<div class="project-context hidden-xs" >
 
 				<span class="label">Projects:</span>
 				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
 
 				<!-- Suggestion: populate this list with fetch and push technique -->
-				<ul class="dropdown-menu">
+				<ul class="dropdown-menu" style="border: 1px solid black">
+					<h5>Daily Note</h5>
 					<li>
-						<a href="javascript:void(0);">Online e-merchant management system - attaching integration with the iOS</a>
+						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
 					</li>
-					<li>
-						<a href="javascript:void(0);">Notes on pipeline upgradee</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);">Assesment Report for merchant account</a>
-					</li>
+					
 					<li class="divider"></li>
 					<li>
-						<a href="javascript:void(0);"><i class="fa fa-power-off"></i> Clear</a>
+						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
 					</li>
 				</ul>
 				<!-- end dropdown-menu-->
 
 			</div>
+			
 			<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
@@ -239,7 +236,7 @@
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+					<span> <a href="logout?" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
 				<!-- end logout button -->
 
@@ -384,10 +381,10 @@
 
 				<ul>
 					<li>
-						<a href="dashboardanalysis?"><i class="fa fa-lg fa-fw fa-briefcase txt-color-blue"></i> <span class="menu-item-parent">DASHBOARD</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
+						<a href="dashboardanalysis?"><i class="fa fa-lg fa-fw fa-briefcase"></i> <span class="menu-item-parent">DASHBOARD</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
 					</li>
 					<li class="active">
-						<a href="dashboardsocial?"><i class="fa fa-lg fa-fw fa-retweet "></i> <span class="menu-item-parent">WALL</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
+						<a href="dashboardsocial?"><i class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span class="menu-item-parent">WALL</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
 					</li>
 					
 					<li>
@@ -403,13 +400,16 @@
 						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">COURSE</span></a>
 						<ul>
 							<li class="">
-								<a href="mycourse?" title="NewPost"><span class="menu-item-parent">MYCOURSES</span></a>
+								<a href="mycourse?" title="NewPost"><i class="fa fa-tags"></i><span class="menu-item-parent">MYCOURSES</span></a>
 							</li>
 							<li class="">
-								<a href="courseanalysis?" title="NewJob"><span class="menu-item-parent">COURSEDASH</span></a>
+								<a href="courseanalysis?" title="NewJob"><i class="fa fa-suitcase"></i><span class="menu-item-parent">COURSEDASH</span></a>
 							</li>
 							<li class="">
-								<a href="createcourse?" title="NewCourse"><span class="menu-item-parent">NEWCOURSE</span></a>
+								<a href="createcourse?" title="NewCourse"><i class="fa fa-plus-square"></i><span class="menu-item-parent">NEWCOURSE</span></a>
+							</li>
+							<li class="">
+								<a href="organizations?" title="Organizations"><i class="fa fa-group"></i><span class="menu-item-parent">ORGANIZATIONS</span></a>
 							</li>
 						</ul>	
 					</li>
@@ -417,13 +417,16 @@
 						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-briefcase"></i> <span class="menu-item-parent">JOBS</span></a>
 						<ul>
 							<li class="">
-								<a href="myjobs?" title="NewPost"><span class="menu-item-parent">MYJOBS</span></a>
+								<a href="myjobs?" title="NewPost"><i class="fa fa-tags"></i><span class="menu-item-parent">MYJOBS</span></a>
 							</li>
 							<li class="">
-								<a href="jobanalysis?" title="NewJob"><span class="menu-item-parent">JOBSDASH</span></a>
+								<a href="jobanalysis?" title="NewJob"><i class="fa fa-suitcase"></i><span class="menu-item-parent">JOBSDASH</span></a>
 							</li>
 							<li class="">
-								<a href="createjob?" title="NewJob"><span class="menu-item-parent">NEWJOB</span></a>
+								<a href="createjob?" title="NewJob"><i class="fa fa-plus-square"></i><span class="menu-item-parent">NEWJOB</span></a>
+							</li>
+							<li class="">
+								<a href="companies?" title="Companies"><i class="fa fa-group"></i><span class="menu-item-parent">COMPANIES</span></a>
 							</li>
 						</ul>	
 					</li>
@@ -1190,6 +1193,24 @@
 				 * 
 				 * loadScript(".../plugin.js", run_after_loaded);
 				 */
+				 
+				 
+				 $("#notedown").on("click", function(){
+					    alert("form has been submitted.");
+					     var note = $('textarea#notemessage').val();
+						
+					    
+					    $.ajax({
+					    	url: "dailynotes?note="+note, 
+							success : function() {
+								
+							} 	
+					    
+				 });
+					  
+					    $('textarea#notemessage').val(" ");
+				 });
+				 
 				
 			})
 		
