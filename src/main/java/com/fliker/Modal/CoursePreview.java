@@ -32,4 +32,54 @@ public class CoursePreview {
 		
 		return courselist;
 	}
+	
+	
+	
+	public void createCourse(){
+		
+	}
+	
+	public void publishCourse(){
+		
+	}
+	
+	public void uploadCourseContent(){
+		
+	}
+	
+	public void spreadCourse(){
+		
+	}
+	
+	public void shareCourse(){
+		
+	}
+	
+	public void likeCourse(){
+		
+	}
+	
+	public void modifyCourse(){
+		
+	}
+	
+	public ArrayList getSponsorslist(){
+		
+		ArrayList sponsorslist = new ArrayList();
+		
+		
+		return sponsorslist;
+	}
+	
+	public ArrayList getpartnerList(){
+		
+		ArrayList partnerlist = new ArrayList();
+		
+		
+		
+		return partnerlist;
+	}
+	
+	
+	
 }

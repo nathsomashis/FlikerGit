@@ -11,6 +11,13 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import com.fliker.SpringMongoConfig;
 import com.fliker.User;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.util.JSON;
 
 public class App {
 
@@ -22,9 +29,20 @@ public class App {
 		// For Annotation
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
+		
+		// final BasicDBObject[] seedData = createSeedData();
+	       MongoClientURI uri  = new MongoClientURI("mongodb://admin:admin@ds021663.mlab.com:21663/fliker");
+	        MongoClient client = new MongoClient(uri);
+	        DB db = client.getDB(uri.getDatabase());
 
-		User user = new User("mkyong", "password123");
-
+	        DBCollection users = db.getCollection("User");
+	        String usuarioJSON = "{\"username\":\""+"mkyong"+"\","+"\"password\":\""+"password123"+"\"}";
+			DBObject jsonObject = (DBObject) JSON.parse(usuarioJSON);
+			users.insert(jsonObject);
+	        
+	        
+		/*User user = new User("mkyong", "password123");
+		users.save(user);
 		// save
 		mongoOperation.save(user);
 
@@ -53,7 +71,7 @@ public class App {
 
 		// List, it should be empty now.
 		List<User> listUser = mongoOperation.findAll(User.class);
-		System.out.println("4. Number of user = " + listUser.size());
+		System.out.println("4. Number of user = " + listUser.size());*/
 
 	}
 	

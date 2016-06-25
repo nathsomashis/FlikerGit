@@ -16,23 +16,19 @@ public class Jobs {
 	public void setJobid(String jobid) {
 		Jobid = jobid;
 	}
-	private String JobName;
+	private String JobTitle;
 	private String JobProgress;
 	private String JobContacts;
+	private String jobcreaterid;
 	private boolean JobActivation;
 	private HashMap JobPercentage;
 	private String JobStartDate;
 	private String JobEndDate;
 	private boolean JobTrack;
 	private String JobResponsibilities;
-	private HashMap SkillsIncluded;
+	private String[] SkillsIncluded;
 	private String JobProjectDescription;
-	public String getJobName() {
-		return JobName;
-	}
-	public void setJobName(String jobName) {
-		JobName = jobName;
-	}
+	
 	public String getJobProgress() {
 		return JobProgress;
 	}
@@ -81,10 +77,23 @@ public class Jobs {
 	public void setJobResponsibilities(String jobResponsibilities) {
 		JobResponsibilities = jobResponsibilities;
 	}
-	public HashMap getSkillsIncluded() {
+	
+	public String getJobTitle() {
+		return JobTitle;
+	}
+	public void setJobTitle(String jobTitle) {
+		JobTitle = jobTitle;
+	}
+	public String getJobcreaterid() {
+		return jobcreaterid;
+	}
+	public void setJobcreaterid(String jobcreaterid) {
+		this.jobcreaterid = jobcreaterid;
+	}
+	public String[] getSkillsIncluded() {
 		return SkillsIncluded;
 	}
-	public void setSkillsIncluded(HashMap skillsIncluded) {
+	public void setSkillsIncluded(String[] skillsIncluded) {
 		SkillsIncluded = skillsIncluded;
 	}
 	public String getJobProjectDescription() {

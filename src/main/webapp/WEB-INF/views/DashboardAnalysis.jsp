@@ -384,6 +384,9 @@
 				-->
 
 				<ul>
+					<li>
+						<a href="searchresults?"><i class="fa fa-lg fa-fw fa-search-plus"></i> <span class="menu-item-parent">SEARCH</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
+					</li>
 					<li class="active">
 						<a href="dashboardanalysis?"><i class="fa fa-lg fa-fw fa-briefcase txt-color-green"></i> <span class="menu-item-parent">DASHBOARD</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
 					</li>

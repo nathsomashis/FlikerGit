@@ -8,33 +8,36 @@ public class Comment {
 	
 	@Id
 	private String commentid;
-	private User commentOwner;
-	private StringBuilder comments;
-	private boolean reply;
+	private String commentOwnerid;
+	private String comments;
+	private String[] replyids;
 	public String getCommentid() {
 		return commentid;
 	}
 	public void setCommentid(String commentid) {
 		this.commentid = commentid;
 	}
-	public User getCommentOwner() {
-		return commentOwner;
+	public String getCommentOwnerid() {
+		return commentOwnerid;
 	}
-	public void setCommentOwner(User commentOwner) {
-		this.commentOwner = commentOwner;
+	public void setCommentOwnerid(String commentOwnerid) {
+		this.commentOwnerid = commentOwnerid;
 	}
-	public StringBuilder getComments() {
+	public String getComments() {
 		return comments;
 	}
-	public void setComments(StringBuilder comments) {
+	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	public boolean isReply() {
-		return reply;
+	public String[] getReplyids() {
+		return replyids;
 	}
-	public void setReply(boolean reply) {
-		this.reply = reply;
+	public void setReplyids(String[] replyids) {
+		this.replyids = replyids;
 	}
+	
+	
+	
 	
 
 }

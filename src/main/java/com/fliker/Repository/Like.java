@@ -8,19 +8,20 @@ public class Like {
 
 	@Id
 	private String likeid;
-	private User likeOwner;
+	private String likeOwnerid;
 	public String getLikeid() {
 		return likeid;
 	}
 	public void setLikeid(String likeid) {
 		this.likeid = likeid;
 	}
-	public User getLikeOwner() {
-		return likeOwner;
+	public String getLikeOwnerid() {
+		return likeOwnerid;
 	}
-	public void setLikeOwner(User likeOwner) {
-		this.likeOwner = likeOwner;
+	public void setLikeOwnerid(String likeOwnerid) {
+		this.likeOwnerid = likeOwnerid;
 	}
+	
 	
 	
 	

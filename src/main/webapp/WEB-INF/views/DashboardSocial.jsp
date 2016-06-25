@@ -381,6 +381,9 @@
 
 				<ul>
 					<li>
+						<a href="searchresults?"><i class="fa fa-lg fa-fw fa-search-plus"></i> <span class="menu-item-parent">SEARCH</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
+					</li>
+					<li>
 						<a href="dashboardanalysis?"><i class="fa fa-lg fa-fw fa-briefcase"></i> <span class="menu-item-parent">DASHBOARD</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
 					</li>
 					<li class="active">
@@ -394,7 +397,7 @@
 						<a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i> <span class="menu-item-parent">TIMELINE</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
 					</li>
 					<li>
-								<a href="createpost?" title="NewPost"><i class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">NEWPOST</span></a>
+						<a href="createpost?" title="NewPost"><i class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">NEWPOST</span></a>
 					</li>
 					<li>
 						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">COURSE</span></a>

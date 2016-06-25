@@ -3,24 +3,47 @@ package com.fliker.Repository;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="Courses")
+@Document(collection="Course")
 public class Courses {
 
 	@Id
 	private String courseid;
 	private String courseName;
-	private byte[] courseimage;
+	private String courseimageid;
 	private String courseCategory;
 	private String courseDescription;
-	private float courseReview;
-	private int courseFee;
-	private String courseTrend;
+	private String courseReview;
+	private String courseFee;
+	private String[] courseSponsors;
+	private String[] coursePartners;
+	private String FAQid;
+	private String courseownerid;
 	
-	public String getCourseTrend() {
-		return courseTrend;
+	
+	
+	public String[] getCourseSponsors() {
+		return courseSponsors;
 	}
-	public void setCourseTrend(String courseTrend) {
-		this.courseTrend = courseTrend;
+	public void setCourseSponsors(String[] courseSponsors) {
+		this.courseSponsors = courseSponsors;
+	}
+	public String[] getCoursePartners() {
+		return coursePartners;
+	}
+	public void setCoursePartners(String[] coursePartners) {
+		this.coursePartners = coursePartners;
+	}
+	public String getFAQid() {
+		return FAQid;
+	}
+	public void setFAQid(String fAQid) {
+		FAQid = fAQid;
+	}
+	public String getCourseownerid() {
+		return courseownerid;
+	}
+	public void setCourseownerid(String courseownerid) {
+		this.courseownerid = courseownerid;
 	}
 	public String getCourseid() {
 		return courseid;
@@ -34,11 +57,11 @@ public class Courses {
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
-	public byte[] getCourseimage() {
-		return courseimage;
+	public String getCourseimageid() {
+		return courseimageid;
 	}
-	public void setCourseimage(byte[] courseimage) {
-		this.courseimage = courseimage;
+	public void setCourseimageid(String courseimageid) {
+		this.courseimageid = courseimageid;
 	}
 	public String getCourseCategory() {
 		return courseCategory;
@@ -52,18 +75,21 @@ public class Courses {
 	public void setCourseDescription(String courseDescription) {
 		this.courseDescription = courseDescription;
 	}
-	public float getCourseReview() {
+	public String getCourseReview() {
 		return courseReview;
 	}
-	public void setCourseReview(float courseReview) {
+	public void setCourseReview(String courseReview) {
 		this.courseReview = courseReview;
 	}
-	public int getCourseFee() {
+	public String getCourseFee() {
 		return courseFee;
 	}
-	public void setCourseFee(int courseFee) {
+	public void setCourseFee(String courseFee) {
 		this.courseFee = courseFee;
 	}
+	
+	
+	
 	
 	
 	

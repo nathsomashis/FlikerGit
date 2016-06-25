@@ -3,14 +3,16 @@ package com.fliker.Repository;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Share")
+@Document(collection = "Shared")
 public class Share {
 
 	@Id
 	private String shareid;
-	private User shareOwner;
+	private String shareOwner;
 	private String sharedTime;
-	private Comment shareComment;
+	private String sharedlocation;
+	private String shareComment;
+	
 	public String getShareid() {
 		return shareid;
 	}
@@ -18,24 +20,31 @@ public class Share {
 		this.shareid = shareid;
 	}
 	
-	public User getShareOwner() {
-		return shareOwner;
-	}
-	public void setShareOwner(User shareOwner) {
-		this.shareOwner = shareOwner;
-	}
 	public String getSharedTime() {
 		return sharedTime;
 	}
 	public void setSharedTime(String sharedTime) {
 		this.sharedTime = sharedTime;
 	}
-	public Comment getShareComment() {
+	public String getShareOwner() {
+		return shareOwner;
+	}
+	public void setShareOwner(String shareOwner) {
+		this.shareOwner = shareOwner;
+	}
+	public String getSharedlocation() {
+		return sharedlocation;
+	}
+	public void setSharedlocation(String sharedlocation) {
+		this.sharedlocation = sharedlocation;
+	}
+	public String getShareComment() {
 		return shareComment;
 	}
-	public void setShareComment(Comment shareComment) {
+	public void setShareComment(String shareComment) {
 		this.shareComment = shareComment;
 	}
+	
 	
 	
 	
