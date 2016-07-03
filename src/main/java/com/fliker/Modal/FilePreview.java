@@ -9,6 +9,8 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.WriteConcern;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSInputFile;
@@ -21,10 +23,12 @@ public class FilePreview {
 		
 		mongoconn.getDBConnection().save(fileupload);*/
 		
-		@SuppressWarnings("deprecation")
-		Mongo mongo = new Mongo("127.0.0.1", 27017);
-		DB db = mongo.getDB("testdb");
-		DBCollection collection = db.getCollection("fileupload");
+		MongoClientURI uri  = new MongoClientURI("mongodb://admin:admin@ds021663.mlab.com:21663/fliker");
+        MongoClient client = new MongoClient(uri);
+        DB db = client.getDB(uri.getDatabase());
+
+        DBCollection collection = db.getCollection("fileupload");
+		//DBCollection collection = mongoconn.getDBConnection("fileupload");
 		
 		
 		GridFS gridfs = new GridFS(db,"files");

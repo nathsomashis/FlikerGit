@@ -8,11 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fliker.Modal.LoggingReview;
 import com.fliker.Modal.LoginReview;
 
 @Controller
+@SessionAttributes("userid")
 public class LoginController {
 	
 	///{username}/{password}
@@ -23,20 +26,22 @@ public class LoginController {
 		
 		System.out.println("In the Login Controller");
 		
-		/*LoginReview loginreview = new LoginReview();
-		String message = loginreview.validateUser(username, password);*/
+		LoginReview loginreview = new LoginReview();
+		String message = loginreview.validateUser(username, password);
 	  
 		ModelAndView mv = null;
 		
-		//if(username.isEmpty()){
-			mv = new ModelAndView("/DashboardSocial");
-		//}
-		
-		/*if(message.equalsIgnoreCase("InvalidUser")){
+		if(message.equalsIgnoreCase("The username is not valid")){
 			mv = new ModelAndView("/Login");
-		}else if(message.equalsIgnoreCase("validUser")){
+		}else if(message.equalsIgnoreCase("The password doesn't match")){
+			mv = new ModelAndView("/Login");
+		}else {
 			mv = new ModelAndView("/DashboardSocial");
-		}*/
+			
+			mv.addObject("userid", message);
+			LoggingReview logrev = new LoggingReview();
+			logrev.entryLogging(message);
+		}
 	  
 		
 		return mv;

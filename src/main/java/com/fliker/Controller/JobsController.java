@@ -75,7 +75,7 @@ public class JobsController {
 			
 			
 			String result = "{"+
-					"\"name\": \""+job.getJobName()+"<br><small class='text-muted'><i>Budget: 5,000<i></small>\""+","+
+					"\"name\": \""+job.getJobTitle()+"<br><small class='text-muted'><i>Budget: 5,000<i></small>\""+","+
 					"\"est\": \"<td><div class='progress progress-xs' data-progressbar-value='"+job.getJobProgress()+"'><div class='progress-bar'></div></div></td>\""+","+
 			        "\"contacts\": \"<div class='project-members'><a href='javascript:void(0)'><img src='img/avatars/male.png' class='offline' alt='user'></a> </div> \""+","+
 			        "\"status\": \"<span class='label label-success'>"+job.isJobActivation()+"</span>\""+","+
@@ -119,12 +119,12 @@ public class JobsController {
 		String returnresult = "";
 		Jobs jobs = new Jobs();
 		JobsPreview jobpreview = new JobsPreview();
-		jobs = jobpreview.searchId(id);
+		/*jobs = jobpreview.searchId(id);
 		if(!jobs.isJobTrack()){
 			returnresult = jobpreview.setTracker(id, true);
 		}else {
 			returnresult = jobpreview.setTracker(id, false);
-		}
+		}*/
 		return returnresult;
 	}
 	

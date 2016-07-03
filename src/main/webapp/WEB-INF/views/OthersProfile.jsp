@@ -1,5 +1,4 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -402,9 +401,6 @@
 
 				<ul>
 					<li>
-						<a href="searchresults?"><i class="fa fa-lg fa-fw fa-search-plus"></i> <span class="menu-item-parent">SEARCH</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
-					</li>
-					<li>
 						<a href="dashboardanalysis?"><i class="fa fa-lg fa-fw fa-briefcase"></i> <span class="menu-item-parent">DASHBOARD</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
 					</li>
 					<li class="">
@@ -637,94 +633,7 @@
 
 			</div>
 			<!-- END RIBBON -->
-			
-			<%
-			
-				String imageid = "";
-				String profileid = "";
-				String skypeid = "";
-				String name = "";
-				String emailid = "";
-				String currentStatus="";
-				String experience = "";
-				String hangoverid = "";
-				String salary = "";
-				String tellaboutme = "";
-				String contact = "";
-				int articlecount = 0;
-				int connectioncount = 0;
-				int followercount = 0;
-				ArrayList profilelist = (ArrayList)request.getAttribute("postlist");
-				System.out.println(profilelist);
-				for(int m=0;m<profilelist.size();m++){
-					
-					
-					if(profilelist.get(m) instanceof Profile){
-						Profile profileinfo = (Profile)profilelist.get(m);
-						imageid = profileinfo.getProfileImageid();
-						profileid = profileinfo.getProfileid();
-						skypeid = profileinfo.getSkypeid();
-						if(skypeid == null){
-							skypeid = "_B_L_A_N_K_";
-						}
-						name = profileinfo.getName();
-						emailid = profileinfo.getEmailid();
-						experience = profileinfo.getExperience();
-						hangoverid = profileinfo.getHangoverid();
-						salary = profileinfo.getSalary();
-						tellaboutme = profileinfo.getTellmeaboutme();
-						if(tellaboutme == null){
-							tellaboutme = "_B_L_A_N_K_";
-						}
-						currentStatus = profileinfo.getCurrentStatus();
-						if(currentStatus == null){
-							currentStatus = "_B_L_A_N_K_";
-						}
-						contact = profileinfo.getContact();
-						if(contact == null){
-							contact = "_B_L_A_N_K_";
-						}
-					
-					}else {
-						
-						HashMap collectionlist = (HashMap)profilelist.get(m);
-						Set collectionset = collectionlist.entrySet();
-						Iterator collit = collectionset.iterator();
-						while(collit.hasNext()){
-							
-							Map.Entry mecoll = (Map.Entry)collit.next();
-							String collectionresul = (String)mecoll.getKey();
-							
-							if(collectionresul.equalsIgnoreCase("articles")){
-								ArrayList articlelist = (ArrayList)mecoll.getValue();
-								if(articlelist!= null){
-									articlecount = articlelist.size();
-								}
-								
-							}else if(collectionresul.equalsIgnoreCase("connections")){
-								ArrayList connectionlist = (ArrayList)mecoll.getValue();
-								if(connectionlist!= null){
-									articlecount = connectionlist.size();
-								}
-								
-							}else if(collectionresul.equalsIgnoreCase("followers")){
-								ArrayList followerlist = (ArrayList)mecoll.getValue();
-								if(followerlist!= null){
-									articlecount = followerlist.size();
-								}
-							}
-							
-						}
-						
-					}
-					
-					
-				}
-			
-			
-			%>
-			
-			
+
 			<!-- MAIN CONTENT -->
 			<div id="content">
 
@@ -802,15 +711,15 @@
 														<div class="carousel-inner">
 															<!-- Slide 1 -->
 															<div class="item active">
-																<img src="<c:url value='/resources/img/demo/s1.jpg' />" alt="demo user">
+																<img src="img/demo/s1.jpg" alt="demo user">
 															</div>
 															<!-- Slide 2 -->
 															<div class="item">
-																<img src="<c:url value='/resources/img/demo/s2.jpg' />" alt="demo user">
+																<img src="img/demo/s2.jpg" alt="demo user">
 															</div>
 															<!-- Slide 3 -->
 															<div class="item">
-																<img src="<c:url value='/resources/img/demo/m3.jpg' />" alt="demo user">
+																<img src="img/demo/m3.jpg" alt="demo user">
 															</div>
 														</div>
 													</div>
@@ -821,44 +730,36 @@
 													<div class="row">
 				
 														<div class="col-sm-3 profile-pic">
-															<% if(imageid!= null){%>
-															
-																<img  data-toggle="modal" data-target="#myModal" src="<c:url value='/resources/img/avatars/sunny-big.png' />" alt="demo user">
-																
-															<%}else {%>
-														
-															<img data-toggle="modal" data-target="#myModal" src="<c:url value='/resources/img/avatars/male.png' />" alt="demo user">
-															
-															<%} %>
+															<img src="img/avatars/sunny-big.png" alt="demo user">
 															<div class="padding-10">
-																<h4 class="font-md"><strong><%=followercount %></strong>
+																<h4 class="font-md"><strong>1,543</strong>
 																<br>
 																<small>Followers</small></h4>
 																<br>
-																<h4 class="font-md"><strong><%=connectioncount%></strong>
+																<h4 class="font-md"><strong>419</strong>
 																<br>
 																<small>Connections</small></h4>
 															</div>
 														</div>
 														<div class="col-sm-6">
-															<h1><span class="semi-bold"><%=name%></span>
+															<h1>John <span class="semi-bold">Doe</span>
 															<br>
-															<small> <%=currentStatus %></small>&nbsp;&nbsp;<i href="#" id="currectstatus-eg5" class="fa fa-edit"></i></h1>
+															<small> CEO, SmartAdmin</small>&nbsp;&nbsp;<i href="#" id="smart-mod-eg5" class="fa fa-edit"></i></h1>
 				
 															<ul class="list-unstyled">
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=contact%></span><i href="#" id="contact-eg6" class="fa fa-edit"></i>
+																		<i class="fa fa-phone"></i>&nbsp;&nbsp;(<span class="txt-color-darken">313</span>) <span class="txt-color-darken">464</span> - <span class="txt-color-darken">6473</span>
 																	</p>
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:simmons@smartadmin"><%=emailid%></a>&nbsp;&nbsp;<i href="#" id="email-eg6" class="fa fa-edit"></i>
+																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:simmons@smartadmin">ceo@smartadmin.com</a>&nbsp;&nbsp;<i href="#" id="smart-mod-eg6" class="fa fa-edit"></i>
 																	</p>
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-skype"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=skypeid%></span><i href="#" id="skype-eg6" class="fa fa-edit"></i>
+																		<i class="fa fa-skype"></i>&nbsp;&nbsp;<span class="txt-color-darken">john12</span>
 																	</p>
 																</li>
 																<li>
@@ -869,15 +770,16 @@
 															</ul>
 															<br>
 															<p class="font-md">
-																<i>A little about me...</i><i href="#" id="tellabout-eg6" class="fa fa-edit"></i>
+																<i>A little about me...</i>
 															</p>
 															<p>
 				
-																<%=tellaboutme%>
+																Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
+																cumque nihil impedit quo minus id quod maxime placeat facere
 				
 															</p>
 															<br>
-															<a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i><%=hangoverid %></a>
+															<a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a>
 															<br>
 															<br>
 				
@@ -1559,38 +1461,7 @@
 	<!-- end row -->
 
 </section>
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">New Profile Pix</h4>
-							</div>
-							<div class="modal-body">
 				
-								<form action="rest/file/upload" method="post" enctype="multipart/form-data">
- 
-								   <p>
-									Select a file : <input type="file" name="file" size="45" />
-								   </p>
-							 
-								   <input type="submit" value="Upload It" />
-								</form>
-								
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary">
-									Upload Image
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div>
 				<!-- end row -->
 
 			</div>
@@ -1871,42 +1742,11 @@
 				e.preventDefault();
 			});	
 				
-				
-		$("#profileimage-eg5").click(function(e) {
-				
-				$.SmartMessageBox({
-					title : "Login form",
-					content : "New Image",
-					buttons : "[Cancel][Upload]",
-					input : "text",
-					placeholder : "Enter your user name"
-				}, function(ButtonPress, Value) {
-					if (ButtonPress == "Cancel") {
-						alert("Why did you cancel that? :(");
-						return 0;
-					}
-		
-					Value1 = Value.toUpperCase();
-					ValueOriginal = Value;
-					$.SmartMessageBox({
-						title : "Hey! <strong>" + Value1 + ",</strong>",
-						content : "And now please provide your password:",
-						buttons : "[Login]",
-						input : "password",
-						placeholder : "Password"
-					}, function(ButtonPress, Value) {
-						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
-				});
-		
-				e.preventDefault();
-			});			
-				
-		$("#currectstatus-eg5").click(function(e) {
+		$("#smart-mod-eg6").click(function(e) {
 				
 				$.SmartMessageBox({
 					title : "Login form",
-					content : "New Position ",
+					content : "Please enter your user name",
 					buttons : "[Cancel][Accept]",
 					input : "text",
 					placeholder : "Enter your user name"
@@ -1931,128 +1771,6 @@
 		
 				e.preventDefault();
 			});				
-				
-		$("#contact-eg6").click(function(e) {
-				
-				$.SmartMessageBox({
-					title : "Login form",
-					content : "New Contact",
-					buttons : "[Cancel][Accept]",
-					input : "text",
-					placeholder : "Enter your user name"
-				}, function(ButtonPress, Value) {
-					if (ButtonPress == "Cancel") {
-						alert("Why did you cancel that? :(");
-						return 0;
-					}
-		
-					Value1 = Value.toUpperCase();
-					ValueOriginal = Value;
-					$.SmartMessageBox({
-						title : "Hey! <strong>" + Value1 + ",</strong>",
-						content : "And now please provide your password:",
-						buttons : "[Login]",
-						input : "password",
-						placeholder : "Password"
-					}, function(ButtonPress, Value) {
-						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
-				});
-		
-				e.preventDefault();
-			});	
-				
-				
-		$("#email-eg6").click(function(e) {
-				
-				$.SmartMessageBox({
-					title : "Login form",
-					content : "Change Email",
-					buttons : "[Cancel][Accept]",
-					input : "text",
-					placeholder : "Enter your user name"
-				}, function(ButtonPress, Value) {
-					if (ButtonPress == "Cancel") {
-						alert("Why did you cancel that? :(");
-						return 0;
-					}
-		
-					Value1 = Value.toUpperCase();
-					ValueOriginal = Value;
-					$.SmartMessageBox({
-						title : "Hey! <strong>" + Value1 + ",</strong>",
-						content : "And now please provide your password:",
-						buttons : "[Login]",
-						input : "password",
-						placeholder : "Password"
-					}, function(ButtonPress, Value) {
-						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
-				});
-		
-				e.preventDefault();
-			});	
-				
-		$("#skype-eg6").click(function(e) {
-				
-				$.SmartMessageBox({
-					title : "Login form",
-					content : "New Skype ID",
-					buttons : "[Cancel][Accept]",
-					input : "text",
-					placeholder : "Enter your user name"
-				}, function(ButtonPress, Value) {
-					if (ButtonPress == "Cancel") {
-						alert("Why did you cancel that? :(");
-						return 0;
-					}
-		
-					Value1 = Value.toUpperCase();
-					ValueOriginal = Value;
-					$.SmartMessageBox({
-						title : "Hey! <strong>" + Value1 + ",</strong>",
-						content : "And now please provide your password:",
-						buttons : "[Login]",
-						input : "password",
-						placeholder : "Password"
-					}, function(ButtonPress, Value) {
-						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
-				});
-		
-				e.preventDefault();
-			});	
-				
-		$("#tellabout-eg6").click(function(e) {
-				
-				$.SmartMessageBox({
-					title : "Login form",
-					content : "Tell Me About",
-					buttons : "[Cancel][Accept]",
-					input : "text",
-					placeholder : "Enter your user name"
-				}, function(ButtonPress, Value) {
-					if (ButtonPress == "Cancel") {
-						alert("Why did you cancel that? :(");
-						return 0;
-					}
-		
-					Value1 = Value.toUpperCase();
-					ValueOriginal = Value;
-					$.SmartMessageBox({
-						title : "Hey! <strong>" + Value1 + ",</strong>",
-						content : "And now please provide your password:",
-						buttons : "[Login]",
-						input : "password",
-						placeholder : "Password"
-					}, function(ButtonPress, Value) {
-						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
-				});
-		
-				e.preventDefault();
-			});		
-				
 			
 			
 			// menu

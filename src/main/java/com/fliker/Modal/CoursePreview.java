@@ -15,7 +15,7 @@ public class CoursePreview {
 	public ArrayList getCourseList(String lastid){
 		
 		ArrayList courselist = new ArrayList();
-		MongoConnection mongoconn = new MongoConnection();
+		/*MongoConnection mongoconn = new MongoConnection();
 		DBCollection collection = mongoconn.getDBConnection().getCollection("Course");
 		DBCursor cursor;
 		if(lastid.isEmpty()){
@@ -28,7 +28,7 @@ public class CoursePreview {
 		
 		while(cursor.hasNext()){
 			courselist.add(cursor.next());
-		}
+		}*/
 		
 		return courselist;
 	}

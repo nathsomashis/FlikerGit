@@ -15,7 +15,7 @@ public class DashboardSocialPreview {
 		
 		ArrayList postlist = new ArrayList<Post>();
 		
-		MongoConnection mongoconn = new MongoConnection();
+		/*MongoConnection mongoconn = new MongoConnection();
 		DBCollection collection = mongoconn.getDBConnection().getCollection("Post");
 		DBCursor cursor;
 		if(lastid.isEmpty()){
@@ -26,7 +26,7 @@ public class DashboardSocialPreview {
 		
 		while(cursor.hasNext()){
 			postlist.add(cursor.next());
-		}
+		}*/
 		
 		return postlist;
 	}

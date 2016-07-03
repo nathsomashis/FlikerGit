@@ -18,13 +18,13 @@ public class JobsPreview {
 		ArrayList joblist = new ArrayList<Jobs>();
 		
 		MongoConnection mongoconn = new MongoConnection();
-		joblist = (ArrayList) mongoconn.getDBConnection().findAll(Jobs.class);
+		//joblist = (ArrayList) mongoconn.getDBConnection().findAll(Jobs.class);
 		
 		return joblist;
 		
 	}
 	
-	public Jobs searchId(String id){
+	/*public Jobs searchId(String id){
 		
 		MongoConnection mongoconn = new MongoConnection();
 		// query to search user
@@ -35,9 +35,9 @@ public class JobsPreview {
 				System.out.println("2. find - savedUser : " + savedJobs);
 				
 		return savedJobs;	
-	}
+	}*/
 	
-	public String setTracker(String id, boolean newTrack){
+	/*public String setTracker(String id, boolean newTrack){
 		
 		MongoConnection mongoconn = new MongoConnection();
 		Query searchUserQuery = new Query(Criteria.where("Jobid").is(id));
@@ -45,7 +45,7 @@ public class JobsPreview {
 		//System.out.println("2. find - savedUser : " + savedUser);
 
 		// update password
-		mongoconn.getDBConnection().updateFirst(searchUserQuery, Update.update("JobTrack", newTrack),
+		//mongoconn.getDBConnection().updateFirst(searchUserQuery, Update.update("JobTrack", newTrack),
 				User.class);
 		
 		// find the updated user object
@@ -55,7 +55,7 @@ public class JobsPreview {
 				System.out.println("3. updatedUser : " + updatedjobs);
 				
 			return "done";	
-	}
+	}*/
 	
 	
 	

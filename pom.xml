@@ -20,32 +20,9 @@
 			<url>http://download.java.net/maven/2/</url>
 			<layout>default</layout>
 		</repository>
-	
-
-	
-		<repository>
-			<id>eap</id>
-			<url>http://maven.repository.redhat.com/techpreview/all</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
 	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>eap</id>
-			<url>http://maven.repository.redhat.com/techpreview/all</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+
+
 
 	<dependencies>
 		<dependency>
@@ -66,7 +43,11 @@
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-beans</artifactId>
+		  <version>${spring.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -79,11 +60,23 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-context</artifactId>
+		  <version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>aopalliance</groupId>
 			<artifactId>aopalliance</artifactId>
 			<version>1.0</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>1.8.6</version>
+		</dependency>
+				
 		<!-- Servlet -->
 		<!-- http://mvnrepository.com/artifact/javax.servlet/servlet-api -->
 		<!-- http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -109,7 +102,11 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4</version>
+		</dependency>
 		<!-- Apache Commons FileUpload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -150,11 +147,17 @@
 			<version>1.8</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-multipart</artifactId>
+			<version>1.8</version>
+		</dependency>
+
 		<!-- mongodb java driver -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>2.11.0</version>
+			<version>3.2.2</version>
 		</dependency>
 
 		<!-- Spring data mongodb -->
@@ -188,6 +191,13 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+		
+		<!-- Geolocation api -->
+		<dependency>
+		    <groupId>com.maxmind.geoip</groupId>
+		    <artifactId>geoip-api</artifactId>
+		    <version>1.2.11</version>
+		</dependency>
 
 	</dependencies>
 	<build>
@@ -212,7 +222,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-    
-</profiles>
 </project>

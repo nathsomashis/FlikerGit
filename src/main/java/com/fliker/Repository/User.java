@@ -7,8 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
 	@Id
-	private String id;
-
+	private String userid;
 	String emailid;
 	String username;
 	String firstname;
@@ -17,6 +16,18 @@ public class User {
 	String request;
 	String subscription;
 	String terms;
+	String password;
+	boolean enabled;
+	
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -57,15 +68,6 @@ public class User {
 		this.terms = terms;
 	}
 
-	String password;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getUsername() {
 		return username;
@@ -87,8 +89,9 @@ public class User {
 		
 	}
 	
-	public User(String emailid,String username, String password, String firstname,String lastname, String gender, String request, String subscription, String terms) {
+	public User( String emailid,String username, String password, String firstname,String lastname, String gender, String request, String subscription, String terms) {
 		super();
+		
 		this.emailid = emailid;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -102,7 +105,31 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
+		return "User [id=" + userid + ", username=" + username + ", password=" + password + "]";
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getEmailid() {
+		return emailid;
+	}
+
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 	
 	

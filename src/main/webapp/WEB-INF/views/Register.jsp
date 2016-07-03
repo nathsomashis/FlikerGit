@@ -250,7 +250,8 @@
 
 									<section>
 										<label class="input"> <i class="icon-append fa fa-envelope"></i>
-											<input type="email" name="email" placeholder="Email address">
+											<input type="email" id="emailaddress" name="email" placeholder="Email address" >
+											<b id="msgdisplay" style="display: block;" class="tooltip tooltip-bottom-right">The email id already taken. Please Login .</b>
 											<b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
 									</section>
 
@@ -604,6 +605,21 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 					$('#myModal').modal('toggle');
 				}
 			});
+			
+			
+			$("#emailaddress").keydown(function(event) {
+				
+				var emailaddress = $("#emailaddress")[0].value;
+				$.ajax({
+			    	url: "validateemail?email="+emailaddress,
+			    	type : "GET",
+					success : function(data) {
+						$('#msgdisplay').css({display: 'none'}); 
+					}	
+			    
+			    });
+				
+			})
 			
 			// Validation
 			$(function() {

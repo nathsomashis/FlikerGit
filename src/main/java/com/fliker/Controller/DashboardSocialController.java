@@ -20,6 +20,8 @@ public class DashboardSocialController {
  
 		ArrayList postlist = new ArrayList();
 		
+		
+		
 		/*DashboardSocialPreview dashpreview = new DashboardSocialPreview();
 		postlist = dashpreview.postlist(lastid);*/
 		

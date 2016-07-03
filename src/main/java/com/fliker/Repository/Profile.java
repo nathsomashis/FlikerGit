@@ -18,6 +18,7 @@ public class Profile {
 	private String currentStatus;
 	private String emailid;
 	private String skypeid;
+	private String contact;
 	private String hangoverid;
 	private String tellmeaboutme;
 	private String profileImageid;
@@ -59,6 +60,12 @@ public class Profile {
 		this.articleids = articleids;
 	}
 	
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
 	public String getExperience() {
 		return experience;
 	}

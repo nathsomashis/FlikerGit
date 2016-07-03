@@ -273,9 +273,9 @@
 										<div class="row">
 												<div class="col-md-5 col-sm-12 col-xs-12">
 													<div class="product-image"> 
-														<img src="<%course.getCourseimage(); %>" alt="194x228" class="img-responsive"> 
+														<img src="<%course.getCourseimageid(); %>" alt="194x228" class="img-responsive"> 
 														<span class="tag2 hot">
-															<%course.getCourseTrend(); %>
+															<%course.getCourseReview(); %>
 														</span> 
 													</div>
 												</div>
