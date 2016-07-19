@@ -37,7 +37,7 @@ public class FilePreview {
 		gfsFile.save();
 		
 		BasicDBObject info = new BasicDBObject();
-        info.put("id", fileupload.getId());
+        info.put("id", fileupload.getFileid());
         info.put("name", fileupload.getName());
         info.put("location", fileupload.getLocation());
         info.put("size", fileupload.getSize());

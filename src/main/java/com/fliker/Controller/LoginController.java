@@ -3,6 +3,9 @@ package com.fliker.Controller;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fliker.Modal.DashboardSocialPreview;
 import com.fliker.Modal.LoggingReview;
 import com.fliker.Modal.LoginReview;
 
@@ -22,7 +26,7 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public ModelAndView login(@RequestParam(value = "email", required = true) String username,
-			@RequestParam(value = "password", required = true) String password){
+			@RequestParam(value = "password", required = true) String password, HttpSession session){
 		
 		System.out.println("In the Login Controller");
 		
@@ -39,6 +43,12 @@ public class LoginController {
 			mv = new ModelAndView("/DashboardSocial");
 			
 			mv.addObject("userid", message);
+			session.setAttribute("userid", message);
+			
+			DashboardSocialPreview dashprev = new DashboardSocialPreview();
+			ArrayList postlist = dashprev.firstpostlist();
+			mv.addObject("postlist", postlist);
+			
 			LoggingReview logrev = new LoggingReview();
 			logrev.entryLogging(message);
 		}

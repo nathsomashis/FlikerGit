@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class FileUpload {
 
 	  @Id
-	  private String id;
+	  private String fileid;
 	  private String name;
 	  private String location;
 	  private Long size;
@@ -21,11 +21,12 @@ public class FileUpload {
 		this.fileblob = fileblob;
 	}
 	
-	public String getId() {
-		return id;
+	
+	public String getFileid() {
+		return fileid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setFileid(String fileid) {
+		this.fileid = fileid;
 	}
 	public String getName() {
 		return name;

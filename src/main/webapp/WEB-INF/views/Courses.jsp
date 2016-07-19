@@ -1,86 +1,106 @@
-<%@page import="org.springframework.web.servlet.ModelAndView,java.util.*,com.fliker.Repository.Courses"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page
+	import="org.springframework.web.servlet.ModelAndView,java.util.*,com.fliker.Repository.Courses,com.mongodb.DBObject,org.bson.types.ObjectId"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-		<meta charset="utf-8">
-		<title> Jobs </title>
-		<meta name="description" content="">
-		<meta name="author" content="">
-			
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		
-		<!-- #CSS Links -->
-		<!-- Basic Styles -->
-		<link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/assets/css/bootstrap.min.css" />'>
-		<link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/assets/css/font-awesome.min.css" />'>
+<meta charset="utf-8">
+<title>Jobs</title>
+<meta name="description" content="">
+<meta name="author" content="">
 
-		<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
-		<link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/assets/css/smartadmin-production-plugins.min.css" />' >
-		<link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/assets/css/smartadmin-production.min.css" />'>
-		<link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/assets/css/smartadmin-skins.min.css" />'>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<!-- SmartAdmin RTL Support -->
-		<link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/assets/css/smartadmin-rtl.min.css" />' > 
+<!-- #CSS Links -->
+<!-- Basic Styles -->
+<link rel="stylesheet" type="text/css" media="screen"
+	href='<c:url value="/resources/assets/css/bootstrap.min.css" />'>
+<link rel="stylesheet" type="text/css" media="screen"
+	href='<c:url value="/resources/assets/css/font-awesome.min.css" />'>
 
-		<!-- We recommend you use "your_style.css" to override SmartAdmin
+<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+<link rel="stylesheet" type="text/css" media="screen"
+	href='<c:url value="/resources/assets/css/smartadmin-production-plugins.min.css" />'>
+<link rel="stylesheet" type="text/css" media="screen"
+	href='<c:url value="/resources/assets/css/smartadmin-production.min.css" />'>
+<link rel="stylesheet" type="text/css" media="screen"
+	href='<c:url value="/resources/assets/css/smartadmin-skins.min.css" />'>
+
+<!-- SmartAdmin RTL Support -->
+<link rel="stylesheet" type="text/css" media="screen"
+	href='<c:url value="/resources/assets/css/smartadmin-rtl.min.css" />'>
+
+<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
-		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
+<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
 
-		<!-- #FAVICONS -->
-		<link rel="shortcut icon" href='<c:url value="/resources/assets/img/favicon/favicon.ico" />' type="image/x-icon">
-		<link rel="icon" href='<c:url value="/resources/assets/img/favicon/favicon.ico" />' type="image/x-icon">
+<!-- #FAVICONS -->
+<link rel="shortcut icon"
+	href='<c:url value="/resources/assets/img/favicon/favicon.ico" />'
+	type="image/x-icon">
+<link rel="icon"
+	href='<c:url value="/resources/assets/img/favicon/favicon.ico" />'
+	type="image/x-icon">
 
-		<!-- #GOOGLE FONT -->
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+<!-- #GOOGLE FONT -->
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
-		<!-- #APP SCREEN / ICONS -->
-		<!-- Specifying a Webpage Icon for Web Clip 
+<!-- #APP SCREEN / ICONS -->
+<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-		<link rel="apple-touch-icon" href='<c:url value="/resources/assets/img/splash/sptouch-icon-iphone.png" />' >
-		<link rel="apple-touch-icon" sizes="76x76" href='<c:url value="/resources/assets/img/splash/touch-icon-ipad.png" />' >
-		<link rel="apple-touch-icon" sizes="120x120" href='<c:url value="/resources/assets/img/splash/touch-icon-iphone-retina.png" />' >
-		<link rel="apple-touch-icon" sizes="152x152" href='<c:url value="/resources/assets/img/splash/touch-icon-ipad-retina.png" />' >
-		
-		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		
-		<!-- Startup image for web apps -->
-		<link rel="apple-touch-startup-image" href='<c:url value="/resources/assets/img/splash/ipad-landscape.png" />'  media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<link rel="apple-touch-startup-image" href='<c:url value="/resources/assets/img/splash/ipad-portrait.png" />'  media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-		<link rel="apple-touch-startup-image" href='<c:url value="/resources/assets/img/splash/iphone.png" />' media="screen and (max-device-width: 320px)">
+<link rel="apple-touch-icon"
+	href='<c:url value="/resources/assets/img/splash/sptouch-icon-iphone.png" />'>
+<link rel="apple-touch-icon" sizes="76x76"
+	href='<c:url value="/resources/assets/img/splash/touch-icon-ipad.png" />'>
+<link rel="apple-touch-icon" sizes="120x120"
+	href='<c:url value="/resources/assets/img/splash/touch-icon-iphone-retina.png" />'>
+<link rel="apple-touch-icon" sizes="152x152"
+	href='<c:url value="/resources/assets/img/splash/touch-icon-ipad-retina.png" />'>
 
-	</head>
+<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<!-- Startup image for web apps -->
+<link rel="apple-touch-startup-image"
+	href='<c:url value="/resources/assets/img/splash/ipad-landscape.png" />'
+	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+<link rel="apple-touch-startup-image"
+	href='<c:url value="/resources/assets/img/splash/ipad-portrait.png" />'
+	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image"
+	href='<c:url value="/resources/assets/img/splash/iphone.png" />'
+	media="screen and (max-device-width: 320px)">
+
+</head>
 <body class="">
 
-		<!-- #HEADER -->
-		<header id="header">
-				
+	<!-- #HEADER -->
+	<header id="header"> </header>
 
-		</header>
-		
-		
-		
-		
-		<!-- END HEADER -->
 
-		<!-- #NAVIGATION -->
-		<!-- Left panel : Navigation area -->
-		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
-		
-		<!-- END NAVIGATION -->
 
-		<!-- MAIN PANEL -->
-		<div id="main" role="main">
 
-			<!-- RIBBON -->
-			<%-- <div id="ribbon">
+	<!-- END HEADER -->
+
+	<!-- #NAVIGATION -->
+	<!-- Left panel : Navigation area -->
+	<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+
+	<!-- END NAVIGATION -->
+
+	<!-- MAIN PANEL -->
+	<div id="main" role="main">
+
+		<!-- RIBBON -->
+		<%-- <div id="ribbon">
 
 				<span class="ribbon-button-alignment"> 
 					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
@@ -106,49 +126,46 @@
 				</span> -->
 
 			</div> --%>
-			<!-- END RIBBON -->
-			
-			
+		<!-- END RIBBON -->
 
-			<!-- MAIN CONTENT -->
-			<div id="content">
 
-				<!-- row -->
-				<div class="row">
-					
-					<!-- col -->
-					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-						<h1 class="page-title txt-color-blueDark">
-							
-							<!-- PAGE HEADER -->
-							<i class="fa-fw fa fa-home"></i> 
-								E-commerce
-							<span>>  
-								Products View
-							</span>
-						</h1>
-					</div>
-					<!-- end col -->
-					
-					<!-- right side of the page with the sparkline graphs -->
-					<!-- col -->
-					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 text-right">
-						
-						<!-- <a href="javascript:void(0);" class="btn btn-default shop-btn">
+
+		<!-- MAIN CONTENT -->
+		<div id="content" style="overflow: scroll;">
+
+			<!-- row -->
+			<div class="row">
+
+				<!-- col -->
+				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+					<h1 class="page-title txt-color-blueDark">
+
+						<!-- PAGE HEADER -->
+						<i class="fa-fw fa fa-home"></i> E-commerce <span>>
+							Products View </span>
+					</h1>
+				</div>
+				<!-- end col -->
+
+				<!-- right side of the page with the sparkline graphs -->
+				<!-- col -->
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 text-right">
+
+					<!-- <a href="javascript:void(0);" class="btn btn-default shop-btn">
 							<i class="fa fa-3x fa-shopping-cart"></i>
 							<span class="air air-top-right label-danger txt-color-white padding-5">10</span>
 						</a>
 						<a href="javascript:void(0);" class="btn btn-default">
 							<i class="fa fa-3x fa-print"></i>
 						</a> -->
-						
-					</div>
-					<!-- end col -->
-					
-				</div>
-				<!-- end row -->
 
-				<%-- <div id="ribbon">
+				</div>
+				<!-- end col -->
+
+			</div>
+			<!-- end row -->
+
+			<%-- <div id="ribbon">
 
 					<span class="ribbon-button-alignment"> 
 						<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
@@ -176,163 +193,184 @@
 					
 	
 				</div> --%>
-				
-				<div class="form-group">
-						<label>Search Courses/Skills/Certifications</label>
-						<select multiple style="width:100%" class="select2">
-							<optgroup label="Alaskan/Hawaiian Time Zone">
-								<option value="AK">Alaska</option>
-								<option value="HI">Hawaii</option>
-							</optgroup>
-							<optgroup label="Pacific Time Zone">
-								<option value="CA">California</option>
-								<option value="NV" selected="selected">Nevada</option>
-								<option value="OR">Oregon</option>
-								<option value="WA">Washington</option>
-							</optgroup>
-							<optgroup label="Mountain Time Zone">
-								<option value="AZ">Arizona</option>
-								<option value="CO">Colorado</option>
-								<option value="ID">Idaho</option>
-								<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
-								<option value="NM">New Mexico</option>
-								<option value="ND">North Dakota</option>
-								<option value="UT">Utah</option>
-								<option value="WY">Wyoming</option>
-							</optgroup>
-							<optgroup label="Central Time Zone">
-								<option value="AL">Alabama</option>
-								<option value="AR">Arkansas</option>
-								<option value="IL">Illinois</option>
-								<option value="IA">Iowa</option>
-								<option value="KS">Kansas</option>
-								<option value="KY">Kentucky</option>
-								<option value="LA">Louisiana</option>
-								<option value="MN">Minnesota</option>
-								<option value="MS">Mississippi</option>
-								<option value="MO">Missouri</option>
-								<option value="OK">Oklahoma</option>
-								<option value="SD">South Dakota</option>
-								<option value="TX">Texas</option>
-								<option value="TN">Tennessee</option>
-								<option value="WI">Wisconsin</option>
-							</optgroup>
-							<optgroup label="Eastern Time Zone">
-								<option value="CT">Connecticut</option>
-								<option value="DE">Delaware</option>
-								<option value="FL">Florida</option>
-								<option value="GA">Georgia</option>
-								<option value="IN">Indiana</option>
-								<option value="ME">Maine</option>
-								<option value="MD">Maryland</option>
-								<option value="MA">Massachusetts</option>
-								<option value="MI" selected="selected">Michigan</option>
-								<option value="NH">New Hampshire</option>
-								<option value="NJ">New Jersey</option>
-								<option value="NY">New York</option>
-								<option value="NC">North Carolina</option>
-								<option value="OH">Ohio</option>
-								<option value="PA">Pennsylvania</option>
-								<option value="RI">Rhode Island</option>
-								<option value="SC">South Carolina</option>
-								<option value="VT">Vermont</option>
-								<option value="VA">Virginia</option>
-								<option value="WV">West Virginia</option>
-							</optgroup>
-							<button type="submit" class="btn btn-default">Submit</button>
-						</select>
-						
-						
-					</div>
-				<!--
+
+			<div class="form-group">
+				<label>Search Courses/Skills/Certifications</label> <select multiple
+					style="width: 100%" class="select2">
+					<optgroup label="Alaskan/Hawaiian Time Zone">
+						<option value="AK">Alaska</option>
+						<option value="HI">Hawaii</option>
+					</optgroup>
+					<optgroup label="Pacific Time Zone">
+						<option value="CA">California</option>
+						<option value="NV" selected="selected">Nevada</option>
+						<option value="OR">Oregon</option>
+						<option value="WA">Washington</option>
+					</optgroup>
+					<optgroup label="Mountain Time Zone">
+						<option value="AZ">Arizona</option>
+						<option value="CO">Colorado</option>
+						<option value="ID">Idaho</option>
+						<option value="MT" selected="selected">Montana</option>
+						<option value="NE">Nebraska</option>
+						<option value="NM">New Mexico</option>
+						<option value="ND">North Dakota</option>
+						<option value="UT">Utah</option>
+						<option value="WY">Wyoming</option>
+					</optgroup>
+					<optgroup label="Central Time Zone">
+						<option value="AL">Alabama</option>
+						<option value="AR">Arkansas</option>
+						<option value="IL">Illinois</option>
+						<option value="IA">Iowa</option>
+						<option value="KS">Kansas</option>
+						<option value="KY">Kentucky</option>
+						<option value="LA">Louisiana</option>
+						<option value="MN">Minnesota</option>
+						<option value="MS">Mississippi</option>
+						<option value="MO">Missouri</option>
+						<option value="OK">Oklahoma</option>
+						<option value="SD">South Dakota</option>
+						<option value="TX">Texas</option>
+						<option value="TN">Tennessee</option>
+						<option value="WI">Wisconsin</option>
+					</optgroup>
+					<optgroup label="Eastern Time Zone">
+						<option value="CT">Connecticut</option>
+						<option value="DE">Delaware</option>
+						<option value="FL">Florida</option>
+						<option value="GA">Georgia</option>
+						<option value="IN">Indiana</option>
+						<option value="ME">Maine</option>
+						<option value="MD">Maryland</option>
+						<option value="MA">Massachusetts</option>
+						<option value="MI" selected="selected">Michigan</option>
+						<option value="NH">New Hampshire</option>
+						<option value="NJ">New Jersey</option>
+						<option value="NY">New York</option>
+						<option value="NC">North Carolina</option>
+						<option value="OH">Ohio</option>
+						<option value="PA">Pennsylvania</option>
+						<option value="RI">Rhode Island</option>
+						<option value="SC">South Carolina</option>
+						<option value="VT">Vermont</option>
+						<option value="VA">Virginia</option>
+						<option value="WV">West Virginia</option>
+					</optgroup>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</select>
+
+
+			</div>
+			<!--
 					The ID "widget-grid" will start to initialize all widgets below 
 					You do not need to use widgets if you dont want to. Simply remove 
 					the <section></section> and you can use wells or panels instead 
 					-->
 
-				<!-- widget grid -->
-				<section id="widget-grid" class="">
+			<!-- widget grid -->
+			<section id="widget-grid"  > <!-- row -->
 
-					<!-- row -->
+			<div class="row" id="courserow" >
 
-					<div class="row">
-
-					<%
+				<%
+						String lastid = null;
 						ArrayList courselist = new ArrayList();
 						Courses course = new Courses();
 						courselist = (ArrayList)request.getAttribute("courselist");
 						for(int i=0;i<courselist.size();i++){
+							DBObject currentItem = (DBObject)courselist.get(i);
+							//course = (Courses)courselist.get(i);\\
 							
-							course = (Courses)courselist.get(i);
+							
+							String coursename = (String)currentItem.get("coursename");
+							String courseid = (String)currentItem.get("courseid");
+							String courseimageid = (String)currentItem.get("courseimageid");
+							String courseCategory = (String)currentItem.get("courseCategory");
+							String courseFee = (String)currentItem.get("courseFee");
+							String courseDesc = (String)currentItem.get("courseDescription");
+							System.out.println("Course Content"+coursename+courseid+courseimageid);
+							
+							if(i == courselist.size()-1){
+								DBObject lastitem = (DBObject)courselist.get(i);
+								lastid = (String)currentItem.get("courseid");
+								System.out.println("Course lastimage id"+lastid);
+								
+							}
 							
 																
 							%>
-								<div id="<%course.getCourseid();%>" class="col-sm-6 col-md-6 col-lg-4">
-									<!-- product -->
-									<div class="product-content product-wrap clearfix">
-										<div class="row">
-												<div class="col-md-5 col-sm-12 col-xs-12">
-													<div class="product-image"> 
-														<img src="<%course.getCourseimageid(); %>" alt="194x228" class="img-responsive"> 
-														<span class="tag2 hot">
-															<%course.getCourseReview(); %>
-														</span> 
-													</div>
-												</div>
-												<div class="col-md-7 col-sm-12 col-xs-12">
-												<div class="product-deatil">
-														<h5 class="name">
-															<a href="#">
-																<%course.getCourseName(); %> <span><%course.getCourseCategory(); %></span>
-															</a>
-														</h5>
-														<p class="price-container">
-															<span><%course.getCourseFee(); %></span>
-														</p>
-														<span class="tag1"></span> 
-												</div>
-												<div class="description">
-														<p><%course.getCourseDescription(); %></p>
-												</div>
-												<div class="product-info smart-form">
-													<div class="row">
-														<div class="col-md-6 col-sm-6 col-xs-6"> 
-															<a href="javascript:enroll();" class="btn btn-success">Enroll</a>
-														</div>
-														<div class="col-md-6 col-sm-6 col-xs-6">
-															<div class="rating">
-																<input type="radio" name="stars-rating" id="stars-rating-5">
-																<label for="stars-rating-5"><i class="fa fa-star"></i></label>
-																<input type="radio" name="stars-rating" id="stars-rating-4">
-																<label for="stars-rating-4"><i class="fa fa-star"></i></label>
-																<input type="radio" name="stars-rating" id="stars-rating-3">
-																<label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>
-																<input type="radio" name="stars-rating" id="stars-rating-2">
-																<label for="stars-rating-2"><i class="fa fa-star text-primary"></i></label>
-																<input type="radio" name="stars-rating" id="stars-rating-1">
-																<label for="stars-rating-1"><i class="fa fa-star text-primary"></i></label>
-															</div>
-														</div>
-													</div>
-												</div>
+				<div id="<%=courseid%>" class="col-sm-6 col-md-6 col-lg-4">
+					<!-- product -->
+					<div class="product-content product-wrap clearfix">
+						<div class="row">
+							<div class="col-md-5 col-sm-12 col-xs-12">
+								<div class="product-image">
+									<%-- 														<img src="@Url.Action('showImage', 'FileController', new { id = <%=courseimageid%> })" alt="194x228" class="img-responsive">  --%>
+									<img src="/Fliker/imageController/<%=courseimageid%>"
+										height="100%" width="200%" style="max-width: 200%"
+										class="img-responsive"> <span class="tag2 hot"> <%-- <%course.getCourseTrend(); %> --%>
+									</span>
+								</div>
+							</div>
+							<div class="col-md-7 col-sm-12 col-xs-12">
+								<div class="product-deatil">
+									<h5 class="name">
+										<a href="#"> <%=coursename%> <span><%=courseCategory%></span>
+										</a>
+									</h5>
+									<p class="price-container">
+										<span><%=courseFee%></span>
+									</p>
+									<span class="tag1"></span>
+								</div>
+								<div class="description">
+									<p><%=courseDesc%></p>
+								</div>
+								<div class="product-info smart-form">
+									<div class="row">
+										<div class="col-md-6 col-sm-6 col-xs-6">
+											<a href="coursedetail?courseid=<%=courseid%>" class="btn btn-success"
+												style="font-style: italic;">Look Into</a>
+											
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-6">
+											<div class="rating">
+												<input type="radio" name="stars-rating" id="stars-rating-5">
+												<label for="stars-rating-5"><i class="fa fa-star"></i></label>
+												<input type="radio" name="stars-rating" id="stars-rating-4">
+												<label for="stars-rating-4"><i class="fa fa-star"></i></label>
+												<input type="radio" name="stars-rating" id="stars-rating-3">
+												<label for="stars-rating-3"><i
+													class="fa fa-star text-primary"></i></label> <input type="radio"
+													name="stars-rating" id="stars-rating-2"> <label
+													for="stars-rating-2"><i
+													class="fa fa-star text-primary"></i></label> <input type="radio"
+													name="stars-rating" id="stars-rating-1"> <label
+													for="stars-rating-1"><i
+													class="fa fa-star text-primary"></i></label>
 											</div>
 										</div>
 									</div>
-									<!-- end product -->
 								</div>
-							
-							
-							
-							<% 
+							</div>
+						</div>
+					</div>
+					<!-- end product -->
+				</div>
+
+
+
+				<% 
 							
 						}
 						
 					
 					
-					%>		
+					%>
 
-						<div class="col-sm-6 col-md-6 col-lg-4">
-							<!-- product -->
+				<!-- <div class="col-sm-6 col-md-6 col-lg-4">
+							product
 							<div class="product-content product-wrap clearfix">
 								<div class="row">
 										<div class="col-md-5 col-sm-12 col-xs-12">
@@ -382,11 +420,11 @@
 									</div>
 								</div>
 							</div>
-							<!-- end product -->
-						</div>			
+							end product
+						</div> -->
 
-						<div class="col-sm-6 col-md-6 col-lg-4">
-							<!-- product -->
+				<!-- <div class="col-sm-6 col-md-6 col-lg-4">
+							product
 							<div class="product-content product-wrap clearfix">
 								<div class="row">
 										<div class="col-md-5 col-sm-12 col-xs-12">
@@ -415,11 +453,11 @@
 									</div>
 								</div>
 							</div>
-							<!-- end product -->
+							end product
 						</div>	
 
 						<div class="col-sm-6 col-md-6 col-lg-4">
-							<!-- product -->
+							product
 							<div class="product-content product-wrap clearfix">
 								<div class="row">
 										<div class="col-md-5 col-sm-12 col-xs-12">
@@ -448,11 +486,11 @@
 									</div>
 								</div>
 							</div>
-							<!-- end product -->
+							end product
 						</div>	
 
 						<div class="col-sm-6 col-md-6 col-lg-4">
-							<!-- product -->
+							product
 							<div class="product-content product-wrap clearfix">
 								<div class="row">
 										<div class="col-md-5 col-sm-12 col-xs-12">
@@ -481,11 +519,11 @@
 									</div>
 								</div>
 							</div>
-							<!-- end product -->
+							end product
 						</div>	
 
 						<div class="col-sm-6 col-md-6 col-lg-4">
-							<!-- product -->
+							product
 							<div class="product-content product-wrap clearfix">
 								<div class="row">
 										<div class="col-md-5 col-sm-12 col-xs-12">
@@ -514,11 +552,11 @@
 									</div>
 								</div>
 							</div>
-							<!-- end product -->
+							end product
 						</div>	
 
 						<div class="col-sm-6 col-md-6 col-lg-4">
-							<!-- product -->
+							product
 							<div class="product-content product-wrap clearfix">
 								<div class="row">
 										<div class="col-md-5 col-sm-12 col-xs-12">
@@ -547,223 +585,288 @@
 									</div>
 								</div>
 							</div>
-							<!-- end product -->
-						</div>
-						
-						<div class="col-sm-12 text-center">
-							<a href="javascript:void(0);" class="btn btn-primary btn-lg">Load more <i class="fa fa-arrow-down"></i></a>
-						</div>
+							end product
+						</div> -->
 
-					</div>
-
-					<!-- end row -->
-
-				</section>
-				<!-- end widget grid -->
+				
 
 			</div>
-			<!-- END MAIN CONTENT -->
+			
+			<!-- end row --> </section>
+			<!-- end widget grid -->
+			<div class="col-sm-12 text-center">
+					<button class="btn btn-primary" id="loadmore">
+						Load <i class="fa fa-arrow-down"></i>
+					</button>
 
-		</div>
-		<!-- END MAIN PANEL -->
-
-		<!-- PAGE FOOTER -->
-		<div class="page-footer">
-			<div class="row">
-				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> © 2014-2015</span>
 				</div>
 
-				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
-					<div class="txt-color-white inline-block">
-						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
-						<div class="btn-group dropup">
-							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
-								<i class="fa fa-link"></i> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu pull-right text-left">
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
-										</div>
+		</div>
+		<!-- END MAIN CONTENT -->
+
+	</div>
+	<!-- END MAIN PANEL -->
+
+	<!-- PAGE FOOTER -->
+	<div class="page-footer">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<span class="txt-color-white">SmartAdmin 1.8.2 <span
+					class="hidden-xs"> - Web Application Framework</span> � 2014-2015
+				</span>
+			</div>
+
+			<div class="col-xs-6 col-sm-6 text-right hidden-xs">
+				<div class="txt-color-white inline-block">
+					<i class="txt-color-blueLight hidden-mobile">Last account
+						activity <i class="fa fa-clock-o"></i> <strong>52 mins
+							ago &nbsp;</strong>
+					</i>
+					<div class="btn-group dropup">
+						<button
+							class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white"
+							data-toggle="dropdown">
+							<i class="fa fa-link"></i> <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu pull-right text-left">
+							<li>
+								<div class="padding-5">
+									<p class="txt-color-darken font-sm no-margin">Download
+										Progress</p>
+									<div class="progress progress-micro no-margin">
+										<div class="progress-bar progress-bar-success"
+											style="width: 50%;"></div>
 									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Server Load</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
-										</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="padding-5">
+									<p class="txt-color-darken font-sm no-margin">Server Load</p>
+									<div class="progress progress-micro no-margin">
+										<div class="progress-bar progress-bar-success"
+											style="width: 20%;"></div>
 									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
-										</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="padding-5">
+									<p class="txt-color-darken font-sm no-margin">
+										Memory Load <span class="text-danger">*critical*</span>
+									</p>
+									<div class="progress progress-micro no-margin">
+										<div class="progress-bar progress-bar-danger"
+											style="width: 70%;"></div>
 									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<button class="btn btn-block btn-default">refresh</button>
-									</div>
-								</li>
-							</ul>
-						</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="padding-5">
+									<button class="btn btn-block btn-default">refresh</button>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- END PAGE FOOTER -->
+	</div>
+	<!-- END PAGE FOOTER -->
 
-		<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
 		Note: These tiles are completely responsive,
 		you can add as many as you like
 		-->
-		<div id="shortcut">
-			<ul>
-				<li>
-					<a href="inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
-				</li>
-				<li>
-					<a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
-				</li>
-				<li>
-					<a href="gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
-				</li>
-				<li>
-					<a href="invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
-				</li>
-				<li>
-					<a href="gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
-				</li>
-				<li>
-					<a href="profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
-				</li>
-			</ul>
-		</div>
-		
-		
-		<!--================================================== -->
+	<div id="shortcut">
+		<ul>
+			<li><a href="inbox.html"
+				class="jarvismetro-tile big-cubes bg-color-blue"> <span
+					class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail
+							<span class="label pull-right bg-color-darken">14</span>
+					</span>
+				</span>
+			</a></li>
+			<li><a href="calendar.html"
+				class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span
+					class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span>
+				</span>
+			</a></li>
+			<li><a href="gmap-xml.html"
+				class="jarvismetro-tile big-cubes bg-color-purple"> <span
+					class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span>
+				</span>
+			</a></li>
+			<li><a href="invoice.html"
+				class="jarvismetro-tile big-cubes bg-color-blueDark"> <span
+					class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice
+							<span class="label pull-right bg-color-darken">99</span>
+					</span>
+				</span>
+			</a></li>
+			<li><a href="gallery.html"
+				class="jarvismetro-tile big-cubes bg-color-greenLight"> <span
+					class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery
+					</span>
+				</span>
+			</a></li>
+			<li><a href="profile.html"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My
+							Profile </span>
+				</span>
+			</a></li>
+		</ul>
+	</div>
 
-		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
 
-		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script>
+	<!--================================================== -->
+
+	<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+	<script data-pace-options='{ "restartOnRequestAfter": true }'
+		src="js/plugin/pace/pace.min.js"></script>
+
+	<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script>
 			if (!window.jQuery) {
 				document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
 			}
 		</script>
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script>
 			if (!window.jQuery.ui) {
 				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
 			}
 		</script>
 
-		<!-- IMPORTANT: APP CONFIG -->
-		<script src="<c:url value='/resources/assets/js/app.config.js' />"></script>
+	<!-- IMPORTANT: APP CONFIG -->
+	<script src="<c:url value='/resources/assets/js/app.config.js' />"></script>
 
-		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
-		<script src="<c:url value='/resources/assets/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js' />"></script> 
+	<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js' />"></script>
 
-		<!-- BOOTSTRAP JS -->
-		<script src="<c:url value='/resources/assets/js/bootstrap/bootstrap.min.js' />"></script>
+	<!-- BOOTSTRAP JS -->
+	<script
+		src="<c:url value='/resources/assets/js/bootstrap/bootstrap.min.js' />"></script>
 
-		<!-- CUSTOM NOTIFICATION -->
-		<script src="<c:url value='/resources/assets/js/notification/SmartNotification.min.js' />"></script>
+	<!-- CUSTOM NOTIFICATION -->
+	<script
+		src="<c:url value='/resources/assets/js/notification/SmartNotification.min.js' />"></script>
 
-		<!-- JARVIS WIDGETS -->
-		<script src="<c:url value='/resources/assets/js/smartwidgets/jarvis.widget.min.js' />"></script>
+	<!-- JARVIS WIDGETS -->
+	<script
+		src="<c:url value='/resources/assets/js/smartwidgets/jarvis.widget.min.js' />"></script>
 
-		<!-- EASY PIE CHARTS -->
-		<script src="<c:url value='/resources/assets/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js' />"></script>
+	<!-- EASY PIE CHARTS -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js' />"></script>
 
-		<!-- SPARKLINES -->
-		<script src="<c:url value='/resources/assets/js/plugin/sparkline/jquery.sparkline.min.js' />"></script>
+	<!-- SPARKLINES -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/sparkline/jquery.sparkline.min.js' />"></script>
 
-		<!-- JQUERY VALIDATE -->
-		<script src="<c:url value='/resources/assets/js/plugin/jquery-validate/jquery.validate.min.js' />"></script>
+	<!-- JQUERY VALIDATE -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/jquery-validate/jquery.validate.min.js' />"></script>
 
-		<!-- JQUERY MASKED INPUT -->
-		<script src="<c:url value='/resources/assets/js/plugin/masked-input/jquery.maskedinput.min.js' />"></script>
+	<!-- JQUERY MASKED INPUT -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/masked-input/jquery.maskedinput.min.js' />"></script>
 
-		<!-- JQUERY SELECT2 INPUT -->
-		<script src="<c:url value='/resources/assets/js/plugin/select2/select2.min.js' />"></script>
+	<!-- JQUERY SELECT2 INPUT -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/select2/select2.min.js' />"></script>
 
-		<!-- JQUERY UI + Bootstrap Slider -->
-		<script src="<c:url value='/resources/assets/js/plugin/bootstrap-slider/bootstrap-slider.min.js' />"></script>
+	<!-- JQUERY UI + Bootstrap Slider -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/bootstrap-slider/bootstrap-slider.min.js' />"></script>
 
-		<!-- browser msie issue fix -->
-		<script src="<c:url value='/resources/assets/js/plugin/msie-fix/jquery.mb.browser.min.js' />"></script>
+	<!-- browser msie issue fix -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/msie-fix/jquery.mb.browser.min.js' />"></script>
 
-		<!-- FastClick: For mobile devices -->
-		<script src="<c:url value='/resources/assets/js/plugin/fastclick/fastclick.min.js' />"></script>
+	<!-- FastClick: For mobile devices -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/fastclick/fastclick.min.js' />"></script>
 
-		<!--[if IE 8]>
+	<!--[if IE 8]>
 
 		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
 
 		<![endif]-->
 
-		<!-- Demo purpose only -->
-		<%-- <script src="<c:url value='/resources/assets/js/demo.min.js' />"></script> --%>
+	<!-- Demo purpose only -->
+	<%-- <script src="<c:url value='/resources/assets/js/demo.min.js' />"></script> --%>
 
-		<!-- MAIN APP JS FILE -->
-		<script src="<c:url value='/resources/assets/js/app.min.js' />"></script>
+	<!-- MAIN APP JS FILE -->
+	<script src="<c:url value='/resources/assets/js/app.min.js' />"></script>
 
-		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
-		<!-- Voice command : plugin -->
-		<script src="<c:url value='/resources/assets/js/speech/voicecommand.min.js' />"></script>
+	<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+	<!-- Voice command : plugin -->
+	<script
+		src="<c:url value='/resources/assets/js/speech/voicecommand.min.js' />"></script>
 
-		<!-- SmartChat UI : plugin -->
-		<script src="<c:url value='/resources/assets/js/smart-chat-ui/smart.chat.ui.min.js' />"></script>
-		<script src="<c:url value='/resources/assets/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
+	<!-- SmartChat UI : plugin -->
+	<script
+		src="<c:url value='/resources/assets/js/smart-chat-ui/smart.chat.ui.min.js' />"></script>
+	<script
+		src="<c:url value='/resources/assets/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 
-		<!-- PAGE RELATED PLUGIN(S) -->
-		<script src="<c:url value='/resources/assets/js/plugin/maxlength/bootstrap-maxlength.min.js' />"></script>
-		<!-- <script src="js/plugin/maxlength/bootstrap-maxlength.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js' />"></script>
-		<!-- <script src="js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/clockpicker/clockpicker.min.js' />"></script>
-		<!-- <script src="js/plugin/clockpicker/clockpicker.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js' />"></script>
-		<!-- <script src="js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/noUiSlider/jquery.nouislider.min.js' />"></script>
-		<!-- <script src="js/plugin/noUiSlider/jquery.nouislider.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/ion-slider/ion.rangeSlider.min.js' />"></script>
-		<!-- <script src="js/plugin/ion-slider/ion.rangeSlider.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js' />"></script>
-		<!-- <script src="js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>	 -->	
-		<script src="<c:url value='/resources/assets/js/plugin/colorpicker/bootstrap-colorpicker.min.js' />"></script>
-		<!-- <script src="js/plugin/colorpicker/bootstrap-colorpicker.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/knob/jquery.knob.min.js' />"></script>
-		<!-- <script src="js/plugin/knob/jquery.knob.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/x-editable/moment.min.js' />"></script>
-		<!-- <script src="js/plugin/x-editable/moment.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/x-editable/jquery.mockjax.min.js' />"></script>
-		<!-- <script src="js/plugin/x-editable/jquery.mockjax.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/x-editable/x-editable.min.js' />"></script>
-		<!-- <script src="js/plugin/x-editable/x-editable.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/typeahead/typeahead.min.js' />"></script>
-		<!-- <script src="js/plugin/typeahead/typeahead.min.js"></script> -->
-		<script src="<c:url value='/resources/assets/js/plugin/typeahead/typeaheadjs.min.js' />"></script>
-		<!-- <script src="js/plugin/typeahead/typeaheadjs.min.js"></script> -->
+	<!-- PAGE RELATED PLUGIN(S) -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/maxlength/bootstrap-maxlength.min.js' />"></script>
+	<!-- <script src="js/plugin/maxlength/bootstrap-maxlength.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js' />"></script>
+	<!-- <script src="js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/clockpicker/clockpicker.min.js' />"></script>
+	<!-- <script src="js/plugin/clockpicker/clockpicker.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js' />"></script>
+	<!-- <script src="js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/noUiSlider/jquery.nouislider.min.js' />"></script>
+	<!-- <script src="js/plugin/noUiSlider/jquery.nouislider.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/ion-slider/ion.rangeSlider.min.js' />"></script>
+	<!-- <script src="js/plugin/ion-slider/ion.rangeSlider.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js' />"></script>
+	<!-- <script src="js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>	 -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/colorpicker/bootstrap-colorpicker.min.js' />"></script>
+	<!-- <script src="js/plugin/colorpicker/bootstrap-colorpicker.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/knob/jquery.knob.min.js' />"></script>
+	<!-- <script src="js/plugin/knob/jquery.knob.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/x-editable/moment.min.js' />"></script>
+	<!-- <script src="js/plugin/x-editable/moment.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/x-editable/jquery.mockjax.min.js' />"></script>
+	<!-- <script src="js/plugin/x-editable/jquery.mockjax.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/x-editable/x-editable.min.js' />"></script>
+	<!-- <script src="js/plugin/x-editable/x-editable.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/typeahead/typeahead.min.js' />"></script>
+	<!-- <script src="js/plugin/typeahead/typeahead.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/assets/js/plugin/typeahead/typeaheadjs.min.js' />"></script>
+	<!-- <script src="js/plugin/typeahead/typeaheadjs.min.js"></script> -->
 
-		<!-- PAGE RELATED PLUGIN(S) 
+	<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
 
 
-		<!-- <script type="text/javascript">
+	<!-- <script type="text/javascript">
 
 			$(document).ready(function() {
 			 	
@@ -822,7 +925,7 @@
 		
 		</script> -->
 
-		<script type="text/javascript">
+	<script type="text/javascript">
 		
 		// DO NOT REMOVE : GLOBAL FUNCTIONS!
 
@@ -834,6 +937,106 @@
 		$(document).ready(function() {
 			
 			pageSetUp();
+			
+			
+			$("#loadmore").on("click", function(){
+		    	alert("ajax for load more");
+		    	<% String str=lastid; %>
+		    	   var s="<%=str%>"; 
+		    	  alert(s); 
+			    var courselist = " ";
+			    $.ajax({
+			    	url: "courseinfo?lastid="+s, 
+			    	method : 'GET',		
+					success : function(data) {
+						
+						var coursename;
+						var courseid;
+						var coursedesc;
+						var courseimageid;
+						var coursecategory;
+						var coursereview;
+						var coursefee;
+						var coursOwner;
+						
+						alert(data);
+						
+						
+						for(i=0;i<data.length;i++){
+							
+							var dataentry = data[i];
+							console.log(i);
+							for (var key in dataentry) {
+								  if (dataentry.hasOwnProperty(key)) {
+								    //alert(key + " -> " + p[key]);
+								    console.log(key + " -> " + dataentry[key]);
+								    if(key == "courseid"){
+								    	courseid = dataentry[key];
+								    }else if (key == "coursename"){
+								    	coursename = dataentry[key];
+								    }else if(key == "courseimageid"){
+								    	courseimageid=dataentry[key];
+								    }else if(key == "courseCategory"){
+								    	coursecategory = dataentry[key];
+								    }else if(key == "courseDescription"){
+								    	coursedesc = dataentry[key];
+								    }else if(key == "courseReview"){
+								    	coursereview = dataentry[key];
+								    }else if(key == "courseFee"){
+								    	coursefee = dataentry[key];
+								    }else if(key == "courseOwner"){
+								    	coursOwner = dataentry[key];
+								    }
+								  }
+								}
+							
+						
+						
+						var div = "<div id='"+courseid+"' class='col-sm-6 col-md-6 col-lg-4'><div class='product-content product-wrap clearfix'>"+
+									"<div class='row'><div class='col-md-5 col-sm-12 col-xs-12'><div class='product-image'>"+
+									"<img src='/Fliker/imageController/"+courseimageid+"'  height='100%'  width='200%' style='max-width: 200%'  class='img-responsive'><span class='tag2 hot'>"+
+									"</span></div></div><div class='col-md-7 col-sm-12 col-xs-12'><div class='product-deatil'><h5 class='name'>"+
+									"<a href='#'>"+coursename+"<span>"+coursecategory+"</span></a></h5><p class='price-container'><span>"+coursefee+"</span></p><span class='tag1'></span>"+ 
+									"</div><div class='description'><p>"+coursedesc+"</p></div><div class='product-info smart-form'><div class='row'><div class='col-md-6 col-sm-6 col-xs-6'>"+ 
+									"<a href='javascript:enroll();' class='btn btn-success' style='font-style: italic;' >Look Into</a></div>"+
+									"<div class='col-md-6 col-sm-6 col-xs-6'><div class='rating'><input type='radio' name='stars-rating' id='stars-rating-5'>"+
+									"<label for='stars-rating-5'><i class='fa fa-star'></i></label><input type='radio' name='stars-rating' id='stars-rating-4'>"+
+									"<label for='stars-rating-4'><i class='fa fa-star'></i></label><input type='radio' name='stars-rating' id='stars-rating-3'>"+
+									"<label for='stars-rating-3'><i class='fa fa-star text-primary'></i></label><input type='radio' name='stars-rating' id='stars-rating-2'>"+
+									"<label for='stars-rating-2'><i class='fa fa-star text-primary'></i></label><input type='radio' name='stars-rating' id='stars-rating-1'>"+
+									"<label for='stars-rating-1'><i class='fa fa-star text-primary'></i></label></div></div></div></div></div></div></div></div>";
+						
+									
+							
+								
+						
+						//div = div + div;	
+								//count++;
+						courselist = courselist + div;		
+						//$('#'+lastid).append(div);
+						
+						/* if(i==0){
+							$('#'+"5741e428b6d8e7bc0c41f2cf").append(div);
+						}else if(i==1){
+							$('#'+"5741e52fb6d8e7bc0c41f2d1").append(div);
+						}else if(i==2){
+							$('#'+"5741e5ccb6d8e7bc0c41f2d2").append(div);
+						} */
+						
+							
+						
+						//$("#login-form").addClass('submited');
+					}	
+						//console.log(div);
+						courselist = "<section id='widget-grid"+1+"'><div class='row' id='courserow"+1+"'>"+courselist+"</div></section>";
+						$('#widget-grid').append(courselist);
+						console.log(courselist);
+					}
+			    
+			    });
+			    
+			});
+			
 			
 			 // PAGE RELATED SCRIPTS
 		
@@ -1025,7 +1228,7 @@
 		        to: 25,
 		        type: 'double',
 		        step: 1,
-		        postfix: "Â°",
+		        postfix: "°",
 		        prettify: false,
 		        grid: true,
 		        inputValuesSeparator: ';'
@@ -1713,14 +1916,36 @@
 		                $next.focus();
 		            }
 		        }
-		    });			
+		    });	
+		    
+		   /*  function callloadMore(){
+		    	alert("ajax for load more");
+			    alert(lastid);
+		    
+		    	
+				    alert("ajax for load more");
+				    alert(lastid);
+				    
+				    $.ajax({
+				    	url: "${home}courseinfo?lastid="+lastid, 
+						success : function() {
+							//$("#login-form").addClass('submited');
+						}
+				    	
+				    }); 
+				   
+		    } */
+		    
+		    
+		    
+		    
 	
 		})
 
 		</script>
 
-		<!-- Your GOOGLE ANALYTICS CODE Below -->
-		<script type="text/javascript">
+	<!-- Your GOOGLE ANALYTICS CODE Below -->
+	<script type="text/javascript">
 			var _gaq = _gaq || [];
 				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
 				_gaq.push(['_trackPageview']);
@@ -1737,6 +1962,6 @@
 		</script>
 
 
-		
+
 </body>
 </html>

@@ -12,11 +12,11 @@ public class Courses {
 	private String courseimageid;
 	private String courseCategory;
 	private String courseDescription;
-	private String courseReview;
+	private String[] courseReview;
 	private String courseFee;
 	private String[] courseSponsors;
 	private String[] coursePartners;
-	private String FAQid;
+	private String[] FAQid;
 	private String courseownerid;
 	
 	
@@ -33,10 +33,11 @@ public class Courses {
 	public void setCoursePartners(String[] coursePartners) {
 		this.coursePartners = coursePartners;
 	}
-	public String getFAQid() {
+	
+	public String[] getFAQid() {
 		return FAQid;
 	}
-	public void setFAQid(String fAQid) {
+	public void setFAQid(String[] fAQid) {
 		FAQid = fAQid;
 	}
 	public String getCourseownerid() {
@@ -75,10 +76,11 @@ public class Courses {
 	public void setCourseDescription(String courseDescription) {
 		this.courseDescription = courseDescription;
 	}
-	public String getCourseReview() {
+	
+	public String[] getCourseReview() {
 		return courseReview;
 	}
-	public void setCourseReview(String courseReview) {
+	public void setCourseReview(String[] courseReview) {
 		this.courseReview = courseReview;
 	}
 	public String getCourseFee() {

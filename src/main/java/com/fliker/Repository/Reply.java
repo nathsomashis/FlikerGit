@@ -9,6 +9,13 @@ public class Reply {
 	@Id
 	private String replyid;
 	private String replycomment;
+	private String time;
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	private String[] likeid;
 	private String replyownerid;
 	public String getReplyid() {

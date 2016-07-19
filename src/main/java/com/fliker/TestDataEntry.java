@@ -44,12 +44,12 @@ public class TestDataEntry {
 		Query searchUserQuery = new Query(Criteria.where("username").is("Somashis"));
 		User userentry = mongoOperation.findOne(searchUserQuery, User.class);
 		
-		postentry.setPostowner(userentry);
+		/*postentry.setPostowner(userentry);
 		
 		postentry.setPostcomments(commententry);
 		postentry.setPostliked(likeentry);
 		postentry.setPostshared(shaedentry);
-		postentry.setPostType("Post");
+		postentry.setPostType("Post");*/
 		//postentry.setPostContent(postContent);
 		
 		

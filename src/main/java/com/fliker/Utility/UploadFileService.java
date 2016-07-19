@@ -17,7 +17,8 @@ import com.fliker.Repository.FileUpload;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
-@Path("/file")
+
+@Path("/files")
 public class UploadFileService {
 
 	@POST
@@ -25,9 +26,11 @@ public class UploadFileService {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFile(
 		@FormDataParam("file") InputStream uploadedInputStream,
-		@FormDataParam("file") FormDataContentDisposition fileDetail) {
+		@FormDataParam("file") FormDataContentDisposition fileDetail,
+		@FormDataParam("comment") String inputComment) {
 
 		String uploadedFileLocation = "E:\\Non Official" + fileDetail.getFileName();
+		System.out.println("inputComment "+inputComment);
 
 		// save it
 		writeToFile(uploadedInputStream, uploadedFileLocation);
@@ -57,7 +60,7 @@ public class UploadFileService {
 			}
 			
 			fileup.setFileblob(bytes);
-			fileup.setId("example123");
+			fileup.setFileid("example123");
 			fileup.setLocation(uploadedFileLocation);
 			fileup.setName(uploadedFileLocation);
 			fileup.setType("Image");

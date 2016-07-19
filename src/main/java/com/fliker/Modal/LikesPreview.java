@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import com.fliker.SpringMongoConfig;
-import com.fliker.Repository.Share;
+import com.fliker.Repository.Like;
 import com.fliker.Repository.User;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -17,8 +17,9 @@ import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
 import com.mongodb.WriteResult;
 
-public class SharePreview {
-
+public class LikesPreview {
+	
+	
 	private static final String HOST = "localhost";
 	 
     private static final int PORT = 27017;
@@ -47,7 +48,7 @@ public class SharePreview {
         return db.getCollection(collectionName);
     }
     
-    public void sharedToPost(User usershared, String commentedtoPostid, String commentOnShare) throws UnknownHostException {
+    public void likeToPost(User usercommented, String commentedtoPostid, boolean liked) throws UnknownHostException {
     	
     	/*ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
@@ -59,14 +60,20 @@ public class SharePreview {
     	ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
 		
-		Query searchUserQuery = new Query(Criteria.where("username").is(usershared.getUsername()));
+		Query searchUserQuery = new Query(Criteria.where("username").is(usercommented.getUsername()));
 		User userentry = mongoOperation.findOne(searchUserQuery, User.class);
 		
 		
-		String sharedid = userentry.getUserid()+System.currentTimeMillis()+commentedtoPostid;
-		String shareowner = userentry.getUsername();
-		String shareToPostid = commentedtoPostid;
-		String shareOnComment = commentOnShare;
+		String likeid = userentry.getUserid()+System.currentTimeMillis()+commentedtoPostid;
+		String likeowner = userentry.getUsername();
+		String likedPost = "";
+		if(liked){
+			likedPost = "true";
+		}else{
+			likedPost = "false";
+		}
+		String likeToPostid = commentedtoPostid;
+		
     	
     	/*Comment comments = new Comment();
     	comments.setCommentid(userentry.getId()+System.currentTimeMillis()+"Reetesh1462933165931bicycle-1280x720");
@@ -76,34 +83,30 @@ public class SharePreview {
     	comments.setReply(true);*/
     	
     	
-        WriteResult result = addShare(new BasicDBObject("_id", commentedtoPostid),sharedid,shareowner, shareToPostid,shareOnComment );
-        /*if (null == result.getError()) {
+        WriteResult result = addLike(new BasicDBObject("_id", commentedtoPostid),likeid,likeowner, likedPost, likeToPostid );
+       /* if (null == result.getError()) {
             System.out.println("Comment is Successfully added");
         }*/
     }
  
-    private WriteResult addShare(final BasicDBObject incidentObject,String sharedid, String shareowner, String shareToPostid, String shareOnComment)
+    private WriteResult addLike(final BasicDBObject incidentObject,String likeid, String likeowner, String likedPost, String likeToPostid)
             throws UnknownHostException {
         final BasicDBObject commentObject = new BasicDBObject();
-        commentObject.put("sharedid", sharedid);
-        commentObject.put("shareowner", shareowner);
-        commentObject.put("shareToPostid", shareToPostid);
-        if(shareOnComment.isEmpty()){
-        	commentObject.put("sharedComment", " ");
-        }else{
-        	commentObject.put("sharedComment", shareOnComment);
-        }
+        commentObject.put("likeid", likeid);
+        commentObject.put("likeowner", likeowner);
+        commentObject.put("likedPost", likedPost);
+        commentObject.put("likeToPostid", likeToPostid);
         
  
         final DBCollection incidentsCollection = getCollection(dbname,
         		collectionname);
         return incidentsCollection.update(incidentObject, new BasicDBObject(
-                "$push", new BasicDBObject("postshared", commentObject)), false,
+                "$push", new BasicDBObject("postliked", commentObject)), false,
                 false);
     }
     
     
-    public void updateShareTable(User usercommented, String sharetoPostid, String sharedcomment){
+    public void updateLikeTable(User usercommented, String commentedtoPostid){
     	
     	ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
@@ -111,17 +114,14 @@ public class SharePreview {
 		Query searchUserQuery = new Query(Criteria.where("username").is(usercommented.getUsername()));
 		User userentry = mongoOperation.findOne(searchUserQuery, User.class);
 		
-		String currentTime = String.valueOf(System.currentTimeMillis());
+		Like likes = new Like();
+		likes.setLikeOwner(usercommented.getUserid());
+		//likes.setLikedpost(commentedtoPostid);
+		likes.setLikeid(usercommented.getUsername()+System.currentTimeMillis()+commentedtoPostid);
 		
-		Share shared = new Share();
-		shared.setShareComment(sharedcomment);
-		shared.setShareid(userentry.getUsername()+System.currentTimeMillis()+sharetoPostid);
-		shared.setSharedTime(currentTime);
-		shared.setShareOwner(userentry.getUserid());
-		
-		mongoOperation.save(shared);
+		mongoOperation.save(likes);
 		
     	
     }
-	
+
 }
