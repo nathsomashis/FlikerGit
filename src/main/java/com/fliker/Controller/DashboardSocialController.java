@@ -94,20 +94,16 @@ public class DashboardSocialController {
 
 	@RequestMapping("/dashboardsocial/saveComments")
 	public void saveComments(@RequestParam(value = "postid", required = true) String postid,
-			@RequestParam(value = "comment", required = true) String comment) {
+			@RequestParam(value = "comment", required = true) String comment,
+			@RequestParam(value = "userid", required = true) String userid) {
 
 		ModelAndView mv = new ModelAndView();
 		User userinfo = (User) mv.getModel().get("User");
 
 		CommentsPreview commentpreview = new CommentsPreview();
-		try {
-			commentpreview.arrayToPost(userinfo, postid, comment);
-			commentpreview.updateCommentTable(userinfo, postid, comment);
-
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*commentpreview.arrayToPost(userid, postid, comment);
+		commentpreview.updateCommentTable(userid, postid, comment);*/
+		commentpreview.saveComment(userid, postid, comment);
 
 	}
 

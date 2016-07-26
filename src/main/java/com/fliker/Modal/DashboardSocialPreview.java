@@ -344,9 +344,43 @@ public class DashboardSocialPreview {
 
 		HashMap commentinf = new HashMap();
 
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
-		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
-		Query query = new Query();
+		MongoConnection mongoconn = new MongoConnection();
+		DBCursor commmcursor = mongoconn.getDBObject("commentid", commentid, "Comment");
+		
+		while(commmcursor.hasNext()){
+			
+			DBObject dbobj = commmcursor.next();
+			
+			commentinf.put("commentid",dbobj.get("commentid"));
+			commentinf.put("userid",dbobj.get("userid"));
+			commentinf.put("commentdate",dbobj.get("commentdate"));
+			commentinf.put("comment",dbobj.get("comment"));
+			//commentinf.put("replyids",dbobj.get("replyids"));
+			
+			ProfilePreview profprev = new ProfilePreview();
+			//User userinfo = profprev.getUser(commentper.getCommentOwnerid());
+			
+			ArrayList profprv = new ArrayList();
+			profprv = profprev.getProfileInfo(String.valueOf(dbobj.get("userid")));
+			
+			DashboardSocialPreview dashprev = new DashboardSocialPreview();
+			ArrayList replylist = new ArrayList();
+			
+			String[] replyids = (String.valueOf(dbobj.get("replyids"))).split(",");
+			for(int j=0;j<replyids.length;j++){
+				
+				HashMap replyset = dashprev.getReplyInfo(replyids[j]);
+				replylist.add(replyset);
+			}
+			
+			//commentinf.put("commentsOwner",userinfo.getUsername());
+			
+			commentinf.put("replyids", replylist);
+			
+		}
+		
+		
+		/*Query query = new Query();
 		// query2.addCriteria(Criteria.where("courseOwner").is("dog").and("age").is(40));
 		query.addCriteria(Criteria.where("commentid").is(commentid));
 		List<Comment> commentlist = mongoOperation.find(query, Comment.class);
@@ -377,10 +411,10 @@ public class DashboardSocialPreview {
 			
 			//commentinf.put("commentsOwner",userinfo.getUsername());
 			
-			commentinf.put("replyperComment", replylist);
+			commentinf.put("replyperComment", replylist);*/
 			
 			
-		}
+		//}
 
 		return commentinf;
 
@@ -444,7 +478,8 @@ public class DashboardSocialPreview {
 				HashMap commentper = dashprev.getLikedInfo((String)results);
 				resultlist.add(commentper);
 			}else if(requiredprop.equalsIgnoreCase("postcommentsids")){
-				HashMap commentper = dashprev.getCommentInfo((String)results);
+				BasicDBObject resuobj = (BasicDBObject) results;
+				HashMap commentper = dashprev.getCommentInfo((String)resuobj.getString("comments"));
 				resultlist.add(commentper);
 			}
 			}

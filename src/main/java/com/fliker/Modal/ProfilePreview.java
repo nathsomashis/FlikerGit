@@ -193,7 +193,10 @@ public class ProfilePreview {
 
 
 	public Profile getProfile(String shareOwner) {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
 		return null;
 	}
 	

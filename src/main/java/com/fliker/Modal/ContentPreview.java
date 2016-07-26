@@ -39,7 +39,7 @@ public class ContentPreview {
 			String[] fileidsarr = fileids.split(",");
 			
 			PostPreview postprev = new PostPreview();
-			postprev.savePost(userinformation.getUserid(), PostComment, fileidsarr);
+			//postprev.savePost(userinformation.getUserid(), PostComment, fileidsarr);
 			
 			
 		} catch (IOException e) {
