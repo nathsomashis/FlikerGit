@@ -828,19 +828,19 @@
 							</div>
 							<div class="image" >
 							<% if(filelimit>1){%>
-									<a id="PostImage<%=postid%>" title="<%=postfileidStr%>" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
+									<a id="PostImage<%=postid%>" onclick="openmodalTop('<%=postfileidStr%>');" title="<%=postfileidStr%>" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
 								 	<h2 style="position: absolute;top: 90px;left: 50px;width: 100%;"><%=filelimit%> More</h2>
 								 	<%-- <input id="hidden<%=postid%>" type="hidden" value="<%=postfileidStr%>"> --%>
 							<%}else{ %>
-								 	<a id="coursemodelidstill"  data-toggle="modal" data-target="#stillModal" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
+								 	<a id="PostImage<%=postid%>" onclick="openModalRest('<%=postfileidStr%>')" title="<%=postfileidStr%>" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
 							<%} %>	 
 							</div>
 							<ul class="links">
-								<li><a href="javascript:void(0);"><i
+								<li><a href="javascript:liked('<%=userid%>','<%=postid%>');"><i
 										class="fa fa-thumbs-o-up"></i> Like</a></li>
-								<li><a href="javascript:void(0);"><i
+								<li><a href="javascript:commented();"><i
 										class="fa fa-comment-o"></i> Comment</a></li>
-								<li><a href="javascript:void(0);"><i
+								<li><a href="javascript:shared('<%=userid%>','<%=postid%>');"><i
 										class="fa fa-share-square-o"></i> Share</a></li>
 							</ul>
 							
@@ -864,7 +864,7 @@
 							%>
 							<ul class="comments">
 								<li><img src="img/avatars/sunny.png" alt="img"
-									class="online"> <input id="urcomment" type="text"
+									class="online"> <input class="commmentclass" id="urcomment" type="text" alt="<%=postid%>" name="<%=userid%>"
 									class="form-control" placeholder="Post your comment..."></li>
 							</ul>
 						</div>
@@ -951,12 +951,12 @@
 								</div>
 								<div class="image">
 									<% if(filelimit>1){%>
-											<a id="coursemodelid" title="<%=postfileidStr%>" data-toggle="modal" data-target="#carousalModal" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
-										 	<h2 style="position: absolute;top: 90px;left: 50px;width: 100%;"><%=filelimit%> More</h2>
-										 	<%-- <input id="hidden<%=postid%>" type="hidden" value="<%=postfileidStr%>"> --%>
+									<a id="PostImage<%=postid%>" onclick="multiModalRest('<%=postfileidStr%>')" title="<%=postfileidStr%>" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
+								 	<h2 style="position: absolute;top: 90px;left: 50px;width: 100%;"><%=filelimit%> More</h2>
+								 	<%-- <input id="hidden<%=postid%>" type="hidden" value="<%=postfileidStr%>"> --%>
 									<%}else{ %>
-										 	<a id="coursemodelidstill"  data-toggle="modal" data-target="#stillModal" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
-									<%} %>
+										 	<a id="PostImage<%=postid%>" onclick="singleopenModalRest('<%=postfileidStr%>')" title="<%=postfileidStr%>" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
+									<%} %>	
 								</div>
 								<ul class="links">
 									<li><a href="javascript:void(0);"><i
@@ -1067,12 +1067,12 @@
 						</div>
 						<div class="image">
 							<% if(filelimit>1){%>
-									<a id="coursemodelid" title="<%=postfileidStr%>" data-toggle="modal" data-target="#carousalModal" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
+									<a id="PostImage<%=postid%>" onclick="multiModalRest('<%=postfileidStr%>')" title="<%=postfileidStr%>" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
 								 	<h2 style="position: absolute;top: 90px;left: 50px;width: 100%;"><%=filelimit%> More</h2>
 								 	<%-- <input id="hidden<%=postid%>" type="hidden" value="<%=postfileidStr%>"> --%>
 							<%}else{ %>
-								 	<a id="coursemodelidstill"  data-toggle="modal" data-target="#stillModal" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
-							<%} %>
+								 	<a id="PostImage<%=postid%>" onclick="singleopenModalRest('<%=postfileidStr%>')" title="<%=postfileidStr%>" ><img  src="/Fliker/imageController/<%=postfileid%>" alt="img"></a>
+							<%} %>	
 						</div>
 						<ul class="links">
 							<li><a href="javascript:void(0);"><i
@@ -1799,29 +1799,190 @@
 		<script src="..."></script>-->
 
 	<script type="text/javascript">
-	function test(){
+	
+function deletefun(){
+		
+		var element = document.getElementById('topbottom');
+		alert('in the click');
+		element.remove();
+	}
+	
+	function openmodalTop(postfileids){
 		
 		// ev.preventDefault();
-		 var id = $(this)[0].id;
-		 alert(id);
-		 var postid = $(this)[0].title;
-		 alert("in the form"+postid);
-		 var modaldialogue = "<div style='position:fixed; width:500px; height:600px; margin:-300px auto auto -250px;   top:50%; left:50%; text-align:center;' id='' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'"
-							+"aria-hidden='true'><div style='width: 90%; height: 90%'><div style='width: 100%; height: 100%'><div class='modal-header'>"
-							+"<button type='button' class='close' data-dismiss='modal'	aria-hidden='true'>&times;</button></div><div class='modal-body' style='width: 55%; height: 90%; float: left;background-color: black;'>"
-							+"<div class='well' style='height: 100%; background-color: black;'><div id='Imagesetcarousal' class='carousel slide' ><ol class='carousel-indicators'></ol><div  class='carousel-inner' style='width: 70%;height: 100%'></div>"
-							+"</div><a class='left carousel-control' href='#Imagesetcarousal' data-slide='prev'> <span class='glyphicon glyphicon-chevron-left'></span> </a><a class='right carousel-control' href='#Imagesetcarousal' data-slide='next'> <span class='glyphicon glyphicon-chevron-right'></span> </a>"
-							+"</div></div><div style='width: 23%; height: 80%; float: left;'><ul class='links' style='border-top:1px solid rgba(0,0,0,.07);margin:0;padding:15px 20px;background:#fafafa'><li style='display:inline;padding-right:20px'><a href='javascript:void(0);'>"
-							+"<i class='fa fa-thumbs-o-up' style='color:inherit;font-size:14px;margin-right:2px'></i> Like</a></li><li style='display:inline;padding-right:20px'><a href='javascript:void(0);'><i class='fa fa-comment-o' style='color:inherit;font-size:14px;margin-right:2px'></i> Comment</a></li>"
-							+"<li style='display:inline;padding-right:20px'><a href='javascript:void(0);'><i class='fa fa-share-square-o' style='color:inherit;font-size:14px;margin-right:2px'></i> Share</a></li></ul><ul class='comments' style='border-top:1px solid rgba(0,0,0,.07);font-size:13px;padding:0 20px'>"
-							+"<li style='border-bottom:1px solid rgba(0,0,0,.07);display:block;padding:15px 0 15px 40px;position:relative;border-bottom:none;padding-bottom:5px'><img style='height:30px;left:0;position:absolute;width:30px' src='img/avatars/sunny.png' alt='img' class='online'> <input id='urcomment' type='text'"
-							+"class='form-control' placeholder='Post your comment...'></li></ul></div></div></div></div></div>";/
+		
+		var filelist = postfileids.split(",");
+		var fileimages = "";
+		for(var i=0;i<filelist.length;i++){
+			if(filelist[i] != " "){
+			var fileimage = "";
+			alert("in the loop"+i+" dsdsfdfs"+filelist.length+" ghdgdhgdhg file list"+filelist[i]);
+			//var	fileimage = "";
+				if(i==0){
+					fileimage = "<div class='item active' style='height:100%;margin-top:20px;'><img style='height:100%;width:100%' src='/Fliker/imageController/"+filelist[i]+"' alt=''></div>";
+					fileimages = fileimages+fileimage;
+				}else{
+					fileimage = "<div class='item' style='height:100%;margin-top:20px;'><img style='height:100%;width:100%' src='/Fliker/imageController/"+filelist[i]+"' alt=''></div>";
+					fileimages = fileimages+fileimage;
+				} 
+				
+			
+			}
+			
+			/* if(i==0){
+			var	fileimage = "<div class='item active'><img src='/Fliker/imageController/"+filelist[i]+"' alt=""></div>"
+			fileimages = fileimages+fileimage;
+			}else{
+			var	fileimage = "<div class='item'><img src='/Fliker/imageController/"+filelist[i]+"' alt=""></div>"
+			fileimages = fileimages+fileimage;
+			} */
+			//alert(fileimages);
+			
+		} 
 		 
+		alert(fileimages); 
+		
+		
+		 var modaldialogue = "<div style='position: fixed; width: 100%; height: 100%; top: 0%; left: 0%; text-align: center; background-color:gray;margin-top:30px;' id='topbottom' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'"
+			 +"aria-hidden='true'><div style='width: 98%; height: 90%;margin-top:30px;margin-left:30px;'><div style='width: 100%; height: 100%'><div style='margin-left: 100%;'><button type='button' class='close' style='padding:20px;background:white;border:1px' onclick='deletefun();'" 
+		 +"aria-hidden='true'>&times;</button></div><div	style='width: 55%; height: 92%; margin-left: 200px;  float: left; background-color: black; opacity: 0.7'><div class='well' style='height: 100%;"
+		 +"background-color: black;'><div id='Imagesetcarousal'style='height:100%' class='carousel slide'><ol class='carousel-indicators'></ol><div class='carousel-inner' style='width: 100%; height: 100%'>"+fileimages
+		 +"</div></div><a class='left carousel-control'  href='#Imagesetcarousal' data-slide='prev'> <span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#Imagesetcarousal'"
+		 +"data-slide='next'> <span class='glyphicon glyphicon-chevron-right'></span></a></div></div><div style='width: 23%; height: 93%;  float: left;background-color: white;'><div style='width: 100%; height: 100%;" +"background-color: white;'><ul class='links' style='border-top: 1px solid rgba(0, 0, 0, .07); margin: 0; padding: 15px 20px; background: #fafafa'><li style='display: inline; padding-right: 20px'><a"
+		 +" href='javascript:void(0);'> <i class='fa fa-thumbs-o-up' style='color: inherit; font-size: 14px; margin-right: 2px'></i>Like</a></li><li style='display: inline; padding-right: 20px'><a"							+"href='javascript:void(0);'><i class='fa fa-comment-o'	style='color: inherit; font-size: 14px; margin-right: 2px'></i>Comment</a></li><li style='display: inline; padding-right: 20px'><a"				+"href='javascript:void(0);'><i class='fa fa-share-square-o' style='color: inherit; font-size: 14px; margin-right: 2px'></i>Share</a></li></ul><ul class='comments' "
+		 +"style='border-top: 1px solid rgba(0, 0, 0, .07); font-size: 13px; padding: 0 20px'><li style='border-bottom: 1px solid rgba(0, 0, 0, .07); display: block; padding: 15px 0 15px 40px; position: relative;" +"border-bottom: none; padding-bottom: 5px'><img style='height: 30px; left: 0; position: absolute; width: 30px'	src='img/avatars/sunny.png' alt='img' class='online'> "
+		 +"<input id='urcomment' type='text' class='form-control' placeholder='Post your comment...'></li></ul></div></div></div></div></div></div>";
+		
+		// $('.carousel-inner').append(fileimages);
+		 
+		$('#content').append(modaldialogue);			
 		 
 		 //formElement(postid);
 		 
 		 
 	 }
+	
+	function openModalRest(postfileids){
+		
+		// ev.preventDefault();
+		 /* var id = $(this)[0].id;
+		 alert(id);
+		 var postid = $(this)[0].title;
+		 alert("in the form"+postid); */
+		 alert(postfileids);
+		 //<img src='/Fliker/imageController/"+postfileids+"' alt=''>
+		 
+		 var modaldialogue = "<div style='position: fixed; width: 100%; height: 100%; top: 0%; left: 0%; text-align: center; background-color:gray;margin-top:30px;' id='topbottom' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'"
+			 +"aria-hidden='true'><div style='width: 98%; height: 90%;margin-top:30px;margin-left:30px;'><div style='width: 100%; height: 100%'><div style='margin-left: 100%;'><button type='button' class='close' style='padding:20px;background:white;border:1px' onclick='deletefun();'" 
+		 +"aria-hidden='true'>&times;</button></div><div	style='width: 55%; height: 92%; margin-left: 200px;  float: left; background-color: black; opacity: 0.7'><div class='well' style='height: 100%;"
+		 +"background-color: black;'><div id='Imagesetcarousal' class='carousel slide'></div><img style='height:100%;width:100%' src='/Fliker/imageController/"+postfileids+"' alt=''>"
+		 +"</div></div><div style='width: 23%; height: 93%;  float: left;background-color: white;'><div style='width: 100%; height: 100%;" +"background-color: white;'><ul class='links' style='border-top: 1px solid rgba(0, 0, 0, .07); margin: 0; padding: 15px 20px; background: #fafafa'><li style='display: inline; padding-right: 20px'><a"
+		 +" href='javascript:void(0);'> <i class='fa fa-thumbs-o-up' style='color: inherit; font-size: 14px; margin-right: 2px'></i>Like</a></li><li style='display: inline; padding-right: 20px'><a"							+"href='javascript:void(0);'><i class='fa fa-comment-o'	style='color: inherit; font-size: 14px; margin-right: 2px'></i>Comment</a></li><li style='display: inline; padding-right: 20px'><a"				+"href='javascript:void(0);'><i class='fa fa-share-square-o' style='color: inherit; font-size: 14px; margin-right: 2px'></i>Share</a></li></ul><ul class='comments' "
+		 +"style='border-top: 1px solid rgba(0, 0, 0, .07); font-size: 13px; padding: 0 20px'><li style='border-bottom: 1px solid rgba(0, 0, 0, .07); display: block; padding: 15px 0 15px 40px; position: relative;" +"border-bottom: none; padding-bottom: 5px'><img style='height: 30px; left: 0; position: absolute; width: 30px'	src='img/avatars/sunny.png' alt='img' class='online'> "
+		 +"<input id='urcomment' type='text' class='form-control' placeholder='Post your comment...'></li></ul></div></div></div></div></div></div>";
+
+		$('#content').append(modaldialogue);			
+		 
+		 //formElement(postid);
+		 
+		 
+	 }
+	
+	function singleopenModalRest(postfileids){
+		
+		// ev.preventDefault();
+		 /* var id = $(this)[0].id;
+		 alert(id);
+		 var postid = $(this)[0].title;
+		 alert("in the form"+postid); */
+		 alert(postfileids);
+		 //<img src='/Fliker/imageController/"+postfileids+"' alt=''>
+		 
+		 var modaldialogue = "<div style='position: fixed; width: 100%; height: 100%; top: 0%; left: 0%; text-align: center; background-color:gray;margin-top:30px;' id='topbottom' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'"
+			 +"aria-hidden='true'><div style='width: 98%; height: 90%;margin-top:30px;margin-left:30px;'><div style='width: 100%; height: 100%'><div style='margin-left: 100%;'><button type='button' class='close' style='padding:20px;background:white;border:1px' onclick='deletefun();'" 
+		 +"aria-hidden='true'>&times;</button></div><div	style='width: 55%; height: 92%; margin-left: 200px;  float: left; background-color: black; opacity: 0.7'><div class='well' style='height: 100%;"
+		 +"background-color: black;'><div id='Imagesetcarousal' class='carousel slide'></div><img style='height:100%;width:100%' src='/Fliker/imageController/"+postfileids+"' alt=''>"
+		 +"</div></div><div style='width: 23%; height: 93%;  float: left;background-color: white;'><div style='width: 100%; height: 100%;" +"background-color: white;'><ul class='links' style='border-top: 1px solid rgba(0, 0, 0, .07); margin: 0; padding: 15px 20px; background: #fafafa'><li style='display: inline; padding-right: 20px'><a"
+		 +" href='javascript:void(0);'> <i class='fa fa-thumbs-o-up' style='color: inherit; font-size: 14px; margin-right: 2px'></i>Like</a></li><li style='display: inline; padding-right: 20px'><a"							+"href='javascript:void(0);'><i class='fa fa-comment-o'	style='color: inherit; font-size: 14px; margin-right: 2px'></i>Comment</a></li><li style='display: inline; padding-right: 20px'><a"				+"href='javascript:void(0);'><i class='fa fa-share-square-o' style='color: inherit; font-size: 14px; margin-right: 2px'></i>Share</a></li></ul><ul class='comments' "
+		 +"style='border-top: 1px solid rgba(0, 0, 0, .07); font-size: 13px; padding: 0 20px'><li style='border-bottom: 1px solid rgba(0, 0, 0, .07); display: block; padding: 15px 0 15px 40px; position: relative;" +"border-bottom: none; padding-bottom: 5px'><img style='height: 30px; left: 0; position: absolute; width: 30px'	src='img/avatars/sunny.png' alt='img' class='online'> "
+		 +"<input id='urcomment' type='text' class='form-control' placeholder='Post your comment...'></li></ul></div></div></div></div></div></div>";
+
+		$('#content').append(modaldialogue);			
+		 
+		 //formElement(postid);
+		 
+		 
+	 }
+	
+	function multiModalRest(postfileids){
+		
+		var filelist = postfileids.split(",");
+		var fileimages = "";
+		for(var i=0;i<filelist.length;i++){
+			if(filelist[i] != " "){
+			var fileimage = "";
+			alert("in the loop"+i+" dsdsfdfs"+filelist.length+" ghdgdhgdhg file list"+filelist[i]);
+			//var	fileimage = "";
+				if(i==0){
+					fileimage = "<div class='item active' style='height:100%;margin-top:20px;'><img style='height:100%;width:100%' src='/Fliker/imageController/"+filelist[i]+"' alt=''></div>";
+					fileimages = fileimages+fileimage;
+				}else{
+					fileimage = "<div class='item' style='height:100%;margin-top:20px;'><img style='height:100%;width:100%' src='/Fliker/imageController/"+filelist[i]+"' alt=''></div>";
+					fileimages = fileimages+fileimage;
+				} 
+				
+			
+			}
+			
+			/* if(i==0){
+			var	fileimage = "<div class='item active'><img src='/Fliker/imageController/"+filelist[i]+"' alt=""></div>"
+			fileimages = fileimages+fileimage;
+			}else{
+			var	fileimage = "<div class='item'><img src='/Fliker/imageController/"+filelist[i]+"' alt=""></div>"
+			fileimages = fileimages+fileimage;
+			} */
+			//alert(fileimages);
+			
+		} 
+		 
+		alert(fileimages); 
+		
+		// ev.preventDefault();
+		 /* var id = $(this)[0].id;
+		 alert(id);
+		 var postid = $(this)[0].title;
+		 alert("in the form"+postid); */
+		 /* var modaldialogue = "<div style='position: fixed; width: 100%; height: 100%; top: 0%; left: 0%; text-align: center; background-color:gray;' id='topbottom' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'"
+			 +"aria-hidden='true'><div style='width: 98%; height: 90%;margin-top:30px;margin-left:30px;'><div style='width: 100%; height: 100%'><div style='margin-left: 100%;'><button type='button' class='close' style='padding:20px;background:white;border:1px' onclick='deletefun();'" 
+		 +"aria-hidden='true'>&times;</button></div><div	style='width: 55%; height: 92%; margin-left: 200px;  float: left; background-color: black; opacity: 0.7'><div class='well' style='height: 100%;"
+		 +"background-color: black;'><div id='Imagesetcarousal' class='carousel slide'><ol class='carousel-indicators'></ol><div class='carousel-inner' style='width: 70%; height: 100%'></div></div>"
+		 +"<a class='left carousel-control' href='#Imagesetcarousal' data-slide='prev'> <span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#Imagesetcarousal'"
+		 +"data-slide='next'> <span class='glyphicon glyphicon-chevron-right'></span></a></div></div><div style='width: 23%; height: 93%;  float: left;background-color: white;'><div style='width: 100%; height: 100%;" +"background-color: white;'><ul class='links' style='border-top: 1px solid rgba(0, 0, 0, .07); margin: 0; padding: 15px 20px; background: #fafafa'><li style='display: inline; padding-right: 20px'><a"
+		 +" href='javascript:void(0);'> <i class='fa fa-thumbs-o-up' style='color: inherit; font-size: 14px; margin-right: 2px'></i>Like</a></li><li style='display: inline; padding-right: 20px'><a"							+"href='javascript:void(0);'><i class='fa fa-comment-o'	style='color: inherit; font-size: 14px; margin-right: 2px'></i>Comment</a></li><li style='display: inline; padding-right: 20px'><a"				+"href='javascript:void(0);'><i class='fa fa-share-square-o' style='color: inherit; font-size: 14px; margin-right: 2px'></i>Share</a></li></ul><ul class='comments' "
+		 +"style='border-top: 1px solid rgba(0, 0, 0, .07); font-size: 13px; padding: 0 20px'><li style='border-bottom: 1px solid rgba(0, 0, 0, .07); display: block; padding: 15px 0 15px 40px; position: relative;" +"border-bottom: none; padding-bottom: 5px'><img style='height: 30px; left: 0; position: absolute; width: 30px'	src='img/avatars/sunny.png' alt='img' class='online'> "
+		 +"<input id='urcomment' type='text' class='form-control' placeholder='Post your comment...'></li></ul></div></div></div></div></div></div>"; */
+		 var modaldialogue = "<div style='position: fixed; width: 100%; height: 100%; top: 0%; left: 0%; text-align: center; background-color:gray;margin-top:30px;' id='topbottom' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'"
+			 +"aria-hidden='true'><div style='width: 98%; height: 90%;margin-top:30px;margin-left:30px;'><div style='width: 100%; height: 100%'><div style='margin-left: 100%;'><button type='button' class='close' style='padding:20px;background:white;border:1px' onclick='deletefun();'" 
+		 +"aria-hidden='true'>&times;</button></div><div	style='width: 55%; height: 92%; margin-left: 200px;  float: left; background-color: black; opacity: 0.7'><div class='well' style='height: 100%;"
+		 +"background-color: black;'><div id='Imagesetcarousal'style='height:100%' class='carousel slide'><ol class='carousel-indicators'></ol><div class='carousel-inner' style='width: 100%; height: 100%'>"+fileimages
+		 +"</div></div><a class='left carousel-control'  href='#Imagesetcarousal' data-slide='prev'> <span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#Imagesetcarousal'"
+		 +"data-slide='next'> <span class='glyphicon glyphicon-chevron-right'></span></a></div></div><div style='width: 23%; height: 93%;  float: left;background-color: white;'><div style='width: 100%; height: 100%;" +"background-color: white;'><ul class='links' style='border-top: 1px solid rgba(0, 0, 0, .07); margin: 0; padding: 15px 20px; background: #fafafa'><li style='display: inline; padding-right: 20px'><a"
+		 +" href='javascript:void(0);'> <i class='fa fa-thumbs-o-up' style='color: inherit; font-size: 14px; margin-right: 2px'></i>Like</a></li><li style='display: inline; padding-right: 20px'><a"							+"href='javascript:void(0);'><i class='fa fa-comment-o'	style='color: inherit; font-size: 14px; margin-right: 2px'></i>Comment</a></li><li style='display: inline; padding-right: 20px'><a"				+"href='javascript:void(0);'><i class='fa fa-share-square-o' style='color: inherit; font-size: 14px; margin-right: 2px'></i>Share</a></li></ul><ul class='comments' "
+		 +"style='border-top: 1px solid rgba(0, 0, 0, .07); font-size: 13px; padding: 0 20px'><li style='border-bottom: 1px solid rgba(0, 0, 0, .07); display: block; padding: 15px 0 15px 40px; position: relative;" +"border-bottom: none; padding-bottom: 5px'><img style='height: 30px; left: 0; position: absolute; width: 30px'	src='img/avatars/sunny.png' alt='img' class='online'> "
+		 +"<input id='urcomment' type='text' class='form-control' placeholder='Post your comment...'></li></ul></div></div></div></div></div></div>";
+
+		$('#content').append(modaldialogue);			
+		 
+		 //formElement(postid);
+		 
+		 
+	 }
+	
+	
+	function liked(){
+		alert('in the like');
+		
+	}
 	
 	</script>
 
@@ -1861,29 +2022,29 @@
 				
 				 pageSetUp();
 				 
-				 $(this).click(function test(){
+				 /* $(this).click(function test(){
 					
 					// ev.preventDefault();
 					 var id = $(this)[0].id;
 					 alert(id);
 					 var postid = $(this)[0].title;
 					 alert("in the form"+postid);
-					 /* var modaldialogue = "<div style='position:fixed; width:500px; height:600px; margin:-300px auto auto -250px;   top:50%; left:50%; text-align:center;' id='' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'"
-										+"aria-hidden='true'><div style='width: 90%; height: 90%'><div style='width: 100%; height: 100%'><div class='modal-header'>"
-										+"<button type='button' class='close' data-dismiss='modal'	aria-hidden='true'>&times;</button></div><div class='modal-body' style='width: 55%; height: 90%; float: left;background-color: black;'>"
+					 var modaldialogue = "<div style='position:fixed; width:100%; height:100%; margin:-300px auto auto -250px;   top:0%; left:0%; text-align:center;background-color: black;opacity: 0.7' id='' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'"
+										+"aria-hidden='true'><div style='width: 90%; height: 90%'><div style='width: 100%; height: 100%'><div >"
+										+"<button type='button' class='close' onclick='' aria-hidden='true'>&times;</button></div><div style='width: 55%; height: 90%; float: left;background-color: black;'>"
 										+"<div class='well' style='height: 100%; background-color: black;'><div id='Imagesetcarousal' class='carousel slide' ><ol class='carousel-indicators'></ol><div  class='carousel-inner' style='width: 70%;height: 100%'></div>"
 										+"</div><a class='left carousel-control' href='#Imagesetcarousal' data-slide='prev'> <span class='glyphicon glyphicon-chevron-left'></span> </a><a class='right carousel-control' href='#Imagesetcarousal' data-slide='next'> <span class='glyphicon glyphicon-chevron-right'></span> </a>"
 										+"</div></div><div style='width: 23%; height: 80%; float: left;'><ul class='links' style='border-top:1px solid rgba(0,0,0,.07);margin:0;padding:15px 20px;background:#fafafa'><li style='display:inline;padding-right:20px'><a href='javascript:void(0);'>"
 										+"<i class='fa fa-thumbs-o-up' style='color:inherit;font-size:14px;margin-right:2px'></i> Like</a></li><li style='display:inline;padding-right:20px'><a href='javascript:void(0);'><i class='fa fa-comment-o' style='color:inherit;font-size:14px;margin-right:2px'></i> Comment</a></li>"
 										+"<li style='display:inline;padding-right:20px'><a href='javascript:void(0);'><i class='fa fa-share-square-o' style='color:inherit;font-size:14px;margin-right:2px'></i> Share</a></li></ul><ul class='comments' style='border-top:1px solid rgba(0,0,0,.07);font-size:13px;padding:0 20px'>"
 										+"<li style='border-bottom:1px solid rgba(0,0,0,.07);display:block;padding:15px 0 15px 40px;position:relative;border-bottom:none;padding-bottom:5px'><img style='height:30px;left:0;position:absolute;width:30px' src='img/avatars/sunny.png' alt='img' class='online'> <input id='urcomment' type='text'"
-										+"class='form-control' placeholder='Post your comment...'></li></ul></div></div></div></div></div>";/ */
+										+"class='form-control' placeholder='Post your comment...'></li></ul></div></div></div></div></div>";
 					 
-					 
+				$('#content').append(modaldialogue);
 					 //formElement(postid);
 					 
 					 
-				 });
+				 }); */
 				 
 				 
 				 function formElement(postfileids){
@@ -2240,14 +2401,28 @@
 							});
 			 
 			 
-			$('#urcomment').bind("enterKey",function(e){
+			$('.commmentclass').bind("enterKey",function(e){
 				   alert("entered");
 				});
-			$('#urcomment').keyup(function(e){
+			$('.commmentclass').keyup(function(e){
 			    if(e.keyCode == 13)
 			    {
 			        $(this).trigger("enterKey");
 			        
+			        comment = $('#urcomment')[0].value;
+			        postid = $('#urcomment')[0].alt;
+			        userid = $('#urcomment')[0].name
+			        
+			        
+			         $.ajax({
+						url : "dashboardsocial/saveComments?postid="+postid+"&comment="+comment+"&userid="+userid,
+						method : 'POST',
+						success : function(){
+							
+							
+						}
+					
+			        }); 
 			        
 			        var newcommentdiv = "<li id='commentidli1'><img src='img/avatars/2.png' alt='img' class='online'><span class='name'>Alice Wonder</span> Seems cool.</li>";
 			        
