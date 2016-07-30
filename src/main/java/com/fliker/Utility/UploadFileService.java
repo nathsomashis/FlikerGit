@@ -31,10 +31,16 @@ public class UploadFileService {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFile(
 		@FormDataParam("file") InputStream uploadedInputStream,
-		@FormDataParam("file") FormDataContentDisposition fileDetail) {
+		@FormDataParam("file") FormDataContentDisposition fileDetail,
+		@FormDataParam("comment") String inputComment) {
 
+<<<<<<< HEAD
 		String uploadedFileLocation = "E:\\Non Official\\" + fileDetail.getFileName();
 		//System.out.println("inputComment "+inputComment);
+=======
+		String uploadedFileLocation = "E:\\Non Official" + fileDetail.getFileName();
+		System.out.println("inputComment "+inputComment);
+>>>>>>> origin/master
 
 		// save it
 		writeToFile(uploadedInputStream, uploadedFileLocation,fileDetail.getFileName());
@@ -74,12 +80,16 @@ public class UploadFileService {
 			UploadFileService uploadser = new UploadFileService();
 			
 			fileup.setFileblob(bytes);
+<<<<<<< HEAD
 			try {
 				fileup.setFileid(uploadser.makeSHA1Hash(filename));
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+=======
+			fileup.setFileid("example123");
+>>>>>>> origin/master
 			fileup.setLocation(uploadedFileLocation);
 			fileup.setName(uploadedFileLocation);
 			fileup.setType("Image");
