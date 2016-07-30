@@ -1,5 +1,4 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*,com.fliker.Repository.*,org.springframework.ui.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -120,7 +119,7 @@
 		* 'fixed-page-footer' - Fixes footer
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
-	<body class="" onload="geoFindMe()">
+	<body class="">
 
 		<!-- HEADER -->
 		<header id="header">
@@ -623,7 +622,33 @@
 			<!-- MAIN CONTENT -->
 			<div id="content">
 
-				
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+						
+					</div>
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+						<ul id="sparks" class="">
+							<li class="sparks-info">
+								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
+								<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+									1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+								</div>
+							</li>
+							<li class="sparks-info">
+								<h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
+								<div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
+									110,150,300,130,400,240,220,310,220,300, 270, 210
+								</div>
+							</li>
+							<li class="sparks-info">
+								<h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
+								<div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
+									110,150,300,130,400,240,220,310,220,300, 270, 210
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
 				
 				<!-- widget grid -->
 				<section id="widget-grid" class="">
@@ -667,70 +692,28 @@
 				
 									<!-- widget content -->
 									<div class="widget-body">
+				
 										<div class="row">
-
-											<!-- NEW WIDGET START -->
-											<article class="col-sm-12">
-									
-												
-												
-												<!-- Widget ID (each widget will need unique ID)-->
-												<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
-													<!-- widget options:
-													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-									
-													data-widget-colorbutton="false"
-													data-widget-editbutton="false"
-													data-widget-togglebutton="false"
-													data-widget-deletebutton="false"
-													data-widget-fullscreenbutton="false"
-													data-widget-custombutton="false"
-													data-widget-collapsed="true"
-													data-widget-sortable="false"
-									
-													-->
-													<header>
-														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-														<h2>New Post</h2>
-									
-													</header>
-									
-													<!-- widget div-->
-													<div>
-									
-														<!-- widget edit box -->
-														<div class="jarviswidget-editbox">
-															<!-- This area used as dropdown edit box -->
-									
-														</div>
-														<!-- end widget edit box -->
-									
-														<!-- widget content -->
-														<div class="widget-body">
-									
-															<form action="upload.php" class="dropzone" id="mydropzone"></form>
-									
-														</div>
-														<!-- end widget content -->
-									
-													</div>
-													<!-- end widget div -->
-									
-												</div>
-												<!-- end widget -->
-									
-											</article>
-											<!-- WIDGET END -->
-									
-										</div>
-										<div class="row">
-											<form id="wizard-1" novalidate="novalidate" action="postcreate?" method="post" enctype="multipart/form-data">
+											<form id="wizard-1" novalidate="novalidate" action="rest/file/upload" method="post" enctype="multipart/form-data">
 												<div id="bootstrap-wizard-1" class="col-sm-12">
 													
 													<div class="tab-content">
 														<div class="tab-pane active" id="tab1">
-															
+															<br>
+															<h3><strong>Post</strong> - Create</h3>
 				
+															<div class="row">
+																<div class="col-sm-12">
+																<fieldset>
+																	<section>
+																		<label class="label">File input</label>
+																		<div class="input input-file">
+																			<span class="button"><input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value" enctype="multipart/form-data">Browse</span><input type="text" placeholder="Include some files" readonly="">
+																		</div>
+																	</section>
+																</fieldset>	
+																</div>
+																
 																<div class="col-sm-12">
 																	<div class="form-group">
 																		<div class="input-group">
@@ -739,27 +722,35 @@
 																	</div>
 																</div>
 															</div>
-															
+				
 															<div class="row">
 																<div class="col-sm-12">
-																	<form method="post" action="postcreate?" class="well padding-bottom-10" onsubmit="return false;">
-																		<input type="hidden" class="form-control" id="location" name="location" >
-																		<textarea rows="2" class="form-control" placeholder="Write a review" name="postdescription" id="postdescription"></textarea>
-																		<div class="margin-top-10">
-																			<button type="submit" onclick="geoFindMe()" class="btn btn-sm btn-primary pull-right">
-																				Submit Post
-																			</button>
-																			<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Location"><i class="fa fa-location-arrow"></i></a>
+																	<div class="form-group">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+																			<textarea rows="3" placeholder="post description"  name="comment" id="comment"  cols="60"></textarea>
+				
 																		</div>
-																	</form>
+																	</div>
 																</div>
 																
 															</div>
 				
 														</div>
 				
-														
+														<div class="form-actions">
+															<div class="row">
+																<div class="col-sm-12">
+																	<ul class="pager wizard no-margin">
+																		<li class="next">
+																			<input type="submit" class="btn btn-primary " value="Publish" />
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
 				
+													</div>
 												</div>
 											</form>
 										</div>
@@ -1029,46 +1020,6 @@
 			pageSetUp();
 			
 			
-			function geoFindMe() {
-				  //var output = document.getElementById("out");
-
-				  /* if (!navigator.geolocation){
-				    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-				    return;
-				  } */
-
-				  function success(position) {
-				    var latitude  = position.coords.latitude;
-				    var longitude = position.coords.longitude;
-				    alert(longitude);
-				    alert(latitude);
-
-				    //output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-
-				    var img = new Image();
-				    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
-
-				    //output.appendChild(img);
-				  };
-
-				  function error() {
-				    //output.innerHTML = "Unable to retrieve your location";
-				  };
-
-				 // output.innerHTML = "<p>Locating…</p>";
-
-				  navigator.geolocation.getCurrentPosition(success, error);
-				}
-			
-			Dropzone.autoDiscover = false;
-			$("#mydropzone").dropzone({
-				url: "file?",
-				paramName: "file",		
-				addRemoveLinks : true,
-				maxFilesize: 500,
-				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
-				dictResponseError: 'Error uploading file!'
-			});
 	
 			//Bootstrap Wizard Validations
 
@@ -1110,49 +1061,11 @@
 			      }); */
 			    });
 			  
-			 
+			
 
 		
 		})
 
-		</script>
-		
-		<script type="text/javascript">
-		
-		 function geoFindMe() {
-			  //var output = document.getElementById("out");
-
-			  /* if (!navigator.geolocation){
-			    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-			    return;
-			  } */
-
-			  function success(position) {
-			    var latitude  = position.coords.latitude;
-			    var longitude = position.coords.longitude;
-			    alert(longitude);
-			    
-			    var location = document.getElementById("location");
-			    location.value = latitude+","+longitude;
-			    alert(location.value);
-			    console.log(location);
-
-			    //output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-
-			    var img = new Image();
-			    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
-
-			    //output.appendChild(img);
-			  };
-
-			  function error() {
-			    //output.innerHTML = "Unable to retrieve your location";
-			  };
-
-			 // output.innerHTML = "<p>Locating…</p>";
-
-			  navigator.geolocation.getCurrentPosition(success, error);
-			}
 		</script>
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->

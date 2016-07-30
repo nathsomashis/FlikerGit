@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Profile;
+import com.fliker.Repository.User;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
@@ -171,6 +172,32 @@ public class ProfilePreview {
 		
 		
 		return profileinfo;
+	}
+
+
+	public DBObject getUser(String shareOwner) {
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor profcursor = mongocon.getDBObject("profileid", shareOwner, "Profile");
+		DBObject dbj = null;
+		
+		while(profcursor.hasNext()){
+			
+			dbj = profcursor.next();
+			
+		}
+		
+		
+		return dbj;
+	}
+
+
+	public Profile getProfile(String shareOwner) {
+		
+		
+		
+		
+		return null;
 	}
 	
 	

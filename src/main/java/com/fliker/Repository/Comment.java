@@ -10,6 +10,13 @@ public class Comment {
 	private String commentid;
 	private String commentOwnerid;
 	private String comments;
+	private String commentdate;
+	public String getCommentdate() {
+		return commentdate;
+	}
+	public void setCommentdate(String commentdate) {
+		this.commentdate = commentdate;
+	}
 	private String[] replyids;
 	public String getCommentid() {
 		return commentid;

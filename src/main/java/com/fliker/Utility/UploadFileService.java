@@ -5,6 +5,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -17,7 +22,8 @@ import com.fliker.Repository.FileUpload;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
-@Path("/file")
+
+@Path("/files")
 public class UploadFileService {
 
 	@POST
@@ -27,12 +33,21 @@ public class UploadFileService {
 		@FormDataParam("file") InputStream uploadedInputStream,
 		@FormDataParam("file") FormDataContentDisposition fileDetail) {
 
-		String uploadedFileLocation = "E:\\Non Official" + fileDetail.getFileName();
+		String uploadedFileLocation = "E:\\Non Official\\" + fileDetail.getFileName();
+		//System.out.println("inputComment "+inputComment);
 
 		// save it
-		writeToFile(uploadedInputStream, uploadedFileLocation);
+		writeToFile(uploadedInputStream, uploadedFileLocation,fileDetail.getFileName());
 
 		String output = "File uploaded to : " + uploadedFileLocation;
+		URI uri = null;
+		try {
+			uri = new URI ("\\profile?").parseServerAuthority();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Response.temporaryRedirect(uri);
 
 		return Response.status(200).entity(output).build();
 
@@ -40,7 +55,7 @@ public class UploadFileService {
 
 	// save uploaded file to new location
 	private void writeToFile(InputStream uploadedInputStream,
-		String uploadedFileLocation) {
+		String uploadedFileLocation, String filename) {
 
 		try {
 			OutputStream out = new FileOutputStream(new File(
@@ -56,8 +71,15 @@ public class UploadFileService {
 				
 			}
 			
+			UploadFileService uploadser = new UploadFileService();
+			
 			fileup.setFileblob(bytes);
-			fileup.setId("example123");
+			try {
+				fileup.setFileid(uploadser.makeSHA1Hash(filename));
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			fileup.setLocation(uploadedFileLocation);
 			fileup.setName(uploadedFileLocation);
 			fileup.setType("Image");
@@ -72,5 +94,21 @@ public class UploadFileService {
 		}
 
 	}
+	
+	public String makeSHA1Hash(String input)
+            throws NoSuchAlgorithmException, UnsupportedEncodingException
+        {
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            md.reset();
+            byte[] buffer = input.getBytes("UTF-8");
+            md.update(buffer);
+            byte[] digest = md.digest();
+
+            String hexStr = "";
+            for (int i = 0; i < digest.length; i++) {
+                hexStr +=  Integer.toString( ( digest[i] & 0xff ) + 0x100, 16).substring( 1 );
+            }
+            return hexStr;
+        }
 
 }

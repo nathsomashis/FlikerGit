@@ -16,6 +16,35 @@ public class Jobs {
 	public void setJobid(String jobid) {
 		Jobid = jobid;
 	}
+	private String jobname;
+	public String getJobname() {
+		return jobname;
+	}
+	public void setJobname(String jobname) {
+		this.jobname = jobname;
+	}
+	
+	private String JobName;
+	private String[] courseids;
+	public String getJobName() {
+		return JobName;
+	}
+	public void setJobName(String jobName) {
+		JobName = jobName;
+	}
+	public String[] getCourseids() {
+		return courseids;
+	}
+	public void setCourseids(String[] courseids) {
+		this.courseids = courseids;
+	}
+	public String getJobCompanyid() {
+		return JobCompanyid;
+	}
+	public void setJobCompanyid(String jobCompanyid) {
+		JobCompanyid = jobCompanyid;
+	}
+	private String JobCompanyid;
 	private String JobTitle;
 	private String JobProgress;
 	private String JobContacts;

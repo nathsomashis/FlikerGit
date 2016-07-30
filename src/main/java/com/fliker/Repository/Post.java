@@ -1,5 +1,7 @@
 package com.fliker.Repository;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,14 +10,35 @@ public class Post {
 
 	@Id
 	private String postid;
-	private byte[] postContent;
-	private Share[] postshared;
-	private Comment[] postcomments;
-	private Like[] postliked;
-	private User postowner;
-	private Vote voteid;
+	private String[] postFileid;
+	private String[] postsharedids;
+	private String[] postcommentsids;
+	private String[] postlikedids;
+	private String userid;
 	private String postType;
+	private String postDescription;
+	private String postiddate;
+	private String postlocation;
 	
+	
+	public String getPostlocation() {
+		return postlocation;
+	}
+	public void setPostlocation(String postlocation) {
+		this.postlocation = postlocation;
+	}
+	public String getPostiddate() {
+		return postiddate;
+	}
+	public void setPostiddate(String postiddate) {
+		this.postiddate = postiddate;
+	}
+	public String getPostDescription() {
+		return postDescription;
+	}
+	public void setPostDescription(String postDescription) {
+		this.postDescription = postDescription;
+	}
 	public String getPostType() {
 		return postType;
 	}
@@ -28,42 +51,40 @@ public class Post {
 	public void setPostid(String postid) {
 		this.postid = postid;
 	}
-	public byte[] getPostContent() {
-		return postContent;
+	
+	public String[] getPostFileid() {
+		return postFileid;
 	}
-	public void setPostContent(byte[] postContent) {
-		this.postContent = postContent;
+	public void setPostFileid(String[] postFileid) {
+		this.postFileid = postFileid;
 	}
-	public Share[] getPostshared() {
-		return postshared;
+	public String[] getPostsharedids() {
+		return postsharedids;
 	}
-	public void setPostshared(Share[] postshared) {
-		this.postshared = postshared;
+	public void setPostsharedids(String[] postsharedids) {
+		this.postsharedids = postsharedids;
 	}
-	public Comment[] getPostcomments() {
-		return postcomments;
+	public String[] getPostcommentsids() {
+		return postcommentsids;
 	}
-	public void setPostcomments(Comment[] postcomments) {
-		this.postcomments = postcomments;
+	public void setPostcommentsids(String[] postcommentsids) {
+		this.postcommentsids = postcommentsids;
 	}
-	public Like[] getPostliked() {
-		return postliked;
+	public String[] getPostlikedids() {
+		return postlikedids;
 	}
-	public void setPostliked(Like[] postliked) {
-		this.postliked = postliked;
+	public void setPostlikedids(String[] postlikedids) {
+		this.postlikedids = postlikedids;
 	}
-	public User getPostowner() {
-		return postowner;
+	public String getUserid() {
+		return userid;
 	}
-	public void setPostowner(User postowner) {
-		this.postowner = postowner;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-	public Vote getVoteid() {
-		return voteid;
-	}
-	public void setVoteid(Vote voteid) {
-		this.voteid = voteid;
-	}
+	
+	
+	
 	
 	
 	

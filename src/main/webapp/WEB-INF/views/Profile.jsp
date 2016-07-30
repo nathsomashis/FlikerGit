@@ -843,22 +843,22 @@
 														<div class="col-sm-6">
 															<h1><span class="semi-bold"><%=name%></span>
 															<br>
-															<small> <%=currentStatus %></small>&nbsp;&nbsp;<i href="#" id="currectstatus-eg5" class="fa fa-edit"></i></h1>
+															<small id="currectstatus-result"> <%=currentStatus %></small>&nbsp;&nbsp;<i href="#" id="currectstatus-eg5" class="fa fa-edit"></i></h1>
 				
 															<ul class="list-unstyled">
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=contact%></span><i href="#" id="contact-eg6" class="fa fa-edit"></i>
+																		<i class="fa fa-phone"></i>&nbsp;&nbsp;<span id="contact-result" class="txt-color-darken"><%=contact%></span><i href="#" id="contact-eg6" class="fa fa-edit"></i>
 																	</p>
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:simmons@smartadmin"><%=emailid%></a>&nbsp;&nbsp;<i href="#" id="email-eg6" class="fa fa-edit"></i>
+																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a id="email-result" href="mailto:<%=emailid%>"><%=emailid%></a>&nbsp;&nbsp;<i href="#" id="email-eg6" class="fa fa-edit"></i>
 																	</p>
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-skype"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=skypeid%></span><i href="#" id="skype-eg6" class="fa fa-edit"></i>
+																		<i class="fa fa-skype"></i>&nbsp;&nbsp;<span id="skype-result" class="txt-color-darken"><%=skypeid%></span><i href="#" id="skype-eg6" class="fa fa-edit"></i>
 																	</p>
 																</li>
 																<li>
@@ -868,10 +868,10 @@
 																</li>
 															</ul>
 															<br>
-															<p class="font-md">
+															<p id="tellabout-result" class="font-md">
 																<i>A little about me...</i><i href="#" id="tellabout-eg6" class="fa fa-edit"></i>
 															</p>
-															<p>
+															<p id="tellabout-result">
 				
 																<%=tellaboutme%>
 				
@@ -1570,7 +1570,7 @@
 							</div>
 							<div class="modal-body">
 				
-								<form action="rest/file/upload" method="post" enctype="multipart/form-data">
+								<form action="rest/files/upload" method="post" enctype="multipart/form-data">
  
 								   <p>
 									Select a file : <input type="file" name="file" size="45" />
@@ -1579,14 +1579,6 @@
 								   <input type="submit" value="Upload It" />
 								</form>
 								
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary">
-									Upload Image
-								</button>
 							</div>
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
@@ -1875,20 +1867,42 @@
 		$("#profileimage-eg5").click(function(e) {
 				
 				$.SmartMessageBox({
-					title : "Login form",
+					title : "New Profile Image",
 					content : "New Image",
 					buttons : "[Cancel][Upload]",
 					input : "text",
-					placeholder : "Enter your user name"
+					placeholder : "Upload New Image"
 				}, function(ButtonPress, Value) {
 					if (ButtonPress == "Cancel") {
-						alert("Why did you cancel that? :(");
 						return 0;
 					}
 		
 					Value1 = Value.toUpperCase();
 					ValueOriginal = Value;
-					$.SmartMessageBox({
+					
+				if(ButtonPress == "Upload"){
+						
+					var formData = new FormData($('#wizard-1')[0][1]);
+				      alert(formData);
+				     //var comment = new FormData($('#comments')[0]);
+				      
+				      /* get some values from elements on the page: */
+				      $.ajax({
+			                url: "rest/file/upload?",
+			                type: 'POST',
+			                data : formData,
+			                paramName: "file",
+			                success: function(result) {
+			                    // ... Process the result ...
+			                },
+			                cache: false,
+			                contentType: false,
+			                processData: false
+			            });
+						
+						
+					}
+					/* $.SmartMessageBox({
 						title : "Hey! <strong>" + Value1 + ",</strong>",
 						content : "And now please provide your password:",
 						buttons : "[Login]",
@@ -1896,7 +1910,7 @@
 						placeholder : "Password"
 					}, function(ButtonPress, Value) {
 						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
+					}); */
 				});
 		
 				e.preventDefault();
@@ -1905,20 +1919,36 @@
 		$("#currectstatus-eg5").click(function(e) {
 				
 				$.SmartMessageBox({
-					title : "Login form",
+					title : "Edit Current Status",
 					content : "New Position ",
-					buttons : "[Cancel][Accept]",
+					buttons : "[Cancel][Save]",
 					input : "text",
-					placeholder : "Enter your user name"
+					placeholder : "Enter your status"
 				}, function(ButtonPress, Value) {
 					if (ButtonPress == "Cancel") {
-						alert("Why did you cancel that? :(");
 						return 0;
 					}
 		
 					Value1 = Value.toUpperCase();
 					ValueOriginal = Value;
-					$.SmartMessageBox({
+					if(ButtonPress == "Save"){
+						
+						$('#currectstatus-result')[0].innerHTML = Value;
+						//alert(Value);
+						
+						$.ajax({
+							url : "currentStatus?currentstatus="+Value,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+						
+						
+					}
+					
+					/* $.SmartMessageBox({
 						title : "Hey! <strong>" + Value1 + ",</strong>",
 						content : "And now please provide your password:",
 						buttons : "[Login]",
@@ -1926,7 +1956,7 @@
 						placeholder : "Password"
 					}, function(ButtonPress, Value) {
 						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
+					}); */
 				});
 		
 				e.preventDefault();
@@ -1935,20 +1965,37 @@
 		$("#contact-eg6").click(function(e) {
 				
 				$.SmartMessageBox({
-					title : "Login form",
-					content : "New Contact",
-					buttons : "[Cancel][Accept]",
+					title : "Change Contact No",
+					content : "New Contact Number",
+					buttons : "[Cancel][Save]",
 					input : "text",
 					placeholder : "Enter your user name"
 				}, function(ButtonPress, Value) {
 					if (ButtonPress == "Cancel") {
-						alert("Why did you cancel that? :(");
 						return 0;
 					}
 		
 					Value1 = Value.toUpperCase();
 					ValueOriginal = Value;
-					$.SmartMessageBox({
+					
+					if(ButtonPress == "Save"){
+						
+						$('#contact-result')[0].innerHTML = Value;
+						//alert(Value);
+						
+						$.ajax({
+							url : "contactNo?contact="+Value,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+						
+						
+					}
+					
+					/* $.SmartMessageBox({
 						title : "Hey! <strong>" + Value1 + ",</strong>",
 						content : "And now please provide your password:",
 						buttons : "[Login]",
@@ -1956,7 +2003,7 @@
 						placeholder : "Password"
 					}, function(ButtonPress, Value) {
 						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
+					}); */
 				});
 		
 				e.preventDefault();
@@ -1966,9 +2013,9 @@
 		$("#email-eg6").click(function(e) {
 				
 				$.SmartMessageBox({
-					title : "Login form",
+					title : "Email Form",
 					content : "Change Email",
-					buttons : "[Cancel][Accept]",
+					buttons : "[Cancel][Save]",
 					input : "text",
 					placeholder : "Enter your user name"
 				}, function(ButtonPress, Value) {
@@ -1979,7 +2026,25 @@
 		
 					Value1 = Value.toUpperCase();
 					ValueOriginal = Value;
-					$.SmartMessageBox({
+					
+				if(ButtonPress == "Save"){
+						
+						$('#email-result')[0].innerHTML = Value;
+						//alert(Value);
+						
+						$.ajax({
+							url : "emailModify?emailid="+Value,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+						
+						
+					}
+					
+					/* $.SmartMessageBox({
 						title : "Hey! <strong>" + Value1 + ",</strong>",
 						content : "And now please provide your password:",
 						buttons : "[Login]",
@@ -1987,7 +2052,7 @@
 						placeholder : "Password"
 					}, function(ButtonPress, Value) {
 						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
+					}); */
 				});
 		
 				e.preventDefault();
@@ -1996,20 +2061,37 @@
 		$("#skype-eg6").click(function(e) {
 				
 				$.SmartMessageBox({
-					title : "Login form",
+					title : "Skype ID",
 					content : "New Skype ID",
-					buttons : "[Cancel][Accept]",
+					buttons : "[Cancel][Save]",
 					input : "text",
 					placeholder : "Enter your user name"
 				}, function(ButtonPress, Value) {
 					if (ButtonPress == "Cancel") {
-						alert("Why did you cancel that? :(");
 						return 0;
 					}
 		
 					Value1 = Value.toUpperCase();
 					ValueOriginal = Value;
-					$.SmartMessageBox({
+					
+				if(ButtonPress == "Save"){
+						
+						$('#skype-result')[0].innerHTML = Value;
+						//alert(Value);
+						
+						$.ajax({
+							url : "emailModify?emailid="+Value,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+						
+						
+					}
+					
+					/* $.SmartMessageBox({
 						title : "Hey! <strong>" + Value1 + ",</strong>",
 						content : "And now please provide your password:",
 						buttons : "[Login]",
@@ -2017,7 +2099,7 @@
 						placeholder : "Password"
 					}, function(ButtonPress, Value) {
 						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
+					}); */
 				});
 		
 				e.preventDefault();
@@ -2026,20 +2108,39 @@
 		$("#tellabout-eg6").click(function(e) {
 				
 				$.SmartMessageBox({
-					title : "Login form",
+					title : "About Me",
 					content : "Tell Me About",
-					buttons : "[Cancel][Accept]",
+					buttons : "[Cancel][Save]",
 					input : "text",
-					placeholder : "Enter your user name"
+					width:"350",
+		            height:"300",
+					placeholder : "Tell me about yourself"
 				}, function(ButtonPress, Value) {
 					if (ButtonPress == "Cancel") {
-						alert("Why did you cancel that? :(");
 						return 0;
 					}
 		
 					Value1 = Value.toUpperCase();
 					ValueOriginal = Value;
-					$.SmartMessageBox({
+					
+				if(ButtonPress == "Submit"){
+						
+						$('#tellabout-result')[0].innerHTML = Value;
+						//alert(Value);
+						
+						$.ajax({
+							url : "tellmeaboutme?aboutme="+Value,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+						
+						
+					}
+					
+					/* $.SmartMessageBox({
 						title : "Hey! <strong>" + Value1 + ",</strong>",
 						content : "And now please provide your password:",
 						buttons : "[Login]",
@@ -2047,7 +2148,7 @@
 						placeholder : "Password"
 					}, function(ButtonPress, Value) {
 						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
+					}); */
 				});
 		
 				e.preventDefault();
