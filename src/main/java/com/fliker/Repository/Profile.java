@@ -23,6 +23,22 @@ public class Profile {
 	private String tellmeaboutme;
 	private String profileImageid;
 	private String profiledataid;
+	private String[] skilliset;
+	private String[] projects;
+	
+	
+	public String[] getSkilliset() {
+		return skilliset;
+	}
+	public void setSkilliset(String[] skilliset) {
+		this.skilliset = skilliset;
+	}
+	public String[] getProjects() {
+		return projects;
+	}
+	public void setProjects(String[] projects) {
+		this.projects = projects;
+	}
 	public String getProfiledataid() {
 		return profiledataid;
 	}

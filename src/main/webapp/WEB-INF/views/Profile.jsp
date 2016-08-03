@@ -429,9 +429,20 @@
 							<li class="">
 								<a href="courseanalysis?" title="NewJob"><i class="fa fa-suitcase"></i><span class="menu-item-parent">COURSEDASH</span></a>
 							</li>
-							<li class="">
-								<a href="createcourse?" title="NewCourse"><i class="fa fa-plus-square"></i><span class="menu-item-parent">NEWCOURSE</span></a>
-							</li>
+							<li class="active"><a href="#" title="NewCourse"><i
+								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
+								<ul>
+									<li class=""><a href="createcourse?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">COURSE</span></a>
+									</li>	
+									<li class=""><a href="newspecialization?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">SPECIALIZATION</span></a>
+									</li>
+									<li class=""><a href="neworganizations?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">ORGANIZATION</span></a>
+									</li>
+								</ul>
+								</li>
 							<li class="">
 								<a href="organizations?" title="Organizations"><i class="fa fa-group"></i><span class="menu-item-parent">ORGANIZATIONS</span></a>
 							</li>
@@ -1302,13 +1313,13 @@
 			
 
 			<hr class="simple">
-			<h3>Dynamic Tabs
+			<h3>Skills Tab
 			<br>
-			<small>Click button to add another tab</small></h3>
+			<small>Click button to add another skill</small></h3>
 
 			<p>
 				<button id="add_tab" class="btn btn-primary">
-					Add Tab
+					Add Skill
 				</button>
 			</p>
 
@@ -1496,56 +1507,65 @@
 	<div class="row">
 
 		<!-- NEW WIDGET START -->
-		<article class="col-sm-12">
+		<div class="widget-body">
+										<div class="row">
 
-			
-			
-			<!-- Widget ID (each widget will need unique ID)-->
-			<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
-				<!-- widget options:
-				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-				data-widget-colorbutton="false"
-				data-widget-editbutton="false"
-				data-widget-togglebutton="false"
-				data-widget-deletebutton="false"
-				data-widget-fullscreenbutton="false"
-				data-widget-custombutton="false"
-				data-widget-collapsed="true"
-				data-widget-sortable="false"
-
-				-->
-				<header>
-					<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-					<h2>My Dropzone! </h2>
-
-				</header>
-
-				<!-- widget div-->
-				<div>
-
-					<!-- widget edit box -->
-					<div class="jarviswidget-editbox">
-						<!-- This area used as dropdown edit box -->
-
-					</div>
-					<!-- end widget edit box -->
-
-					<!-- widget content -->
-					<div class="widget-body">
-
-						<form action="upload.php" class="dropzone" id="mydropzone"></form>
-
-					</div>
-					<!-- end widget content -->
-
-				</div>
-				<!-- end widget div -->
-
-			</div>
-			<!-- end widget -->
-
-		</article>
+											<!-- NEW WIDGET START -->
+											<article class="col-sm-12">
+									
+												
+												
+												<!-- Widget ID (each widget will need unique ID)-->
+												<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
+													<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+													data-widget-colorbutton="false"
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true"
+													data-widget-sortable="false"
+									
+													-->
+													<header>
+														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
+														<h2>Document Set</h2>
+									
+													</header>
+									
+													<!-- widget div-->
+													<div>
+									
+														<!-- widget edit box -->
+														<div class="jarviswidget-editbox">
+															<!-- This area used as dropdown edit box -->
+									
+														</div>
+														<!-- end widget edit box -->
+									
+														<!-- widget content -->
+														<div class="widget-body">
+									
+															<form action="upload.php" class="dropzone" id="mydropzone"></form>
+									
+														</div>
+														<!-- end widget content -->
+									
+													</div>
+													<!-- end widget div -->
+									
+												</div>
+												<!-- end widget -->
+									
+											</article>
+											<!-- WIDGET END -->
+									
+										</div>
+				
+									</div>
 		<!-- WIDGET END -->
 
 	</div>
@@ -1562,22 +1582,75 @@
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">New Profile Pix</h4>
-							</div>
+							
 							<div class="modal-body">
 				
-								<form action="rest/files/upload" method="post" enctype="multipart/form-data">
- 
-								   <p>
-									Select a file : <input type="file" name="file" size="45" />
-								   </p>
-							 
-								   <input type="submit" value="Upload It" />
-								</form>
+								<div class="row">
+
+											<!-- NEW WIDGET START -->
+											<div class="widget-body">
+										<div class="row">
+
+											<!-- NEW WIDGET START -->
+											<article class="col-sm-12">
+									
+												
+												
+												<!-- Widget ID (each widget will need unique ID)-->
+												<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-1" data-widget-editbutton="false">
+													<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+													data-widget-colorbutton="false"
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true"
+													data-widget-sortable="false"
+									
+													-->
+													<header>
+														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
+														<h2>New Profile Image</h2>
+									
+													</header>
+									
+													<!-- widget div-->
+													<div>
+									
+														<!-- widget edit box -->
+														<div class="jarviswidget-editbox">
+															<!-- This area used as dropdown edit box -->
+									
+														</div>
+														<!-- end widget edit box -->
+									
+														<!-- widget content -->
+														<div class="widget-body">
+									
+															<form action="upload.php" class="dropzone" id="Imagedropzone"></form>
+									
+														</div>
+														<!-- end widget content -->
+									
+													</div>
+													<!-- end widget div -->
+									
+												</div>
+												<!-- end widget -->
+									
+											</article>
+											<!-- WIDGET END -->
+									
+										</div>
+										
+				
+									</div>
+											<!-- WIDGET END -->
+									
+										</div>
 								
 							</div>
 						</div><!-- /.modal-content -->
@@ -1767,6 +1840,8 @@
 		<!-- Voice command : plugin -->
 		<script src="<c:url value='/resources/js/speech/voicecommand.min.js' />"></script>
 		<!-- <script src="js/speech/voicecommand.min.js"></script> -->
+		
+		<script src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
 
 		<!-- SmartChat UI : plugin -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.ui.min.js' />"></script>
@@ -2112,6 +2187,7 @@
 					content : "Tell Me About",
 					buttons : "[Cancel][Save]",
 					input : "text",
+					rows: "3",
 					width:"350",
 		            height:"300",
 					placeholder : "Tell me about yourself"
@@ -2573,7 +2649,17 @@
 			
 			Dropzone.autoDiscover = false;
 			$("#mydropzone").dropzone({
-				//url: "/file/post",
+				url: "/file/post",
+				addRemoveLinks : true,
+				maxFilesize: 0.5,
+				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
+				dictResponseError: 'Error uploading file!'
+			});
+			
+			Dropzone.autoDiscover = false;
+			$("#Imagedropzone").dropzone({
+				url: "/file/post",
+				maxFiles: 1,
 				addRemoveLinks : true,
 				maxFilesize: 0.5,
 				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',

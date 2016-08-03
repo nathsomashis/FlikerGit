@@ -19,4 +19,16 @@ public class OrganizationController {
 		
 	}
 	
+	
+	@RequestMapping("/neworganizations")
+	public ModelAndView neworganizationlist(){
+		
+		
+		ModelAndView mv = new ModelAndView("/NewOrganization");
+		
+		//mv.addObject("name", name);
+		return mv;
+		
+	}
+	
 }

@@ -465,9 +465,20 @@
 				<li class=""><a href="courseanalysis?" title="NewJob"><i
 						class="fa fa-suitcase"></i><span class="menu-item-parent">COURSEDASH</span></a>
 				</li>
-				<li class=""><a href="createcourse?" title="NewCourse"><i
-						class="fa fa-plus-square"></i><span class="menu-item-parent">NEWCOURSE</span></a>
-				</li>
+				<li class="active"><a href="#" title="NewCourse"><i
+								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
+								<ul>
+									<li class=""><a href="createcourse?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">COURSE</span></a>
+									</li>	
+									<li class=""><a href="newspecialization?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">SPECIALIZATION</span></a>
+									</li>
+									<li class=""><a href="neworganizations?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">ORGANIZATION</span></a>
+									</li>
+								</ul>
+								</li>
 				<li class=""><a href="organizations?" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">ORGANIZATIONS</span></a>
 				</li>
@@ -1979,8 +1990,22 @@ function deletefun(){
 	 }
 	
 	
-	function liked(){
+	function liked(userid, postid){
 		alert('in the like');
+		
+		var userid = userid;
+		var postid = postid;
+		
+		alert(userid, postid);
+		$.ajax({
+			url : "dashboardsocial/saveLikes?postid="+postid+"&userid="+userid,
+			method : 'POST',
+			success : function(){
+				
+				
+			}
+		
+        }); 
 		
 	}
 	

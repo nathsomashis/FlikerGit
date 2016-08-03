@@ -707,7 +707,7 @@
 									<div class="col-sm-12">
 										<div class="form-group">
 											<div class="input-group">
-												<span class="input-group-addon">Course</span> <input
+												<span class="input-group-addon">Specialization Name</span> <input
 													class="form-control input-lg"
 													placeholder="Course Name" type="text" name="course"
 													id="course">
@@ -720,7 +720,7 @@
 									<div class="col-sm-12">
 										<div class="form-group">
 											<div class="input-group">
-												<span class="input-group-addon">CourseDescription</span>
+												<span class="input-group-addon">Specialization Description</span>
 												<input class="form-control input-lg"
 													placeholder="Course Description" type="text"
 													name="coursedescription" id="coursedescription">
@@ -732,7 +732,7 @@
 									<div class="col-sm-12">
 										<div class="form-group">
 											<div class="input-group">
-												<span class="input-group-addon">Category</span> <input
+												<span class="input-group-addon">Specialization Category</span> <input
 													class="form-control input-lg"
 													placeholder="First Name" type="text" name="category"
 													id="category">
@@ -743,7 +743,7 @@
 									<div class="col-sm-12">
 										<div class="form-group">
 											<div class="input-group">
-												<span class="input-group-addon">Course Fee</span> <input
+												<span class="input-group-addon">Specialization Fee</span> <input
 													class="form-control input-lg"
 													placeholder="First Name" type="text" name="category"
 													id="category">
@@ -976,286 +976,7 @@
 				</div>
 				<!-- widget grid -->
 				
-				<div class="row">
-				
-					<div class="col-sm-12">
-				
-				
-							<div class="well well-sm" style="background-color: transparent;border: 0">
-				
-								<div class="row">
-									<div class="well well-sm well-light">
-
-															<div class="jarviswidget" id="wid-id-5"
-																data-widget-colorbutton="false"
-																data-widget-editbutton="false"
-																data-widget-fullscreenbutton="false"
-																data-widget-custombutton="false"
-																data-widget-sortable="false">
-																
-																
-																<header>
-																	<h2>Course Material</h2>
-																	<div class="widget-toolbar hidden-phone">
-																		<div class="smart-form">
-																			
-																		</div>
-																	</div>
-																</header>
-																
-																<div>
-
-																	<!-- widget edit box -->
-																	<div class="jarviswidget-editbox">
-																		<!-- This area used as dropdown edit box -->
-
-																	</div>
-																	<!-- end widget edit box -->
-
-																	<!-- widget content -->
-																	<div class="widget-body">
-
-																		<div class="tabs-left">
-																			<ul class="nav nav-tabs tabs-left" id="demo-pill-nav">
-																				<li class="active"><a href="#tab-r1"
-																					data-toggle="tab"><span
-																						class="badge bg-color-blue txt-color-white">12</span>
-																						Week 1 </a></li>
-																				<li><a href="#tab-r2" data-toggle="tab"><span
-																						class="badge bg-color-blueDark txt-color-white">3</span>
-																						Week 2</a></li>
-																				<li><a href="#tab-r3" data-toggle="tab"><span
-																						class="badge bg-color-greenLight txt-color-white">0</span>
-																						Week 3</a></li>
-																				<li><a href="#tab-r4" data-toggle="tab"><span
-																						class="badge bg-color-greenLight txt-color-white">0</span>
-																						Week 4</a></li>		
-																			</ul>
-																			<div class="tab-content">
-																				<div class="tab-pane active" id="tab-r1">
-																					<div class="row" >
-																					<article class="col-sm-12" style="height: 100%;margin-top: -10%">
-																						<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
-																								<header>
-																									<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-																									<h2>Document Set</h2>
-																				
-																								</header>
-																								<div style="display: none">
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" ></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								<div>
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" id="mydropzone1"></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								
-																						</div>
-																						
-																					</article>
-																					
-																				</div>
-																				</div>
-																				<div class="tab-pane" id="tab-r2">
-																					<div class="row" >
-																					<article class="col-sm-12" style="height: 100%;margin-top: -10%">
-																						<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-1" data-widget-editbutton="false">
-																								<header>
-																									<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-																									<h2>Document Set</h2>
-																				
-																								</header>
-																								<div style="display: none">
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" ></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								<div>
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" id="mydropzone2"></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								
-																						</div>
-																						
-																					</article>
-																					
-																				</div>
-																				</div>
-																				<div class="tab-pane" id="tab-r3">
-																					<div class="row" >
-																					<article class="col-sm-12" style="height: 100%;margin-top: -10%">
-																						<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-3" data-widget-editbutton="false">
-																								<header>
-																									<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-																									<h2>Document Set</h2>
-																				
-																								</header>
-																								<div style="display: none">
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" ></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								<div>
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" id="mydropzone3"></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								
-																						</div>
-																						
-																					</article>
-																					
-																				</div>
-																				</div>
-																				<div class="tab-pane" id="tab-r4">
-																					<div class="row" >
-																					<article class="col-sm-12" style="height: 100%;margin-top: -10%">
-																						<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-4" data-widget-editbutton="false">
-																								<header>
-																									<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-																									<h2>Document Set</h2>
-																				
-																								</header>
-																								<div style="display: none">
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" ></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								<div>
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" id="mydropzone4"></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								
-																						</div>
-																						
-																					</article>
-																					
-																				</div>
-																				</div>
-																			</div>
-																		</div>
-
-																	</div>
-																	<!-- end widget content -->
-
-																</div>
-																<!-- end widget div -->
-																
-																
-																</div>
-									</div>							
-								</div>
-							</div>
-					</div>
-				</div>	
+					
 				
 				<div class="well well-sm well-light">
 			
@@ -1263,25 +984,25 @@
 			
 
 			<hr class="simple">
-			<h3>FAQ Tabs
+			<h3>Course Tabs
 			<br>
-			<small>Click button to add another faq</small></h3>
+			<small>Click button to add another Course</small></h3>
 
 			<p>
 				<button id="add_tab" class="btn btn-primary">
-					Add Tab
+					Add Course
 				</button>
 			</p>
 
 			<div id="tabs2">
 				<ul>
 					<li>
-						<a href="#tabs-1">QUESTIONS</a>
+						<a href="#tabs-1">Course Name</a>
 					</li>
 				</ul>
 				<div id="tabs-1">
 					<p>
-						ANSWERS
+						Course Information
 					</p>
 				</div>
 			</div>
@@ -1293,10 +1014,91 @@
 
 					<fieldset>
 						<input name="authenticity_token" type="hidden">
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label>Tab Title</label>
 							<input class="form-control" id="tab_title" value="" placeholder="Text field" type="text">
-						</div>
+						</div> -->
+						<div class="widget-body">
+				
+										<form class="">
+				
+											<fieldset>
+				
+												<div class="form-group">
+													<label>Select2 Plugin (multi-select)</label>
+													<select multiple style="width:100%" class="select2">
+														<optgroup label="Alaskan/Hawaiian Time Zone">
+															<option value="AK">Alaska</option>
+															<option value="HI">Hawaii</option>
+														</optgroup>
+														<optgroup label="Pacific Time Zone">
+															<option value="CA">California</option>
+															<option value="NV" selected="selected">Nevada</option>
+															<option value="OR">Oregon</option>
+															<option value="WA">Washington</option>
+														</optgroup>
+														<optgroup label="Mountain Time Zone">
+															<option value="AZ">Arizona</option>
+															<option value="CO">Colorado</option>
+															<option value="ID">Idaho</option>
+															<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
+															<option value="NM">New Mexico</option>
+															<option value="ND">North Dakota</option>
+															<option value="UT">Utah</option>
+															<option value="WY">Wyoming</option>
+														</optgroup>
+														<optgroup label="Central Time Zone">
+															<option value="AL">Alabama</option>
+															<option value="AR">Arkansas</option>
+															<option value="IL">Illinois</option>
+															<option value="IA">Iowa</option>
+															<option value="KS">Kansas</option>
+															<option value="KY">Kentucky</option>
+															<option value="LA">Louisiana</option>
+															<option value="MN">Minnesota</option>
+															<option value="MS">Mississippi</option>
+															<option value="MO">Missouri</option>
+															<option value="OK">Oklahoma</option>
+															<option value="SD">South Dakota</option>
+															<option value="TX">Texas</option>
+															<option value="TN">Tennessee</option>
+															<option value="WI">Wisconsin</option>
+														</optgroup>
+														<optgroup label="Eastern Time Zone">
+															<option value="CT">Connecticut</option>
+															<option value="DE">Delaware</option>
+															<option value="FL">Florida</option>
+															<option value="GA">Georgia</option>
+															<option value="IN">Indiana</option>
+															<option value="ME">Maine</option>
+															<option value="MD">Maryland</option>
+															<option value="MA">Massachusetts</option>
+															<option value="MI" selected="selected">Michigan</option>
+															<option value="NH">New Hampshire</option>
+															<option value="NJ">New Jersey</option>
+															<option value="NY">New York</option>
+															<option value="NC">North Carolina</option>
+															<option value="OH">Ohio</option>
+															<option value="PA">Pennsylvania</option>
+															<option value="RI">Rhode Island</option>
+															<option value="SC">South Carolina</option>
+															<option value="VT">Vermont</option>
+															<option value="VA">Virginia</option>
+															<option value="WV">West Virginia</option>
+														</optgroup>
+													</select>
+				
+													<div class="note">
+														<strong>Usage:</strong> &lt;select multiple style=&quot;width:100%&quot; class=&quot;select2&quot; &gt;...&lt;/select&gt;
+													</div>
+												</div>
+				
+											</fieldset>
+				
+											
+										</form>
+				
+									</div>
 
 						<div class="form-group">
 							<label>Content</label>

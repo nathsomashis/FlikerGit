@@ -108,6 +108,10 @@ public class CommentsPreview {
 		/*DBObject listItem = new BasicDBObject("scores", new BasicDBObject("type","quiz").append("score",99));
 		DBObject updateQuery = new BasicDBObject("$push", listItem);
 		myCol.update(findQuery, updateQuery);*/
+		
+		MongoConnection mongoconn = new MongoConnection();
+		mongoconn.updateObject(incidentObject, new BasicDBObject("$push", new BasicDBObject("postcommentsids", commentObject)), "Post");
+		
 
 		DBCollection incidentsCollection = getCollection(dbname, "Post");
 		return incidentsCollection.update(incidentObject,

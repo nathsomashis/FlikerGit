@@ -8,10 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-<<<<<<< HEAD
-=======
 import org.apache.log4j.Logger;
->>>>>>> origin/master
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -45,11 +42,7 @@ import com.mongodb.gridfs.GridFSDBFile;
 
 public class CoursePreview {
 
-<<<<<<< HEAD
-	//private static final Logger logger = Logger.getLogger(CoursePreview.class);
-=======
 	private static final Logger logger = Logger.getLogger(CoursePreview.class);
->>>>>>> origin/master
 
 	public ArrayList getCourseList() {
 

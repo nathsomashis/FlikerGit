@@ -109,27 +109,19 @@ public class DashboardSocialController {
 
 	@RequestMapping("/dashboardsocial/saveLikes")
 	public void saveLikes(@RequestParam(value = "postid", required = true) String postid,
-			@RequestParam(value = "liked", required = true) String liked) {
+			@RequestParam(value = "userid", required = true) String userid) {
 
 		boolean likes = false;
 
-		if (liked == "true") {
+		/*if (liked == "true") {
 			likes = true;
-		}
+		}*/
 
 		ModelAndView mv = new ModelAndView();
 		User userinfo = (User) mv.getModel().get("User");
 
 		LikesPreview likeprev = new LikesPreview();
-		try {
-			likeprev.likeToPost(userinfo, postid, likes);
-
-			likeprev.updateLikeTable(userinfo, postid);
-
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		likeprev.saveLike(userid, postid);
 
 	}
 

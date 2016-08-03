@@ -162,58 +162,72 @@
 				-->
 
 				<ul>
-				
-					<li>
-						<a href="Dashboard-User.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Dashboard</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
-					</li>
-					<li>
-						<a href="Dashboard-Social.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Wall</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
-					</li>
-					
-					<li>
-						<a href="profile.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Profile</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
-					</li>
-					<li class="active">
-						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">CourseWise</span></a>
-						<ul>
-							<li class="active">
-								<a href="mycourse?" title="NewPost"><span class="menu-item-parent">MyCourses</span></a>
-							</li>
-							<li class="">
-								<a href="courseanalysis?" title="NewJob"><span class="menu-item-parent">CourseAnalysis</span></a>
-							</li>
-							
-						</ul>	
-					</li>
-					<li class="active">
-						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">JobWise</span></a>
-						<ul>
-							<li class="active">
-								<a href="myjobs?" title="NewPost"><span class="menu-item-parent">MyCourses</span></a>
-							</li>
-							<li class="">
-								<a href="jobanalysis?" title="NewJob"><span class="menu-item-parent">CourseAnalysis</span></a>
-							</li>
-							
-						</ul>	
-					</li>
-					<li>
-						<a href="timeline?"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Timeline</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
-					</li>
-					<li class="active">
-						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Create</span></a>
-						<ul>
-							<li class="active">
-								<a href="createpost?" title="NewPost"><span class="menu-item-parent">Post</span></a>
-							</li>
-							<li class="">
-								<a href="createjob?" title="NewJob"><span class="menu-item-parent">Job</span></a>
-							</li>
-							<li class="">
-								<a href="createcourse?" title="NewCourse"><span class="menu-item-parent">Course</span></a>
-							</li>
-						</ul>	
-					</li>
+				<li><a href="searchresults?"><i
+						class="fa fa-lg fa-fw fa-search-plus"></i> <span
+						class="menu-item-parent">SEARCH</span> <span
+						class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<li><a href="dashboardanalysis?"><i
+						class="fa fa-lg fa-fw fa-briefcase"></i> <span
+						class="menu-item-parent">DASHBOARD</span> <span
+						class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<li><a href="dashboardsocial?"><i
+						class="fa fa-lg fa-fw fa-retweet "></i> <span
+						class="menu-item-parent">WALL</span> <span
+						class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+
+				<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
+						<span class="menu-item-parent">PROFILE</span> <span
+						class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+						<span class="menu-item-parent">TIMELINE</span> <span
+						class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<li><a href="createpost?" title="NewPost"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">NEWPOST</span></a>
+				</li>
+				<li class="active"><a href="#" title="Dashboard"><i
+						class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">COURSE</span></a>
+					<ul>
+						<li class=""><a href="mycourse?" title="NewPost"><i
+								class="fa fa-tags"></i><span class="menu-item-parent">MYCOURSES</span></a>
+						</li>
+						<li class=""><a href="courseanalysis?" title="NewJob"><i
+								class="fa fa-suitcase"></i><span class="menu-item-parent">COURSEDASH</span></a>
+						</li>
+						<li class="active"><a href="#" title="NewCourse"><i
+								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
+								<ul>
+									<li class=""><a href="createcourse?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">COURSE</span></a>
+									</li>	
+									<li class=""><a href="newspecialization?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">SPECIALIZATION</span></a>
+									</li>
+									<li class=""><a href="organizations?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">ORGANIZATION</span></a>
+									</li>
+								</ul>
+								</li>
+						<li class=""><a href="organizations?" title="Organizations"><i
+								class="fa fa-group"></i><span class="menu-item-parent">ORGANIZATIONS</span></a>
+						</li>
+					</ul></li>
+				<li><a href="#" title="Dashboard"><i
+						class="fa fa-lg fa-fw fa-briefcase"></i> <span
+						class="menu-item-parent">JOBS</span></a>
+					<ul>
+						<li class=""><a href="myjobs?" title="NewPost"><i
+								class="fa fa-tags"></i><span class="menu-item-parent">MYJOBS</span></a>
+						</li>
+						<li class=""><a href="jobanalysis?" title="NewJob"><i
+								class="fa fa-suitcase"></i><span class="menu-item-parent">JOBSDASH</span></a>
+						</li>
+						<li class=""><a href="createjob?" title="NewJob"><i
+								class="fa fa-plus-square"></i><span class="menu-item-parent">NEWJOB</span></a>
+						</li>
+						<li class=""><a href="companies?" title="Companies"><i
+								class="fa fa-group"></i><span class="menu-item-parent">COMPANIES</span></a>
+						</li>
+					</ul></li>
 						
 					
 					<li class="chat-users top-menu-invisible">

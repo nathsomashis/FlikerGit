@@ -380,6 +380,9 @@
 
 				<ul>
 					<li>
+						<a href="searchresults?"><i class="fa fa-lg fa-fw fa-search-plus"></i> <span class="menu-item-parent">SEARCH</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
+					</li>
+					<li>
 						<a href="dashboardanalysis?"><i class="fa fa-lg fa-fw fa-briefcase"></i> <span class="menu-item-parent">DASHBOARD</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
 					</li>
 					<li class="active">
@@ -404,9 +407,20 @@
 							<li class="">
 								<a href="courseanalysis?" title="NewJob"><i class="fa fa-suitcase"></i><span class="menu-item-parent">COURSEDASH</span></a>
 							</li>
-							<li class="">
-								<a href="createcourse?" title="NewCourse"><i class="fa fa-plus-square"></i><span class="menu-item-parent">NEWCOURSE</span></a>
-							</li>
+							<li class="active"><a href="#" title="NewCourse"><i
+								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
+								<ul>
+									<li class=""><a href="createcourse?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">COURSE</span></a>
+									</li>	
+									<li class=""><a href="newspecialization?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">SPECIALIZATION</span></a>
+									</li>
+									<li class=""><a href="neworganizations?" title="NewPost"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">ORGANIZATION</span></a>
+									</li>
+								</ul>
+								</li>
 							<li class="active">
 								<a href="organizations?" title="NewCourse"><i class="fa fa-group txt-color-blue"></i><span class="menu-item-parent">ORGANIZATIONS</span></a>
 							</li>
@@ -638,7 +652,7 @@
 	<!-- SuperBox -->
 	<div class="superbox col-sm-12">
 		<div class="superbox-list">
-			<img src="img/superbox/superbox-thumb-1.jpg" data-img="img/superbox/superbox-full-1.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
+			<img src="http://www.planwallpaper.com/static/images/4-Nature-Wallpapers-2014-1_ukaavUI.jpg" data-img="http://www.planwallpaper.com/static/images/4-Nature-Wallpapers-2014-1_ukaavUI.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
 		</div><!--
 		--><div class="superbox-list">
 			<img src="img/superbox/superbox-thumb-2.jpg" data-img="img/superbox/superbox-full-2.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Bridge of Edgen" class="superbox-img">

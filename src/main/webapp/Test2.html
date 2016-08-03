@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	function deletefun(){
+		
+		var element = document.getElementById('topbottom');
+		alert('in the click');
+		element.remove();
+	}
+
+</script>
+
+<body>
+
+	<div
+		style='position: fixed; width: 100%; height: 100%; top: 0%; left: 0%; text-align: center; background-color:gray; '
+		id='topbottom' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'
+		aria-hidden='true'>
+		<div style='width: 98%; height: 100%'>
+			<div style='width: 100%; height: 100%'>
+				<div style="margin-left: 100%;">
+					<button type='button' class='close' onclick='deletefun();' aria-hidden='true'>&times;</button>
+				</div>
+				<div
+					style='width: 55%; height: 92%; margin-left: 80px;  float: left; background-color: black; opacity: 0.7'>
+					<div class='well' style='height: 100%; background-color: black;'>
+						<div id='Imagesetcarousal' class='carousel slide'>
+							<img src="https://pixabay.com/static/uploads/photo/2016/07/11/21/23/water-lily-1510707_960_720.jpg" alt="">
+						</div>
+						
+					</div>
+				</div>
+				<div
+					style='width: 23%; height: 93%;  float: left;background-color: white;'>
+				
+				<div
+					style='width: 100%; height: 100%; background-color: white;'>
+					
+					<ul class='links'
+						style='border-top: 1px solid rgba(0, 0, 0, .07); margin: 0; padding: 15px 20px; background: #fafafa'>
+						<li style='display: inline; padding-right: 20px'><a
+							href='javascript:void(0);'> <i class='fa fa-thumbs-o-up'
+								style='color: inherit; font-size: 14px; margin-right: 2px'></i>
+								Like
+						</a></li>
+						<li style='display: inline; padding-right: 20px'><a
+							href='javascript:void(0);'><i class='fa fa-comment-o'
+								style='color: inherit; font-size: 14px; margin-right: 2px'></i>
+								Comment</a></li>
+						<li style='display: inline; padding-right: 20px'><a
+							href='javascript:void(0);'><i class='fa fa-share-square-o'
+								style='color: inherit; font-size: 14px; margin-right: 2px'></i>
+								Share</a></li>
+					</ul>
+					<ul class='comments'
+						style='border-top: 1px solid rgba(0, 0, 0, .07); font-size: 13px; padding: 0 20px'>
+						<li
+							style='border-bottom: 1px solid rgba(0, 0, 0, .07); display: block; padding: 15px 0 15px 40px; position: relative; border-bottom: none; padding-bottom: 5px'><img
+							style='height: 30px; left: 0; position: absolute; width: 30px'
+							src='img/avatars/sunny.png' alt='img' class='online'> <input
+							id='urcomment' type='text' class='form-control'
+							placeholder='Post your comment...'></li>
+					</ul>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+</body>
+</html>

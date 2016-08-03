@@ -1,6 +1,9 @@
 package com.fliker.Modal;
 
+import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -9,6 +12,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import com.fliker.SpringMongoConfig;
+import com.fliker.Connection.MongoConnection;
+import com.fliker.Repository.Comment;
 import com.fliker.Repository.Like;
 import com.fliker.Repository.User;
 import com.mongodb.BasicDBObject;
@@ -48,7 +53,7 @@ public class LikesPreview {
         return db.getCollection(collectionName);
     }
     
-    public void likeToPost(User usercommented, String commentedtoPostid, boolean liked) throws UnknownHostException {
+    public void likeToPost(Like likes, String commentedtoPostid) throws UnknownHostException {
     	
     	/*ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
@@ -57,7 +62,7 @@ public class LikesPreview {
 		Post postentry = mongoOperation.findOne(searchUserQuery1, Post.class);*/
     	
     	
-    	ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
+    	/*ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
 		
 		Query searchUserQuery = new Query(Criteria.where("username").is(usercommented.getUsername()));
@@ -72,7 +77,7 @@ public class LikesPreview {
 		}else{
 			likedPost = "false";
 		}
-		String likeToPostid = commentedtoPostid;
+		String likeToPostid = commentedtoPostid;*/
 		
     	
     	/*Comment comments = new Comment();
@@ -83,25 +88,24 @@ public class LikesPreview {
     	comments.setReply(true);*/
     	
     	
-        WriteResult result = addLike(new BasicDBObject("_id", commentedtoPostid),likeid,likeowner, likedPost, likeToPostid );
+        WriteResult result = addLike(new BasicDBObject("postid", commentedtoPostid),likes.getLikeid() );
        /* if (null == result.getError()) {
             System.out.println("Comment is Successfully added");
         }*/
     }
  
-    private WriteResult addLike(final BasicDBObject incidentObject,String likeid, String likeowner, String likedPost, String likeToPostid)
+    private WriteResult addLike(BasicDBObject incidentObject,String likeid)
             throws UnknownHostException {
-        final BasicDBObject commentObject = new BasicDBObject();
-        commentObject.put("likeid", likeid);
-        commentObject.put("likeowner", likeowner);
-        commentObject.put("likedPost", likedPost);
-        commentObject.put("likeToPostid", likeToPostid);
+         BasicDBObject likeobject = new BasicDBObject();
+        likeobject.put("likeid", likeid);
         
+        MongoConnection mongoconn = new MongoConnection();
+		mongoconn.updateObject(incidentObject, new BasicDBObject("$push", new BasicDBObject("postliked", likeobject)), "Post");
  
         final DBCollection incidentsCollection = getCollection(dbname,
         		collectionname);
         return incidentsCollection.update(incidentObject, new BasicDBObject(
-                "$push", new BasicDBObject("postliked", commentObject)), false,
+                "$push", new BasicDBObject("postliked", likeobject)), false,
                 false);
     }
     
@@ -123,5 +127,65 @@ public class LikesPreview {
 		
     	
     }
+    
+    public void saveLike(String userid, String commentPostid) {
+
+		MongoConnection mongoconn = new MongoConnection();
+		LikesPreview likeprev = new LikesPreview();
+		
+		Like likes = new Like();
+		try {
+			likes.setLikeid(likeprev.makeSHA1Hash(userid));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		likes.setLiketime(String.valueOf(System.currentTimeMillis()));
+		likes.setLikeOwner(userid);
+		
+		
+
+		mongoconn.saveObject(likeprev.formDBObject(likes), "Like");
+		
+		try {
+			likeprev.likeToPost(likes, commentPostid);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+	}
+    
+    public BasicDBObject formDBObject(Like likeinfo) {
+
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("likeid", likeinfo.getLikeid());
+		basicdbobj.put("userid",likeinfo.getLikeOwner() );
+		basicdbobj.put("likedate", likeinfo.getLiketime());
+
+		return basicdbobj;
+
+	}
+	
+	public String makeSHA1Hash(String input)
+            throws NoSuchAlgorithmException, UnsupportedEncodingException
+        {
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            md.reset();
+            byte[] buffer = input.getBytes("UTF-8");
+            md.update(buffer);
+            byte[] digest = md.digest();
+
+            String hexStr = "";
+            for (int i = 0; i < digest.length; i++) {
+                hexStr +=  Integer.toString( ( digest[i] & 0xff ) + 0x100, 16).substring( 1 );
+            }
+            return hexStr;
+        }
+    
 
 }
