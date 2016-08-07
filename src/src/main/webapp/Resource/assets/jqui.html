@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+		<title> SmartAdmin </title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+			
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- Basic Styles -->
+		<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
+
+		<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production-plugins.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.min.css">
+
+		<!-- SmartAdmin RTL Support -->
+		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> 
+
+		<!-- We recommend you use "your_style.css" to override SmartAdmin
+		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+
+		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+		<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
+
+		<!-- FAVICONS -->
+		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+		<!-- GOOGLE FONT -->
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+		<!-- Specifying a Webpage Icon for Web Clip 
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+		<link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="img/splash/touch-icon-ipad-retina.png">
+		
+		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!-- Startup image for web apps -->
+		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+		<link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+		<link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+
+	</head>
+	
+	<!--
+
+	TABLE OF CONTENTS.
+	
+	Use search to find needed section.
+	
+	===================================================================
+	
+	|  01. #CSS Links                |  all CSS links and file paths  |
+	|  02. #FAVICONS                 |  Favicon links and file paths  |
+	|  03. #GOOGLE FONT              |  Google font link              |
+	|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
+	|  05. #BODY                     |  body tag                      |
+	|  06. #HEADER                   |  header tag                    |
+	|  07. #PROJECTS                 |  project lists                 |
+	|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
+	|  09. #MOBILE                   |  mobile view dropdown          |
+	|  10. #SEARCH                   |  search field                  |
+	|  11. #NAVIGATION               |  left panel & navigation       |
+	|  12. #RIGHT PANEL              |  right panel userlist          |
+	|  13. #MAIN PANEL               |  main panel                    |
+	|  14. #MAIN CONTENT             |  content holder                |
+	|  15. #PAGE FOOTER              |  page footer                   |
+	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  17. #PLUGINS                  |  all scripts and plugins       |
+	
+	===================================================================
+	
+	-->
+	
+	<!-- #BODY -->
+	<!-- Possible Classes
+
+		* 'smart-style-{SKIN#}'
+		* 'smart-rtl'         - Switch theme mode to RTL
+		* 'menu-on-top'       - Switch to top navigation (no DOM change required)
+		* 'no-menu'			  - Hides the menu completely
+		* 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+		* 'fixed-header'      - Fixes the header
+		* 'fixed-navigation'  - Fixes the main menu
+		* 'fixed-ribbon'      - Fixes breadcrumb
+		* 'fixed-page-footer' - Fixes footer
+		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+	-->
+	<body class="">
+
+		
+		<!-- END HEADER -->
+
+		<!-- Left panel : Navigation area -->
+		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+		
+		<!-- END NAVIGATION -->
+
+		<!-- MAIN PANEL -->
+		<div id="main" role="main">
+
+			<!-- RIBBON -->
+			
+			<!-- END RIBBON -->
+
+			<!-- MAIN CONTENT -->
+			<div id="content">
+
+
+
+<!-- row -->
+<div class="row">
+
+	<div class="col-sm-6 col-md-6 col-lg-6">
+
+		
+
+		<div class="well well-sm well-light">
+			
+
+			<hr class="simple">
+			<h3>Dynamic Tabs
+			<br>
+			<small>Click button to add another tab</small></h3>
+
+			<p>
+				<button id="add_tab" class="btn btn-primary">
+					Add Tab
+				</button>
+			</p>
+
+			<div id="tabs2">
+				<ul>
+					<li>
+						<a href="#tabs-1">Nunc tincidunt</a>
+					</li>
+				</ul>
+				<div id="tabs-1">
+					<p>
+						Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.
+					</p>
+				</div>
+			</div>
+
+			<!-- Demo -->
+			<div id="addtab" title="<div class='widget-header'><h4><i class='fa fa-plus'></i> Add another tab</h4></div>">
+
+				<form>
+
+					<fieldset>
+						<input name="authenticity_token" type="hidden">
+						<div class="form-group">
+							<label>Tab Title</label>
+							<input class="form-control" id="tab_title" value="" placeholder="Text field" type="text">
+						</div>
+
+						<div class="form-group">
+							<label>Content</label>
+							<textarea class="form-control" name="tab_content" id="tab_content" placeholder="Tab Content" rows="3"></textarea>
+						</div>
+
+					</fieldset>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		
+	
+	</div>
+
+</div>
+
+<!-- end row -->
+
+<!-- ui-dialog -->
+<div id="dialog_simple" title="Dialog Simple Title">
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	</p>
+</div>
+
+<div id="dialog-message" title="Dialog Simple Title">
+	<p>
+		This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.
+	</p>
+
+	<div class="hr hr-12 hr-double"></div>
+
+	
+		Currently using
+		<b>36% of your storage space</b>
+		<div class="progress progress-striped active no-margin">
+			<div class="progress-bar progress-primary" role="progressbar" style="width: 36%"></div>
+		</div>
+	
+</div><!-- #dialog-message -->
+
+			</div>
+			<!-- END MAIN CONTENT -->
+
+		</div>
+		<!-- END MAIN PANEL -->
+
+		<!-- PAGE FOOTER -->
+		<div class="page-footer">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6">
+					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> © 2014-2015</span>
+				</div>
+
+				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
+					<div class="txt-color-white inline-block">
+						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
+						<div class="btn-group dropup">
+							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
+								<i class="fa fa-link"></i> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu pull-right text-left">
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Server Load</p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<button class="btn btn-block btn-default">refresh</button>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE FOOTER -->
+
+		<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+		Note: These tiles are completely responsive,
+		you can add as many as you like
+		-->
+		<div id="shortcut">
+			<ul>
+				<li>
+					<a href="inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
+				</li>
+				<li>
+					<a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
+				</li>
+				<li>
+					<a href="gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
+				</li>
+				<li>
+					<a href="invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
+				</li>
+				<li>
+					<a href="gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
+				</li>
+				<li>
+					<a href="profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
+				</li>
+			</ul>
+		</div>
+		<!-- END SHORTCUT AREA -->
+
+		<!--================================================== -->
+
+		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
+
+		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script>
+			if (!window.jQuery) {
+				document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
+			}
+		</script>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script>
+			if (!window.jQuery.ui) {
+				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+			}
+		</script>
+
+		<!-- IMPORTANT: APP CONFIG -->
+		<script src="js/app.config.js"></script>
+
+		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
+
+		<!-- BOOTSTRAP JS -->
+		<script src="js/bootstrap/bootstrap.min.js"></script>
+
+		<!-- CUSTOM NOTIFICATION -->
+		<script src="js/notification/SmartNotification.min.js"></script>
+
+		<!-- JARVIS WIDGETS -->
+		<script src="js/smartwidgets/jarvis.widget.min.js"></script>
+
+		<!-- EASY PIE CHARTS -->
+		<script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+		<!-- SPARKLINES -->
+		<script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+		<!-- JQUERY VALIDATE -->
+		<script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+		<!-- JQUERY MASKED INPUT -->
+		<script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+		<!-- JQUERY SELECT2 INPUT -->
+		<script src="js/plugin/select2/select2.min.js"></script>
+
+		<!-- JQUERY UI + Bootstrap Slider -->
+		<script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+		<!-- browser msie issue fix -->
+		<script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+		<!-- FastClick: For mobile devices -->
+		<script src="js/plugin/fastclick/fastclick.min.js"></script>
+
+		<!--[if IE 8]>
+
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+		<![endif]-->
+
+		<!-- Demo purpose only -->
+		<!-- <script src="js/demo.min.js"></script> -->
+
+		<!-- MAIN APP JS FILE -->
+		<script src="js/app.min.js"></script>
+
+		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+		<!-- Voice command : plugin -->
+		<script src="js/speech/voicecommand.min.js"></script>
+
+		<!-- SmartChat UI : plugin -->
+		<script src="js/smart-chat-ui/smart.chat.ui.min.js"></script>
+		<script src="js/smart-chat-ui/smart.chat.manager.min.js"></script>
+
+		<!-- PAGE RELATED PLUGIN(S) 
+		<script src="..."></script>-->
+
+		
+
+		<script type="text/javascript">
+		
+		// DO NOT REMOVE : GLOBAL FUNCTIONS!
+		
+		$(document).ready(function() {
+			
+			pageSetUp();
+			
+			// menu
+			$("#menu").menu();
+		
+			/*
+			 * AUTO COMPLETE AJAX
+			 */
+		
+			function log(message) {
+				$("<div>").text(message).prependTo("#log");
+				$("#log").scrollTop(0);
+			}
+		
+			$("#city").autocomplete({
+				source : function(request, response) {
+					$.ajax({
+						url : "http://ws.geonames.org/searchJSON",
+						dataType : "jsonp",
+						data : {
+							featureClass : "P",
+							style : "full",
+							maxRows : 12,
+							name_startsWith : request.term
+						},
+						success : function(data) {
+							response($.map(data.geonames, function(item) {
+								return {
+									label : item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+									value : item.name
+								}
+							}));
+						}
+					});
+				},
+				minLength : 2,
+				select : function(event, ui) {
+					log(ui.item ? "Selected: " + ui.item.label : "Nothing selected, input was " + this.value);
+				}
+			});
+		
+			/*
+			 * Spinners
+			 */
+			$("#spinner").spinner();
+			$("#spinner-decimal").spinner({
+				step : 0.01,
+				numberFormat : "n"
+			});
+		
+			$("#spinner-currency").spinner({
+				min : 5,
+				max : 2500,
+				step : 25,
+				start : 1000,
+				numberFormat : "C"
+			});
+		
+			/*
+			 * CONVERT DIALOG TITLE TO HTML
+			 * REF: http://stackoverflow.com/questions/14488774/using-html-in-a-dialogs-title-in-jquery-ui-1-10
+			 */
+			$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+				_title : function(title) {
+					if (!this.options.title) {
+						title.html("&#160;");
+					} else {
+						title.html(this.options.title);
+					}
+				}
+			}));
+		
+		
+			/*
+			* DIALOG SIMPLE
+			*/
+		
+			// Dialog click
+			$('#dialog_link').click(function() {
+				$('#dialog_simple').dialog('open');
+				return false;
+		
+			});
+		
+			$('#dialog_simple').dialog({
+				autoOpen : false,
+				width : 600,
+				resizable : false,
+				modal : true,
+				title : "<div class='widget-header'><h4><i class='fa fa-warning'></i> Empty the recycle bin?</h4></div>",
+				buttons : [{
+					html : "<i class='fa fa-trash-o'></i>&nbsp; Delete all items",
+					"class" : "btn btn-danger",
+					click : function() {
+						$(this).dialog("close");
+					}
+				}, {
+					html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+					"class" : "btn btn-default",
+					click : function() {
+						$(this).dialog("close");
+					}
+				}]
+			});
+		
+			/*
+			* DIALOG HEADER ICON
+			*/
+		
+			// Modal Link
+			$('#modal_link').click(function() {
+				$('#dialog-message').dialog('open');
+				return false;
+			});
+		
+			$("#dialog-message").dialog({
+				autoOpen : false,
+				modal : true,
+				title : "<div class='widget-header'><h4><i class='icon-ok'></i> jQuery UI Dialog</h4></div>",
+				buttons : [{
+					html : "Cancel",
+					"class" : "btn btn-default",
+					click : function() {
+						$(this).dialog("close");
+					}
+				}, {
+					html : "<i class='fa fa-check'></i>&nbsp; OK",
+					"class" : "btn btn-primary",
+					click : function() {
+						$(this).dialog("close");
+					}
+				}]
+		
+			});
+		
+			/*
+			 * Remove focus from buttons
+			 */
+			$('.ui-dialog :button').blur();
+		
+			/*
+			 * Just Tabs
+			 */
+		
+			$('#tabs').tabs();
+		
+			/*
+			 *  Simple tabs adding and removing
+			 */
+		
+			$('#tabs2').tabs();
+		
+			// Dynamic tabs
+			var tabTitle = $("#tab_title"), tabContent = $("#tab_content"), tabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href='#{href}'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{label}</a></li>", tabCounter = 2;
+		
+			var tabs = $("#tabs2").tabs();
+		
+			// modal dialog init: custom buttons and a "close" callback reseting the form inside
+			var dialog = $("#addtab").dialog({
+				autoOpen : false,
+				width : 600,
+				resizable : false,
+				modal : true,
+				buttons : [{
+					html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+					"class" : "btn btn-default",
+					click : function() {
+						$(this).dialog("close");
+		
+					}
+				}, {
+		
+					html : "<i class='fa fa-plus'></i>&nbsp; Add",
+					"class" : "btn btn-danger",
+					click : function() {
+						addTab();
+						$(this).dialog("close");
+					}
+				}]
+			});
+		
+			// addTab form: calls addTab function on submit and closes the dialog
+			var form = dialog.find("form").submit(function(event) {
+				addTab();
+				dialog.dialog("close");
+				event.preventDefault();
+			});
+		
+			// actual addTab function: adds new tab using the input from the form above
+			function addTab() {
+				var label = tabTitle.val() || "Tab " + tabCounter, id = "tabs-" + tabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), tabContentHtml = tabContent.val() || "Tab " + tabCounter + " content.";
+		
+				tabs.find(".ui-tabs-nav").append(li);
+				tabs.append("<div id='" + id + "'><p>" + tabContentHtml + "</p></div>");
+				tabs.tabs("refresh");
+				tabCounter++;
+		
+				// clear fields
+				$("#tab_title").val("");
+				$("#tab_content").val("");
+			}
+		
+			// addTab button: just opens the dialog
+			$("#add_tab").button().click(function() {
+				dialog.dialog("open");
+			});
+		
+			// close icon: removing the tab on click
+			$("#tabs2").on("click", 'span.delete-tab', function() {
+		
+				var panelId = $(this).closest("li").remove().attr("aria-controls");
+				$("#" + panelId).remove();
+				tabs.tabs("refresh");
+			});
+		
+			/*
+			* ACCORDION
+			*/
+			//jquery accordion
+			
+		     var accordionIcons = {
+		         header: "fa fa-plus",    // custom icon class
+		         activeHeader: "fa fa-minus" // custom icon class
+		     };
+		     
+			$("#accordion").accordion({
+				autoHeight : false,
+				heightStyle : "content",
+				collapsible : true,
+				animate : 300,
+				icons: accordionIcons,
+				header : "h4",
+			})
+		
+			/*
+			 * PROGRESS BAR
+			 */
+			$("#progressbar").progressbar({
+		     	value: 25,
+		     	create: function( event, ui ) {
+		     		$(this).removeClass("ui-corner-all").addClass('progress').find(">:first-child").removeClass("ui-corner-left").addClass('progress-bar progress-bar-success');
+				}
+			});			
+
+		})
+
+		</script>
+
+		<!-- Your GOOGLE ANALYTICS CODE Below -->
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+				_gaq.push(['_trackPageview']);
+			
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
+
+	</body>
+
+</html>

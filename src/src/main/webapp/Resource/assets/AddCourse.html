@@ -1,0 +1,358 @@
+
+<!DOCTYPE html><html dir="ltr" lang="en-US">
+<head>
+	<meta charset="UTF-8" />
+	<!-- Plupload Rules -->
+		<title>Plupload: UI Widget</title>
+	    	<meta name="msvalidate.01" content="CF6A500C2AC11792DD10D5D7A77C685D" />
+    <link href="/favicon.ico" rel="shortcut icon" />
+
+	<link type="text/css" rel="stylesheet" href="http://www.plupload.com/css/bootstrap.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://www.plupload.com/css/font-awesome.min.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://www.plupload.com/css/my.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://www.plupload.com/css/prettify.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://www.plupload.com/css/shCore.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://www.plupload.com/css/shCoreEclipse.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.min.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://www.plupload.com/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" media="screen" />
+    
+    <!--[if lte IE 7]>
+   	<link rel="stylesheet" type="text/css" href="http://www.plupload.com/css/my_ie_lte7.css" />
+    <![endif]-->
+
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300|Bree+Serif" rel="stylesheet" type="text/css">
+	<!--[if IE]>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:600italic" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:700italic" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Bree+Serif:400" rel="stylesheet" type="text/css">
+	<![endif]-->
+
+	    
+    <!--[if IE 7]>
+    	<link rel="stylesheet" href="http://www.plupload.com/css/font-awesome-ie7.min.css">
+    <![endif]-->
+    
+    <!--[if lt IE 9]>
+    <script src="http://www.plupload.com/js/html5shiv.js"></script>
+    <![endif]-->
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js" charset="UTF-8"></script>
+
+	
+</head>
+<body class="examples examples-ui">
+	<header>
+		
+<div id="main-menu" class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a href="/shop/account" class="btn btn-primary pull-right">Account</a>
+			<ul class="nav pull-right">
+							<li class="menu-item  ">
+									<a href="/">Home</a>
+								</li>
+							<li class="menu-item active ">
+									<a href="/examples/">Examples</a>
+								</li>
+							<li class="menu-item  ">
+									<a href="/docs/">Documentation</a>
+								</li>
+							<li class="menu-item  ">
+									<a href="/i18n/">Language</a>
+								</li>
+							<li class="menu-item  ">
+									<a href="/punbb/">Forum</a>
+								</li>
+							<li class="menu-item  ">
+									<a href="/download/">Download</a>
+								</li>
+							<li class="menu-item  dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						License						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+											<li><a href="/license/gplv2">GPLv2</a></li>
+											<li><a href="/license/oem">Commercial</a></li>
+										</ul>
+								</li>
+						</ul>
+		</div>
+	</div>
+</div>
+
+        
+        <div id="logo">
+            <a href="/" class="fit"> </a>
+        </div>
+
+		<div class="logo container">
+			<div id="plupload">
+				<a class="fit" href="/">
+					<span>2.1.8</span>
+				</a>
+			</div>	
+		</div>
+	</header>
+
+
+<section id="content">
+	<div class="container">
+		<div class="page-header pull-left">
+						<h1>UI Widget</h1>
+					</div>
+
+		<div class="clearfix"> </div>
+		
+		
+<div id="themeswitcher" class="pull-right"> </div>
+<script>
+	$(function() {
+		$.fn.themeswitcher && $('#themeswitcher').themeswitcher({cookieName:''});
+	});
+</script>
+
+
+<ul class="nav nav-tabs" id="example-tabs">
+	<li class="">
+		<a href="/examples/core">Core API</a>
+	</li>
+	<li class="active">
+		<a href="/examples/ui">UI Widget</a>
+	</li>
+	<li class="">
+		<a href="/examples/queue">Queue Widget</a>
+	</li>
+	<li class="">
+		<a href="/examples/runtimes">All Runtimes</a>
+	</li>
+	<li class="">
+		<a href="/examples/events">Events</a>
+	</li>
+</ul>
+<div id="example">
+
+<p>This example shows you how to use the jQuery UI widget use the "Switch theme" drop down to the right to select different jQuery UI themes.</p>
+
+<div id="uploader">
+	<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+</div>
+
+<script type="text/javascript">
+// Initialize the widget when the DOM is ready
+$(function() {
+	$("#uploader").plupload({
+		// General settings
+		runtimes : 'html5,flash,silverlight,html4',
+		url : "/examples/upload",
+
+		// Maximum file size
+		max_file_size : '200mb',
+
+		chunk_size: '10mb',
+
+		// Resize images on clientside if we can
+		resize : {
+			width : 200, 
+			height : 200, 
+			quality : 90,
+			crop: true // crop to exact dimensions
+		},
+
+		// Specify what files to browse for
+		filters : [
+			{title : "Image files", extensions : "jpg,gif,png"},
+			{title : "Video files", extensions : "mkv"},
+			{title : "Zip files", extensions : "zip,avi"}
+		],
+
+		// Rename files by clicking on their titles
+		rename: true,
+		
+		// Sort files
+		sortable: true,
+
+		// Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+		dragdrop: true,
+
+		// Views to activate
+		views: {
+			list: true,
+			thumbs: true, // Show thumbs
+			active: 'thumbs'
+		},
+
+		// Flash settings
+		flash_swf_url : '/plupload/js/Moxie.swf',
+	
+		// Silverlight settings
+		silverlight_xap_url : '/plupload/js/Moxie.xap'
+	});
+});
+</script>
+
+
+</div>
+
+<br />
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" href="#source">
+            View Source
+        </a>
+    </div>
+    <div id="source" class="accordion-body collapse">
+        <div class="accordion-inner">
+           	<pre class="php">&lt;div id=&quot;uploader&quot;&gt;
+	&lt;p&gt;Your browser doesn't have Flash, Silverlight or HTML5 support.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+// Initialize the widget when the DOM is ready
+$(function() {
+	$(&quot;#uploader&quot;).plupload({
+		// General settings
+		runtimes : 'html5,flash,silverlight,html4',
+		url : &quot;/examples/upload&quot;,
+
+		// Maximum file size
+		max_file_size : '200mb',
+
+		chunk_size: '10mb',
+
+		// Resize images on clientside if we can
+		resize : {
+			width : 200, 
+			height : 200, 
+			quality : 90,
+			crop: true // crop to exact dimensions
+		},
+
+		// Specify what files to browse for
+		filters : [
+			{title : &quot;Image files&quot;, extensions : "jpg,gif,png"},
+			{title : &quot;Video files&quot;, extensions : "mp4,mkv"},
+			{title : &quot;Zip files&quot;, extensions : &quot;zip,avi&quot;}
+		],
+
+		// Rename files by clicking on their titles
+		rename: true,
+		
+		// Sort files
+		sortable: true,
+
+		// Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+		dragdrop: true,
+
+		// Views to activate
+		views: {
+			list: true,
+			thumbs: true, // Show thumbs
+			active: 'thumbs'
+		},
+
+		// Flash settings
+		flash_swf_url : '/plupload/js/Moxie.swf',
+	
+		// Silverlight settings
+		silverlight_xap_url : '/plupload/js/Moxie.xap'
+	});
+});
+&lt;/script&gt;
+
+</pre>
+        </div>
+    </div>
+</div>
+
+
+	</div>
+</section>
+
+
+<footer>
+	<div class="container">    
+        <div id="logo-footer-1">
+        	<a class="fit" href="/"><!-- go home --></a>
+        </div>
+        <div id="copyright">&copy; 2016 <a href="http://www.ephox.com">Ephox</a></div>
+    	<div id="tagline">Upload everything and everywhere.</div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="http://www.plupload.com/js/bootstrap.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://www.plupload.com/js/shCore.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://www.plupload.com/js/shBrushPhp.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://www.plupload.com/js/shBrushjScript.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://www.plupload.com/plupload/js/plupload.full.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://www.plupload.com/plupload/js/jquery.ui.plupload/jquery.ui.plupload.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://www.plupload.com/js/themeswitcher.js" charset="UTF-8"></script>
+
+<a href="https://github.com/moxiecode/plupload" target="_blank">
+  <img style="position: fixed; top: -10px; right: -10px; border: 0; z-index: 9999" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
+</a>
+
+<script type="text/javascript">
+(function($) {
+    var langMap = {
+        'javascript': 'js',
+        'js': 'js',
+        'php': 'php',
+        'html': 'php'
+    };
+
+    $.each(['php', 'javascript', 'html'], function(i, lang) {
+        $('pre.' + lang).attr('class', 'brush: ' + langMap[lang] + '; toolbar: false;');
+    });
+    
+    SyntaxHighlighter.all();
+}(jQuery));
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-692197-1', 'auto');
+    ga('send', 'pageview');
+
+    piAId = '3202';
+    piCId = '45272';
+
+    (function() {
+    function async_load(){
+    var s = document.createElement('script'); s.type = 'text/javascript';
+    s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+    var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+    }
+    if(window.attachEvent) { window.attachEvent('onload', async_load); }
+    else { window.addEventListener('load', async_load, false); }
+    })();
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1072579290;
+var google_conversion_label = "Pi4iCNPV314Q2oW5_wM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1072579290/?value=1.00&amp;currency_code=USD&amp;label=Pi4iCNPV314Q2oW5_wM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+</body>
+</html>
