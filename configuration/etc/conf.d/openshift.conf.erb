@@ -1,0 +1,11 @@
+ServerRoot "<%= ENV['OPENSHIFT_TOMCAT7_DIR'] %>"
+DocumentRoot "<%= "#{ENV['OPENSHIFT_REPO_DIR']}/tomcat7" %>"
+Listen <%= "#{ENV['OPENSHIFT_TOMCAT7_IP']}:#{ENV['OPENSHIFT_TOMCAT7_PORT']}" %>
+User <%= ENV['OPENSHIFT_GEAR_UUID'] %>
+Group <%= ENV['OPENSHIFT_GEAR_UUID'] %>
+ErrorLog "<%= "|/usr/sbin/rotatelogs #{ENV['OPENSHIFT_TOMCAT7_DIR']}/logs/error_log-%Y%m%d-%H%M%S-%Z 86400" %>"
+CustomLog "<%= "|/usr/sbin/rotatelogs #{ENV['OPENSHIFT_TOMCAT7_DIR']}/logs/access_log-%Y%m%d-%H%M%S-%Z 86400" %>" combined
+
+<Directory "<%= "#{ENV['OPENSHIFT_REPO_DIR']}/tomcat7" %>">
+  AllowOverride All
+</Directory>
