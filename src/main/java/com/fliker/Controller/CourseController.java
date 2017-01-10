@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,7 @@ import com.fliker.Repository.Profile;
 @Controller
 public class CourseController {
 
-	private static final Logger logger = Logger.getLogger(CourseController.class);
+	//private static final Logger logger = Logger.getLogger(CourseController.class);
 	
 	
 	@RequestMapping("/course")
