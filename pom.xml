@@ -281,6 +281,7 @@
          <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
          <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
          <id>openshift</id>
+	 <finalName>Fliker</finalName>
          <build>
             <plugins>
                <plugin>
