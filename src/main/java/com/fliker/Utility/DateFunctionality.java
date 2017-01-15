@@ -1,6 +1,8 @@
 package com.fliker.Utility;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateFunctionality {
@@ -56,6 +58,16 @@ public class DateFunctionality {
 		
 		return difference;
 		
+	}
+
+	public String getCurrentdate(){
+		String currentDate = "";
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date today = Calendar.getInstance().getTime();  
+		System.out.println(dateFormat.format(today)); //2016/11/16 12:08:43
+		currentDate = dateFormat.format(today);
+		return currentDate;
 	}
 	
 }

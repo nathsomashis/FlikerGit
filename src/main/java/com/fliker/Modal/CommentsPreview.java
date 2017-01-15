@@ -16,7 +16,9 @@ import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Comment;
 import com.fliker.Repository.Like;
 import com.fliker.Repository.Post;
+import com.fliker.Repository.SearchContent;
 import com.fliker.Repository.User;
+import com.fliker.Utility.UploadFileService;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -75,10 +77,10 @@ public class CommentsPreview {
 		
 
 		String commentid = comment.getCommentid();
-		/*String commentOwner = comment.getCommentOwnerid();
+		String commentOwner = comment.getCommentOwnerid();
 		String comments = comment.getComments();
 		String commentPost = postid;
-		String commentDate = comment.getCommentdate();*/
+		String commentDate = comment.getCommentdate();
 
 		/*
 		 * Comment comments = new Comment();
@@ -91,6 +93,29 @@ public class CommentsPreview {
 		 */
 
 		WriteResult result = addComment(new BasicDBObject("postid", postid), commentid );
+		
+		
+		String uniqueid = "";
+		
+		UploadFileService upservice = new UploadFileService();
+		try {
+			uniqueid = upservice.makeSHA1Hash(comments);
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		SearchContent searchcontent = new SearchContent();
+		searchcontent.setSearchid(uniqueid);
+		searchcontent.setContentDescription(commentOwner+":"+comments+":"+commentDate);
+		searchcontent.setContentLink("postid");
+		searchcontent.setContentType("Post");
+		
+		MongoConnection mongoconsearch = new MongoConnection();
+		SearchPreview searchprev = new SearchPreview();
+		BasicDBObject basicreqobjsearch =  searchprev.formDBObject(searchcontent);
+		
+		mongoconsearch.saveObject(basicreqobjsearch, "Content");
 		/*
 		 * if (null == result.) {
 		 * System.out.println("Comment is Successfully added"); }

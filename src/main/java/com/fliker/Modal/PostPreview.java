@@ -19,6 +19,7 @@ import com.fliker.Repository.Comment;
 import com.fliker.Repository.FileUpload;
 import com.fliker.Repository.Like;
 import com.fliker.Repository.Post;
+import com.fliker.Repository.SearchContent;
 import com.fliker.Repository.Share;
 import com.fliker.Repository.User;
 import com.fliker.Utility.ServicesUtil;
@@ -87,7 +88,20 @@ public class PostPreview {
 		BasicDBObject basicreqobj =  postprev.formDBObject(postentry);
 		
 		mongocon.saveObject(basicreqobj, "Post");
+		//lots of operation needed to do here
 		
+		
+		SearchContent searchcontent = new SearchContent();
+		searchcontent.setSearchid(uniqueid);
+		searchcontent.setContentDescription(userinformation+":"+PostComment+":"+filetoupload.toString()+":"+locationaddress);
+		searchcontent.setContentLink("");
+		searchcontent.setContentType("Post");
+		
+		MongoConnection mongoconsearch = new MongoConnection();
+		SearchPreview searchprev = new SearchPreview();
+		BasicDBObject basicreqobjsearch =  searchprev.formDBObject(searchcontent);
+		
+		mongoconsearch.saveObject(basicreqobjsearch, "Content");
 		//mongoOperation.save(postentry);
 		
 	}
