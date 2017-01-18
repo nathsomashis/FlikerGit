@@ -472,7 +472,7 @@
 						class="fa fa-suitcase"></i><span class="menu-item-parent">Course Progress</span></a>
 				</li>
 			</ul></li>
-		 <li><a href="#" title="Dashboard"><i
+		 <li class="active"><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
 			<ul>		
 				<!-- <li class="active"><a href="#" title="NewCourse"><i
@@ -480,7 +480,7 @@
 								</li> -->
 				<li class=""><a href="createcourse?" title="NewCourse"><i
 											class="fa fa-tags"></i><span class="menu-item-parent">Your Course</span></a></li>	
-				<li class=""><a href="newspecialization?" title="NewSpecialization"><i
+				<li class="active"><a href="newspecialization?" title="NewSpecialization"><i
 											class="fa fa-tags"></i><span class="menu-item-parent">Your Specialization</span></a></li>
 				<li class=""><a href="neworganizations?" title="NewInstitution"><i
 											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>

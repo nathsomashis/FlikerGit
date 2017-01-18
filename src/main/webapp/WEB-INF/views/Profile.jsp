@@ -1,7 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*,com.fliker.Repository.*" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
@@ -404,17 +403,16 @@
 		<li><a href="searchresults?"><i
 				class="fa fa-lg fa-fw fa-search-plus"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
-		<li><a href="dashboardanalysis?"><i
+		<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
-				class="menu-item-parent">Dashboard</span> </a></li>
-		<li class="active"><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+				class="menu-item-parent">Dashboard</span> </a></li> -->
+		<li ><a href="dashboardsocial?"><i
+				class="fa fa-lg fa-fw fa-retweet"></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
-		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
-				<span class="menu-item-parent">Profile</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+		<li class="active"><a href="profile?"><i class="fa fa-lg fa-fw fa-info txt-color-blue"></i>
+				<span class="menu-item-parent">Profile</span> </a></li>
 		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
 				<span class="menu-item-parent">Timeline</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>

@@ -386,9 +386,9 @@
 		<li class="active"><a href="searchresults?"><i
 				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
-		<li><a href="dashboardanalysis?"><i
+		<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
-				class="menu-item-parent">Dashboard</span> </a></li>
+				class="menu-item-parent">Dashboard</span> </a></li> -->
 		<li ><a href="dashboardsocial?"><i
 				class="fa fa-lg fa-fw fa-retweet"></i> <span
 				class="menu-item-parent">Wall</span> <span

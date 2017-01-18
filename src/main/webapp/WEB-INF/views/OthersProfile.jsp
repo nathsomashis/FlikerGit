@@ -406,12 +406,12 @@
 		<li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li>
-		<li class="active"><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+		<li><a href="dashboardsocial?"><i
+				class="fa fa-lg fa-fw fa-retweet "></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
-		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
+		<li class="active"><a href="profile?"><i class="fa fa-lg fa-fw fa-info txt-color-blue"></i>
 				<span class="menu-item-parent">Profile</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>

@@ -386,11 +386,11 @@
 		<li><a href="searchresults?"><i
 				class="fa fa-lg fa-fw fa-search-plus"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
-		<li><a href="dashboardanalysis?"><i
+		<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
-				class="menu-item-parent">Dashboard</span> </a></li>
-		<li class="active"><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+				class="menu-item-parent">Dashboard</span> </a></li> -->
+		<li ><a href="dashboardsocial?"><i
+				class="fa fa-lg fa-fw fa-retweet "></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
@@ -400,8 +400,8 @@
 		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
 				<span class="menu-item-parent">Timeline</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		<li><a href="createpost?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
+		<li class="active"><a href="createpost?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox txt-color-blue"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
 		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Course</span></a>
