@@ -454,6 +454,9 @@
 		<li><a href="createpost?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
+		<li><a href="classroom?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+		</li>
 		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Course</span></a>
 			<ul>

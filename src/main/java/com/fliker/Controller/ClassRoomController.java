@@ -26,11 +26,11 @@ public class ClassRoomController {
 		ClassRoomPreview classprev = new ClassRoomPreview();
 		
 		String havingclassroom = classprev.pageProm();
-		havingclassroom = "/"+havingclassroom;
-		mv = new ModelAndView(havingclassroom);
+		/*havingclassroom = "/"+havingclassroom;
+		mv = new ModelAndView(havingclassroom);*/
 		
 		
-		//mv = new ModelAndView("/GuidanceStandard");
+		mv = new ModelAndView("/ClasRoomPublishAll");
 		
 		
 		

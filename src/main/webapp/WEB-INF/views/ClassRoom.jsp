@@ -400,8 +400,11 @@
 		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
 				<span class="menu-item-parent">Timeline</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		<li class="active"><a href="createpost?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox txt-color-blue"></i><span class="menu-item-parent">Post Your Activity</span></a>
+		<li ><a href="createpost?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox "></i><span class="menu-item-parent">Post Your Activity</span></a>
+		</li>
+		<li class="active"><a href="classroom?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox txt-color-blue"></i><span class="menu-item-parent">ClassRoom</span></a>
 		</li>
 		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Course</span></a>
@@ -638,7 +641,7 @@
 								-->
 								<header>
 									<span class="widget-icon"> <i class="fa fa-check"></i> </span>
-									<h2>New Posts</h2>
+									<h2>New ClassRoom</h2>
 				
 								</header>
 				
@@ -678,7 +681,7 @@
 													-->
 													<header>
 														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-														<h2>New Post</h2>
+														<h2>Demo Video</h2>
 									
 													</header>
 									
@@ -734,7 +737,7 @@
 																		<textarea rows="2" class="form-control" placeholder="Write a review" name="postdescription" id="postdescription"></textarea>
 																		<div class="margin-top-10">
 																			<button type="submit" onclick="geoFindMe()" class="btn btn-sm btn-primary pull-right">
-																				Submit Post
+																				Create ClassRoom
 																			</button>
 																			<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Location"><i class="fa fa-location-arrow"></i></a>
 																		</div>

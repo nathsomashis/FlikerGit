@@ -60,17 +60,9 @@ public class ClassRoomPreview {
 	public String pageProm(){
 		String pageprom = "";
 		ClassRoomPreview classromprev = new ClassRoomPreview();
-		if(classromprev.isHaveClassroom() && classromprev.isPublishClassroom() &&
-				classromprev.isTakingClassroom()){
+		if(classromprev.isHaveClassroom() && classromprev.isTakingClassroom()){
 			pageprom = "ClasRoomPublishAll";
-		}else if(classromprev.isHaveClassroom() && classromprev.isPublishClassroom() &&
-				!classromprev.isTakingClassroom()){
-			pageprom = "ClassRoomNoTake";
-		}else if(classromprev.isHaveClassroom() && classromprev.isTakingClassroom() &&
-				!classromprev.isPublishClassroom()){
-			pageprom = "ClassRoomNoPublish";
-		}else if(classromprev.isHaveClassroom() && !classromprev.isPublishClassroom() &&
-				 !classromprev.isTakingClassroom()){
+		}else if(classromprev.isHaveClassroom() &&	!classromprev.isTakingClassroom()){
 			pageprom = "ClassRoomOnly";
 		}else {
 			pageprom = "ClassRoom";
