@@ -450,10 +450,10 @@
 						class="fa fa-group"></i><span class="menu-item-parent">Start New Company</span></a>
 				</li>
 			</ul></li>
-		<li class=""><a href="organizations?" title="Organizations"><i
+		<li class=""><a href="#" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
 				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
+				<li class=""><a href="standardguidance?" title="NewJob"><i
 						class="fa fa-plus-square"></i><span class="menu-item-parent">Standard</span></a>
 				</li>
 				<li class=""><a href="companies?" title="Companies"><i
