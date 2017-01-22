@@ -53,7 +53,7 @@ public class LoginController {
 			logrev.entryLogging(message);
 		}
 	  
-		
+		//mv = new ModelAndView("/DashboardSocial");//for testing purpose need to remove later..
 		return mv;
 		
 	}

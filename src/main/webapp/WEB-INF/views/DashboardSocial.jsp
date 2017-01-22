@@ -458,13 +458,13 @@
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 		</li>
 		<li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Course</span></a>
+				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
 			<ul>
-				<li class=""><a href="mycourse?" title="NewPost"><i
-						class="fa fa-tags"></i><span class="menu-item-parent">My Course</span></a>
+				<li class=""><a href="courseEdu?" title="NewPost"><i
+						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
-				<li class=""><a href="courseanalysis?" title="NewJob"><i
-						class="fa fa-suitcase"></i><span class="menu-item-parent">Course Progress</span></a>
+				<li class=""><a href="classroom?" title="ClassRoom"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
 			</ul></li>
 		 <li><a href="#" title="Dashboard"><i

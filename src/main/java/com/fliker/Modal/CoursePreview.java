@@ -43,6 +43,48 @@ import com.mongodb.gridfs.GridFSDBFile;
 public class CoursePreview {
 
 	//private static final Logger logger = Logger.getLogger(CoursePreview.class);
+	
+	//check for course providing
+	public boolean isProvidingCourse(String userid){
+		
+		boolean courseprovider = false;
+		
+		return courseprovider;
+	}
+	
+	//check course taking
+	public boolean isTakingCourse(String userid){
+		
+		boolean coursetaking = false;
+		
+		
+		return coursetaking;
+	}
+	
+	
+	public String promptCoursePage(String userid){
+		
+		String pagepromt = "";
+		
+		CoursePreview courseprev = new CoursePreview();
+		
+		if(courseprev.isProvidingCourse(userid) && courseprev.isTakingCourse(userid)){
+			pagepromt = "CourseProvTake";
+		}else if(courseprev.isProvidingCourse(userid) && !courseprev.isTakingCourse(userid)){
+			pagepromt = "CourseProvOnly";
+		}else if(!courseprev.isProvidingCourse(userid) && courseprev.isTakingCourse(userid)){
+			pagepromt = "CourseTakeOnly";
+		}else{
+			pagepromt = "CourseOnly";
+		}
+		
+		return pagepromt;
+	}
+	
+	
+	
+	
+	
 
 	public ArrayList getCourseList() {
 

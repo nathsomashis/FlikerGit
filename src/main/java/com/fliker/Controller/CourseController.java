@@ -30,7 +30,7 @@ public class CourseController {
 	
 	
 	@RequestMapping("/course")
-	public ModelAndView showMessage(
+	public ModelAndView showAllCourses(
 			@RequestParam(value = "name", required = false, defaultValue = "World") String name ) {
 		System.out.println("in controller");
  
@@ -44,6 +44,25 @@ public class CourseController {
 		ModelAndView mv = new ModelAndView("/Courses");
 		mv.addObject("name", name);
 		mv.addObject("courselist", courselist);
+		return mv;
+	}
+	
+	
+	@RequestMapping("/courseEdu")
+	public ModelAndView coursesEducation(
+			@RequestParam(value = "name", required = false, defaultValue = "World") String name ) {
+		System.out.println("in controller");
+ 
+		/*ArrayList courselist = new ArrayList<Courses>();
+		CoursePreview coursepreview = new CoursePreview();
+			
+		courselist = coursepreview.getCourseList();
+		
+		System.out.println("courselist"+courselist);*/
+		
+		ModelAndView mv = new ModelAndView("/CourseTakeOnly");
+		mv.addObject("name", name);
+		//mv.addObject("courselist", courselist);
 		return mv;
 	}
 	
