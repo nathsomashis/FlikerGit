@@ -60,7 +60,7 @@ public class CourseController {
 		
 		System.out.println("courselist"+courselist);*/
 		
-		ModelAndView mv = new ModelAndView("/CourseTakeOnly");
+		ModelAndView mv = new ModelAndView("/CourseProvOnly");
 		mv.addObject("name", name);
 		//mv.addObject("courselist", courselist);
 		return mv;

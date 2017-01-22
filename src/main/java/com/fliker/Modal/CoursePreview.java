@@ -71,11 +71,11 @@ public class CoursePreview {
 		if(courseprev.isProvidingCourse(userid) && courseprev.isTakingCourse(userid)){
 			pagepromt = "CourseProvTake";
 		}else if(courseprev.isProvidingCourse(userid) && !courseprev.isTakingCourse(userid)){
-			pagepromt = "CourseProvOnly";
+			pagepromt = "CourseProvOnly";//done
 		}else if(!courseprev.isProvidingCourse(userid) && courseprev.isTakingCourse(userid)){
-			pagepromt = "CourseTakeOnly";
+			pagepromt = "CourseTakeOnly";//done
 		}else{
-			pagepromt = "CourseOnly";
+			pagepromt = "CourseOnly";//done
 		}
 		
 		return pagepromt;
@@ -229,18 +229,49 @@ public class CoursePreview {
 
 	public List<Courses> courseInfo(String courseid) {
 
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
+		/*ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
 
 		ArrayList courselist = new ArrayList();
 
-		Query searchUserQuery = new Query(Criteria.where("courseid").is(courseid));
-		Courses savedcourse = mongoOperation.findOne(searchUserQuery, Courses.class);
+		//Query searchUserQuery = new Query(Criteria.where("courseid").is(courseid));
+		//Courses savedcourse = mongoOperation.findOne(searchUserQuery, Courses.class);
 
 		Query query = new Query();
 		// query2.addCriteria(Criteria.where("courseOwner").is("dog").and("age").is(40));
 		query.addCriteria(Criteria.where("courseid").is(courseid));
-		List<Courses> courseinfo = (List<Courses>) mongoOperation.find(query, Courses.class);
+		List<Courses> courseinfo = (List<Courses>) mongoOperation.find(query, Courses.class);*/
+		
+		List<Courses> courselist = new ArrayList<Courses>();
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("courseid", courseid, "Course");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			Courses courses = new Courses();
+			courses.setCourseCategory((String)theObj.get("courseCategory"));
+			courses.setCourseDescription((String)theObj.get("courseDescription"));
+			courses.setCourseFee((String)theObj.get("courseFee"));
+			courses.setCourseid((String)theObj.get("courseid"));
+			courses.setCourseimageid((String)theObj.get("courseimageid"));
+			courses.setCourseName((String)theObj.get("courseName"));
+			courses.setCourseownerid((String)theObj.get("courseownerid"));
+			String[] partners = ((String)theObj.get("coursePartners")).split(",");
+			courses.setCoursePartners(partners);
+			String[] reviews = ((String)theObj.get("courseReview")).split(",");
+			courses.setCourseReview(reviews);
+			String[] sponsors = ((String)theObj.get("courseSponsors")).split(",");
+			courses.setCourseSponsors(sponsors);
+			String[] faqids = ((String)theObj.get("FAQid")).split(",");
+			courses.setFAQid(faqids) ;
+			
+			courselist.add(courses);
+			
+			
+		}
+		
+		
 
 		/*
 		 * for(int i=0;i<courseinfo.size();i++){ Courses corselst =
@@ -347,9 +378,9 @@ public class CoursePreview {
 		 * }
 		 */
 
-		System.out.println("courseinfo >>." + courseinfo);
+		System.out.println("courseinfo >>." + courselist);
 
-		return courseinfo;
+		return courselist;
 
 	}
 
