@@ -670,10 +670,8 @@
 				<div class="col-sm-12">
 
 					<ul id="myTab1" class="nav nav-tabs bordered">
-						<li class="active"><a href="#s1" data-toggle="tab">ClassRooms <i class="fa fa-caret-down"></i>
+						<li class="active"><a href="#s1" data-toggle="tab">On Going ClassRoom <i class="fa fa-caret-down"></i>
 						</a></li>
-						<li><a href="#s2" data-toggle="tab">Time
-								Table</a></li>
 						<li><a href="#s3" data-toggle="tab">Create ClassRoom</a></li>
 						<!-- <li class="pull-right hidden-mobile">
 								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
@@ -683,187 +681,6 @@
 					<div id="myTabContent1"
 						class="tab-content bg-color-white padding-10">
 						<div class="tab-pane fade in active" id="s1">
-							<div class="row">
-
-								<div class="col-sm-9">
-
-									<div class="well padding-10">
-
-										<div class="row">
-											<div class="col-md-4">
-												<img src="img/superbox/superbox-full-15.jpg"
-													class="img-responsive" alt="img">
-												<ul class="list-inline padding-10">
-													<li><i class="fa fa-calendar"></i> <a
-														href="javascript:void(0);"> March 12, 2015 </a></li>
-													<li><i class="fa fa-comments"></i> <a
-														href="javascript:void(0);"> 38 Comments </a></li>
-												</ul>
-											</div>
-											<div class="col-md-8 padding-left-0">
-												<h3 class="margin-top-0">
-													<a href="javascript:void(0);"> Why Should You Make A
-														Separate Mobile Website for your Business? </a><br>
-													<small class="font-xs"><i>Published by <a
-															href="javascript:void(0);">John Doe</a></i></small>
-												</h3>
-												<p>
-													At vero eos et accusamus et iusto odio dignissimos ducimus
-													qui blanditiis praesentium voluptatum deleniti atque
-													corrupti quos dolores et quas molestias excepturi sint
-													occaecati cupiditate non provident, similique sunt in culpa
-													qui officia deserunt mollitia animi, id est laborum et
-													dolorum fuga. <br>
-													<br>Et harum quidem rerum facilis est et expedita
-													distinctio lorem ipsum dolor sit amet, consectetur
-													adipiscing elit. Ut non libero consectetur adipiscing elit
-													magna. Sed et quam lacus. Fusce condimentum eleifend enim a
-													feugiat. Pellentesque viverra vehicula sem ut volutpat.
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-													non libero magna. Sed et quam lacus. Fusce condimentum
-													eleifend enim a feugiat. <br>
-													<br>
-												</p>
-												<a class="btn btn-primary" href="javascript:void(0);">
-													Read more </a> <a class="btn btn-warning"
-													href="javascript:void(0);"> Edit </a> <a
-													class="btn btn-success" href="javascript:void(0);">
-													Publish </a>
-											</div>
-										</div>
-										<hr>
-
-										<div class="row">
-											<div class="col-md-4">
-												<img src="img/superbox/superbox-full-19.jpg"
-													class="img-responsive" alt="img">
-												<ul class="list-inline padding-10">
-													<li><i class="fa fa-calendar"></i> <a
-														href="javascript:void(0);"> March 12, 2015 </a></li>
-													<li><i class="fa fa-comments"></i> <a
-														href="javascript:void(0);"> 38 Comments </a></li>
-												</ul>
-											</div>
-											<div class="col-md-8 padding-left-0">
-												<h3 class="margin-top-0">
-													<a href="javascript:void(0);"> Mums favorite shopping
-														malls in USA </a><br>
-													<small class="font-xs"><i>Published by <a
-															href="javascript:void(0);">John Doe</a></i></small>
-												</h3>
-												<p>
-													At vero eos et accusamus et iusto odio dignissimos ducimus
-													qui blanditiis praesentium voluptatum deleniti atque
-													corrupti quos dolores et quas molestias excepturi sint
-													occaecati cupiditate non provident, similique sunt in culpa
-													qui officia deserunt mollitia animi, id est laborum et
-													dolorum fuga. <br>
-													<br>Et harum quidem rerum facilis est et expedita
-													distinctio lorem ipsum dolor sit amet, consectetur
-													adipiscing elit. Ut non libero consectetur adipiscing elit
-													magna. Sed et quam lacus. Fusce condimentum eleifend enim a
-													feugiat. Pellentesque viverra vehicula sem ut volutpat.
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-													non libero magna. Sed et quam lacus. Fusce condimentum
-													eleifend enim a feugiat. <br>
-													<br>
-												</p>
-												<a class="btn btn-primary" href="javascript:void(0);">
-													Read more </a>
-											</div>
-										</div>
-										<hr>
-
-										<div class="row">
-											<div class="col-md-4">
-												<img src="img/superbox/superbox-full-24.jpg"
-													class="img-responsive" alt="img">
-												<ul class="list-inline padding-10">
-													<li><i class="fa fa-calendar"></i> <a
-														href="javascript:void(0);"> March 12, 2015 </a></li>
-													<li><i class="fa fa-comments"></i> <a
-														href="javascript:void(0);"> 38 Comments </a></li>
-												</ul>
-											</div>
-											<div class="col-md-8 padding-left-0">
-												<h3 class="margin-top-0">
-													<a href="javascript:void(0);"> Best (and Basic)
-														Practices of Mobile Web Design </a><br>
-													<small class="font-xs"><i>Published by <a
-															href="javascript:void(0);">John Doe</a></i></small>
-												</h3>
-												<p>
-													With the plethora of smartphones, mobile phones, and
-													tablets available on the market today, research suggests
-													that mobile devices will soon overtake PCs and laptops in a
-													year. More and more,different platforms are made available
-													for all types of consumers to access the web, even
-													including TVs and gaming consoles. <br>
-													<br> And all this in rapid-fire turnover—new models
-													and technologies quickly coming and going like fashion
-													trends. So much so that any website that is not mobile
-													friendly cannot claim to be user-friendly anymore.
-													Increasingly, web developers and designers utilize fluid
-													layouts allowing users to browse across different
-													platforms. <br>
-													<br>
-												</p>
-												<a class="btn btn-primary" href="javascript:void(0);">
-													Read more </a>
-											</div>
-										</div>
-
-										<hr>
-
-										<div class="row">
-											<div class="col-md-4">
-												<img src="img/superbox/superbox-full-7.jpg"
-													class="img-responsive" alt="img">
-												<ul class="list-inline padding-10">
-													<li><i class="fa fa-calendar"></i> <a
-														href="javascript:void(0);"> March 12, 2015 </a></li>
-													<li><i class="fa fa-comments"></i> <a
-														href="javascript:void(0);"> 38 Comments </a></li>
-												</ul>
-											</div>
-											<div class="col-md-8 padding-left-0">
-												<h3 class="margin-top-0">
-													<a href="javascript:void(0);"> Responsive Design: Best
-														Practices for Designing a Website </a><br>
-													<small class="font-xs"><i>Published by <a
-															href="javascript:void(0);">John Doe</a></i></small>
-												</h3>
-												<p>
-													The term Responsive design means developing a website in a
-													way that adapts all the computer screen resolutions.
-													Particularly this concept allows a 4 column layout that is
-													1292px wide, on 1025px wide screen that is divided into 2
-													columns automatically. It is adaptable for android phones
-													and tablet screens. This designing method is known as
-													“responsive web design” <br>
-													<br> Responsive designing is a different concept from
-													traditional web designing, so the question arises how you
-													should build a good responsive website. Here is a general
-													practices that can help you to build a responsive website
-													design. <br>
-													<br>
-												</p>
-												<a class="btn btn-primary" href="javascript:void(0);">
-													Read more </a>
-											</div>
-										</div>
-
-									</div>
-
-								</div>
-
-
-
-							</div>
-
-						</div>
-
-						<div class="tab-pane fade" id="s2">
 							<div id="content">
 
 								<div class="row">
@@ -879,146 +696,7 @@
 
 								<div class="row">
 
-									<div class="col-sm-12 col-md-12 col-lg-3">
-										<!-- new widget -->
-										<div class="jarviswidget jarviswidget-color-blueDark">
-											<header>
-											<h2>Add Events</h2>
-											</header>
-
-											<!-- widget div-->
-											<div>
-
-												<div class="widget-body">
-													<!-- content goes here -->
-
-													<form id="add-event-form">
-														<fieldset>
-
-															<div class="form-group">
-																<label>Select Event Icon</label>
-																<div class="btn-group btn-group-sm btn-group-justified"
-																	data-toggle="buttons">
-																	<label class="btn btn-default active"> <input
-																		type="radio" name="iconselect" id="icon-1"
-																		value="fa-info" checked> <i
-																		class="fa fa-info text-muted"></i>
-																	</label> <label class="btn btn-default"> <input
-																		type="radio" name="iconselect" id="icon-2"
-																		value="fa-warning"> <i
-																		class="fa fa-warning text-muted"></i>
-																	</label> <label class="btn btn-default"> <input
-																		type="radio" name="iconselect" id="icon-3"
-																		value="fa-check"> <i
-																		class="fa fa-check text-muted"></i>
-																	</label> <label class="btn btn-default"> <input
-																		type="radio" name="iconselect" id="icon-4"
-																		value="fa-user"> <i
-																		class="fa fa-user text-muted"></i>
-																	</label> <label class="btn btn-default"> <input
-																		type="radio" name="iconselect" id="icon-5"
-																		value="fa-lock"> <i
-																		class="fa fa-lock text-muted"></i>
-																	</label> <label class="btn btn-default"> <input
-																		type="radio" name="iconselect" id="icon-6"
-																		value="fa-clock-o"> <i
-																		class="fa fa-clock-o text-muted"></i>
-																	</label>
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label>Event Title</label> <input class="form-control"
-																	id="title" name="title" maxlength="40" type="text"
-																	placeholder="Event Title">
-															</div>
-															<div class="form-group">
-																<label>Event Description</label>
-																<textarea class="form-control"
-																	placeholder="Please be brief" rows="3" maxlength="40"
-																	id="description"></textarea>
-																<p class="note">Maxlength is set to 40 characters</p>
-															</div>
-
-															<div class="form-group">
-																<label>Select Event Color</label>
-																<div
-																	class="btn-group btn-group-justified btn-select-tick"
-																	data-toggle="buttons">
-																	<label class="btn bg-color-darken active"> <input
-																		type="radio" name="priority" id="option1"
-																		value="bg-color-darken txt-color-white" checked>
-																		<i class="fa fa-check txt-color-white"></i>
-																	</label> <label class="btn bg-color-blue"> <input
-																		type="radio" name="priority" id="option2"
-																		value="bg-color-blue txt-color-white"> <i
-																		class="fa fa-check txt-color-white"></i>
-																	</label> <label class="btn bg-color-orange"> <input
-																		type="radio" name="priority" id="option3"
-																		value="bg-color-orange txt-color-white"> <i
-																		class="fa fa-check txt-color-white"></i>
-																	</label> <label class="btn bg-color-greenLight"> <input
-																		type="radio" name="priority" id="option4"
-																		value="bg-color-greenLight txt-color-white"> <i
-																		class="fa fa-check txt-color-white"></i>
-																	</label> <label class="btn bg-color-blueLight"> <input
-																		type="radio" name="priority" id="option5"
-																		value="bg-color-blueLight txt-color-white"> <i
-																		class="fa fa-check txt-color-white"></i>
-																	</label> <label class="btn bg-color-red"> <input
-																		type="radio" name="priority" id="option6"
-																		value="bg-color-red txt-color-white"> <i
-																		class="fa fa-check txt-color-white"></i>
-																	</label>
-																</div>
-															</div>
-
-														</fieldset>
-														<div class="form-actions">
-															<div class="row">
-																<div class="col-md-12">
-																	<button class="btn btn-default" type="button"
-																		id="add-event">Add Event</button>
-																</div>
-															</div>
-														</div>
-													</form>
-
-													<!-- end content -->
-												</div>
-
-											</div>
-											<!-- end widget div -->
-										</div>
-										<!-- end widget -->
-
-										<div class="well well-sm" id="event-container">
-											<form>
-												<fieldset>
-													<legend> Draggable Events </legend>
-													<ul id='external-events' class="list-unstyled">
-														<li><span class="bg-color-darken txt-color-white"
-															data-description="Currently busy" data-icon="fa-time">Office
-																Meeting</span></li>
-														<li><span class="bg-color-blue txt-color-white"
-															data-description="No Description" data-icon="fa-pie">Lunch
-																Break</span></li>
-														<li><span class="bg-color-red txt-color-white"
-															data-description="Urgent Tasks" data-icon="fa-alert">URGENT</span>
-														</li>
-													</ul>
-													<div class="checkbox">
-														<label> <input type="checkbox" id="drop-remove"
-															class="checkbox style-0" checked="checked"> <span>remove
-																after drop</span>
-														</label>
-
-													</div>
-												</fieldset>
-											</form>
-
-										</div>
-									</div>
+									
 									<div class="col-sm-12 col-md-12 col-lg-9">
 
 										<!-- new widget -->
@@ -1065,7 +743,7 @@
 													<!-- content goes here -->
 													<div class="widget-body-toolbar">
 
-														<div id="calendar-buttons">
+														<div id="calendar2-buttons">
 
 															<div class="btn-group">
 																<a href="javascript:void(0)"
@@ -1086,9 +764,9 @@
 											<!-- end widget div -->
 										</div>
 										<!-- end widget -->
-										<button type="submit" onclick="geoFindMe()"
+										<!-- <button type="submit" onclick="geoFindMe()"
 																		class="btn btn-sm btn-primary pull-right">
-																		Publish New Time Table</button>
+																		Publish New Time Table</button> -->
 									</div>
 
 								</div>
@@ -1096,6 +774,7 @@
 								<!-- end row -->
 
 							</div>
+
 						</div>
 
 						<div class="tab-pane fade" id="s3">
@@ -1223,6 +902,7 @@
 							</div>
 
 						</div>
+						
 					</div>
 
 				</div>
@@ -1855,7 +1535,8 @@
 																	'render');
 												}
 											});
-
+							
+							
 							/* hide default buttons */
 							$('.fc-right, .fc-center').hide();
 
@@ -1891,7 +1572,10 @@
 										$('#calendar').fullCalendar(
 												'changeView', 'agendaDay');
 									});
+							
 
+							
+							
 							Dropzone.autoDiscover = false;
 							$("#mydropzone")
 									.dropzone(

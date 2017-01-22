@@ -1,5 +1,7 @@
 package com.fliker.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +15,7 @@ public class ClassRoomController {
 	
 	@RequestMapping("/classroom")
 	public ModelAndView showClassRoom(
-			@RequestParam(value = "name", required = false, defaultValue = "World") String username ) {
+			@RequestParam(value = "name", required = false, defaultValue = "World") String username, HttpSession session ) {
 		System.out.println("in classroom controller");
  
 		//ArrayList postlist = new ArrayList();
@@ -25,7 +27,8 @@ public class ClassRoomController {
 		
 		ClassRoomPreview classprev = new ClassRoomPreview();
 		
-		String havingclassroom = classprev.pageProm();
+		String userid = (String) session.getAttribute("userid");
+		String havingclassroom = classprev.pageProm(userid);
 		/*havingclassroom = "/"+havingclassroom;
 		mv = new ModelAndView(havingclassroom);*/
 		

@@ -13,6 +13,21 @@ public class ClassRoom {
 	private String timtableid;
 	private String[] partnerid;
 	private String profileid;
+	private String owner;
+	private String[] enrollprofiles;
+	
+	public String[] getEnrollprofiles() {
+		return enrollprofiles;
+	}
+	public void setEnrollprofiles(String[] enrollprofiles) {
+		this.enrollprofiles = enrollprofiles;
+	}
+	public String getOwner() {
+		return owner;
+	}
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
 	public String getClassroomid() {
 		return classroomid;
 	}
