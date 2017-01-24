@@ -27,7 +27,7 @@ public class IdeaToImplementationController {
 		
 		
 		
-		mv = new ModelAndView("/Project");
+		mv = new ModelAndView("/IdeaImplement");
 		
 		
 		

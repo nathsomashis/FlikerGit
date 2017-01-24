@@ -664,7 +664,7 @@
 										<br><br>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
 										<br><br>
 									</p>
-									<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
+									<a class="btn btn-primary" href="#" onclick="openLink();"> Read more </a>
 									<a class="btn btn-warning" href="javascript:void(0);"> Edit </a>
 									<a class="btn btn-success" href="javascript:void(0);"> Publish </a>
 								</div>
@@ -1316,6 +1316,9 @@
 				 */
 				 
 				 CKEDITOR.replace( 'ckeditor', { height: '380px', startupFocus : true} );
+				 
+				 
+				 
 				
 			})
 		
@@ -1335,6 +1338,13 @@
 				var s = document.getElementsByTagName('script')[0];
 				s.parentNode.insertBefore(ga, s);
 			})();
+			
+			
+			function openLink(){
+				 window.open("projectview?");
+				 
+				 
+			 }
 
 		</script>
 
