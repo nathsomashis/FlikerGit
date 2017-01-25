@@ -438,7 +438,7 @@
 				<li class=""><a href="ideatoimplement?" title="NewPost"><i
 						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
 				</li>
-				<li class=""><a href="jobanalysis?" title="NewJob"><i
+				<li class=""><a href="work?" title="NewJob"><i
 						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional Way</span></a>
 				</li>
 				
