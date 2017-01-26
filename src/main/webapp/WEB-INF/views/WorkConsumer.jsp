@@ -437,7 +437,7 @@
 		<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
-		<li ><a href="dashboardsocial?"><i
+		<li><a href="dashboardsocial?"><i
 				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
@@ -449,8 +449,8 @@
 				<span class="menu-item-parent">Timeline</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 		<li><a href="createpost?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
-		</li>
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post
+					Your Activity</span></a></li>
 		<!-- <li><a href="classroom?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 		</li> -->
@@ -461,10 +461,10 @@
 						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
 				<li class=""><a href="classroom?" title="ClassRoom"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
 			</ul></li>
-		 <!-- <li><a href="#" title="Dashboard"><i
+		<!-- <li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
 			<ul>		
 				<li class="active"><a href="#" title="NewCourse"><i
@@ -486,9 +486,9 @@
 						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
 				</li>
 				<li class=""><a href="work?" title="NewJob"><i
-						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional Way</span></a>
-				</li>
-				
+						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional
+							Way</span></a></li>
+
 			</ul></li>
 		<!-- <li class=""><a href="organizations?" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
@@ -501,15 +501,15 @@
 				</li>
 			</ul></li> -->
 		<li class=""><a href="#" title="Organizations"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
-				<ul>
+				class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
+			<ul>
 				<li class=""><a href="createjob?" title="NewJob"><i
 						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
 				</li>
 				<li class=""><a href="companies?" title="Companies"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
 				</li>
-			</ul></li>		
+			</ul></li>
 
 		<li class="chat-users top-menu-invisible"><a href="#"><i
 				class="fa fa-lg fa-fw fa-comment-o"><em
@@ -665,9 +665,11 @@
 				<div class="col-sm-12">
 
 					<ul id="myTab1" class="nav nav-tabs bordered">
-						<li class="active"><a href="#s1" data-toggle="tab">Tasks<i
-								class="fa fa-caret-down"></i></a></li>
-						<li><a href="#s2" data-toggle="tab">Discussion</a></li>
+						<li class="active"><a href="#s1" data-toggle="tab">Ongoing
+								Processes<i class="fa fa-caret-down"></i>
+						</a></li>
+						<li><a href="#s2" data-toggle="tab">Recommended Jobs</a></li>
+						<li><a href="#s3" data-toggle="tab">TimeTable</a></li>
 						<!-- <li class="pull-right hidden-mobile">
 								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
 							</li> -->
@@ -845,217 +847,429 @@
 
 						</div>
 
-						<div class="tab-pane fade" id="s2"></div>
-						<!-- MAIN CONTENT -->
-						<div id="contents">
+						<div class="tab-pane fade" id="s2">
+							<!-- MAIN CONTENT -->
+							<div id="contents">
 
-							<!-- Bread crumb is created dynamically -->
-							<!-- row -->
-							<div class="row">
+								<!-- Bread crumb is created dynamically -->
+								<!-- row -->
+								<div class="row">
 
-								<!-- col -->
-								<div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-									<h1 class="page-title txt-color-blueDark">
-										<!-- PAGE HEADER -->
-										<i class="fa-fw fa fa-puzzle-piece"></i> App Views <span>>
-											Forum Layout > Post View </span>
-									</h1>
+									<!-- col -->
+									<div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
+										<h1 class="page-title txt-color-blueDark">
+											<!-- PAGE HEADER -->
+											<i class="fa-fw fa fa-puzzle-piece"></i> App Views <span>>
+												Forum Layout > Post View </span>
+										</h1>
+									</div>
+									<!-- end col -->
+
+									<!-- right side of the page with the sparkline graphs -->
+									<!-- col -->
+									<div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
+										<!-- sparks -->
+										<ul id="sparks">
+											<li class="sparks-info">
+												<h5>
+													My Income <span class="txt-color-blue">$47,171</span>
+												</h5>
+												<div class="sparkline txt-color-blue hidden-mobile">
+													1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471,
+													2700, 3631, 2471</div>
+											</li>
+											<li class="sparks-info">
+												<h5>
+													Site Traffic <span class="txt-color-purple"><i
+														class="fa fa-arrow-circle-up" title="Increased"></i>&nbsp;45%</span>
+												</h5>
+												<div class="sparkline txt-color-purple hidden-mobile">
+													110,150,300,130,400,240,220,310,220,300, 270, 210</div>
+											</li>
+											<li class="sparks-info">
+												<h5>
+													Site Orders <span class="txt-color-greenDark"><i
+														class="fa fa-shopping-cart"></i>&nbsp;2447</span>
+												</h5>
+												<div class="sparkline txt-color-greenDark hidden-mobile">
+													110,150,300,130,400,240,220,310,220,300, 270, 210</div>
+											</li>
+										</ul>
+										<!-- end sparks -->
+									</div>
+									<!-- end col -->
+
 								</div>
-								<!-- end col -->
+								<!-- end row -->
 
-								<!-- right side of the page with the sparkline graphs -->
-								<!-- col -->
-								<div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
-									<!-- sparks -->
-									<ul id="sparks">
-										<li class="sparks-info">
-											<h5>
-												My Income <span class="txt-color-blue">$47,171</span>
-											</h5>
-											<div class="sparkline txt-color-blue hidden-mobile">
-												1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471,
-												2700, 3631, 2471</div>
-										</li>
-										<li class="sparks-info">
-											<h5>
-												Site Traffic <span class="txt-color-purple"><i
-													class="fa fa-arrow-circle-up" title="Increased"></i>&nbsp;45%</span>
-											</h5>
-											<div class="sparkline txt-color-purple hidden-mobile">
-												110,150,300,130,400,240,220,310,220,300, 270, 210</div>
-										</li>
-										<li class="sparks-info">
-											<h5>
-												Site Orders <span class="txt-color-greenDark"><i
-													class="fa fa-shopping-cart"></i>&nbsp;2447</span>
-											</h5>
-											<div class="sparkline txt-color-greenDark hidden-mobile">
-												110,150,300,130,400,240,220,310,220,300, 270, 210</div>
-										</li>
-									</ul>
-									<!-- end sparks -->
-								</div>
-								<!-- end col -->
+								<!-- row -->
+								<div class="row">
 
-							</div>
-							<!-- end row -->
+									<div class="col-sm-12">
 
-							<!-- row -->
-							<div class="row">
+										<div class="well">
 
-								<div class="col-sm-12">
+											<table class="table table-striped table-forum">
+												<thead>
+													<tr>
+														<th colspan="2"><a href="forum.html"> Projects </a> >
+															<a href="forum-topic.html">Business Requirement Docs
+														</a> > Nam quam nunc blandit vel</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!-- Post -->
+													<tr>
+														<td class="text-center"><a href="profile.html"><img
+																alt="" src="img/flags/us.png"> &nbsp; <strong>John
+																	Doe</strong></a></td>
+														<td>on <em>Jan 1, 2014 - 12:00am</em></td>
+													</tr>
+													<tr>
+														<td class="text-center" style="width: 12%;">
+															<div class="push-bit">
+																<a href="profile.html"> <img
+																	src="img/avatars/sunny.png" width="50" alt="avatar"
+																	class="online">
+																</a>
+															</div> <small>473 Posts</small>
+														</td>
+														<td>
+															<p>Donec pede justo, fringilla vel, aliquet nec,
+																vulputate eget, arcu. In enim justo, rhoncus ut,
+																imperdiet a, venenatis vitae, justo. Nullam dictum felis
+																eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+																Vivamus elementum semper nisi. Aenean vulputate eleifend
+																tellus. Aenean leo ligula, porttitor eu, consequat
+																vitae, eleifend ac, enim. Aliquam lorem ante, dapibus
+																in, viverra quis, feugiat a, tellus. Phasellus viverra
+																nulla ut metus varius laoreet. Quisque rutrum. Aenean
+																imperdiet.</p>
+															<h5>Forecast Pie</h5> <span
+															class="sparkline display-inline margin-bottom-10"
+															data-sparkline-type="pie" data-sparkline-offset="90"
+															data-sparkline-piesize="150px"> 33,20,10 </span>
+															<p>Fringilla vel, aliquet nec, vulputate eget, arcu.
+																In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+																justo. Nullam dictum felis eu pede mollis pretium.
+																Integer tincidunt. Cras dapibus. Vivamus elementum
+																semper nisi. Aenean vulputate eleifend tellus. Aenean
+																leo ligula, porttitor eu, consequat vitae, eleifend ac,
+																enim. Aliquam lorem ante, dapibus in, viv.</p> <em>-
+																John Doe <br> CEO, SmartAdmin
+														</em>
+														</td>
+													</tr>
+													<!-- end Post -->
 
-									<div class="well">
+													<!-- Post -->
+													<tr>
+														<td class="text-center"><a href="profile.html"><img
+																alt="" src="img/flags/es.png"> &nbsp; <strong>Sadi
+																	Orlaf</strong></a></td>
+														<td>on <em>Jan 1, 2014 - 12:00am</em></td>
+													</tr>
+													<tr>
+														<td class="text-center" style="width: 12%;">
+															<div class="push-bit">
+																<a href="profile.html"> <img src="img/avatars/5.png"
+																	width="50" alt="avatar" class="offline">
+																</a>
+															</div> <small>473 Posts</small>
+														</td>
+														<td>
+															<p>Donec pede justo, fringilla vel, aliquet nec,
+																vulputate eget, arcu. In enim justo, rhoncus ut,
+																imperdiet a, venenatis vitae, justo. Nullam dictum felis
+																eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+																Vivamus elementum semper nisi. Aenean vulputate eleifend
+																tellus. Aenean leo ligula, porttitor eu, consequat
+																vitae, eleifend ac, enim. Aliquam lorem ante, dapibus
+																in, viverra quis, feugiat a, tellus. Phasellus viverra
+																nulla ut metus varius laoreet. Quisque rutrum. Aenean
+																imperdiet.</p> <em>- Sadi Orlaf <br> Executive,
+																SmartAdmin
+														</em>
+															<div class="forum-attachment">
+																2 attachment(s) — <a href="javascript:void(0);">
+																	Download all attachments</a>
+																<ul class="list-inline margin-top-10">
+																	<li class="well well-sm padding-5"><strong>rocketlaunch.jpg</strong>
+																		<br> 400 kb <br> <a
+																		href="javascript:void(0);"> Download</a> | <a
+																		href="javascript:void(0);"> View</a></li>
+																	<li class="well well-sm padding-5"><strong>budget.xsl</strong>
+																		<br> 400 kb <br> <a
+																		href="javascript:void(0);"> Download</a> | <a
+																		href="javascript:void(0);"> Share</a></li>
+																</ul>
+															</div>
+														</td>
+													</tr>
+													<!-- end Post -->
 
-										<table class="table table-striped table-forum">
-											<thead>
-												<tr>
-													<th colspan="2"><a href="forum.html"> Projects </a> >
-														<a href="forum-topic.html">Business Requirement Docs </a>
-														> Nam quam nunc blandit vel</th>
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Post -->
-												<tr>
-													<td class="text-center"><a href="profile.html"><img
-															alt="" src="img/flags/us.png"> &nbsp; <strong>John
-																Doe</strong></a></td>
-													<td>on <em>Jan 1, 2014 - 12:00am</em></td>
-												</tr>
-												<tr>
-													<td class="text-center" style="width: 12%;">
-														<div class="push-bit">
-															<a href="profile.html"> <img
-																src="img/avatars/sunny.png" width="50" alt="avatar"
-																class="online">
-															</a>
-														</div>
-														<small>473 Posts</small>
-													</td>
-													<td>
-														<p>Donec pede justo, fringilla vel, aliquet nec,
-															vulputate eget, arcu. In enim justo, rhoncus ut,
-															imperdiet a, venenatis vitae, justo. Nullam dictum felis
-															eu pede mollis pretium. Integer tincidunt. Cras dapibus.
-															Vivamus elementum semper nisi. Aenean vulputate eleifend
-															tellus. Aenean leo ligula, porttitor eu, consequat vitae,
-															eleifend ac, enim. Aliquam lorem ante, dapibus in,
-															viverra quis, feugiat a, tellus. Phasellus viverra nulla
-															ut metus varius laoreet. Quisque rutrum. Aenean
-															imperdiet.</p>
-														<h5>Forecast Pie</h5>
-														<span class="sparkline display-inline margin-bottom-10"
-														data-sparkline-type="pie" data-sparkline-offset="90"
-														data-sparkline-piesize="150px"> 33,20,10 </span>
-														<p>Fringilla vel, aliquet nec, vulputate eget, arcu.
-															In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-															justo. Nullam dictum felis eu pede mollis pretium.
-															Integer tincidunt. Cras dapibus. Vivamus elementum semper
-															nisi. Aenean vulputate eleifend tellus. Aenean leo
-															ligula, porttitor eu, consequat vitae, eleifend ac, enim.
-															Aliquam lorem ante, dapibus in, viv.</p>
-														<em>- John Doe <br> CEO, SmartAdmin
-													</em>
-													</td>
-												</tr>
-												<!-- end Post -->
+													<!-- Post -->
+													<tr>
+														<td class="text-center"><a href="profile.html"><img
+																alt="" src="img/flags/us.png"> &nbsp; <strong>Me</strong></a></td>
+														<td><em>Today</em></td>
+													</tr>
+													<tr>
+														<td class="text-center" style="width: 12%;">
+															<div class="push-bit">
+																<a href="profile.html"> <img
+																	src="img/avatars/sunny.png" width="50" alt="avatar"
+																	class="online">
+																</a>
+															</div> <small>473 Posts</small>
+														</td>
+														<td><div id="forumPost"></div>
 
-												<!-- Post -->
-												<tr>
-													<td class="text-center"><a href="profile.html"><img
-															alt="" src="img/flags/es.png"> &nbsp; <strong>Sadi
-																Orlaf</strong></a></td>
-													<td>on <em>Jan 1, 2014 - 12:00am</em></td>
-												</tr>
-												<tr>
-													<td class="text-center" style="width: 12%;">
-														<div class="push-bit">
-															<a href="profile.html"> <img src="img/avatars/5.png"
-																width="50" alt="avatar" class="offline">
-															</a>
-														</div>
-														<small>473 Posts</small>
-													</td>
-													<td>
-														<p>Donec pede justo, fringilla vel, aliquet nec,
-															vulputate eget, arcu. In enim justo, rhoncus ut,
-															imperdiet a, venenatis vitae, justo. Nullam dictum felis
-															eu pede mollis pretium. Integer tincidunt. Cras dapibus.
-															Vivamus elementum semper nisi. Aenean vulputate eleifend
-															tellus. Aenean leo ligula, porttitor eu, consequat vitae,
-															eleifend ac, enim. Aliquam lorem ante, dapibus in,
-															viverra quis, feugiat a, tellus. Phasellus viverra nulla
-															ut metus varius laoreet. Quisque rutrum. Aenean
-															imperdiet.</p>
-														<em>- Sadi Orlaf <br> Executive, SmartAdmin
-													</em>
-														<div class="forum-attachment">
-															2 attachment(s) — <a href="javascript:void(0);">
-																Download all attachments</a>
-															<ul class="list-inline margin-top-10">
-																<li class="well well-sm padding-5"><strong>rocketlaunch.jpg</strong>
-																	<br> 400 kb <br> <a
-																	href="javascript:void(0);"> Download</a> | <a
-																	href="javascript:void(0);"> View</a></li>
-																<li class="well well-sm padding-5"><strong>budget.xsl</strong>
-																	<br> 400 kb <br> <a
-																	href="javascript:void(0);"> Download</a> | <a
-																	href="javascript:void(0);"> Share</a></li>
-															</ul>
-														</div>
-													</td>
-												</tr>
-												<!-- end Post -->
+															<button class="btn btn-primary margin-top-10">
+																Post</button>
+															<button class="btn btn-success margin-top-10">
+																Save for later</button></td>
+													</tr>
+													<!-- end Post -->
 
-												<!-- Post -->
-												<tr>
-													<td class="text-center"><a href="profile.html"><img
-															alt="" src="img/flags/us.png"> &nbsp; <strong>Me</strong></a></td>
-													<td><em>Today</em></td>
-												</tr>
-												<tr>
-													<td class="text-center" style="width: 12%;">
-														<div class="push-bit">
-															<a href="profile.html"> <img
-																src="img/avatars/sunny.png" width="50" alt="avatar"
-																class="online">
-															</a>
-														</div>
-														<small>473 Posts</small>
-													</td>
-													<td><div id="forumPost"></div>
+												</tbody>
+											</table>
 
-														<button class="btn btn-primary margin-top-10">
-															Post</button>
-														<button class="btn btn-success margin-top-10">
-															Save for later</button></td>
-												</tr>
-												<!-- end Post -->
+											<div class="text-center">
+												<ul class="pagination pagination-sm">
+													<li class="disabled"><a href="javascript:void(0);">Prev</a>
+													</li>
+													<li class="active"><a href="javascript:void(0);">1</a>
+													</li>
+													<li><a href="javascript:void(0);">2</a></li>
+													<li><a href="javascript:void(0);">3</a></li>
+													<li><a href="javascript:void(0);">...</a></li>
+													<li><a href="javascript:void(0);">99</a></li>
+													<li><a href="javascript:void(0);">Next</a></li>
+												</ul>
+											</div>
 
-											</tbody>
-										</table>
-
-										<div class="text-center">
-											<ul class="pagination pagination-sm">
-												<li class="disabled"><a href="javascript:void(0);">Prev</a>
-												</li>
-												<li class="active"><a href="javascript:void(0);">1</a>
-												</li>
-												<li><a href="javascript:void(0);">2</a></li>
-												<li><a href="javascript:void(0);">3</a></li>
-												<li><a href="javascript:void(0);">...</a></li>
-												<li><a href="javascript:void(0);">99</a></li>
-												<li><a href="javascript:void(0);">Next</a></li>
-											</ul>
 										</div>
+									</div>
+
+								</div>
+
+								<!-- end row -->
+							</div>
+						</div>
+
+						<div class="tab-pane fade" id="s3">
+							<div class="row">
+
+								<div class="col-sm-12 col-md-12 col-lg-3">
+									<!-- new widget -->
+									<div class="jarviswidget jarviswidget-color-blueDark">
+										<header>
+										<h2>Add Events</h2>
+										</header>
+
+										<!-- widget div-->
+										<div>
+
+											<div class="widget-body">
+												<!-- content goes here -->
+
+												<form id="add-event-form">
+													<fieldset>
+
+														<div class="form-group">
+															<label>Select Event Icon</label>
+															<div class="btn-group btn-group-sm btn-group-justified"
+																data-toggle="buttons">
+																<label class="btn btn-default active"> <input
+																	type="radio" name="iconselect" id="icon-1"
+																	value="fa-info" checked> <i
+																	class="fa fa-info text-muted"></i>
+																</label> <label class="btn btn-default"> <input
+																	type="radio" name="iconselect" id="icon-2"
+																	value="fa-warning"> <i
+																	class="fa fa-warning text-muted"></i>
+																</label> <label class="btn btn-default"> <input
+																	type="radio" name="iconselect" id="icon-3"
+																	value="fa-check"> <i
+																	class="fa fa-check text-muted"></i>
+																</label> <label class="btn btn-default"> <input
+																	type="radio" name="iconselect" id="icon-4"
+																	value="fa-user"> <i
+																	class="fa fa-user text-muted"></i>
+																</label> <label class="btn btn-default"> <input
+																	type="radio" name="iconselect" id="icon-5"
+																	value="fa-lock"> <i
+																	class="fa fa-lock text-muted"></i>
+																</label> <label class="btn btn-default"> <input
+																	type="radio" name="iconselect" id="icon-6"
+																	value="fa-clock-o"> <i
+																	class="fa fa-clock-o text-muted"></i>
+																</label>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label>Event Title</label> <input class="form-control"
+																id="title" name="title" maxlength="40" type="text"
+																placeholder="Event Title">
+														</div>
+														<div class="form-group">
+															<label>Event Description</label>
+															<textarea class="form-control"
+																placeholder="Please be brief" rows="3" maxlength="40"
+																id="description"></textarea>
+															<p class="note">Maxlength is set to 40 characters</p>
+														</div>
+
+														<div class="form-group">
+															<label>Select Event Color</label>
+															<div
+																class="btn-group btn-group-justified btn-select-tick"
+																data-toggle="buttons">
+																<label class="btn bg-color-darken active"> <input
+																	type="radio" name="priority" id="option1"
+																	value="bg-color-darken txt-color-white" checked>
+																	<i class="fa fa-check txt-color-white"></i>
+																</label> <label class="btn bg-color-blue"> <input
+																	type="radio" name="priority" id="option2"
+																	value="bg-color-blue txt-color-white"> <i
+																	class="fa fa-check txt-color-white"></i>
+																</label> <label class="btn bg-color-orange"> <input
+																	type="radio" name="priority" id="option3"
+																	value="bg-color-orange txt-color-white"> <i
+																	class="fa fa-check txt-color-white"></i>
+																</label> <label class="btn bg-color-greenLight"> <input
+																	type="radio" name="priority" id="option4"
+																	value="bg-color-greenLight txt-color-white"> <i
+																	class="fa fa-check txt-color-white"></i>
+																</label> <label class="btn bg-color-blueLight"> <input
+																	type="radio" name="priority" id="option5"
+																	value="bg-color-blueLight txt-color-white"> <i
+																	class="fa fa-check txt-color-white"></i>
+																</label> <label class="btn bg-color-red"> <input
+																	type="radio" name="priority" id="option6"
+																	value="bg-color-red txt-color-white"> <i
+																	class="fa fa-check txt-color-white"></i>
+																</label>
+															</div>
+														</div>
+
+													</fieldset>
+													<div class="form-actions">
+														<div class="row">
+															<div class="col-md-12">
+																<button class="btn btn-default" type="button"
+																	id="add-event">Add Event</button>
+															</div>
+														</div>
+													</div>
+												</form>
+
+												<!-- end content -->
+											</div>
+
+										</div>
+										<!-- end widget div -->
+									</div>
+									<!-- end widget -->
+
+									<div class="well well-sm" id="event-container">
+										<form>
+											<fieldset>
+												<legend> Draggable Events </legend>
+												<ul id='external-events' class="list-unstyled">
+													<li><span class="bg-color-darken txt-color-white"
+														data-description="Currently busy" data-icon="fa-time">Office
+															Meeting</span></li>
+													<li><span class="bg-color-blue txt-color-white"
+														data-description="No Description" data-icon="fa-pie">Lunch
+															Break</span></li>
+													<li><span class="bg-color-red txt-color-white"
+														data-description="Urgent Tasks" data-icon="fa-alert">URGENT</span>
+													</li>
+												</ul>
+												<div class="checkbox">
+													<label> <input type="checkbox" id="drop-remove"
+														class="checkbox style-0" checked="checked"> <span>remove
+															after drop</span>
+													</label>
+
+												</div>
+											</fieldset>
+										</form>
 
 									</div>
 								</div>
+								<div class="col-sm-12 col-md-12 col-lg-9">
+
+									<!-- new widget -->
+									<div class="jarviswidget jarviswidget-color-blueDark">
+
+										<!-- widget options:
+							usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+							data-widget-colorbutton="false"
+							data-widget-editbutton="false"
+							data-widget-togglebutton="false"
+							data-widget-deletebutton="false"
+							data-widget-fullscreenbutton="false"
+							data-widget-custombutton="false"
+							data-widget-collapsed="true"
+							data-widget-sortable="false"
+				
+							-->
+										<header> <span class="widget-icon"> <i
+											class="fa fa-calendar"></i>
+										</span>
+										<h2>My Events</h2>
+										<div class="widget-toolbar">
+											<!-- add: non-hidden - to disable auto hide -->
+											<div class="btn-group">
+												<button class="btn dropdown-toggle btn-xs btn-default"
+													data-toggle="dropdown">
+													Showing <i class="fa fa-caret-down"></i>
+												</button>
+												<ul class="dropdown-menu js-status-update pull-right">
+													<li><a href="javascript:void(0);" id="mt">Month</a></li>
+													<li><a href="javascript:void(0);" id="ag">Agenda</a></li>
+													<li><a href="javascript:void(0);" id="td">Today</a></li>
+												</ul>
+											</div>
+										</div>
+										</header>
+
+										<!-- widget div-->
+										<div>
+
+											<div class="widget-body no-padding">
+												<!-- content goes here -->
+												<div class="widget-body-toolbar">
+
+													<div id="calendar-buttons">
+
+														<div class="btn-group">
+															<a href="javascript:void(0)"
+																class="btn btn-default btn-xs" id="btn-prev"><i
+																class="fa fa-chevron-left"></i></a> <a
+																href="javascript:void(0)" class="btn btn-default btn-xs"
+																id="btn-next"><i class="fa fa-chevron-right"></i></a>
+														</div>
+													</div>
+												</div>
+												<div id="calendar"></div>
+
+												<!-- end content -->
+											</div>
+
+										</div>
+										<!-- end widget div -->
+									</div>
+									<!-- end widget -->
+
+								</div>
 
 							</div>
-
-							<!-- end row -->
 
 						</div>
 						<!-- END MAIN CONTENT -->
@@ -1518,7 +1732,7 @@
 											tr.addClass('shown');
 										}
 									});
-							
+
 							$('#forumPost').summernote({
 								height : 180,
 								focus : false,

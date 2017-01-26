@@ -670,7 +670,9 @@
 						</a></li>
 						<li><a href="#s2" data-toggle="tab">Create New Position</a></li>
 						<li><a href="#s3" data-toggle="tab">Time Table</a></li>
-						<li><a href="#s4" data-toggle="tab">Resource Grooming</a></li>
+						<li><a href="#s4" data-toggle="tab">OnGoing Interviews</a></li>
+						<li><a href="#s5" data-toggle="tab">Calendar</a></li>
+						<li><a href="#s6" data-toggle="tab">Resource Grooming</a></li>
 						<!-- <li class="pull-right hidden-mobile">
 								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
 							</li> -->
@@ -2058,7 +2060,618 @@
 
 							</div>
 						</div>
-						<div class="tab-pane fade" id="s4"></div>
+						<div class="tab-pane fade" id="s4">
+							<div id="content1">
+
+								<!-- row -->
+								<div class="row">
+
+									<!-- col -->
+									<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+										<h1 class="page-title txt-color-blueDark">
+											<!-- PAGE HEADER -->
+											<i class="fa-fw fa fa-home"></i> App Views <span>>
+												Blog </span>
+										</h1>
+									</div>
+									<!-- end col -->
+
+									<!-- right side of the page with the sparkline graphs -->
+									<!-- col -->
+									<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+										<!-- sparks -->
+										<ul id="sparks">
+											<li class="sparks-info">
+												<h5>
+													My Income <span class="txt-color-blue">$47,171</span>
+												</h5>
+												<div
+													class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+													1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471,
+													2700, 3631, 2471</div>
+											</li>
+											<li class="sparks-info">
+												<h5>
+													Site Traffic <span class="txt-color-purple"><i
+														class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip"
+														title="Increased"></i>&nbsp;45%</span>
+												</h5>
+												<div
+													class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
+													110,150,300,130,400,240,220,310,220,300, 270, 210</div>
+											</li>
+											<li class="sparks-info">
+												<h5>
+													Site Orders <span class="txt-color-greenDark"><i
+														class="fa fa-shopping-cart"></i>&nbsp;2447</span>
+												</h5>
+												<div
+													class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
+													110,150,300,130,400,240,220,310,220,300, 270, 210</div>
+											</li>
+										</ul>
+										<!-- end sparks -->
+									</div>
+									<!-- end col -->
+
+								</div>
+								<!-- end row -->
+
+								<div class="row">
+
+									<div class="col-sm-9">
+
+										<div class="well padding-10">
+
+											<div class="row">
+												<div class="col-md-4">
+													<img src="img/superbox/superbox-full-15.jpg"
+														class="img-responsive" alt="img">
+													<ul class="list-inline padding-10">
+														<li><i class="fa fa-calendar"></i> <a
+															href="javascript:void(0);"> March 12, 2015 </a></li>
+														<li><i class="fa fa-comments"></i> <a
+															href="javascript:void(0);"> 38 Comments </a></li>
+													</ul>
+												</div>
+												<div class="col-md-8 padding-left-0">
+													<h3 class="margin-top-0">
+														<a href="javascript:void(0);"> Why Should You Make A
+															Separate Mobile Website for your Business? </a><br> <small
+															class="font-xs"><i>Published by <a
+																href="javascript:void(0);">John Doe</a></i></small>
+													</h3>
+													<p>
+														At vero eos et accusamus et iusto odio dignissimos ducimus
+														qui blanditiis praesentium voluptatum deleniti atque
+														corrupti quos dolores et quas molestias excepturi sint
+														occaecati cupiditate non provident, similique sunt in
+														culpa qui officia deserunt mollitia animi, id est laborum
+														et dolorum fuga. <br> <br>Et harum quidem rerum
+														facilis est et expedita distinctio lorem ipsum dolor sit
+														amet, consectetur adipiscing elit. Ut non libero
+														consectetur adipiscing elit magna. Sed et quam lacus.
+														Fusce condimentum eleifend enim a feugiat. Pellentesque
+														viverra vehicula sem ut volutpat. Lorem ipsum dolor sit
+														amet, consectetur adipiscing elit. Ut non libero magna.
+														Sed et quam lacus. Fusce condimentum eleifend enim a
+														feugiat. <br> <br>
+													</p>
+													<a class="btn btn-primary" href="javascript:void(0);">
+														Read more </a> <a class="btn btn-warning"
+														href="javascript:void(0);"> Edit </a> <a
+														class="btn btn-success" href="javascript:void(0);">
+														Publish </a>
+												</div>
+											</div>
+											<hr>
+
+											<div class="row">
+												<div class="col-md-4">
+													<img src="img/superbox/superbox-full-19.jpg"
+														class="img-responsive" alt="img">
+													<ul class="list-inline padding-10">
+														<li><i class="fa fa-calendar"></i> <a
+															href="javascript:void(0);"> March 12, 2015 </a></li>
+														<li><i class="fa fa-comments"></i> <a
+															href="javascript:void(0);"> 38 Comments </a></li>
+													</ul>
+												</div>
+												<div class="col-md-8 padding-left-0">
+													<h3 class="margin-top-0">
+														<a href="javascript:void(0);"> Mums favorite shopping
+															malls in USA </a><br> <small class="font-xs"><i>Published
+																by <a href="javascript:void(0);">John Doe</a>
+														</i></small>
+													</h3>
+													<p>
+														At vero eos et accusamus et iusto odio dignissimos ducimus
+														qui blanditiis praesentium voluptatum deleniti atque
+														corrupti quos dolores et quas molestias excepturi sint
+														occaecati cupiditate non provident, similique sunt in
+														culpa qui officia deserunt mollitia animi, id est laborum
+														et dolorum fuga. <br> <br>Et harum quidem rerum
+														facilis est et expedita distinctio lorem ipsum dolor sit
+														amet, consectetur adipiscing elit. Ut non libero
+														consectetur adipiscing elit magna. Sed et quam lacus.
+														Fusce condimentum eleifend enim a feugiat. Pellentesque
+														viverra vehicula sem ut volutpat. Lorem ipsum dolor sit
+														amet, consectetur adipiscing elit. Ut non libero magna.
+														Sed et quam lacus. Fusce condimentum eleifend enim a
+														feugiat. <br> <br>
+													</p>
+													<a class="btn btn-primary" href="javascript:void(0);">
+														Read more </a>
+												</div>
+											</div>
+											<hr>
+
+											<div class="row">
+												<div class="col-md-4">
+													<img src="img/superbox/superbox-full-24.jpg"
+														class="img-responsive" alt="img">
+													<ul class="list-inline padding-10">
+														<li><i class="fa fa-calendar"></i> <a
+															href="javascript:void(0);"> March 12, 2015 </a></li>
+														<li><i class="fa fa-comments"></i> <a
+															href="javascript:void(0);"> 38 Comments </a></li>
+													</ul>
+												</div>
+												<div class="col-md-8 padding-left-0">
+													<h3 class="margin-top-0">
+														<a href="javascript:void(0);"> Best (and Basic)
+															Practices of Mobile Web Design </a><br> <small
+															class="font-xs"><i>Published by <a
+																href="javascript:void(0);">John Doe</a></i></small>
+													</h3>
+													<p>
+														With the plethora of smartphones, mobile phones, and
+														tablets available on the market today, research suggests
+														that mobile devices will soon overtake PCs and laptops in
+														a year. More and more,different platforms are made
+														available for all types of consumers to access the web,
+														even including TVs and gaming consoles. <br> <br>
+														And all this in rapid-fire turnover—new models and
+														technologies quickly coming and going like fashion trends.
+														So much so that any website that is not mobile friendly
+														cannot claim to be user-friendly anymore. Increasingly,
+														web developers and designers utilize fluid layouts
+														allowing users to browse across different platforms. <br>
+														<br>
+													</p>
+													<a class="btn btn-primary" href="javascript:void(0);">
+														Read more </a>
+												</div>
+											</div>
+
+											<hr>
+
+											<div class="row">
+												<div class="col-md-4">
+													<img src="img/superbox/superbox-full-7.jpg"
+														class="img-responsive" alt="img">
+													<ul class="list-inline padding-10">
+														<li><i class="fa fa-calendar"></i> <a
+															href="javascript:void(0);"> March 12, 2015 </a></li>
+														<li><i class="fa fa-comments"></i> <a
+															href="javascript:void(0);"> 38 Comments </a></li>
+													</ul>
+												</div>
+												<div class="col-md-8 padding-left-0">
+													<h3 class="margin-top-0">
+														<a href="javascript:void(0);"> Responsive Design: Best
+															Practices for Designing a Website </a><br> <small
+															class="font-xs"><i>Published by <a
+																href="javascript:void(0);">John Doe</a></i></small>
+													</h3>
+													<p>
+														The term Responsive design means developing a website in a
+														way that adapts all the computer screen resolutions.
+														Particularly this concept allows a 4 column layout that is
+														1292px wide, on 1025px wide screen that is divided into 2
+														columns automatically. It is adaptable for android phones
+														and tablet screens. This designing method is known as
+														“responsive web design” <br> <br> Responsive
+														designing is a different concept from traditional web
+														designing, so the question arises how you should build a
+														good responsive website. Here is a general practices that
+														can help you to build a responsive website design. <br>
+														<br>
+													</p>
+													<a class="btn btn-primary" href="javascript:void(0);">
+														Read more </a>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+
+									<div class="col-sm-3">
+										<div class="well padding-10">
+											<h5 class="margin-top-0">
+												<i class="fa fa-search"></i> Blog Search...
+											</h5>
+											<div class="input-group">
+												<input type="text" class="form-control"> <span
+													class="input-group-btn">
+													<button class="btn btn-default" type="button">
+														<i class="fa fa-search"></i>
+													</button>
+												</span>
+											</div>
+											<!-- /input-group -->
+										</div>
+										<!-- /well -->
+										<div class="well padding-10">
+											<h5 class="margin-top-0">
+												<i class="fa fa-tags"></i> Popular Tags:
+											</h5>
+											<div class="row">
+												<div class="col-lg-6">
+													<ul class="list-unstyled">
+														<li><a href=""><span class="badge badge-info">Windows
+																	8</span></a></li>
+														<li><a href=""><span class="badge badge-info">C#</span></a>
+														</li>
+														<li><a href=""><span class="badge badge-info">Windows
+																	Forms</span></a></li>
+														<li><a href=""><span class="badge badge-info">WPF</span></a>
+														</li>
+													</ul>
+												</div>
+												<div class="col-lg-6">
+													<ul class="list-unstyled">
+														<li><a href=""><span class="badge badge-info">Bootstrap</span></a>
+														</li>
+														<li><a href=""><span class="badge badge-info">Joomla!</span></a>
+														</li>
+														<li><a href=""><span class="badge badge-info">CMS</span></a>
+														</li>
+														<li><a href=""><span class="badge badge-info">Java</span></a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<!-- /well -->
+										<div class="well padding-10">
+											<h5 class="margin-top-0">
+												<i class="fa fa-thumbs-o-up"></i> Follow Us!
+											</h5>
+											<ul class="no-padding no-margin">
+												<p class="no-margin">
+													<a title="Facebook" href=""><span
+														class="fa-stack fa-lg"><i
+															class="fa fa-square-o fa-stack-2x"></i><i
+															class="fa fa-facebook fa-stack-1x"></i></span></a> <a
+														title="Twitter" href=""><span class="fa-stack fa-lg"><i
+															class="fa fa-square-o fa-stack-2x"></i><i
+															class="fa fa-twitter fa-stack-1x"></i></span></a> <a title="Google+"
+														href=""><span class="fa-stack fa-lg"><i
+															class="fa fa-square-o fa-stack-2x"></i><i
+															class="fa fa-google-plus fa-stack-1x"></i></span></a> <a
+														title="Linkedin" href=""><span class="fa-stack fa-lg"><i
+															class="fa fa-square-o fa-stack-2x"></i><i
+															class="fa fa-linkedin fa-stack-1x"></i></span></a> <a title="GitHub"
+														href=""><span class="fa-stack fa-lg"><i
+															class="fa fa-square-o fa-stack-2x"></i><i
+															class="fa fa-github fa-stack-1x"></i></span></a> <a
+														title="Bitbucket" href=""><span class="fa-stack fa-lg"><i
+															class="fa fa-square-o fa-stack-2x"></i><i
+															class="fa fa-bitbucket fa-stack-1x"></i></span></a>
+												</p>
+											</ul>
+										</div>
+										<!-- /well -->
+										<!-- /well -->
+										<div class="well padding-10">
+											<h5 class="margin-top-0">
+												<i class="fa fa-fire"></i> Popular Posts:
+											</h5>
+											<ul class="no-padding list-unstyled">
+												<li><a href="javascript:void(0);" class="margin-top-0">WPF
+														vs. Windows Forms-Which is better?</a></li>
+												<li><a href="javascript:void(0);"
+													class="padding-top-5 display-block">How to create
+														responsive website with Bootstrap?</a></li>
+												<li><a href="javascript:void(0);" class="margin-top-5">The
+														best Joomla! templates 2014</a></li>
+												<li><a href="javascript:void(0);" class="margin-top-5">ASP
+														.NET cms list</a></li>
+												<li><a href="javascript:void(0);" class="margin-top-5">C#
+														Hello, World! program</a></li>
+												<li><a href="javascript:void(0);" class="margin-top-5">Java
+														random generator</a></li>
+											</ul>
+										</div>
+										<!-- /well -->
+
+										<!-- /well -->
+										<div class="well padding-10">
+											<h5 class="margin-top-0">
+												<i class="fa fa-video-camera"></i> Featured Videos:
+											</h5>
+											<div class="row">
+
+												<div class="col-lg-12">
+
+													<ul class="list-group no-margin">
+														<li class="list-group-item"><a href=""> <span
+																class="badge pull-right">15</span> Photograph
+														</a></li>
+														<li class="list-group-item"><a href=""> <span
+																class="badge pull-right">30</span> Life style
+														</a></li>
+														<li class="list-group-item"><a href=""> <span
+																class="badge pull-right">9</span> Food
+														</a></li>
+														<li class="list-group-item"><a href=""> <span
+																class="badge pull-right">4</span> Travel world
+														</a></li>
+													</ul>
+
+												</div>
+
+												<div class="col-lg-12">
+													<div class="margin-top-10">
+														<iframe allowfullscreen="" frameborder="0" height="210"
+															mozallowfullscreen=""
+															src="http://player.vimeo.com/video/87025094"
+															webkitallowfullscreen="" width="100%"></iframe>
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<!-- /well -->
+
+									</div>
+
+								</div>
+
+							</div>
+						
+						</div>
+						<div class="tab-pane fade" id="s5">
+								<div id="content3">
+
+								<div class="row">
+									<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+										<h1 class="page-title txt-color-blueDark">
+											<i class="fa fa-calendar fa-fw "></i> Calendar
+
+										</h1>
+									</div>
+
+								</div>
+								<!-- row -->
+
+								<div class="row">
+
+									<div class="col-sm-12 col-md-12 col-lg-3">
+										<!-- new widget -->
+										<div class="jarviswidget jarviswidget-color-blueDark">
+											<header>
+											<h2>Add Events</h2>
+											</header>
+
+											<!-- widget div-->
+											<div>
+
+												<div class="widget-body">
+													<!-- content goes here -->
+
+													<form id="add-event-form">
+														<fieldset>
+
+															<div class="form-group">
+																<label>Select Event Icon</label>
+																<div class="btn-group btn-group-sm btn-group-justified"
+																	data-toggle="buttons">
+																	<label class="btn btn-default active"> <input
+																		type="radio" name="iconselect" id="icon-1"
+																		value="fa-info" checked> <i
+																		class="fa fa-info text-muted"></i>
+																	</label> <label class="btn btn-default"> <input
+																		type="radio" name="iconselect" id="icon-2"
+																		value="fa-warning"> <i
+																		class="fa fa-warning text-muted"></i>
+																	</label> <label class="btn btn-default"> <input
+																		type="radio" name="iconselect" id="icon-3"
+																		value="fa-check"> <i
+																		class="fa fa-check text-muted"></i>
+																	</label> <label class="btn btn-default"> <input
+																		type="radio" name="iconselect" id="icon-4"
+																		value="fa-user"> <i
+																		class="fa fa-user text-muted"></i>
+																	</label> <label class="btn btn-default"> <input
+																		type="radio" name="iconselect" id="icon-5"
+																		value="fa-lock"> <i
+																		class="fa fa-lock text-muted"></i>
+																	</label> <label class="btn btn-default"> <input
+																		type="radio" name="iconselect" id="icon-6"
+																		value="fa-clock-o"> <i
+																		class="fa fa-clock-o text-muted"></i>
+																	</label>
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label>Event Title</label> <input class="form-control"
+																	id="title" name="title" maxlength="40" type="text"
+																	placeholder="Event Title">
+															</div>
+															<div class="form-group">
+																<label>Event Description</label>
+																<textarea class="form-control"
+																	placeholder="Please be brief" rows="3" maxlength="40"
+																	id="description"></textarea>
+																<p class="note">Maxlength is set to 40 characters</p>
+															</div>
+
+															<div class="form-group">
+																<label>Select Event Color</label>
+																<div
+																	class="btn-group btn-group-justified btn-select-tick"
+																	data-toggle="buttons">
+																	<label class="btn bg-color-darken active"> <input
+																		type="radio" name="priority" id="option1"
+																		value="bg-color-darken txt-color-white" checked>
+																		<i class="fa fa-check txt-color-white"></i>
+																	</label> <label class="btn bg-color-blue"> <input
+																		type="radio" name="priority" id="option2"
+																		value="bg-color-blue txt-color-white"> <i
+																		class="fa fa-check txt-color-white"></i>
+																	</label> <label class="btn bg-color-orange"> <input
+																		type="radio" name="priority" id="option3"
+																		value="bg-color-orange txt-color-white"> <i
+																		class="fa fa-check txt-color-white"></i>
+																	</label> <label class="btn bg-color-greenLight"> <input
+																		type="radio" name="priority" id="option4"
+																		value="bg-color-greenLight txt-color-white"> <i
+																		class="fa fa-check txt-color-white"></i>
+																	</label> <label class="btn bg-color-blueLight"> <input
+																		type="radio" name="priority" id="option5"
+																		value="bg-color-blueLight txt-color-white"> <i
+																		class="fa fa-check txt-color-white"></i>
+																	</label> <label class="btn bg-color-red"> <input
+																		type="radio" name="priority" id="option6"
+																		value="bg-color-red txt-color-white"> <i
+																		class="fa fa-check txt-color-white"></i>
+																	</label>
+																</div>
+															</div>
+
+														</fieldset>
+														<div class="form-actions">
+															<div class="row">
+																<div class="col-md-12">
+																	<button class="btn btn-default" type="button"
+																		id="add-event">Add Event</button>
+																</div>
+															</div>
+														</div>
+													</form>
+
+													<!-- end content -->
+												</div>
+
+											</div>
+											<!-- end widget div -->
+										</div>
+										<!-- end widget -->
+
+										<div class="well well-sm" id="event-container">
+											<form>
+												<fieldset>
+													<legend> Draggable Events </legend>
+													<ul id='external-events' class="list-unstyled">
+														<li><span class="bg-color-darken txt-color-white"
+															data-description="Currently busy" data-icon="fa-time">Office
+																Meeting</span></li>
+														<li><span class="bg-color-blue txt-color-white"
+															data-description="No Description" data-icon="fa-pie">Lunch
+																Break</span></li>
+														<li><span class="bg-color-red txt-color-white"
+															data-description="Urgent Tasks" data-icon="fa-alert">URGENT</span>
+														</li>
+													</ul>
+													<div class="checkbox">
+														<label> <input type="checkbox" id="drop-remove"
+															class="checkbox style-0" checked="checked"> <span>remove
+																after drop</span>
+														</label>
+
+													</div>
+												</fieldset>
+											</form>
+
+										</div>
+									</div>
+									<div class="col-sm-12 col-md-12 col-lg-9">
+
+										<!-- new widget -->
+										<div class="jarviswidget jarviswidget-color-blueDark">
+
+											<!-- widget options:
+							usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+							data-widget-colorbutton="false"
+							data-widget-editbutton="false"
+							data-widget-togglebutton="false"
+							data-widget-deletebutton="false"
+							data-widget-fullscreenbutton="false"
+							data-widget-custombutton="false"
+							data-widget-collapsed="true"
+							data-widget-sortable="false"
+				
+							-->
+											<header> <span class="widget-icon"> <i
+												class="fa fa-calendar"></i>
+											</span>
+											<h2>My Events</h2>
+											<div class="widget-toolbar">
+												<!-- add: non-hidden - to disable auto hide -->
+												<div class="btn-group">
+													<button class="btn dropdown-toggle btn-xs btn-default"
+														data-toggle="dropdown">
+														Showing <i class="fa fa-caret-down"></i>
+													</button>
+													<ul class="dropdown-menu js-status-update pull-right">
+														<li><a href="javascript:void(0);" id="mt">Month</a></li>
+														<li><a href="javascript:void(0);" id="ag">Agenda</a>
+														</li>
+														<li><a href="javascript:void(0);" id="td">Today</a></li>
+													</ul>
+												</div>
+											</div>
+											</header>
+
+											<!-- widget div-->
+											<div>
+
+												<div class="widget-body no-padding">
+													<!-- content goes here -->
+													<div class="widget-body-toolbar">
+
+														<div id="calendar-buttons">
+
+															<div class="btn-group">
+																<a href="javascript:void(0)"
+																	class="btn btn-default btn-xs" id="btn-prev"><i
+																	class="fa fa-chevron-left"></i></a> <a
+																	href="javascript:void(0)"
+																	class="btn btn-default btn-xs" id="btn-next"><i
+																	class="fa fa-chevron-right"></i></a>
+															</div>
+														</div>
+													</div>
+													<div id="calendar"></div>
+
+													<!-- end content -->
+												</div>
+
+											</div>
+											<!-- end widget div -->
+										</div>
+										<!-- end widget -->
+										<button type="submit" onclick="geoFindMe()"
+											class="btn btn-sm btn-primary pull-right">Publish
+											New Time Table</button>
+									</div>
+
+								</div>
+
+								<!-- end row -->
+
+							</div>
+				
+						</div>
+						<div class="tab-pane fade" id="s6">
+								
+				
+						</div>
 					</div>
 
 				</div>
