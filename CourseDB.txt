@@ -22,16 +22,24 @@ Course Sequence :
 	Course sequence id , Course file id []
 	
 Course File : 
-	Course file id, Course file name, Course id , Course file analytics ids[]
+	Course file id, Course file name, Course id , Course file analytics ids[], Course Doc file analytics ids[],  
 	
 Course file analytics : 
 	Course file id , Course file opener id, Course session id, Course file openned location id, Course file operation id,
-	Course feedback done ,	Course feedback review, Course feedback text, 
+	Course file content,Course feedback done ,Course feedback review, Course feedback text, 
 	
 Course Video/Audio File operation :
 	Course file operation id, Course operation[] -- Course start time : time :; Course Supposed end time : time :; 
 	Course pause start: yes/no:: time :; Course play start : yes/no :: time :; Course file timeout :; Course fully viewed 
+
+Course doc file analytics : 
+	Course file id , Course file opener id, Course session id, Course file openned location id, Course file operation id,Course file content,
+	Course feedback done ,	Course feedback review, Course feedback text, 
 	
-Course Document file analytics :
-	Course file operation id, Course operation[] -- Assignment start time : time :; Assignment 
+Course Document file operation :
+	Course file operation id, Course operation[] -- Assignment start time : time :; Assignment end time : time :;
+	Assignment trial : number :: percentage got :;
+	
+File Content Analytics :
+	file id , file content text, 
 	
