@@ -9,16 +9,27 @@ Course :
 At the time of walls	
 Course Analytics:	
 	Course shared id, Course shared commented id, Course shared liked id, Course spreaded id, Course Visiters id, Course takers id, 
-	Course 
+
 	
 At the time of edit:	
 Course Edit:
 	Course id, Course edit id, Course history sequence id, Course current sequence id,Course edit date, Course edit location, 
 	
 Course Week : 
-	Course week id, Course sequence file id
+	Course week id, Course sequence file id, Course id
 
-Course Sequence :
+
+At the time user taking course
+Course Week Blog :
+	Course week id, Course session id, Course blog id, Course forum id, Course topic id, 
+
+Course Blog Analytics :
+	Course topic id, Course comment time, Course comment text, Course comment textual analysis id, Course history status
+
+Course User history :
+	Course history : course week id 1 : divide the week with the amount of video and completion of the work. Same goes for all the week. 
+
+Course Sequence : admin 
 	Course sequence id , Course file id []
 	
 Course File : 
@@ -39,7 +50,33 @@ Course doc file analytics :
 Course Document file operation :
 	Course file operation id, Course operation[] -- Assignment start time : time :; Assignment end time : time :;
 	Assignment trial : number :: percentage got :;
-	
-File Content Analytics :
+
+
+File Content Analytics : ** later in future release
 	file id , file content text, 
+
+Course Textual analysis:
+	Textual analysis id, textual analysis sentiment graph xml, course id, course week id, course file id at the time of watching, text analysis result, 
+	text result feedback id,
+
+Course text feedback analysis : 
+	course feedback id, course feedback series id[],  
 	
+Course Shared :
+	shared id, shared date, shared location, shared by, shared with comment
+
+Course Comments :
+	comment id, comment analysis id, comment, comment by
+
+Course Comment analysis :
+	analysis id, comment textual analysis sentiment graph, text result
+
+Course spread :
+	spread id, spread by, spread where
+
+Geolocation analysis:
+	spread id, spread location places, clusturing result, result. find out result from those location.
+
+Course like :
+	like id, liked by, liked date, liked location
+
