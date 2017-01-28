@@ -3,14 +3,16 @@ package com.fliker.Controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.servlet.http.HttpSession;
 
 //import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,10 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fliker.Modal.CoursePreview;
-import com.fliker.Repository.CourseReview;
+import com.fliker.Modal.ProfilePreview;
 import com.fliker.Repository.Courses;
 import com.fliker.Repository.FAQ;
 import com.fliker.Repository.Profile;
+import com.fliker.Repository.User;
 
 @Controller
 public class CourseController {
@@ -50,7 +53,7 @@ public class CourseController {
 	
 	@RequestMapping("/courseEdu")
 	public ModelAndView coursesEducation(
-			@RequestParam(value = "name", required = false, defaultValue = "World") String name ) {
+			@RequestParam(value = "name", required = false, defaultValue = "World") String name, HttpSession session, HttpServletRequest request) {
 		System.out.println("in controller");
  
 		/*ArrayList courselist = new ArrayList<Courses>();
@@ -60,7 +63,31 @@ public class CourseController {
 		
 		System.out.println("courselist"+courselist);*/
 		
-		ModelAndView mv = new ModelAndView("/CourseProvOnly");
+		//User userinfo = (User) mv.getModel().get("User");
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		
+		System.out.println("userid ::"+userid);
+		CoursePreview coursepreview = new CoursePreview();
+		
+		String coursepage = coursepreview.promptCoursePage(userid);
+		System.out.println("coursepage >>"+coursepage);
+		
+		ModelAndView mv = new ModelAndView(coursepage);
+		
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
 		mv.addObject("name", name);
 		//mv.addObject("courselist", courselist);
 		return mv;
@@ -119,7 +146,7 @@ public class CourseController {
 			
 			followlist = coursepreview.followersinfo(profinf.getFollwerids());
 			
-			courserev = coursepreview.coursereviews(courseinfo.getCourseReview());
+			//courserev = coursepreview.coursereviews(courseinfo.getCourseReview());
 			
 			courserevfulllist = coursepreview.courseRevFullSet(courserev);
 			

@@ -5,9 +5,16 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.jboss.netty.handler.codec.http.HttpRequest;
+import org.jboss.netty.handler.codec.http.HttpResponse;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fliker.Modal.DashboardSocialPreview;
 import com.fliker.Modal.LoggingReview;
 import com.fliker.Modal.LoginReview;
+import com.fliker.Modal.UserPreview;
+import com.fliker.Repository.User;
 
 @Controller
 @SessionAttributes("userid")
@@ -26,7 +35,7 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public ModelAndView login(@RequestParam(value = "email", required = true) String username,
-			@RequestParam(value = "password", required = true) String password, HttpSession session){
+			@RequestParam(value = "password", required = true) String password, HttpSession session, ModelMap model, HttpServletRequest request){
 		
 		System.out.println("In the Login Controller");
 		
@@ -40,14 +49,28 @@ public class LoginController {
 		}else if(message.equalsIgnoreCase("The password doesn't match")){
 			mv = new ModelAndView("/Login");
 		}else {
-			mv = new ModelAndView("/DashboardSocial");
+			//mv = new ModelAndView("/DashboardSocial"); original one 
 			
-			mv.addObject("userid", message);
+			mv = new ModelAndView("/Search"); //for fast processing
+			
 			session.setAttribute("userid", message);
+			UserPreview userprev = new UserPreview();
+			
+			User user = userprev.setUserName(username);
+			model.addAttribute("UserDetails", user);
+			
+			ServletContext context = request.getSession().getServletContext();
+			context.setAttribute("UserValues", user);
+			
+			mv.addObject("User", user);
+			System.out.println("user details ???"+user.getFirstname()+"  "+user.getLastname());
+			
+			mv.addObject("userdetails", user);
+			
 			
 			DashboardSocialPreview dashprev = new DashboardSocialPreview();
-			ArrayList postlist = dashprev.firstpostlist();
-			mv.addObject("postlist", postlist);
+			//ArrayList postlist = dashprev.firstpostlist();
+			//mv.addObject("postlist", postlist);
 			
 			LoggingReview logrev = new LoggingReview();
 			logrev.entryLogging(message);

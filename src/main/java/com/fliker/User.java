@@ -3,7 +3,7 @@ package com.fliker;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "User")
+@Document(collection = "Users")
 public class User {
 
 	@Id

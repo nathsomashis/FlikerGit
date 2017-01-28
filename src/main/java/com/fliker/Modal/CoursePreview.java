@@ -44,10 +44,46 @@ public class CoursePreview {
 
 	//private static final Logger logger = Logger.getLogger(CoursePreview.class);
 	
+	private ArrayList courselist = new ArrayList();
+	private ArrayList couretaking = new ArrayList();
+	
 	//check for course providing
 	public boolean isProvidingCourse(String userid){
 		
 		boolean courseprovider = false;
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "Course");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+		
+			Courses courses = new Courses();
+			
+			courses.setCourseCategory((String)theObj.get("courseCategory"));
+			courses.setCoursecreatedate((String)theObj.get("coursecreatedate"));
+			courses.setCoursecreatelocation((String)theObj.get("coursecreatelocation"));
+			courses.setCourseDescription((String)theObj.get("courseDescription"));
+			courses.setCourseFee((String)theObj.get("courseFee"));
+			courses.setCourseid((String)theObj.get("courseid"));
+			courses.setCourseimageid((String)theObj.get("courseimageid"));
+			courses.setCourselinkid((String)theObj.get("courselinkid"));
+			courses.setCourseName((String)theObj.get("courseName"));
+			courses.setCourseownerid((String)theObj.get("courseownerid"));
+			courses.setCoursepublisheddate((String)theObj.get("coursepublisheddate"));
+			courses.setCoursepublishlocation((String)theObj.get("coursepublishlocation"));
+			courses.setCourseReview((String)theObj.get("courseReview"));
+			
+			String[] weekids = ((String)theObj.get("courseweekids")).split(",");
+			
+			courses.setCourseweekids(weekids);
+			courseprovider = true;
+			
+			courselist.add(courses);
+			
+		}else{
+			courselist.add("");
+		}
+		
 		
 		return courseprovider;
 	}
@@ -57,10 +93,69 @@ public class CoursePreview {
 		
 		boolean coursetaking = false;
 		
-		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "Profile");
+		if(resultcursor.hasNext()){
+			
+			DBObject theObj = resultcursor.next();
+			
+			String coursetak = (String)theObj.get("courseids");
+			if(coursetak !=null){
+				
+				coursetaking = true;
+				String[] courselist = ((String)theObj.get("courseids")).split(",");
+				
+				for(int i=0;i<courselist.length;i++){
+				MongoConnection mongoconnest = new MongoConnection();
+				DBCursor resultcursornext = mongoconnest.getDBObject("courseid", courselist[i], "Course");
+				if(resultcursornext.hasNext()){
+					DBObject theObjnext = resultcursornext.next();
+					
+					Courses courses = new Courses();
+					
+					courses.setCourseCategory((String)theObjnext.get("courseCategory"));
+					courses.setCoursecreatedate((String)theObjnext.get("coursecreatedate"));
+					courses.setCoursecreatelocation((String)theObjnext.get("coursecreatelocation"));
+					courses.setCourseDescription((String)theObjnext.get("courseDescription"));
+					courses.setCourseFee((String)theObjnext.get("courseFee"));
+					courses.setCourseid((String)theObjnext.get("courseid"));
+					courses.setCourseimageid((String)theObjnext.get("courseimageid"));
+					courses.setCourselinkid((String)theObjnext.get("courselinkid"));
+					courses.setCourseName((String)theObjnext.get("courseName"));
+					courses.setCourseownerid((String)theObjnext.get("courseownerid"));
+					courses.setCoursepublisheddate((String)theObjnext.get("coursepublisheddate"));
+					courses.setCoursepublishlocation((String)theObjnext.get("coursepublishlocation"));
+					courses.setCourseReview((String)theObjnext.get("courseReview"));
+					
+					String[] weekids = ((String)theObjnext.get("courseweekids")).split(",");
+					
+					courses.setCourseweekids(weekids);
+					
+					couretaking.add(courses);
+					
+					}else{
+						couretaking.add("");
+					}
+				
+					
+				}
+				
+			}else{
+				couretaking.add("");
+			}
+			
+		}
 		return coursetaking;
 	}
 	
+	
+	public ArrayList getCourseTaking(){
+		return couretaking;
+	}
+	
+	public ArrayList getCourseProviding(){
+		return courselist;
+	}
 	
 	public String promptCoursePage(String userid){
 		
@@ -78,7 +173,7 @@ public class CoursePreview {
 			pagepromt = "CourseOnly";//done
 		}
 		
-		return pagepromt;
+		return "/"+pagepromt;
 	}
 	
 	
@@ -259,8 +354,8 @@ public class CoursePreview {
 			courses.setCourseownerid((String)theObj.get("courseownerid"));
 			String[] partners = ((String)theObj.get("coursePartners")).split(",");
 			courses.setCoursePartners(partners);
-			String[] reviews = ((String)theObj.get("courseReview")).split(",");
-			courses.setCourseReview(reviews);
+			//String[] reviews = ((String)theObj.get("courseReview")).split(",");
+			courses.setCourseReview((String)theObj.get("courseReview"));
 			String[] sponsors = ((String)theObj.get("courseSponsors")).split(",");
 			courses.setCourseSponsors(sponsors);
 			String[] faqids = ((String)theObj.get("FAQid")).split(",");

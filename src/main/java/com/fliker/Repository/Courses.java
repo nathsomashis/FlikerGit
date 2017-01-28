@@ -12,15 +12,58 @@ public class Courses {
 	private String courseimageid;
 	private String courseCategory;
 	private String courseDescription;
-	private String[] courseReview;
+	private String courseReview;
 	private String courseFee;
 	private String[] courseSponsors;
 	private String[] coursePartners;
 	private String[] FAQid;
 	private String courseownerid;
+	private String coursecreatedate;
+	private String coursepublisheddate;
+	private String coursecreatelocation;
+	private String coursepublishlocation;
+	private String[] courseweekids;
+	private String courselinkid;
 	
 	
 	
+	
+	public String getCoursecreatedate() {
+		return coursecreatedate;
+	}
+	public void setCoursecreatedate(String coursecreatedate) {
+		this.coursecreatedate = coursecreatedate;
+	}
+	public String getCoursepublisheddate() {
+		return coursepublisheddate;
+	}
+	public void setCoursepublisheddate(String coursepublisheddate) {
+		this.coursepublisheddate = coursepublisheddate;
+	}
+	public String getCoursecreatelocation() {
+		return coursecreatelocation;
+	}
+	public void setCoursecreatelocation(String coursecreatelocation) {
+		this.coursecreatelocation = coursecreatelocation;
+	}
+	public String getCoursepublishlocation() {
+		return coursepublishlocation;
+	}
+	public void setCoursepublishlocation(String coursepublishlocation) {
+		this.coursepublishlocation = coursepublishlocation;
+	}
+	public String[] getCourseweekids() {
+		return courseweekids;
+	}
+	public void setCourseweekids(String[] courseweekids) {
+		this.courseweekids = courseweekids;
+	}
+	public String getCourselinkid() {
+		return courselinkid;
+	}
+	public void setCourselinkid(String courselinkid) {
+		this.courselinkid = courselinkid;
+	}
 	public String[] getCourseSponsors() {
 		return courseSponsors;
 	}
@@ -77,10 +120,10 @@ public class Courses {
 		this.courseDescription = courseDescription;
 	}
 	
-	public String[] getCourseReview() {
+	public String getCourseReview() {
 		return courseReview;
 	}
-	public void setCourseReview(String[] courseReview) {
+	public void setCourseReview(String courseReview) {
 		this.courseReview = courseReview;
 	}
 	public String getCourseFee() {

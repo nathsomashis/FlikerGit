@@ -48,6 +48,9 @@ public class ProfilePreview {
 			profileinfo.setProfileImageid((String)theObj.get("profileImageid"));
 			profileinfo.setSalary((String)theObj.get("salary"));
 			profileinfo.setTellmeaboutme((String)theObj.get("tellmeaboutme"));
+			String[] courseids = ((String)theObj.get("courseids")).split(",");
+			
+			profileinfo.setCourseids(courseids);
 			
 			ProfilePreview profprev = new ProfilePreview();
 			
@@ -200,6 +203,26 @@ public class ProfilePreview {
 		return null;
 	}
 	
+	public String profileimage(String userid){
+		
+		String imageiddoc = "";
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "Profile");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			String imageid = (String)theObj.get("profileImageid");
+			if(imageid != null){
+				imageiddoc = imageid;
+			}else{
+				imageiddoc = "";
+			}
+			
+		}
+		
+		return imageiddoc;
+	}
 	
 	
 }

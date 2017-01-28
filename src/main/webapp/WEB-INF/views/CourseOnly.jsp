@@ -159,7 +159,7 @@
 			<!-- Note: The activity badge color changes when clicked and resets the number to 0
 				Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
 			<span id="activity" class="activity-dropdown"> <i
-				class="fa fa-user"></i> <b class="badge"> 21 </b>
+				class="fa fa-user"></i> <b class="badge">21 </b>
 			</span>
 
 			<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
@@ -419,14 +419,31 @@
 	<!-- Left panel : Navigation area -->
 	<!-- Note: This width of the aside area can be adjusted through LESS variables -->
 	<aside id="left-panel">
+		<%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String gender = (String)request.getAttribute("Gender");
+			String imageid = (String)request.getAttribute("ProfileImage");
+			String logo = "";
+			if(imageid == ""){
+				if(gender.equalsIgnoreCase("female")){
+					logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
+				}else{
+					logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
+				}
+			}
+			
+		
+		%>
+
 
 		<!-- User info -->
 		<div class="login-info">
 			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 
 				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <img src="img/avatars/sunny.png"
-					alt="me" class="online" /> <span> john.doe </span> <i
+				data-action="toggleShortcut"> <img src=<%=logo%>
+					alt="me" class="online" /> <span><%=fullname%> </span> <i
 					class="fa fa-angle-down"></i>
 			</a>
 
@@ -449,16 +466,14 @@
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
 		<li><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+				class="fa fa-lg fa-fw fa-retweet"></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
 		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
-				<span class="menu-item-parent">Profile</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<span class="menu-item-parent">Profile</span> </a></li>
 		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
-				<span class="menu-item-parent">Timeline</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<span class="menu-item-parent">Timeline</span> </a></li>
 		<li><a href="createpost?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
@@ -468,10 +483,10 @@
 		<li class="active"><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
 			<ul>
-				<li class=""><a href="courseEdu?" title="NewPost"><i
-						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
+				<li class="active"><a href="courseEdu?" title="NewPost"><i
+						class="fa fa-tags txt-color-blue"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
-				<li class="active"><a href="classroom?" title="ClassRoom"><i
+				<li ><a href="classroom?" title="ClassRoom"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
 			</ul></li>
@@ -653,7 +668,7 @@
 
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
-				<li>Home</li><li>Course</li><li>New Course</li>
+				<li>Course</li><li>New Course</li>
 			</ol>
 			<!-- end breadcrumb -->
 
@@ -678,13 +693,10 @@
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 						<h1 class="page-title txt-color-blueDark">
 							<i class="fa fa-pencil-square-o fa-fw "></i> 
-								Forms
-							<span>> 
-								Form Plugins
-							</span>
+								New Course
 						</h1>
 					</div>
-					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+					<!-- <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
 						<ul id="sparks" class="">
 							<li class="sparks-info">
 								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
@@ -705,7 +717,7 @@
 								</div>
 							</li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
 				
 				<div class="row">

@@ -25,8 +25,15 @@ public class Profile {
 	private String profiledataid;
 	private String[] skilliset;
 	private String[] projects;
+	private String[] courseids;
 	
 	
+	public String[] getCourseids() {
+		return courseids;
+	}
+	public void setCourseids(String[] courseids) {
+		this.courseids = courseids;
+	}
 	public String[] getSkilliset() {
 		return skilliset;
 	}
