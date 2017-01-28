@@ -25,6 +25,7 @@ import com.fliker.Repository.Courses;
 import com.fliker.Repository.FAQ;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.User;
+import com.fliker.Utility.PropertyManager;
 
 @Controller
 public class CourseController {
@@ -85,6 +86,11 @@ public class CourseController {
 		
 		ModelAndView mv = new ModelAndView(coursepage);
 		
+		PropertyManager propman = new PropertyManager();
+		
+		ArrayList properlist = propman.readPropertySection("CourseCategory", "Course.properties");
+		
+		mv.addObject("CourseCategory", properlist);
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", userfirstname+" "+userlastname);

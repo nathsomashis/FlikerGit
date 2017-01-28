@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page
+	import="org.springframework.web.servlet.ModelAndView,java.util.*,com.fliker.Repository.*,com.mongodb.DBObject,org.bson.types.ObjectId, java.text.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -425,25 +427,48 @@
 			String gender = (String)request.getAttribute("Gender");
 			String imageid = (String)request.getAttribute("ProfileImage");
 			String logo = "";
-			if(imageid == ""){
-				if(gender.equalsIgnoreCase("female")){
-					logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
-				}else{
-					logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
-				}
-			}
+			ArrayList subjectlist = (ArrayList)request.getAttribute("CourseCategory");
+			
 			
 		
 		%>
 
 
 		<!-- User info -->
+		
+		<%
+		/* if(imageid == ""){
+			if(gender.equalsIgnoreCase("female")){
+				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
+			}else{
+				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
+			}
+		}else{
+			
+		} */
+		
+		
+		%>
 		<div class="login-info">
 			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 
 				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <img src=<%=logo%>
-					alt="me" class="online" /> <span><%=fullname%> </span> <i
+				data-action="toggleShortcut"> 
+				<%if(imageid == ""){
+					if(gender.equalsIgnoreCase("female")){
+						%>
+							<img src="<c:url value='/resources/img/avatars/female.png' />"	alt="me" class="online" />
+						<%
+					}else{
+						%>
+							<img src="<c:url value='/resources/img/avatars/male.png' />"	alt="me" class="online" />
+						<% 
+					}
+				}else{%>
+				<img src=<%=logo%>	alt="me" class="online" />
+				<%} %>
+				
+				 <span><%=fullname%> </span> <i
 					class="fa fa-angle-down"></i>
 			</a>
 
@@ -754,24 +779,28 @@
 										</div>
 
 									</div>
-									<div class="col-sm-12">
+									<!-- <div class="col-sm-12">
 										<div class="form-group">
 											<div class="input-group">
-												<span class="input-group-addon">Category</span> <input
-													class="form-control input-lg"
-													placeholder="First Name" type="text" name="category"
-													id="category">
+												<span class="input-group-addon">Category</span> <section>
+													<label class="select">
+														<select class="input-sm">
+															
+															
+															
+														</select> <i></i> </label>
+												</section>
 
 											</div>
 										</div>
-									</div>
+									</div> -->
 									<div class="col-sm-12">
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">Course Fee</span> <input
 													class="form-control input-lg"
-													placeholder="First Name" type="text" name="category"
-													id="category">
+													placeholder="First Name" type="text" name="coursefee"
+													id="coursefee">
 
 											</div>
 										</div>
@@ -782,210 +811,7 @@
 								<div class="row">
 				
 						<!-- NEW COL START -->
-						<article class="col-sm-12">
-				
-							<!-- Widget ID (each widget will need unique ID)-->
-							<div class="jarviswidget" id="wid-id-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
-								<!-- widget options:
-								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-				
-								data-widget-colorbutton="false"
-								data-widget-editbutton="false"
-								data-widget-togglebutton="false"
-								data-widget-deletebutton="false"
-								data-widget-fullscreenbutton="false"
-								data-widget-custombutton="false"
-								data-widget-collapsed="true"
-								data-widget-sortable="false"
-				
-								-->
-								<header>
-									<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-									<h2>Sponsors & Partners </h2>
-				
-								</header>
-				
-								<!-- widget div-->
-								<div>
-				
-									<!-- widget edit box -->
-									<div class="jarviswidget-editbox">
-										<!-- This area used as dropdown edit box -->
-				
-									</div>
-									<!-- end widget edit box -->
-				
-									<!-- widget content -->
-									<div class="widget-body">
-				
-										<form class="">
-				
-											<fieldset>
-				
-												<div class="form-group">
-													<label>Select2 Plugin (multi-select)</label>
-													<select multiple style="width:100%" class="select2">
-														<optgroup label="Alaskan/Hawaiian Time Zone">
-															<option value="AK">Alaska</option>
-															<option value="HI">Hawaii</option>
-														</optgroup>
-														<optgroup label="Pacific Time Zone">
-															<option value="CA">California</option>
-															<option value="NV" selected="selected">Nevada</option>
-															<option value="OR">Oregon</option>
-															<option value="WA">Washington</option>
-														</optgroup>
-														<optgroup label="Mountain Time Zone">
-															<option value="AZ">Arizona</option>
-															<option value="CO">Colorado</option>
-															<option value="ID">Idaho</option>
-															<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
-															<option value="NM">New Mexico</option>
-															<option value="ND">North Dakota</option>
-															<option value="UT">Utah</option>
-															<option value="WY">Wyoming</option>
-														</optgroup>
-														<optgroup label="Central Time Zone">
-															<option value="AL">Alabama</option>
-															<option value="AR">Arkansas</option>
-															<option value="IL">Illinois</option>
-															<option value="IA">Iowa</option>
-															<option value="KS">Kansas</option>
-															<option value="KY">Kentucky</option>
-															<option value="LA">Louisiana</option>
-															<option value="MN">Minnesota</option>
-															<option value="MS">Mississippi</option>
-															<option value="MO">Missouri</option>
-															<option value="OK">Oklahoma</option>
-															<option value="SD">South Dakota</option>
-															<option value="TX">Texas</option>
-															<option value="TN">Tennessee</option>
-															<option value="WI">Wisconsin</option>
-														</optgroup>
-														<optgroup label="Eastern Time Zone">
-															<option value="CT">Connecticut</option>
-															<option value="DE">Delaware</option>
-															<option value="FL">Florida</option>
-															<option value="GA">Georgia</option>
-															<option value="IN">Indiana</option>
-															<option value="ME">Maine</option>
-															<option value="MD">Maryland</option>
-															<option value="MA">Massachusetts</option>
-															<option value="MI" selected="selected">Michigan</option>
-															<option value="NH">New Hampshire</option>
-															<option value="NJ">New Jersey</option>
-															<option value="NY">New York</option>
-															<option value="NC">North Carolina</option>
-															<option value="OH">Ohio</option>
-															<option value="PA">Pennsylvania</option>
-															<option value="RI">Rhode Island</option>
-															<option value="SC">South Carolina</option>
-															<option value="VT">Vermont</option>
-															<option value="VA">Virginia</option>
-															<option value="WV">West Virginia</option>
-														</optgroup>
-													</select>
-				
-													<div class="note">
-														<strong>Usage:</strong> &lt;select multiple style=&quot;width:100%&quot; class=&quot;select2&quot; &gt;...&lt;/select&gt;
-													</div>
-												</div>
-				
-											</fieldset>
-				
-											
-										</form>
-				
-									</div>
-									<!-- end widget content -->
-									<div class="widget-body">
-				
-										<form class="">
-				
-											<fieldset>
-				
-												<div class="form-group">
-													<label>Select2 Plugin (multi-select)</label>
-													<select multiple style="width:100%" class="select2">
-														<optgroup label="Alaskan/Hawaiian Time Zone">
-															<option value="AK">Alaska</option>
-															<option value="HI">Hawaii</option>
-														</optgroup>
-														<optgroup label="Pacific Time Zone">
-															<option value="CA">California</option>
-															<option value="NV" selected="selected">Nevada</option>
-															<option value="OR">Oregon</option>
-															<option value="WA">Washington</option>
-														</optgroup>
-														<optgroup label="Mountain Time Zone">
-															<option value="AZ">Arizona</option>
-															<option value="CO">Colorado</option>
-															<option value="ID">Idaho</option>
-															<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
-															<option value="NM">New Mexico</option>
-															<option value="ND">North Dakota</option>
-															<option value="UT">Utah</option>
-															<option value="WY">Wyoming</option>
-														</optgroup>
-														<optgroup label="Central Time Zone">
-															<option value="AL">Alabama</option>
-															<option value="AR">Arkansas</option>
-															<option value="IL">Illinois</option>
-															<option value="IA">Iowa</option>
-															<option value="KS">Kansas</option>
-															<option value="KY">Kentucky</option>
-															<option value="LA">Louisiana</option>
-															<option value="MN">Minnesota</option>
-															<option value="MS">Mississippi</option>
-															<option value="MO">Missouri</option>
-															<option value="OK">Oklahoma</option>
-															<option value="SD">South Dakota</option>
-															<option value="TX">Texas</option>
-															<option value="TN">Tennessee</option>
-															<option value="WI">Wisconsin</option>
-														</optgroup>
-														<optgroup label="Eastern Time Zone">
-															<option value="CT">Connecticut</option>
-															<option value="DE">Delaware</option>
-															<option value="FL">Florida</option>
-															<option value="GA">Georgia</option>
-															<option value="IN">Indiana</option>
-															<option value="ME">Maine</option>
-															<option value="MD">Maryland</option>
-															<option value="MA">Massachusetts</option>
-															<option value="MI" selected="selected">Michigan</option>
-															<option value="NH">New Hampshire</option>
-															<option value="NJ">New Jersey</option>
-															<option value="NY">New York</option>
-															<option value="NC">North Carolina</option>
-															<option value="OH">Ohio</option>
-															<option value="PA">Pennsylvania</option>
-															<option value="RI">Rhode Island</option>
-															<option value="SC">South Carolina</option>
-															<option value="VT">Vermont</option>
-															<option value="VA">Virginia</option>
-															<option value="WV">West Virginia</option>
-														</optgroup>
-													</select>
-				
-													<div class="note">
-														<strong>Usage:</strong> &lt;select multiple style=&quot;width:100%&quot; class=&quot;select2&quot; &gt;...&lt;/select&gt;
-													</div>
-												</div>
-				
-											</fieldset>
-				
-											
-										</form>
-				
-									</div>
-								</div>
-								<!-- end widget div -->
-				
-							</div>
-							<!-- end widget -->
-				
-						</article>
+						
 						
 						
 						
@@ -1619,10 +1445,12 @@
 									dictDefaultMessage : '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
 									dictResponseError : 'Error uploading file!'});
 							}); */
+							
+							
 
 							 $("#mydropzone1").dropzone(
 											{
-												url : "file?",
+												url : "fileCourseOne?",
 												paramName : "file",
 												addRemoveLinks : true,
 												maxFilesize : 500,
@@ -1633,7 +1461,7 @@
 							//Dropzone.autoDiscover = false;
 							$("#mydropzone2").dropzone(
 									{
-										url : "file?",
+										url : "fileCourseTwo?",
 										paramName : "file",	
 										addRemoveLinks : true,
 										maxFilesize : 500,
@@ -1644,7 +1472,7 @@
 							//Dropzone.autoDiscover = false;
 							$("#mydropzone3").dropzone(
 									{
-										url : "file?",
+										url : "fileCourseThree?",
 										paramName : "file",
 										addRemoveLinks : true,
 										maxFilesize : 500,
@@ -1655,7 +1483,7 @@
 							//Dropzone.autoDiscover = false;
 							$("#mydropzone4").dropzone(
 									{
-										url : "file?",
+										url : "fileCourseFour?",
 										paramName : "file",
 										addRemoveLinks : true,
 										maxFilesize : 500,

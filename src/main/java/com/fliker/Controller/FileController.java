@@ -148,6 +148,549 @@ public class FileController {
 		
 	}
 	
+	
+	@RequestMapping("/fileCourseOne")
+	public void fileCourseOne( MultipartHttpServletRequest request,HttpServletResponse response,@RequestParam("file") MultipartFile file1, HttpSession session ) {
+		System.out.println("in file controller");
+ 
+		/*try {
+            Iterator<String> itr = request.getFileNames();
+
+            while (itr.hasNext()) {
+                String uploadedFile = itr.next();
+                MultipartFile file = request.getFile(uploadedFile);
+                String mimeType = file.getContentType();
+                String filename = file.getOriginalFilename();
+                byte[] bytes = file.getBytes();
+
+                System.out.println("mimeType"+mimeType+"filename "+filename+" bytes "+bytes);
+            }
+        }
+        catch (Exception e) {
+            //return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
+        }*/
+		 /*try {
+			for (Part part : request.getParts()) { 
+			      System.out.println(part.getName()); 
+			      InputStream is = request.getPart(part.getName()).getInputStream(); 
+			      int i = is.available(); 
+			      byte[] b  = new byte[i]; 
+			      is.read(b); 
+			      System.out.println("Length : " + b.length); 
+			      String fileName = getFileName(part); 
+			      System.out.println("File name : " + fileName); 
+			      FileOutputStream os = new FileOutputStream("c:/temp/logs/" + fileName); 
+			      os.write(b); 
+			      is.close(); 
+			    }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		// Getting uploaded files from the request object
+        Map<String, MultipartFile> fileMap = request.getFileMap();
+
+        // Maintain a list to send back the files info. to the client side
+        List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
+
+        for (MultipartFile multipartFile : fileMap.values()) {
+
+            // Save the file to local disk
+            try {
+				saveFileToLocalDisk(multipartFile);
+				
+				FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+				
+				System.out.println(fileInfo.getName());
+				System.out.println(fileInfo.getSize());
+				System.out.println(fileInfo.getType());
+				System.out.println(fileInfo.getFileid());
+				String fileid = fileInfo.getFileid();
+			    fieldlist.add(fileInfo.getFileid());
+			    
+			    
+				FilePreview filepreview = new FilePreview();
+			      filepreview.saveFile(fileInfo);
+			      
+			      
+			    
+			    
+			    
+			    session.setAttribute("fileidsimage", fieldlist);
+			      
+			    ModelMap model = new ModelMap();
+				model.addAttribute("fieldlists", fieldlist);
+				System.out.println("fieldlist ++"+fieldlist);
+				
+				
+				
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("fileidlist", fieldlist);
+			    
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+            //FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+
+            // Save the file info to database
+            //fileInfo = saveFileToDatabase(fileInfo);
+
+            // adding the file info to the list
+            //uploadedFiles.add(fileInfo);
+            
+            
+            
+     }
+		
+	}
+	
+	
+	@RequestMapping("/fileCourseTwo")
+	public void fileCourseTwo( MultipartHttpServletRequest request,HttpServletResponse response,@RequestParam("file") MultipartFile file1, HttpSession session ) {
+		System.out.println("in file controller");
+ 
+		/*try {
+            Iterator<String> itr = request.getFileNames();
+
+            while (itr.hasNext()) {
+                String uploadedFile = itr.next();
+                MultipartFile file = request.getFile(uploadedFile);
+                String mimeType = file.getContentType();
+                String filename = file.getOriginalFilename();
+                byte[] bytes = file.getBytes();
+
+                System.out.println("mimeType"+mimeType+"filename "+filename+" bytes "+bytes);
+            }
+        }
+        catch (Exception e) {
+            //return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
+        }*/
+		 /*try {
+			for (Part part : request.getParts()) { 
+			      System.out.println(part.getName()); 
+			      InputStream is = request.getPart(part.getName()).getInputStream(); 
+			      int i = is.available(); 
+			      byte[] b  = new byte[i]; 
+			      is.read(b); 
+			      System.out.println("Length : " + b.length); 
+			      String fileName = getFileName(part); 
+			      System.out.println("File name : " + fileName); 
+			      FileOutputStream os = new FileOutputStream("c:/temp/logs/" + fileName); 
+			      os.write(b); 
+			      is.close(); 
+			    }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		// Getting uploaded files from the request object
+        Map<String, MultipartFile> fileMap = request.getFileMap();
+
+        // Maintain a list to send back the files info. to the client side
+        List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
+
+        for (MultipartFile multipartFile : fileMap.values()) {
+
+            // Save the file to local disk
+            try {
+				saveFileToLocalDisk(multipartFile);
+				
+				FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+				
+				System.out.println(fileInfo.getName());
+				System.out.println(fileInfo.getSize());
+				System.out.println(fileInfo.getType());
+				System.out.println(fileInfo.getFileid());
+				String fileid = fileInfo.getFileid();
+			    fieldlist.add(fileInfo.getFileid());
+			    
+			    
+				FilePreview filepreview = new FilePreview();
+			      filepreview.saveFile(fileInfo);
+			      
+			      
+			    
+			    
+			    
+			    session.setAttribute("fileidsimage", fieldlist);
+			      
+			    ModelMap model = new ModelMap();
+				model.addAttribute("fieldlists", fieldlist);
+				System.out.println("fieldlist ++"+fieldlist);
+				
+				
+				
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("fileidlist", fieldlist);
+			    
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+            //FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+
+            // Save the file info to database
+            //fileInfo = saveFileToDatabase(fileInfo);
+
+            // adding the file info to the list
+            //uploadedFiles.add(fileInfo);
+            
+            
+            
+     }
+		
+	}
+	
+	@RequestMapping("/fileCourseThree")
+	public void fileCourseThree( MultipartHttpServletRequest request,HttpServletResponse response,@RequestParam("file") MultipartFile file1, HttpSession session ) {
+		System.out.println("in file controller");
+ 
+		/*try {
+            Iterator<String> itr = request.getFileNames();
+
+            while (itr.hasNext()) {
+                String uploadedFile = itr.next();
+                MultipartFile file = request.getFile(uploadedFile);
+                String mimeType = file.getContentType();
+                String filename = file.getOriginalFilename();
+                byte[] bytes = file.getBytes();
+
+                System.out.println("mimeType"+mimeType+"filename "+filename+" bytes "+bytes);
+            }
+        }
+        catch (Exception e) {
+            //return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
+        }*/
+		 /*try {
+			for (Part part : request.getParts()) { 
+			      System.out.println(part.getName()); 
+			      InputStream is = request.getPart(part.getName()).getInputStream(); 
+			      int i = is.available(); 
+			      byte[] b  = new byte[i]; 
+			      is.read(b); 
+			      System.out.println("Length : " + b.length); 
+			      String fileName = getFileName(part); 
+			      System.out.println("File name : " + fileName); 
+			      FileOutputStream os = new FileOutputStream("c:/temp/logs/" + fileName); 
+			      os.write(b); 
+			      is.close(); 
+			    }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		// Getting uploaded files from the request object
+        Map<String, MultipartFile> fileMap = request.getFileMap();
+
+        // Maintain a list to send back the files info. to the client side
+        List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
+
+        for (MultipartFile multipartFile : fileMap.values()) {
+
+            // Save the file to local disk
+            try {
+				saveFileToLocalDisk(multipartFile);
+				
+				FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+				
+				System.out.println(fileInfo.getName());
+				System.out.println(fileInfo.getSize());
+				System.out.println(fileInfo.getType());
+				System.out.println(fileInfo.getFileid());
+				String fileid = fileInfo.getFileid();
+			    fieldlist.add(fileInfo.getFileid());
+			    
+			    
+				FilePreview filepreview = new FilePreview();
+			      filepreview.saveFile(fileInfo);
+			      
+			      
+			    
+			    
+			    
+			    session.setAttribute("fileidsimage", fieldlist);
+			      
+			    ModelMap model = new ModelMap();
+				model.addAttribute("fieldlists", fieldlist);
+				System.out.println("fieldlist ++"+fieldlist);
+				
+				
+				
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("fileidlist", fieldlist);
+			    
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+            //FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+
+            // Save the file info to database
+            //fileInfo = saveFileToDatabase(fileInfo);
+
+            // adding the file info to the list
+            //uploadedFiles.add(fileInfo);
+            
+            
+            
+     }
+		
+	}
+	
+	@RequestMapping("/fileCourseFour")
+	public void fileCourseFour( MultipartHttpServletRequest request,HttpServletResponse response,@RequestParam("file") MultipartFile file1, HttpSession session ) {
+		System.out.println("in file controller");
+ 
+		/*try {
+            Iterator<String> itr = request.getFileNames();
+
+            while (itr.hasNext()) {
+                String uploadedFile = itr.next();
+                MultipartFile file = request.getFile(uploadedFile);
+                String mimeType = file.getContentType();
+                String filename = file.getOriginalFilename();
+                byte[] bytes = file.getBytes();
+
+                System.out.println("mimeType"+mimeType+"filename "+filename+" bytes "+bytes);
+            }
+        }
+        catch (Exception e) {
+            //return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
+        }*/
+		 /*try {
+			for (Part part : request.getParts()) { 
+			      System.out.println(part.getName()); 
+			      InputStream is = request.getPart(part.getName()).getInputStream(); 
+			      int i = is.available(); 
+			      byte[] b  = new byte[i]; 
+			      is.read(b); 
+			      System.out.println("Length : " + b.length); 
+			      String fileName = getFileName(part); 
+			      System.out.println("File name : " + fileName); 
+			      FileOutputStream os = new FileOutputStream("c:/temp/logs/" + fileName); 
+			      os.write(b); 
+			      is.close(); 
+			    }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		// Getting uploaded files from the request object
+        Map<String, MultipartFile> fileMap = request.getFileMap();
+
+        // Maintain a list to send back the files info. to the client side
+        List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
+
+        for (MultipartFile multipartFile : fileMap.values()) {
+
+            // Save the file to local disk
+            try {
+				saveFileToLocalDisk(multipartFile);
+				
+				FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+				
+				System.out.println(fileInfo.getName());
+				System.out.println(fileInfo.getSize());
+				System.out.println(fileInfo.getType());
+				System.out.println(fileInfo.getFileid());
+				String fileid = fileInfo.getFileid();
+			    fieldlist.add(fileInfo.getFileid());
+			    
+			    
+				FilePreview filepreview = new FilePreview();
+			      filepreview.saveFile(fileInfo);
+			      
+			      
+			    
+			    
+			    
+			    session.setAttribute("fileidsimage", fieldlist);
+			      
+			    ModelMap model = new ModelMap();
+				model.addAttribute("fieldlists", fieldlist);
+				System.out.println("fieldlist ++"+fieldlist);
+				
+				
+				
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("fileidlist", fieldlist);
+			    
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+            //FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+
+            // Save the file info to database
+            //fileInfo = saveFileToDatabase(fileInfo);
+
+            // adding the file info to the list
+            //uploadedFiles.add(fileInfo);
+            
+            
+            
+     }
+		
+	}
+	
+	@RequestMapping("/fileCourse")
+	public void fileCourse( MultipartHttpServletRequest request,HttpServletResponse response,@RequestParam("file") MultipartFile file1, HttpSession session ) {
+		System.out.println("in file controller");
+ 
+		/*try {
+            Iterator<String> itr = request.getFileNames();
+
+            while (itr.hasNext()) {
+                String uploadedFile = itr.next();
+                MultipartFile file = request.getFile(uploadedFile);
+                String mimeType = file.getContentType();
+                String filename = file.getOriginalFilename();
+                byte[] bytes = file.getBytes();
+
+                System.out.println("mimeType"+mimeType+"filename "+filename+" bytes "+bytes);
+            }
+        }
+        catch (Exception e) {
+            //return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
+        }*/
+		 /*try {
+			for (Part part : request.getParts()) { 
+			      System.out.println(part.getName()); 
+			      InputStream is = request.getPart(part.getName()).getInputStream(); 
+			      int i = is.available(); 
+			      byte[] b  = new byte[i]; 
+			      is.read(b); 
+			      System.out.println("Length : " + b.length); 
+			      String fileName = getFileName(part); 
+			      System.out.println("File name : " + fileName); 
+			      FileOutputStream os = new FileOutputStream("c:/temp/logs/" + fileName); 
+			      os.write(b); 
+			      is.close(); 
+			    }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		// Getting uploaded files from the request object
+        Map<String, MultipartFile> fileMap = request.getFileMap();
+
+        // Maintain a list to send back the files info. to the client side
+        List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
+
+        for (MultipartFile multipartFile : fileMap.values()) {
+
+            // Save the file to local disk
+            try {
+				saveFileToLocalDisk(multipartFile);
+				
+				FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+				
+				System.out.println(fileInfo.getName());
+				System.out.println(fileInfo.getSize());
+				System.out.println(fileInfo.getType());
+				System.out.println(fileInfo.getFileid());
+				String fileid = fileInfo.getFileid();
+			    fieldlist.add(fileInfo.getFileid());
+			    
+			    
+				FilePreview filepreview = new FilePreview();
+			      filepreview.saveFile(fileInfo);
+			      
+			      
+			    
+			    
+			    
+			    session.setAttribute("fileidsimage", fieldlist);
+			      
+			    ModelMap model = new ModelMap();
+				model.addAttribute("fieldlists", fieldlist);
+				System.out.println("fieldlist ++"+fieldlist);
+				
+				
+				
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("fileidlist", fieldlist);
+			    
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+            //FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+
+            // Save the file info to database
+            //fileInfo = saveFileToDatabase(fileInfo);
+
+            // adding the file info to the list
+            //uploadedFiles.add(fileInfo);
+            
+            
+            
+     }
+		
+	}
+	
+	
 	private String getFileName(Part part) { 
 	    String partHeader = part.getHeader("content-disposition"); 
 	    System.out.println("Part Header = " + partHeader); 
