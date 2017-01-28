@@ -1455,7 +1455,24 @@
 												addRemoveLinks : true,
 												maxFilesize : 500,
 												dictDefaultMessage : '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
-												dictResponseError : 'Error uploading file!'
+												dictResponseError : 'Error uploading file!',
+												removedfile: function(file) {
+												    var name = file.name;
+												    alert(name);
+												    $.ajax({
+												        type: 'POST',
+												        url: 'delete.php',
+												        data: "id="+name,
+												        dataType: 'html'
+												    });
+												    var _ref;
+												    return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;        
+												},
+												init: function () {
+									                var mockFile = { name: "myimage.jpg", size: 12345, type: 'image/jpeg' };
+									                this.addFile.call(this, mockFile);
+									                this.options.thumbnail.call(this, mockFile, "<c:url value='/resources/img/avatars/female.png' />");
+									            }
 											});
 							
 							//Dropzone.autoDiscover = false;
