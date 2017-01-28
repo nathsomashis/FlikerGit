@@ -1458,21 +1458,22 @@
 												dictResponseError : 'Error uploading file!',
 												removedfile: function(file) {
 												    var name = file.name;
+												    alert(file);
 												    alert(name);
 												    $.ajax({
-												        type: 'POST',
-												        url: 'delete.php',
-												        data: "id="+name,
+												        url: 'fileCourseOneRemove?',
+												        data: "file="+name,
 												        dataType: 'html'
 												    });
 												    var _ref;
 												    return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;        
-												},
+												}
+												/* ,
 												init: function () {
 									                var mockFile = { name: "myimage.jpg", size: 12345, type: 'image/jpeg' };
 									                this.addFile.call(this, mockFile);
 									                this.options.thumbnail.call(this, mockFile, "<c:url value='/resources/img/avatars/female.png' />");
-									            }
+									            } */
 											});
 							
 							//Dropzone.autoDiscover = false;
