@@ -379,19 +379,19 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃÂ§ais</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃÂ±ol</a>
 							</li>
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> Ã¦âÂ¥Ã¦ÅÂ¬Ã¨ÂªÅ¾</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> Ã¤Â¸Â­Ã¦ââ¡</a>
 							</li>	
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
@@ -400,10 +400,10 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> ÃÂ ÃÆÃÂÃÂÃÂºÃÂ¸ÃÂ¹ ÃÂÃÂ·Ãâ¹ÃÂº</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Ã­â¢ÅÃªÂµÂ­Ã¬âÂ´</a>
 							</li>						
 							
 						</ul>
@@ -884,9 +884,84 @@
 																			</ul>
 																			<div class="tab-content">
 																				<div class="tab-pane active" id="tab-r1">
-																					<div class="row" >
-																					<article class="col-sm-12" style="height: 100%;margin-top: -10%">
-																						<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
+																					<!-- Widget ID (each widget will need unique ID)-->
+																						<div class="jarviswidget well" id="wid-id-4" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+																							<!-- widget options:
+																							usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+																			
+																							data-widget-colorbutton="false"
+																							data-widget-editbutton="false"
+																							data-widget-togglebutton="false"
+																							data-widget-deletebutton="false"
+																							data-widget-fullscreenbutton="false"
+																							data-widget-custombutton="false"
+																							data-widget-collapsed="true"
+																							data-widget-sortable="false"
+																			
+																							-->
+																							<!-- <header>
+																								<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+																								<h2>My Data </h2>
+																			
+																							</header> -->
+																			
+																							<!-- widget div-->
+																							<div>
+																			
+																								<!-- widget edit box -->
+																								<!-- <div class="jarviswidget-editbox">
+																									This area used as dropdown edit box
+																			
+																								</div> -->
+																								<!-- end widget edit box -->
+																			
+																								<!-- widget content -->
+																								<div class="widget-body">
+																									<%-- <p>
+																										Tabs inside well and pulled right
+																										<code>
+																											.tabs-pull-right
+																										</code>
+																										(Bordered Tabs)
+																									</p>
+																									<hr class="simple"> --%>
+																			
+																									<ul id="myTab3" class="nav nav-tabs tabs-pull-right bordered">
+																										<li >
+																											<a href="#l1" data-toggle="tab">Exercise</a>
+																										</li>
+																										<li class="pull-right">
+																											<a href="#l2" data-toggle="tab">Assignment</a>
+																										</li class="active">
+																										<li class="pull-right">
+																											<a href="#l3" data-toggle="tab">Course Videos</a>
+																										</li>
+																										<!-- <li class="dropdown pull-left">
+																											<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-gear"></i> <b class="caret"></b></a>
+																											<ul class="dropdown-menu">
+																												<li>
+																													<a href="#l3" data-toggle="tab">@fat</a>
+																												</li>
+																												<li>
+																													<a href="#l4" data-toggle="tab">@mdo</a>
+																												</li>
+																											</ul>
+																										</li> -->
+																									</ul>
+																			
+																									<div id="myTabContent3" class="tab-content padding-10">
+																										<div class="tab-pane fade " id="l1">
+																											<p>
+																												My therapist told me the way to achieve true inner peace is to finish what I start. So far I’ve finished two bags of M&Ms and a chocolate cake. I feel better already.
+																											</p>
+																										</div>
+																										<div class="tab-pane fade" id="l2">
+																											<p>
+																												Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
+																											</p>
+																										</div>
+																										<div class="tab-pane fade in active" id="l3">
+																											<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
 																								<header>
 																									<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
 																									<h2>Document Set</h2>
@@ -930,10 +1005,18 @@
 																								</div>
 																								
 																						</div>
-																						
-																					</article>
-																					
-																				</div>
+																										</div>
+																										
+																									</div>
+																			
+																								</div>
+																								<!-- end widget content -->
+																			
+																							</div>
+																							<!-- end widget div -->
+																			
+																						</div>
+																						<!-- end widget -->
 																				</div>
 																				<div class="tab-pane" id="tab-r2">
 																					<div class="row" >
@@ -1133,7 +1216,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<span class="txt-color-white">SmartAdmin 1.8.2 <span
-					class="hidden-xs"> - Web Application Framework</span> © 2014-2015
+					class="hidden-xs"> - Web Application Framework</span> Â© 2014-2015
 				</span>
 			</div>
 

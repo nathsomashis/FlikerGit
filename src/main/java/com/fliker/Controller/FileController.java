@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -51,10 +52,10 @@ public class FileController {
 	private LinkedList fileidlisttwo = new LinkedList();
 	private LinkedList fileidlistthird = new LinkedList();
 	private LinkedList fileidlistfourth = new LinkedList();
-	HashMap weekfirst = new HashMap();
-	HashMap weeksecond = new HashMap();
-	HashMap weekthird = new HashMap();
-	HashMap weekfourth = new HashMap();
+	LinkedHashMap weekfirst = new LinkedHashMap();
+	LinkedHashMap weeksecond = new LinkedHashMap();
+	LinkedHashMap weekthird = new LinkedHashMap();
+	LinkedHashMap weekfourth = new LinkedHashMap();
 	
 	
 	@RequestMapping("/file")
@@ -184,12 +185,19 @@ public class FileController {
 				
 				FileUpload fileInfo = getUploadedFileInfo(multipartFile);
 				
+				
+				
 				System.out.println(fileInfo.getName());
 				System.out.println(fileInfo.getSize());
 				System.out.println(fileInfo.getType());
 				System.out.println(fileInfo.getFileid());
 				fileids = fileInfo.getFileid();
 				filename = fileInfo.getName();
+				
+				if(filename.endsWith("doc")||filename.endsWith("docx")|| filename.endsWith("pdf")||filename.endsWith("txt")){
+					
+				}
+				
 				String fileid = fileInfo.getFileid();
 				fileidlistone.add(fileInfo.getFileid());
 			    
@@ -223,6 +231,7 @@ public class FileController {
 
      }
         weekfirst.put(fileids, filename);
+        fileidlistone.add(filename);
         
         ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfirst", weekfirst);
@@ -237,74 +246,18 @@ public class FileController {
 		String fileids="";
 		String filenames="";
 		
-		// Getting uploaded files from the request object
-        //Map<String, MultipartFile> fileMap = request.getFileMap();
-
-        // Maintain a list to send back the files info. to the client side
-        //List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
-
-        //for (MultipartFile multipartFile : fileMap.values()) {
-
-            // Save the file to local disk
-           // try {
-				//saveFileToLocalDisk(multipartFile);
-				
-				/*FileUpload fileInfo = getUploadedFileInfo(multipartFile);
-				
-				System.out.println(fileInfo.getName());
-				System.out.println(fileInfo.getSize());
-				System.out.println(fileInfo.getType());
-				System.out.println(fileInfo.getFileid());
-				fileids = fileInfo.getFileid();
-				filename = fileInfo.getName();*/
-				//String fileid = fileInfo.getFileid();
-				
 				System.out.println("file1 ><><>"+file1);
 				
-				/*Iterator it = weekfirst.entrySet().iterator();
+				Iterator it = weekfirst.entrySet().iterator();
 				while(it.hasNext()){
 					Map.Entry me = (Map.Entry)it.next();
-					if(((String)me.getValue()).equalsIgnoreCase(fileids)){
+					if(((String)me.getValue()).equalsIgnoreCase(file1)){
 						System.out.println((String)me.getKey());
-						//it.remove();
+						it.remove();
 					}
-				}*/
-				
-				//fileidlistone.add(fileInfo.getFileid());
-			    
-			    
-				/*FilePreview filepreview = new FilePreview();
-			      filepreview.saveFile(fileInfo);*/
-			      
-			      
-			    
-			    
-			    
-			    /*session.setAttribute("fileidsimage", fieldlist);
-			      
-			    ModelMap model = new ModelMap();
-				model.addAttribute("fieldlists", fieldlist);
-				System.out.println("fieldlist ++"+fieldlist);
+				}
 				
 				
-				
-				ModelAndView mv = new ModelAndView();
-				mv.addObject("fileidlist", fieldlist);*/
-			    
-				
-			/*} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-     }*/
-        /*weekfirst.put(fileids, filename);
-        
-        ServletContext context = request.getSession().getServletContext();
-		context.setAttribute("weekfirst", weekfirst);*/
 		
 	}
 	
@@ -750,4 +703,18 @@ public class FileController {
 	            return hexStr;
 	        }
 	 
+		
+		public LinkedHashMap<String,HashMap<LinkedList,String>> parse(){
+			
+			LinkedHashMap<String,HashMap<LinkedList,String>> assignmentset = new LinkedHashMap<String,HashMap<LinkedList,String>>();
+			
+			
+			
+			
+			
+			
+			
+			return assignmentset;
+		}
+		
 }
