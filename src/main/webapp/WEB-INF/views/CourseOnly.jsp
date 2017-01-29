@@ -379,19 +379,19 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃÂ§ais</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃÂ±ol</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
 							</li>
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> Ã¦âÂ¥Ã¦ÅÂ¬Ã¨ÂªÅ¾</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> Ã¤Â¸Â­Ã¦ââ¡</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
 							</li>	
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
@@ -400,10 +400,10 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> ÃÂ ÃÆÃÂÃÂÃÂºÃÂ¸ÃÂ¹ ÃÂÃÂ·Ãâ¹ÃÂº</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Ã­â¢ÅÃªÂµÂ­Ã¬âÂ´</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
 							</li>						
 							
 						</ul>
@@ -435,7 +435,7 @@
 
 
 		<!-- User info -->
-		
+
 		<%
 		/* if(imageid == ""){
 			if(gender.equalsIgnoreCase("female")){
@@ -453,23 +453,16 @@
 			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 
 				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> 
-				<%if(imageid == ""){
+				data-action="toggleShortcut"> <%if(imageid == ""){
 					if(gender.equalsIgnoreCase("female")){
-						%>
-							<img src="<c:url value='/resources/img/avatars/female.png' />"	alt="me" class="online" />
-						<%
+						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
+					alt="me" class="online" /> <%
 					}else{
-						%>
-							<img src="<c:url value='/resources/img/avatars/male.png' />"	alt="me" class="online" />
-						<% 
+						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
+					alt="me" class="online" /> <% 
 					}
-				}else{%>
-				<img src=<%=logo%>	alt="me" class="online" />
-				<%} %>
-				
-				 <span><%=fullname%> </span> <i
-					class="fa fa-angle-down"></i>
+				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
+				</span> <i class="fa fa-angle-down"></i>
 			</a>
 
 			</span>
@@ -484,38 +477,38 @@
 				-->
 
 			<ul>
-		<li><a href="searchresults?"><i
-				class="fa fa-lg fa-fw fa-search-plus"></i> <span
-				class="menu-item-parent">Search</span> </a></li>
-		<!-- <li><a href="dashboardanalysis?"><i
+				<li><a href="searchresults?"><i
+						class="fa fa-lg fa-fw fa-search-plus"></i> <span
+						class="menu-item-parent">Search</span> </a></li>
+				<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
-		<li><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet"></i> <span
-				class="menu-item-parent">Wall</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<li><a href="dashboardsocial?"><i
+						class="fa fa-lg fa-fw fa-retweet"></i> <span
+						class="menu-item-parent">Wall</span> <span
+						class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
-		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
-				<span class="menu-item-parent">Profile</span> </a></li>
-		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
-				<span class="menu-item-parent">Timeline</span> </a></li>
-		<li><a href="createpost?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
-		</li>
-		<!-- <li><a href="classroom?" title="NewPost"><i
+				<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
+						<span class="menu-item-parent">Profile</span> </a></li>
+				<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+						<span class="menu-item-parent">Timeline</span> </a></li>
+				<li><a href="createpost?" title="NewPost"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post
+							Your Activity</span></a></li>
+				<!-- <li><a href="classroom?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 		</li> -->
-		<li class="active"><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
-			<ul>
-				<li class="active"><a href="courseEdu?" title="NewPost"><i
-						class="fa fa-tags txt-color-blue"></i><span class="menu-item-parent">Courses</span></a>
-				</li>
-				<li ><a href="classroom?" title="ClassRoom"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-				</li>
-			</ul></li>
-		 <!-- <li><a href="#" title="Dashboard"><i
+				<li class="active"><a href="#" title="Dashboard"><i
+						class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
+					<ul>
+						<li class="active"><a href="courseEdu?" title="NewPost"><i
+								class="fa fa-tags txt-color-blue"></i><span
+								class="menu-item-parent">Courses</span></a></li>
+						<li><a href="classroom?" title="ClassRoom"><i
+								class="fa fa-lg fa-fw fa-inbox"></i><span
+								class="menu-item-parent">ClassRoom</span></a></li>
+					</ul></li>
+				<!-- <li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
 			<ul>		
 				<li class="active"><a href="#" title="NewCourse"><i
@@ -529,19 +522,19 @@
 											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>
 			</ul>
 		</li> -->
-		<li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-briefcase"></i> <span
-				class="menu-item-parent">Work</span></a>
-			<ul>
-				<li class=""><a href="ideatoimplement?" title="NewPost"><i
-						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
-				</li>
-				<li class=""><a href="jobanalysis?" title="NewJob"><i
-						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional Way</span></a>
-				</li>
-				
-			</ul></li>
-		<!-- <li class=""><a href="organizations?" title="Organizations"><i
+				<li><a href="#" title="Dashboard"><i
+						class="fa fa-lg fa-fw fa-briefcase"></i> <span
+						class="menu-item-parent">Work</span></a>
+					<ul>
+						<li class=""><a href="ideatoimplement?" title="NewPost"><i
+								class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+						</li>
+						<li class=""><a href="jobanalysis?" title="NewJob"><i
+								class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional
+									Way</span></a></li>
+
+					</ul></li>
+				<!-- <li class=""><a href="organizations?" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
 				<ul>
 				<li class=""><a href="createjob?" title="NewJob"><i
@@ -551,34 +544,34 @@
 						class="fa fa-group"></i><span class="menu-item-parent">Start New Company</span></a>
 				</li>
 			</ul></li> -->
-		<li class=""><a href="#" title="Organizations"><i
+				<li class=""><a href="#" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
-				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
-						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
-				</li>
-				<li class=""><a href="companies?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
-				</li>
-			</ul></li>		
+					<ul>
+						<li class=""><a href="createjob?" title="NewJob"><i
+								class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
+						</li>
+						<li class=""><a href="companies?" title="Companies"><i
+								class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
+						</li>
+					</ul></li>
 
-		<li class="chat-users top-menu-invisible"><a href="#"><i
-				class="fa fa-lg fa-fw fa-comment-o"><em
-					class="bg-color-pink flash animated">!</em></i> <span
-				class="menu-item-parent">Smart Chat API <sup>beta</sup></span></a>
-			<ul>
-				<li>
-					<!-- DISPLAY USERS -->
-					<div class="display-users">
+				<li class="chat-users top-menu-invisible"><a href="#"><i
+						class="fa fa-lg fa-fw fa-comment-o"><em
+							class="bg-color-pink flash animated">!</em></i> <span
+						class="menu-item-parent">Smart Chat API <sup>beta</sup></span></a>
+					<ul>
+						<li>
+							<!-- DISPLAY USERS -->
+							<div class="display-users">
 
-						<input class="form-control chat-user-filter" placeholder="Filter"
-							type="text"> <a href="#" class="usr" data-chat-id="cha1"
-							data-chat-fname="Sadi" data-chat-lname="Orlaf"
-							data-chat-status="busy"
-							data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
-							data-chat-alertshow="true" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+								<input class="form-control chat-user-filter"
+									placeholder="Filter" type="text"> <a href="#"
+									class="usr" data-chat-id="cha1" data-chat-fname="Sadi"
+									data-chat-lname="Orlaf" data-chat-status="busy"
+									data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
+									data-chat-alertshow="true" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/5.png' alt='Sadi Orlaf'>
 												<div class='usr-card-content'>
@@ -587,13 +580,13 @@
 												</div>
 											</div>
 										">
-							<i></i>Sadi Orlaf
-						</a> <a href="#" class="usr" data-chat-id="cha2"
-							data-chat-fname="Jessica" data-chat-lname="Dolof"
-							data-chat-status="online" data-chat-alertmsg=""
-							data-chat-alertshow="false" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Sadi Orlaf
+								</a> <a href="#" class="usr" data-chat-id="cha2"
+									data-chat-fname="Jessica" data-chat-lname="Dolof"
+									data-chat-status="online" data-chat-alertmsg=""
+									data-chat-alertshow="false" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/1.png' alt='Jessica Dolof'>
 												<div class='usr-card-content'>
@@ -602,12 +595,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Jessica Dolof
-						</a> <a href="#" class="usr" data-chat-id="cha3"
-							data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
-							data-chat-status="online" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Jessica Dolof
+								</a> <a href="#" class="usr" data-chat-id="cha3"
+									data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
+									data-chat-status="online" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/3.png' alt='Zekarburg Almandalie'>
 												<div class='usr-card-content'>
@@ -616,12 +609,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Zekarburg Almandalie
-						</a> <a href="#" class="usr" data-chat-id="cha4"
-							data-chat-fname="Barley" data-chat-lname="Krazurkth"
-							data-chat-status="away" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Zekarburg Almandalie
+								</a> <a href="#" class="usr" data-chat-id="cha4"
+									data-chat-fname="Barley" data-chat-lname="Krazurkth"
+									data-chat-status="away" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/4.png' alt='Barley Krazurkth'>
 												<div class='usr-card-content'>
@@ -630,12 +623,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Barley Krazurkth
-						</a> <a href="#" class="usr offline" data-chat-id="cha5"
-							data-chat-fname="Farhana" data-chat-lname="Amrin"
-							data-chat-status="incognito" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Barley Krazurkth
+								</a> <a href="#" class="usr offline" data-chat-id="cha5"
+									data-chat-fname="Farhana" data-chat-lname="Amrin"
+									data-chat-status="incognito" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/female.png' alt='Farhana Amrin'>
 												<div class='usr-card-content'>
@@ -644,12 +637,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Farhana Amrin (offline)
-						</a> <a href="#" class="usr offline" data-chat-id="cha6"
-							data-chat-fname="Lezley" data-chat-lname="Jacob"
-							data-chat-status="incognito" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Farhana Amrin (offline)
+								</a> <a href="#" class="usr offline" data-chat-id="cha6"
+									data-chat-fname="Lezley" data-chat-lname="Jacob"
+									data-chat-status="incognito" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/male.png' alt='Lezley Jacob'>
 												<div class='usr-card-content'>
@@ -658,15 +651,15 @@
 												</div>
 											</div>
 										">
-							<i></i>Lezley Jacob (offline)
-						</a> <a href="ajax/chat.html"
-							class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
-							the API</a>
+									<i></i>Lezley Jacob (offline)
+								</a> <a href="ajax/chat.html"
+									class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
+									the API</a>
 
-					</div> <!-- END DISPLAY USERS -->
-				</li>
-			</ul></li>
-	</ul>
+							</div> <!-- END DISPLAY USERS -->
+						</li>
+					</ul></li>
+			</ul>
 		</nav>
 
 
@@ -693,7 +686,8 @@
 
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
-				<li>Course</li><li>New Course</li>
+				<li>Course</li>
+				<li>New Course</li>
 			</ol>
 			<!-- end breadcrumb -->
 
@@ -714,14 +708,13 @@
 		<!-- MAIN CONTENT -->
 		<div id="content">
 
-				<div class="row">
-					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-						<h1 class="page-title txt-color-blueDark">
-							<i class="fa fa-pencil-square-o fa-fw "></i> 
-								New Course
-						</h1>
-					</div>
-					<!-- <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+			<div class="row">
+				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+					<h1 class="page-title txt-color-blueDark">
+						<i class="fa fa-pencil-square-o fa-fw "></i> New Course
+					</h1>
+				</div>
+				<!-- <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
 						<ul id="sparks" class="">
 							<li class="sparks-info">
 								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
@@ -743,43 +736,42 @@
 							</li>
 						</ul>
 					</div> -->
-				</div>
-				
-				<div class="row">
-				
-					<div class="col-sm-12">
-				
-				
-							<div class="well well-sm">
-				
-								<div class="row">
-								
-									<div class="col-sm-12">
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">Course</span> <input
-													class="form-control input-lg"
-													placeholder="Course Name" type="text" name="course"
-													id="course">
+			</div>
 
-											</div>
-										</div>
+			<div class="row">
+
+				<div class="col-sm-12">
+
+
+					<div class="well well-sm">
+
+						<div class="row">
+
+							<div class="col-sm-12">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon">Course</span> <input
+											class="form-control input-lg" placeholder="Course Name"
+											type="text" name="course" id="course">
 
 									</div>
-				
-									<div class="col-sm-12">
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">CourseDescription</span>
-												<input class="form-control input-lg"
-													placeholder="Course Description" type="text"
-													name="coursedescription" id="coursedescription">
+								</div>
 
-											</div>
-										</div>
+							</div>
+
+							<div class="col-sm-12">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon">CourseDescription</span> <input
+											class="form-control input-lg"
+											placeholder="Course Description" type="text"
+											name="coursedescription" id="coursedescription">
 
 									</div>
-									<!-- <div class="col-sm-12">
+								</div>
+
+							</div>
+							<!-- <div class="col-sm-12">
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">Category</span> <section>
@@ -794,418 +786,465 @@
 											</div>
 										</div>
 									</div> -->
-									<div class="col-sm-12">
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">Course Fee</span> <input
-													class="form-control input-lg"
-													placeholder="First Name" type="text" name="coursefee"
-													id="coursefee">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon">Course Fee</span> <input
+											class="form-control input-lg" placeholder="First Name"
+											type="text" name="coursefee" id="coursefee">
 
-											</div>
-										</div>
 									</div>
-									
-									
 								</div>
-								<div class="row">
-				
-						<!-- NEW COL START -->
-						
-						
-						
-						
-						
-						
+							</div>
+
+
 						</div>
-				
-							</div>
-				
-				
+						<div class="row">
+
+							<!-- NEW COL START -->
+
+
+
+
+
+
+						</div>
+
 					</div>
-				
+
+
 				</div>
-				<!-- widget grid -->
-				
-				<div class="row">
-				
-					<div class="col-sm-12">
-				
-				
-							<div class="well well-sm" style="background-color: transparent;border: 0">
-				
-								<div class="row">
-									<div class="well well-sm well-light">
-
-															<div class="jarviswidget" id="wid-id-5"
-																data-widget-colorbutton="false"
-																data-widget-editbutton="false"
-																data-widget-fullscreenbutton="false"
-																data-widget-custombutton="false"
-																data-widget-sortable="false">
-																
-																
-																<header>
-																	<h2>Course Material</h2>
-																	<div class="widget-toolbar hidden-phone">
-																		<div class="smart-form">
-																			
-																		</div>
-																	</div>
-																</header>
-																
-																<div>
-
-																	<!-- widget edit box -->
-																	<div class="jarviswidget-editbox">
-																		<!-- This area used as dropdown edit box -->
-
-																	</div>
-																	<!-- end widget edit box -->
-
-																	<!-- widget content -->
-																	<div class="widget-body">
-
-																		<div class="tabs-left">
-																			<ul class="nav nav-tabs tabs-left" id="demo-pill-nav">
-																				<li class="active"><a href="#tab-r1"
-																					data-toggle="tab"><span
-																						class="badge bg-color-blue txt-color-white">12</span>
-																						Week 1 </a></li>
-																				<li><a href="#tab-r2" data-toggle="tab"><span
-																						class="badge bg-color-blueDark txt-color-white">3</span>
-																						Week 2</a></li>
-																				<li><a href="#tab-r3" data-toggle="tab"><span
-																						class="badge bg-color-greenLight txt-color-white">0</span>
-																						Week 3</a></li>
-																				<li><a href="#tab-r4" data-toggle="tab"><span
-																						class="badge bg-color-greenLight txt-color-white">0</span>
-																						Week 4</a></li>		
-																			</ul>
-																			<div class="tab-content">
-																				<div class="tab-pane active" id="tab-r1">
-																					<!-- Widget ID (each widget will need unique ID)-->
-																						<div class="jarviswidget well" id="wid-id-4" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
-																							<!-- widget options:
-																							usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-																			
-																							data-widget-colorbutton="false"
-																							data-widget-editbutton="false"
-																							data-widget-togglebutton="false"
-																							data-widget-deletebutton="false"
-																							data-widget-fullscreenbutton="false"
-																							data-widget-custombutton="false"
-																							data-widget-collapsed="true"
-																							data-widget-sortable="false"
-																			
-																							-->
-																							<!-- <header>
-																								<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-																								<h2>My Data </h2>
-																			
-																							</header> -->
-																			
-																							<!-- widget div-->
-																							<div>
-																			
-																								<!-- widget edit box -->
-																								<!-- <div class="jarviswidget-editbox">
-																									This area used as dropdown edit box
-																			
-																								</div> -->
-																								<!-- end widget edit box -->
-																			
-																								<!-- widget content -->
-																								<div class="widget-body">
-																									<%-- <p>
-																										Tabs inside well and pulled right
-																										<code>
-																											.tabs-pull-right
-																										</code>
-																										(Bordered Tabs)
-																									</p>
-																									<hr class="simple"> --%>
-																			
-																									<ul id="myTab3" class="nav nav-tabs tabs-pull-right bordered">
-																										<li >
-																											<a href="#l1" data-toggle="tab">Exercise</a>
-																										</li>
-																										<li class="pull-right">
-																											<a href="#l2" data-toggle="tab">Assignment</a>
-																										</li class="active">
-																										<li class="pull-right">
-																											<a href="#l3" data-toggle="tab">Course Videos</a>
-																										</li>
-																										<!-- <li class="dropdown pull-left">
-																											<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-gear"></i> <b class="caret"></b></a>
-																											<ul class="dropdown-menu">
-																												<li>
-																													<a href="#l3" data-toggle="tab">@fat</a>
-																												</li>
-																												<li>
-																													<a href="#l4" data-toggle="tab">@mdo</a>
-																												</li>
-																											</ul>
-																										</li> -->
-																									</ul>
-																			
-																									<div id="myTabContent3" class="tab-content padding-10">
-																										<div class="tab-pane fade " id="l1">
-																											<p>
-																												My therapist told me the way to achieve true inner peace is to finish what I start. So far I’ve finished two bags of M&Ms and a chocolate cake. I feel better already.
-																											</p>
-																										</div>
-																										<div class="tab-pane fade" id="l2">
-																											<p>
-																												Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
-																											</p>
-																										</div>
-																										<div class="tab-pane fade in active" id="l3">
-																											<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
-																								<header>
-																									<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-																									<h2>Document Set</h2>
-																				
-																								</header>
-																								<div style="display: none">
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" ></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								<div>
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" id="mydropzone1"></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								
-																						</div>
-																										</div>
-																										
-																									</div>
-																			
-																								</div>
-																								<!-- end widget content -->
-																			
-																							</div>
-																							<!-- end widget div -->
-																			
-																						</div>
-																						<!-- end widget -->
-																				</div>
-																				<div class="tab-pane" id="tab-r2">
-																					<div class="row" >
-																					<article class="col-sm-12" style="height: 100%;margin-top: -10%">
-																						<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-1" data-widget-editbutton="false">
-																								<header>
-																									<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-																									<h2>Document Set</h2>
-																				
-																								</header>
-																								<div style="display: none">
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" ></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								<div>
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" id="mydropzone2"></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								
-																						</div>
-																						
-																					</article>
-																					
-																				</div>
-																				</div>
-																				<div class="tab-pane" id="tab-r3">
-																					<div class="row" >
-																					<article class="col-sm-12" style="height: 100%;margin-top: -10%">
-																						<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-3" data-widget-editbutton="false">
-																								<header>
-																									<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-																									<h2>Document Set</h2>
-																				
-																								</header>
-																								<div style="display: none">
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" ></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								<div>
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" id="mydropzone3"></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								
-																						</div>
-																						
-																					</article>
-																					
-																				</div>
-																				</div>
-																				<div class="tab-pane" id="tab-r4">
-																					<div class="row" >
-																					<article class="col-sm-12" style="height: 100%;margin-top: -10%">
-																						<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-4" data-widget-editbutton="false">
-																								<header>
-																									<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-																									<h2>Document Set</h2>
-																				
-																								</header>
-																								<div style="display: none">
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" ></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								<div>
-												
-																									<!-- widget edit box -->
-																									<div class="jarviswidget-editbox">
-																										<!-- This area used as dropdown edit box -->
-																				
-																									</div>
-																									<!-- end widget edit box -->
-																				
-																									<!-- widget content -->
-																									<div class="widget-body">
-																				
-																										<form action="upload.php" class="dropzone" id="mydropzone4"></form>
-																				
-																									</div>
-																									<!-- end widget content -->
-																				
-																								</div>
-																								
-																						</div>
-																						
-																					</article>
-																					
-																				</div>
-																				</div>
-																			</div>
-																		</div>
-
-																	</div>
-																	<!-- end widget content -->
-
-																</div>
-																<!-- end widget div -->
-																
-																
-																</div>
-									</div>							
-								</div>
-							</div>
-					</div>
-				</div>	
-				
-				
-				
-				
-			<div class="jarviswidget" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
-			
-				<div class="widget-body" >
-				
-					<button type="submit" onclick="geoFindMe()" class="btn btn-sm btn-primary pull-right">Publish New Course</button>
-					
-				</div>
-			
-			</div>			
-				<!-- end widget grid -->
 
 			</div>
+			<!-- widget grid -->
+
+			<div class="row">
+
+				<div class="col-sm-12">
+
+
+					<div class="well well-sm"
+						style="background-color: transparent; border: 0">
+
+						<div class="row">
+							<div class="well well-sm well-light">
+
+								<div class="jarviswidget" id="wid-id-5"
+									data-widget-colorbutton="false" data-widget-editbutton="false"
+									data-widget-fullscreenbutton="false"
+									data-widget-custombutton="false" data-widget-sortable="false">
+
+
+									<header>
+										<h2>Course Material</h2>
+										<div class="widget-toolbar hidden-phone">
+											<div class="smart-form"></div>
+										</div>
+									</header>
+
+									<div>
+
+										<!-- widget edit box -->
+										<div class="jarviswidget-editbox">
+											<!-- This area used as dropdown edit box -->
+
+										</div>
+										<!-- end widget edit box -->
+
+										<!-- widget content -->
+										<div class="widget-body">
+
+											<div class="tabs-left">
+												<ul class="nav nav-tabs tabs-left" id="demo-pill-nav">
+													<li class="active"><a href="#tab-r1" data-toggle="tab"><span
+															class="badge bg-color-blue txt-color-white">12</span>
+															Week 1 </a></li>
+													<li><a href="#tab-r2" data-toggle="tab"><span
+															class="badge bg-color-blueDark txt-color-white">3</span>
+															Week 2</a></li>
+													<li><a href="#tab-r3" data-toggle="tab"><span
+															class="badge bg-color-greenLight txt-color-white">0</span>
+															Week 3</a></li>
+													<li><a href="#tab-r4" data-toggle="tab"><span
+															class="badge bg-color-greenLight txt-color-white">0</span>
+															Week 4</a></li>
+												</ul>
+												<div class="tab-content">
+													<div class="tab-pane active" id="tab-r1">
+														<div class="row">
+															<article class="col-sm-12"
+																style="height: 100%; margin-top: -10%">
+																<div class="jarviswidget jarviswidget-color-blueLight"
+																	id="wid-id-0" data-widget-editbutton="false">
+																	<header>
+																		<span class="widget-icon"> <i
+																			class="fa fa-cloud"></i>
+																		</span>
+																		<h2>Document Set</h2>
+
+																	</header>
+																	<div style="display: none">
+
+																		<!-- widget edit box -->
+																		<div class="jarviswidget-editbox">
+																			<!-- This area used as dropdown edit box -->
+
+																		</div>
+																		<!-- end widget edit box -->
+
+																		<!-- widget content -->
+																		<div class="widget-body">
+
+																			<form action="upload.php" class="dropzone"></form>
+
+																		</div>
+																		<!-- end widget content -->
+
+																	</div>
+																	<div>
+
+																		<!-- widget edit box -->
+																		<div class="jarviswidget-editbox">
+																			<!-- This area used as dropdown edit box -->
+
+																		</div>
+																		<!-- end widget edit box -->
+
+																		<!-- widget content -->
+																		<div class="widget-body">
+
+																			<form action="upload.php" class="dropzone"
+																				id="mydropzone1"></form>
+
+																		</div>
+																		<!-- end widget content -->
+
+																	</div>
+
+																</div>
+
+															</article>
+
+														</div>
+														<div class="well well-sm well-light">
+
+
+															<h3>
+																Quiz <br> <small>Click button to add
+																	another quiz</small>
+															</h3>
+
+															<p>
+																<button id="add_tab" class="btn btn-primary">
+																	Add Quiz	</button>
+															</p>
+
+															<div id="tabs2">
+																<ul>
+																	<li><a href="#tabs-1">Questions</a></li>
+																</ul>
+																<div id="tabs-3">
+																	<p>
+																		Options : a) Option a.
+																				  b) Option b.
+																				  c) Option c.
+																				  d) Option d.																		
+																	</p>
+																	<p>
+																		Answer : b.
+																	</p>
+																</div>
+															</div>
+
+															<!-- Demo -->
+															<div id="addtab"
+																title="<div class='widget-header'><h4><i class='fa fa-plus'></i> Add another tab</h4></div>">
+
+																<form>
+
+																	<fieldset>
+																		<input name="authenticity_token" type="hidden">
+																		<div class="form-group">
+																			<label>Quiz</label> <input class="form-control"
+																				id="tab_title" value="" placeholder="Text field"
+																				type="text">
+																		</div>
+
+																		<div class="form-group">
+																			<label>Options</label>
+																			<textarea class="form-control" name="tab_content"
+																				id="tab_content" placeholder="Tab Content" rows="3"></textarea>
+																		</div>
+																		<div class="form-group">
+																			<label>Answer</label>
+																			<textarea class="form-control" name="tab_content"
+																				id="tab_content_ans" placeholder="Tab Content" rows="1"></textarea>
+																		</div>
+
+																	</fieldset>
+
+																</form>
+
+															</div>
+
+														</div>
+														<div class="well well-sm well-light">
+
+
+															<hr class="simple">
+															<h3>
+																Exercise <br> <small>Click button to
+																	add another question</small>
+															</h3>
+
+															<p>
+																<button id="add_cab" class="btn btn-primary">
+																	Add Exercise</button>
+															</p>
+
+															<div id="cabs2">
+																<ul>
+																	<li><a href="#cabs-1">Question</a></li>
+																</ul>
+																<div id="cabs-1">
+																	<p>Answer</p>
+																</div>
+															</div>
+
+															<div id="addcab"
+																title="<div class='widget-header'><h4><i class='fa fa-plus'></i> Add another tab</h4></div>">
+
+																<form>
+
+																	<fieldset>
+																		<input name="authenticity_token" type="hidden">
+																		<div class="form-group">
+																			<label>Tab Title</label> <input class="form-control"
+																				id="cab_title" value="" placeholder="Text field"
+																				type="text">
+																		</div>
+
+																		<div class="form-group">
+																			<label>Content</label>
+																			<textarea class="form-control" name="cab_content"
+																				id="cab_content" placeholder="Cab Content" rows="3"></textarea>
+																		</div>
+
+																	</fieldset>
+
+																</form>
+
+															</div>
+
+														</div>
+													</div>
+													<div class="tab-pane" id="tab-r2">
+														<div class="row">
+															<article class="col-sm-12"
+																style="height: 100%; margin-top: -10%">
+																<div class="jarviswidget jarviswidget-color-blueLight"
+																	id="wid-id-1" data-widget-editbutton="false">
+																	<header>
+																		<span class="widget-icon"> <i
+																			class="fa fa-cloud"></i>
+																		</span>
+																		<h2>Document Set</h2>
+
+																	</header>
+																	<div style="display: none">
+
+																		<!-- widget edit box -->
+																		<div class="jarviswidget-editbox">
+																			<!-- This area used as dropdown edit box -->
+
+																		</div>
+																		<!-- end widget edit box -->
+
+																		<!-- widget content -->
+																		<div class="widget-body">
+
+																			<form action="upload.php" class="dropzone"></form>
+
+																		</div>
+																		<!-- end widget content -->
+
+																	</div>
+																	<div>
+
+																		<!-- widget edit box -->
+																		<div class="jarviswidget-editbox">
+																			<!-- This area used as dropdown edit box -->
+
+																		</div>
+																		<!-- end widget edit box -->
+
+																		<!-- widget content -->
+																		<div class="widget-body">
+
+																			<form action="upload.php" class="dropzone"
+																				id="mydropzone2"></form>
+
+																		</div>
+																		<!-- end widget content -->
+
+																	</div>
+
+																</div>
+
+															</article>
+
+														</div>
+													</div>
+													<div class="tab-pane" id="tab-r3">
+														<div class="row">
+															<article class="col-sm-12"
+																style="height: 100%; margin-top: -10%">
+																<div class="jarviswidget jarviswidget-color-blueLight"
+																	id="wid-id-3" data-widget-editbutton="false">
+																	<header>
+																		<span class="widget-icon"> <i
+																			class="fa fa-cloud"></i>
+																		</span>
+																		<h2>Document Set</h2>
+
+																	</header>
+																	<div style="display: none">
+
+																		<!-- widget edit box -->
+																		<div class="jarviswidget-editbox">
+																			<!-- This area used as dropdown edit box -->
+
+																		</div>
+																		<!-- end widget edit box -->
+
+																		<!-- widget content -->
+																		<div class="widget-body">
+
+																			<form action="upload.php" class="dropzone"></form>
+
+																		</div>
+																		<!-- end widget content -->
+
+																	</div>
+																	<div>
+
+																		<!-- widget edit box -->
+																		<div class="jarviswidget-editbox">
+																			<!-- This area used as dropdown edit box -->
+
+																		</div>
+																		<!-- end widget edit box -->
+
+																		<!-- widget content -->
+																		<div class="widget-body">
+
+																			<form action="upload.php" class="dropzone"
+																				id="mydropzone3"></form>
+
+																		</div>
+																		<!-- end widget content -->
+
+																	</div>
+
+																</div>
+
+															</article>
+
+														</div>
+													</div>
+													<div class="tab-pane" id="tab-r4">
+														<div class="row">
+															<article class="col-sm-12"
+																style="height: 100%; margin-top: -10%">
+																<div class="jarviswidget jarviswidget-color-blueLight"
+																	id="wid-id-4" data-widget-editbutton="false">
+																	<header>
+																		<span class="widget-icon"> <i
+																			class="fa fa-cloud"></i>
+																		</span>
+																		<h2>Document Set</h2>
+
+																	</header>
+																	<div style="display: none">
+
+																		<!-- widget edit box -->
+																		<div class="jarviswidget-editbox">
+																			<!-- This area used as dropdown edit box -->
+
+																		</div>
+																		<!-- end widget edit box -->
+
+																		<!-- widget content -->
+																		<div class="widget-body">
+
+																			<form action="upload.php" class="dropzone"></form>
+
+																		</div>
+																		<!-- end widget content -->
+
+																	</div>
+																	<div>
+
+																		<!-- widget edit box -->
+																		<div class="jarviswidget-editbox">
+																			<!-- This area used as dropdown edit box -->
+
+																		</div>
+																		<!-- end widget edit box -->
+
+																		<!-- widget content -->
+																		<div class="widget-body">
+
+																			<form action="upload.php" class="dropzone"
+																				id="mydropzone4"></form>
+
+																		</div>
+																		<!-- end widget content -->
+
+																	</div>
+
+																</div>
+
+															</article>
+
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<!-- end widget content -->
+
+									</div>
+									<!-- end widget div -->
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="jarviswidget" id="wid-id-2"
+				data-widget-colorbutton="false" data-widget-editbutton="false"
+				data-widget-custombutton="false" data-widget-sortable="false">
+
+				<div class="widget-body">
+
+					<button type="submit" onclick="geoFindMe()"
+						class="btn btn-sm btn-primary pull-right">Publish New
+						Course</button>
+
+				</div>
+
+			</div>
+			<!-- end widget grid -->
+
+		</div>
 		<!-- END MAIN CONTENT -->
 
 	</div>
@@ -1216,7 +1255,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<span class="txt-color-white">SmartAdmin 1.8.2 <span
-					class="hidden-xs"> - Web Application Framework</span> Â© 2014-2015
+					class="hidden-xs"> - Web Application Framework</span> © 2014-2015
 				</span>
 			</div>
 
@@ -1777,104 +1816,128 @@
 							/*
 							 * Just Tabs
 							 */
-
+						
 							$('#tabs').tabs();
-
+						
 							/*
 							 *  Simple tabs adding and removing
 							 */
-
+						
 							$('#tabs2').tabs();
-
+							$('#cabs2').tabs();
+						
 							// Dynamic tabs
-							var tabTitle = $("#tab_title"), tabContent = $("#tab_content"), tabTemplate = "", tabCounter = 2;
-
+							var tabTitle = $("#tab_title"), tabContent = $("#tab_content"),tabContentAns = $("#tab_content_ans") , tabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href=''>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a></li>", tabCounter = 2;
+							var cabTitle = $("#cab_title"), cabContent = $("#cab_content"), cabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href=''>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a></li>", cabCounter = 2;
+						
 							var tabs = $("#tabs2").tabs();
-
+							var cabs = $("#cabs2").tabs();
+						
 							// modal dialog init: custom buttons and a "close" callback reseting the form inside
-							var dialog = $("#addtab")
-									.dialog(
-											{
-												autoOpen : false,
-												width : 600,
-												resizable : false,
-												modal : true,
-												buttons : [
-														{
-															html : "<i class='fa fa-times'></i>&nbsp; Cancel",
-															"class" : "btn btn-default",
-															click : function() {
-																$(this)
-																		.dialog(
-																				"close");
-
-															}
-														},
-														{
-
-															html : "<i class='fa fa-plus'></i>&nbsp; Add",
-															"class" : "btn btn-danger",
-															click : function() {
-																addTab();
-																$(this)
-																		.dialog(
-																				"close");
-															}
-														} ]
-											});
-
+							var dialog = $("#addtab").dialog({
+								autoOpen : false,
+								width : 600,
+								resizable : false,
+								modal : true,
+								buttons : [{
+									html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+									"class" : "btn btn-default",
+									click : function() {
+										$(this).dialog("close");
+						
+									}
+								}, {
+						
+									html : "<i class='fa fa-plus'></i>&nbsp; Add",
+									"class" : "btn btn-danger",
+									click : function() {
+										addTab();
+										$(this).dialog("close");
+									}
+								}]
+							});
+							
+							var dialog = $("#addcab").dialog({
+								autoOpen : false,
+								width : 600,
+								resizable : false,
+								modal : true,
+								buttons : [{
+									html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+									"class" : "btn btn-default",
+									click : function() {
+										$(this).dialog("close");
+						
+									}
+								}, {
+						
+									html : "<i class='fa fa-plus'></i>&nbsp; Add",
+									"class" : "btn btn-danger",
+									click : function() {
+										addCab();
+										$(this).dialog("close");
+									}
+								}]
+							});
+						
 							// addTab form: calls addTab function on submit and closes the dialog
-							/* var form = dialog.find("form").submit(function(event) {
+							var form = dialog.find("form").submit(function(event) {
 								addTab();
 								dialog.dialog("close");
 								event.preventDefault();
-							}); */
-
+							});
+							
+							var form = dialog.find("form").submit(function(event) {
+								addCab();
+								dialog.dialog("close");
+								event.preventDefault();
+							});
+						
 							// actual addTab function: adds new tab using the input from the form above
 							function addTab() {
-
-									var label = tabTitle.val() || "Tab "
-											+ tabCounter, id = "tabs-"
-											+ tabCounter, li = $(tabTemplate
-											.replace(/#\{href\}/g, "#" + id)
-											.replace(/#\{label\}/g, label)), tabContentHtml = tabContent
-											.val()
-											|| "Tab "
-											+ tabCounter
-											+ " content.";
-
-									tabs.find(".ui-tabs-nav").append(li);
-									tabs.append("<div id='" + id + "'><p>"
-											+ tabContentHtml + "</p></div>");
-									tabs.tabs("refresh");
-									tabCounter++;
-
-									// clear fields
-									$("#tab_title").val("");
-									$("#tab_content").val("");
 								
+								var label = tabTitle.val() || "Tab " + tabCounter, id = "tabs-" + tabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), tabContentHtml = tabContent.val()+tabContentAns.val() || "Tab " + tabCounter + " content.";
+						
+								tabs.find(".ui-tabs-nav").append(li);
+								tabs.append("<div id='" + id + "'><p>" + tabContentHtml + "</p></div>");
+								tabs.tabs("refresh");
+								tabCounter++;
+						
+								// clear fields
+								$("#tab_title").val("");
+								$("#tab_content").val("");
+								$("#tab_content_ans").val("");
 							}
-
+							
+							function addCab() {
+								var label = cabTitle.val() || "Cab " + cabCounter, id = "cabs-" + cabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), cabContentHtml = cabContent.val() || "Cab " + cabCounter + " content.";
+						
+								cabs.find(".ui-tabs-nav").append(li);
+								cabs.append("<div id='" + id + "'><p>" + cabContentHtml + "</p></div>");
+								cabs.tabs("refresh");
+								cabCounter++;
+						
+								// clear fields
+								$("#cab_title").val("");
+								$("#cab_content").val("");
+							}
+						
 							// addTab button: just opens the dialog
-							$("#add_tab").click(function(ev) {
-								ev.preventDefault();
+							$("#add_tab").button().click(function() {
 								dialog.dialog("open");
-								//alert("");
 							});
-
+							
+							$("#add_cab").button().click(function() {
+								dialog.dialog("open");
+							});
+						
 							// close icon: removing the tab on click
-							$("#tabs2")
-									.on(
-											"click",
-											'span.delete-tab',
-											function() {
-
-												var panelId = $(this).closest(
-														"li").remove().attr(
-														"aria-controls");
-												$("#" + panelId).remove();
-												tabs.tabs("refresh");
-											});
+							$("#tabs2").on("click", 'span.delete-tab', function() {
+						
+								var panelId = $(this).closest("li").remove().attr("aria-controls");
+								$("#" + panelId).remove();
+								tabs.tabs("refresh");
+							});
 
 							/*
 							 * ACCORDION
