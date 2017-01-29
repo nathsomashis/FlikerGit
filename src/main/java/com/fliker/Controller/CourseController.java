@@ -1,7 +1,11 @@
 package com.fliker.Controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,11 +30,23 @@ import com.fliker.Repository.FAQ;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.User;
 import com.fliker.Utility.PropertyManager;
+import com.fliker.Utility.UploadFileService;
 
 @Controller
 public class CourseController {
 
 	//private static final Logger logger = Logger.getLogger(CourseController.class);
+	
+	private LinkedList firstweekquizandassignset = new LinkedList();
+	private LinkedList secondweekquizandassignset = new LinkedList();
+	private LinkedList thirdweekquizandassignset = new LinkedList();
+	private LinkedList fourthweekquizandassignset = new LinkedList();
+	
+	private LinkedList firstweekquizandexercise = new LinkedList();
+	private LinkedList secondweekquizandexercise = new LinkedList();
+	private LinkedList thirdweekquizandexercise = new LinkedList();
+	private LinkedList fourthweekquizandexercise = new LinkedList();
+	
 	
 	
 	@RequestMapping("/course")
@@ -200,6 +216,50 @@ public class CourseController {
 		
 		mv.addObject("courselist", courselist);
 		return mv;
+	}
+	
+	
+	@RequestMapping("/courseAssignment")
+	public String courseAssignment(
+			@RequestParam(value = "content") String content, @RequestParam(value = "counter") String counter, @RequestParam(value = "week") String week ) {
+		System.out.println("in controller for videos");
+ 
+		CoursePreview courseprev = new CoursePreview();
+		
+		String resultcount = "true";
+		if(week.equalsIgnoreCase("week1")){
+			firstweekquizandassignset.add(courseprev.assignmentform(content, counter, week));
+		}else if(week.equalsIgnoreCase("week2")){
+			secondweekquizandassignset.add(courseprev.assignmentform(content, counter, week));
+		}else if(week.equalsIgnoreCase("week3")){
+			thirdweekquizandassignset.add(courseprev.assignmentform(content, counter, week));
+		}else{
+			fourthweekquizandassignset.add(courseprev.assignmentform(content, counter, week));
+		}
+		
+		return resultcount;
+	}
+	
+	
+	@RequestMapping("/courseExercise")
+	public String courseExercise(
+			@RequestParam(value = "content") String content, @RequestParam(value = "counter") String counter, @RequestParam(value = "week") String week ) {
+		System.out.println("in controller for videos");
+ 
+		CoursePreview courseprev = new CoursePreview();
+		
+		String resultcount = "true";
+		if(week.equalsIgnoreCase("week1")){
+			firstweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+		}else if(week.equalsIgnoreCase("week2")){
+			secondweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+		}else if(week.equalsIgnoreCase("week3")){
+			thirdweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+		}else{
+			fourthweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+		}
+		
+		return resultcount;
 	}
 	
 	

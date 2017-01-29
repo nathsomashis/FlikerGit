@@ -1896,12 +1896,17 @@
 							// actual addTab function: adds new tab using the input from the form above
 							function addTab() {
 								
-								var label = tabTitle.val() || "Tab " + tabCounter, id = "tabs-" + tabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), tabContentHtml = tabContent.val()+tabContentAns.val() || "Tab " + tabCounter + " content.";
+								var label = "Question " + tabCounter, id = "tabs-" + tabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), tabContentHtml = "Question ::"+tabTitle.val()+"\n"+" Options ::"+tabContent.val()+"\n"+"Answer ::"+tabContentAns.val() || "Tab " + tabCounter + " content.";
 						
 								tabs.find(".ui-tabs-nav").append(li);
 								tabs.append("<div id='" + id + "'><p>" + tabContentHtml + "</p></div>");
 								tabs.tabs("refresh");
 								tabCounter++;
+								$.ajax({
+							        url: 'courseAssignment?',
+							        data: "content="+tabContentHtml+"&counter="+tabCounter-1+"&week=week1",
+							        dataType: 'html'
+							    });
 						
 								// clear fields
 								$("#tab_title").val("");
@@ -1910,7 +1915,7 @@
 							}
 							
 							function addCab() {
-								var label = cabTitle.val() || "Cab " + cabCounter, id = "cabs-" + cabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), cabContentHtml = cabContent.val() || "Cab " + cabCounter + " content.";
+								var label = "Question " + cabCounter, id = "cabs-" + cabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), cabContentHtml = "Question ::"+cabTitle.val()+"\n"+"Answer ::"+cabContent.val() || "Cab " + cabCounter + " content.";
 						
 								cabs.find(".ui-tabs-nav").append(li);
 								cabs.append("<div id='" + id + "'><p>" + cabContentHtml + "</p></div>");

@@ -1,9 +1,13 @@
 package com.fliker.Modal;
 
+import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,6 +32,7 @@ import com.fliker.Repository.Organization;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.Reply;
 import com.fliker.Repository.User;
+import com.fliker.Utility.UploadFileService;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -682,5 +687,108 @@ public class CoursePreview {
 		courserevfullset.put(courserev, replylist);
 		return courserevfullset;
 	}
+	
+	public HashMap<String,LinkedHashMap<String,String>> courseparseStepOne(String content){
+		
+			int questionbegin = content.lastIndexOf("Question ::");
+			int questionend = content.indexOf(" Options ::");
+			int optionstart = content.lastIndexOf(" Options ::");
+			int optioniend = content.indexOf("Answer ::");
+			int answerstart = content.lastIndexOf("Answer ::");
+			int answerend = content.length();
+					
+			String question = content.substring(questionbegin, questionend-1);
+			
+			String options = content.substring( optionstart, optioniend);
+			
+			String answer = content.substring(answerstart, answerend);
+			
+			int optiona = options.indexOf("a)");
+			int optionb = options.indexOf("b)");
+			int optionc = options.indexOf("c)");
+			int optiond = options.indexOf("d)");
+			
+			String optionssectiona = options.substring(optiona, optionb-2);
+			String optionsectionb = options.substring(optionb, optionc-2);
+			String optionsectionc = options.substring(optionc, optiond-2);
+			String optionsectiond = options.substring(optiond, options.length());
+			
+			String optionaStr = "a";
+			String optionbStr = "b";
+			String optioncStr = "c";
+			String optiondStr = "d";
+			
+			if(answer.contains("a")){
+				optionaStr = optionaStr+":true";
+			}else if(answer.contains("b")){
+				optionbStr = optionbStr+":true";
+			}else if(answer.contains("c")){
+				optioncStr = optioncStr+":true";
+			}else{
+				optiondStr = optiondStr+":true";
+			}
+			
+			LinkedHashMap<String,String> answerset = new LinkedHashMap<String,String>();
+				answerset.put(optionaStr, optionssectiona);
+				answerset.put(optionbStr, optionsectionb);
+				answerset.put(optioncStr, optionsectionc);
+				answerset.put(optiondStr, optionsectiond);
+			
+				
+			HashMap<String,LinkedHashMap<String,String>> assignmentset = new HashMap<String,LinkedHashMap<String,String>>();
+			assignmentset.put(question, answerset);
+			
+			
+			return assignmentset;
+		
+	}
+	
+	public LinkedHashMap<String,HashMap<String, LinkedHashMap<String,String>>> assignmentform(String content, String counter, String week){
+		
+		CoursePreview courseprev = new CoursePreview();
+		HashMap<String,LinkedHashMap<String,String>> assignment = courseprev.courseparseStepOne(content);
+		
+		UploadFileService uploadservice = new UploadFileService();
+		
+		String uniqueid = "";
+		try {
+			uniqueid = uploadservice.makeSHA1Hash(week+counter);
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		LinkedHashMap<String,HashMap<String, LinkedHashMap<String,String>>> assignmentset = new LinkedHashMap<String,HashMap<String, LinkedHashMap<String,String>>>();
+		assignmentset.put(uniqueid, assignment);
+		
+		return assignmentset;
+		
+	}
+	
+	
+	public LinkedHashMap<String,HashMap<String, LinkedHashMap<String,String>>> exersizeform(String content, String counter, String week){
+		
+		CoursePreview courseprev = new CoursePreview();
+		HashMap<String,LinkedHashMap<String,String>> assignment = courseprev.courseparseStepOne(content);
+		
+		UploadFileService uploadservice = new UploadFileService();
+		
+		String uniqueid = "";
+		try {
+			uniqueid = uploadservice.makeSHA1Hash(week+counter);
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		LinkedHashMap<String,HashMap<String, LinkedHashMap<String,String>>> assignmentset = new LinkedHashMap<String,HashMap<String, LinkedHashMap<String,String>>>();
+		assignmentset.put(uniqueid, assignment);
+		
+		return assignmentset;
+		
+	}
+	
+	
+	
 
 }
