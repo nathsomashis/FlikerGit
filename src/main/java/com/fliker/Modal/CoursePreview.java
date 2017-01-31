@@ -743,6 +743,34 @@ public class CoursePreview {
 		
 	}
 	
+	
+	public HashMap<String,String> courseparseStepTwo(String content){
+		
+		int questionbegin = content.lastIndexOf("Question ::");
+		int questionend = content.indexOf(" Answer ::");
+		int optionstart = content.lastIndexOf(" Answer ::");
+		int optioniend = content.indexOf("Output ::");
+		int answerstart = content.lastIndexOf("Output ::");
+		int answerend = content.length();
+				
+		String question = content.substring(questionbegin, questionend-1);
+		
+		String answer = content.substring( optionstart, optioniend);
+		
+		String output = content.substring(answerstart, answerend);
+		
+		
+		
+		
+		
+		HashMap<String,String> answerset = new HashMap<String,String>();
+			answerset.put(question, answer+"::::"+output);
+		
+			
+		return answerset;
+	
+}
+	
 	public LinkedHashMap<String,HashMap<String, LinkedHashMap<String,String>>> assignmentform(String content, String counter, String week){
 		
 		CoursePreview courseprev = new CoursePreview();
@@ -766,10 +794,10 @@ public class CoursePreview {
 	}
 	
 	
-	public LinkedHashMap<String,HashMap<String, LinkedHashMap<String,String>>> exersizeform(String content, String counter, String week){
+	public LinkedHashMap<String,HashMap<String, String>> exersizeform(String content, String counter, String week){
 		
 		CoursePreview courseprev = new CoursePreview();
-		HashMap<String,LinkedHashMap<String,String>> assignment = courseprev.courseparseStepOne(content);
+		HashMap<String,String> execise = courseprev.courseparseStepTwo(content);
 		
 		UploadFileService uploadservice = new UploadFileService();
 		
@@ -781,10 +809,10 @@ public class CoursePreview {
 			e.printStackTrace();
 		}
 		
-		LinkedHashMap<String,HashMap<String, LinkedHashMap<String,String>>> assignmentset = new LinkedHashMap<String,HashMap<String, LinkedHashMap<String,String>>>();
-		assignmentset.put(uniqueid, assignment);
+		LinkedHashMap<String,HashMap<String, String>> execiseset = new LinkedHashMap<String,HashMap<String, String>>();
+		execiseset.put(uniqueid, execise);
 		
-		return assignmentset;
+		return execiseset;
 		
 	}
 	

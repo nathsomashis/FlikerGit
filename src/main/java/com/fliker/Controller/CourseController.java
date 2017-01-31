@@ -226,6 +226,7 @@ public class CourseController {
  
 		CoursePreview courseprev = new CoursePreview();
 		
+		
 		String resultcount = "true";
 		if(week.equalsIgnoreCase("week1")){
 			firstweekquizandassignset.add(courseprev.assignmentform(content, counter, week));
@@ -250,13 +251,13 @@ public class CourseController {
 		
 		String resultcount = "true";
 		if(week.equalsIgnoreCase("week1")){
-			firstweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+			firstweekquizandexercise.add(courseprev.exersizeform(content, counter, week));
 		}else if(week.equalsIgnoreCase("week2")){
-			secondweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+			secondweekquizandexercise.add(courseprev.exersizeform(content, counter, week));
 		}else if(week.equalsIgnoreCase("week3")){
-			thirdweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+			thirdweekquizandexercise.add(courseprev.exersizeform(content, counter, week));
 		}else{
-			fourthweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+			fourthweekquizandexercise.add(courseprev.exersizeform(content, counter, week));
 		}
 		
 		return resultcount;

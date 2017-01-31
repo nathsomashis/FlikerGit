@@ -927,68 +927,79 @@
 
 														</div>
 														<div class="well well-sm well-light">
+																<div class="jarviswidget jarviswidget-color-blue" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
+				<!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
 
-															<h3>
-																Quiz <br> <small>Click button to add
-																	another quiz</small>
-															</h3>
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+					<h2>Summernote (Lightweight)</h2>
 
-															<p>
-																<button id="add_tab" class="btn btn-primary">
-																	Add Quiz	</button>
-															</p>
+				</header>
 
-															<div id="tabs2">
-																<ul>
-																	<li><a href="#tabs-1">Questions</a></li>
-																</ul>
-																<div id="tabs-3">
-																	<p>
-																		Options : a) Option a.
-																				  b) Option b.
-																				  c) Option c.
-																				  d) Option d.																		
-																	</p>
-																	<p>
-																		Answer : b.
-																	</p>
-																</div>
+				<!-- widget div-->
+				<div>
+
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+
+					</div>
+					<!-- end widget edit box -->
+
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+
+						<div class="summernote">
+							
+						</div>
+						
+						<div class="widget-footer smart-form">
+
+						<div class="btn-group">
+							
+							<button class="btn btn-sm btn-primary" type="button">
+								<i class="fa fa-times"></i> Cancel
+							</button>	
+										
+						</div>
+						<div class="btn-group">
+							
+							<button class="btn btn-sm btn-success" type="button">
+								<i class="fa fa-check"></i> Save
+							</button>	
+							
+						</div>
+
+							<label class="checkbox pull-left">
+								<input type="checkbox" checked="checked" name="autosave" id="autosave">
+								<i></i>Auto Save 
+							</label> 
+
+						</div>
+						
+					</div>
+					<!-- end widget content -->
+
+				</div>
+				<!-- end widget div -->
+
+			</div>
+			<!-- end widget -->
+
+															
 															</div>
-
-															<!-- Demo -->
-															<div id="addtab"
-																title="<div class='widget-header'><h4><i class='fa fa-plus'></i> Add another tab</h4></div>">
-
-																<form>
-
-																	<fieldset>
-																		<input name="authenticity_token" type="hidden">
-																		<div class="form-group">
-																			<label>Quiz</label> <input class="form-control"
-																				id="tab_title" value="" placeholder="Text field"
-																				type="text">
-																		</div>
-
-																		<div class="form-group">
-																			<label>Options</label>
-																			<textarea class="form-control" name="tab_content"
-																				id="tab_content" placeholder="Tab Content" rows="3"></textarea>
-																		</div>
-																		<div class="form-group">
-																			<label>Answer</label>
-																			<textarea class="form-control" name="tab_content"
-																				id="tab_content_ans" placeholder="Tab Content" rows="1"></textarea>
-																		</div>
-
-																	</fieldset>
-
-																</form>
-
-															</div>
-
-														</div>
-														<div class="well well-sm well-light">
+														<%-- <div class="well well-sm well-light">
 
 
 															<hr class="simple">
@@ -1029,6 +1040,12 @@
 																			<textarea class="form-control" name="cab_content"
 																				id="cab_content" placeholder="Cab Content" rows="3"></textarea>
 																		</div>
+																		
+																		<div class="form-group">
+																			<label>Content</label>
+																			<textarea class="form-control" name="cab_content"
+																				id="cab_content_out" placeholder="Cab Content" rows="3"></textarea>
+																		</div>
 
 																	</fieldset>
 
@@ -1036,7 +1053,7 @@
 
 															</div>
 
-														</div>
+														</div> --%>
 													</div>
 													<div class="tab-pane" id="tab-r2">
 														<div class="row">
@@ -1545,6 +1562,10 @@
 		src="<c:url value='/resources/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js' />"></script>
 	<script
 		src="<c:url value='/resources/js/plugin/fuelux/wizard/wizard.min.js' />"></script>
+		
+	<script
+		src="<c:url value='/resources/js/plugin/summernote/summernote.min.js' />"></script>	
+	<!-- <script src="js/plugin/summernote/summernote.min.js"></script>	 -->
 
 
 	<script type="text/javascript">
@@ -1556,6 +1577,22 @@
 
 							pageSetUp();
 
+							$('.summernote').summernote({
+								height: 200,
+								toolbar: [
+							    ['style', ['style']],
+							    ['font', ['bold', 'italic', 'underline', 'clear']],
+							    ['fontname', ['fontname']],
+							    ['color', ['color']],
+							    ['para', ['ul', 'ol', 'paragraph']],
+							    ['height', ['height']],
+							    ['table', ['table']],
+							    ['insert', ['link', 'picture', 'hr']],
+							    ['view', ['fullscreen', 'codeview', 'help']]
+
+							  ]
+							});
+							
 							//Dropzone.autoDiscover = true;
 
 							 Dropzone.autoDiscover = false;
@@ -1654,67 +1691,6 @@
 								$("#log").scrollTop(0);
 							}
 
-							$("#city")
-									.autocomplete(
-											{
-												source : function(request,
-														response) {
-													$
-															.ajax({
-																url : "http://ws.geonames.org/searchJSON",
-																dataType : "jsonp",
-																data : {
-																	featureClass : "P",
-																	style : "full",
-																	maxRows : 12,
-																	name_startsWith : request.term
-																},
-																success : function(
-																		data) {
-																	response($
-																			.map(
-																					data.geonames,
-																					function(
-																							item) {
-																						return {
-																							label : item.name
-																									+ (item.adminName1 ? ", "
-																											+ item.adminName1
-																											: "")
-																									+ ", "
-																									+ item.countryName,
-																							value : item.name
-																						}
-																					}));
-																}
-															});
-												},
-												minLength : 2,
-												select : function(event, ui) {
-													log(ui.item ? "Selected: "
-															+ ui.item.label
-															: "Nothing selected, input was "
-																	+ this.value);
-												}
-											});
-
-							/*
-							 * Spinners
-							 */
-							$("#spinner").spinner();
-							$("#spinner-decimal").spinner({
-								step : 0.01,
-								numberFormat : "n"
-							});
-
-							$("#spinner-currency").spinner({
-								min : 5,
-								max : 2500,
-								step : 25,
-								start : 1000,
-								numberFormat : "C"
-							});
-
 							/*
 							 * CONVERT DIALOG TITLE TO HTML
 							 * REF: http://stackoverflow.com/questions/14488774/using-html-in-a-dialogs-title-in-jquery-ui-1-10
@@ -1770,49 +1746,7 @@
 														} ]
 											});
 
-							/*
-							 * DIALOG HEADER ICON
-							 */
-
-							// Modal Link
-							$('#modal_link').click(function() {
-								$('#dialog-message').dialog('open');
-								return false;
-							});
-
-							$("#dialog-message")
-									.dialog(
-											{
-												autoOpen : false,
-												modal : true,
-												title : "<div class='widget-header'><h4><i class='icon-ok'></i> jQuery UI Dialog</h4></div>",
-												buttons : [
-														{
-															html : "Cancel",
-															"class" : "btn btn-default",
-															click : function() {
-																$(this)
-																		.dialog(
-																				"close");
-															}
-														},
-														{
-															html : "<i class='fa fa-check'></i>&nbsp; OK",
-															"class" : "btn btn-primary",
-															click : function() {
-																$(this)
-																		.dialog(
-																				"close");
-															}
-														} ]
-
-											});
-
-							/*
-							 * Remove focus from buttons
-							 */
-							$('.ui-dialog :button').blur();
-
+							
 							/*
 							 * Just Tabs
 							 */
@@ -1824,14 +1758,11 @@
 							 */
 						
 							$('#tabs2').tabs();
-							$('#cabs2').tabs();
 						
 							// Dynamic tabs
-							var tabTitle = $("#tab_title"), tabContent = $("#tab_content"),tabContentAns = $("#tab_content_ans") , tabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href=''>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a></li>", tabCounter = 2;
-							var cabTitle = $("#cab_title"), cabContent = $("#cab_content"), cabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href=''>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a></li>", cabCounter = 2;
+							var tabTitle = $("#tab_title"), tabContent = $("#tab_content"), tabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href='#'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #</a></li>", tabCounter = 2;
 						
 							var tabs = $("#tabs2").tabs();
-							var cabs = $("#cabs2").tabs();
 						
 							// modal dialog init: custom buttons and a "close" callback reseting the form inside
 							var dialog = $("#addtab").dialog({
@@ -1856,29 +1787,6 @@
 									}
 								}]
 							});
-							
-							var dialog = $("#addcab").dialog({
-								autoOpen : false,
-								width : 600,
-								resizable : false,
-								modal : true,
-								buttons : [{
-									html : "<i class='fa fa-times'></i>&nbsp; Cancel",
-									"class" : "btn btn-default",
-									click : function() {
-										$(this).dialog("close");
-						
-									}
-								}, {
-						
-									html : "<i class='fa fa-plus'></i>&nbsp; Add",
-									"class" : "btn btn-danger",
-									click : function() {
-										addCab();
-										$(this).dialog("close");
-									}
-								}]
-							});
 						
 							// addTab form: calls addTab function on submit and closes the dialog
 							var form = dialog.find("form").submit(function(event) {
@@ -1886,53 +1794,23 @@
 								dialog.dialog("close");
 								event.preventDefault();
 							});
-							
-							var form = dialog.find("form").submit(function(event) {
-								addCab();
-								dialog.dialog("close");
-								event.preventDefault();
-							});
 						
 							// actual addTab function: adds new tab using the input from the form above
 							function addTab() {
-								
-								var label = "Question " + tabCounter, id = "tabs-" + tabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), tabContentHtml = "Question ::"+tabTitle.val()+"\n"+" Options ::"+tabContent.val()+"\n"+"Answer ::"+tabContentAns.val() || "Tab " + tabCounter + " content.";
+								var label = tabTitle.val() || "Tab " + tabCounter, id = "tabs-" + tabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), tabContentHtml = tabContent.val() || "Tab " + tabCounter + " content.";
 						
 								tabs.find(".ui-tabs-nav").append(li);
 								tabs.append("<div id='" + id + "'><p>" + tabContentHtml + "</p></div>");
 								tabs.tabs("refresh");
 								tabCounter++;
-								$.ajax({
-							        url: 'courseAssignment?',
-							        data: "content="+tabContentHtml+"&counter="+tabCounter-1+"&week=week1",
-							        dataType: 'html'
-							    });
 						
 								// clear fields
 								$("#tab_title").val("");
 								$("#tab_content").val("");
-								$("#tab_content_ans").val("");
-							}
-							
-							function addCab() {
-								var label = "Question " + cabCounter, id = "cabs-" + cabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), cabContentHtml = "Question ::"+cabTitle.val()+"\n"+"Answer ::"+cabContent.val() || "Cab " + cabCounter + " content.";
-						
-								cabs.find(".ui-tabs-nav").append(li);
-								cabs.append("<div id='" + id + "'><p>" + cabContentHtml + "</p></div>");
-								cabs.tabs("refresh");
-								cabCounter++;
-						
-								// clear fields
-								$("#cab_title").val("");
-								$("#cab_content").val("");
 							}
 						
 							// addTab button: just opens the dialog
 							$("#add_tab").button().click(function() {
-								dialog.dialog("open");
-							});
-							
-							$("#add_cab").button().click(function() {
 								dialog.dialog("open");
 							});
 						
@@ -2169,28 +2047,6 @@
 								connect : true
 							});
 
-							slider3.noUiSlider.on('update', function(values) {
-								$(".nouislider-value").text(
-										values[0] + " - " + values[1]);
-							});
-
-							slider3.noUiSlider.on('slide', function(values) {
-								//var values = $(this).val();
-								$(".nouislider-value").text(
-										values[0] + " - " + values[1]);
-							});
-
-							$("#range-slider-3").ionRangeSlider({
-								min : 0,
-								from : 2.3,
-								max : 10,
-								type : 'single',
-								step : 0.1,
-								postfix : " mm",
-								prettify : false,
-								grid : true,
-								inputValuesSeparator : ';'
-							});
 
 							var myDropzoneTheFirst = new Dropzone(
 									'#mydropzone', //id of drop zone element 1
