@@ -40,14 +40,14 @@ public class UploadFileService {
 		//writeToFile(uploadedInputStream, uploadedFileLocation,fileDetail.getFileName());
 
 		String output = "File uploaded to : " + uploadedFileLocation;
-		URI uri = null;
+		/*URI uri = null;
 		try {
 			uri = new URI ("\\profile?");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Response.temporaryRedirect(uri);
+		Response.temporaryRedirect(uri);*/
 
 		return Response.status(200).entity(output).build();
 

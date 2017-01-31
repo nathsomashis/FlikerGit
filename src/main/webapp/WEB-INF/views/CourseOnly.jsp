@@ -1605,23 +1605,48 @@
 							pageSetUp();
 
 							$('.summernote').summernote({
-								height: 200,
+								height: 230,
+								minHeight: null,
+								maxHeight: null,
+								focus: false,
+								callbacks: {
+								onImageUpload: function(files, editor, welEditable) {
+									 for (var i = files.length - 1; i >= 0; i--) {
+									//sendFile(files[i], this);
+										 var form_data = new FormData();
+										 alert("in the file upload 12");
+											form_data.append('file', file);
+											$.ajax({
+											data: form_data,
+											type: "POST",
+											url: 'file?',
+											cache: false,
+											contentType: false,
+											enctype: 'multipart/form-data',
+											processData: false,
+											success: function(url) {
+											$(el).summernote('editor.insertImage', url);
+											}
+											});
+								} 
+								alert("in the file upload");
+								},
+								},
+								dialogsFade: true,
+								fontNames: ['Roboto Light', 'Roboto Regular', 'Roboto Bold'],
 								toolbar: [
-							    ['style', ['style']],
-							    ['font', ['bold', 'italic', 'underline', 'clear']],
-							    ['fontname', ['fontname']],
-							    ['color', ['color']],
-							    ['para', ['ul', 'ol', 'paragraph']],
-							    ['height', ['height']],
-							    ['table', ['table']],
-							    ['insert', ['link', 'picture', 'hr']],
-							    ['view', ['fullscreen', 'codeview', 'help']]
-
-							  ],
-							  onImageUpload: function(files, editor, welEditable) {
-					                sendFile(files[0], editor, welEditable);
-					            }
-							});
+								['fontname', ['fontname']],
+								['fontsize', ['fontsize']],
+								['font', ['style','bold', 'italic', 'underline', 'clear']],
+								['color', ['color']],
+								['para', ['ul', 'ol', 'paragraph']],
+								//['height', ['height']],
+								['table', ['table']],
+								['insert', ['picture','link']],
+								//['view', ['fullscreen', 'codeview']],
+								//['misc', ['undo','redo']]
+								]
+								});
 							
 							$('#saveweekone').click(function(){
 								
@@ -1635,6 +1660,23 @@
 								
 								
 							});
+							
+							function sendFile(file, el) {
+								var form_data = new FormData();
+								form_data.append('file', file);
+								$.ajax({
+								data: form_data,
+								type: "POST",
+								url: 'files?',
+								cache: false,
+								contentType: false,
+								enctype: 'multipart/form-data',
+								processData: false,
+								success: function(url) {
+								$(el).summernote('editor.insertImage', url);
+								}
+								});
+								}
 							
 							//Dropzone.autoDiscover = true;
 
@@ -2117,23 +2159,22 @@
 	</script>
 
 	<script>
-	function sendFile(file, editor, welEditable) {
-		
-		alert("in the upload "+file);
-        /* data = new FormData();
-        data.append("file", file);
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: "Your URL POST (php)",
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(url) {
-                editor.insertImage(welEditable, url);
-            }
-        }); */
-    }
+	function sendFile(file, el) {
+		var form_data = new FormData();
+		form_data.append('file', file);
+		$.ajax({
+		data: form_data,
+		type: "POST",
+		url: 'files?',
+		cache: false,
+		contentType: false,
+		enctype: 'multipart/form-data',
+		processData: false,
+		success: function(url) {
+		$(el).summernote('editor.insertImage', url);
+		}
+		});
+		}
 		
 	</script>
 
