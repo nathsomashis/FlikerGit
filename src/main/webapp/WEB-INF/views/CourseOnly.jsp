@@ -100,6 +100,8 @@
 <link href='<c:url value="/resources/img/splash/iphone.png" />'
 	rel="apple-touch-startup-image"
 	media="screen and (max-device-width: 320px)">
+	
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">	
 
 </head>
 
@@ -928,132 +930,157 @@
 														</div>
 														<div class="well well-sm well-light">
 																<div class="jarviswidget jarviswidget-color-blue" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
-				<!-- widget options:
-				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-				data-widget-colorbutton="false"
-				data-widget-editbutton="false"
-				data-widget-togglebutton="false"
-				data-widget-deletebutton="false"
-				data-widget-fullscreenbutton="false"
-				data-widget-custombutton="false"
-				data-widget-collapsed="true"
-				data-widget-sortable="false"
-
-				-->
-				<header>
-					<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
-					<h2>Summernote (Lightweight)</h2>
-
-				</header>
-
-				<!-- widget div-->
-				<div>
-
-					<!-- widget edit box -->
-					<div class="jarviswidget-editbox">
-						<!-- This area used as dropdown edit box -->
-
-					</div>
-					<!-- end widget edit box -->
-
-					<!-- widget content -->
-					<div class="widget-body no-padding">
-
-						<div class="summernote">
-							
-						</div>
-						
-						<div class="widget-footer smart-form">
-
-						<div class="btn-group">
-							
-							<button class="btn btn-sm btn-primary" type="button">
-								<i class="fa fa-times"></i> Cancel
-							</button>	
-										
-						</div>
-						<div class="btn-group">
-							
-							<button class="btn btn-sm btn-success" type="button">
-								<i class="fa fa-check"></i> Save
-							</button>	
-							
-						</div>
-
-							<label class="checkbox pull-left">
-								<input type="checkbox" checked="checked" name="autosave" id="autosave">
-								<i></i>Auto Save 
-							</label> 
-
-						</div>
-						
-					</div>
-					<!-- end widget content -->
-
-				</div>
-				<!-- end widget div -->
-
-			</div>
-			<!-- end widget -->
+																<!-- widget options:
+																usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+												
+																data-widget-colorbutton="false"
+																data-widget-editbutton="false"
+																data-widget-togglebutton="false"
+																data-widget-deletebutton="false"
+																data-widget-fullscreenbutton="false"
+																data-widget-custombutton="false"
+																data-widget-collapsed="true"
+																data-widget-sortable="false"
+												
+																-->
+																<header>
+																	<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+																	<h2>Assignment(<span style="font-size: xx-small;">Please follow the proper format shown below for proper submission</span> )</h2>
+																	
+																</header>
+																	
+																<!-- widget div-->
+																<div>
+												
+																	<!-- widget edit box -->
+																	<div class="jarviswidget-editbox">
+																		<!-- This area used as dropdown edit box -->
+												
+																	</div>
+																	<!-- end widget edit box -->
+												
+																	<!-- widget content -->
+																	<div class="widget-body no-padding">
+												
+																		<div class="summernote" id="summerassignweek1">
+																				<p>	  Question :: Write your question ?</p>
+																				<p>	  Option :: a)Option a. b)Option b. c)Option c. d)Option d.</p>
+																				<p>	  Content :: Any image or pdf or helping doc for supporting question.</p>
+																				<p>	  Answer :: b.</p>
+																		</div>
+																		
+																		<div class="widget-footer smart-form">
+												
+																		<div class="btn-group">
+																			
+																			<button class="btn btn-sm btn-primary" type="button" >
+																				<i class="fa fa-times"></i> Cancel
+																			</button>	
+																						
+																		</div>
+																		<div class="btn-group">
+																			
+																			<button class="btn btn-sm btn-success" type="button" id="saveweekone">
+																				<i class="fa fa-check"></i> Save
+																			</button>	
+																			
+																		</div>
+												
+																			<label class="checkbox pull-left">
+																				<input type="checkbox" checked="checked" name="autosave" id="autosave">
+																				<i></i>Auto Save 
+																			</label> 
+												
+																		</div>
+																		
+																	</div>
+																	<!-- end widget content -->
+												
+																</div>
+																<!-- end widget div -->
+												
+															</div>
+															<!-- end widget -->
 
 															
 															</div>
-														<%-- <div class="well well-sm well-light">
-
-
-															<hr class="simple">
-															<h3>
-																Exercise <br> <small>Click button to
-																	add another question</small>
-															</h3>
-
-															<p>
-																<button id="add_cab" class="btn btn-primary">
-																	Add Exercise</button>
-															</p>
-
-															<div id="cabs2">
-																<ul>
-																	<li><a href="#cabs-1">Question</a></li>
-																</ul>
-																<div id="cabs-1">
-																	<p>Answer</p>
-																</div>
-															</div>
-
-															<div id="addcab"
-																title="<div class='widget-header'><h4><i class='fa fa-plus'></i> Add another tab</h4></div>">
-
-																<form>
-
-																	<fieldset>
-																		<input name="authenticity_token" type="hidden">
-																		<div class="form-group">
-																			<label>Tab Title</label> <input class="form-control"
-																				id="cab_title" value="" placeholder="Text field"
-																				type="text">
-																		</div>
-
-																		<div class="form-group">
-																			<label>Content</label>
-																			<textarea class="form-control" name="cab_content"
-																				id="cab_content" placeholder="Cab Content" rows="3"></textarea>
+															
+															<div class="well well-sm well-light">
+																<div class="jarviswidget jarviswidget-color-blue" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
+																<!-- widget options:
+																usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+												
+																data-widget-colorbutton="false"
+																data-widget-editbutton="false"
+																data-widget-togglebutton="false"
+																data-widget-deletebutton="false"
+																data-widget-fullscreenbutton="false"
+																data-widget-custombutton="false"
+																data-widget-collapsed="true"
+																data-widget-sortable="false"
+												
+																-->
+																<header>
+																	<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+																	<h2>Exercise (<span style="font-size: xx-small;">Please follow the proper format shown below for proper submission</span> )</h2>
+												
+																</header>
+												
+																<!-- widget div-->
+																<div>
+												
+																	<!-- widget edit box -->
+																	<div class="jarviswidget-editbox">
+																		<!-- This area used as dropdown edit box -->
+												
+																	</div>
+																	<!-- end widget edit box -->
+												
+																	<!-- widget content -->
+																	<div class="widget-body no-padding">
+												
+																		<div class="summernote">
+																				<p>	  Question :: Write your question ?</p>
+																				<p>	  Content :: Any image or pdf or helping doc for supporting question.</p>
+																				<p>	  Output :: Write down output.</p>
 																		</div>
 																		
-																		<div class="form-group">
-																			<label>Content</label>
-																			<textarea class="form-control" name="cab_content"
-																				id="cab_content_out" placeholder="Cab Content" rows="3"></textarea>
+																		<div class="widget-footer smart-form">
+												
+																		<div class="btn-group">
+																			
+																			<button class="btn btn-sm btn-primary" type="button">
+																				<i class="fa fa-times"></i> Cancel
+																			</button>	
+																						
 																		</div>
-
-																	</fieldset>
-
-																</form>
-
+																		<div class="btn-group">
+																			
+																			<button class="btn btn-sm btn-success" type="button">
+																				<i class="fa fa-check"></i> Save
+																			</button>	
+																			
+																		</div>
+												
+																			<label class="checkbox pull-left">
+																				<input type="checkbox" checked="checked" name="autosave" id="autosave">
+																				<i></i>Auto Save 
+																			</label> 
+												
+																		</div>
+																		
+																	</div>
+																	<!-- end widget content -->
+												
+																</div>
+																<!-- end widget div -->
+												
 															</div>
+															<!-- end widget -->
 
-														</div> --%>
+															
+															</div>
+														
 													</div>
 													<div class="tab-pane" id="tab-r2">
 														<div class="row">
@@ -1590,7 +1617,23 @@
 							    ['insert', ['link', 'picture', 'hr']],
 							    ['view', ['fullscreen', 'codeview', 'help']]
 
-							  ]
+							  ],
+							  onImageUpload: function(files, editor, welEditable) {
+					                sendFile(files[0], editor, welEditable);
+					            }
+							});
+							
+							$('#saveweekone').click(function(){
+								
+								var code = $('#summerassignweek1').summernote('code');
+								alert("unite"+code);
+								$.ajax({
+							        url: 'courseAssignment?',
+							        data: "content="+code,
+							        dataType: 'html'
+							    });
+								
+								
 							});
 							
 							//Dropzone.autoDiscover = true;
@@ -2073,6 +2116,26 @@
 						})
 	</script>
 
+	<script>
+	function sendFile(file, editor, welEditable) {
+		
+		alert("in the upload "+file);
+        /* data = new FormData();
+        data.append("file", file);
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "Your URL POST (php)",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(url) {
+                editor.insertImage(welEditable, url);
+            }
+        }); */
+    }
+		
+	</script>
 
 
 </body>

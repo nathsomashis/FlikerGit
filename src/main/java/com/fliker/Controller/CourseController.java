@@ -225,7 +225,7 @@ public class CourseController {
 		System.out.println("in controller for videos");
  
 		CoursePreview courseprev = new CoursePreview();
-		
+		System.out.println("content"+content);
 		
 		String resultcount = "true";
 		if(week.equalsIgnoreCase("week1")){
