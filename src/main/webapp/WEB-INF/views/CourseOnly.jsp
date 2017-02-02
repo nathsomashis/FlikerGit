@@ -1615,21 +1615,22 @@
 									//sendFile(files[i], this);
 										 var form_data = new FormData();
 										 alert("in the file upload 12");
-											form_data.append('file', file);
+											form_data.append('file', files[i]);
 											$.ajax({
 											data: form_data,
 											type: "POST",
-											url: 'file?',
+											url: 'filesummernote?',
 											cache: false,
 											contentType: false,
 											enctype: 'multipart/form-data',
 											processData: false,
 											success: function(url) {
-											$(el).summernote('editor.insertImage', url);
+												alert("url ++"+url);
+												$(this).summernote('editor.insertImage',url);
 											}
 											});
-								} 
-								alert("in the file upload");
+									} 
+									alert("in the file upload");
 								},
 								},
 								dialogsFade: true,

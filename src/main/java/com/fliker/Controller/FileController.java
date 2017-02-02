@@ -159,7 +159,74 @@ public class FileController {
 
             // adding the file info to the list
             //uploadedFiles.add(fileInfo);
+            
+            
+            
+            
+        }
      }
+        
+        
+        
+        @RequestMapping("/filesummernote")
+        @ResponseBody
+    	public String fileSummerupload( MultipartHttpServletRequest request,HttpServletResponse response,@RequestParam("file") MultipartFile file1, HttpSession session ) {
+    		System.out.println("in file controller");
+    		String link="";
+    		
+    		// Getting uploaded files from the request object
+            Map<String, MultipartFile> fileMap = request.getFileMap();
+
+            // Maintain a list to send back the files info. to the client side
+            List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
+
+            for (MultipartFile multipartFile : fileMap.values()) {
+
+                // Save the file to local disk
+                try {
+    				saveFileToLocalDisk(multipartFile);
+    				
+    				FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+    				
+    				System.out.println(fileInfo.getName());
+    				System.out.println(fileInfo.getSize());
+    				System.out.println(fileInfo.getType());
+    				System.out.println(fileInfo.getFileid());
+    				String fileid = fileInfo.getFileid();
+    			    fieldlist.add(fileInfo.getFileid());
+    			    link = "/Fliker/imageController/"+fileid;
+    			    
+    				FilePreview filepreview = new FilePreview();
+    			      filepreview.saveFile(fileInfo);
+    			      
+    			      
+    			    
+    			    
+    			    
+    			    session.setAttribute("fileidsimage", fieldlist);
+    			      
+    			    ModelMap model = new ModelMap();
+    				model.addAttribute("fieldlists", fieldlist);
+    				System.out.println("fieldlist ++"+fieldlist);
+    				
+    				
+    				
+    				ModelAndView mv = new ModelAndView();
+    				mv.addObject("fileidlist", fieldlist);
+    			    
+    				
+    			} catch (FileNotFoundException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+
+                
+         }   
+        System.out.println("link >>"+link);    
+        return link;
 		
 	}
 	

@@ -104,9 +104,9 @@ public class CourseController {
 		
 		PropertyManager propman = new PropertyManager();
 		
-		ArrayList properlist = propman.readPropertySection("CourseCategory", "Course.properties");
+		//ArrayList properlist = propman.readPropertySection("CourseCategory", "Course.properties");
 		
-		mv.addObject("CourseCategory", properlist);
+		//mv.addObject("CourseCategory", properlist);
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", userfirstname+" "+userlastname);

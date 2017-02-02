@@ -17,17 +17,20 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.fliker.Modal.FilePreview;
 import com.fliker.Repository.FileUpload;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
 
-@Path("/files")
+@Controller
 public class UploadFileService {
 
 	@POST
-	@Path("/upload")
+	@RequestMapping("/uploadFiles")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFile(
 		@FormDataParam("file") InputStream uploadedInputStream,

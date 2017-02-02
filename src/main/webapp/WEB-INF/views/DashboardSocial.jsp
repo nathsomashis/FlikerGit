@@ -933,7 +933,7 @@
 
 						<%
 							}
-								}else if ((i % 3 == 0) || (i == 7)) {
+								}else if ((i % 3 == 0)) {
 									
 									System.out.println("countable by 3>>>" + i);
 									if (!postfileid.isEmpty()) {
