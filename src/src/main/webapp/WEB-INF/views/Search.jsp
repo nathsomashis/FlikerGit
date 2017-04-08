@@ -5,7 +5,7 @@
 <html>
 <head>
 		<meta charset="utf-8">
-		<title> Wall </title>
+		<title> Search </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -123,7 +123,7 @@
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
+				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0

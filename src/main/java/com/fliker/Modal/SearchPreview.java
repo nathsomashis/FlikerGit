@@ -1,8 +1,13 @@
 package com.fliker.Modal;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Post;
@@ -154,6 +159,69 @@ public class SearchPreview {
 		
 		return serchreshistorydefault;
 	}
+	
+	public void entrySearch(String content, String contentType, HttpServletRequest request, String id, String link){
+		
+		MongoConnection mongoconn = new MongoConnection();
+		SearchPreview searchprev = new SearchPreview();
+		SearchContent searchcontent = new SearchContent();
+		
+		try {
+			searchcontent.setSearchid(searchprev.makeSHA1Hash(content));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		searchcontent.setContentDescription(content);
+		searchcontent.setContentType(contentType);
+		String postlink = searchprev.formLink(request.getRequestURL().toString(), request.getContextPath().toString(),link);
+		searchcontent.setContentLink(postlink+id);//post link
+		
+		mongoconn.saveObject(searchprev.formDBObject(searchcontent), "SearchContent");
+	}
+	
+	public String formLink(String url, String context, String linkadd)throws NullPointerException{
+		
+		URI uri;
+		String domain=null;
+		try {
+			uri = new URI(url);
+			domain = uri.getHost();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		 
+		String link = domain+"/"+context+"/"+linkadd+"?";
+		
+		return link;
+		
+	}
+	
+	
+	
+	
+	public String makeSHA1Hash(String input)
+            throws NoSuchAlgorithmException, UnsupportedEncodingException
+        {
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            md.reset();
+            byte[] buffer = input.getBytes("UTF-8");
+            md.update(buffer);
+            byte[] digest = md.digest();
+
+            String hexStr = "";
+            for (int i = 0; i < digest.length; i++) {
+                hexStr +=  Integer.toString( ( digest[i] & 0xff ) + 0x100, 16).substring( 1 );
+            }
+            return hexStr;
+        }
+	
 	
 	public BasicDBObject formDBObject(SearchContent searchcontent){
 		

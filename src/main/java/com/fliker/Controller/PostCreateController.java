@@ -141,4 +141,16 @@ public class PostCreateController   {
 		}
 		
 		
+		@RequestMapping("/postlink")
+		public ModelAndView postlink(
+				@RequestParam(value = "postid", required = false, defaultValue = "World") String postid) {
+	 
+			ModelAndView mv;
+			mv = new ModelAndView("/PostLink");
+			
+			return mv;
+		}
+		
+		
+		
 }
