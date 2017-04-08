@@ -31,7 +31,7 @@ public class SearchPreview {
 		String newSearchparam = ".*"+searchparam+".*";
 		
 		MongoConnection mongocon = new MongoConnection();
-		DBCursor resultcursor = mongocon.getDBObject("Content_Description", newSearchparam, "Content");
+		DBCursor resultcursor = mongocon.getDBObject("Content_Description", newSearchparam, "SearchContent");
 		String uniqueid = "";
 		
 		UploadFileService upservice = new UploadFileService();
@@ -71,13 +71,65 @@ public class SearchPreview {
 		return serchres;
 	}
 	
+	
+	
+	public ArrayList getSearchResultOnCategory(String searchparam, String searchCategory, String searchColumn){
+		
+		ArrayList serchres = new ArrayList();
+		//db.users.find({"name": /.*m.*/})
+		
+		String newSearchparam = ".*"+searchparam+".*";
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject(searchColumn, newSearchparam, searchCategory);
+		String uniqueid = "";
+		
+		UploadFileService upservice = new UploadFileService();
+		try {
+			uniqueid = upservice.makeSHA1Hash(searchparam);
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			SearchContent searchcontent = new SearchContent();
+			//searchcontent.get
+			searchcontent.getSearchid();
+			searchcontent.getContentType();
+			searchcontent.getContentDescription();
+			searchcontent.getContentLink();
+			
+			serchres.add(searchcontent);
+			
+		}
+		
+		SearchResult searchresult = new SearchResult();
+		
+		searchresult.setSearchresultid(uniqueid);
+		searchresult.setSearchContentid(serchres);
+		
+		SearchHistory searchhistory = new SearchHistory();
+		
+		DateFunctionality datefun = new DateFunctionality();
+		
+		searchhistory.setSearchid(datefun.getCurrentdate());
+		searchhistory.setSearchresultid(uniqueid);
+		
+		
+		return serchres;
+	}
+	
+	
+	
 	public ArrayList getSearchResultContent(String searchCategory, String contentsearchparam){
 		
 		ArrayList serchrescontent = new ArrayList();
 		String searchContentCategory = ".*"+contentsearchparam+".*";
 		
 		MongoConnection mongocon = new MongoConnection();
-		DBCursor resultcursor = mongocon.getDBObject(searchCategory, searchContentCategory, "Content");
+		DBCursor resultcursor = mongocon.getDBObject(searchCategory, searchContentCategory, "SearchContent");
 		String uniqueid = "";
 		
 		UploadFileService upservice = new UploadFileService();
