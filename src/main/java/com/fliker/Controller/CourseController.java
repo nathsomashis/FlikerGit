@@ -104,9 +104,9 @@ public class CourseController {
 		
 		PropertyManager propman = new PropertyManager();
 		
-		ArrayList properlist = propman.readPropertySection("CourseCategory", "Course.properties");
+		//ArrayList properlist = propman.readPropertySection("CourseCategory", "Course.properties");
 		
-		mv.addObject("CourseCategory", properlist);
+		//mv.addObject("CourseCategory", properlist);
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
@@ -225,6 +225,7 @@ public class CourseController {
 		System.out.println("in controller for videos");
  
 		CoursePreview courseprev = new CoursePreview();
+		System.out.println("content"+content);
 		
 		String resultcount = "true";
 		if(week.equalsIgnoreCase("week1")){
@@ -250,13 +251,13 @@ public class CourseController {
 		
 		String resultcount = "true";
 		if(week.equalsIgnoreCase("week1")){
-			firstweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+			firstweekquizandexercise.add(courseprev.exersizeform(content, counter, week));
 		}else if(week.equalsIgnoreCase("week2")){
-			secondweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+			secondweekquizandexercise.add(courseprev.exersizeform(content, counter, week));
 		}else if(week.equalsIgnoreCase("week3")){
-			thirdweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+			thirdweekquizandexercise.add(courseprev.exersizeform(content, counter, week));
 		}else{
-			fourthweekquizandexercise.add(courseprev.assignmentform(content, counter, week));
+			fourthweekquizandexercise.add(courseprev.exersizeform(content, counter, week));
 		}
 		
 		return resultcount;

@@ -48,8 +48,10 @@ public class ProfilePreview {
 			profileinfo.setProfileImageid((String)theObj.get("profileImageid"));
 			profileinfo.setSalary((String)theObj.get("salary"));
 			profileinfo.setTellmeaboutme((String)theObj.get("tellmeaboutme"));
-			String[] courseids = ((String)theObj.get("courseids")).split(",");
-			
+			String[] courseids = null;
+			if((String)theObj.get("courseids")!=null){
+				courseids = ((String)theObj.get("courseids")).split(",");
+			}
 			profileinfo.setCourseids(courseids);
 			
 			ProfilePreview profprev = new ProfilePreview();

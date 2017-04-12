@@ -29,6 +29,7 @@ import com.mongodb.DBCursor;
 
 public class PostPreview {
 
+	private String newPostID;
 	
 	public ArrayList getPosts(String lastid){
 		
@@ -83,6 +84,8 @@ public class PostPreview {
 		
 		postentry.setPostid(userinformation+uniqueid+System.currentTimeMillis());
 		
+		newPostID = postentry.getPostid();
+		
 		MongoConnection mongocon = new MongoConnection();
 		
 		BasicDBObject basicreqobj =  postprev.formDBObject(postentry);
@@ -136,5 +139,10 @@ public BasicDBObject formDBObject(Post postinfo){
 		return basicdbobj;
 		
 	}
+
+	public String getPostID(){
+		return newPostID;
+	}
+
 	
 }

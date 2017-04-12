@@ -3,6 +3,8 @@ package com.fliker.Controller;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +17,7 @@ import com.fliker.Modal.DashboardSocialPreview;
 import com.fliker.Modal.LikesPreview;
 import com.fliker.Modal.PostPreview;
 import com.fliker.Modal.ProfilePreview;
+import com.fliker.Modal.SearchPreview;
 import com.fliker.Modal.SharePreview;
 import com.fliker.Repository.Post;
 import com.fliker.Repository.Profile;
@@ -95,7 +98,7 @@ public class DashboardSocialController {
 	@RequestMapping("/dashboardsocial/saveComments")
 	public void saveComments(@RequestParam(value = "postid", required = true) String postid,
 			@RequestParam(value = "comment", required = true) String comment,
-			@RequestParam(value = "userid", required = true) String userid) {
+			@RequestParam(value = "userid", required = true) String userid, HttpServletRequest request) {
 
 		ModelAndView mv = new ModelAndView();
 		User userinfo = (User) mv.getModel().get("User");
@@ -104,6 +107,9 @@ public class DashboardSocialController {
 		/*commentpreview.arrayToPost(userid, postid, comment);
 		commentpreview.updateCommentTable(userid, postid, comment);*/
 		commentpreview.saveComment(userid, postid, comment);
+		
+		SearchPreview searchprev = new SearchPreview();
+		searchprev.entrySearch(postid+comment+userid, "post", request, postid, "postlink");
 
 	}
 
@@ -127,7 +133,7 @@ public class DashboardSocialController {
 
 	@RequestMapping("/dashboardsocial/saveShares")
 	public void saveShares(@RequestParam(value = "postid", required = true) String postid,
-			@RequestParam(value = "commentonshare", required = false) String commentOnShare) {
+			@RequestParam(value = "commentonshare", required = false) String commentOnShare, HttpServletRequest request) {
 
 		ModelAndView mv = new ModelAndView();
 		User userinfo = (User) mv.getModel().get("User");
@@ -142,6 +148,9 @@ public class DashboardSocialController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		SearchPreview searchprev = new SearchPreview();
+		searchprev.entrySearch(postid+commentOnShare, "share", request, postid, "postlink");
 
 	}
 

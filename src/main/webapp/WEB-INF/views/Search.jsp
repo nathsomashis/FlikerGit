@@ -5,7 +5,7 @@
 <html>
 <head>
 		<meta charset="utf-8">
-		<title> Wall </title>
+		<title> Search </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -123,7 +123,7 @@
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="Resource/img/logo.png" alt="Fliker"> </span>
+				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -939,7 +939,7 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> Â© 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin </span>
 				</div>
 
 				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
