@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -17,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fliker.Modal.FilePreview;
 import com.fliker.Modal.PostPreview;
 import com.fliker.Modal.ProfilePreview;
+import com.fliker.Modal.SearchPreview;
 import com.fliker.Repository.FileUpload;
 import com.sun.jersey.api.view.Viewable;
 import com.sun.jersey.core.header.FormDataContentDisposition;
@@ -97,7 +100,7 @@ public class PostCreateController   {
 		public ModelAndView showMessage(
 				@RequestParam(value = "postdescription", required = false, defaultValue = "World") String postdescription,
 				@RequestParam(value = "location", required = false) String location,
-				HttpSession session
+				HttpSession session, HttpServletRequest request
 				) {
 			System.out.println("in profile controller"+location);
 	 
@@ -131,6 +134,11 @@ public class PostCreateController   {
 			
 			PostPreview postprev = new PostPreview();
 			postprev.savePost(userid, postdescription, fileidstring,location);
+			
+			String postid = postprev.getPostID();
+			
+			SearchPreview searchprev = new SearchPreview();
+			searchprev.entrySearch(postid+postdescription+userid, "post", request, postid, "postlink");
 			
 			ProfilePreview profprev = new ProfilePreview();
 			//ArrayList profileInfo = profprev.getProfileInfo(userid);
