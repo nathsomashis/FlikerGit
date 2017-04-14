@@ -16,14 +16,14 @@ public class ProfilePreview {
 		
 		ArrayList profileArr = new ArrayList();
 		
-		Profile profileinfo = new Profile();
+		
 		
 		MongoConnection mongocon = new MongoConnection();
 		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "Profile");
 		if(resultcursor.hasNext()){
 			DBObject theObj = resultcursor.next();
 		    //How to get the DBObject value to ArrayList of Java Object?
-
+			Profile profileinfo = new Profile();
 		    /*BasicDBList passwordlist = (BasicDBList) theObj.get("password");
 		    for (int i = 0; i < passwordlist.size(); i++) {
 		        BasicDBObject passwordobj = (BasicDBObject) passwordlist.get(i);

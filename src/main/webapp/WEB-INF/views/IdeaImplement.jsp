@@ -5,7 +5,7 @@
 <html>
 <head>
 		<meta charset="utf-8">
-		<title> Work&Idea </title>
+		<title> Wall </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -390,7 +390,7 @@
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
 		<li ><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet "></i> <span
+				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
@@ -430,12 +430,12 @@
 											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>
 			</ul>
 		</li> -->
-		<li class="active"><a href="#" title="Dashboard"><i
+		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Work</span></a>
 			<ul>
-				<li class="active"><a href="ideatoimplement?" title="NewPost"><i
-						class="fa fa-tags txt-color-blue"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+				<li class=""><a href="ideatoimplement?" title="NewPost"><i
+						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
 				</li>
 				<li class=""><a href="jobanalysis?" title="NewJob"><i
 						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional Way</span></a>

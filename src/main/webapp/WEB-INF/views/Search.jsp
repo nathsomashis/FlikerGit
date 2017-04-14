@@ -384,13 +384,13 @@
 
 				<ul>
 		<li class="active"><a href="searchresults?"><i
-				class="fa fa-lg fa-fw fa-search-plus"></i> <span
+				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
 		<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
 		<li ><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+				class="fa fa-lg fa-fw fa-retweet "></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
@@ -455,10 +455,10 @@
 		<li class=""><a href="#" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
 				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
+				<li class=""><a href="standardguidance?" title="NewJob"><i
 						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
 				</li>
-				<li class=""><a href="companies?" title="Companies"><i
+				<li class=""><a href="professionalguidance?" title="Companies"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
 				</li>
 			</ul></li>		

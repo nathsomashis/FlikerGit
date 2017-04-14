@@ -384,7 +384,7 @@
 
 				<ul>
 		<li><a href="searchresults?"><i
-				class="fa fa-lg fa-fw fa-search-plus"></i> <span
+				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
 				class="menu-item-parent">SEARCH</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 		<li><a href="dashboardanalysis?"><i
@@ -392,7 +392,7 @@
 				class="menu-item-parent">DASHBOARD</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 		<li class="active"><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+				class="fa fa-lg fa-fw fa-retweet "></i> <span
 				class="menu-item-parent">WALL</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
