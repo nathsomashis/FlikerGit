@@ -29,7 +29,6 @@ import com.mongodb.DBCursor;
 
 public class PostPreview {
 
-	private String newPostID;
 	
 	public ArrayList getPosts(String lastid){
 		
@@ -84,8 +83,6 @@ public class PostPreview {
 		
 		postentry.setPostid(userinformation+uniqueid+System.currentTimeMillis());
 		
-		newPostID = postentry.getPostid();
-		
 		MongoConnection mongocon = new MongoConnection();
 		
 		BasicDBObject basicreqobj =  postprev.formDBObject(postentry);
@@ -126,7 +123,7 @@ public class PostPreview {
         }
 	
 	
-public BasicDBObject formDBObject(Post postinfo){
+	public BasicDBObject formDBObject(Post postinfo){
 		
 		BasicDBObject basicdbobj = new BasicDBObject();
 		basicdbobj.put("postid", postinfo.getPostid());
@@ -139,10 +136,43 @@ public BasicDBObject formDBObject(Post postinfo){
 		return basicdbobj;
 		
 	}
-
-	public String getPostID(){
-		return newPostID;
-	}
-
 	
+	
+	public void publishPost(String userinformation, String PostComment, String location){
+		
+		Post postentry = new Post();
+		
+		postentry.setUserid(userinformation);
+		postentry.setPostType("Publish");
+		//postentry.setVoteid(null);
+		postentry.setPostDescription(PostComment);
+		
+		ServicesUtil servutil = new ServicesUtil();
+		String locationaddress = servutil.getLocationAddress(location);
+		System.out.println(" locationaddress ++"+locationaddress);
+		postentry.setPostlocation(locationaddress);
+		
+		PostPreview postprev = new PostPreview();
+		String uniqueid = "";
+		
+		try {
+			uniqueid = postprev.makeSHA1Hash(PostComment);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		postentry.setPostid(userinformation+uniqueid+System.currentTimeMillis());
+		
+		
+		MongoConnection mongocon = new MongoConnection();
+		
+		BasicDBObject basicreqobj =  postprev.formDBObject(postentry);
+		
+		mongocon.saveObject(basicreqobj, "Post");
+		
+	}
 }

@@ -886,7 +886,7 @@
 							<ul class="comments">
 								<li><img src="img/avatars/sunny.png" alt="img"
 									class="online"> <input class="commmentclass" id="urcomment" type="text" alt="<%=postid%>" name="<%=userid%>"
-									class="form-control" placeholder="Post your comment..."></input></li>
+									class="form-control" placeholder="Post your comment..."></li>
 							</ul>
 						</div>
 					</div>
