@@ -13,6 +13,44 @@ public class Assignment {
 	private String assignmentQDoc;
 	private String assignmentanswersheet;
 	private String assignmentADoc;
+	private String assignmentstartdatetime;
+	private String assignmentenddatetime;
+	private String noOfQuestions;
+	private String averageVelocity;
+	private String percentagescore;
+	
+	
+	
+	public String getAssignmentstartdatetime() {
+		return assignmentstartdatetime;
+	}
+	public void setAssignmentstartdatetime(String assignmentstartdatetime) {
+		this.assignmentstartdatetime = assignmentstartdatetime;
+	}
+	public String getAssignmentenddatetime() {
+		return assignmentenddatetime;
+	}
+	public void setAssignmentenddatetime(String assignmentenddatetime) {
+		this.assignmentenddatetime = assignmentenddatetime;
+	}
+	public String getNoOfQuestions() {
+		return noOfQuestions;
+	}
+	public void setNoOfQuestions(String noOfQuestions) {
+		this.noOfQuestions = noOfQuestions;
+	}
+	public String getAverageVelocity() {
+		return averageVelocity;
+	}
+	public void setAverageVelocity(String averageVelocity) {
+		this.averageVelocity = averageVelocity;
+	}
+	public String getPercentagescore() {
+		return percentagescore;
+	}
+	public void setPercentagescore(String percentagescore) {
+		this.percentagescore = percentagescore;
+	}
 	public String getAssignmentid() {
 		return assignmentid;
 	}
