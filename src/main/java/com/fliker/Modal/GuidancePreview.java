@@ -229,7 +229,7 @@ public class GuidancePreview {
   
 
 
-public String makeSHA1Hash(String input)
+  public String makeSHA1Hash(String input)
           throws NoSuchAlgorithmException, UnsupportedEncodingException
       {
           MessageDigest md = MessageDigest.getInstance("SHA1");

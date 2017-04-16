@@ -2,6 +2,8 @@ package com.fliker.Controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -11,13 +13,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fliker.Modal.ProfilePreview;
+import com.fliker.Repository.User;
 
 @Controller
 public class ProfileController {
 
 	@RequestMapping("/profile")
 	public ModelAndView showMessage(
-			@RequestParam(value = "name", required = false, defaultValue = "World") String name, HttpSession session) {
+			@RequestParam(value = "name", required = false, defaultValue = "World") String name, HttpSession session,HttpServletRequest request) {
 		System.out.println("in profile controller");
  
 		//ArrayList postlist = new ArrayList();
@@ -28,14 +31,26 @@ public class ProfileController {
 		ModelAndView mv;
 		mv = new ModelAndView("/Profile");
 		
+		ServletContext context = request.getSession().getServletContext();
 		
-		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		User userinf = (User) context.getAttribute("UserValues");
+		String userids = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
 		
 		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userids);
+		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		
 		ArrayList profileInfo = profprev.getProfileInfo(userid);
 		
 		mv.addObject("postlist", profileInfo);
 		mv.addObject("name", name);
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
 		return mv;
 	}
 	
@@ -109,6 +124,19 @@ public class ProfileController {
 		mv = new ModelAndView("/Profile");
 		
 		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		
+	}
+	
+	
+	@RequestMapping("/otherprofile")
+	public void otherProfile(
+			@RequestParam(value = "userid", required = false, defaultValue = "World") String userid, HttpSession session) {
+		System.out.println("in profile controller");
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/OthersProfile");
+		
+		//String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
 		
 	}
 	

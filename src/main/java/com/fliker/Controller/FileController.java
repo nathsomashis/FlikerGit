@@ -1,6 +1,8 @@
 package com.fliker.Controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,6 +17,11 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import org.apache.poi.*;
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.extractor.WordExtractor;
+import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -23,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-
+import org.apache.commons.io.IOUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -677,7 +684,7 @@ public class FileController {
 	 }
 	 
 	 private String getDestinationLocation() {
-         return "D:/uploaded-files/";
+         return "F:/uploaded-files/";
 	 }
 	 
 	 
@@ -700,6 +707,20 @@ public class FileController {
 	      fileInfo.setType(multipartFile.getContentType());
 	      fileInfo.setLocation(getDestinationLocation());
 	      fileInfo.setFileblob(multipartFile.getBytes());
+	      /*ByteArrayInputStream stream = new   ByteArrayInputStream(multipartFile.getBytes());
+	      String myString = IOUtils.toString(stream, "UTF-8");
+	      XWPFWordExtractor  extractor = null;
+	      FileInputStream fis = new FileInputStream(getDestinationLocation() + multipartFile.getOriginalFilename());
+	      XWPFDocument document = new XWPFDocument(fis);
+          extractor = new XWPFWordExtractor(document);
+          String fileData = extractor.getText();
+          for (int i = 0; i < fileData.length; i++)
+          {
+              if (fileData[i] != null)
+                  System.out.println(fileData[i]);
+          }
+	      
+	      System.out.println("file content"+fileData);*/
       return fileInfo;
 	 }
 	 
@@ -782,6 +803,86 @@ public class FileController {
 			
 			
 			return assignmentset;
+		}
+		
+		
+		@RequestMapping("/assignmentUpload")
+		public void assignmentupload( MultipartHttpServletRequest request,HttpServletResponse response,@RequestParam("file") MultipartFile file1, HttpSession session ) {
+			System.out.println("in file controller");
+	 
+			String fileids="";
+			String filename="";
+			
+			// Getting uploaded files from the request object
+	        Map<String, MultipartFile> fileMap = request.getFileMap();
+
+	        // Maintain a list to send back the files info. to the client side
+	        List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
+
+	        for (MultipartFile multipartFile : fileMap.values()) {
+
+	            // Save the file to local disk
+	            try {
+					
+					
+					FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+					
+					
+					
+					System.out.println(fileInfo.getName());
+					System.out.println(fileInfo.getSize());
+					System.out.println(fileInfo.getType());
+					System.out.println(fileInfo.getFileid());
+					fileids = fileInfo.getFileid();
+					filename = fileInfo.getName();
+					
+					if(filename.endsWith("doc")||filename.endsWith("docx")|| filename.endsWith("pdf")||filename.endsWith("txt")){
+						
+						
+						
+						
+					}
+					
+					saveFileToLocalDisk(multipartFile);
+					
+					String fileid = fileInfo.getFileid();
+					fileidlistone.add(fileInfo.getFileid());
+				    
+				    
+					FilePreview filepreview = new FilePreview();
+				      filepreview.saveFile(fileInfo);
+				      
+				      
+				    
+				    
+				    
+				    session.setAttribute("fileidsimage", fieldlist);
+				      
+				    ModelMap model = new ModelMap();
+					model.addAttribute("fieldlists", fieldlist);
+					System.out.println("fieldlist ++"+fieldlist);
+					
+					
+					
+					ModelAndView mv = new ModelAndView();
+					mv.addObject("fileidlist", fieldlist);
+				    
+					
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+	     }
+	        weekfirst.put(fileids, filename);
+	        fileidlistone.add(filename);
+	        
+	        ServletContext context = request.getSession().getServletContext();
+			context.setAttribute("weekfirst", weekfirst);
+			
 		}
 		
 }

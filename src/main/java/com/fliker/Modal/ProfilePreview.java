@@ -104,6 +104,92 @@ public class ProfilePreview {
 	}
 	
 	
+	public ArrayList getProfileInformation(String userid){
+		
+		ArrayList profileArr = new ArrayList();
+		
+		
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "Profile");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+		    //How to get the DBObject value to ArrayList of Java Object?
+			Profile profileinfo = new Profile();
+		    /*BasicDBList passwordlist = (BasicDBList) theObj.get("password");
+		    for (int i = 0; i < passwordlist.size(); i++) {
+		        BasicDBObject passwordobj = (BasicDBObject) passwordlist.get(i);
+		        String passwordword = passwordobj.getString("password");
+		        
+
+		        students.add(student);
+		    } */
+			
+			/*BasicDBObject passwordobj = (BasicDBObject)theObj.get("password");*/
+			
+			profileinfo.setUserid(userid);
+			profileinfo.setProfileid((String)theObj.get("profileid"));
+			profileinfo.setCurrentStatus((String)theObj.get("skypeid"));
+			profileinfo.setName((String)theObj.get("name"));
+			profileinfo.setEmailid((String)theObj.get("emailid"));
+			profileinfo.setExperience((String)theObj.get("experience"));
+			profileinfo.setCurrentStatus((String)theObj.get("currentStatus"));
+			profileinfo.setContact((String)theObj.get("contact"));
+			profileinfo.setHangoverid((String)theObj.get("hangoverid"));
+			profileinfo.setProfiledataid((String)theObj.get("profiledataid"));
+			profileinfo.setProfileImageid((String)theObj.get("profileImageid"));
+			profileinfo.setSalary((String)theObj.get("salary"));
+			profileinfo.setTellmeaboutme((String)theObj.get("tellmeaboutme"));
+			String[] courseids = null;
+			if((String)theObj.get("courseids")!=null){
+				courseids = ((String)theObj.get("courseids")).split(",");
+			}
+			profileinfo.setCourseids(courseids);
+			
+			ProfilePreview profprev = new ProfilePreview();
+			
+			profileArr.add(profileinfo);
+			
+			//articleids
+			HashMap articlemap = new HashMap();
+			ArrayList articles = new ArrayList();
+			String[] articlelist = (String[])theObj.get("articleids");
+			if(articlelist != null){
+				articles.add(articlelist.length);
+			}
+			articlemap.put("articles", articles);
+			profileArr.add(articlemap);
+			
+			//connectionids
+			HashMap connectionmap = new HashMap();
+			ArrayList connections = new ArrayList();
+			String[] connectionlist = (String[])theObj.get("connectids");
+			if(connectionlist != null){
+				
+				connections.add(connectionlist.length);
+				
+			}
+			connectionmap.put("connections",connections);
+			profileArr.add(connectionmap);
+			
+			//followerids
+			HashMap followmap = new HashMap();
+			ArrayList followerslist = new ArrayList();
+			String[] followerarr = (String[])theObj.get("follwerids");
+			if(followerarr != null){
+				
+				followerslist.add(followerarr.length);
+			}
+			followmap.put("followers", followerslist);
+			profileArr.add(followmap);
+			
+		}
+		
+		
+		return profileArr;
+	}
+	
+	
 	public String getArticlelist(String articleid){
 		
 		String articledesc = "";

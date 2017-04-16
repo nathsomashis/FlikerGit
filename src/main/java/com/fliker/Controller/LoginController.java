@@ -24,8 +24,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fliker.Modal.DashboardSocialPreview;
 import com.fliker.Modal.LoggingReview;
 import com.fliker.Modal.LoginReview;
+import com.fliker.Modal.ProfilePreview;
 import com.fliker.Modal.UserPreview;
 import com.fliker.Repository.User;
+import com.mongodb.MongoTimeoutException;
 
 @Controller
 @SessionAttributes("userid")
@@ -40,7 +42,14 @@ public class LoginController {
 		System.out.println("In the Login Controller");
 		
 		LoginReview loginreview = new LoginReview();
-		String message = loginreview.validateUser(username, password);
+		String message="";
+		
+		try{
+			message = loginreview.validateUser(username, password);
+		}catch (MongoTimeoutException monec){
+			monec.printStackTrace();
+			message = "timeout";
+		}
 	  
 		ModelAndView mv = null;
 		
@@ -48,6 +57,8 @@ public class LoginController {
 			mv = new ModelAndView("/Login");
 		}else if(message.equalsIgnoreCase("The password doesn't match")){
 			mv = new ModelAndView("/Login");
+		}else if(message.equalsIgnoreCase("timeout")){
+			mv = new ModelAndView("/Error");
 		}else {
 			//mv = new ModelAndView("/DashboardSocial"); original one 
 			
@@ -55,6 +66,7 @@ public class LoginController {
 			
 			session.setAttribute("userid", message);
 			UserPreview userprev = new UserPreview();
+			
 			
 			User user = userprev.setUserName(username);
 			model.addAttribute("UserDetails", user);
@@ -65,8 +77,16 @@ public class LoginController {
 			mv.addObject("User", user);
 			System.out.println("user details ???"+user.getFirstname()+"  "+user.getLastname());
 			
-			mv.addObject("userdetails", user);
+			String gender = user.getGender();
 			
+			ProfilePreview profprev = new ProfilePreview();
+			
+			String profileimageid = profprev.profileimage(user.getUserid());
+			
+			mv.addObject("userdetails", user);
+			mv.addObject("ProfileImage", profileimageid);
+			mv.addObject("Gender", gender);
+			mv.addObject("FullName", user.getFirstname()+" "+user.getLastname());
 			
 			DashboardSocialPreview dashprev = new DashboardSocialPreview();
 			//ArrayList postlist = dashprev.firstpostlist();
