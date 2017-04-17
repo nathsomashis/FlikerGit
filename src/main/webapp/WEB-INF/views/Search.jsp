@@ -5,7 +5,7 @@
 <html>
 <head>
 		<meta charset="utf-8">
-		<title> Search </title>
+		<title> Search Unit </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -171,31 +171,27 @@
 			</div>
 
 			<!-- projects dropdown -->
-			<div class="project-context hidden-xs">
+	<div class="project-context hidden-xs">
 
-				<span class="label">Projects:</span>
-				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
+		<span class="label">Projects:</span> <span
+			class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
+			projects <i class="fa fa-angle-down"></i>
+		</span>
 
-				<!-- Suggestion: populate this list with fetch and push technique -->
-				<ul class="dropdown-menu">
-					<li>
-						<a href="javascript:void(0);">Online e-merchant management system - attaching integration with the iOS</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);">Notes on pipeline upgradee</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);">Assesment Report for merchant account</a>
-					</li>
-					<li class="divider"></li>
-					<li>
-						<a href="javascript:void(0);"><i class="fa fa-power-off"></i> Clear</a>
-					</li>
-				</ul>
-				<!-- end dropdown-menu-->
+		<!-- Suggestion: populate this list with fetch and push technique -->
+		<ul class="dropdown-menu" style="border: 1px solid black">
+			<h5>Daily Note</h5>
+			<li><textarea id="notemessage" class="form-control"
+					name="notemessage" rows="3" style="width: 400px"></textarea></li>
 
-			</div>
-			<!-- end projects dropdown -->
+			<li class="divider"></li>
+			<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
+					Note Down</a></li>
+		</ul>
+		<!-- end dropdown-menu-->
+
+	</div>
+	<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
 			<div class="pull-right">
@@ -248,38 +244,6 @@
 					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
 				</div>
 				<!-- end search mobile button -->
-
-				<!-- input: search field -->
-				<form action="search.html" class="header-search pull-right">
-					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"]'>
-					<button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-				</form>
-				<!-- end input: search field -->
 
 				<!-- fullscreen button -->
 				<div id="fullscreen" class="btn-header transparent pull-right">
@@ -360,20 +324,53 @@
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<div class="login-info">
-				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-					
-					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
-						<span>
-							john.doe 
-						</span>
-						<i class="fa fa-angle-down"></i>
-					</a> 
-					
-				</span>
-			</div>
-			<!-- end user info -->
+			<%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String gender = (String)request.getAttribute("Gender");
+			String imageid = (String)request.getAttribute("ProfileImage");
+			String logo = "";
+			
+			
+		
+		%>
+
+
+		<!-- User info -->
+
+		<%
+		/* if(imageid == ""){
+			if(gender.equalsIgnoreCase("female")){
+				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
+			}else{
+				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
+			}
+		}else{
+			
+		} */
+		
+		
+		%>
+		<div class="login-info">
+			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+				<a href="javascript:void(0);" id="show-shortcut"
+				data-action="toggleShortcut"> <%if(imageid == ""){
+					if(gender.equalsIgnoreCase("female")){
+						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
+					alt="me" class="online" /> <%
+					}else{
+						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
+					alt="me" class="online" /> <% 
+					}
+				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
+				</span> <i class="fa fa-angle-down"></i>
+			</a>
+
+			</span>
+		</div>
+		<!-- end user info -->
+			
 
 			<nav>
 				<!-- 
@@ -383,7 +380,7 @@
 				-->
 
 				<ul>
-		<li class="active"><a href="searchresults?"><i
+		<li class="active"><a href="search?"><i
 				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
 		<!-- <li><a href="dashboardanalysis?"><i
@@ -412,7 +409,7 @@
 				<li class=""><a href="courseEdu?" title="NewPost"><i
 						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
-				<li class=""><a href="classroom?" title="ClassRoom"><i
+				<li class=""><a href="otherprofile?" title="ClassRoom"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
 			</ul></li>
@@ -621,7 +618,7 @@
 				
 						<ul id="myTab1" class="nav nav-tabs bordered">
 							<li class="active">
-								<a href="#s1" data-toggle="tab">Search<i class="fa fa-caret-down"></i></a>
+								<a href="#s1" data-toggle="tab">Search</a>
 							</li>
 							<li>
 								<a href="#s2" data-toggle="tab">Content Search</a>
@@ -942,50 +939,7 @@
 					<span class="txt-color-white">SmartAdmin </span>
 				</div>
 
-				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
-					<div class="txt-color-white inline-block">
-						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
-						<div class="btn-group dropup">
-							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
-								<i class="fa fa-link"></i> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu pull-right text-left">
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Server Load</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<button class="btn btn-block btn-default">refresh</button>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 		<!-- END PAGE FOOTER -->

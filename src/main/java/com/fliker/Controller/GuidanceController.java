@@ -84,7 +84,7 @@ public class GuidanceController {
 		return mv;
 	}
 	
-	@RequestMapping("/professionalguidance")
+	@RequestMapping("/professionalNextguidance")
 	public ModelAndView proffNextGuidance(
 			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject,
 			@RequestParam(value = "pageno", required = false, defaultValue = "World") String pageno) {

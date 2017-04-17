@@ -8,6 +8,7 @@ public class GuidanceContentDashboard {
 
 	@Id
 	private String guidancecontentDashid;
+	private String[] guidancedashdataid;
 	private String[] guidancefilelistid;
 	public String getGuidancecontentDashid() {
 		return guidancecontentDashid;

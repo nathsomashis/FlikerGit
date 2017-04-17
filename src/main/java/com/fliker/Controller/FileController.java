@@ -1,6 +1,8 @@
 package com.fliker.Controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,6 +17,11 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import org.apache.poi.*;
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.extractor.WordExtractor;
+import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -23,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-
+import org.apache.commons.io.IOUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,11 +43,18 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fliker.Connection.MongoConnection;
 import com.fliker.Modal.CoursePreview;
 import com.fliker.Modal.FilePreview;
+import com.fliker.Modal.ProfilePreview;
+import com.fliker.Modal.SearchPreview;
 import com.fliker.Repository.FileUpload;
+import com.fliker.Repository.Post;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.User;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.gridfs.GridFSDBFile;
 
 @Controller
@@ -165,7 +179,109 @@ public class FileController {
             
         }
      }
+	
+	
+	@RequestMapping("/imageProfile")
+	public void imageprofile( MultipartHttpServletRequest request,HttpServletResponse response,@RequestParam("file") MultipartFile file1, HttpSession session ) {
+		System.out.println("in file controller");
+ 
+		
+		
+		// Getting uploaded files from the request object
+        Map<String, MultipartFile> fileMap = request.getFileMap();
         
+        ServletContext context = request.getSession().getServletContext();
+        User userinf = (User) context.getAttribute("UserValues");
+        String userid = userinf.getUserid();
+        
+        ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+
+        // Maintain a list to send back the files info. to the client side
+        List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
+
+        for (MultipartFile multipartFile : fileMap.values()) {
+
+            // Save the file to local disk
+            try {
+				saveFileToLocalDisk(multipartFile);
+				
+				FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+				
+				System.out.println(fileInfo.getName());
+				System.out.println(fileInfo.getSize());
+				System.out.println(fileInfo.getType());
+				System.out.println(fileInfo.getFileid());
+				String fileid = fileInfo.getFileid();
+			    fieldlist.add(fileInfo.getFileid());
+			    
+			    FileController filecon = new FileController();
+			    
+				FilePreview filepreview = new FilePreview();
+			      filepreview.saveFile(fileInfo);
+			    
+			    session.setAttribute("fileidsimage", fieldlist);
+			    
+			    MongoConnection mongocon = new MongoConnection();
+				DBCursor resultcursor = mongocon.getDBObject("userid", userid, "Profile");
+				if(resultcursor.hasNext()){
+					DBObject theObj = resultcursor.next();
+					
+					Profile profil = new Profile();
+					profil.setProfileid((String)theObj.get("profileid"));
+					profil.setProfileImageid(fileInfo.getFileid());
+					
+					MongoConnection mongoconsearch = new MongoConnection();
+					BasicDBObject basicreqobjsearch =  filecon.formDBObject(profil);
+					
+					mongoconsearch.saveObject(basicreqobjsearch, "Profile");
+					
+					
+				}
+			    
+			    
+			    
+			    ModelMap model = new ModelMap();
+				model.addAttribute("fieldlists", fieldlist);
+				System.out.println("fieldlist ++"+fieldlist);
+				
+				
+				
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("fileidlist", fieldlist);
+			    
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+            //FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+
+            // Save the file info to database
+            //fileInfo = saveFileToDatabase(fileInfo);
+
+            // adding the file info to the list
+            //uploadedFiles.add(fileInfo);
+            
+            
+            
+            
+        }
+     }
+        
+	
+	public BasicDBObject formDBObject(Profile profinf){
+		
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("profileImageid", profinf.getProfileImageid());
+		return basicdbobj;
+		
+	}
         
         
         @RequestMapping("/filesummernote")
@@ -677,7 +793,7 @@ public class FileController {
 	 }
 	 
 	 private String getDestinationLocation() {
-         return "D:/uploaded-files/";
+         return "F:/uploaded-files/";
 	 }
 	 
 	 
@@ -700,6 +816,9 @@ public class FileController {
 	      fileInfo.setType(multipartFile.getContentType());
 	      fileInfo.setLocation(getDestinationLocation());
 	      fileInfo.setFileblob(multipartFile.getBytes());
+	      
+	      
+	      
       return fileInfo;
 	 }
 	 
@@ -782,6 +901,86 @@ public class FileController {
 			
 			
 			return assignmentset;
+		}
+		
+		
+		@RequestMapping("/assignmentUpload")
+		public void assignmentupload( MultipartHttpServletRequest request,HttpServletResponse response,@RequestParam("file") MultipartFile file1, HttpSession session ) {
+			System.out.println("in file controller");
+	 
+			String fileids="";
+			String filename="";
+			
+			// Getting uploaded files from the request object
+	        Map<String, MultipartFile> fileMap = request.getFileMap();
+
+	        // Maintain a list to send back the files info. to the client side
+	        List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
+
+	        for (MultipartFile multipartFile : fileMap.values()) {
+
+	            // Save the file to local disk
+	            try {
+					
+					
+					FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+					
+					
+					
+					System.out.println(fileInfo.getName());
+					System.out.println(fileInfo.getSize());
+					System.out.println(fileInfo.getType());
+					System.out.println(fileInfo.getFileid());
+					fileids = fileInfo.getFileid();
+					filename = fileInfo.getName();
+					
+					if(filename.endsWith("doc")||filename.endsWith("docx")|| filename.endsWith("pdf")||filename.endsWith("txt")){
+						
+						
+						
+						
+					}
+					
+					saveFileToLocalDisk(multipartFile);
+					
+					String fileid = fileInfo.getFileid();
+					fileidlistone.add(fileInfo.getFileid());
+				    
+				    
+					FilePreview filepreview = new FilePreview();
+				      filepreview.saveFile(fileInfo);
+				      
+				      
+				    
+				    
+				    
+				    session.setAttribute("fileidsimage", fieldlist);
+				      
+				    ModelMap model = new ModelMap();
+					model.addAttribute("fieldlists", fieldlist);
+					System.out.println("fieldlist ++"+fieldlist);
+					
+					
+					
+					ModelAndView mv = new ModelAndView();
+					mv.addObject("fileidlist", fieldlist);
+				    
+					
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+	     }
+	        weekfirst.put(fileids, filename);
+	        fileidlistone.add(filename);
+	        
+	        ServletContext context = request.getSession().getServletContext();
+			context.setAttribute("weekfirst", weekfirst);
+			
 		}
 		
 }

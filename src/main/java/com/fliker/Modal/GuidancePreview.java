@@ -229,7 +229,7 @@ public class GuidancePreview {
   
 
 
-public String makeSHA1Hash(String input)
+  public String makeSHA1Hash(String input)
           throws NoSuchAlgorithmException, UnsupportedEncodingException
       {
           MessageDigest md = MessageDigest.getInstance("SHA1");
@@ -536,6 +536,66 @@ public String makeSHA1Hash(String input)
  		  
  		  
  	  }
+
+
+	public HashMap getDashBoardData(String guidanceid) {
+		
+		HashMap dashboarddata = new HashMap();
+		HashMap assignmentdata = new HashMap();
+		HashMap actualdata = new HashMap();
+		HashMap truedata = new HashMap();
+		HashMap assignmentperprogress = new HashMap();
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			String dashboardid = (String)theObj.get("dashboardid");
+			
+			MongoConnection mongoconint = new MongoConnection();
+			DBCursor guidcursor = mongoconint.getDBObject("guidancecontentDashid", guidanceid, "GuidanceContentDash");
+			
+			if(guidcursor.hasNext()){
+				
+				DBObject theObjgrid = guidcursor.next();
+				
+				String[] dashboardids = (String[])theObjgrid.get("guidancedashdataid");
+				
+				for(int m=0;m<dashboardids.length;m++){
+					
+					MongoConnection mongocondash = new MongoConnection();
+					DBCursor dashcursor = mongocondash.getDBObject("dashdataid", dashboardids[m], "DashBoardData");
+					
+					if(dashcursor.hasNext()){
+						
+						DBObject theObjdash = dashcursor.next();
+						if(((String)theObjdash.get("dashdatatype")).equalsIgnoreCase("assignment")){
+							assignmentdata.put((String)theObjdash.get("dashXdata"), (String)theObjdash.get("dashYdata"));
+						}else if(((String)theObjdash.get("dashdatatype")).equalsIgnoreCase("truedata")){
+							truedata.put((String)theObjdash.get("dashXdata"), (String)theObjdash.get("dashYdata"));
+						}else if(((String)theObjdash.get("dashdatatype")).equalsIgnoreCase("actualdata")){
+							actualdata.put((String)theObjdash.get("dashXdata"), (String)theObjdash.get("dashYdata"));
+						}
+						
+					}
+					
+				}
+				
+				
+			}
+			if(!assignmentdata.isEmpty()){
+				dashboarddata.put("assignment", assignmentdata);
+			}
+			if(!truedata.isEmpty()){
+				dashboarddata.put("truedata", truedata);
+			}
+			if(!actualdata.isEmpty()){
+				dashboarddata.put("actualdata", actualdata);
+			}
+		}
+		return dashboarddata;
+	}
   	
 
 	}

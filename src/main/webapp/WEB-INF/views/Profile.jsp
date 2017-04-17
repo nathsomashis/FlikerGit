@@ -268,29 +268,7 @@
 
 				<!-- input: search field -->
 				<form action="searchresults?" class="header-search pull-right">
-					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"]'>
+					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" >
 					<button type="submit">
 						<i class="fa fa-search"></i>
 					</button>
@@ -377,20 +355,52 @@
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<div class="login-info">
-				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-					
-					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
-						<span>
-							john.doe 
-						</span>
-						<i class="fa fa-angle-down"></i>
-					</a> 
-					
-				</span>
-			</div>
-			<!-- end user info -->
+			<%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String gender = (String)request.getAttribute("Gender");
+			String imagid = (String)request.getAttribute("ProfileImage");
+			String logo = "";
+			
+			
+		
+		%>
+
+
+		<!-- User info -->
+
+		<%
+		/* if(imageid == ""){
+			if(gender.equalsIgnoreCase("female")){
+				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
+			}else{
+				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
+			}
+		}else{
+			
+		} */
+		
+		
+		%>
+		<div class="login-info">
+			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+				<a href="javascript:void(0);" id="show-shortcut"
+				data-action="toggleShortcut"> <%if(imagid == ""){
+					if(gender.equalsIgnoreCase("female")){
+						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
+					alt="me" class="online" /> <%
+					}else{
+						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
+					alt="me" class="online" /> <% 
+					}
+				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
+				</span> <i class="fa fa-angle-down"></i>
+			</a>
+
+			</span>
+		</div>
+		<!-- end user info -->
 
 			<nav>
 				<!-- 
@@ -400,7 +410,7 @@
 				-->
 
 				<ul>
-		<li><a href="searchresults?"><i
+		<li><a href="search?"><i
 				class="fa fa-lg fa-fw fa-search-plus"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
 		<!-- <li><a href="dashboardanalysis?"><i
@@ -643,6 +653,9 @@
 				int articlecount = 0;
 				int connectioncount = 0;
 				int followercount = 0;
+				ArrayList articlelist = new ArrayList();
+				ArrayList connectionlist = new ArrayList();
+				ArrayList followerlist = new ArrayList();
 				ArrayList profilelist = (ArrayList)request.getAttribute("postlist");
 				System.out.println(profilelist);
 				for(int m=0;m<profilelist.size();m++){
@@ -685,19 +698,19 @@
 							String collectionresul = (String)mecoll.getKey();
 							
 							if(collectionresul.equalsIgnoreCase("articles")){
-								ArrayList articlelist = (ArrayList)mecoll.getValue();
+								articlelist = (ArrayList)mecoll.getValue();
 								if(articlelist!= null){
 									articlecount = articlelist.size();
 								}
 								
 							}else if(collectionresul.equalsIgnoreCase("connections")){
-								ArrayList connectionlist = (ArrayList)mecoll.getValue();
+								connectionlist = (ArrayList)mecoll.getValue();
 								if(connectionlist!= null){
 									articlecount = connectionlist.size();
 								}
 								
 							}else if(collectionresul.equalsIgnoreCase("followers")){
-								ArrayList followerlist = (ArrayList)mecoll.getValue();
+								followerlist = (ArrayList)mecoll.getValue();
 								if(followerlist!= null){
 									articlecount = followerlist.size();
 								}
@@ -719,19 +732,19 @@
 
 				<!-- Bread crumb is created dynamically -->
 				<!-- row -->
-				<div class="row">
+				<!-- <div class="row">
 				
-					<!-- col -->
+					col
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-puzzle-piece"></i> App Views <span>>
+						<h1 class="page-title txt-color-blueDark">PAGE HEADER<i class="fa-fw fa fa-puzzle-piece"></i> App Views <span>>
 							Profile </span></h1>
 					</div>
-					<!-- end col -->
+					end col
 				
-					<!-- right side of the page with the sparkline graphs -->
-					<!-- col -->
+					right side of the page with the sparkline graphs
+					col
 					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-						<!-- sparks -->
+						sparks
 						<ul id="sparks">
 							<li class="sparks-info">
 								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
@@ -752,11 +765,11 @@
 								</div>
 							</li>
 						</ul>
-						<!-- end sparks -->
+						end sparks
 					</div>
-					<!-- end col -->
+					end col
 				
-				</div>
+				</div> -->
 				<!-- end row -->
 				
 				<!-- row -->
@@ -873,34 +886,43 @@
 														</div>
 														<div class="col-sm-3">
 															<h1><small>Connections</small></h1>
+															<%if(connectioncount !=0){ %>
 															<ul class="list-inline friends-list">
-																<li><img src="img/avatars/1.png" alt="friend-1">
+																<%for(int s=0;s<7;s++){ 
+																
+																	Profile profil = (Profile)connectionlist.get(s);
+																	String userids = profil.getUserid();
+																	String username = profil.getName();
+																	String userimage = profil.getProfileImageid();
+																
+																%>
+																<li><img src="/Fliker/imageFromUserid/<%=userids%>" alt="<%=username%>">
 																</li>
-																<li><img src="img/avatars/2.png" alt="friend-2">
-																</li>
-																<li><img src="img/avatars/3.png" alt="friend-3">
-																</li>
-																<li><img src="img/avatars/4.png" alt="friend-4">
-																</li>
-																<li><img src="img/avatars/5.png" alt="friend-5">
-																</li>
-																<li><img src="img/avatars/male.png" alt="friend-6">
-																</li>
+																<%} %>
 																<li>
-																	<a href="javascript:void(0);">413 more</a>
+																	<a href="javascript:void(0);"><%=connectionlist.size()-6%>more</a>
 																</li>
 															</ul>
-				
-															<h1><small>Recent visitors</small></h1>
+															<%} %>	
+															<h1><small>Followers</small></h1>
+															<%if(followercount !=0){ %>
 															<ul class="list-inline friends-list">
-																<li><img src="img/avatars/male.png" alt="friend-1">
+																<%for(int t=0;t<7;t++){ 
+																
+																	Profile profil = (Profile)followerlist.get(t);
+																	String userids = profil.getUserid();
+																	String username = profil.getName();
+																	String userimage = profil.getProfileImageid();
+																
+																%>
+																<li><img src="/Fliker/imageFromUserid/<%=userids%>" alt="<%=username%>">
 																</li>
-																<li><img src="img/avatars/female.png" alt="friend-2">
-																</li>
-																<li><img src="img/avatars/female.png" alt="friend-3">
+																<%} %>
+																<li>
+																	<a href="javascript:void(0);"><%=followerlist.size()-6%>more</a>
 																</li>
 															</ul>
-				
+															<%} %>
 														</div>
 				
 													</div>
@@ -2636,10 +2658,10 @@
 			
 			Dropzone.autoDiscover = false;
 			$("#Imagedropzone").dropzone({
-				url: "/file/post",
-				maxFiles: 1,
+				url: "imageProfile?",
+				paramName: "file",		
 				addRemoveLinks : true,
-				maxFilesize: 0.5,
+				maxFilesize: 500,
 				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
 				dictResponseError: 'Error uploading file!'
 			});

@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*,com.fliker.Repository.*" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
@@ -377,20 +377,52 @@
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<div class="login-info">
-				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-					
-					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
-						<span>
-							john.doe 
-						</span>
-						<i class="fa fa-angle-down"></i>
-					</a> 
-					
-				</span>
-			</div>
-			<!-- end user info -->
+			<%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String gender = (String)request.getAttribute("Gender");
+			String imagid = (String)request.getAttribute("ProfileImage");
+			String logo = "";
+			
+			
+		
+		%>
+
+
+		<!-- User info -->
+
+		<%
+		/* if(imageid == ""){
+			if(gender.equalsIgnoreCase("female")){
+				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
+			}else{
+				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
+			}
+		}else{
+			
+		} */
+		
+		
+		%>
+		<div class="login-info">
+			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+				<a href="javascript:void(0);" id="show-shortcut"
+				data-action="toggleShortcut"> <%if(imagid == ""){
+					if(gender.equalsIgnoreCase("female")){
+						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
+					alt="me" class="online" /> <%
+					}else{
+						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
+					alt="me" class="online" /> <% 
+					}
+				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
+				</span> <i class="fa fa-angle-down"></i>
+			</a>
+
+			</span>
+		</div>
+		<!-- end user info -->
 
 			<nav>
 				<!-- 
@@ -420,9 +452,9 @@
 		<li><a href="createpost?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
-		<!-- <li><a href="classroom?" title="NewPost"><i
+		<li><a href="classroom?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-		</li> -->
+		</li>
 		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
 			<ul>
@@ -626,25 +658,115 @@
 
 			</div>
 			<!-- END RIBBON -->
-
+			
+			<%
+			
+				String imageid = "";
+				String profileid = "";
+				String skypeid = "";
+				String name = "";
+				String emailid = "";
+				String currentStatus="";
+				String experience = "";
+				String hangoverid = "";
+				String salary = "";
+				String tellaboutme = "";
+				String contact = "";
+				int articlecount = 0;
+				int connectioncount = 0;
+				int followercount = 0;
+				ArrayList articlelist = new ArrayList();
+				ArrayList connectionlist = new ArrayList();
+				ArrayList followerlist = new ArrayList();
+				ArrayList profilelist = (ArrayList)request.getAttribute("postlist");
+				System.out.println(profilelist);
+				for(int m=0;m<profilelist.size();m++){
+					
+					
+					if(profilelist.get(m) instanceof Profile){
+						Profile profileinfo = (Profile)profilelist.get(m);
+						imageid = profileinfo.getProfileImageid();
+						profileid = profileinfo.getProfileid();
+						skypeid = profileinfo.getSkypeid();
+						if(skypeid == null){
+							skypeid = "_B_L_A_N_K_";
+						}
+						name = profileinfo.getName();
+						emailid = profileinfo.getEmailid();
+						experience = profileinfo.getExperience();
+						hangoverid = profileinfo.getHangoverid();
+						salary = profileinfo.getSalary();
+						tellaboutme = profileinfo.getTellmeaboutme();
+						if(tellaboutme == null){
+							tellaboutme = "_B_L_A_N_K_";
+						}
+						currentStatus = profileinfo.getCurrentStatus();
+						if(currentStatus == null){
+							currentStatus = "_B_L_A_N_K_";
+						}
+						contact = profileinfo.getContact();
+						if(contact == null){
+							contact = "_B_L_A_N_K_";
+						}
+					
+					}else {
+						
+						HashMap collectionlist = (HashMap)profilelist.get(m);
+						Set collectionset = collectionlist.entrySet();
+						Iterator collit = collectionset.iterator();
+						while(collit.hasNext()){
+							
+							Map.Entry mecoll = (Map.Entry)collit.next();
+							String collectionresul = (String)mecoll.getKey();
+							
+							if(collectionresul.equalsIgnoreCase("articles")){
+								articlelist = (ArrayList)mecoll.getValue();
+								if(articlelist!= null){
+									articlecount = articlelist.size();
+								}
+								
+							}else if(collectionresul.equalsIgnoreCase("connections")){
+								connectionlist = (ArrayList)mecoll.getValue();
+								if(connectionlist!= null){
+									articlecount = connectionlist.size();
+								}
+								
+							}else if(collectionresul.equalsIgnoreCase("followers")){
+								followerlist = (ArrayList)mecoll.getValue();
+								if(followerlist!= null){
+									articlecount = followerlist.size();
+								}
+							}
+							
+						}
+						
+					}
+					
+					
+				}
+			
+			
+			%>
+			
+			
 			<!-- MAIN CONTENT -->
 			<div id="content">
 
 				<!-- Bread crumb is created dynamically -->
 				<!-- row -->
-				<div class="row">
+				<!-- <div class="row">
 				
-					<!-- col -->
+					col
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-puzzle-piece"></i> App Views <span>>
+						<h1 class="page-title txt-color-blueDark">PAGE HEADER<i class="fa-fw fa fa-puzzle-piece"></i> App Views <span>>
 							Profile </span></h1>
 					</div>
-					<!-- end col -->
+					end col
 				
-					<!-- right side of the page with the sparkline graphs -->
-					<!-- col -->
+					right side of the page with the sparkline graphs
+					col
 					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-						<!-- sparks -->
+						sparks
 						<ul id="sparks">
 							<li class="sparks-info">
 								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
@@ -665,11 +787,11 @@
 								</div>
 							</li>
 						</ul>
-						<!-- end sparks -->
+						end sparks
 					</div>
-					<!-- end col -->
+					end col
 				
-				</div>
+				</div> -->
 				<!-- end row -->
 				
 				<!-- row -->
@@ -704,15 +826,15 @@
 														<div class="carousel-inner">
 															<!-- Slide 1 -->
 															<div class="item active">
-																<img src="img/demo/s1.jpg" alt="demo user">
+																<img src="<c:url value='/resources/img/demo/s1.jpg' />" alt="demo user">
 															</div>
 															<!-- Slide 2 -->
 															<div class="item">
-																<img src="img/demo/s2.jpg" alt="demo user">
+																<img src="<c:url value='/resources/img/demo/s2.jpg' />" alt="demo user">
 															</div>
 															<!-- Slide 3 -->
 															<div class="item">
-																<img src="img/demo/m3.jpg" alt="demo user">
+																<img src="<c:url value='/resources/img/demo/m3.jpg' />" alt="demo user">
 															</div>
 														</div>
 													</div>
@@ -723,36 +845,44 @@
 													<div class="row">
 				
 														<div class="col-sm-3 profile-pic">
-															<img src="img/avatars/sunny-big.png" alt="demo user">
+															<% if(imageid!= null){%>
+															
+																<img  data-toggle="modal"  src="<c:url value='/resources/img/avatars/sunny-big.png' />" alt="demo user">
+																
+															<%}else {%>
+														
+															<img data-toggle="modal"  src="<c:url value='/resources/img/avatars/male.png' />" alt="demo user">
+															
+															<%} %>
 															<div class="padding-10">
-																<h4 class="font-md"><strong>1,543</strong>
+																<h4 class="font-md"><strong><%=followercount %></strong>
 																<br>
 																<small>Followers</small></h4>
 																<br>
-																<h4 class="font-md"><strong>419</strong>
+																<h4 class="font-md"><strong><%=connectioncount%></strong>
 																<br>
 																<small>Connections</small></h4>
 															</div>
 														</div>
 														<div class="col-sm-6">
-															<h1>John <span class="semi-bold">Doe</span>
+															<h1><span class="semi-bold"><%=name%></span>
 															<br>
-															<small> CEO, SmartAdmin</small>&nbsp;&nbsp;<i href="#" id="smart-mod-eg5" class="fa fa-edit"></i></h1>
+															<small id="currectstatus-result"> <%=currentStatus %></small></h1>
 				
 															<ul class="list-unstyled">
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-phone"></i>&nbsp;&nbsp;(<span class="txt-color-darken">313</span>) <span class="txt-color-darken">464</span> - <span class="txt-color-darken">6473</span>
+																		<i class="fa fa-phone"></i>&nbsp;&nbsp;<span id="contact-result" class="txt-color-darken"><%=contact%></span>
 																	</p>
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:simmons@smartadmin">ceo@smartadmin.com</a>&nbsp;&nbsp;<i href="#" id="smart-mod-eg6" class="fa fa-edit"></i>
+																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a id="email-result" href="mailto:<%=emailid%>"><%=emailid%></a>
 																	</p>
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-skype"></i>&nbsp;&nbsp;<span class="txt-color-darken">john12</span>
+																		<i class="fa fa-skype"></i>&nbsp;&nbsp;<span id="skype-result" class="txt-color-darken"><%=skypeid%></span>
 																	</p>
 																</li>
 																<li>
@@ -762,51 +892,59 @@
 																</li>
 															</ul>
 															<br>
-															<p class="font-md">
+															<p id="tellabout-result" class="font-md">
 																<i>A little about me...</i>
 															</p>
-															<p>
+															<p id="tellabout-result">
 				
-																Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-																cumque nihil impedit quo minus id quod maxime placeat facere
+																<%=tellaboutme%>
 				
 															</p>
 															<br>
-															<a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a>
+															<a href="javascript:void(0);" class="btn btn-default btn-xs"><%=hangoverid %></a>
 															<br>
 															<br>
 				
 														</div>
 														<div class="col-sm-3">
 															<h1><small>Connections</small></h1>
+															<%if(connectioncount !=0){ %>
 															<ul class="list-inline friends-list">
-																<li><img src="img/avatars/1.png" alt="friend-1">
+																<%for(int s=0;s<7;s++){ 
+																
+																	Profile profil = (Profile)connectionlist.get(s);
+																	String userids = profil.getUserid();
+																	String username = profil.getName();
+																	String userimage = profil.getProfileImageid();
+																
+																%>
+																<li><img src="/Fliker/imageFromUserid/<%=userids%>" alt="<%=username%>">
 																</li>
-																<li><img src="img/avatars/2.png" alt="friend-2">
-																</li>
-																<li><img src="img/avatars/3.png" alt="friend-3">
-																</li>
-																<li><img src="img/avatars/4.png" alt="friend-4">
-																</li>
-																<li><img src="img/avatars/5.png" alt="friend-5">
-																</li>
-																<li><img src="img/avatars/male.png" alt="friend-6">
-																</li>
+																<%} %>
 																<li>
-																	<a href="javascript:void(0);">413 more</a>
+																	<a href="javascript:void(0);"><%=connectionlist.size()-6%>more</a>
 																</li>
 															</ul>
-				
-															<h1><small>Recent visitors</small></h1>
+															<%} %>	
+															<h1><small>Followers</small></h1>
+															<%if(followercount !=0){ %>
 															<ul class="list-inline friends-list">
-																<li><img src="img/avatars/male.png" alt="friend-1">
+																<%for(int t=0;t<7;t++){ 
+																
+																	Profile profil = (Profile)followerlist.get(t);
+																	String userids = profil.getUserid();
+																	String username = profil.getName();
+																	String userimage = profil.getProfileImageid();
+																
+																%>
+																<li><img src="/Fliker/imageFromUserid/<%=userids%>" alt="<%=username%>">
 																</li>
-																<li><img src="img/avatars/female.png" alt="friend-2">
-																</li>
-																<li><img src="img/avatars/female.png" alt="friend-3">
+																<%} %>
+																<li>
+																	<a href="javascript:void(0);"><%=followerlist.size()-6%>more</a>
 																</li>
 															</ul>
-				
+															<%} %>
 														</div>
 				
 													</div>
@@ -1197,13 +1335,13 @@
 			
 
 			<hr class="simple">
-			<h3>Dynamic Tabs
+			<h3>Skills Tab
 			<br>
-			<small>Click button to add another tab</small></h3>
+			<small>Click button to add another skill</small></h3>
 
 			<p>
 				<button id="add_tab" class="btn btn-primary">
-					Add Tab
+					Add Skill
 				</button>
 			</p>
 
@@ -1391,56 +1529,65 @@
 	<div class="row">
 
 		<!-- NEW WIDGET START -->
-		<article class="col-sm-12">
+		<div class="widget-body">
+										<div class="row">
 
-			
-			
-			<!-- Widget ID (each widget will need unique ID)-->
-			<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
-				<!-- widget options:
-				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-				data-widget-colorbutton="false"
-				data-widget-editbutton="false"
-				data-widget-togglebutton="false"
-				data-widget-deletebutton="false"
-				data-widget-fullscreenbutton="false"
-				data-widget-custombutton="false"
-				data-widget-collapsed="true"
-				data-widget-sortable="false"
-
-				-->
-				<header>
-					<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-					<h2>My Dropzone! </h2>
-
-				</header>
-
-				<!-- widget div-->
-				<div>
-
-					<!-- widget edit box -->
-					<div class="jarviswidget-editbox">
-						<!-- This area used as dropdown edit box -->
-
-					</div>
-					<!-- end widget edit box -->
-
-					<!-- widget content -->
-					<div class="widget-body">
-
-						<form action="upload.php" class="dropzone" id="mydropzone"></form>
-
-					</div>
-					<!-- end widget content -->
-
-				</div>
-				<!-- end widget div -->
-
-			</div>
-			<!-- end widget -->
-
-		</article>
+											<!-- NEW WIDGET START -->
+											<article class="col-sm-12">
+									
+												
+												
+												<!-- Widget ID (each widget will need unique ID)-->
+												<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
+													<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+													data-widget-colorbutton="false"
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true"
+													data-widget-sortable="false"
+									
+													-->
+													<header>
+														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
+														<h2>Document Set</h2>
+									
+													</header>
+									
+													<!-- widget div-->
+													<div>
+									
+														<!-- widget edit box -->
+														<div class="jarviswidget-editbox">
+															<!-- This area used as dropdown edit box -->
+									
+														</div>
+														<!-- end widget edit box -->
+									
+														<!-- widget content -->
+														<div class="widget-body">
+									
+															<form action="upload.php" class="dropzone" id="mydropzone"></form>
+									
+														</div>
+														<!-- end widget content -->
+									
+													</div>
+													<!-- end widget div -->
+									
+												</div>
+												<!-- end widget -->
+									
+											</article>
+											<!-- WIDGET END -->
+									
+										</div>
+				
+									</div>
 		<!-- WIDGET END -->
 
 	</div>
@@ -1454,7 +1601,83 @@
 	<!-- end row -->
 
 </section>
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							
+							<div class="modal-body">
 				
+								<div class="row">
+
+											<!-- NEW WIDGET START -->
+											<div class="widget-body">
+										<div class="row">
+
+											<!-- NEW WIDGET START -->
+											<article class="col-sm-12">
+									
+												
+												
+												<!-- Widget ID (each widget will need unique ID)-->
+												<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-1" data-widget-editbutton="false">
+													<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+													data-widget-colorbutton="false"
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true"
+													data-widget-sortable="false"
+									
+													-->
+													<header>
+														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
+														<h2>New Profile Image</h2>
+									
+													</header>
+									
+													<!-- widget div-->
+													<div>
+									
+														<!-- widget edit box -->
+														<div class="jarviswidget-editbox">
+															<!-- This area used as dropdown edit box -->
+									
+														</div>
+														<!-- end widget edit box -->
+									
+														<!-- widget content -->
+														<div class="widget-body">
+									
+															<form action="upload.php" class="dropzone" id="Imagedropzone"></form>
+									
+														</div>
+														<!-- end widget content -->
+									
+													</div>
+													<!-- end widget div -->
+									
+												</div>
+												<!-- end widget -->
+									
+											</article>
+											<!-- WIDGET END -->
+									
+										</div>
+										
+				
+									</div>
+											<!-- WIDGET END -->
+									
+										</div>
+								
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div>
 				<!-- end row -->
 
 			</div>
@@ -1639,6 +1862,8 @@
 		<!-- Voice command : plugin -->
 		<script src="<c:url value='/resources/js/speech/voicecommand.min.js' />"></script>
 		<!-- <script src="js/speech/voicecommand.min.js"></script> -->
+		
+		<script src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
 
 		<!-- SmartChat UI : plugin -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.ui.min.js' />"></script>
@@ -1735,12 +1960,159 @@
 				e.preventDefault();
 			});	
 				
-		$("#smart-mod-eg6").click(function(e) {
+				
+		$("#profileimage-eg5").click(function(e) {
 				
 				$.SmartMessageBox({
-					title : "Login form",
-					content : "Please enter your user name",
-					buttons : "[Cancel][Accept]",
+					title : "New Profile Image",
+					content : "New Image",
+					buttons : "[Cancel][Upload]",
+					input : "text",
+					placeholder : "Upload New Image"
+				}, function(ButtonPress, Value) {
+					if (ButtonPress == "Cancel") {
+						return 0;
+					}
+		
+					Value1 = Value.toUpperCase();
+					ValueOriginal = Value;
+					
+				if(ButtonPress == "Upload"){
+						
+					var formData = new FormData($('#wizard-1')[0][1]);
+				      alert(formData);
+				     //var comment = new FormData($('#comments')[0]);
+				      
+				      /* get some values from elements on the page: */
+				      $.ajax({
+			                url: "rest/file/upload?",
+			                type: 'POST',
+			                data : formData,
+			                paramName: "file",
+			                success: function(result) {
+			                    // ... Process the result ...
+			                },
+			                cache: false,
+			                contentType: false,
+			                processData: false
+			            });
+						
+						
+					}
+					/* $.SmartMessageBox({
+						title : "Hey! <strong>" + Value1 + ",</strong>",
+						content : "And now please provide your password:",
+						buttons : "[Login]",
+						input : "password",
+						placeholder : "Password"
+					}, function(ButtonPress, Value) {
+						alert("Username: " + ValueOriginal + " and your password is: " + Value);
+					}); */
+				});
+		
+				e.preventDefault();
+			});			
+				
+		$("#currectstatus-eg5").click(function(e) {
+				
+				$.SmartMessageBox({
+					title : "Edit Current Status",
+					content : "New Position ",
+					buttons : "[Cancel][Save]",
+					input : "text",
+					placeholder : "Enter your status"
+				}, function(ButtonPress, Value) {
+					if (ButtonPress == "Cancel") {
+						return 0;
+					}
+		
+					Value1 = Value.toUpperCase();
+					ValueOriginal = Value;
+					if(ButtonPress == "Save"){
+						
+						$('#currectstatus-result')[0].innerHTML = Value;
+						//alert(Value);
+						
+						$.ajax({
+							url : "currentStatus?currentstatus="+Value,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+						
+						
+					}
+					
+					/* $.SmartMessageBox({
+						title : "Hey! <strong>" + Value1 + ",</strong>",
+						content : "And now please provide your password:",
+						buttons : "[Login]",
+						input : "password",
+						placeholder : "Password"
+					}, function(ButtonPress, Value) {
+						alert("Username: " + ValueOriginal + " and your password is: " + Value);
+					}); */
+				});
+		
+				e.preventDefault();
+			});				
+				
+		$("#contact-eg6").click(function(e) {
+				
+				$.SmartMessageBox({
+					title : "Change Contact No",
+					content : "New Contact Number",
+					buttons : "[Cancel][Save]",
+					input : "text",
+					placeholder : "Enter your user name"
+				}, function(ButtonPress, Value) {
+					if (ButtonPress == "Cancel") {
+						return 0;
+					}
+		
+					Value1 = Value.toUpperCase();
+					ValueOriginal = Value;
+					
+					if(ButtonPress == "Save"){
+						
+						$('#contact-result')[0].innerHTML = Value;
+						//alert(Value);
+						
+						$.ajax({
+							url : "contactNo?contact="+Value,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+						
+						
+					}
+					
+					/* $.SmartMessageBox({
+						title : "Hey! <strong>" + Value1 + ",</strong>",
+						content : "And now please provide your password:",
+						buttons : "[Login]",
+						input : "password",
+						placeholder : "Password"
+					}, function(ButtonPress, Value) {
+						alert("Username: " + ValueOriginal + " and your password is: " + Value);
+					}); */
+				});
+		
+				e.preventDefault();
+			});	
+				
+				
+		$("#email-eg6").click(function(e) {
+				
+				$.SmartMessageBox({
+					title : "Email Form",
+					content : "Change Email",
+					buttons : "[Cancel][Save]",
 					input : "text",
 					placeholder : "Enter your user name"
 				}, function(ButtonPress, Value) {
@@ -1751,7 +2123,25 @@
 		
 					Value1 = Value.toUpperCase();
 					ValueOriginal = Value;
-					$.SmartMessageBox({
+					
+				if(ButtonPress == "Save"){
+						
+						$('#email-result')[0].innerHTML = Value;
+						//alert(Value);
+						
+						$.ajax({
+							url : "emailModify?emailid="+Value,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+						
+						
+					}
+					
+					/* $.SmartMessageBox({
 						title : "Hey! <strong>" + Value1 + ",</strong>",
 						content : "And now please provide your password:",
 						buttons : "[Login]",
@@ -1759,11 +2149,109 @@
 						placeholder : "Password"
 					}, function(ButtonPress, Value) {
 						alert("Username: " + ValueOriginal + " and your password is: " + Value);
-					});
+					}); */
 				});
 		
 				e.preventDefault();
-			});				
+			});	
+				
+		$("#skype-eg6").click(function(e) {
+				
+				$.SmartMessageBox({
+					title : "Skype ID",
+					content : "New Skype ID",
+					buttons : "[Cancel][Save]",
+					input : "text",
+					placeholder : "Enter your user name"
+				}, function(ButtonPress, Value) {
+					if (ButtonPress == "Cancel") {
+						return 0;
+					}
+		
+					Value1 = Value.toUpperCase();
+					ValueOriginal = Value;
+					
+				if(ButtonPress == "Save"){
+						
+						$('#skype-result')[0].innerHTML = Value;
+						//alert(Value);
+						
+						$.ajax({
+							url : "emailModify?emailid="+Value,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+						
+						
+					}
+					
+					/* $.SmartMessageBox({
+						title : "Hey! <strong>" + Value1 + ",</strong>",
+						content : "And now please provide your password:",
+						buttons : "[Login]",
+						input : "password",
+						placeholder : "Password"
+					}, function(ButtonPress, Value) {
+						alert("Username: " + ValueOriginal + " and your password is: " + Value);
+					}); */
+				});
+		
+				e.preventDefault();
+			});	
+				
+		$("#tellabout-eg6").click(function(e) {
+				
+				$.SmartMessageBox({
+					title : "About Me",
+					content : "Tell Me About",
+					buttons : "[Cancel][Save]",
+					input : "text",
+					rows: "3",
+					width:"350",
+		            height:"300",
+					placeholder : "Tell me about yourself"
+				}, function(ButtonPress, Value) {
+					if (ButtonPress == "Cancel") {
+						return 0;
+					}
+		
+					Value1 = Value.toUpperCase();
+					ValueOriginal = Value;
+					
+				if(ButtonPress == "Submit"){
+						
+						$('#tellabout-result')[0].innerHTML = Value;
+						//alert(Value);
+						
+						$.ajax({
+							url : "tellmeaboutme?aboutme="+Value,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+						
+						
+					}
+					
+					/* $.SmartMessageBox({
+						title : "Hey! <strong>" + Value1 + ",</strong>",
+						content : "And now please provide your password:",
+						buttons : "[Login]",
+						input : "password",
+						placeholder : "Password"
+					}, function(ButtonPress, Value) {
+						alert("Username: " + ValueOriginal + " and your password is: " + Value);
+					}); */
+				});
+		
+				e.preventDefault();
+			});		
+				
 			
 			
 			// menu
@@ -2041,8 +2529,8 @@
 			$('#cabs2').tabs();
 		
 			// Dynamic tabs
-			var tabTitle = $("#tab_title"), tabContent = $("#tab_content"), tabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href='#{href}'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{label}</a></li>", tabCounter = 2;
-			var cabTitle = $("#cab_title"), cabContent = $("#cab_content"), cabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href='#{href}'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{label}</a></li>", cabCounter = 2;
+			var tabTitle = $("#tab_title"), tabContent = $("#tab_content"), tabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href=''>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a></li>", tabCounter = 2;
+			var cabTitle = $("#cab_title"), cabContent = $("#cab_content"), cabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href=''>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a></li>", cabCounter = 2;
 		
 			var tabs = $("#tabs2").tabs();
 			var cabs = $("#cabs2").tabs();
@@ -2183,7 +2671,17 @@
 			
 			Dropzone.autoDiscover = false;
 			$("#mydropzone").dropzone({
-				//url: "/file/post",
+				url: "/file/post",
+				addRemoveLinks : true,
+				maxFilesize: 0.5,
+				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
+				dictResponseError: 'Error uploading file!'
+			});
+			
+			Dropzone.autoDiscover = false;
+			$("#Imagedropzone").dropzone({
+				url: "/file/post",
+				maxFiles: 1,
 				addRemoveLinks : true,
 				maxFilesize: 0.5,
 				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',

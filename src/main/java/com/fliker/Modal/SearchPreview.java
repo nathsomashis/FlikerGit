@@ -23,7 +23,7 @@ import com.mongodb.DBObject;
 
 public class SearchPreview {
 
-	public ArrayList getSearchResult(String searchparam){
+	public ArrayList getSearchResult(String searchparam) throws NullPointerException{
 		
 		ArrayList serchres = new ArrayList();
 		//db.users.find({"name": /.*m.*/})

@@ -175,4 +175,10 @@ public class PostPreview {
 		mongocon.saveObject(basicreqobj, "Post");
 		
 	}
+
+
+	public String getPostID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
