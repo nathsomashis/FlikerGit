@@ -790,9 +790,9 @@
 				
 												<div class="col-sm-12">
 													<div id="myCarousel" class="carousel fade profile-carousel">
-														<!-- <div class="air air-bottom-right padding-10">
+														<div class="air air-bottom-right padding-10">
 															<a href="javascript:void(0);" class="btn txt-color-white bg-color-teal btn-sm"><i class="fa fa-check"></i> Follow</a>&nbsp; <a href="javascript:void(0);" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-link"></i> Connect</a>
-														</div> -->
+														</div>
 														<div class="air air-top-left padding-10">
 															<h4 class="txt-color-white font-md">Jan 1, 2014</h4>
 														</div>
@@ -2658,10 +2658,10 @@
 			
 			Dropzone.autoDiscover = false;
 			$("#Imagedropzone").dropzone({
-				url: "/file/post",
-				maxFiles: 1,
+				url: "imageProfile?",
+				paramName: "file",		
 				addRemoveLinks : true,
-				maxFilesize: 0.5,
+				maxFilesize: 500,
 				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
 				dictResponseError: 'Error uploading file!'
 			});
