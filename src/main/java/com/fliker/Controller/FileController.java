@@ -1,12 +1,8 @@
 package com.fliker.Controller;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,24 +13,15 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import org.apache.poi.*;
-import org.apache.poi.hwpf.HWPFDocument;
-import org.apache.poi.hwpf.extractor.WordExtractor;
-import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.apache.commons.io.IOUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,9 +34,7 @@ import com.fliker.Connection.MongoConnection;
 import com.fliker.Modal.CoursePreview;
 import com.fliker.Modal.FilePreview;
 import com.fliker.Modal.ProfilePreview;
-import com.fliker.Modal.SearchPreview;
 import com.fliker.Repository.FileUpload;
-import com.fliker.Repository.Post;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.User;
 import com.mongodb.BasicDBObject;
@@ -934,12 +919,7 @@ public class FileController {
 					fileids = fileInfo.getFileid();
 					filename = fileInfo.getName();
 					
-					if(filename.endsWith("doc")||filename.endsWith("docx")|| filename.endsWith("pdf")||filename.endsWith("txt")){
-						
-						
-						
-						
-					}
+					
 					
 					saveFileToLocalDisk(multipartFile);
 					
@@ -975,8 +955,7 @@ public class FileController {
 				}
 
 	     }
-	        weekfirst.put(fileids, filename);
-	        fileidlistone.add(filename);
+	        
 	        
 	        ServletContext context = request.getSession().getServletContext();
 			context.setAttribute("weekfirst", weekfirst);
