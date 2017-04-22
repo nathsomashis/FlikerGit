@@ -57,8 +57,8 @@ public class LoginController {
 			mv = new ModelAndView("/Login");
 		}else if(message.equalsIgnoreCase("The password doesn't match")){
 			mv = new ModelAndView("/Login");
-		}else if(message.equalsIgnoreCase("timeout")){
-			mv = new ModelAndView("/Error");
+		/*}else if(message.equalsIgnoreCase("timeout")){
+			mv = new ModelAndView("/Error");*/
 		}else {
 			//mv = new ModelAndView("/DashboardSocial"); original one 
 			

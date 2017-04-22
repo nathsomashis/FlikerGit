@@ -3,9 +3,14 @@ package com.fliker.Modal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.User;
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
@@ -37,7 +42,7 @@ public class ProfilePreview {
 			
 			profileinfo.setUserid(userid);
 			profileinfo.setProfileid((String)theObj.get("profileid"));
-			profileinfo.setCurrentStatus((String)theObj.get("skypeid"));
+			profileinfo.setSkypeid((String)theObj.get("skypeid"));
 			profileinfo.setName((String)theObj.get("name"));
 			profileinfo.setEmailid((String)theObj.get("emailid"));
 			profileinfo.setExperience((String)theObj.get("experience"));
@@ -47,6 +52,7 @@ public class ProfilePreview {
 			profileinfo.setProfiledataid((String)theObj.get("profiledataid"));
 			profileinfo.setProfileImageid((String)theObj.get("profileImageid"));
 			profileinfo.setSalary((String)theObj.get("salary"));
+			profileinfo.setSalaryhike((String)theObj.get("salaryhike"));
 			profileinfo.setTellmeaboutme((String)theObj.get("tellmeaboutme"));
 			String[] courseids = null;
 			if((String)theObj.get("courseids")!=null){
@@ -139,6 +145,7 @@ public class ProfilePreview {
 			profileinfo.setProfiledataid((String)theObj.get("profiledataid"));
 			profileinfo.setProfileImageid((String)theObj.get("profileImageid"));
 			profileinfo.setSalary((String)theObj.get("salary"));
+			profileinfo.setSalaryhike((String)theObj.get("salaryhike"));
 			profileinfo.setTellmeaboutme((String)theObj.get("tellmeaboutme"));
 			String[] courseids = null;
 			if((String)theObj.get("courseids")!=null){
@@ -311,6 +318,127 @@ public class ProfilePreview {
 		
 		return imageiddoc;
 	}
+
+
+	public void saveCurrentStatus(String userid, String currentstatus) {
+		// TODO Auto-generated method stub\
+		
+		ProfilePreview prof = new ProfilePreview();
+		prof.saveElements(userid, currentstatus, "currentStatus");
+		
+	}
+	
+	
+	public void saveElements(String userid, String content, String column){
+		
+		MongoConnection mongocon = new MongoConnection();
+		//Query searchUserQuery = new Query(Criteria.where("userid").is(userid));
+		
+		BasicDBObject newDocument = new BasicDBObject();
+		newDocument.append("$set", new BasicDBObject().append(column, content));
+
+		BasicDBObject searchQuery = new BasicDBObject().append("userid", userid);
+
+		
+		mongocon.updateObject(searchQuery, newDocument, "Profile");
+		
+		
+		
+	}
+
+
+	public void saveContactNo(String userid, String contact) {
+		// TODO Auto-generated method stub
+		
+		ProfilePreview prof = new ProfilePreview();
+		prof.saveElements(userid, contact, "contact");
+		
+	}
+
+
+	public void saveEmailModify(String userid, String emailid) {
+		// TODO Auto-generated method stub
+		
+		ProfilePreview prof = new ProfilePreview();
+		prof.saveElements(userid, emailid, "emailid");
+		
+	}
+
+
+	public void saveSkypeModify(String userid, String skypeid) {
+		// TODO Auto-generated method stub
+		
+		ProfilePreview prof = new ProfilePreview();
+		prof.saveElements(userid, skypeid, "skypeid");
+		
+	}
+
+
+	public void saveTellMeAbout(String userid, String aboutme) {
+		// TODO Auto-generated method stub
+		
+		ProfilePreview prof = new ProfilePreview();
+		prof.saveElements(userid, aboutme, "tellmeaboutme");
+		
+	}
+
+
+	public void saveExperience(String userid, String experience) {
+		// TODO Auto-generated method stub
+		
+		ProfilePreview prof = new ProfilePreview();
+		prof.saveElements(userid, experience, "experience");
+	}
+
+
+	public void saveSalaryRange(String userid, String salarystart, String salaryhike) {
+		// TODO Auto-generated method stub
+		
+		ProfilePreview prof = new ProfilePreview();
+		prof.saveElements(userid, salarystart, "salary");
+		prof.saveElements(userid, salaryhike, "salaryhike");
+	}
+
+
+	/*public ArrayList getRecommendedList(String userid) {
+		
+		ArrayList recommendlist = new ArrayList();
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "Profile");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+		    //How to get the DBObject value to ArrayList of Java Object?
+			Profile profileinfo = new Profile();
+			String[] profilefoconn = profileinfo.getConnectids();
+			String[] profilefofoll = profileinfo.getFollwerids();
+			
+			if(profilefoconn.length <0){
+				for(int m=0;m<profilefoconn.length;m++){
+					
+					MongoConnection mongoconn = new MongoConnection();
+					DBCursor resultconn = mongoconn.getDBObject("userid", profilefoconn[m], "Profile");
+					if(resultconn.hasNext()){
+						
+						DBObject theObjconn = resultconn.next();
+					    //How to get the DBObject value to ArrayList of Java Object?
+						Profile profileprof = new Profile();
+						profileprof.
+						
+					}
+					
+					
+				}
+				
+				
+			}
+			
+			
+		
+		}
+		// TODO Auto-generated method stub
+		return recommendlist;
+	}*/
 	
 	
 }
