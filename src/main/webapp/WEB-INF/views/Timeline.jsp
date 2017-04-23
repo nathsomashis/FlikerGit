@@ -1,4 +1,6 @@
+<%@page import="com.fliker.Utility.DateFunctionality"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*,com.fliker.*,java.time.format.DateTimeFormatter,java.time.LocalDateTime" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -361,20 +363,52 @@
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<div class="login-info">
-				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-					
-					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
-						<span>
-							john.doe 
-						</span>
-						<i class="fa fa-angle-down"></i>
-					</a> 
-					
-				</span>
-			</div>
-			<!-- end user info -->
+			<%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String gender = (String)request.getAttribute("Gender");
+			String imagid = (String)request.getAttribute("ProfileImage");
+			String logo = "";
+			
+			
+		
+		%>
+
+
+		<!-- User info -->
+
+		<%
+		/* if(imageid == ""){
+			if(gender.equalsIgnoreCase("female")){
+				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
+			}else{
+				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
+			}
+		}else{
+			
+		} */
+		
+		
+		%>
+		<div class="login-info">
+			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+				<a href="javascript:void(0);" id="show-shortcut"
+				data-action="toggleShortcut"> <%if(imagid == ""){
+					if(gender.equalsIgnoreCase("female")){
+						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
+					alt="me" class="online" /> <%
+					}else{
+						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
+					alt="me" class="online" /> <% 
+					}
+				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
+				</span> <i class="fa fa-angle-down"></i>
+			</a>
+
+			</span>
+		</div>
+		<!-- end user info -->
 
 			<nav>
 				<!-- 
@@ -391,14 +425,14 @@
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
 		<li ><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+				class="fa fa-lg fa-fw fa-retweet "></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
 		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
 				<span class="menu-item-parent">Profile</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		<li class="active"><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+		<li class="active"><a href="timeline?"><i class="fa fa-lg fa-fw fa-road txt-color-blue"></i>
 				<span class="menu-item-parent">Timeline</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 		<li><a href="createpost?" title="NewPost"><i
@@ -593,7 +627,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li><a href="hello?name=Eric?">Home</li><li>Timeline</li>
+					<li>Timeline</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -615,44 +649,7 @@
 			<div id="content">
 
 				<!-- row -->
-				<div class="row">
 				
-					<!-- col -->
-					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-home"></i> Other Pages <span>>
-							Timeline </span></h1>
-					</div>
-					<!-- end col -->
-				
-				<!-- right side of the page with the sparkline graphs -->
-					<!-- col -->
-					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-						<!-- sparks -->
-						<ul id="sparks">
-							<li class="sparks-info">
-								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
-								<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-									1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-								</div>
-							</li>
-							<li class="sparks-info">
-								<h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
-								<div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
-									110,150,300,130,400,240,220,310,220,300, 270, 210
-								</div>
-							</li>
-							<li class="sparks-info">
-								<h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
-								<div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
-									110,150,300,130,400,240,220,310,220,300, 270, 210
-								</div>
-							</li>
-						</ul>
-						<!-- end sparks -->
-					</div>
-					<!-- end col -->
-				
-				</div>
 				<!-- end row -->
 				
 				<!-- row -->
@@ -664,7 +661,162 @@
 							<!-- Timeline Content -->
 							<div class="smart-timeline">
 								<ul class="smart-timeline-list">
-									<li>
+									<%
+										ArrayList timelines = (ArrayList)request.getAttribute("timelines");
+										if(!timelines.isEmpty()){
+										for(int m=0;m<timelines.size();m++){
+											
+											String timelineid="";
+											String logEntry = "";
+											String event ="";
+											String timelineentrytype="";
+											String timelinedescription="";
+											String timelineimageid="";
+											String timelinelink="";
+											String timelinedate="";
+											String timelinelocation = "";
+											String time="";
+											String logon1= "";
+											String logon2="";
+											
+											HashMap timelinemap = (HashMap)timelines.get(m);
+											Set timelineset = timelinemap.entrySet();
+											Iterator timeit = timelineset.iterator();
+											while (timeit.hasNext()) {
+												Map.Entry perme = (Map.Entry) timeit.next();
+												String keyvalue = (String) perme.getKey();
+												System.out.println(perme.getValue());
+												if (keyvalue.equalsIgnoreCase("timelineid")) {
+													timelineid = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("logEntry")) {
+													logEntry = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("event")) {
+													event = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("timelineentrytype")) {
+													timelineentrytype = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("timelinedescription")) {
+													timelinedescription = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("timelineimageid")) {
+													timelineimageid = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("timelinelink")) {
+													timelinelink = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("timelinedate")) {
+													timelinedate = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("timelinelocation")) {
+													timelinelocation = (String)perme.getValue();
+												}
+												DateFunctionality datefun = new DateFunctionality();
+												DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+												LocalDateTime now = LocalDateTime.now();
+												System.out.println(dtf.format(now));
+												
+												String currentdate = dtf.format(now);
+												
+												time = datefun.getDateDiffference(timelinedate, currentdate);
+												String[] logEn = logEntry.split("::");
+												logon1 = "["+logEn[0]+"]";
+												logon2 = "["+logEn[1]+"]";
+												 
+												
+											}
+											
+											if(timelineentrytype.equalsIgnoreCase("Note")){
+												
+												%>
+													<li>
+														<div class="smart-timeline-icon">
+															<img src="<c:url value='/resources/img/avatars/n_blue.png' />" width="32" height="32" alt="user" />
+														</div>
+														<div class="smart-timeline-time">
+															<%if(time!=null){ %>
+															<small><%=time%></small>
+															<%} %>
+														</div>
+														<div class="smart-timeline-content">
+															<p>
+																<a href="javascript:void(0);"><strong>Note:<%=event%></strong></a>
+															</p>
+															<p>
+																<%=timelinedescription%>
+															</p>
+															<p>
+																<a href="javascript:void(0);" class="btn btn-xs btn-primary"><i class="fa fa-file"></i> Read the post</a>
+															</p>
+															<img src="img/superbox/superbox-thumb-4.jpg" alt="img" width="150">
+														</div>
+													</li>
+												
+												<%
+												
+											}else if(timelineentrytype.equalsIgnoreCase("Course")){
+												%>
+													<li>
+														<div class="smart-timeline-icon bg-color-greenDark">
+															<img src="<c:url value='/resources/img/avatars/c_red.png' />" width="32" height="32" alt="user" />
+														</div>
+														<div class="smart-timeline-time">
+															<%if(time!=null){ %>
+															<small><%=time%></small>
+															<%} %>
+														</div>
+														<div class="smart-timeline-content">
+															<p>
+																<strong class="txt-color-greenDark">Course :<%=event%></strong>
+															</p>
+															<p>
+																<a href="javascript:void(0);"><strong><%=timelinelink%></strong></a>
+															</p>
+															<p>
+																<%=timelinedescription%>
+															</p>
+															<div class="sparkline" 
+															data-sparkline-type="compositeline" 
+															data-sparkline-spotradius-top="5" 
+															data-sparkline-color-top="#3a6965" 
+															data-sparkline-line-width-top="3" 
+															data-sparkline-color-bottom="#2b5c59" 
+															data-sparkline-spot-color="#2b5c59" 
+															data-sparkline-minspot-color-top="#97bfbf" 
+															data-sparkline-maxspot-color-top="#c2cccc" 
+															data-sparkline-highlightline-color-top="#cce8e4" 
+															data-sparkline-highlightspot-color-top="#9dbdb9" 
+															data-sparkline-width="170px" 
+															data-sparkline-height="40px" 
+															data-sparkline-line-val="<%=logon1%>" 
+															data-sparkline-bar-val="<%=logon2%>"></div>
+															
+															<br>
+														</div>
+													</li>
+												<%
+											}else if(timelineentrytype.equalsIgnoreCase("Project")){
+												
+												
+												
+											}else if(timelineentrytype.equalsIgnoreCase("Classroom")){
+												
+											}else if(timelineentrytype.equalsIgnoreCase("AcademicGuidance")){
+												
+											}else if(timelineentrytype.equalsIgnoreCase("ProfessionalGuidance")){
+												
+											}else if(timelineentrytype.equalsIgnoreCase("IdeaWork")){
+
+											}else if(timelineentrytype.equalsIgnoreCase("Work")){
+												
+											}else if(timelineentrytype.equalsIgnoreCase("Achievement")){
+												
+											}
+												
+										}
+										
+										}
+										
+									
+									
+									%>
+								
+								
+									<!-- <li>
 										<div class="smart-timeline-icon">
 											<img src="img/avatars/sunny.png" width="32" height="32" alt="user" />
 										</div>
@@ -736,8 +888,8 @@
 											
 											<br>
 										</div>
-									</li>
-									<li>
+									</li> -->
+									<!-- <li>
 										<div class="smart-timeline-icon">
 											<i class="fa fa-user"></i>
 										</div>
@@ -783,7 +935,7 @@
 											</p>
 											<a href="javascript:void(0);" class="btn btn-xs btn-default">Read more</a>
 										</div>
-									</li>
+									</li> -->
 									<li class="text-center">
 										<a href="javascript:void(0)" class="btn btn-sm btn-default"><i class="fa fa-arrow-down text-muted"></i> LOAD MORE</a>
 									</li>
@@ -801,7 +953,9 @@
 
 			</div>
 			<!-- END MAIN CONTENT -->
-
+			
+			
+			
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -809,51 +963,13 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> ÃÂ© 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin </span>
 				</div>
 
 				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
 					<div class="txt-color-white inline-block">
-						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
-						<div class="btn-group dropup">
-							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
-								<i class="fa fa-link"></i> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu pull-right text-left">
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Server Load</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<button class="btn btn-block btn-default">refresh</button>
-									</div>
-								</li>
-							</ul>
-						</div>
+						
+						
 					</div>
 				</div>
 			</div>

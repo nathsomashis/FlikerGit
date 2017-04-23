@@ -11,6 +11,51 @@ public class Timeline {
 	private String profileid;
 	private String logEntry;
 	private String event;
+	private String timelineentrytype;
+	private String timelinedescription;
+	private String timelineimageid;
+	private String timelinelink;
+	private String timelinedate;
+	private String timelinelocation;
+	
+	
+	
+	public String getTimelinedate() {
+		return timelinedate;
+	}
+	public void setTimelinedate(String timelinedate) {
+		this.timelinedate = timelinedate;
+	}
+	public String getTimelinelocation() {
+		return timelinelocation;
+	}
+	public void setTimelinelocation(String timelinelocation) {
+		this.timelinelocation = timelinelocation;
+	}
+	public String getTimelineentrytype() {
+		return timelineentrytype;
+	}
+	public void setTimelineentrytype(String timelineentrytype) {
+		this.timelineentrytype = timelineentrytype;
+	}
+	public String getTimelinedescription() {
+		return timelinedescription;
+	}
+	public void setTimelinedescription(String timelinedescription) {
+		this.timelinedescription = timelinedescription;
+	}
+	public String getTimelineimageid() {
+		return timelineimageid;
+	}
+	public void setTimelineimageid(String timelineimageid) {
+		this.timelineimageid = timelineimageid;
+	}
+	public String getTimelinelink() {
+		return timelinelink;
+	}
+	public void setTimelinelink(String timelinelink) {
+		this.timelinelink = timelinelink;
+	}
 	public String getTimelineid() {
 		return timelineid;
 	}

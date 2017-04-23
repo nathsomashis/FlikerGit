@@ -298,6 +298,55 @@ public class ProfilePreview {
 		return null;
 	}
 	
+	
+	public Profile getProfileData(String userid) {
+		
+		MongoConnection mongocon = new MongoConnection();
+		Profile profileinfo = new Profile();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "Profile");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+		    //How to get the DBObject value to ArrayList of Java Object?
+			
+		    /*BasicDBList passwordlist = (BasicDBList) theObj.get("password");
+		    for (int i = 0; i < passwordlist.size(); i++) {
+		        BasicDBObject passwordobj = (BasicDBObject) passwordlist.get(i);
+		        String passwordword = passwordobj.getString("password");
+		        
+
+		        students.add(student);
+		    } */
+			
+			/*BasicDBObject passwordobj = (BasicDBObject)theObj.get("password");*/
+			
+			profileinfo.setUserid(userid);
+			profileinfo.setProfileid((String)theObj.get("profileid"));
+			profileinfo.setSkypeid((String)theObj.get("skypeid"));
+			profileinfo.setName((String)theObj.get("name"));
+			profileinfo.setEmailid((String)theObj.get("emailid"));
+			profileinfo.setExperience((String)theObj.get("experience"));
+			profileinfo.setCurrentStatus((String)theObj.get("currentStatus"));
+			profileinfo.setContact((String)theObj.get("contact"));
+			profileinfo.setHangoverid((String)theObj.get("hangoverid"));
+			profileinfo.setProfiledataid((String)theObj.get("profiledataid"));
+			profileinfo.setProfileImageid((String)theObj.get("profileImageid"));
+			profileinfo.setSalary((String)theObj.get("salary"));
+			profileinfo.setSalaryhike((String)theObj.get("salaryhike"));
+			profileinfo.setTellmeaboutme((String)theObj.get("tellmeaboutme"));
+			String[] courseids = null;
+			if((String)theObj.get("courseids")!=null){
+				courseids = ((String)theObj.get("courseids")).split(",");
+			}
+			profileinfo.setCourseids(courseids);
+			
+			ProfilePreview profprev = new ProfilePreview();
+			
+		}
+		
+		
+		return profileinfo;
+	}
+	
 	public String profileimage(String userid){
 		
 		String imageiddoc = "";
