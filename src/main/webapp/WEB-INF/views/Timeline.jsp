@@ -791,7 +791,46 @@
 												<%
 											}else if(timelineentrytype.equalsIgnoreCase("Project")){
 												
-												
+												%>
+												<li>
+													<div class="smart-timeline-icon bg-color-greenDark">
+														<img src="<c:url value='/resources/img/avatars/c_red.png' />" width="32" height="32" alt="user" />
+													</div>
+													<div class="smart-timeline-time">
+														<%if(time!=null){ %>
+														<small><%=time%></small>
+														<%} %>
+													</div>
+													<div class="smart-timeline-content">
+														<p>
+															<strong class="txt-color-greenDark">Project :<%=event%></strong>
+														</p>
+														<p>
+															<a href="javascript:void(0);"><strong><%=timelinelink%></strong></a>
+														</p>
+														<p>
+															<%=timelinedescription%>
+														</p>
+														<div class="sparkline" 
+														data-sparkline-type="compositeline" 
+														data-sparkline-spotradius-top="5" 
+														data-sparkline-color-top="#3a6965" 
+														data-sparkline-line-width-top="3" 
+														data-sparkline-color-bottom="#2b5c59" 
+														data-sparkline-spot-color="#2b5c59" 
+														data-sparkline-minspot-color-top="#97bfbf" 
+														data-sparkline-maxspot-color-top="#c2cccc" 
+														data-sparkline-highlightline-color-top="#cce8e4" 
+														data-sparkline-highlightspot-color-top="#9dbdb9" 
+														data-sparkline-width="170px" 
+														data-sparkline-height="40px" 
+														data-sparkline-line-val="<%=logon1%>" 
+														data-sparkline-bar-val="<%=logon2%>"></div>
+														
+														<br>
+													</div>
+												</li>
+											<%
 												
 											}else if(timelineentrytype.equalsIgnoreCase("Classroom")){
 												
