@@ -6,8 +6,11 @@ import java.net.URISyntaxException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Blog;
+import com.fliker.Repository.DashBoardData;
 import com.fliker.Repository.Guidance;
 import com.fliker.Repository.GuidanceContent;
 import com.fliker.Repository.GuidanceContentDashboard;
@@ -25,6 +29,7 @@ import com.fliker.Repository.GuidanceContentShared;
 import com.fliker.Repository.Post;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.SearchContent;
+import com.fliker.Repository.Share;
 import com.fliker.Repository.Timetable;
 import com.fliker.Utility.DateFunctionality;
 import com.fliker.Utility.ServicesUtil;
@@ -596,6 +601,251 @@ public class GuidancePreview {
 		}
 		return dashboarddata;
 	}
+
+
+	public ArrayList getGuidanceTimeTable(String timetableid) {
+		// TODO Auto-generated method stub
+		
+		ArrayList timetablelist = new ArrayList();
+		
+		
+		return timetablelist;
+	}
+
+
+	public Timetable getTimeTableInfo(String guidanceid) {
+		// TODO Auto-generated method stub
+		String timelineids = "";
+		Timetable timetable = new Timetable();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			timelineids = (String)theObj.get("timetableid");
+			
+			MongoConnection mongotimecon = new MongoConnection();
+			DBCursor timecursor = mongotimecon.getDBObject("timeableid", timelineids, "Timetable");
+			if(timecursor.hasNext()){
+				DBObject theObjtime = timecursor.next();
+				
+				timetable.setTimeableid((String)theObjtime.get("timetableid"));
+				timetable.setEventid((String[])theObjtime.get("eventid"));
+				
+			}
+			
+		}
+		return timetable;
+	}
+
+
+	public ArrayList getGuidanceData(String guidanceid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public GuidanceContentShared getSharedInfo(String guidanceid) {
+		// TODO Auto-generated method stub
+		String shareids = "";
+		GuidanceContentShared guidshared = new GuidanceContentShared();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			shareids = (String)theObj.get("sharetokenid");
+			
+			MongoConnection mongotimecon = new MongoConnection();
+			DBCursor timecursor = mongotimecon.getDBObject("guidancesharedid", shareids, "GuidanceContentShare");
+			if(timecursor.hasNext()){
+				DBObject theObjtime = timecursor.next();
+				
+				guidshared.setGuidancesharedid((String)theObjtime.get("guidancesharedid"));
+				guidshared.setGuidancefilelistid((String[])theObjtime.get("guidancefilelistid"));
+				
+			}
+			
+		}
+		return guidshared;
+	}
+
+
+	public GuidanceContentDashboard getDashBoardGuidance(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		String dashboardid = "";
+		GuidanceContentDashboard guidancedash = new GuidanceContentDashboard();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+		
+			dashboardid = (String)theObj.get("dashboardid");
+			MongoConnection mongotimecon = new MongoConnection();
+			DBCursor timecursor = mongotimecon.getDBObject("guidancecontentDashid", dashboardid, "GuidanceContentDash");
+			if(timecursor.hasNext()){
+				DBObject theObjtime = timecursor.next();
+			
+				guidancedash.setGuidancecontentDashid((String)theObjtime.get("guidancecontentDashid"));
+				guidancedash.setGuidancedashdataid((String[])theObjtime.get("guidancedashdataid"));
+				guidancedash.setGuidancefilelistid((String[])theObjtime.get("guidancefilelistid"));
+				
+				
+				
+			}
+			
+		}
+		
+		
+		return guidancedash;
+		
+	}
+
+
+	public Blog getGuidanceBlogs(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		String guidblogid ="";
+		Blog guidblog	= new Blog();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+		
+			guidblogid = (String)theObj.get("blogid");
+			MongoConnection mongotimecon = new MongoConnection();
+			DBCursor timecursor = mongotimecon.getDBObject("blogid", guidblogid, "Blog");
+			if(timecursor.hasNext()){
+				DBObject theObjtime = timecursor.next();
+				
+				guidblog.setBlogid((String)theObjtime.get("blogid"));
+				guidblog.setTopicid((String[])theObjtime.get("topicid"));
+				guidblog.setBlogaccessuserids((String[])theObjtime.get("blogaccessuserids"));
+				guidblog.setBlogactive((String)theObjtime.get("blogactive"));
+				guidblog.setBlogname((String)theObjtime.get("blogname"));
+				
+			}
+			
+			
+		}
+		
+		return guidblog;
+	}
+
+
+	public HashMap getTimeTable(String guidanceid, String month) {
+		// TODO Auto-generated method stub
+		
+		String available = "False";
+		HashMap eventmap = new HashMap();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+		
+			String timetableid = (String)theObj.get("timetableid");
+			MongoConnection mongotimecon = new MongoConnection();
+			DBCursor timecursor = mongotimecon.getDBObject("timeableid", timetableid, "Timetable");
+			if(timecursor.hasNext()){
+				DBObject theObjtime = timecursor.next();
+				
+				String[] events = (String[])theObjtime.get("eventid");
+				
+				for(int s=0;s<events.length;s++){
+					
+					MongoConnection mongoevencon = new MongoConnection();
+					DBCursor eventcursor = mongoevencon.getDBObjectSorted("eventid", events[s], "Event", "eventstarttime", 200);
+					if(eventcursor.hasNext()){
+						
+						DBObject theevent = timecursor.next();
+						HashMap eventHandle = new HashMap();
+						
+						
+						
+						SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM dd, yyyy HH:mm:ss a");
+				        String dateInString = "Friday, Jun 7, 2013 12:10:56 PM";
+				        String dateInStart = (String)theevent.get("eventstarttime");
+				        String dateInEnd = (String)theevent.get("eventendtime");
+				        String dateformstart = "";
+				        String dateformend = "";
+				        
+
+				        try {
+
+				            Date date1 = formatter.parse(dateInStart);
+				            Date date2 = formatter.parse(dateInEnd);
+				            
+				            Calendar cal = Calendar.getInstance();
+				            cal.setTime(date1);
+				            
+				            int year1 = cal.get(Calendar.YEAR);
+				            int months1 = cal.get(Calendar.MONTH);
+				            int day1 = cal.get(Calendar.DAY_OF_MONTH);
+				            int hour1 = cal.get(Calendar.HOUR_OF_DAY);
+				            int minutes1  = cal.get(Calendar.MINUTE);
+				            
+				            dateformstart = "Year::"+year1+" ,Month ::"+months1+ " ,Day::"+day1+" ,Hour::"+hour1+" ,Minutes::"+minutes1;
+				            
+				            cal.setTime(date2);
+				            int year2 = cal.get(Calendar.YEAR);
+				            int months2 = cal.get(Calendar.MONTH);
+				            int day2 = cal.get(Calendar.DAY_OF_MONTH);
+				            int hour2 = cal.get(Calendar.HOUR_OF_DAY);
+				            int minutes2  = cal.get(Calendar.MINUTE);
+				            
+				            dateformend = "Year::"+year2+" ,Month ::"+months2+ " ,Day::"+day2+" ,Hour::"+hour2+" ,Minutes::"+minutes2;
+				            
+
+				        } catch (ParseException e) {
+				            e.printStackTrace();
+				        }
+
+				        
+				        
+						
+						eventHandle.put("Start Time", dateformstart);
+						eventHandle.put("End Time", dateformend);
+						eventHandle.put("Event Occurance",(String)theevent.get("eventoccurance"));
+						eventHandle.put("Event Title", (String)theevent.get("eventtitle"));
+						eventHandle.put("Event Description", (String)theevent.get("eventDescription"));
+						eventHandle.put("Event Priority", (String)theevent.get("eventpriority"));
+						eventHandle.put("Shared By", (String)theevent.get("evensharedbyuserid"));
+						eventHandle.put("Event Shared To", (String[])theevent.get("eventsharedtouserids"));
+						
+						eventmap.put((String)theevent.get("eventid"), eventHandle);
+
+
+						
+					}
+					
+					
+				}
+				
+				
+			}
+			
+			
+		}
+		
+		
+		return eventmap;
+	}
+	
+	
+	
+	public void saveEvent(String time, String eventtitle, String evendescription, String eventstarttime, String eventendtime, String eventoccurance, String eventpriority, String sharedby, String sharedwith){
+		
+		
+		
+		
+		
+		
+		
+		
+	}
   	
 
 	}
+
+
+
+

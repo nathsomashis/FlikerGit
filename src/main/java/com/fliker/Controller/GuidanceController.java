@@ -5,11 +5,19 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fliker.Modal.GuidancePreview;
+import com.fliker.Repository.Blog;
+import com.fliker.Repository.DashBoardData;
+import com.fliker.Repository.GuidanceContentDashboard;
+import com.fliker.Repository.GuidanceContentShared;
+import com.fliker.Repository.Share;
+import com.fliker.Repository.Timetable;
+import com.fliker.Repository.User;
 
 @Controller
 public class GuidanceController {
@@ -199,6 +207,39 @@ public class GuidanceController {
 		
 	}
 	
+	
+	@RequestMapping("/gotoguidance")
+	public ModelAndView goToGuidance(
+			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model) {
+		System.out.println("in dashboard social controller");
+ 
+		ArrayList resourcesSearch = new ArrayList();
+		
+		
+		GuidancePreview guideprev = new GuidancePreview();
+		resourcesSearch = guideprev.getGuidanceData(guidanceid);
+		
+		Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
+		model.addAttribute("TimeTable", timetable);
+		
+		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
+		model.addAttribute("GuidShared", guidshareditem);
+		
+		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
+		model.addAttribute("GuidDashBoard", guiddashdata);
+		
+		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
+		model.addAttribute("GuidBlog", blogs);
+		
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceProfessional");
+		
+		
+		
+		//mv.addObject("postlist", postlist);
+		return mv;
+	}
 	
 	
 	

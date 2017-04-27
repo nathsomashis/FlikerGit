@@ -17,6 +17,43 @@ public class Events {
 	private String eventpriority;
 	private String evensharedbyuserid;
 	private String[] eventsharedtouserids;
+	private String eventYear;
+	private String eventMonth;
+	private String eventWeekDay;
+	private String eventStartTime;
+	private String eventEndTime;
+	
+	
+	public String getEventYear() {
+		return eventYear;
+	}
+	public void setEventYear(String eventYear) {
+		this.eventYear = eventYear;
+	}
+	public String getEventMonth() {
+		return eventMonth;
+	}
+	public void setEventMonth(String eventMonth) {
+		this.eventMonth = eventMonth;
+	}
+	public String getEventWeekDay() {
+		return eventWeekDay;
+	}
+	public void setEventWeekDay(String eventWeekDay) {
+		this.eventWeekDay = eventWeekDay;
+	}
+	public String getEventStartTime() {
+		return eventStartTime;
+	}
+	public void setEventStartTime(String eventStartTime) {
+		this.eventStartTime = eventStartTime;
+	}
+	public String getEventEndTime() {
+		return eventEndTime;
+	}
+	public void setEventEndTime(String eventEndTime) {
+		this.eventEndTime = eventEndTime;
+	}
 	public String getEventid() {
 		return eventid;
 	}
