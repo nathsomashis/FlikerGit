@@ -10,6 +10,15 @@ public class GuidanceContentDashboard {
 	private String guidancecontentDashid;
 	private String[] guidancedashdataid;
 	private String[] guidancefilelistid;
+	
+	
+	
+	public String[] getGuidancedashdataid() {
+		return guidancedashdataid;
+	}
+	public void setGuidancedashdataid(String[] guidancedashdataid) {
+		this.guidancedashdataid = guidancedashdataid;
+	}
 	public String getGuidancecontentDashid() {
 		return guidancecontentDashid;
 	}

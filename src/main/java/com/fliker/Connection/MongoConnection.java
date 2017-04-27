@@ -56,6 +56,20 @@ public class MongoConnection {
 		return cursor;
 	}
 	
+	public DBCursor getDBObjectSorted(String columnname, String comparision, String collectionname, String sortingcolumn, int limit){
+		
+		DBCollection collection = getDBConnection(collectionname);
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put(columnname, comparision);
+		
+		DBCursor cursor = collection.find(basicdbobj).sort(new BasicDBObject(sortingcolumn,-1)).limit(limit);
+		/*while(cursor.hasNext()) {
+		    System.out.println(cursor.next());
+		}*/
+		
+		return cursor;
+	}
+	
 	
 	public void saveObject(BasicDBObject basicreqobj, String collectionname){
 		

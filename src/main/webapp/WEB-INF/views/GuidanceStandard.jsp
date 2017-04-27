@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -425,21 +426,22 @@
 
 		</span>
 	</div>
-	<!-- end user info --> <nav> <!-- 
+	<!-- end user info --> <nav>
+				<!-- 
 				NOTE: Notice the gaps after each icon usage <i></i>..
 				Please note that these links work a bit different than
 				traditional href="" links. See documentation for details.
 				-->
 
-	<ul>
-		<li class="active"><a href="searchresults?"><i
-				class="fa fa-lg fa-fw fa-search-plus"></i> <span
+				<ul>
+		<li class="active"><a href="search?"><i
+				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
 		<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
-		<li><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+		<li ><a href="dashboardsocial?"><i
+				class="fa fa-lg fa-fw fa-retweet "></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
@@ -450,8 +452,8 @@
 				<span class="menu-item-parent">Timeline</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 		<li><a href="createpost?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post
-					Your Activity</span></a></li>
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
+		</li>
 		<li><a href="classroom?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 		</li>
@@ -461,11 +463,11 @@
 				<li class=""><a href="courseEdu?" title="NewPost"><i
 						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
-				<li class=""><a href="classroom?" title="ClassRoom"><i
-						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+				<li class=""><a href="otherprofile?" title="ClassRoom"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
 			</ul></li>
-		<!-- <li><a href="#" title="Dashboard"><i
+		 <!-- <li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
 			<ul>		
 				<li class="active"><a href="#" title="NewCourse"><i
@@ -487,9 +489,9 @@
 						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
 				</li>
 				<li class=""><a href="jobanalysis?" title="NewJob"><i
-						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional
-							Way</span></a></li>
-
+						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional Way</span></a>
+				</li>
+				
 			</ul></li>
 		<!-- <li class=""><a href="organizations?" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
@@ -502,15 +504,15 @@
 				</li>
 			</ul></li> -->
 		<li class=""><a href="#" title="Organizations"><i
-				class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
-			<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
+				<ul>
+				<li class=""><a href="standardguidance?" title="NewJob"><i
 						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
 				</li>
-				<li class=""><a href="companies?" title="Companies"><i
+				<li class=""><a href="professionalguidance?" title="Companies"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
 				</li>
-			</ul></li>
+			</ul></li>		
 
 		<li class="chat-users top-menu-invisible"><a href="#"><i
 				class="fa fa-lg fa-fw fa-comment-o"><em
@@ -617,7 +619,7 @@
 				</li>
 			</ul></li>
 	</ul>
-	</nav> <span class="minifyme" data-action="minifyMenu"> <i
+			</nav> <span class="minifyme" data-action="minifyMenu"> <i
 		class="fa fa-arrow-circle-left hit"></i>
 	</span> </aside>
 	<!-- END NAVIGATION -->
@@ -731,115 +733,59 @@
 								</div>
 
 							</div>
-							<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here...
-										</p>
-									</div>
-								</div> -->
-							<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-									<img src="img/demo/sample.jpg" alt="">
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Oct 1, 2006 - Uploaded by 02842356107
-											<br>
-											<br>
-											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
-										</p>
-									</div>
-				
-								</div> -->
-							<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-				
-									<div>
-				
-										<span class="sparkline txt-color-blueLight" data-sparkline-type="line" data-sparkline-width="150px" data-sparkline-height="25px"> 10,3,8,4,3,10,7,8,4,6,4,6,8,3 </span>
-										<span class="display-inline note font-lg semi-bold"><small><i class="fa fa-arrow-circle-up text-success"></i> 143.43</small></span>
-				
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-										</p>
-									</div>
-				
-								</div> -->
-
-							<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);"> Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"></a><small>[PDF]</small></h4>
-									<span class="sparkline txt-color-blueLight display-inline" data-sparkline-type="pie"  data-sparkline-offset="90" data-sparkline-piesize="55px"> 10,3,8,4, </span>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
-										</p>
-									</div>
-				
-								</div> -->
-
-							<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-									</div>
-								</div> -->
-
-							<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
-										</p>
-									</div>
-								</div> -->
+								<div class="superbox col-sm-12">
+								
+											<%
+												ArrayList guidancelist = (ArrayList)request.getAttribute("guidanceSubject");
+												for(int m=0;m<guidancelist.size();m++){
+													
+													String guidanceid = "";
+													String guidanceSubject = "";
+													String guidanceFlag="";
+													String profileid = "";
+													String profileimage = "";
+													String profilename = "";
+													
+													HashMap guidancemap = (HashMap)guidancelist.get(m);
+													Set perset = guidancemap.entrySet();
+													Iterator perit = perset.iterator();
+													while (perit.hasNext()) {
+														Map.Entry perme = (Map.Entry) perit.next();
+														String keyvalue = (String) perme.getKey();
+														if (keyvalue.equalsIgnoreCase("guidanceSubject")) {
+															guidanceSubject = (String)perme.getValue();
+														}else if (keyvalue.equalsIgnoreCase("guidanceflag")) {
+															guidanceFlag = (String)perme.getValue();
+														}else if (keyvalue.equalsIgnoreCase("profileid")) {
+															profileid = (String)perme.getValue();
+														}else if (keyvalue.equalsIgnoreCase("profileImage")) {
+															profileimage = (String)perme.getValue();
+														}else if (keyvalue.equalsIgnoreCase("profileName")) {
+															profilename = (String)perme.getValue();
+														}else if (keyvalue.equalsIgnoreCase("guidanceid")) {
+															guidanceid = (String)perme.getValue();
+														}
+												}
+													
+												%>	
+													<div class="superbox-list">
+														<img id="<%=guidanceid%>" src="/Fliker/imageController/<%=profileimage%>" data-src="/Fliker/imageController/<%=profileimage%>" name="<%=profileid%>" alt="<%=guidanceSubject%>" title="<%=profilename%> for <%=guidanceSubject%>" class="superbox-img">
+													</div>
+												<%	
+											}
+											
+											%>
+											<!-- <div class="superbox-list">
+												<img id="" src="img/superbox/superbox-thumb-1.jpg" data-img="img/superbox/superbox-full-1.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
+											</div>
+											<div class="superbox-list">
+												<img src="img/superbox/superbox-thumb-2.jpg" data-img="img/superbox/superbox-full-2.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Bridge of Edgen" class="superbox-img">
+											</div> -->
+											<div class="superbox-float"></div>
+								</div>
+								<!-- /SuperBox -->
+								
+								<div class="superbox-show" style="height:300px; display: none"></div>
 
 							<div class="text-center">
 								<hr>
@@ -2556,6 +2502,9 @@
 		src="<c:url value='/resources/js/plugin/fuelux/wizard/wizard.min.js' />"></script>
 	<script
 		src="<c:url value='/resources/js/plugin/fullcalendar/jquery.fullcalendar.min.js' />"></script>
+		
+	<script src="<c:url value='/resources/js/plugin/superbox/superboxadv.min.js' />"></script>	
+		
 
 
 	<script type="text/javascript">
@@ -2611,6 +2560,8 @@
 			 * 
 			 * loadScript(".../plugin.js", run_after_loaded);
 			 */
+			 
+			$('.superbox').SuperBox(); 
 
 		})
 	</script>
