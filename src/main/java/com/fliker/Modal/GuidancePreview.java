@@ -63,7 +63,7 @@ public class GuidancePreview {
 	}
   
   
-  public ArrayList getGuidanceResources( String subject){
+  public ArrayList getGuidanceResources( String subject, String guidancetype){
 		
 		/*ArrayList postlist = new ArrayList();
 		
@@ -129,11 +129,29 @@ public class GuidancePreview {
 			HashMap totalSet = new HashMap();
 			
 			
-			if((dbj.get("guidanceflag").toString()).equalsIgnoreCase(subject)){
+			if(((dbj.get("guidanceSubject").toString()).equalsIgnoreCase(subject))&& ((dbj.get("guidencetype").toString()).equalsIgnoreCase(guidancetype))){
 				totalSet.put("guidanceid", dbj.get("guidanceid"));
 				totalSet.put("guidanceSubject", dbj.get("guidanceSubject"));
 				totalSet.put("guidanceflag", dbj.get("guidanceflag"));
 				totalSet.put("guidencetype", dbj.get("guidencetype"));
+				ProfilePreview profprev = new ProfilePreview();
+				ArrayList profileinfo = profprev.getProfileInfo((String)dbj.get("userid"));
+				for(int m=0;m<profileinfo.size();m++){
+					
+					if(profileinfo.get(m) instanceof Profile){
+						Profile profileinfos = (Profile)profileinfo.get(m);
+						
+						totalSet.put("profileid", dbj.get("profileid"));
+						totalSet.put("profileImage", dbj.get("profileImageid"));
+						totalSet.put("profileName", dbj.get("name"));
+						
+					}
+					
+					
+				}
+				
+				totalSet.put("userid", dbj.get("userid"));
+				
 			}
 			
 			

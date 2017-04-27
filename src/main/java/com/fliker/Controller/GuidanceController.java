@@ -25,7 +25,8 @@ public class GuidanceController {
 	//standardguidance
 	@RequestMapping("/standardguidance")
 	public ModelAndView showFirstGuidance(
-			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject ) {
+			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject,
+			@RequestParam(value = "guidanceType", required = false, defaultValue = "World") String guidanceType) {
 		System.out.println("in dashboard social controller");
  
 		ArrayList resourcesSearch = new ArrayList();
@@ -34,7 +35,7 @@ public class GuidanceController {
 		
 		
 		GuidancePreview guideprev = new GuidancePreview();
-		resourcesSearch = guideprev.getGuidanceResources(guidanceSubject);
+		resourcesSearch = guideprev.getGuidanceResources(guidanceSubject,guidanceType);
 		
 		ModelAndView mv;
 		mv = new ModelAndView("/GuidanceStandard");
@@ -73,7 +74,8 @@ public class GuidanceController {
 	
 	@RequestMapping("/professionalguidance")
 	public ModelAndView proffFirstGuidance(
-			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject ) {
+			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject,
+			@RequestParam(value = "guidanceType", required = false, defaultValue = "World") String guidanceType ) {
 		System.out.println("in dashboard social controller");
  
 		ArrayList resourcesSearch = new ArrayList();
@@ -81,7 +83,7 @@ public class GuidanceController {
 		ArrayList progressData = new ArrayList();
 		
 		GuidancePreview guideprev = new GuidancePreview();
-		resourcesSearch = guideprev.getGuidanceResources(guidanceSubject);
+		resourcesSearch = guideprev.getGuidanceResources(guidanceSubject,guidanceType);
 		
 		ModelAndView mv;
 		mv = new ModelAndView("/GuidanceProfessional");
