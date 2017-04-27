@@ -51,10 +51,12 @@ public class FileController {
 	private LinkedList fileidlisttwo = new LinkedList();
 	private LinkedList fileidlistthird = new LinkedList();
 	private LinkedList fileidlistfourth = new LinkedList();
+	private LinkedList fileidlistprofile = new LinkedList();
 	LinkedHashMap weekfirst = new LinkedHashMap();
 	LinkedHashMap weeksecond = new LinkedHashMap();
 	LinkedHashMap weekthird = new LinkedHashMap();
 	LinkedHashMap weekfourth = new LinkedHashMap();
+	LinkedHashMap profileUpload = new LinkedHashMap();
 	
 	
 	@RequestMapping("/file")
@@ -959,6 +961,86 @@ public class FileController {
 	        
 	        ServletContext context = request.getSession().getServletContext();
 			context.setAttribute("weekfirst", weekfirst);
+			
+		}
+		
+		
+		@RequestMapping("/profileUpload")
+		public void profileUpload( MultipartHttpServletRequest request,HttpServletResponse response,@RequestParam("file") MultipartFile file1, HttpSession session ) {
+			System.out.println("in file controller");
+	 
+			String fileids="";
+			String filename="";
+			
+			// Getting uploaded files from the request object
+	        Map<String, MultipartFile> fileMap = request.getFileMap();
+
+	        // Maintain a list to send back the files info. to the client side
+	        List<FileUpload> uploadedFiles = new ArrayList<FileUpload>();
+
+	        for (MultipartFile multipartFile : fileMap.values()) {
+
+	            // Save the file to local disk
+	            try {
+					
+					
+					FileUpload fileInfo = getUploadedFileInfo(multipartFile);
+					
+					
+					
+					System.out.println(fileInfo.getName());
+					System.out.println(fileInfo.getSize());
+					System.out.println(fileInfo.getType());
+					System.out.println(fileInfo.getFileid());
+					fileids = fileInfo.getFileid();
+					filename = fileInfo.getName();
+					
+					if(filename.endsWith("doc")||filename.endsWith("docx")|| filename.endsWith("pdf")||filename.endsWith("txt")){
+						
+						
+						
+						
+					}
+					
+					saveFileToLocalDisk(multipartFile);
+					
+					String fileid = fileInfo.getFileid();
+					fileidlistone.add(fileInfo.getFileid());
+				    
+				    
+					FilePreview filepreview = new FilePreview();
+				      filepreview.saveFile(fileInfo);
+				      
+				      
+				    
+				    
+				    
+				    session.setAttribute("fileidsimage", fieldlist);
+				      
+				    ModelMap model = new ModelMap();
+					model.addAttribute("fieldlists", fieldlist);
+					System.out.println("fieldlist ++"+fieldlist);
+					
+					
+					
+					ModelAndView mv = new ModelAndView();
+					mv.addObject("fileidlist", fieldlist);
+				    
+					
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+	     }
+	        profileUpload.put(fileids, filename);
+	        fileidlistprofile.add(filename);
+	        
+	        ServletContext context = request.getSession().getServletContext();
+			context.setAttribute("profileUpload", profileUpload);
 			
 		}
 		

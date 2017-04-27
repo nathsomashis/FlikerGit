@@ -46,6 +46,8 @@ public class ProfileController {
 		
 		ArrayList profileInfo = profprev.getProfileInfo(userid);
 		
+		//ArrayList recommentlist = profprev.getRecommendedList(userid);
+		
 		mv.addObject("postlist", profileInfo);
 		mv.addObject("name", name);
 		mv.addObject("ProfileImage", profileimageid);
@@ -59,10 +61,7 @@ public class ProfileController {
 			@RequestParam(value = "currentstatus", required = false, defaultValue = "World") String currentstatus, HttpSession session) {
 		System.out.println("in profile controller");
  
-		//ArrayList postlist = new ArrayList();
 		
-		/*DashboardSocialPreview dashpreview = new DashboardSocialPreview();
-		postlist = dashpreview.postlist(lastid);*/
 		
 		ModelAndView mv;
 		mv = new ModelAndView("/Profile");
@@ -70,8 +69,8 @@ public class ProfileController {
 		
 		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
 		
-		/*ProfilePreview profprev = new ProfilePreview();
-		ArrayList profileInfo = profprev.getProfileInfo(userid);*/
+		ProfilePreview profprev = new ProfilePreview();
+		profprev.saveCurrentStatus(userid,currentstatus);
 		
 		/*mv.addObject("postlist", profileInfo);
 		mv.addObject("name", name);*/
@@ -88,6 +87,9 @@ public class ProfileController {
 		
 		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
 		
+		ProfilePreview profprev = new ProfilePreview();
+		profprev.saveContactNo(userid,contact);
+		
 	}
 	
 	
@@ -101,6 +103,9 @@ public class ProfileController {
 		
 		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
 		
+		ProfilePreview profprev = new ProfilePreview();
+		profprev.saveEmailModify(userid,emailid);
+		
 	}
 	
 	@RequestMapping("/tellmeaboutme")
@@ -113,6 +118,9 @@ public class ProfileController {
 		
 		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
 		
+		ProfilePreview profprev = new ProfilePreview();
+		profprev.saveTellMeAbout(userid,aboutme);
+		
 	}
 	
 	@RequestMapping("/skypeid")
@@ -124,6 +132,40 @@ public class ProfileController {
 		mv = new ModelAndView("/Profile");
 		
 		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		
+		ProfilePreview profprev = new ProfilePreview();
+		profprev.saveSkypeModify(userid,skypeid);
+		
+	}
+	
+	@RequestMapping("/experience")
+	public void saveExperience(
+			@RequestParam(value = "experience", required = false, defaultValue = "World") String experience, HttpSession session) {
+		System.out.println("in profile controller");
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/Profile");
+		
+		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		
+		ProfilePreview profprev = new ProfilePreview();
+		profprev.saveExperience(userid,experience);
+		
+	}
+	
+	@RequestMapping("/salary")
+	public void saveSalaryRange(
+			@RequestParam(value = "salarystart", required = false, defaultValue = "World") String salarystart, HttpSession session,
+			@RequestParam(value = "salaryend", required = false, defaultValue = "World") String salaryend) {
+		System.out.println("in profile controller");
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/Profile");
+		
+		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		
+		ProfilePreview profprev = new ProfilePreview();
+		profprev.saveSalaryRange(userid,salarystart,salaryend);
 		
 	}
 	

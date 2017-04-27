@@ -14,6 +14,7 @@ public class Profile {
 	private String[] articleids;
 	private String experience;
 	private String salary;
+	private String salaryhike;
 	private String name;
 	private String currentStatus;
 	private String emailid;
@@ -28,6 +29,13 @@ public class Profile {
 	private String[] courseids;
 	
 	
+	
+	public String getSalaryhike() {
+		return salaryhike;
+	}
+	public void setSalaryhike(String salaryhike) {
+		this.salaryhike = salaryhike;
+	}
 	public String[] getCourseids() {
 		return courseids;
 	}
