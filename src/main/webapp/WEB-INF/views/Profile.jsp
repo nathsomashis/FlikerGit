@@ -619,7 +619,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li><a href="hello?name=Eric?">Home</li><li>Profile</li>
+					<li>Profile</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -878,9 +878,9 @@
 																<%=tellaboutme%>
 				
 															</p>
-															<br>
+															<%-- <br>
 															<a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i><%=hangoverid %></a>
-															<br>
+															<br> --%>
 															<br>
 				
 														</div>
@@ -1006,13 +1006,11 @@
 															<div class="tab-pane fade" id="a2">
 				
 																<div class="alert alert-info fade in">
-																	<button class="close" data-dismiss="alert">
-																		Ã
-																	</button>
+																	
 																	<i class="fa-fw fa fa-info"></i>
-																	<strong>51 new members </strong>joined today!
+																	<strong>Recommendations</strong>
 																</div>
-				
+																
 																<div class="user" title="email@company.com">
 																	<img src="img/avatars/female.png" alt="demo user"><a href="javascript:void(0);">Jenn Wilson</a>
 																	<div class="email">
@@ -1151,7 +1149,7 @@
 											</div> 
 										</div>
 										<div class="chat-body no-padding profile-message">
-											<ul>
+											<!-- <ul>
 												<li class="message">
 													<img src="img/avatars/sunny.png" class="online" alt="sunny">
 													<span class="message-text"> <a href="javascript:void(0);" class="username">John Doe <small class="text-muted pull-right ultra-light"> 2 Minutes ago </small></a> Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very
@@ -1202,8 +1200,8 @@
 													</ul>
 													<input class="form-control input-xs" placeholder="Type and enter" type="text">
 												</li>
-											</ul>
-				
+											</ul> -->
+											Add
 										</div>
 				
 										<div class="timeline-seperator text-center"> <span>11:30PM November 27th, 2013</span>
@@ -1223,7 +1221,7 @@
 											</div> 
 										</div>
 										<div class="chat-body no-padding profile-message">
-											<ul>
+											<!-- <ul>
 												<li class="message">
 													<img src="img/avatars/1.png" class="online" alt="user">
 													<span class="message-text"> <a href="javascript:void(0);" class="username">John Doe <small class="text-muted pull-right ultra-light"> 2 Minutes ago </small></a> Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very image let unto fowl isn't in blessed fill life yielding above all moved </span>
@@ -1293,7 +1291,9 @@
 															</button> </span>
 													</div>
 												</li>
-											</ul>
+											</ul> -->
+											
+											Add
 				
 										</div>
 				
@@ -1418,7 +1418,7 @@
 
 	<fieldset>
 												<legend>
-													Smart Scale Slider
+													Salary & Experience 
 												</legend>
 												<div class="row">
 													<!-- <div class="col-sm-6">
@@ -1457,6 +1457,7 @@
 															<input id="range-slider-5" type="text" name="range_5a" value="">
 														</div>
 													</div>
+													
 												</div>
 				
 											</fieldset>
@@ -1937,7 +1938,36 @@
 		
 				e.preventDefault();
 			});	
-				
+			
+			$("#smart-mod-eg1").click(function(e) {
+				$.SmartMessageBox({
+					title : "Smart Alert!",
+					content : "This is a confirmation box. Can be programmed for button callback",
+					buttons : '[No][Yes]'
+				}, function(ButtonPressed) {
+					if (ButtonPressed === "Yes") {
+		
+						$.smallBox({
+							title : "Callback function",
+							content : "<i class='fa fa-clock-o'></i> <i>You pressed Yes...</i>",
+							color : "#659265",
+							iconSmall : "fa fa-check fa-2x fadeInRight animated",
+							timeout : 4000
+						});
+					}
+					if (ButtonPressed === "No") {
+						$.smallBox({
+							title : "Callback function",
+							content : "<i class='fa fa-clock-o'></i> <i>You pressed No...</i>",
+							color : "#C46A69",
+							iconSmall : "fa fa-times fa-2x fadeInRight animated",
+							timeout : 4000
+						});
+					}
+		
+				});
+				e.preventDefault();
+			})
 				
 		$("#profileimage-eg5").click(function(e) {
 				
@@ -2155,7 +2185,7 @@
 						//alert(Value);
 						
 						$.ajax({
-							url : "emailModify?emailid="+Value,
+							url : "skypeid?skypeid="+Value,
 							method : 'GET',
 							success : function(data) {
 								
@@ -2318,10 +2348,28 @@
 			        to: 90000,
 			        type: 'double',
 			        step: 500,
-			        postfix: " &euro;",
+			        postfix: " &dollar;",
 			        prettify: false,
 			        grid: true,
-			        inputValuesSeparator: ';'
+			        inputValuesSeparator: ';',
+			        onChange: function (data) {
+			            console.log(data);
+			            
+			        },
+			        onFinish: function (data) {
+			            console.log(data);
+			            alert(data.from);
+			            alert(data.to);
+			            
+			            $.ajax({
+							url : "salary?salarystart="+data.from+"&salaryend="+data.to,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+			        }
 			    });
 			
 			    $("#range-slider-3").ionRangeSlider({
@@ -2330,10 +2378,28 @@
 			        max: 10,
 			        type: 'single',
 			        step: 0.1,
-			        postfix: " mm",
+			        postfix: " year",
 			        prettify: false,
 			        grid: true,
-			        inputValuesSeparator: ';'
+			        inputValuesSeparator: ';',
+			        onChange: function (data) {
+			            console.log(data);
+			            
+			        },
+			        onFinish: function (data) {
+			            console.log(data);
+			            alert(data.from);
+			            
+			            $.ajax({
+							url : "experience?experience="+data.from,
+							method : 'GET',
+							success : function(data) {
+								
+								
+							}
+						});
+			            
+			        }
 			    });
 			
 			    $("#range-slider-4").ionRangeSlider({
@@ -2355,10 +2421,19 @@
 			        max: 10,
 			        type: 'single',
 			        step: 0.1,
-			        postfix: " mm",
+			        postfix: " year",
 			        prettify: false,
 			        grid: true,
-			        inputValuesSeparator: ';'
+			        inputValuesSeparator: ';',
+			        onChange: function (data) {
+			            console.log(data);
+			            
+			        },
+			        onFinish: function (data) {
+			            console.log(data);
+			            alert(data.from);
+			            
+			        }
 			    });
 			 
 			 
@@ -2649,7 +2724,7 @@
 			
 			Dropzone.autoDiscover = false;
 			$("#mydropzone").dropzone({
-				url: "/file/post",
+				url: "profileUpload?",
 				addRemoveLinks : true,
 				maxFilesize: 0.5,
 				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
