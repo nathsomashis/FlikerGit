@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,6 +62,62 @@ public class GuidancePreview {
 		
 		return postlist;
 	}
+  
+  
+  public ArrayList onGoingResources( String userid){
+		
+	  ArrayList guidancelist = new ArrayList<Post>();
+
+		MongoConnection mongoconn = new MongoConnection();
+		DBCollection collection = mongoconn.getDBConnection("GuidanceContent");
+		DBCursor cursor;
+		cursor = collection.find().limit(20).sort(new BasicDBObject("guidanceid", -1));
+
+		while (cursor.hasNext()) {
+
+			DBObject dbj = cursor.next();
+			HashMap totalSet = new HashMap();
+			
+			
+			if((dbj.get("provideruserid").toString()).equalsIgnoreCase(userid)){
+				totalSet.put("sharetokenid", dbj.get("sharetokenid"));
+				totalSet.put("dashboardid", dbj.get("dashboardid"));
+				totalSet.put("averageVelocity", dbj.get("averageVelocity"));
+				totalSet.put("blogid", dbj.get("blogid"));
+				ProfilePreview profprev = new ProfilePreview();
+				ArrayList profileinfo = profprev.getProfileInfo((String)dbj.get("consumeruserid"));
+				for(int m=0;m<profileinfo.size();m++){
+					
+					if(profileinfo.get(m) instanceof Profile){
+						Profile profileinfos = (Profile)profileinfo.get(m);
+						
+						totalSet.put("profileid", dbj.get("profileid"));
+						totalSet.put("profileImage", dbj.get("profileImageid"));
+						totalSet.put("profileName", dbj.get("name"));
+						totalSet.put("userid", dbj.get("userid"));
+						
+					}
+					
+					
+				}
+				
+				totalSet.put("guidanceid", dbj.get("guidanceid"));
+				totalSet.put("timetableid", dbj.get("timetableid"));
+				
+			}
+			
+			
+			
+			guidancelist.add(totalSet);
+		}
+
+		
+		
+		return guidancelist;
+	  
+	  
+	}
+  
   
   
   public ArrayList getGuidanceResources( String subject, String guidancetype){
@@ -858,6 +915,53 @@ public class GuidancePreview {
 		
 		
 		
+		
+	}
+
+
+	public String nextMeeting(String guidanceid, String participantid) {
+		// TODO Auto-generated method stub
+		
+		DateFormat dateFormat = new SimpleDateFormat("YYYY-mm-ddTHH:MM:ss");
+		Date date = new Date();
+		String currentdate = dateFormat.format(date);
+		System.out.println(dateFormat.format(date));
+		
+		
+		String meetingtime = "";
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			String timetableid = (String)theObj.get("timetableid");
+			
+			MongoConnection mongoconint = new MongoConnection();
+			DBCursor guidcursor = mongoconint.getDBObject("timeableid", timetableid, "Timetable");
+			
+			if(guidcursor.hasNext()){
+				
+				DBObject theObjgrid = guidcursor.next();
+				
+				String[] events = (String[])theObj.get("eventid");
+				
+				MongoConnection mongocoevent = new MongoConnection();
+				DBCursor eventcursor = mongocoevent.getNextMeetingDBObject("eventstarttime", currentdate, "Event");
+				
+				if(eventcursor.hasNext()){
+					
+					DBObject eventObj = eventcursor.next();
+					
+					meetingtime = (String)eventObj.get("eventstarttime");
+					
+				}
+				
+			}
+		}
+		
+		
+		
+		return meetingtime;
 		
 	}
   	

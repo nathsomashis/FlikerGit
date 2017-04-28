@@ -1,15 +1,21 @@
 package com.fliker.Controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fliker.Modal.CoursePreview;
 import com.fliker.Modal.GuidancePreview;
 import com.fliker.Repository.Blog;
 import com.fliker.Repository.DashBoardData;
@@ -18,6 +24,7 @@ import com.fliker.Repository.GuidanceContentShared;
 import com.fliker.Repository.Share;
 import com.fliker.Repository.Timetable;
 import com.fliker.Repository.User;
+import com.mongodb.gridfs.GridFSDBFile;
 
 @Controller
 public class GuidanceController {
@@ -26,16 +33,27 @@ public class GuidanceController {
 	@RequestMapping("/standardguidance")
 	public ModelAndView showFirstGuidance(
 			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject,
-			@RequestParam(value = "guidanceType", required = false, defaultValue = "World") String guidanceType) {
+			@RequestParam(value = "guidanceType", required = false, defaultValue = "World") String guidanceType,
+			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
  
 		ArrayList resourcesSearch = new ArrayList();
 		ArrayList ongoingResources = new ArrayList();
 		ArrayList progressData = new ArrayList();
 		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
 		
 		GuidancePreview guideprev = new GuidancePreview();
 		resourcesSearch = guideprev.getGuidanceResources(guidanceSubject,guidanceType);
+		
+		ongoingResources = guideprev.onGoingResources(userid);
+		
 		
 		ModelAndView mv;
 		mv = new ModelAndView("/GuidanceStandard");
@@ -43,7 +61,8 @@ public class GuidanceController {
 		
 		
 		//mv.addObject("postlist", postlist);
-		mv.addObject("guidanceSubject", guidanceSubject);
+		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("ongoingResources", ongoingResources);
 		return mv;
 	}
 	
@@ -241,6 +260,22 @@ public class GuidanceController {
 		
 		//mv.addObject("postlist", postlist);
 		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/nextmeeting/{participant}")
+	@ResponseBody
+	public String helloWorld(@PathVariable String particiant)  {
+	  
+		String meetingtime = "";
+		
+		String guidanceid = particiant.split(",")[0];
+		String participantid= particiant.split(",")[1];
+		GuidancePreview guidprev = new GuidancePreview();
+		meetingtime = guidprev.nextMeeting(guidanceid,participantid);
+		
+		
+	  return meetingtime;
 	}
 	
 	
