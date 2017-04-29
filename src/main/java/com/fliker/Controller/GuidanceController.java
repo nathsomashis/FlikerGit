@@ -254,7 +254,7 @@ public class GuidanceController {
 		
 		
 		ModelAndView mv;
-		mv = new ModelAndView("/GuidanceProfessional");
+		mv = new ModelAndView("/GuidanceSheet");
 		
 		
 		
@@ -278,6 +278,21 @@ public class GuidanceController {
 	  return meetingtime;
 	}
 	
+	
+	@RequestMapping("/endorseStudent")
+	public void saveEndorsement(
+			@RequestParam(value = "student", required = false, defaultValue = "World") String student,
+			@RequestParam(value = "provider", required = false, defaultValue = "World") String provider,HttpServletRequest request,
+			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject
+			) {
+		System.out.println("in dashboard social controller");
+ 
+		GuidancePreview guidanceprev = new GuidancePreview();
+		guidanceprev.endorseSubject(guidanceSubject,provider,student);
+		
+		
+		
+	}
 	
 	
 }

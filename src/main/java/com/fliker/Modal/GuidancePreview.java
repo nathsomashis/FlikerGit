@@ -77,13 +77,13 @@ public class GuidancePreview {
 
 			DBObject dbj = cursor.next();
 			HashMap totalSet = new HashMap();
-			
+			GuidancePreview guidprev = new GuidancePreview();
 			
 			if((dbj.get("provideruserid").toString()).equalsIgnoreCase(userid)){
-				totalSet.put("sharetokenid", dbj.get("sharetokenid"));
-				totalSet.put("dashboardid", dbj.get("dashboardid"));
-				totalSet.put("averageVelocity", dbj.get("averageVelocity"));
-				totalSet.put("blogid", dbj.get("blogid"));
+				totalSet.put("sharetokenid", (String)dbj.get("sharetokenid"));
+				totalSet.put("dashboardid", (String)dbj.get("dashboardid"));
+				totalSet.put("averageVelocity", (String)dbj.get("averageVelocity"));
+				totalSet.put("blogid", (String)dbj.get("blogid"));
 				ProfilePreview profprev = new ProfilePreview();
 				ArrayList profileinfo = profprev.getProfileInfo((String)dbj.get("consumeruserid"));
 				for(int m=0;m<profileinfo.size();m++){
@@ -91,30 +91,32 @@ public class GuidancePreview {
 					if(profileinfo.get(m) instanceof Profile){
 						Profile profileinfos = (Profile)profileinfo.get(m);
 						
-						totalSet.put("profileid", dbj.get("profileid"));
-						totalSet.put("profileImage", dbj.get("profileImageid"));
-						totalSet.put("profileName", dbj.get("name"));
-						totalSet.put("userid", dbj.get("userid"));
+						totalSet.put("profileid", (String)dbj.get("profileid"));
+						totalSet.put("profileImage", (String)dbj.get("profileImageid"));
+						totalSet.put("profileName", (String)dbj.get("name"));
+						totalSet.put("userid", (String)dbj.get("userid"));
+						String nextmeeting = guidprev.getnextMeeting((String)dbj.get("timetableid"));
+						
+						totalSet.put("nextmeeting", nextmeeting);
+						String topiccount = guidprev.getNumberOfBlogsTopics((String)dbj.get("blogid"), userid);
+						totalSet.put("topiccount", topiccount);
+						
+						
 						
 					}
 					
 					
 				}
 				
-				totalSet.put("guidanceid", dbj.get("guidanceid"));
-				totalSet.put("timetableid", dbj.get("timetableid"));
+				totalSet.put("guidanceid", (String)dbj.get("guidanceid"));
+				totalSet.put("timetableid", (String)dbj.get("timetableid"));
+				totalSet.put("provideruserid", (String)dbj.get("provideruserid"));
 				
 			}
 			
-			
-			
 			guidancelist.add(totalSet);
 		}
-
-		
-		
 		return guidancelist;
-	  
 	  
 	}
   
@@ -187,10 +189,10 @@ public class GuidancePreview {
 			
 			
 			if(((dbj.get("guidanceSubject").toString()).equalsIgnoreCase(subject))&& ((dbj.get("guidencetype").toString()).equalsIgnoreCase(guidancetype))){
-				totalSet.put("guidanceid", dbj.get("guidanceid"));
-				totalSet.put("guidanceSubject", dbj.get("guidanceSubject"));
-				totalSet.put("guidanceflag", dbj.get("guidanceflag"));
-				totalSet.put("guidencetype", dbj.get("guidencetype"));
+				totalSet.put("guidanceid", (String)dbj.get("guidanceid"));
+				totalSet.put("guidanceSubject", (String)dbj.get("guidanceSubject"));
+				totalSet.put("guidanceflag", (String)dbj.get("guidanceflag"));
+				totalSet.put("guidencetype", (String)dbj.get("guidencetype"));
 				ProfilePreview profprev = new ProfilePreview();
 				ArrayList profileinfo = profprev.getProfileInfo((String)dbj.get("userid"));
 				for(int m=0;m<profileinfo.size();m++){
@@ -198,16 +200,16 @@ public class GuidancePreview {
 					if(profileinfo.get(m) instanceof Profile){
 						Profile profileinfos = (Profile)profileinfo.get(m);
 						
-						totalSet.put("profileid", dbj.get("profileid"));
-						totalSet.put("profileImage", dbj.get("profileImageid"));
-						totalSet.put("profileName", dbj.get("name"));
+						totalSet.put("profileid", (String)dbj.get("profileid"));
+						totalSet.put("profileImage", (String)dbj.get("profileImageid"));
+						totalSet.put("profileName", (String)dbj.get("name"));
 						
 					}
 					
 					
 				}
 				
-				totalSet.put("userid", dbj.get("userid"));
+				totalSet.put("userid", (String)dbj.get("userid"));
 				
 			}
 			
@@ -962,6 +964,92 @@ public class GuidancePreview {
 		
 		
 		return meetingtime;
+		
+	}
+	
+	
+	public String getnextMeeting(String timetableid) {
+		// TODO Auto-generated method stub
+		
+		DateFormat dateFormat = new SimpleDateFormat("YYYY-mm-ddTHH:MM:ss");
+		Date date = new Date();
+		String currentdate = dateFormat.format(date);
+		System.out.println(dateFormat.format(date));
+		String meetingtime="";
+		
+			MongoConnection mongoconint = new MongoConnection();
+			DBCursor guidcursor = mongoconint.getDBObject("timeableid", timetableid, "Timetable");
+			
+			if(guidcursor.hasNext()){
+				
+				DBObject theObjgrid = guidcursor.next();
+				
+				String[] events = (String[])theObjgrid.get("eventid");
+				
+				MongoConnection mongocoevent = new MongoConnection();
+				DBCursor eventcursor = mongocoevent.getNextMeetingDBObject("eventstarttime", currentdate, "Event");
+				
+				if(eventcursor.hasNext()){
+					
+					DBObject eventObj = eventcursor.next();
+					
+					meetingtime = (String)eventObj.get("eventstarttime");
+					
+				}
+				
+			}
+		
+		
+		return meetingtime;
+		
+	}
+	
+	
+	public String getNumberOfBlogsTopics(String blogid, String userid){
+		
+		
+		String topicnumber = "";
+		int topiccount = 0;
+		
+		MongoConnection mongoconint = new MongoConnection();
+		DBCursor blogcursor = mongoconint.getDBObject("blogid", blogid, "Blog");
+		
+		if(blogcursor.hasNext()){
+			
+			DBObject eventObj = blogcursor.next();
+			String[] topics = (String[])eventObj.get("topicid");
+			
+			for(int s=0;s<topics.length;s++){
+				
+				MongoConnection mongocontop = new MongoConnection();
+				DBCursor topiccursor = mongoconint.getDBObject("topicid", topics[s], "Topic");
+				
+				if(topiccursor.hasNext()){
+					DBObject topicObj = blogcursor.next();
+					
+					if(((String)topicObj.get("topiccreateduserid")).equalsIgnoreCase(userid)){
+						topiccount++;
+					}
+					
+				}
+				
+			}
+			
+			
+		}
+		
+		
+		topicnumber = Integer.toString(topiccount);
+		
+		return topicnumber;
+		
+	}
+
+
+	public void endorseSubject(String guidanceSubject, String provider, String student) {
+		// TODO Auto-generated method stub
+		
+		
 		
 	}
   	
