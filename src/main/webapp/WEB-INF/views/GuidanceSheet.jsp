@@ -627,7 +627,7 @@
 								<a href="#s2" data-toggle="tab">Shared Items</a>
 							</li>
 							<li>
-								<a href="#s3" data-toggle="tab">Till Now..</a>
+								<a href="#s3" data-toggle="tab">Calendar</a>
 							</li>
 							<!-- <li class="pull-right hidden-mobile">
 								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>

@@ -56,6 +56,22 @@ public class MongoConnection {
 		return cursor;
 	}
 	
+	public DBCursor getNextMeetingDBObject(String columnname, String comparision, String collectionname){
+		
+		DBCollection collection = getDBConnection(collectionname);
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put(columnname, comparision);
+		BasicDBObject gtQuery = new BasicDBObject();
+		gtQuery.put(columnname, new BasicDBObject("$gt", comparision));
+		DBCursor cursor = collection.find(gtQuery).sort(new BasicDBObject(columnname,-1)).limit(1);
+		/*while(cursor.hasNext()) {
+		    System.out.println(cursor.next());
+		}*/
+		
+		return cursor;
+	}
+	
+	
 	public DBCursor getDBObjectSorted(String columnname, String comparision, String collectionname, String sortingcolumn, int limit){
 		
 		DBCollection collection = getDBConnection(collectionname);
