@@ -17,10 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fliker.Modal.CoursePreview;
 import com.fliker.Modal.GuidancePreview;
+import com.fliker.Modal.ProfilePreview;
+import com.fliker.Modal.UserPreview;
 import com.fliker.Repository.Blog;
 import com.fliker.Repository.DashBoardData;
 import com.fliker.Repository.GuidanceContentDashboard;
 import com.fliker.Repository.GuidanceContentShared;
+import com.fliker.Repository.Profile;
 import com.fliker.Repository.Share;
 import com.fliker.Repository.Timetable;
 import com.fliker.Repository.User;
@@ -48,6 +51,9 @@ public class GuidanceController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
 		
 		GuidancePreview guideprev = new GuidancePreview();
 		resourcesSearch = guideprev.getGuidanceResources(guidanceSubject,guidanceType);
@@ -61,6 +67,9 @@ public class GuidanceController {
 		
 		
 		//mv.addObject("postlist", postlist);
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("ongoingResources", ongoingResources);
 		return mv;
@@ -94,15 +103,30 @@ public class GuidanceController {
 	@RequestMapping("/professionalguidance")
 	public ModelAndView proffFirstGuidance(
 			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject,
-			@RequestParam(value = "guidanceType", required = false, defaultValue = "World") String guidanceType ) {
+			@RequestParam(value = "guidanceType", required = false, defaultValue = "World") String guidanceType,
+			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
  
 		ArrayList resourcesSearch = new ArrayList();
 		ArrayList ongoingResources = new ArrayList();
 		ArrayList progressData = new ArrayList();
 		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		
 		GuidancePreview guideprev = new GuidancePreview();
 		resourcesSearch = guideprev.getGuidanceResources(guidanceSubject,guidanceType);
+		
+		ongoingResources = guideprev.onGoingResources(userid);
 		
 		ModelAndView mv;
 		mv = new ModelAndView("/GuidanceProfessional");
@@ -110,6 +134,11 @@ public class GuidanceController {
 		
 		
 		//mv.addObject("postlist", postlist);
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("ongoingResources", ongoingResources);
 		return mv;
 	}
 	
@@ -231,7 +260,8 @@ public class GuidanceController {
 	
 	@RequestMapping("/gotoguidance")
 	public ModelAndView goToGuidance(
-			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model) {
+			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,
+			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
  
 		ArrayList resourcesSearch = new ArrayList();
@@ -240,23 +270,150 @@ public class GuidanceController {
 		GuidancePreview guideprev = new GuidancePreview();
 		resourcesSearch = guideprev.getGuidanceData(guidanceid);
 		
+		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
+		
+		UserPreview userprev = new UserPreview();
+		String gender = userprev.getGender(userid);
+		
 		Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
-		model.addAttribute("TimeTable", timetable);
+		//model.addAttribute("TimeTable", timetable);
 		
 		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
-		model.addAttribute("GuidShared", guidshareditem);
+		//model.addAttribute("GuidShared", guidshareditem);
 		
 		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
-		model.addAttribute("GuidDashBoard", guiddashdata);
+		//model.addAttribute("GuidDashBoard", guiddashdata);
 		
 		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
-		model.addAttribute("GuidBlog", blogs);
+		//model.addAttribute("GuidBlog", blogs);
 		
+		ServletContext context = request.getSession().getServletContext();
+		
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(userid);
 		
 		ModelAndView mv;
 		mv = new ModelAndView("/GuidanceSheet");
 		
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", profile.getName());
+		mv.addObject("TimeTable", timetable);
+		mv.addObject("GuidShared", guidshareditem);
+		mv.addObject("GuidDashBoard", guiddashdata);
+		mv.addObject("GuidBlog", blogs);
+		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("guidanceid", guidanceid);
 		
+		//mv.addObject("postlist", postlist);
+		return mv;
+	}
+	
+	
+	@RequestMapping("/gotoguidanceshare")
+	public ModelAndView goToGuidanceShare(
+			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		ArrayList resourcesSearch = new ArrayList();
+		
+		
+		GuidancePreview guideprev = new GuidancePreview();
+		resourcesSearch = guideprev.getGuidanceData(guidanceid);
+		
+		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
+		
+		UserPreview userprev = new UserPreview();
+		String gender = userprev.getGender(userid);
+		
+		Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
+		//model.addAttribute("TimeTable", timetable);
+		
+		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
+		//model.addAttribute("GuidShared", guidshareditem);
+		
+		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
+		//model.addAttribute("GuidDashBoard", guiddashdata);
+		
+		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
+		//model.addAttribute("GuidBlog", blogs);
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(userid);
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceShared");
+		
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", profile.getName());
+		mv.addObject("TimeTable", timetable);
+		mv.addObject("GuidShared", guidshareditem);
+		mv.addObject("GuidDashBoard", guiddashdata);
+		mv.addObject("GuidBlog", blogs);
+		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("guidanceid", guidanceid);
+		
+		//mv.addObject("postlist", postlist);
+		return mv;
+	}
+	
+	
+	@RequestMapping("/gotoguidancecalendar")
+	public ModelAndView goToGuidanceTimetable(
+			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		ArrayList resourcesSearch = new ArrayList();
+		
+		
+		GuidancePreview guideprev = new GuidancePreview();
+		resourcesSearch = guideprev.getGuidanceData(guidanceid);
+		
+		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
+		
+		UserPreview userprev = new UserPreview();
+		String gender = userprev.getGender(userid);
+		
+		Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
+		//model.addAttribute("TimeTable", timetable);
+		
+		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
+		//model.addAttribute("GuidShared", guidshareditem);
+		
+		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
+		//model.addAttribute("GuidDashBoard", guiddashdata);
+		
+		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
+		//model.addAttribute("GuidBlog", blogs);
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(userid);
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceCalendar");
+		
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", profile.getName());
+		mv.addObject("TimeTable", timetable);
+		mv.addObject("GuidShared", guidshareditem);
+		mv.addObject("GuidDashBoard", guiddashdata);
+		mv.addObject("GuidBlog", blogs);
+		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("guidanceid", guidanceid);
 		
 		//mv.addObject("postlist", postlist);
 		return mv;
