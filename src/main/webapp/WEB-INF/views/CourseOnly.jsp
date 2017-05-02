@@ -1754,6 +1754,8 @@
 										dictResponseError : 'Error uploading file!'
 									});
 							
+							
+							
 							//Dropzone.autoDiscover = false;
 							/* $("#mydropzone5").dropzone(
 									{

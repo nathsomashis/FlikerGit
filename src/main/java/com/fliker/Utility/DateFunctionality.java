@@ -2,8 +2,17 @@ package com.fliker.Utility;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class DateFunctionality {
 
@@ -69,5 +78,39 @@ public class DateFunctionality {
 		currentDate = dateFormat.format(today);
 		return currentDate;
 	}
+	
+	
+	public String getUniformDates(String date){
+		
+		
+			DateTimeFormatter formatter =
+	            DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy HH:mm:ss a", Locale.US);
+
+	        String text = date;
+	        LocalDateTime localDateTime = LocalDateTime.parse(text, formatter);
+	        LocalTime localTime = localDateTime.toLocalTime();
+	        String localtimezone = localTime.toString();
+		
+	        return localtimezone;
+	}
+	
+	
+	private Map<String, String> getRequestHeadersInMap(HttpServletRequest request) {
+
+	    Map<String, String> result = new HashMap<>();
+
+	    Enumeration headerNames = request.getHeaderNames();
+	    while (headerNames.hasMoreElements()) {
+	        String key = (String) headerNames.nextElement();
+	        String value = request.getHeader(key);
+	        result.put(key, value);
+	    }
+
+	    return result;
+	}
+	
+	
+	
+	
 	
 }

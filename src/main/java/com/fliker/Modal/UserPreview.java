@@ -34,5 +34,24 @@ public class UserPreview {
 		}
 		return user;
 	}
+	
+	public String getGender(String userid){
+		
+		String gender = "";
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "User");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			if(((String)theObj.get("gender")).equalsIgnoreCase("2")){
+				gender = "female";
+			}else{
+				gender = "male";
+			}
+		}
+		
+		return gender;
+	}
 
 }
