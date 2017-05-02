@@ -30,7 +30,7 @@ import com.mongodb.BasicDBObject;
 public class AssignmentFilePreview {
 	
 	
-	IdentityHashMap< HttpServletRequest, HashMap<String,LinkedList<String>>> requestobjectmap = new IdentityHashMap<HttpServletRequest,HashMap<String,LinkedList<String>>>();
+	public IdentityHashMap< HttpServletRequest, HashMap<String,LinkedList<String>>> requestobjectmap = new IdentityHashMap<HttpServletRequest,HashMap<String,LinkedList<String>>>();
 
 	
 	public void saveFileToLocalDisk(MultipartFile multipartFile) throws IOException, FileNotFoundException {
