@@ -31,7 +31,10 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "1",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		
+		assignfilprev.saveFile(request.getFileMap(),userid, "1",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -51,7 +54,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "2", requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "2", token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -72,7 +77,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "3",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "3",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -93,7 +100,8 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "4",requests);
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "4",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -114,7 +122,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "5",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "5",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -135,7 +145,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "6",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "6",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -156,7 +168,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "7",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "7",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -176,7 +190,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "8",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "8",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -197,7 +213,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "9",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "9",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -217,7 +235,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "10",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "10",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -238,7 +258,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "11",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "11",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -259,7 +281,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "12",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "12",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -280,7 +304,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "13",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "13",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -301,7 +327,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "14",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "14",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -322,7 +350,9 @@ public class AssignmentFileUploadController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
-		assignfilprev.saveFile(request.getFileMap(),userid, "15",requests);
+		
+		String token = (String)context.getAttribute("RequestToken");
+		assignfilprev.saveFile(request.getFileMap(),userid, "15",token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
