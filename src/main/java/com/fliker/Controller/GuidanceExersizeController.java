@@ -38,6 +38,28 @@ public class GuidanceExersizeController {
 			
 			
 		}
+		
+		
+		@RequestMapping("/submitAssignment")
+		public void submitAssignment(
+				@RequestParam(value = "assignmentSets", required = false, defaultValue = "World") String assignmentSets,
+				@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request,
+				@RequestParam(value = "tokenid", required = false, defaultValue = "World") String tokenid
+				) {
+			System.out.println("in dashboard social controller");
+	 
+			AssignmentFilePreview assignprev = new AssignmentFilePreview();
+			//IdentityHashMap< String, HashMap<String,LinkedList<String>>> assignmentsect = assignprev.requestobjectmap ;
+			
+			ArrayList assignmentList = new ArrayList();
+			
+			assignmentList = assignprev.answerAssignments(assignmentSets,tokenid,userid);
+			
+			
+			GuidancePreview guidanceprev = new GuidancePreview();
+			
+			
+		}
 	
 	
 }

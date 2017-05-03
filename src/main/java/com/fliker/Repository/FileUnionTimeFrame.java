@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="FileUnionTimeFrame")
 public class FileUnionTimeFrame {
 	
+	@Id
 	private String tempid;
 	private String userid;
 	private String fileid;

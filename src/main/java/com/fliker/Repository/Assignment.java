@@ -10,9 +10,7 @@ public class Assignment {
 	@Id
 	private String assignmentid;
 	private String[] assignmentquestionsets;
-	private String[] assignmentQDoc;
 	private String[] assignmentanswersheet;
-	private String[] assignmentADoc;
 	private String assignmentstartdatetime;
 	private String assignmentenddatetime;
 	private String noOfQuestions;
@@ -63,24 +61,14 @@ public class Assignment {
 	public void setAssignmentquestionsets(String[] assignmentquestionsets) {
 		this.assignmentquestionsets = assignmentquestionsets;
 	}
-	public String[] getAssignmentQDoc() {
-		return assignmentQDoc;
-	}
-	public void setAssignmentQDoc(String[] assignmentQDoc) {
-		this.assignmentQDoc = assignmentQDoc;
-	}
+	
 	public String[] getAssignmentanswersheet() {
 		return assignmentanswersheet;
 	}
 	public void setAssignmentanswersheet(String[] assignmentanswersheet) {
 		this.assignmentanswersheet = assignmentanswersheet;
 	}
-	public String[] getAssignmentADoc() {
-		return assignmentADoc;
-	}
-	public void setAssignmentADoc(String[] assignmentADoc) {
-		this.assignmentADoc = assignmentADoc;
-	}
+	
 	
 	
 	

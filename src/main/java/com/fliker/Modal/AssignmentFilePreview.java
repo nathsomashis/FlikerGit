@@ -22,8 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fliker.Connection.MongoConnection;
+import com.fliker.Repository.Assignment;
 import com.fliker.Repository.FileUnionTimeFrame;
 import com.fliker.Repository.FileUpload;
+import com.fliker.Repository.QuestionAnswerDocSet;
 import com.fliker.Utility.DateFunctionality;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
@@ -189,6 +191,17 @@ public class AssignmentFilePreview {
 				}
 						
 				
+			}else{
+				
+				LinkedList templist = new LinkedList();
+				templist.add(fileid);
+				HashMap setupmap = new HashMap();
+				setupmap.put(userid, templist);
+				
+				requestobjectmap.put(token, setupmap);
+				
+				
+				
 			}
 			
 		}
@@ -232,6 +245,9 @@ public class AssignmentFilePreview {
 		// TODO Auto-generated method stub
 		
 		ArrayList assignmentlist = new ArrayList();
+		HashMap<Integer,HashMap<String,String>> assignquestionset = new HashMap<Integer,HashMap<String,String>>();
+		
+		AssignmentPreview assignprev = new AssignmentPreview();
 		
 		MongoConnection mongocon = new MongoConnection();
 		DBCursor resultcursor = mongocon.getDBObject("tempid", tokenid, "FileUnionTimeFrame");
@@ -240,21 +256,28 @@ public class AssignmentFilePreview {
 			
 			if(((String)theObj.get("userid")).equalsIgnoreCase(userid)){
 				
-				FileUnionTimeFrame fileunitimfr = new FileUnionTimeFrame();
+				//FileUnionTimeFrame fileunitimfr = new FileUnionTimeFrame();
 				
-				fileunitimfr.setContext((String)theObj.get("context"));
+				/*fileunitimfr.setContext((String)theObj.get("context"));
 				fileunitimfr.setDate((String)theObj.get("date"));
 				fileunitimfr.setDay((String)theObj.get("day"));
 				fileunitimfr.setFileid((String)theObj.get("fileid"));
 				fileunitimfr.setHour((String)theObj.get("hour"));
 				fileunitimfr.setMonth((String)theObj.get("month"));
 				fileunitimfr.setTempid((String)theObj.get("tempid"));
-				fileunitimfr.setUserid((String)theObj.get("userid"));
+				fileunitimfr.setUserid((String)theObj.get("userid"));*/
+				
+				
+				
+				QuestionAnswerDocSet questionanswerdocset = new QuestionAnswerDocSet();
+				
 				
 				String assignmentQuestion = "";
 				
+				
 				String contexttext = (String)theObj.get("context");
 				String assignmentNo = (contexttext.split(",")[0]).split("::")[1];
+				String fileid = (contexttext.split(",")[1]).split("::")[1];
 				
 				String[] assignmentset = assignmentSets.split(":;");
 				
@@ -266,13 +289,49 @@ public class AssignmentFilePreview {
 						
 						assignmentQuestion = assignmentQno +"::"+assignmentset[m].split("::")[1];
 						
+						Set assignset = assignquestionset.entrySet();
+						Iterator assignit = assignset.iterator();
+						while(assignit.hasNext()){
+							Map.Entry meassign = (Map.Entry)assignit.next();
+							
+							int qnos = (Integer)meassign.getKey();
+							int qno = Integer.valueOf(assignmentQno);
+							if(qnos == qno){
+								
+								
+								HashMap existingfileid = (HashMap)meassign.getValue();
+								Set exisset = existingfileid.entrySet();
+								Iterator existit = exisset.iterator();
+								while(existit.hasNext()){
+									Map.Entry meexist = (Map.Entry)existit.next();
+									
+									String existingfile = (String)meexist.getValue();
+									existingfile = existingfile + ","+fileid;
+									HashMap newStateData = new HashMap();
+									newStateData.put((String)meexist.getKey(), existingfile);
+									assignquestionset.put(qno, newStateData);
+									
+								}
+								
+								
+								
+							}else{
+								
+								HashMap newStateData = new HashMap();
+								newStateData.put(assignmentset[m].split("::")[1], fileid);
+								assignquestionset.put(qno, newStateData);
+							}
+							
+						}
+						
 					}
-					
-					
 					
 				}
 				
-				assignmentlist.add(fileunitimfr);
+				
+				
+				
+				//assignmentlist.add(fileunitimfr);
 				assignmentlist.add(assignmentQuestion);
 				
 				
@@ -283,7 +342,47 @@ public class AssignmentFilePreview {
 		}
 		
 		
+		assignprev.saveAssignmentQuestionSet(assignquestionset);
+		
+		
 		return assignmentlist;
+	}
+	
+	
+	
+	public void saveQuestionAssignments(ArrayList assignmentSets, String tokenid, String userid) {
+		// TODO Auto-generated method stub
+		
+		Assignment assignment = new Assignment();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("tempid", tokenid, "FileUnionTimeFrame");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			if(((String)theObj.get("userid")).equalsIgnoreCase(userid)){
+				
+				
+				
+				
+				
+				
+			}
+		}
+		
+		
+	}
+	
+	
+	
+	
+
+	public ArrayList answerAssignments(String assignmentSets, String tokenid, String userid) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		
+		return null;
 	}
 	
 	

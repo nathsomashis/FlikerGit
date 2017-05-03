@@ -459,7 +459,10 @@
 						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
 				</li>
 				<li class=""><a href="gotoguidance?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">GuidanceSheet</span></a>
+						class="fa fa-group"></i><span class="menu-item-parent">GuidanceSheet Test</span></a>
+				</li>
+				<li class=""><a href="assignmentAnswer?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Assignment Answer Test</span></a>
 				</li>
 			</ul></li>		
 
