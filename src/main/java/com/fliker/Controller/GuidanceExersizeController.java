@@ -1,5 +1,6 @@
 package com.fliker.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.LinkedList;
@@ -20,12 +21,39 @@ public class GuidanceExersizeController {
 		@RequestMapping("/createAssignment")
 		public void createAssignment(
 				@RequestParam(value = "assignmentSets", required = false, defaultValue = "World") String assignmentSets,
-				@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request
+				@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request,
+				@RequestParam(value = "tokenid", required = false, defaultValue = "World") String tokenid
 				) {
 			System.out.println("in dashboard social controller");
 	 
 			AssignmentFilePreview assignprev = new AssignmentFilePreview();
-			IdentityHashMap< HttpServletRequest, HashMap<String,LinkedList<String>>> assignmentsect = assignprev.requestobjectmap ;
+			//IdentityHashMap< String, HashMap<String,LinkedList<String>>> assignmentsect = assignprev.requestobjectmap ;
+			
+			ArrayList assignmentList = new ArrayList();
+			
+			assignmentList = assignprev.saveAssignments(assignmentSets,tokenid,userid);
+			
+			
+			GuidancePreview guidanceprev = new GuidancePreview();
+			
+			
+		}
+		
+		
+		@RequestMapping("/submitAssignment")
+		public void submitAssignment(
+				@RequestParam(value = "assignmentSets", required = false, defaultValue = "World") String assignmentSets,
+				@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request,
+				@RequestParam(value = "tokenid", required = false, defaultValue = "World") String tokenid
+				) {
+			System.out.println("in dashboard social controller");
+	 
+			AssignmentFilePreview assignprev = new AssignmentFilePreview();
+			//IdentityHashMap< String, HashMap<String,LinkedList<String>>> assignmentsect = assignprev.requestobjectmap ;
+			
+			ArrayList assignmentList = new ArrayList();
+			
+			assignmentList = assignprev.answerAssignments(assignmentSets,tokenid,userid);
 			
 			
 			GuidancePreview guidanceprev = new GuidancePreview();

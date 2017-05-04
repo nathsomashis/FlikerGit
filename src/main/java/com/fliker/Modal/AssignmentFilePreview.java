@@ -22,15 +22,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fliker.Connection.MongoConnection;
+import com.fliker.Repository.Assignment;
 import com.fliker.Repository.FileUnionTimeFrame;
 import com.fliker.Repository.FileUpload;
+import com.fliker.Repository.QuestionAnswerDocSet;
 import com.fliker.Utility.DateFunctionality;
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 
 public class AssignmentFilePreview {
 	
 	
-	public IdentityHashMap< HttpServletRequest, HashMap<String,LinkedList<String>>> requestobjectmap = new IdentityHashMap<HttpServletRequest,HashMap<String,LinkedList<String>>>();
+	public IdentityHashMap< String, HashMap<String,LinkedList<String>>> requestobjectmap = new IdentityHashMap<String,HashMap<String,LinkedList<String>>>();
 
 	
 	public void saveFileToLocalDisk(MultipartFile multipartFile) throws IOException, FileNotFoundException {
@@ -89,7 +93,7 @@ public class AssignmentFilePreview {
 		return hexStr;
 	}
 	
-	public void saveFile(Map<String, MultipartFile> fileMap, String userid, String asignNo,HttpServletRequest requests){
+	public void saveFile(Map<String, MultipartFile> fileMap, String userid, String asignNo,String token){
 		String fileids = "";
 		String filenames = "";
 		
@@ -131,7 +135,7 @@ public class AssignmentFilePreview {
 				
 				String context = "Assignment ::"+asignNo+" ,FileID ::"+fileid+" ,FileName ::"+filenames;
 				
-				assignprev.savetempfilehistory(userid, fileid, localdate,daypack,monthspack, hourpack,context,requests);
+				assignprev.savetempfilehistory(userid, fileid, localdate,daypack,monthspack, hourpack,context,token);
 				
 				
 				
@@ -149,10 +153,10 @@ public class AssignmentFilePreview {
 	}
 	
 	
-	public void savetempfilehistory(String userid, String fileid, String date, String day,String month, String hour, String context,HttpServletRequest requests ){
+	public void savetempfilehistory(String userid, String fileid, String date, String day,String month, String hour, String context,String  token ){
 		
 		AssignmentFilePreview assignprev = new AssignmentFilePreview();
-		String uniqueid = "";
+		/*String uniqueid = "";
 		
 		try {
 			uniqueid = assignprev.makeSHA1Hash(fileid+userid);
@@ -162,7 +166,7 @@ public class AssignmentFilePreview {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	
 		Set collectionset = requestobjectmap.entrySet();
 		Iterator colliter = collectionset.iterator();
@@ -170,7 +174,7 @@ public class AssignmentFilePreview {
 			
 			Map.Entry me = (Map.Entry)colliter.next();
 			
-			if(me.getKey() == requests){
+			if(me.getKey() == token){
 				HashMap userval = (HashMap)me.getValue();
 				Set userset = userval.entrySet();
 				Iterator userit = userset.iterator();
@@ -187,6 +191,17 @@ public class AssignmentFilePreview {
 				}
 						
 				
+			}else{
+				
+				LinkedList templist = new LinkedList();
+				templist.add(fileid);
+				HashMap setupmap = new HashMap();
+				setupmap.put(userid, templist);
+				
+				requestobjectmap.put(token, setupmap);
+				
+				
+				
 			}
 			
 		}
@@ -198,7 +213,7 @@ public class AssignmentFilePreview {
 		fileuntimeframe.setFileid(fileid);
 		fileuntimeframe.setHour(hour);
 		fileuntimeframe.setMonth(month);
-		fileuntimeframe.setTempid(uniqueid);
+		fileuntimeframe.setTempid(token);
 		fileuntimeframe.setUserid(userid);
 		
 		MongoConnection mongoconsearch = new MongoConnection();
@@ -224,6 +239,150 @@ public class AssignmentFilePreview {
 		
 		
 		return basicdbobj;
+	}
+
+	public ArrayList saveAssignments(String assignmentSets, String tokenid, String userid) {
+		// TODO Auto-generated method stub
+		
+		ArrayList assignmentlist = new ArrayList();
+		HashMap<Integer,HashMap<String,String>> assignquestionset = new HashMap<Integer,HashMap<String,String>>();
+		
+		AssignmentPreview assignprev = new AssignmentPreview();
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("tempid", tokenid, "FileUnionTimeFrame");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			if(((String)theObj.get("userid")).equalsIgnoreCase(userid)){
+				
+				//FileUnionTimeFrame fileunitimfr = new FileUnionTimeFrame();
+				
+				/*fileunitimfr.setContext((String)theObj.get("context"));
+				fileunitimfr.setDate((String)theObj.get("date"));
+				fileunitimfr.setDay((String)theObj.get("day"));
+				fileunitimfr.setFileid((String)theObj.get("fileid"));
+				fileunitimfr.setHour((String)theObj.get("hour"));
+				fileunitimfr.setMonth((String)theObj.get("month"));
+				fileunitimfr.setTempid((String)theObj.get("tempid"));
+				fileunitimfr.setUserid((String)theObj.get("userid"));*/
+				
+				
+				
+				QuestionAnswerDocSet questionanswerdocset = new QuestionAnswerDocSet();
+				
+				
+				String assignmentQuestion = "";
+				
+				
+				String contexttext = (String)theObj.get("context");
+				String assignmentNo = (contexttext.split(",")[0]).split("::")[1];
+				String fileid = (contexttext.split(",")[1]).split("::")[1];
+				
+				String[] assignmentset = assignmentSets.split(":;");
+				
+				for(int m=0;m<assignmentset.length;m++){
+					
+					String assignmentQno = assignmentset[m].split("::")[0];
+					
+					if(assignmentQno.equalsIgnoreCase(assignmentNo)){
+						
+						assignmentQuestion = assignmentQno +"::"+assignmentset[m].split("::")[1];
+						
+						Set assignset = assignquestionset.entrySet();
+						Iterator assignit = assignset.iterator();
+						while(assignit.hasNext()){
+							Map.Entry meassign = (Map.Entry)assignit.next();
+							
+							int qnos = (Integer)meassign.getKey();
+							int qno = Integer.valueOf(assignmentQno);
+							if(qnos == qno){
+								
+								
+								HashMap existingfileid = (HashMap)meassign.getValue();
+								Set exisset = existingfileid.entrySet();
+								Iterator existit = exisset.iterator();
+								while(existit.hasNext()){
+									Map.Entry meexist = (Map.Entry)existit.next();
+									
+									String existingfile = (String)meexist.getValue();
+									existingfile = existingfile + ","+fileid;
+									HashMap newStateData = new HashMap();
+									newStateData.put((String)meexist.getKey(), existingfile);
+									assignquestionset.put(qno, newStateData);
+									
+								}
+								
+								
+								
+							}else{
+								
+								HashMap newStateData = new HashMap();
+								newStateData.put(assignmentset[m].split("::")[1], fileid);
+								assignquestionset.put(qno, newStateData);
+							}
+							
+						}
+						
+					}
+					
+				}
+				
+				
+				
+				
+				//assignmentlist.add(fileunitimfr);
+				assignmentlist.add(assignmentQuestion);
+				
+				
+			}
+			
+			
+			
+		}
+		
+		
+		assignprev.saveAssignmentQuestionSet(assignquestionset);
+		
+		
+		return assignmentlist;
+	}
+	
+	
+	
+	public void saveQuestionAssignments(ArrayList assignmentSets, String tokenid, String userid) {
+		// TODO Auto-generated method stub
+		
+		Assignment assignment = new Assignment();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("tempid", tokenid, "FileUnionTimeFrame");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			if(((String)theObj.get("userid")).equalsIgnoreCase(userid)){
+				
+				
+				
+				
+				
+				
+			}
+		}
+		
+		
+	}
+	
+	
+	
+	
+
+	public ArrayList answerAssignments(String assignmentSets, String tokenid, String userid) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		
+		return null;
 	}
 	
 	

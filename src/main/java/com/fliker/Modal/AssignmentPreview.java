@@ -9,10 +9,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Assignment;
 import com.fliker.Repository.Guidance;
+import com.fliker.Repository.QuestionAnswerDocSet;
 import com.mongodb.BasicDBObject;
 
 public class AssignmentPreview {
@@ -76,14 +81,24 @@ public class AssignmentPreview {
 			basicdbobj.put("assignmentid", assignment.getAssignmentid());
 			basicdbobj.put("assignmentanswersheet", assignment.getAssignmentanswersheet());
 			basicdbobj.put("assignmentquestionsets", assignment.getAssignmentquestionsets());
-			basicdbobj.put("assignmentADoc", assignment.getAssignmentADoc());
-			basicdbobj.put("assignmentQDoc", assignment.getAssignmentQDoc());
 			basicdbobj.put("assignmentstartdatetime", assignment.getAssignmentstartdatetime());
 			basicdbobj.put("assignmentenddatetime", assignment.getAssignmentenddatetime());
 			basicdbobj.put("averageVelocity", assignment.getAverageVelocity());
 			basicdbobj.put("percentagescore", assignment.getPercentagescore());
 			basicdbobj.put("noOfQuestions", assignment.getNoOfQuestions());
 			
+			return basicdbobj;
+			
+		}
+	  
+	  
+	  public BasicDBObject formQuestionSetDBObject(QuestionAnswerDocSet questionsetdoc){
+			
+			BasicDBObject basicdbobj = new BasicDBObject();
+			basicdbobj.put("fileid", questionsetdoc.getFileid());
+			basicdbobj.put("sheetContent", questionsetdoc.getSheetContent());
+			basicdbobj.put("sheetContentNo", questionsetdoc.getSheetContentNo());
+			basicdbobj.put("sheetdocid", questionsetdoc.getSheetdocid());
 			return basicdbobj;
 			
 		}
@@ -213,6 +228,95 @@ public class AssignmentPreview {
         return diff;
         
 	}
+
+	public void saveAssignmentQuestionSet(HashMap<Integer, HashMap<String, String>> assignquestionset) {
+		// TODO Auto-generated method stub
+		
+		QuestionAnswerDocSet quesansdoc = new QuestionAnswerDocSet();
+		AssignmentPreview assignprev = new AssignmentPreview();
+		StringBuffer sheetdocid = new StringBuffer();
+		
+		Set assignqnset = assignquestionset.entrySet();
+		Iterator assigniter = assignqnset.iterator();
+		while(assigniter.hasNext()){
+			
+			Map.Entry meassign = (Map.Entry)assigniter.next();
+			
+			String assignmentQnNo = (String)meassign.getKey();
+			String assignmentQn = "";
+			String assignmentFileids = "";
+			String[] assignfilarr = null;
+			
+			HashMap entryassign = (HashMap)meassign.getValue();
+			Set entryassignset = entryassign.entrySet();
+			Iterator entryassigniter = entryassignset.iterator();
+			while(entryassigniter.hasNext()){
+				Map.Entry mentryassign = (Map.Entry)entryassigniter.next();
+				
+				assignmentQn = (String)mentryassign.getKey();
+				assignmentFileids = (String)mentryassign.getValue();
+				assignfilarr = assignmentFileids.split(",");
+				
+			}
+			
+			String uniqueid = "";
+			
+			try {
+				uniqueid = assignprev.makeSHA1Hash(assignmentQn);
+				sheetdocid.append(uniqueid);
+				sheetdocid.append(",");
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			quesansdoc.setSheetdocid(uniqueid);
+			quesansdoc.setSheetContent(assignmentQn);
+			quesansdoc.setSheetContentNo(assignmentQnNo);
+			quesansdoc.setFileid(assignfilarr);
+			
+			MongoConnection mongocon = new MongoConnection();
+			BasicDBObject basicreqobj =  assignprev.formQuestionSetDBObject(quesansdoc);
+			mongocon.saveObject(basicreqobj, "QuestionAnswerDocSet");
+			
+			String[] newsheetdocids = (sheetdocid.substring(0,sheetdocid.length()-1)).split(",");
+			
+			Assignment assignment = new Assignment();
+			
+			String uniqueidassign = "";
+			
+			try {
+				uniqueidassign = assignprev.makeSHA1Hash(assignmentQn);
+				sheetdocid.append(uniqueidassign);
+				sheetdocid.append(",");
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			assignment.setAssignmentid(uniqueidassign);
+			assignment.setNoOfQuestions(Integer.toString(assignquestionset.size()));
+			assignment.setAssignmentquestionsets(newsheetdocids);
+			
+			MongoConnection mongocondb = new MongoConnection();
+			BasicDBObject basicreqobjassign =  assignprev.formDBObject(assignment);
+			mongocondb.saveObject(basicreqobjassign, "Assignment");
+			
+			
+		}
+		
+		
+		
+		
+	}
+
+	
 	
 	
 	

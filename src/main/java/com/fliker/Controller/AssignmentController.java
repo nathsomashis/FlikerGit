@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fliker.Modal.AssignmentPreview;
+import com.fliker.Modal.CoursePreview;
 import com.fliker.Modal.GuidancePreview;
+import com.fliker.Repository.Courses;
 
 @Controller
 public class AssignmentController {
@@ -36,6 +38,39 @@ public class AssignmentController {
 		
 		
 	}
+	
+	@RequestMapping("/assignmentView")
+	public ModelAndView showAssignmentView(
+			@RequestParam(value = "assignmentid", required = false, defaultValue = "World") String assignmentid ) {
+		System.out.println("in controller");
+ 
+		ArrayList assignmentlist = new ArrayList<Courses>();
+		
+		
+		ModelAndView mv = new ModelAndView("/AssignmentView");
+		mv.addObject("assignmentlist", assignmentlist);
+		return mv;
+	}
+	
+	
+	@RequestMapping("/assignmentAnswer")
+	public ModelAndView answerAssignment(
+			@RequestParam(value = "assignmentid", required = false, defaultValue = "World") String assignmentid ) {
+		System.out.println("in controller");
+ 
+		ArrayList assignmentlist = new ArrayList<Courses>();
+		
+		
+		ModelAndView mv = new ModelAndView("/AssignmentAnswer");
+		mv.addObject("assignmentlist", assignmentlist);
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }
