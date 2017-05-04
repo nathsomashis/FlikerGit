@@ -124,7 +124,7 @@
 	<body class="">
 	
 		<%
-			String profileimage = (String)request.getAttribute("ProfileImage");
+			/* String profileimage = (String)request.getAttribute("ProfileImage");
 			String gender = (String)request.getAttribute("Gender");
 			String profilename = (String)request.getAttribute("FullName");
 			Timetable timeline = (Timetable)request.getAttribute("TimeTable");
@@ -135,7 +135,7 @@
 			String guidanceid = (String)request.getAttribute("guidanceid");
 			String timetableid = timeline.getTimeableid();
 			String guideshareid = guidanceshare.getGuidancesharedid();
-			String guidedash = guiddash.getGuidancecontentDashid();
+			String guidedash = guiddash.getGuidancecontentDashid(); */
 			
 		
 		%>
@@ -379,7 +379,7 @@
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<div class="login-info">
+			<%-- <div class="login-info">
 			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 
 				<a href="javascript:void(0);" id="show-shortcut"
@@ -396,7 +396,7 @@
 			</a>
 
 			</span>
-		</div>
+		</div> --%>
 			<!-- end user info -->
 
 			<nav>
@@ -407,7 +407,7 @@
 				-->
 
 				<ul>
-		<li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
+		<%-- <li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
 				class="fa fa-lg fa-fw fa-bar-chart-o "></i> <span
 				class="menu-item-parent">Guidance Dash</span> </a></li>
 		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i
@@ -418,7 +418,7 @@
 		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-info"></i>
 				<span class="menu-item-parent">Guidance Calendar</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		</li>
+		</li> --%>
 	</ul>
 			</nav>
 			
@@ -598,10 +598,7 @@
 																				<br>	
 																				<img src="img/logo-blacknwhite.png" height="20" width="auto" style="margin-top:7px; padding-right:9px; border-right:1px dotted #9B9B9B;" />
 																			</div>
-					
-																			</div>
-																			<div class="well well-sm well-light">
-																					<div class="inbox-download">
+																			<div class="inbox-download">
 																							2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a> 
 																							
 																							<ul class="inbox-download-list">
@@ -634,6 +631,9 @@
 																								</li>
 																							</ul>
 																						</div>
+																			</div>
+																			<div class="well well-sm well-light">
+																					
 																				<!-- end widget -->
 					
 																				
