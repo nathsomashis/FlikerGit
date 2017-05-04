@@ -18,7 +18,10 @@ import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Assignment;
 import com.fliker.Repository.Guidance;
 import com.fliker.Repository.QuestionAnswerDocSet;
+import com.fliker.Utility.DateFunctionality;
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 
 public class AssignmentPreview {
 
@@ -229,8 +232,96 @@ public class AssignmentPreview {
         
 	}
 
-	public void saveAssignmentQuestionSet(HashMap<Integer, HashMap<String, String>> assignquestionset) {
+	public void saveAssignmentQuestionSet(HashMap<Integer, HashMap<String, String>> assignquestionset, String startdate, String enddate) {
 		// TODO Auto-generated method stub
+		
+		QuestionAnswerDocSet quesansdoc = new QuestionAnswerDocSet();
+		AssignmentPreview assignprev = new AssignmentPreview();
+		StringBuffer sheetdocid = new StringBuffer();
+		String[] newsheetdocids = null;
+		
+		Set assignqnset = assignquestionset.entrySet();
+		Iterator assigniter = assignqnset.iterator();
+		while(assigniter.hasNext()){
+			
+			Map.Entry meassign = (Map.Entry)assigniter.next();
+			
+			String assignmentQnNo = (String)meassign.getKey();
+			String assignmentQn = "";
+			String assignmentFileids = "";
+			String[] assignfilarr = null;
+			
+			HashMap entryassign = (HashMap)meassign.getValue();
+			Set entryassignset = entryassign.entrySet();
+			Iterator entryassigniter = entryassignset.iterator();
+			while(entryassigniter.hasNext()){
+				Map.Entry mentryassign = (Map.Entry)entryassigniter.next();
+				
+				assignmentQn = (String)mentryassign.getKey();
+				assignmentFileids = (String)mentryassign.getValue();
+				assignfilarr = assignmentFileids.split(",");
+				
+			}
+			
+			String uniqueid = "";
+			
+			try {
+				uniqueid = assignprev.makeSHA1Hash(assignmentQn);
+				sheetdocid.append(uniqueid);
+				sheetdocid.append(",");
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			quesansdoc.setSheetdocid(uniqueid);
+			quesansdoc.setSheetContent(assignmentQn);
+			quesansdoc.setSheetContentNo(assignmentQnNo);
+			quesansdoc.setFileid(assignfilarr);
+			
+			MongoConnection mongocon = new MongoConnection();
+			BasicDBObject basicreqobj =  assignprev.formQuestionSetDBObject(quesansdoc);
+			mongocon.saveObject(basicreqobj, "QuestionAnswerDocSet");
+			
+			newsheetdocids = (sheetdocid.substring(0,sheetdocid.length()-1)).split(",");
+		}
+		
+		String uniqueidassign = "";
+		
+		try {
+			uniqueidassign = assignprev.makeSHA1Hash(sheetdocid.toString());
+			/*sheetdocid.append(uniqueidassign);
+			sheetdocid.append(",");*/
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Assignment assignment = new Assignment();
+		assignment.setAssignmentid(uniqueidassign);
+		assignment.setNoOfQuestions(Integer.toString(assignquestionset.size()));
+		assignment.setAssignmentquestionsets(newsheetdocids);
+		assignment.setAssignmentenddatetime(enddate);
+		assignment.setAssignmentstartdatetime(startdate);
+		
+		
+		MongoConnection mongocondb = new MongoConnection();
+		BasicDBObject basicreqobjassign =  assignprev.formDBObject(assignment);
+		mongocondb.saveObject(basicreqobjassign, "Assignment");
+		
+		
+		
+	}
+
+	public void saveAssignmentAnswerSet(HashMap<Integer, HashMap<String, String>> assignquestionset, String assignmentid) {
+		// TODO Auto-generated method stub
+		
 		
 		QuestionAnswerDocSet quesansdoc = new QuestionAnswerDocSet();
 		AssignmentPreview assignprev = new AssignmentPreview();
@@ -301,22 +392,73 @@ public class AssignmentPreview {
 			}
 			
 			assignment.setAssignmentid(uniqueidassign);
-			assignment.setNoOfQuestions(Integer.toString(assignquestionset.size()));
 			assignment.setAssignmentquestionsets(newsheetdocids);
 			
+			
+			
+			
 			MongoConnection mongocondb = new MongoConnection();
-			BasicDBObject basicreqobjassign =  assignprev.formDBObject(assignment);
-			mongocondb.saveObject(basicreqobjassign, "Assignment");
+			DBCursor resultcursor = mongocon.getDBObject("assignmentid", assignmentid, "Assignment");
+			if(resultcursor.hasNext()){
+				
+				DBObject resultobj = resultcursor.next();
+				
+				String noofquestions = (String)resultobj.get("noOfQuestions");
+				int qnsetsnumber = Integer.parseInt(noofquestions);
+				int perncent = 0;
+				String percentage = "";
+				if(assignquestionset.size() >1){
+					
+					perncent = (assignquestionset.size()*100)/qnsetsnumber;
+					percentage = Integer.toString(perncent);
+				}
+				
+				assignment.setPercentagescore(percentage);
+				
+				
+				String startdate = (String)resultobj.get("assignmentstartdatetime");
+				String enddate = (String)resultobj.get("assignmentenddatetime");
+				
+				String averagevelocity = "";
+				
+				DateFunctionality datefunc = new DateFunctionality();
+				String diffdate = datefunc.getDateDiffference(startdate, enddate);
+				DateFormat dateFormat = new SimpleDateFormat("EEEE, MMM dd, yyyy HH:mm:ss a");
+				Date date = new Date();
+				System.out.println(dateFormat.format(date));
+				
+				String currentdate = dateFormat.format(date);
+				
+				String currentdiff = datefunc.getDateDiffference(startdate, currentdate);
+				
+				int dateset = Integer.parseInt(diffdate)-Integer.parseInt(currentdiff);
+				if(dateset>0){
+					int finalpercent = (100* Integer.parseInt(currentdiff))/Integer.parseInt(diffdate);
+					
+					if(finalpercent == perncent){
+						averagevelocity = "yellow:"+finalpercent;
+					}else if(finalpercent > perncent){
+						averagevelocity = "red:"+((finalpercent-perncent)/Integer.parseInt(currentdiff));
+					}else if(finalpercent<perncent){
+						averagevelocity = "green:"+((perncent-finalpercent)/Integer.parseInt(currentdiff));
+					}
+					
+					assignment.setAverageVelocity(averagevelocity);
+				}
+				
+			}
 			
 			
-		}
-		
-		
-		
+			
+			BasicDBObject searchQuery = new BasicDBObject().append("assignmentid", assignmentid);
+			mongocondb.updateObject(searchQuery, new BasicDBObject("$push", new BasicDBObject("assignmentanswersheet", newsheetdocids)), "Assignment");
+			//DBCursor resultcursor = mongocon.getDBObject("assignmentid", assignmentid, "Assignment");
+			
+			
 		
 	}
 
-	
+	}
 	
 	
 	
