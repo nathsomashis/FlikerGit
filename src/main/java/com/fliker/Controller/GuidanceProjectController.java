@@ -67,6 +67,56 @@ public class GuidanceProjectController {
 	}
 	
 	
+	@RequestMapping("/guidanceprojectanswerdoc")
+	public void guidanceprojectanswerdoc(MultipartHttpServletRequest request, HttpServletResponse response,HttpServletRequest requests,
+			@RequestParam("file") MultipartFile file1, HttpSession session) {
+		System.out.println("in file controller");
+
+		GuidanceProjectPreview guidpreojprev = new GuidanceProjectPreview();
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		String token = (String)context.getAttribute("RequestToken");
+		
+		guidpreojprev.saveFile(request.getFileMap(),userid, "Project-Answer-Doc",token);
+
+		/*ServletContext context = request.getSession().getServletContext();
+		context.setAttribute("weekfourth", weekfourth);*/
+
+	}
+	
+	
+	
+	@RequestMapping("/guidanceprojectanswerreferencedoc")
+	public void guidanceprojectanswerreferencedoc(MultipartHttpServletRequest request, HttpServletResponse response,HttpServletRequest requests,
+			@RequestParam("file") MultipartFile file1, HttpSession session) {
+		System.out.println("in file controller");
+
+		GuidanceProjectPreview guidpreojprev = new GuidanceProjectPreview();
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		String token = (String)context.getAttribute("RequestToken");
+		
+		guidpreojprev.saveFile(request.getFileMap(),userid, "Project-Answer-Reference-Doc",token);
+
+		/*ServletContext context = request.getSession().getServletContext();
+		context.setAttribute("weekfourth", weekfourth);*/
+
+	}
+	
+	
+	
 	
 	
 }

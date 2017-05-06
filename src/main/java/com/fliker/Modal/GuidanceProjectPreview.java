@@ -25,6 +25,8 @@ import com.fliker.Repository.FileUpload;
 import com.fliker.Repository.ProjectAssignment;
 import com.fliker.Utility.DateFunctionality;
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 
 public class GuidanceProjectPreview {
 
@@ -236,10 +238,11 @@ public class GuidanceProjectPreview {
 	}
 
 
-	public void createProjectPaper(String projectname, String projectdescription, String tokenid) {
+	public ArrayList createProjectPaper(String projectname, String projectdescription, String tokenid) {
 		// TODO Auto-generated method stub
 		
 		GuidanceProjectPreview guideprojprev = new GuidanceProjectPreview();
+		ArrayList projectinfo = new ArrayList();
 		
 		ProjectAssignment projectassign = new ProjectAssignment();
 		projectassign.setProject_article(projectdescription);
@@ -263,7 +266,9 @@ public class GuidanceProjectPreview {
 		
 		mongoconsearch.saveObject(basicreqobjsearch, "ProjectAssignment");
 		
+		projectinfo.add(projectassign);
 		
+		return projectinfo;
 		
 	}
 	
@@ -285,6 +290,132 @@ public class GuidanceProjectPreview {
 		
 		
 		return basicdbobj;
+	}
+
+
+	public HashMap saveProjectData(String projectlinks, String tokenid) {
+		// TODO Auto-generated method stub
+		
+		HashMap projectmap = new HashMap();
+		
+		StringBuffer docfiles = new StringBuffer();
+		StringBuffer flowfiles = new StringBuffer();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("tempid", tokenid, "FileUnionTimeFrame");
+		while(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			
+			if(((String)theObj.get("context")).equalsIgnoreCase("Project-Doc")){
+				docfiles.append((String)theObj.get("fileid"));
+				docfiles.append(",");
+			
+			}else if(((String)theObj.get("context")).equalsIgnoreCase("Project-Flow")){
+				flowfiles.append((String)theObj.get("fileid"));
+				flowfiles.append(",");
+				
+			}
+			
+		}
+		
+		String[] docfilearr = (docfiles.substring(0, (docfiles.length()-1)).toString()).split(",");
+		String[] flowfilearr = (flowfiles.substring(0, (docfiles.length()-1)).toString()).split(",");
+		String[] projectlinkarr = (projectlinks.substring(0, (docfiles.length()-1)).toString()).split(",");
+		
+		
+		projectmap.put("projectlink", projectlinkarr);
+		projectmap.put("projectflow", flowfilearr);
+		projectmap.put("projectdoc", docfilearr);
+		
+		MongoConnection mongoconproj = new MongoConnection();
+		BasicDBObject searchQuery = new BasicDBObject().append("projectid", tokenid);
+		mongoconproj.updateObject(searchQuery, new BasicDBObject("$push", new BasicDBObject("project_doc", docfilearr)), "ProjectAssignment");
+		mongoconproj.updateObject(searchQuery, new BasicDBObject("$push", new BasicDBObject("project_flow", flowfilearr)), "ProjectAssignment");
+		mongoconproj.updateObject(searchQuery, new BasicDBObject("$push", new BasicDBObject("project_links", projectlinkarr)), "ProjectAssignment");
+		
+		
+		MongoConnection mongoconnew = new MongoConnection();
+		DBCursor projcursor = mongoconnew.getDBObject("projectid", tokenid, "ProjectAssignment");
+		if(projcursor.hasNext()){
+			DBObject theObjproj = projcursor.next();
+			
+			projectmap.put("projectid",(String)theObjproj.get("projectid"));
+			projectmap.put("projectarticle",(String)theObjproj.get("project_article"));
+			
+			
+		}
+		
+		
+		return projectmap;
+	}
+
+
+	public HashMap getProjectData(String projectid) {
+		// TODO Auto-generated method stub
+		HashMap projectmap = new HashMap();
+		MongoConnection mongoconnew = new MongoConnection();
+		DBCursor projcursor = mongoconnew.getDBObject("projectid", projectid, "ProjectAssignment");
+		if(projcursor.hasNext()){
+			DBObject theObjproj = projcursor.next();
+			
+			projectmap.put("projectid",(String)theObjproj.get("projectid"));
+			projectmap.put("projectarticle",(String)theObjproj.get("project_article"));
+			projectmap.put("project_doc", (String[])theObjproj.get("project_doc"));
+			projectmap.put("project_flow", (String[])theObjproj.get("project_flow"));
+			projectmap.put("project_links", (String[])theObjproj.get("project_links"));
+			
+		}
+		
+		
+		
+		return projectmap;
+	}
+
+
+	public void saveProjectData(String projectid, String projectanswerlink, String projectanswerreferencelink, String projectarchitechture) {
+		// TODO Auto-generated method stub
+		
+		HashMap projectmap = new HashMap();
+		
+		StringBuffer docfiles = new StringBuffer();
+		StringBuffer referfiles = new StringBuffer();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("tempid", projectid, "FileUnionTimeFrame");
+		while(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			
+			if(((String)theObj.get("context")).equalsIgnoreCase("Project-Answer-Doc")){
+				docfiles.append((String)theObj.get("fileid"));
+				docfiles.append(",");
+			
+			}else if(((String)theObj.get("context")).equalsIgnoreCase("Project-Answer-Reference-Doc")){
+				referfiles.append((String)theObj.get("fileid"));
+				referfiles.append(",");
+				
+			}
+			
+		}
+		
+		String[] answerdocfilearr = (docfiles.substring(0, (docfiles.length()-1)).toString()).split(",");
+		String[] answerreferfilearr = (referfiles.substring(0, (docfiles.length()-1)).toString()).split(",");
+		String[] projectanswerlinkarr = (projectanswerlink.substring(0, (docfiles.length()-1)).toString()).split(",");
+		String[] projectanswerreferencelinkarr = (projectanswerreferencelink.substring(0, (docfiles.length()-1)).toString()).split(",");
+		
+		
+		/*projectmap.put("projectlink", projectlinkarr);
+		projectmap.put("projectflow", flowfilearr);
+		projectmap.put("projectdoc", docfilearr);*/
+		
+		MongoConnection mongoconproj = new MongoConnection();
+		BasicDBObject searchQuery = new BasicDBObject().append("projectid", projectid);
+		mongoconproj.updateObject(searchQuery, new BasicDBObject("$push", new BasicDBObject("project_answer_doc", answerdocfilearr)), "ProjectAssignment");
+		mongoconproj.updateObject(searchQuery, new BasicDBObject("$push", new BasicDBObject("project_answer_reference_doc", answerreferfilearr)), "ProjectAssignment");
+		mongoconproj.updateObject(searchQuery, new BasicDBObject("$push", new BasicDBObject("project_answer_links", projectanswerlinkarr)), "ProjectAssignment");
+		mongoconproj.updateObject(searchQuery, new BasicDBObject("$push", new BasicDBObject("project_answer_reference_link", projectanswerreferencelinkarr)), "ProjectAssignment");
+		
+		
+		
 	}
 	
 	

@@ -11,7 +11,7 @@ public class ProjectAssignment {
 	private String[] project_doc;
 	private String[] project_links;
 	private String project_article;
-	private String project_flow;
+	private String[] project_flow;
 	private String[] project_answer_doc;
 	private String[] project_answer_links;
 	private String project_answer_architechture;
@@ -41,10 +41,11 @@ public class ProjectAssignment {
 	public void setProject_article(String project_article) {
 		this.project_article = project_article;
 	}
-	public String getProject_flow() {
+	
+	public String[] getProject_flow() {
 		return project_flow;
 	}
-	public void setProject_flow(String project_flow) {
+	public void setProject_flow(String[] project_flow) {
 		this.project_flow = project_flow;
 	}
 	public String[] getProject_answer_doc() {

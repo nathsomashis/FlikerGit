@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -140,7 +141,7 @@ public class GuidanceExersizeController {
 		
 		
 		@RequestMapping("/createProjectpaper")
-		public void createProjectPaper(
+		public ModelAndView createProjectPaper(
 				@RequestParam(value = "projectname", required = false, defaultValue = "World") String projectname,
 				@RequestParam(value = "projectdescription", required = false, defaultValue = "World") String projectdescription,
 				@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request,
@@ -155,16 +156,141 @@ public class GuidanceExersizeController {
 			GuidanceProjectPreview guidprojprev = new GuidanceProjectPreview();
 			//String[] projectlink = projectlinks.split(",");
 			
-			ArrayList assignmentList = new ArrayList();
+			ArrayList projectinfo = new ArrayList();
 			
 			//assignmentList = assignprev.retrieveAssignments(assignmentid);
-			guidprojprev.createProjectPaper(projectname, projectdescription, tokenid);
+			projectinfo = guidprojprev.createProjectPaper(projectname, projectdescription, tokenid);
+			
+			GuidancePreview guidanceprev = new GuidancePreview();
+			
+			
+			ModelAndView mv = new ModelAndView("/AssignmentAnswer");
+			mv.addObject("projectinfo", projectinfo);
+			return mv;
+			
+			
+		}
+		
+		
+		
+		@RequestMapping("/createProjectGuidance")
+		public ModelAndView createProjectGuidance(
+				@RequestParam(value = "projectlinks", required = false, defaultValue = "World") String projectlinks,
+				@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request,
+				@RequestParam(value = "tokenid", required = false, defaultValue = "World") String tokenid
+				
+				
+				) {
+			System.out.println("in dashboard social controller");
+	 
+			//IdentityHashMap< String, HashMap<String,LinkedList<String>>> assignmentsect = assignprev.requestobjectmap ;
+			
+			GuidanceProjectPreview guidprojprev = new GuidanceProjectPreview();
+			//String[] projectlink = projectlinks.split(",");
+			
+			HashMap projectinfo = new HashMap();
+			
+			//assignmentList = assignprev.retrieveAssignments(assignmentid);
+			projectinfo = guidprojprev.saveProjectData(projectlinks, tokenid);
+			
+			GuidancePreview guidanceprev = new GuidancePreview();
+			
+			
+			ModelAndView mv = new ModelAndView("/AssignmentView");
+			mv.addObject("projectinfo", projectinfo);
+			return mv;
+			
+			
+		}
+		
+		
+		@RequestMapping("/projectGuidanceDetails")
+		public ModelAndView getProjectGuidanceDetails(
+				@RequestParam(value = "projectid", required = false, defaultValue = "World") String projectid,
+				@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request,
+				@RequestParam(value = "tokenid", required = false, defaultValue = "World") String tokenid
+				
+				
+				) {
+			System.out.println("in dashboard social controller");
+	 
+			//IdentityHashMap< String, HashMap<String,LinkedList<String>>> assignmentsect = assignprev.requestobjectmap ;
+			
+			GuidanceProjectPreview guidprojprev = new GuidanceProjectPreview();
+			//String[] projectlink = projectlinks.split(",");
+			
+			HashMap projectinfo = new HashMap();
+			
+			//assignmentList = assignprev.retrieveAssignments(assignmentid);
+			projectinfo = guidprojprev.getProjectData(projectid);
+			
+			GuidancePreview guidanceprev = new GuidancePreview();
+			
+			
+			ModelAndView mv = new ModelAndView("/AssignmentView");
+			mv.addObject("projectinfo", projectinfo);
+			return mv;
+			
+			
+		}
+		
+		@RequestMapping("/projectGuidanceSubmission")
+		public ModelAndView getSubmitProjectGuidanceDetails(
+				@RequestParam(value = "projectid", required = false, defaultValue = "World") String projectid,
+				@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request,
+				@RequestParam(value = "tokenid", required = false, defaultValue = "World") String tokenid
+				
+				
+				) {
+			System.out.println("in dashboard social controller");
+	 
+			//IdentityHashMap< String, HashMap<String,LinkedList<String>>> assignmentsect = assignprev.requestobjectmap ;
+			
+			GuidanceProjectPreview guidprojprev = new GuidanceProjectPreview();
+			//String[] projectlink = projectlinks.split(",");
+			
+			HashMap projectinfo = new HashMap();
+			
+			//assignmentList = assignprev.retrieveAssignments(assignmentid);
+			projectinfo = guidprojprev.getProjectData(projectid);
+			
+			GuidancePreview guidanceprev = new GuidancePreview();
+			
+			
+			ModelAndView mv = new ModelAndView("/AssignmentView");
+			mv.addObject("projectinfo", projectinfo);
+			return mv;
+			
+			
+		}
+		
+		
+		@RequestMapping("/saveprojectGuidanceSubmission")
+		public void saveProjectGuidanceDetails(
+				@RequestParam(value = "projectid", required = false, defaultValue = "World") String projectid,
+				@RequestParam(value = "projectanswerlink", required = false, defaultValue = "World") String projectanswerlink,
+				@RequestParam(value = "projectanswerreferencelink", required = false, defaultValue = "World") String projectanswerreferencelink,
+				@RequestParam(value = "projectarchitechture", required = false, defaultValue = "World") String projectarchitechture,
+				@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request,
+				@RequestParam(value = "tokenid", required = false, defaultValue = "World") String tokenid
+				
+				) {
+			System.out.println("in dashboard social controller");
+	 
+			//IdentityHashMap< String, HashMap<String,LinkedList<String>>> assignmentsect = assignprev.requestobjectmap ;
+			
+			GuidanceProjectPreview guidprojprev = new GuidanceProjectPreview();
+			//String[] projectlink = projectlinks.split(",");
+			
+			HashMap projectinfo = new HashMap();
+			
+			//assignmentList = assignprev.retrieveAssignments(assignmentid);
+			guidprojprev.saveProjectData(projectid,projectanswerlink,projectanswerreferencelink,projectarchitechture);
 			
 			GuidancePreview guidanceprev = new GuidancePreview();
 			
 			
 			/*ModelAndView mv = new ModelAndView("/AssignmentAnswer");
-			mv.addObject("assignmentList", assignmentList);
 			return mv;*/
 			
 			
