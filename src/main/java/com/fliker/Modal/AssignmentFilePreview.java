@@ -241,7 +241,7 @@ public class AssignmentFilePreview {
 		return basicdbobj;
 	}
 
-	public ArrayList saveAssignments(String assignmentSets, String tokenid, String userid) {
+	public ArrayList saveAssignments(String assignmentSets, String tokenid, String userid,String startdate,String enddate) {
 		// TODO Auto-generated method stub
 		
 		ArrayList assignmentlist = new ArrayList();
@@ -318,7 +318,7 @@ public class AssignmentFilePreview {
 			
 		}
 		
-		assignprev.saveAssignmentQuestionSet(assignquestionset);
+		assignprev.saveAssignmentQuestionSet(assignquestionset,startdate,enddate);
 		return assignmentlist;
 	}
 	
@@ -414,6 +414,31 @@ public class AssignmentFilePreview {
 		
 		
 		return null;
+	}
+
+	public ArrayList retrieveAssignments(String assignmentid) {
+		// TODO Auto-generated method stub
+		
+		ArrayList assignmentlist = new ArrayList();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("assignmentid", assignmentid, "Assignment");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			Assignment assignment = new Assignment();
+			
+			assignment.setAssignmentid((String)theObj.get("assignmentid"));
+			assignment.setAssignmentquestionsets((String[])theObj.get("assignmentquestionsets"));
+			assignment.setAssignmentstartdatetime((String)theObj.get("assignmentstartdatetime"));
+			assignment.setAssignmentenddatetime((String)theObj.get("assignmentenddatetime"));
+			assignment.setNoOfQuestions((String)theObj.get("noOfQuestions"));
+			
+			
+			assignmentlist.add(assignment);
+		}
+		
+		
+		return assignmentlist;
 	}
 	
 	

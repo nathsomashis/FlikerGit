@@ -452,8 +452,9 @@ public class AssignmentPreview {
 			
 			BasicDBObject searchQuery = new BasicDBObject().append("assignmentid", assignmentid);
 			mongocondb.updateObject(searchQuery, new BasicDBObject("$push", new BasicDBObject("assignmentanswersheet", newsheetdocids)), "Assignment");
+			mongocondb.updateObject(searchQuery, new BasicDBObject("$set", new BasicDBObject().append("averageVelocity", assignment.getAverageVelocity())), "Assignment");
+			mongocondb.updateObject(searchQuery, new BasicDBObject("$set", new BasicDBObject().append("percentagescore", assignment.getPercentagescore())), "Assignment");
 			//DBCursor resultcursor = mongocon.getDBObject("assignmentid", assignmentid, "Assignment");
-			
 			
 		
 	}
