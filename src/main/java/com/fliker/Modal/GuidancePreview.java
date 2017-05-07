@@ -10,6 +10,7 @@ import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import com.fliker.Connection.MongoConnection;
+import com.fliker.Repository.Assignment;
 import com.fliker.Repository.Blog;
 import com.fliker.Repository.DashBoardData;
 import com.fliker.Repository.Guidance;
@@ -1068,6 +1070,124 @@ public class GuidancePreview {
 		
 		
 		return userid;
+	}
+
+
+	public String getGuidanceType(String guidanceid, String accessuserid) {
+		// TODO Auto-generated method stub
+		String guidancetype = "";
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			if(((String)theObj.get("consumeruserid")).equalsIgnoreCase(accessuserid)){
+				guidancetype = "consumer";
+			}else if(((String)theObj.get("provideruserid")).equalsIgnoreCase(accessuserid)){
+				guidancetype = "provider";
+			}
+		}
+		return guidancetype;
+	}
+
+
+	public String formAssignmentList(String guidanceid, String userid, String contenttype) {
+		// TODO Auto-generated method stub
+		
+		ArrayList assignmentlist = new ArrayList();
+		
+		StringBuffer contentbuff = new StringBuffer();
+		contentbuff.append("[");
+		
+		MongoConnection mongocon = new MongoConnection();
+		Assignment assignment = new Assignment();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceAssignment");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			String[] assignments = (String[])theObj.get("assignmentids");
+			
+			
+			for(int d=0;d<assignments.length;d++){
+				
+				MongoConnection mongoconassign = new MongoConnection();
+				DBCursor asigncursor = mongoconassign.getDBObject("assignmentid", assignments[d], "Assignment");
+				if(asigncursor.hasNext()){
+					DBObject assignObj = asigncursor.next();
+					
+					String[] sharedids = (String[])assignObj.get("assignmentshareids");
+					boolean contains = Arrays.asList(sharedids).contains(userid);
+					
+					if(contains == true){
+						
+						assignment.setAssignmentanswersheet((String[])assignObj.get("assignmentanswersheet"));
+						assignment.setAssignmentenddatetime((String)assignObj.get("assignmentenddatetime"));
+						assignment.setAssignmentid((String)assignObj.get("assignmentid"));
+						assignment.setAssignmentquestionsets((String[])assignObj.get("assignmentquestionsets"));
+						assignment.setAssignmentstartdatetime((String)assignObj.get("assignmentstartdatetime"));
+						assignment.setAverageVelocity((String)assignObj.get("averageVelocity"));
+						assignment.setNoOfQuestions((String)assignObj.get("noOfQuestions"));
+						assignment.setPercentagescore((String)assignObj.get("percentagescore"));
+						assignment.setAssignmentdescription((String)assignObj.get("assignmentdescription"));
+						assignment.setAssignmentname((String)assignObj.get("assignmentname"));
+						assignment.setAssignmentsubject((String)assignObj.get("assignmentsubject"));
+						assignment.setAssignmentcreatedby((String)assignObj.get("assignmentcreatedby"));
+						
+						DateFunctionality datefunc = new DateFunctionality();
+						String assignmentstatus = "";
+						String datediff = datefunc.getDateDiffference((String)assignObj.get("assignmentstartdatetime"), (String)assignObj.get("assignmentenddatetime"));
+						if(Integer.valueOf(datediff)<1){
+							assignmentstatus = "<span class='label label-default'>INACTIVE</span>";
+						}else{
+							assignmentstatus = "<span class='label label-success'>ACTIVE</span>";
+						}
+						
+						String content = "{"+"\""+"name"+"\""+":"+"\""+"\""+(String)assignObj.get("assignmentname")+"<br><small class='text-muted'><i>"+(String)assignObj.get("assignmentsubject")+"<i></small>"+"\""+","+
+								"\""+"est"+"\""+":"+"\""+"<td><div class='progress progress-xs' data-progressbar-value='"+(String)assignObj.get("percentagescore")+"'><div class='progress-bar'></div></div></td>"+"\""+","+
+								"\""+"contacts"+"\""+":"+"\""+"<div class='project-members'><a href='javascript:void(0)'><img src='/Fliker/imageFromUserid/"+(String)assignObj.get("assignmentcreatedby")+"' class='offline' alt='user'></a> </div> "+"\""+","+
+								"\""+"status"+"\""+":"+"\""+assignmentstatus+"\""+","+
+								"\""+"target-actual"+"\""+":"+"\""+"<span style='margin-top:5px' class='sparkline display-inline' data-sparkline-type='compositebar' data-sparkline-height='18px' data-sparkline-barcolor='#aafaaf' data-sparkline-line-width='2.5' data-sparkline-line-val='[6,4,7,8,47,9,9,8,3,2,2,5,6,7,4,1,5,7,6]' data-sparkline-bar-val='[6,4,7,8,47,9,9,8,3,2,2,5,6,7,9,9,5,7,6]'></span>"+"\""+","+
+								"\""+"actual"+"\""+":"+"\""+"<span class='sparkline text-align-center' data-sparkline-type='line' data-sparkline-width='100%' data-sparkline-height='25px'>20,-35,70</span>"+"\""+","+
+								"\""+"tracker"+"\""+":"+"\""+"<span class='onoffswitch'><input type='checkbox' name='start_interval' class='onoffswitch-checkbox' id='track' name='"+(String)assignObj.get("assignmentid")+"' checked='checked'><label class='onoffswitch-label' for='st1'><span class='onoffswitch-inner' data-swchon-text='ON' data-swchoff-text='OFF'></span><span class='onoffswitch-switch'></span></label></span>"+"\""+","+
+								"\""+"starts"+"\""+":"+"\""+(String)assignObj.get("assignmentstartdatetime")+"\""+","+
+								"\""+"ends"+"\""+":"+"\""+"<strong>"+(String)assignObj.get("assignmentstartdatetime")+"</strong>"+"\""+","+
+								"\""+"comments"+"\""+":"+"\""+(String)assignObj.get("assignmentdescription")+"\""+","+
+								"\""+"action"+"\""+":"+"\""+"<button class='btn btn-xs btn-success' id='"+(String)assignObj.get("assignmentid")+" onclick='openAssignment("+(String)assignObj.get("assignmentid")+")''>Open Assignment</button>"+"\""+"}";
+								
+						
+						contentbuff.append(content);
+					}
+					
+					
+					
+					
+					
+					
+				}
+			}
+			
+		}
+		contentbuff.append("]");
+		
+		return contentbuff.toString();
+	}
+
+
+	public String formQuestionList(String guidanceid, String userid, String contenttype) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		return null;
+	}
+
+
+	public ArrayList getGuidanceProjectData(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		return null;
 	}
   	
 

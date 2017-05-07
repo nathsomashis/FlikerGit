@@ -349,7 +349,7 @@ public class GuidanceController {
 		Profile profile = profprev.getProfileData(userid);
 		
 		ModelAndView mv;
-		mv = new ModelAndView("/GuidanceShared");
+		mv = new ModelAndView("/GuidanceShare");
 		
 		mv.addObject("ProfileImage", profile.getProfileImageid());
 		mv.addObject("Gender", gender);
@@ -360,6 +360,68 @@ public class GuidanceController {
 		mv.addObject("GuidBlog", blogs);
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("guidanceid", guidanceid);
+		
+		//mv.addObject("postlist", postlist);
+		return mv;
+	}
+	
+	
+	@RequestMapping("/gotoguidanceexcersize")
+	public ModelAndView goToGuidanceExcersize(
+			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		ArrayList resourcesSearch = new ArrayList();
+		
+		
+		GuidancePreview guideprev = new GuidancePreview();
+		resourcesSearch = guideprev.getGuidanceData(guidanceid);
+		
+		//String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String accessuserid = userinf.getUserid();
+		String contenttype = guideprev.getGuidanceType(guidanceid,accessuserid);
+		
+		UserPreview userprev = new UserPreview();
+		String gender = userprev.getGender(accessuserid);
+		
+		Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
+		//model.addAttribute("TimeTable", timetable);
+		
+		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
+		//model.addAttribute("GuidShared", guidshareditem);
+		
+		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
+		//model.addAttribute("GuidDashBoard", guiddashdata);
+		
+		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
+		//model.addAttribute("GuidBlog", blogs);
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(accessuserid);
+		
+		ModelAndView mv = new ModelAndView();
+		if(contenttype.equalsIgnoreCase("provider")){
+			mv = new ModelAndView("/GuidanceProviderExcersize");
+		}else if(contenttype.equalsIgnoreCase("consumer")){
+			mv = new ModelAndView("/GuidanceConsumerExcersize");
+		}else{
+			mv = new ModelAndView("/GuidanceConsumerExcersize");
+		}
+
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", profile.getName());
+		mv.addObject("TimeTable", timetable);
+		mv.addObject("GuidShared", guidshareditem);
+		mv.addObject("GuidDashBoard", guiddashdata);
+		mv.addObject("GuidBlog", blogs);
+		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("guidanceid", guidanceid);
+		mv.addObject("contenttype",contenttype);
 		
 		//mv.addObject("postlist", postlist);
 		return mv;
@@ -450,6 +512,186 @@ public class GuidanceController {
 		
 		
 	}
+	
+	@RequestMapping("/guidanceAllAssignments")
+	public String guidanceAllAssignments(
+			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,
+			@RequestParam(value = "contenttype", required = false, defaultValue = "World") String contenttype,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		String assignmentlist = "";
+		String questionlist = "";
+		
+		
+		GuidancePreview guideprev = new GuidancePreview();
+		
+		
+		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
+		
+		UserPreview userprev = new UserPreview();
+		String gender = userprev.getGender(userid);
+		
+		assignmentlist = guideprev.formAssignmentList(guidanceid,userid,contenttype);
+		//questionlist = guideprev.formQuestionList(guidanceid,userid,contenttype);
+		
+		/*Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
+		//model.addAttribute("TimeTable", timetable);
+		
+		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
+		//model.addAttribute("GuidShared", guidshareditem);
+		
+		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
+		//model.addAttribute("GuidDashBoard", guiddashdata);
+		
+		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);*/
+		//model.addAttribute("GuidBlog", blogs);
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(userid);
+		return assignmentlist;
+		
+		/*ModelAndView mv;
+		mv = new ModelAndView("/GuidanceCalendar");
+		
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", profile.getName());
+		mv.addObject("TimeTable", timetable);
+		mv.addObject("GuidShared", guidshareditem);
+		mv.addObject("GuidDashBoard", guiddashdata);
+		mv.addObject("GuidBlog", blogs);
+		mv.addObject("assignmentlist", assignmentlist);
+		mv.addObject("guidanceid", guidanceid);
+		
+		//mv.addObject("postlist", postlist);
+		return mv;*/
+		
+		
+		
+	}
+	
+	
+	@RequestMapping("/guidanceAllQuiz")
+	public String guidanceAllQuiz(
+			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,
+			@RequestParam(value = "contenttype", required = false, defaultValue = "World") String contenttype,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		String assignmentlist = "";
+		String questionlist = "";
+		
+		
+		GuidancePreview guideprev = new GuidancePreview();
+		
+		
+		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
+		
+		UserPreview userprev = new UserPreview();
+		String gender = userprev.getGender(userid);
+		
+		//assignmentlist = guideprev.formAssignmentList(guidanceid,userid,contenttype);
+		questionlist = guideprev.formQuestionList(guidanceid,userid,contenttype);
+		
+		/*Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
+		//model.addAttribute("TimeTable", timetable);
+		
+		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
+		//model.addAttribute("GuidShared", guidshareditem);
+		
+		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
+		//model.addAttribute("GuidDashBoard", guiddashdata);
+		
+		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);*/
+		//model.addAttribute("GuidBlog", blogs);
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(userid);
+		return questionlist;
+		
+		/*ModelAndView mv;
+		mv = new ModelAndView("/GuidanceCalendar");
+		
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", profile.getName());
+		mv.addObject("TimeTable", timetable);
+		mv.addObject("GuidShared", guidshareditem);
+		mv.addObject("GuidDashBoard", guiddashdata);
+		mv.addObject("GuidBlog", blogs);
+		mv.addObject("assignmentlist", assignmentlist);
+		mv.addObject("guidanceid", guidanceid);
+		
+		//mv.addObject("postlist", postlist);
+		return mv;*/
+		
+		
+		
+	}
+	
+	
+	@RequestMapping("/gotoguidanceproject")
+	public ModelAndView goToGuidanceProject(
+			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		ArrayList resourcesSearch = new ArrayList();
+		
+		
+		GuidancePreview guideprev = new GuidancePreview();
+		resourcesSearch = guideprev.getGuidanceProjectData(guidanceid);
+		
+		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
+		
+		UserPreview userprev = new UserPreview();
+		String gender = userprev.getGender(userid);
+		
+		Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
+		//model.addAttribute("TimeTable", timetable);
+		
+		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
+		//model.addAttribute("GuidShared", guidshareditem);
+		
+		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
+		//model.addAttribute("GuidDashBoard", guiddashdata);
+		
+		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
+		//model.addAttribute("GuidBlog", blogs);
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(userid);
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceProject");
+		
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", profile.getName());
+		mv.addObject("TimeTable", timetable);
+		mv.addObject("GuidShared", guidshareditem);
+		mv.addObject("GuidDashBoard", guiddashdata);
+		mv.addObject("GuidBlog", blogs);
+		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("guidanceid", guidanceid);
+		
+		//mv.addObject("postlist", postlist);
+		return mv;
+	}
+	
 	
 	
 }
