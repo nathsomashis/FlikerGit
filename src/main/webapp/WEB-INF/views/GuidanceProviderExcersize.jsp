@@ -124,7 +124,7 @@
 	<body class="">
 	
 		<%
-			/* String profileimage = (String)request.getAttribute("ProfileImage");
+			String profileimage = (String)request.getAttribute("ProfileImage");
 			String gender = (String)request.getAttribute("Gender");
 			String profilename = (String)request.getAttribute("FullName");
 			Timetable timeline = (Timetable)request.getAttribute("TimeTable");
@@ -135,7 +135,7 @@
 			String guidanceid = (String)request.getAttribute("guidanceid");
 			String timetableid = timeline.getTimeableid();
 			String guideshareid = guidanceshare.getGuidancesharedid();
-			String guidedash = guiddash.getGuidancecontentDashid(); */
+			String guidedash = guiddash.getGuidancecontentDashid();
 			
 		
 		%>
@@ -335,19 +335,19 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃÂ§ais</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃÂ±ol</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
 							</li>
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> Ã¦âÂ¥Ã¦ÅÂ¬Ã¨ÂªÅ¾</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> Ã¤Â¸Â­Ã¦ââ¡</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
 							</li>	
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
@@ -356,10 +356,10 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> ÃÂ ÃÆÃÂÃÂÃÂºÃÂ¸ÃÂ¹ ÃÂÃÂ·Ãâ¹ÃÂº</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Ã­â¢ÅÃªÂµÂ­Ã¬âÂ´</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
 							</li>						
 							
 						</ul>
@@ -379,7 +379,7 @@
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<%-- <div class="login-info">
+			<div class="login-info">
 			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 
 				<a href="javascript:void(0);" id="show-shortcut"
@@ -396,7 +396,7 @@
 			</a>
 
 			</span>
-		</div> --%>
+		</div>
 			<!-- end user info -->
 
 			<nav>
@@ -407,18 +407,22 @@
 				-->
 
 				<ul>
-		<%-- <li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-bar-chart-o "></i> <span
+		<li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
+				class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span
 				class="menu-item-parent">Guidance Dash</span> </a></li>
 		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-random txt-color-blue	"></i> <span
-				class="menu-item-parent">Guidance Share</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				class="fa fa-lg fa-fw fa-share-square-o"></i> <span
+				class="menu-item-parent">Guidance Share</span> </a></li>
 
-		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-info"></i>
-				<span class="menu-item-parent">Guidance Calendar</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		</li> --%>
+		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-calendar"></i>
+				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
+		</li>
+		<li><a href="gotoguidanceexcersize?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-qrcode txt-color-blue"></i>
+				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
+		</li>
+		<li><a href="gotoguidanceproject?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-sitemap"></i>
+				<span class="menu-item-parent">Guidance Project</span> </a></li>
+		</li>
 	</ul>
 			</nav>
 			
@@ -467,6 +471,27 @@
 
 				<!-- row -->
 				
+				<div class="row">
+				
+					<div class="col-sm-12">
+				
+						<ul id="myTab1" class="nav nav-tabs bordered">
+							<li class="active">
+								<a href="#s1" id="quizcreate" data-toggle="tab">Quiz</a>
+							</li>
+							<li>
+								<a href="#s2" id="assignmentcreate" data-toggle="tab">Assignment</a>
+							</li>
+							<li>
+								<a href="#s3" id="history" data-toggle="tab">History</a>
+							</li>
+							<!-- <li class="pull-right hidden-mobile">
+								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
+							</li> -->
+						</ul>
+				
+						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
+							<div class="tab-pane fade in active" id="s1">
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="well well-sm">
@@ -474,9 +499,9 @@
 												<div class="col-sm-12">
 													<div class="form-group">
 														<div class="input-group">
-															<span class="input-group-addon">Assignment</span> <input
+															<span class="input-group-addon">Course</span> <input
 																class="form-control input-lg" placeholder="Course Name"
-																type="text" name="assignment" id="assignment" readonly>
+																type="text" name="course" id="course">
 					
 														</div>
 													</div>
@@ -486,15 +511,27 @@
 												<div class="col-sm-12">
 													<div class="form-group">
 														<div class="input-group">
-															<span class="input-group-addon">Assignment Description</span> <input
+															<span class="input-group-addon">CourseDescription</span> <input
 																class="form-control input-lg"
 																placeholder="Course Description" type="text"
-																name="assignmentdescription" id="assignmentdescription" readonly>
+																name="coursedescription" id="coursedescription">
 					
 														</div>
 													</div>
 					
 												</div>
+												<div class="col-sm-12">
+													<div class="form-group">
+														<div class="input-group">
+															<span class="input-group-addon">Course Fee</span> <input
+																class="form-control input-lg" placeholder="First Name"
+																type="text" name="coursefee" id="coursefee">
+					
+														</div>
+													</div>
+												</div>
+					
+					
 											</div>
 										</div>
 									</div>
@@ -516,7 +553,7 @@
 														data-widget-fullscreenbutton="false"
 														data-widget-custombutton="false" data-widget-sortable="false">
 														<header>
-															<h2>Assignment Material</h2>
+															<h2>Course Material</h2>
 															<div class="widget-toolbar hidden-phone">
 																<div class="smart-form"></div>
 															</div>
@@ -570,70 +607,132 @@
 																	<div class="tab-content">
 																		<div class="tab-pane active" id="tab-r1">
 																			<div class="row">
-																				<div class="inbox-message">
-																				<p>
-																					Hey James,
-																				</p>
-																				<p>
-																					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-																				</p>	
-																				
-																				<p>
-																					Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. <i class="fa fa-smile-o"></i> 
-																				</p>
-																				
-																				<br>
-																				<br>
-																				Thanks,<br> 
-																				<strong>Sadi Orlaf</strong>
-																				<br>
-																				<br>
-																				<small>
-																					General Manager - Finance Department <br> 
-																					231 Ajax Rd, Detroit MI - 48212, USA
-																					<br>
-																					<i class="fa fa-phone"> (313) 647 6471</i> 
-																			
-																				</small>
-																				<br>	
-																				<img src="img/logo-blacknwhite.png" height="20" width="auto" style="margin-top:7px; padding-right:9px; border-right:1px dotted #9B9B9B;" />
-																			</div>
-																			<div class="inbox-download">
-																							2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a> 
-																							
-																							<ul class="inbox-download-list">
-																								<li>
-																									<div class="well well-sm">
-																										<span>
-																											<img src="img/demo/sample.jpg">
-																										</span>
-																										<br>
-																										<strong>rocketlaunch.jpg</strong> 
-																										<br>
-																										400 kb 
-																										<br> 
-																										<a href="javascript:void(0);"> Download</a>  | <a href="javascript:void(0);"> View</a>
-																									</div>
-																								</li>
-																								<li>
-																									<div class="well well-sm">
-																										<span>
-																											<i class="fa fa-file"></i>
-																										</span>
-																										
-																										<br>
-																										<strong>timelogs.xsl</strong> 
-																										<br>
-																										1.3 mb 
-																										<br> 
-																										<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> Share</a>
-																									</div>
-																								</li>
-																							</ul>
+																				<article class="col-sm-12"
+																					style="height: 100%; margin-top: -50%">
+																					<div class="jarviswidget jarviswidget-color-blueLight"
+																						id="wid-id-0" data-widget-editbutton="false">
+																						<header>
+																							<span class="widget-icon"> <i
+																								class="fa fa-cloud"></i>
+																							</span>
+																							<h2>Document Set</h2>
+					
+																						</header>
+																						<div style="display: none">
+					
+																							<!-- widget edit box -->
+																							<div class="jarviswidget-editbox">
+																								<!-- This area used as dropdown edit box -->
+					
+																							</div>
+																							<!-- end widget edit box -->
+					
+																							<!-- widget content -->
+																							<div class="widget-body">
+					
+																								<form action="upload.php" class="dropzone"></form>
+					
+																							</div>
+																							<!-- end widget content -->
+					
 																						</div>
+																						<div>
+					
+																							<!-- widget edit box -->
+																							<div class="jarviswidget-editbox">
+																								<!-- This area used as dropdown edit box -->
+					
+																							</div>
+																							<!-- end widget edit box -->
+					
+																							<!-- widget content -->
+																							<div class="widget-body">
+					
+																								<form action="upload.php" class="dropzone"
+																									id="mydropzone1"></form>
+					
+																							</div>
+																							<!-- end widget content -->
+					
+																						</div>
+					
+																					</div>
+					
+																				</article>
+					
 																			</div>
 																			<div class="well well-sm well-light">
-																					
+																					<div class="jarviswidget jarviswidget-color-blue" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
+																					<!-- widget options:
+																					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+																	
+																					data-widget-colorbutton="false"
+																					data-widget-editbutton="false"
+																					data-widget-togglebutton="false"
+																					data-widget-deletebutton="false"
+																					data-widget-fullscreenbutton="false"
+																					data-widget-custombutton="false"
+																					data-widget-collapsed="true"
+																					data-widget-sortable="false"
+																	
+																					-->
+																					<header>
+																						<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+																						<h2>Assignment(<span style="font-size: xx-small;">Please follow the proper format shown below for proper submission</span> )</h2>
+																						
+																					</header>
+																						
+																					<!-- widget div-->
+																					<div>
+																	
+																						<!-- widget edit box -->
+																						<div class="jarviswidget-editbox">
+																							<!-- This area used as dropdown edit box -->
+																	
+																						</div>
+																						<!-- end widget edit box -->
+																	
+																						<!-- widget content -->
+																						<div class="widget-body no-padding">
+																	
+																							<div class="summernote" id="summerassignweek1">
+																									<p>	  Question :: Write your question ?</p>
+																									<p>	  Option :: a)Option a. b)Option b. c)Option c. d)Option d.</p>
+																									<p>	  Content :: Any image or pdf or helping doc for supporting question.</p>
+																									<p>	  Answer :: b.</p>
+																							</div>
+																							
+																							<div class="widget-footer smart-form">
+																	
+																							<div class="btn-group">
+																								
+																								<button class="btn btn-sm btn-primary" type="button" >
+																									<i class="fa fa-times"></i> Cancel
+																								</button>	
+																											
+																							</div>
+																							<div class="btn-group">
+																								
+																								<button class="btn btn-sm btn-success" type="button" id="saveweekone">
+																									<i class="fa fa-check"></i> Save
+																								</button>	
+																								
+																							</div>
+																	
+																								<label class="checkbox pull-left">
+																									<input type="checkbox" checked="checked" name="autosave" id="autosave">
+																									<i></i>Auto Save 
+																								</label> 
+																	
+																							</div>
+																							
+																						</div>
+																						<!-- end widget content -->
+																	
+																					</div>
+																					<!-- end widget div -->
+																	
+																				</div>
 																				<!-- end widget -->
 					
 																				
@@ -1531,7 +1630,22 @@
 									</div>
 								</div>
 				
-							
+							</div>
+				
+							<div class="tab-pane fade" id="s2">
+								
+							</div>
+				
+							<div class="tab-pane fade" id="s3">
+								
+				
+							</div>
+						</div>
+				
+					</div>
+				
+				</div>
+				
 				<!-- end row -->
 
 			</div>
@@ -1544,7 +1658,7 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> ÃÂÃÂ© 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> ÃÂ© 2014-2015</span>
 				</div>
 
 				<div class="col-xs-6 col-sm-6 text-right hidden-xs">

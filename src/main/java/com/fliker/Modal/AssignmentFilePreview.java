@@ -241,7 +241,7 @@ public class AssignmentFilePreview {
 		return basicdbobj;
 	}
 
-	public ArrayList saveAssignments(String assignmentSets, String tokenid, String userid,String startdate,String enddate) {
+	public ArrayList saveAssignments(String assignmentSets, String tokenid, String userid) {
 		// TODO Auto-generated method stub
 		
 		ArrayList assignmentlist = new ArrayList();
@@ -255,6 +255,19 @@ public class AssignmentFilePreview {
 			DBObject theObj = resultcursor.next();
 			
 			if(((String)theObj.get("userid")).equalsIgnoreCase(userid)){
+				
+				//FileUnionTimeFrame fileunitimfr = new FileUnionTimeFrame();
+				
+				/*fileunitimfr.setContext((String)theObj.get("context"));
+				fileunitimfr.setDate((String)theObj.get("date"));
+				fileunitimfr.setDay((String)theObj.get("day"));
+				fileunitimfr.setFileid((String)theObj.get("fileid"));
+				fileunitimfr.setHour((String)theObj.get("hour"));
+				fileunitimfr.setMonth((String)theObj.get("month"));
+				fileunitimfr.setTempid((String)theObj.get("tempid"));
+				fileunitimfr.setUserid((String)theObj.get("userid"));*/
+				
+				
 				
 				QuestionAnswerDocSet questionanswerdocset = new QuestionAnswerDocSet();
 				
@@ -285,6 +298,7 @@ public class AssignmentFilePreview {
 							int qno = Integer.valueOf(assignmentQno);
 							if(qnos == qno){
 								
+								
 								HashMap existingfileid = (HashMap)meassign.getValue();
 								Set exisset = existingfileid.entrySet();
 								Iterator existit = exisset.iterator();
@@ -296,7 +310,10 @@ public class AssignmentFilePreview {
 									HashMap newStateData = new HashMap();
 									newStateData.put((String)meexist.getKey(), existingfile);
 									assignquestionset.put(qno, newStateData);
+									
 								}
+								
+								
 								
 							}else{
 								
@@ -311,96 +328,48 @@ public class AssignmentFilePreview {
 					
 				}
 				
+				
+				
+				
 				//assignmentlist.add(fileunitimfr);
 				assignmentlist.add(assignmentQuestion);
 				
+				
 			}
+			
+			
 			
 		}
 		
-		assignprev.saveAssignmentQuestionSet(assignquestionset,startdate,enddate);
+		
+		assignprev.saveAssignmentQuestionSet(assignquestionset);
+		
+		
 		return assignmentlist;
 	}
 	
 	
 	
-	public ArrayList saveQuestionAssignments(String assignmentSets, String tokenid, String userid, String assignmentid) {
+	public void saveQuestionAssignments(ArrayList assignmentSets, String tokenid, String userid) {
 		// TODO Auto-generated method stub
 		
 		Assignment assignment = new Assignment();
-		ArrayList assignmentlist = new ArrayList();
-		AssignmentPreview assignprev = new AssignmentPreview();
-		HashMap<Integer,HashMap<String,String>> assignquestionset = new HashMap<Integer,HashMap<String,String>>();
 		MongoConnection mongocon = new MongoConnection();
 		DBCursor resultcursor = mongocon.getDBObject("tempid", tokenid, "FileUnionTimeFrame");
 		if(resultcursor.hasNext()){
 			DBObject theObj = resultcursor.next();
 			
 			if(((String)theObj.get("userid")).equalsIgnoreCase(userid)){
-				QuestionAnswerDocSet questionanswerdocset = new QuestionAnswerDocSet();
 				
 				
-				String assignmentQuestion = "";
 				
 				
-				String contexttext = (String)theObj.get("context");
-				String assignmentNo = (contexttext.split(",")[0]).split("::")[1];
-				String fileid = (contexttext.split(",")[1]).split("::")[1];
 				
-				String[] assignmentset = assignmentSets.split(":;");
-				
-				for(int m=0;m<assignmentset.length;m++){
-					
-					String assignmentQno = assignmentset[m].split("::")[0];
-					
-					if(assignmentQno.equalsIgnoreCase(assignmentNo)){
-						
-						assignmentQuestion = assignmentQno +"::"+assignmentset[m].split("::")[1];
-						
-						Set assignset = assignquestionset.entrySet();
-						Iterator assignit = assignset.iterator();
-						while(assignit.hasNext()){
-							Map.Entry meassign = (Map.Entry)assignit.next();
-							
-							int qnos = (Integer)meassign.getKey();
-							int qno = Integer.valueOf(assignmentQno);
-							if(qnos == qno){
-								
-								HashMap existingfileid = (HashMap)meassign.getValue();
-								Set exisset = existingfileid.entrySet();
-								Iterator existit = exisset.iterator();
-								while(existit.hasNext()){
-									Map.Entry meexist = (Map.Entry)existit.next();
-									
-									String existingfile = (String)meexist.getValue();
-									existingfile = existingfile + ","+fileid;
-									HashMap newStateData = new HashMap();
-									newStateData.put((String)meexist.getKey(), existingfile);
-									assignquestionset.put(qno, newStateData);
-								}
-								
-							}else{
-								
-								HashMap newStateData = new HashMap();
-								newStateData.put(assignmentset[m].split("::")[1], fileid);
-								assignquestionset.put(qno, newStateData);
-							}
-							
-						}
-						
-					}
-					
-				}
-				
-				//assignmentlist.add(fileunitimfr);
-				assignmentlist.add(assignmentQuestion);
 				
 			}
-			
 		}
 		
-		assignprev.saveAssignmentAnswerSet(assignquestionset,assignmentid);
-		return assignmentlist;
+		
 	}
 	
 	
@@ -414,31 +383,6 @@ public class AssignmentFilePreview {
 		
 		
 		return null;
-	}
-
-	public ArrayList retrieveAssignments(String assignmentid) {
-		// TODO Auto-generated method stub
-		
-		ArrayList assignmentlist = new ArrayList();
-		MongoConnection mongocon = new MongoConnection();
-		DBCursor resultcursor = mongocon.getDBObject("assignmentid", assignmentid, "Assignment");
-		if(resultcursor.hasNext()){
-			DBObject theObj = resultcursor.next();
-			
-			Assignment assignment = new Assignment();
-			
-			assignment.setAssignmentid((String)theObj.get("assignmentid"));
-			assignment.setAssignmentquestionsets((String[])theObj.get("assignmentquestionsets"));
-			assignment.setAssignmentstartdatetime((String)theObj.get("assignmentstartdatetime"));
-			assignment.setAssignmentenddatetime((String)theObj.get("assignmentenddatetime"));
-			assignment.setNoOfQuestions((String)theObj.get("noOfQuestions"));
-			
-			
-			assignmentlist.add(assignment);
-		}
-		
-		
-		return assignmentlist;
 	}
 	
 	

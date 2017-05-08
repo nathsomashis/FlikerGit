@@ -8,7 +8,7 @@
 		<meta charset="utf-8">
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-		<title> Dashboard-User </title>
+		<title> Guidance Excersize </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -122,7 +122,7 @@
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
 	<body class="">
-
+	
 		<%
 			String profileimage = (String)request.getAttribute("ProfileImage");
 			String gender = (String)request.getAttribute("Gender");
@@ -335,19 +335,19 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃÂ§ais</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃÂ±ol</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
 							</li>
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> Ã¦âÂ¥Ã¦ÅÂ¬Ã¨ÂªÅ¾</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> Ã¤Â¸Â­Ã¦ââ¡</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
 							</li>	
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
@@ -356,10 +356,10 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> ÃÂ ÃÆÃÂÃÂÃÂºÃÂ¸ÃÂ¹ ÃÂÃÂ·Ãâ¹ÃÂº</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Ã­â¢ÅÃªÂµÂ­Ã¬âÂ´</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
 							</li>						
 							
 						</ul>
@@ -380,18 +380,23 @@
 
 			<!-- User info -->
 			<div class="login-info">
-				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-					
-					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
-						<span>
-							john.doe 
-						</span>
-						<i class="fa fa-angle-down"></i>
-					</a> 
-					
-				</span>
-			</div>
+			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+				<a href="javascript:void(0);" id="show-shortcut"
+				data-action="toggleShortcut"> <%if(profileimage == ""){
+					if(gender.equalsIgnoreCase("female")){
+						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
+					alt="me" class="online" /> <%
+					}else{
+						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
+					alt="me" class="online" /> <% 
+					}
+				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=profilename%>
+				</span> <i class="fa fa-angle-down"></i>
+			</a>
+
+			</span>
+		</div>
 			<!-- end user info -->
 
 			<nav>
@@ -401,18 +406,18 @@
 				traditional href="" links. See documentation for details.
 				-->
 
-	<ul>
+				<ul>
 		<li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
 				class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span
 				class="menu-item-parent">Guidance Dash</span> </a></li>
 		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-share-square-o "></i> <span
+				class="fa fa-lg fa-fw fa-share-square-o"></i> <span
 				class="menu-item-parent">Guidance Share</span> </a></li>
 
-		<li class="active"><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-calendar txt-color-blue"></i>
+		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-calendar"></i>
 				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
 		</li>
-		<li><a href="gotoguidanceexcersize?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-qrcode"></i>
+		<li class="active"><a href="gotoguidanceexcersize?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-qrcode txt-color-blue"></i>
 				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
 		</li>
 		<li><a href="gotoguidanceproject?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-sitemap"></i>
@@ -443,7 +448,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Guidance Calendar</li>
+					<li>Excersize</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -464,196 +469,216 @@
 			<!-- MAIN CONTENT -->
 			<div id="content">
 
+				<!-- row -->
+				
 				<div class="row">
 				
-					<div class="col-sm-12 col-md-12 col-lg-3">
-						<!-- new widget -->
-						<div class="jarviswidget jarviswidget-color-blueDark">
-							<header>
-								<h2> Add Events </h2>
-							</header>
+					<div class="col-sm-12">
 				
-							<!-- widget div-->
-							<div>
+						<ul id="myTab1" class="nav nav-tabs bordered">
+							<li class="active">
+								<a href="#s1" id="quizcreate" data-toggle="tab">Assignment</a>
+							</li>
+							<li>
+								<a href="#s2" id="assignmentcreate" data-toggle="tab">Quiz</a>
+							</li>
+							<li>
+								<a href="#s3" id="history" data-toggle="tab">History</a>
+							</li>
+						</ul>
 				
-								<div class="widget-body">
-									<!-- content goes here -->
+						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
+							<div class="tab-pane fade in active" id="s1">
+								<section id="widget-grid" class="">
+
+									<!-- row -->
+									<div class="row">
+										
+										<!-- NEW WIDGET START -->
+										<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											
+											<!-- <div class="alert alert-info">
+												<strong>NOTE:</strong> All the data is loaded from a seperate JSON file
+											</div> -->
 				
-									<form id="add-event-form">
-										<fieldset>
+											<!-- Widget ID (each widget will need unique ID)-->
+											<div class="jarviswidget well" id="wid-id-0">
+												<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+													
+													data-widget-colorbutton="false"	
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true" 
+													data-widget-sortable="false"
+													
+												-->
+												<header>
+													<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+													<h2>Assignment List</h2>				
+													
+												</header>
 				
-											<div class="form-group">
-												<label>Select Event Icon</label>
-												<div class="btn-group btn-group-sm btn-group-justified" data-toggle="buttons">
-													<label class="btn btn-default active">
-														<input type="radio" name="iconselect" id="icon-1" value="fa-info" checked>
-														<i class="fa fa-info text-muted"></i> </label>
-													<label class="btn btn-default">
-														<input type="radio" name="iconselect" id="icon-2" value="fa-warning">
-														<i class="fa fa-warning text-muted"></i> </label>
-													<label class="btn btn-default">
-														<input type="radio" name="iconselect" id="icon-3" value="fa-check">
-														<i class="fa fa-check text-muted"></i> </label>
-													<label class="btn btn-default">
-														<input type="radio" name="iconselect" id="icon-4" value="fa-user">
-														<i class="fa fa-user text-muted"></i> </label>
-													<label class="btn btn-default">
-														<input type="radio" name="iconselect" id="icon-5" value="fa-lock">
-														<i class="fa fa-lock text-muted"></i> </label>
-													<label class="btn btn-default">
-														<input type="radio" name="iconselect" id="icon-6" value="fa-clock-o">
-														<i class="fa fa-clock-o text-muted"></i> </label>
+												<!-- widget div-->
+												<div>
+													
+													<!-- widget edit box -->
+													<div class="jarviswidget-editbox">
+														<!-- This area used as dropdown edit box -->
+														<input class="form-control" type="text">	
+													</div>
+													<!-- end widget edit box -->
+													
+													<!-- widget content -->
+													<div class="widget-body no-padding">
+														
+														<table id="assignmentlist" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+													        <thead>
+													            <tr>
+													                <th></th><th>Assignments</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
+													                <th>Submission</th>
+													                <th>Status</th>
+													                <th><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>
+													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
+													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
+													                <th>Tracker</th>
+													            </tr>
+													        </thead>
+													    </table>
+				
+													</div>
+													<!-- end widget content -->
+													
 												</div>
+												<!-- end widget div -->
+												
 											</div>
+											<!-- end widget -->
 				
-											<div class="form-group">
-												<label>Event Title</label>
-												<input class="form-control"  id="title" name="title" maxlength="40" type="text" placeholder="Event Title">
-											</div>
-											<div class="form-group">
-												<label>Event Description</label>
-												<textarea class="form-control" placeholder="Please be brief" rows="3" maxlength="40" id="description"></textarea>
-												<p class="note">Maxlength is set to 40 characters</p>
-											</div>
+										</article>
+										<!-- WIDGET END -->
+										
+									</div>
 				
-											<div class="form-group">
-												<label>Select Event Color</label>
-												<div class="btn-group btn-group-justified btn-select-tick" data-toggle="buttons">
-													<label class="btn bg-color-darken active">
-														<input type="radio" name="priority" id="option1" value="bg-color-darken txt-color-white" checked>
-														<i class="fa fa-check txt-color-white"></i> </label>
-													<label class="btn bg-color-blue">
-														<input type="radio" name="priority" id="option2" value="bg-color-blue txt-color-white">
-														<i class="fa fa-check txt-color-white"></i> </label>
-													<label class="btn bg-color-orange">
-														<input type="radio" name="priority" id="option3" value="bg-color-orange txt-color-white">
-														<i class="fa fa-check txt-color-white"></i> </label>
-													<label class="btn bg-color-greenLight">
-														<input type="radio" name="priority" id="option4" value="bg-color-greenLight txt-color-white">
-														<i class="fa fa-check txt-color-white"></i> </label>
-													<label class="btn bg-color-blueLight">
-														<input type="radio" name="priority" id="option5" value="bg-color-blueLight txt-color-white">
-														<i class="fa fa-check txt-color-white"></i> </label>
-													<label class="btn bg-color-red">
-														<input type="radio" name="priority" id="option6" value="bg-color-red txt-color-white">
-														<i class="fa fa-check txt-color-white"></i> </label>
-												</div>
-											</div>
+									<!-- end row -->
 				
-										</fieldset>
-										<div class="form-actions">
-											<div class="row">
-												<div class="col-md-12">
-													<button class="btn btn-default" type="button" id="add-event" >
-														Add Event
-													</button>
-												</div>
-											</div>
+									<!-- row -->
+				
+									<div class="row">
+				
+										<!-- a blank row to get started -->
+										<div class="col-sm-12">
+											<!-- your contents here -->
 										</div>
-									</form>
+											
+									</div>
 				
-									<!-- end content -->
-								</div>
+									<!-- end row -->
+				
+								</section>
+							</div>
+				
+							<div class="tab-pane fade" id="s2">
+								<section id="widget-grid" class="">
+
+									<!-- row -->
+									<div class="row">
+										
+										<!-- NEW WIDGET START -->
+										<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											
+											<!-- <div class="alert alert-info">
+												<strong>NOTE:</strong> All the data is loaded from a seperate JSON file
+											</div> -->
+				
+											<!-- Widget ID (each widget will need unique ID)-->
+											<div class="jarviswidget well" id="wid-id-0">
+												<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+													
+													data-widget-colorbutton="false"	
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true" 
+													data-widget-sortable="false"
+													
+												-->
+												<header>
+													<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+													<h2>Quiz List</h2>				
+													
+												</header>
+				
+												<!-- widget div-->
+												<div>
+													
+													<!-- widget edit box -->
+													<div class="jarviswidget-editbox">
+														<!-- This area used as dropdown edit box -->
+														<input class="form-control" type="text">	
+													</div>
+													<!-- end widget edit box -->
+													
+													<!-- widget content -->
+													<div class="widget-body no-padding">
+														
+														<table id="quizlist" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+													        <thead>
+													            <tr>
+													                <th></th><th>Quiz</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
+													                <th>Submission</th>
+													                <th>Status</th>
+													                <th><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>
+													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
+													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
+													                <th>Tracker</th>
+													            </tr>
+													        </thead>
+													    </table>
+				
+													</div>
+													<!-- end widget content -->
+													
+												</div>
+												<!-- end widget div -->
+												
+											</div>
+											<!-- end widget -->
+				
+										</article>
+										<!-- WIDGET END -->
+										
+									</div>
+				
+									<!-- end row -->
+				
+									<!-- row -->
+				
+									<div class="row">
+				
+										<!-- a blank row to get started -->
+										<div class="col-sm-12">
+											<!-- your contents here -->
+										</div>
+											
+									</div>
+				
+									<!-- end row -->
+				
+								</section>
+							</div>
+				
+							<div class="tab-pane fade" id="s3">
+								
 				
 							</div>
-							<!-- end widget div -->
 						</div>
-						<!-- end widget -->
-				
-						<div class="well well-sm" id="event-container">
-							<form>
-								<fieldset>
-									<legend>
-										Draggable Events
-									</legend>
-									<ul id='external-events' class="list-unstyled">
-										<li>
-											<span class="bg-color-darken txt-color-white" data-description="Currently busy" data-icon="fa-time">Office Meeting</span>
-										</li>
-										<li>
-											<span class="bg-color-blue txt-color-white" data-description="No Description" data-icon="fa-pie">Lunch Break</span>
-										</li>
-										<li>
-											<span class="bg-color-red txt-color-white" data-description="Urgent Tasks" data-icon="fa-alert">URGENT</span>
-										</li>
-									</ul>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" id="drop-remove" class="checkbox style-0" checked="checked">
-											<span>remove after drop</span> </label>
-					
-									</div>
-								</fieldset>
-							</form>
-				
-						</div>
-					</div>
-					<div class="col-sm-12 col-md-12 col-lg-9">
-				
-						<!-- new widget -->
-						<div class="jarviswidget jarviswidget-color-blueDark">
-				
-							<!-- widget options:
-							usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-				
-							data-widget-colorbutton="false"
-							data-widget-editbutton="false"
-							data-widget-togglebutton="false"
-							data-widget-deletebutton="false"
-							data-widget-fullscreenbutton="false"
-							data-widget-custombutton="false"
-							data-widget-collapsed="true"
-							data-widget-sortable="false"
-				
-							-->
-							<header>
-								<span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
-								<h2> My Events </h2>
-								<div class="widget-toolbar">
-									<!-- add: non-hidden - to disable auto hide -->
-									<div class="btn-group">
-										<button class="btn dropdown-toggle btn-xs btn-default" data-toggle="dropdown">
-											Showing <i class="fa fa-caret-down"></i>
-										</button>
-										<ul class="dropdown-menu js-status-update pull-right">
-											<li>
-												<a href="javascript:void(0);" id="mt">Month</a>
-											</li>
-											<li>
-												<a href="javascript:void(0);" id="ag">Agenda</a>
-											</li>
-											<li>
-												<a href="javascript:void(0);" id="td">Today</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</header>
-				
-							<!-- widget div-->
-							<div>
-				
-								<div class="widget-body no-padding">
-									<!-- content goes here -->
-									<div class="widget-body-toolbar">
-				
-										<div id="calendar-buttons">
-				
-											<div class="btn-group">
-												<a href="javascript:void(0)" class="btn btn-default btn-xs" id="btn-prev"><i class="fa fa-chevron-left"></i></a>
-												<a href="javascript:void(0)" class="btn btn-default btn-xs" id="btn-next"><i class="fa fa-chevron-right"></i></a>
-											</div>
-										</div>
-									</div>
-									<div id="calendar"></div>
-				
-									<!-- end content -->
-								</div>
-				
-							</div>
-							<!-- end widget div -->
-						</div>
-						<!-- end widget -->
 				
 					</div>
 				
@@ -671,7 +696,7 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> ÃÂÃÂ© 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin 1.8.2 </span>
 				</div>
 
 				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
@@ -847,6 +872,10 @@
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
 		
+		<script
+		src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
+		
+		
 		<!-- PAGE RELATED PLUGIN(S) -->
 		
 		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
@@ -870,6 +899,16 @@
 		<!-- <script src="js/plugin/moment/moment.min.js"></script> -->
 		<script src="<c:url value='/resources/js/plugin/fullcalendar/jquery.fullcalendar.min.js' />"></script>
 		<!-- <script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/jquery.dataTables.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/jquery.dataTables.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.colVis.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.colVis.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.tableTools.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.tableTools.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.bootstrap.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.bootstrap.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatable-responsive/datatables.responsive.min.js' />"></script>
+		<!-- <script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script> -->
 
 		<script>
 			$(document).ready(function() {
@@ -880,217 +919,138 @@
 				/*
 				 * PAGE RELATED SCRIPTS
 				 */
-
-				"use strict";
 				
-			    var date = new Date();
-			    var d = date.getDate();
-			    var m = date.getMonth();
-			    var y = date.getFullYear();
-			
-			    var hdr = {
-			        left: 'title',
-			        center: 'month,agendaWeek,agendaDay',
-			        right: 'prev,today,next'
-			    };
-			
-			    var initDrag = function (e) {
-			        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-			        // it doesn't need to have a start or end
-			
-			        var eventObject = {
-			            title: $.trim(e.children().text()), // use the element's text as the event title
-			            description: $.trim(e.children('span').attr('data-description')),
-			            icon: $.trim(e.children('span').attr('data-icon')),
-			            className: $.trim(e.children('span').attr('class')) // use the element's children as the event class
-			        };
-			        // store the Event Object in the DOM element so we can get to it later
-			        e.data('eventObject', eventObject);
-			
-			        // make the event draggable using jQuery UI
-			        e.draggable({
-			            zIndex: 999,
-			            revert: true, // will cause the event to go back to its
-			            revertDuration: 0 //  original position after the drag
-			        });
-			    };
-			
-			    var addEvent = function (title, priority, description, icon) {
-			        title = title.length === 0 ? "Untitled Event" : title;
-			        description = description.length === 0 ? "No Description" : description;
-			        icon = icon.length === 0 ? " " : icon;
-			        priority = priority.length === 0 ? "label label-default" : priority;
-			
-			        var html = $('<li><span class="' + priority + '" data-description="' + description + '" data-icon="' +
-			            icon + '">' + title + '</span></li>').prependTo('ul#external-events').hide().fadeIn();
-			
-			        $("#event-container").effect("highlight", 800);
-			
-			        initDrag(html);
-			    };
-			
-			    /* initialize the external events
-				 -----------------------------------------------------------------*/
-			
-			    $('#external-events > li').each(function () {
-			        initDrag($(this));
-			    });
-			
-			    $('#add-event').click(function () {
-			        var title = $('#title').val(),
-			            priority = $('input:radio[name=priority]:checked').val(),
-			            description = $('#description').val(),
-			            icon = $('input:radio[name=iconselect]:checked').val();
-			
-			        addEvent(title, priority, description, icon);
-			    });
-			
-			    /* initialize the calendar
-				 -----------------------------------------------------------------*/
-			
-			    $('#calendar').fullCalendar({
-			
-			        header: hdr,
-			        editable: true,
-			        droppable: true, // this allows things to be dropped onto the calendar !!!
-			
-			        drop: function (date, allDay) { // this function is called when something is dropped
-			
-			            // retrieve the dropped element's stored Event Object
-			            var originalEventObject = $(this).data('eventObject');
-			
-			            // we need to copy it, so that multiple events don't have a reference to the same object
-			            var copiedEventObject = $.extend({}, originalEventObject);
-			
-			            // assign it the date that was reported
-			            copiedEventObject.start = date;
-			            copiedEventObject.allDay = allDay;
-			
-			            // render the event on the calendar
-			            // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-			            $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-			
-			            // is the "remove after drop" checkbox checked?
-			            if ($('#drop-remove').is(':checked')) {
-			                // if so, remove the element from the "Draggable Events" list
-			                $(this).remove();
-			            }
-			
-			        },
-			
-			        select: function (start, end, allDay) {
-			            var title = prompt('Event Title:');
-			            if (title) {
-			                calendar.fullCalendar('renderEvent', {
-			                        title: title,
-			                        start: start,
-			                        end: end,
-			                        allDay: allDay
-			                    }, true // make the event "stick"
-			                );
-			            }
-			            calendar.fullCalendar('unselect');
-			        },
-			
-			        events: [{
-			            title: 'All Day Event',
-			            start: new Date(y, m, 1),
-			            description: 'long description',
-			            className: ["event", "bg-color-greenLight"],
-			            icon: 'fa-check'
-			        }, {
-			            title: 'Long Event',
-			            start: new Date(y, m, d - 5),
-			            end: new Date(y, m, d - 2),
-			            className: ["event", "bg-color-red"],
-			            icon: 'fa-lock'
-			        }, {
-			            id: 999,
-			            title: 'Repeating Event',
-			            start: new Date(y, m, d - 3, 16, 0),
-			            allDay: false,
-			            className: ["event", "bg-color-blue"],
-			            icon: 'fa-clock-o'
-			        }, {
-			            id: 999,
-			            title: 'Repeating Event',
-			            start: new Date(y, m, d + 4, 16, 0),
-			            allDay: false,
-			            className: ["event", "bg-color-blue"],
-			            icon: 'fa-clock-o'
-			        }, {
-			            title: 'Meeting',
-			            start: new Date(y, m, d, 10, 30),
-			            allDay: false,
-			            className: ["event", "bg-color-darken"]
-			        }, {
-			            title: 'Lunch',
-			            start: new Date(y, m, d, 12, 0),
-			            end: new Date(y, m, d, 14, 0),
-			            allDay: false,
-			            className: ["event", "bg-color-darken"]
-			        }, {
-			            title: 'Birthday Party',
-			            start: new Date(y, m, d + 1, 19, 0),
-			            end: new Date(y, m, d + 1, 22, 30),
-			            allDay: false,
-			            className: ["event", "bg-color-darken"]
-			        }, {
-			            title: 'Smartadmin Open Day',
-			            start: new Date(y, m, 28),
-			            end: new Date(y, m, 29),
-			            className: ["event", "bg-color-darken"]
-			        }],
-			
-			        eventRender: function (event, element, icon) {
-			            if (!event.description == "") {
-			                element.find('.fc-title').append("<br/><span class='ultra-light'>" + event.description +
-			                    "</span>");
-			            }
-			            if (!event.icon == "") {
-			                element.find('.fc-title').append("<i class='air air-top-right fa " + event.icon +
-			                    " '></i>");
-			            }
-			        },
-			
-			        windowResize: function (event, ui) {
-			            $('#calendar').fullCalendar('render');
+				function format ( d ) {
+				    // `d` is the original data object for the row
+				    return '<table cellpadding="5" cellspacing="0" border="0" class="table table-hover table-condensed">'+
+				        '<tr>'+
+				            '<td style="width:100px">Quiz Title:</td>'+
+				            '<td>'+d.name+'</td>'+
+				        '</tr>'+
+				        '<tr>'+
+				            '<td>Deadline:</td>'+
+				            '<td>'+d.ends+'</td>'+
+				        '</tr>'+
+				        '<tr>'+
+				            '<td>Quiz info:</td>'+
+				            '<td>'+d.comments+'</td>'+
+				        '</tr>'+
+				        '<tr>'+
+				            '<td>Action:</td>'+
+				            '<td>'+d.action+'</td>'+
+				        '</tr>'+
+				    '</table>';
+				}
+
+				// clears the variable if left blank
+			    var table = $('#assignmentlist').DataTable( {
+			    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+			        "ajax": "data/dataList.json",
+			        "bDestroy": true,
+			        "iDisplayLength": 15,
+			        "oLanguage": {
+					    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+					},
+			        "columns": [
+			            {
+			                "class":          'details-control',
+			                "orderable":      false,
+			                "data":           null,
+			                "defaultContent": ''
+			            },
+			            { "data": "name" },
+			            { "data": "est" },
+			            { "data": "contacts" },
+			            { "data": "status" },
+			            { "data": "target-actual" },
+			            { "data": "starts" },
+			            { "data": "ends" },
+			            { "data": "tracker" },
+			        ],
+			        "order": [[1, 'asc']],
+			        "fnDrawCallback": function( oSettings ) {
+				       runAllCharts()
+				    }
+			    } );
+
+
+			     
+			    // Add event listener for opening and closing details
+			    $('#assignmentlist tbody').on('click', 'td.details-control', function () {
+			        var tr = $(this).closest('tr');
+			        var row = table.row( tr );
+			 
+			        if ( row.child.isShown() ) {
+			            // This row is already open - close it
+			            row.child.hide();
+			            tr.removeClass('shown');
+			        }
+			        else {
+			            // Open this row
+			            row.child( format(row.data()) ).show();
+			            tr.addClass('shown');
 			        }
 			    });
-			
-			    /* hide default buttons */
-			    $('.fc-right, .fc-center').hide();
+			    
+			    
+			    
+			 // clears the variable if left blank
+			    var table = $('#quizlist').DataTable( {
+			    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+			        "ajax": "data/dataList.json",
+			        "bDestroy": true,
+			        "iDisplayLength": 15,
+			        "oLanguage": {
+					    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+					},
+			        "columns": [
+			            {
+			                "class":          'details-control',
+			                "orderable":      false,
+			                "data":           null,
+			                "defaultContent": ''
+			            },
+			            { "data": "name" },
+			            { "data": "est" },
+			            { "data": "contacts" },
+			            { "data": "status" },
+			            { "data": "target-actual" },
+			            { "data": "starts" },
+			            { "data": "ends" },
+			            { "data": "tracker" },
+			        ],
+			        "order": [[1, 'asc']],
+			        "fnDrawCallback": function( oSettings ) {
+				       runAllCharts()
+				    }
+			    } );
 
-			
-				$('#calendar-buttons #btn-prev').click(function () {
-				    $('.fc-prev-button').click();
-				    return false;
-				});
-				
-				$('#calendar-buttons #btn-next').click(function () {
-				    $('.fc-next-button').click();
-				    return false;
-				});
-				
-				$('#calendar-buttons #btn-today').click(function () {
-				    $('.fc-today-button').click();
-				    return false;
-				});
-				
-				$('#mt').click(function () {
-				    $('#calendar').fullCalendar('changeView', 'month');
-				});
-				
-				$('#ag').click(function () {
-				    $('#calendar').fullCalendar('changeView', 'agendaWeek');
-				});
-				
-				$('#td').click(function () {
-				    $('#calendar').fullCalendar('changeView', 'agendaDay');
-				});			
+
+			     
+			    // Add event listener for opening and closing details
+			    $('#quizlist tbody').on('click', 'td.details-control', function () {
+			        var tr = $(this).closest('tr');
+			        var row = table.row( tr );
+			 
+			        if ( row.child.isShown() ) {
+			            // This row is already open - close it
+			            row.child.hide();
+			            tr.removeClass('shown');
+			        }
+			        else {
+			            // Open this row
+			            row.child( format(row.data()) ).show();
+			            tr.addClass('shown');
+			        }
+			    });
 
 			});
-
+			
+			
 		</script>
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->

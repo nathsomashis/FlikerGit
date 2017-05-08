@@ -9,6 +9,10 @@ public class Assignment {
 	
 	@Id
 	private String assignmentid;
+	private String assignmentname;
+	private String assignmentcreatedby;
+	private String assignmentdescription;
+	private String assignmentsubject;
 	private String[] assignmentquestionsets;
 	private String[] assignmentanswersheet;
 	private String assignmentstartdatetime;
@@ -16,9 +20,40 @@ public class Assignment {
 	private String noOfQuestions;
 	private String averageVelocity;
 	private String percentagescore;
+	private String[] assignmentshareids;
 	
 	
 	
+	public String getAssignmentcreatedby() {
+		return assignmentcreatedby;
+	}
+	public void setAssignmentcreatedby(String assignmentcreatedby) {
+		this.assignmentcreatedby = assignmentcreatedby;
+	}
+	public String getAssignmentsubject() {
+		return assignmentsubject;
+	}
+	public void setAssignmentsubject(String assignmentsubject) {
+		this.assignmentsubject = assignmentsubject;
+	}
+	public String getAssignmentname() {
+		return assignmentname;
+	}
+	public void setAssignmentname(String assignmentname) {
+		this.assignmentname = assignmentname;
+	}
+	public String getAssignmentdescription() {
+		return assignmentdescription;
+	}
+	public void setAssignmentdescription(String assignmentdescription) {
+		this.assignmentdescription = assignmentdescription;
+	}
+	public String[] getAssignmentshareids() {
+		return assignmentshareids;
+	}
+	public void setAssignmentshareids(String[] assignmentshareids) {
+		this.assignmentshareids = assignmentshareids;
+	}
 	public String getAssignmentstartdatetime() {
 		return assignmentstartdatetime;
 	}
