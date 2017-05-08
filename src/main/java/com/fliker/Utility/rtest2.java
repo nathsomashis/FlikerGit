@@ -1,4 +1,4 @@
-/*package com.fliker.Utility;
+package com.fliker.Utility;
 
 import java.io.*;
 
@@ -84,4 +84,3 @@ public class rtest2 {
 		System.out.println("Letting go; use main loop from now on");
     }
 }
-*/
