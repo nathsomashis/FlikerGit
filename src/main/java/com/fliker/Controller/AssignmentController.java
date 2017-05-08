@@ -62,7 +62,7 @@ public class AssignmentController {
 		
 		
 		ModelAndView mv = new ModelAndView("/AssignmentAnswer");
-		mv.addObject("assignmentlist", assignmentlist);
+		//mv.addObject("assignmentlist", assignmentlist);
 		return mv;
 	}
 	

@@ -15,6 +15,17 @@ public class GuidanceContent {
 	private String averageVelocity;
 	private String blogid;
 	private String timetableid;
+	private String projectid;
+	
+	
+
+	public String getProjectid() {
+		return projectid;
+	}
+
+	public void setProjectid(String projectid) {
+		this.projectid = projectid;
+	}
 
 	public String getAverageVelocity() {
 		return averageVelocity;

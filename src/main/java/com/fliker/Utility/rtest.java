@@ -1,4 +1,4 @@
-/*package com.fliker.Utility;
+package com.fliker.Utility;
 
 import java.io.*;
 import java.awt.Frame;
@@ -77,8 +77,8 @@ public class rtest {
             return;
         }
 
-		 High-level API - do not use RNI methods unless there is no other way
-			to accomplish what you want 
+		/* High-level API - do not use RNI methods unless there is no other way
+			to accomplish what you want */
 		try {
 			REXP x;
 			re.eval("data(iris)",false);
@@ -238,4 +238,3 @@ public class rtest {
 	}
     }
 }
-*/
