@@ -1067,6 +1067,72 @@
 			            tr.addClass('shown');
 			        }
 			    });
+			    
+			    
+			    
+			    function format ( d ) {
+				    // `d` is the original data object for the row
+				    return '<table cellpadding="5" cellspacing="0" border="0" class="table table-hover table-condensed">'+
+				        '<tr>'+
+				            '<td>Comments:</td>'+
+				            '<td>'+d.comments+'</td>'+
+				        '</tr>'+
+				        '<tr>'+
+				            '<td>Action:</td>'+
+				            '<td>'+d.action+'</td>'+
+				        '</tr>'+
+				    '</table>';
+				}
+
+				// clears the variable if left blank
+			    var table = $('#discussionlist').DataTable( {
+			    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+			        "ajax": "data/dataList.json",
+			        "bDestroy": true,
+			        "iDisplayLength": 15,
+			        "oLanguage": {
+					    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+					},
+			        "columns": [
+			            {
+			                "class":          'details-control',
+			                "orderable":      false,
+			                "data":           null,
+			                "defaultContent": ''
+			            },
+			            { "data": "topicid" },
+			            { "data": "contact" },
+			            { "data": "commentnumber" },
+			            { "data": "lastcommentby" },
+			            { "data": "shareid" }
+			            
+			        ],
+			        "order": [[1, 'asc']],
+			        "fnDrawCallback": function( oSettings ) {
+				       runAllCharts()
+				    }
+			    } );
+
+
+			     
+			    // Add event listener for opening and closing details
+			    $('#discussionlist tbody').on('click', 'td.details-control', function () {
+			        var tr = $(this).closest('tr');
+			        var row = table.row( tr );
+			 
+			        if ( row.child.isShown() ) {
+			            // This row is already open - close it
+			            row.child.hide();
+			            tr.removeClass('shown');
+			        }
+			        else {
+			            // Open this row
+			            row.child( format(row.data()) ).show();
+			            tr.addClass('shown');
+			        }
+			    });
 			});
 			
 			
