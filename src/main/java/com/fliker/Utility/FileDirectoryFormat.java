@@ -51,7 +51,7 @@ public class FileDirectoryFormat {
 						if(treeroot!=null){
 						for (TreeNode<String> node : treeroot) {
 							//String filelists = filbuff.substring(0, filbuff.length()-1);
-							node.data = node.data+filbuff.toString();
+							node.data = node.data+" ::Files List ::"+filbuff.toString();
 							System.out.println("Inside Loop ::" + node.data);
 							}
 						}
@@ -68,9 +68,17 @@ public class FileDirectoryFormat {
 							
 							
 							String[] folders = entry.getName().split("/");
-							if(folders.length>1){
+							String[] folderlast = (folders[folders.length-1]).split(",");
 							
-							treeroot = filedirec.getFoldertree(root, folders, 0,extraname,acceptedtree);
+							
+							if(folders.length>0){
+								if(folders.length == 2){
+									treeroot = filedirec.getFoldertree(root, folders, 0,extraname,acceptedtree);
+								}else{
+									treeroot = filedirec.getFoldertree(root, folderlast, 0,extraname,acceptedtree);
+								}
+							
+							
 							
 							//System.out.println(treeroot);
 							
@@ -104,6 +112,14 @@ public class FileDirectoryFormat {
 	        
 	        
 		    }
+		    
+		    
+		    TreeNode<String> treeRoot = root;
+			for (TreeNode<String> node : treeRoot) {
+				String indent = createIndent(node.getLevel());
+				System.out.println("Last ::"+indent + node.data+ node.getLevel());
+			}
+		    
 		
 	}
 	
@@ -119,6 +135,9 @@ public class FileDirectoryFormat {
 			
 			if(acceptedtree!=null){
 				currentroot = acceptedtree.addChild(child[i]);
+				if(i==(child.length-1)){
+					foldermap.put(extraname, currentroot);
+				}
 			}else{
 				currentroot = roottree.addChild(child[i]);
 				foldermap.put(extraname, currentroot);
@@ -134,13 +153,15 @@ public class FileDirectoryFormat {
 	
 	public TreeNode<String> getRoot(String extraname){
 		
+		String newextraparam = extraname.substring(0, extraname.lastIndexOf("/"));
+		
 		TreeNode<String> terminal = null;
 		TreeNode<String> currentroot = null;
 		Set folderset = foldermap.entrySet();
 		Iterator folderit = folderset.iterator();
 		while(folderit.hasNext()){
 			Map.Entry mefolder = (Map.Entry)folderit.next();
-			if(((String)mefolder.getKey()).equalsIgnoreCase(extraname)){
+			if(((String)mefolder.getKey()).equalsIgnoreCase(newextraparam)){
 				terminal = (TreeNode<String>)mefolder.getValue();
 			}
 			
