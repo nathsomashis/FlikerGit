@@ -1,19 +1,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html lang="en-us">
-	<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
 		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
-		<title> Guidance Dash </title>
+		<title> Search Unit </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+		
 		<!-- #CSS Links -->
 		<!-- Basic Styles -->
 		<link href='<c:url value="/resources/css/bootstrap.min.css" />' rel="stylesheet">
@@ -40,7 +37,6 @@
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
 		<link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet">
-
 
 		<!-- #FAVICONS -->
 		<link href='<c:url value="/resources/img/favicon/favicon.ico" />' rel="shortcut icon" type="image/x-icon">
@@ -76,7 +72,7 @@
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
 
 	</head>
-	
+
 	<!--
 
 	TABLE OF CONTENTS.
@@ -96,12 +92,11 @@
 	|  09. #MOBILE                   |  mobile view dropdown          |
 	|  10. #SEARCH                   |  search field                  |
 	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #RIGHT PANEL              |  right panel userlist          |
-	|  13. #MAIN PANEL               |  main panel                    |
-	|  14. #MAIN CONTENT             |  content holder                |
-	|  15. #PAGE FOOTER              |  page footer                   |
-	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  17. #PLUGINS                  |  all scripts and plugins       |
+	|  12. #MAIN PANEL               |  main panel                    |
+	|  13. #MAIN CONTENT             |  content holder                |
+	|  14. #PAGE FOOTER              |  page footer                   |
+	|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  16. #PLUGINS                  |  all scripts and plugins       |
 	
 	===================================================================
 	
@@ -122,33 +117,13 @@
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
 	<body class="">
-	
-		<%
-			String profileimage = (String)request.getAttribute("ProfileImage");
-			String gender = (String)request.getAttribute("Gender");
-			String profilename = (String)request.getAttribute("FullName");
-			Timetable timeline = (Timetable)request.getAttribute("TimeTable");
-			GuidanceContentShared guidanceshare = (GuidanceContentShared)request.getAttribute("GuidShared");
-			GuidanceContentDashboard guiddash = (GuidanceContentDashboard)request.getAttribute("GuidDashBoard");
-			Blog blogs = (Blog)request.getAttribute("GuidBlog");
-			String logo = "";
-			String guidanceid = (String)request.getAttribute("guidanceid");
-			String timetableid = timeline.getTimeableid();
-			String guideshareid = guidanceshare.getGuidancesharedid();
-			String guidedash = guiddash.getGuidancecontentDashid();
-			String dataid = "";
-			String leaderboardid = "";
-			String discussionid = "";
-			
-		
-		%>
 
-		<!-- HEADER -->
+		<!-- #HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
+				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -196,28 +171,27 @@
 			</div>
 
 			<!-- projects dropdown -->
-			<div class="project-context hidden-xs" >
+	<div class="project-context hidden-xs">
 
-				<span class="label">Projects:</span>
-				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
+		<span class="label">Projects:</span> <span
+			class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
+			projects <i class="fa fa-angle-down"></i>
+		</span>
 
-				<!-- Suggestion: populate this list with fetch and push technique -->
-				<ul class="dropdown-menu" style="border: 1px solid black">
-					<h5>Daily Note</h5>
-					<li>
-						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
-					</li>
-					
-					<li class="divider"></li>
-					<li>
-						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
-					</li>
-				</ul>
-				<!-- end dropdown-menu-->
+		<!-- Suggestion: populate this list with fetch and push technique -->
+		<ul class="dropdown-menu" style="border: 1px solid black">
+			<h5>Daily Note</h5>
+			<li><textarea id="notemessage" class="form-control"
+					name="notemessage" rows="3" style="width: 400px"></textarea></li>
 
-			</div>
-			
-			<!-- end projects dropdown -->
+			<li class="divider"></li>
+			<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
+					Note Down</a></li>
+		</ul>
+		<!-- end dropdown-menu-->
+
+	</div>
+	<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
 			<div class="pull-right">
@@ -261,7 +235,7 @@
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="logout?" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+					<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
 				<!-- end logout button -->
 
@@ -270,38 +244,6 @@
 					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
 				</div>
 				<!-- end search mobile button -->
-
-				<!-- input: search field -->
-				<form action="searchresults?" class="header-search pull-right">
-					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"]'>
-					<button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-				</form>
-				<!-- end input: search field -->
 
 				<!-- fullscreen button -->
 				<div id="fullscreen" class="btn-header transparent pull-right">
@@ -338,19 +280,19 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃÂ§ais</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃÂ±ol</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
 							</li>
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> Ã¦âÂ¥Ã¦ÅÂ¬Ã¨ÂªÅ¾</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> Ã¤Â¸Â­Ã¦ââ¡</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
 							</li>	
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
@@ -359,10 +301,10 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> ÃÂ ÃÆÃÂÃÂÃÂºÃÂ¸ÃÂ¹ ÃÂÃÂ·Ãâ¹ÃÂº</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Ã­â¢ÅÃªÂµÂ­Ã¬âÂ´</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
 							</li>						
 							
 						</ul>
@@ -382,11 +324,38 @@
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<div class="login-info">
+			<%-- <%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String gender = (String)request.getAttribute("Gender");
+			String imageid = (String)request.getAttribute("ProfileImage");
+			String logo = "";
+			
+			
+		
+		%>
+ --%>
+
+		<!-- User info -->
+
+		<%
+		/* if(imageid == ""){
+			if(gender.equalsIgnoreCase("female")){
+				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
+			}else{
+				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
+			}
+		}else{
+			
+		} */
+		
+		
+		%>
+		<%-- <div class="login-info">
 			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 
 				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <%if(profileimage == ""){
+				data-action="toggleShortcut"> <%if(imageid == ""){
 					if(gender.equalsIgnoreCase("female")){
 						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
 					alt="me" class="online" /> <%
@@ -394,13 +363,14 @@
 						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
 					alt="me" class="online" /> <% 
 					}
-				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=profilename%>
+				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
 				</span> <i class="fa fa-angle-down"></i>
 			</a>
 
 			</span>
-		</div>
-			<!-- end user info -->
+		</div> --%>
+		<!-- end user info -->
+			
 
 			<nav>
 				<!-- 
@@ -410,38 +380,203 @@
 				-->
 
 				<ul>
-		<li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span
-				class="menu-item-parent">Guidance Dash</span> </a></li>
-		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-share-square-o"></i> <span
-				class="menu-item-parent">Guidance Share</span> </a></li>
+		<li class="active"><a href="search?"><i
+				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
+				class="menu-item-parent">Search</span> </a></li>
+		<!-- <li><a href="dashboardanalysis?"><i
+				class="fa fa-lg fa-fw fa-briefcase"></i> <span
+				class="menu-item-parent">Dashboard</span> </a></li> -->
+		<li ><a href="dashboardsocial?"><i
+				class="fa fa-lg fa-fw fa-retweet "></i> <span
+				class="menu-item-parent">Wall</span> <span
+				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
-		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-calendar"></i>
-				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
+		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
+				<span class="menu-item-parent">Profile</span> <span
+				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+				<span class="menu-item-parent">Timeline</span> <span
+				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+		<li><a href="createpost?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
-		<li><a href="gotoguidanceexcersize?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-qrcode"></i>
-				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
+		<li><a href="classroom?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 		</li>
-		<li class="active"><a href="#"><i class="fa fa-lg fa-fw fa-sitemap txt-color-blue"></i>
-				<span class="menu-item-parent">Guidance Project</span> </a>
-					<ul>
-					<li class="active"><a href="gotoguidanceproject?guidanceid=<%=guidanceid%>" title="OverView"><i
-							class="fa fa-tags"></i><span class="menu-item-parent">OverView</span></a>
-					</li>
-					<li class=""><a href="gotoguidanceprojectdata?dataid=<%=dataid%>" title="Data"><i
-							class="fa fa-tags"></i><span class="menu-item-parent">Data</span></a>
-					</li>
-					<li class=""><a href="gotoguidanceprojectleaderboard?leaderboardid=<%=leaderboardid%>" title="LeaderBoard"><i
-							class="fa fa-tags"></i><span class="menu-item-parent">LeaderBoard</span></a>
-					</li>
-					<li class=""><a href="gotoguidanceprojectdiscussion?discussionid=<%=discussionid%>" title="Discussion"><i
-							class="fa fa-tags"></i><span class="menu-item-parent">Discussion</span></a>
-					</li>
-				</ul>
-				
+		<li><a href="#" title="Dashboard"><i
+				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
+			<ul>
+				<li class=""><a href="courseEdu?" title="NewPost"><i
+						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
-		</li>
+				<li class=""><a href="otherprofile?" title="ClassRoom"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+				</li>
+			</ul></li>
+		 <!-- <li><a href="#" title="Dashboard"><i
+				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
+			<ul>		
+				<li class="active"><a href="#" title="NewCourse"><i
+								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
+								</li>
+				<li class=""><a href="createcourse?" title="NewCourse"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">Your Course</span></a></li>	
+				<li class=""><a href="newspecialization?" title="NewSpecialization"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">Your Specialization</span></a></li>
+				<li class=""><a href="neworganizations?" title="NewInstitution"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>
+			</ul>
+		</li> -->
+		<li><a href="#" title="Dashboard"><i
+				class="fa fa-lg fa-fw fa-briefcase"></i> <span
+				class="menu-item-parent">Work</span></a>
+			<ul>
+				<li class=""><a href="ideatoimplement?" title="NewPost"><i
+						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+				</li>
+				<li class=""><a href="jobanalysis?" title="NewJob"><i
+						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional Way</span></a>
+				</li>
+				
+			</ul></li>
+		<!-- <li class=""><a href="organizations?" title="Organizations"><i
+						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
+				<ul>
+				<li class=""><a href="createjob?" title="NewJob"><i
+						class="fa fa-plus-square"></i><span class="menu-item-parent">New Opportunity</span></a>
+				</li>
+				<li class=""><a href="companies?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Start New Company</span></a>
+				</li>
+			</ul></li> -->
+		<li class=""><a href="#" title="Organizations"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
+				<ul>
+				<li class=""><a href="standardguidance?" title="Academic"><i
+						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
+				</li>
+				<li class=""><a href="professionalguidance?" title="Profesional"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
+				</li>
+				<li class=""><a href="gotoguidance?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">GuidanceSheet Test</span></a>
+				</li>
+				<li class=""><a href="assignmentAnswer?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Assignment Answer Test</span></a>
+				</li>
+				<li class=""><a href="projectstructure?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Project Directory</span></a>
+				</li>
+				<li class=""><a href="projectviewdetail?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Project View</span></a>
+				</li>
+				
+			</ul></li>		
+
+		<li class="chat-users top-menu-invisible"><a href="#"><i
+				class="fa fa-lg fa-fw fa-comment-o"><em
+					class="bg-color-pink flash animated">!</em></i> <span
+				class="menu-item-parent">Smart Chat API <sup>beta</sup></span></a>
+			<ul>
+				<li>
+					<!-- DISPLAY USERS -->
+					<div class="display-users">
+
+						<input class="form-control chat-user-filter" placeholder="Filter"
+							type="text"> <a href="#" class="usr" data-chat-id="cha1"
+							data-chat-fname="Sadi" data-chat-lname="Orlaf"
+							data-chat-status="busy"
+							data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
+							data-chat-alertshow="true" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/5.png' alt='Sadi Orlaf'>
+												<div class='usr-card-content'>
+													<h3>Sadi Orlaf</h3>
+													<p>Marketing Executive</p>
+												</div>
+											</div>
+										">
+							<i></i>Sadi Orlaf
+						</a> <a href="#" class="usr" data-chat-id="cha2"
+							data-chat-fname="Jessica" data-chat-lname="Dolof"
+							data-chat-status="online" data-chat-alertmsg=""
+							data-chat-alertshow="false" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/1.png' alt='Jessica Dolof'>
+												<div class='usr-card-content'>
+													<h3>Jessica Dolof</h3>
+													<p>Sales Administrator</p>
+												</div>
+											</div>
+										">
+							<i></i>Jessica Dolof
+						</a> <a href="#" class="usr" data-chat-id="cha3"
+							data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
+							data-chat-status="online" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/3.png' alt='Zekarburg Almandalie'>
+												<div class='usr-card-content'>
+													<h3>Zekarburg Almandalie</h3>
+													<p>Sales Admin</p>
+												</div>
+											</div>
+										">
+							<i></i>Zekarburg Almandalie
+						</a> <a href="#" class="usr" data-chat-id="cha4"
+							data-chat-fname="Barley" data-chat-lname="Krazurkth"
+							data-chat-status="away" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/4.png' alt='Barley Krazurkth'>
+												<div class='usr-card-content'>
+													<h3>Barley Krazurkth</h3>
+													<p>Sales Director</p>
+												</div>
+											</div>
+										">
+							<i></i>Barley Krazurkth
+						</a> <a href="#" class="usr offline" data-chat-id="cha5"
+							data-chat-fname="Farhana" data-chat-lname="Amrin"
+							data-chat-status="incognito" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/female.png' alt='Farhana Amrin'>
+												<div class='usr-card-content'>
+													<h3>Farhana Amrin</h3>
+													<p>Support Admin <small><i class='fa fa-music'></i> Playing Beethoven Classics</small></p>
+												</div>
+											</div>
+										">
+							<i></i>Farhana Amrin (offline)
+						</a> <a href="#" class="usr offline" data-chat-id="cha6"
+							data-chat-fname="Lezley" data-chat-lname="Jacob"
+							data-chat-status="incognito" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/male.png' alt='Lezley Jacob'>
+												<div class='usr-card-content'>
+													<h3>Lezley Jacob</h3>
+													<p>Sales Director</p>
+												</div>
+											</div>
+										">
+							<i></i>Lezley Jacob (offline)
+						</a> <a href="ajax/chat.html"
+							class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
+							the API</a>
+
+					</div> <!-- END DISPLAY USERS -->
+				</li>
+			</ul></li>
 	</ul>
 			</nav>
 			
@@ -467,7 +602,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Project</li>
+					<li>Search Page</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -489,79 +624,37 @@
 			<div id="content">
 
 				<!-- row -->
-				
 				<div class="row">
 				
-					<div class="widget-body">
-										
-										<ul id="myTab1" class="nav nav-tabs bordered">
-											<li class="active">
-												<a href="#s1" data-toggle="tab">Description</a>
-											</li>
-											<li>
-												<a href="#s2" data-toggle="tab">Evaluate</a>
-											</li>
-											<li>
-												<a href="#s3" data-toggle="tab">Remarks</a>
-											</li>
-											
-										</ul>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				
-										<div id="myTabContent1" class="tab-content padding-10">
-											<div class="tab-pane fade in active" id="s1">
-												<p>
-													I have six locks on my door all in a row. When I go out, I lock every other one. I figure no matter how long somebody stands there picking the locks, they are always locking three.
-												</p>
-											</div>
-											<div class="tab-pane fade" id="s2">
-												<h1><img alt="Saturn V carrying Apollo 11" class="right" src="img/demo/sample.jpg" /> Apollo 11</h1>
-
-												<p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p>
-												
-												<p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)" title="Michael Collins (astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module" title="Apollo Command/Service Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-												
-												<h2>Broadcasting and <em>quotes</em> <a id="quotes" name="quotes"></a></h2>
-												
-												<p>Broadcast on live TV to a world-wide audience, Armstrong stepped onto the lunar surface and described the event as:</p>
-												
-												<blockquote>
-												<p>One small step for [a] man, one giant leap for mankind.</p>
-												</blockquote>
-
-											</div>
-											<div class="tab-pane fade" id="s3">
-												<tr>
-												<p>
-													Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.
-												</p>
-												<div class="forum-attachment">
-													2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a>
-													<ul class="list-inline margin-top-10">
-														<li class="well well-sm padding-5">
-															<strong>rocketlaunch.jpg</strong>
-															<br>
-															400 kb
-															<br>
-															<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> View</a>
-														</li>
-														<li class="well well-sm padding-5">
-															<strong>budget.xsl</strong>
-															<br>
-															400 kb
-															<br>
-															<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> Share</a>
-														</li>
-													</ul>
-												</div>
-												</tr>
-											</div>
-											
-										</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="text-center error-box">
+									<h1 class="error-text tada animated"><i class="fa fa-times-circle text-danger error-icon-shadow"></i> Error 500</h1>
+									<h2 class="font-xl"><strong>Oooops, Something went wrong!</strong></h2>
+									<br />
+									<p class="lead semi-bold">
+										<strong>You have experienced a technical error. We apologize.</strong><br><br>
+										<small>
+											We are working hard to correct this issue. Please wait a few moments and try your search again. <br> In the meantime, check out whats new on SmartAdmin:
+										</small>
+									</p>
+									<ul class="error-search text-left font-md">
+							            <li><a href="javascript:void(0);"><small>Go to My Dashboard <i class="fa fa-arrow-right"></i></small></a></li>
+							            <li><a href="javascript:void(0);"><small>Contact SmartAdmin IT Staff <i class="fa fa-mail-forward"></i></small></a></li>
+							            <li><a href="javascript:void(0);"><small>Report error!</small></a></li>
+							            <li><a href="javascript:void(0);"><small>Go back</small></a></li>
+							        </ul>
+								</div>
 				
-									</div>
+							</div>
 				
+						</div>
+				
+					</div>
+					
 				</div>
-				
 				<!-- end row -->
 
 			</div>
@@ -574,53 +667,10 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> ÃÂÃÂ© 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin </span>
 				</div>
 
-				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
-					<div class="txt-color-white inline-block">
-						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
-						<div class="btn-group dropup">
-							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
-								<i class="fa fa-link"></i> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu pull-right text-left">
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Server Load</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<button class="btn btn-block btn-default">refresh</button>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 		<!-- END PAGE FOOTER -->
@@ -749,75 +799,75 @@
 		<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
-		
-		<script
-		src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
-		
-		
-		<!-- PAGE RELATED PLUGIN(S) -->
-		
-		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.cust.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.cust.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.resize.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.resize.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.time.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.time.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.tooltip.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.tooltip.min.js"></script> -->
-		
-		<!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
-		<script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js' />"></script>
-		<!-- <script src="js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js' />"></script>
-		<!-- <script src="js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script> -->
-		
-		<!-- Full Calendar -->
-		<script src="<c:url value='/resources/js/plugin/moment/moment.min.js' />"></script>
-		<!-- <script src="js/plugin/moment/moment.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/fullcalendar/jquery.fullcalendar.min.js' />"></script>
-		<!-- <script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/summernote/summernote.min.js' />"></script>
-		<!-- <script src="js/plugin/summernote/summernote.min.js"></script> -->
 
-		<script>
+		<!-- PAGE RELATED PLUGIN(S) 
+		<script src="..."></script>-->
+
+		<script type="text/javascript">
+
 			$(document).ready(function() {
-
-				// DO NOT REMOVE : GLOBAL FUNCTIONS!
-				pageSetUp();
-
-				/*
-				 * PAGE RELATED SCRIPTS
+			 	
+				/* DO NOT REMOVE : GLOBAL FUNCTIONS!
+				 *
+				 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+				 *
+				 * // activate tooltips
+				 * $("[rel=tooltip]").tooltip();
+				 *
+				 * // activate popovers
+				 * $("[rel=popover]").popover();
+				 *
+				 * // activate popovers with hover states
+				 * $("[rel=popover-hover]").popover({ trigger: "hover" });
+				 *
+				 * // activate inline charts
+				 * runAllCharts();
+				 *
+				 * // setup widgets
+				 * setup_widgets_desktop();
+				 *
+				 * // run form elements
+				 * runAllForms();
+				 *
+				 ********************************
+				 *
+				 * pageSetUp() is needed whenever you load a page.
+				 * It initializes and checks for all basic elements of the page
+				 * and makes rendering easier.
+				 *
 				 */
 				
+				 pageSetUp();
+				 
+				/*
+				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
+				 * eg alert("my home function");
+				 * 
+				 * var pagefunction = function() {
+				 *   ...
+				 * }
+				 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
+				 * 
+				 * TO LOAD A SCRIPT:
+				 * var pagefunction = function (){ 
+				 *  loadScript(".../plugin.js", run_after_loaded);	
+				 * }
+				 * 
+				 * OR
+				 * 
+				 * loadScript(".../plugin.js", run_after_loaded);
+				 */
 				
-			    
-			    $('#forumPost').summernote({
-					height : 180,
-					focus : false,
-					tabsize : 2
-				});
-			    $('#forumPostevaluate').summernote({
-					height : 180,
-					focus : false,
-					tabsize : 2
-				});
-				$('#forumPostRemarks').summernote({
-					height : 180,
-					focus : false,
-					tabsize : 2
-				});
-			});
-			
-			
+			})
+		
 		</script>
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-			_gaq.push(['_trackPageview']);
-
+				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+				_gaq.push(['_trackPageview']);
+			
 			(function() {
 				var ga = document.createElement('script');
 				ga.type = 'text/javascript';

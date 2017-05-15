@@ -1,19 +1,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html lang="en-us">
-	<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
 		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
-		<title> Guidance Dash </title>
+		<title> Search Unit </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+		
 		<!-- #CSS Links -->
 		<!-- Basic Styles -->
 		<link href='<c:url value="/resources/css/bootstrap.min.css" />' rel="stylesheet">
@@ -40,7 +37,6 @@
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
 		<link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet">
-
 
 		<!-- #FAVICONS -->
 		<link href='<c:url value="/resources/img/favicon/favicon.ico" />' rel="shortcut icon" type="image/x-icon">
@@ -76,7 +72,7 @@
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
 
 	</head>
-	
+
 	<!--
 
 	TABLE OF CONTENTS.
@@ -96,12 +92,11 @@
 	|  09. #MOBILE                   |  mobile view dropdown          |
 	|  10. #SEARCH                   |  search field                  |
 	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #RIGHT PANEL              |  right panel userlist          |
-	|  13. #MAIN PANEL               |  main panel                    |
-	|  14. #MAIN CONTENT             |  content holder                |
-	|  15. #PAGE FOOTER              |  page footer                   |
-	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  17. #PLUGINS                  |  all scripts and plugins       |
+	|  12. #MAIN PANEL               |  main panel                    |
+	|  13. #MAIN CONTENT             |  content holder                |
+	|  14. #PAGE FOOTER              |  page footer                   |
+	|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  16. #PLUGINS                  |  all scripts and plugins       |
 	
 	===================================================================
 	
@@ -122,33 +117,13 @@
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
 	<body class="">
-	
-		<%
-			String profileimage = (String)request.getAttribute("ProfileImage");
-			String gender = (String)request.getAttribute("Gender");
-			String profilename = (String)request.getAttribute("FullName");
-			Timetable timeline = (Timetable)request.getAttribute("TimeTable");
-			GuidanceContentShared guidanceshare = (GuidanceContentShared)request.getAttribute("GuidShared");
-			GuidanceContentDashboard guiddash = (GuidanceContentDashboard)request.getAttribute("GuidDashBoard");
-			Blog blogs = (Blog)request.getAttribute("GuidBlog");
-			String logo = "";
-			String guidanceid = (String)request.getAttribute("guidanceid");
-			String timetableid = timeline.getTimeableid();
-			String guideshareid = guidanceshare.getGuidancesharedid();
-			String guidedash = guiddash.getGuidancecontentDashid();
-			String dataid = "";
-			String leaderboardid = "";
-			String discussionid = "";
-			
-		
-		%>
 
-		<!-- HEADER -->
+		<!-- #HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
+				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -196,28 +171,27 @@
 			</div>
 
 			<!-- projects dropdown -->
-			<div class="project-context hidden-xs" >
+	<div class="project-context hidden-xs">
 
-				<span class="label">Projects:</span>
-				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
+		<span class="label">Projects:</span> <span
+			class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
+			projects <i class="fa fa-angle-down"></i>
+		</span>
 
-				<!-- Suggestion: populate this list with fetch and push technique -->
-				<ul class="dropdown-menu" style="border: 1px solid black">
-					<h5>Daily Note</h5>
-					<li>
-						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
-					</li>
-					
-					<li class="divider"></li>
-					<li>
-						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
-					</li>
-				</ul>
-				<!-- end dropdown-menu-->
+		<!-- Suggestion: populate this list with fetch and push technique -->
+		<ul class="dropdown-menu" style="border: 1px solid black">
+			<h5>Daily Note</h5>
+			<li><textarea id="notemessage" class="form-control"
+					name="notemessage" rows="3" style="width: 400px"></textarea></li>
 
-			</div>
-			
-			<!-- end projects dropdown -->
+			<li class="divider"></li>
+			<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
+					Note Down</a></li>
+		</ul>
+		<!-- end dropdown-menu-->
+
+	</div>
+	<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
 			<div class="pull-right">
@@ -261,7 +235,7 @@
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="logout?" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+					<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
 				<!-- end logout button -->
 
@@ -270,38 +244,6 @@
 					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
 				</div>
 				<!-- end search mobile button -->
-
-				<!-- input: search field -->
-				<form action="searchresults?" class="header-search pull-right">
-					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"]'>
-					<button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-				</form>
-				<!-- end input: search field -->
 
 				<!-- fullscreen button -->
 				<div id="fullscreen" class="btn-header transparent pull-right">
@@ -338,19 +280,19 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃÂ§ais</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃÂ±ol</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
 							</li>
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> Ã¦âÂ¥Ã¦ÅÂ¬Ã¨ÂªÅ¾</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> Ã¤Â¸Â­Ã¦ââ¡</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
 							</li>	
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
@@ -359,10 +301,10 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> ÃÂ ÃÆÃÂÃÂÃÂºÃÂ¸ÃÂ¹ ÃÂÃÂ·Ãâ¹ÃÂº</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Ã­â¢ÅÃªÂµÂ­Ã¬âÂ´</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
 							</li>						
 							
 						</ul>
@@ -379,189 +321,290 @@
 		<!-- #NAVIGATION -->
 		<!-- Left panel : Navigation area -->
 		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
-		<aside id="left-panel">
-
-			<!-- User info -->
-			<div class="login-info">
-			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
-
-				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <%if(profileimage == ""){
-					if(gender.equalsIgnoreCase("female")){
-						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
-					alt="me" class="online" /> <%
-					}else{
-						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
-					alt="me" class="online" /> <% 
-					}
-				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=profilename%>
-				</span> <i class="fa fa-angle-down"></i>
-			</a>
-
-			</span>
-		</div>
-			<!-- end user info -->
-
-			<nav>
-				<!-- 
-				NOTE: Notice the gaps after each icon usage <i></i>..
-				Please note that these links work a bit different than
-				traditional href="" links. See documentation for details.
-				-->
-
-				<ul>
-		<li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span
-				class="menu-item-parent">Guidance Dash</span> </a></li>
-		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-share-square-o"></i> <span
-				class="menu-item-parent">Guidance Share</span> </a></li>
-
-		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-calendar"></i>
-				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
-		</li>
-		<li><a href="gotoguidanceexcersize?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-qrcode"></i>
-				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
-		</li>
-		<li class="active"><a href="#"><i class="fa fa-lg fa-fw fa-sitemap txt-color-blue"></i>
-				<span class="menu-item-parent">Guidance Project</span> </a>
-					<ul>
-					<li class="active"><a href="gotoguidanceproject?guidanceid=<%=guidanceid%>" title="OverView"><i
-							class="fa fa-tags"></i><span class="menu-item-parent">OverView</span></a>
-					</li>
-					<li class=""><a href="gotoguidanceprojectdata?dataid=<%=dataid%>" title="Data"><i
-							class="fa fa-tags"></i><span class="menu-item-parent">Data</span></a>
-					</li>
-					<li class=""><a href="gotoguidanceprojectleaderboard?leaderboardid=<%=leaderboardid%>" title="LeaderBoard"><i
-							class="fa fa-tags"></i><span class="menu-item-parent">LeaderBoard</span></a>
-					</li>
-					<li class=""><a href="gotoguidanceprojectdiscussion?discussionid=<%=discussionid%>" title="Discussion"><i
-							class="fa fa-tags"></i><span class="menu-item-parent">Discussion</span></a>
-					</li>
-				</ul>
-				
-				</li>
-		</li>
-	</ul>
-			</nav>
-			
-
-			<span class="minifyme" data-action="minifyMenu"> 
-				<i class="fa fa-arrow-circle-left hit"></i> 
-			</span>
-
-		</aside>
+		
 		<!-- END NAVIGATION -->
 
 		<!-- MAIN PANEL -->
-		<div id="main" role="main">
+		<div id="main" role="main" style="margin-left: 0px">
 
 			<!-- RIBBON -->
-			<div id="ribbon">
-
-				<span class="ribbon-button-alignment"> 
-					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
-						<i class="fa fa-refresh"></i>
-					</span> 
-				</span>
-
-				<!-- breadcrumb -->
-				<ol class="breadcrumb">
-					<li>Project</li>
-				</ol>
-				<!-- end breadcrumb -->
-
-				<!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right">
-				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-				</span> -->
-
-			</div>
+			
 			<!-- END RIBBON -->
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
-
-				<!-- row -->
-				
 				<div class="row">
+					<div class="col-sm-12 col-md-6 col-lg-12">
 				
-					<div class="widget-body">
-										
-										<ul id="myTab1" class="nav nav-tabs bordered">
-											<li class="active">
-												<a href="#s1" data-toggle="tab">Description</a>
+									<!-- well -->
+									<div class="well" style="direction: rtl;">
+										<ul class="demo-btns">
+											<li>
+												<a href="#" id="eg1" class="btn btn-primary"> <i class="fa fa-user-md"></i> Follow 1 </a>
 											</li>
 											<li>
-												<a href="#s2" data-toggle="tab">Evaluate</a>
+												<a href="#" id="eg2" class="btn btn-primary"> <i class="fa fa-code-fork"></i> Fork 2 </a>
 											</li>
 											<li>
-												<a href="#s3" data-toggle="tab">Remarks</a>
+												<a href="#" id="eg3" class="btn btn-primary"> <i class="fa fa-shield"></i> Example 3 </a>
 											</li>
-											
+											<li>
+												<a href="#" id="eg4" class="btn btn-primary"> <i class="fa fa-check"></i> Example 4 </a>
+											</li>
 										</ul>
 				
-										<div id="myTabContent1" class="tab-content padding-10">
-											<div class="tab-pane fade in active" id="s1">
-												<p>
-													I have six locks on my door all in a row. When I go out, I lock every other one. I figure no matter how long somebody stands there picking the locks, they are always locking three.
-												</p>
-											</div>
-											<div class="tab-pane fade" id="s2">
-												<h1><img alt="Saturn V carrying Apollo 11" class="right" src="img/demo/sample.jpg" /> Apollo 11</h1>
-
-												<p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p>
-												
-												<p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)" title="Michael Collins (astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module" title="Apollo Command/Service Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-												
-												<h2>Broadcasting and <em>quotes</em> <a id="quotes" name="quotes"></a></h2>
-												
-												<p>Broadcast on live TV to a world-wide audience, Armstrong stepped onto the lunar surface and described the event as:</p>
-												
-												<blockquote>
-												<p>One small step for [a] man, one giant leap for mankind.</p>
-												</blockquote>
-
-											</div>
-											<div class="tab-pane fade" id="s3">
-												<tr>
-												<p>
-													Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.
-												</p>
-												<div class="forum-attachment">
-													2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a>
-													<ul class="list-inline margin-top-10">
-														<li class="well well-sm padding-5">
-															<strong>rocketlaunch.jpg</strong>
-															<br>
-															400 kb
-															<br>
-															<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> View</a>
+									</div>
+									<!-- end well -->
+				
+									<!-- well -->
+									
+									<!-- end well -->
+				
+								</div>
+				
+				</div>
+				<!-- row -->
+				<section id="widget-grid" class="">
+				
+					<!-- row -->
+					<div class="row">
+				
+						<!-- NEW WIDGET START -->
+						<article class="col-sm-12 col-md-12 col-lg-4">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-black" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false"
+							data-widget-colorbutton="false" >
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon">  </span>
+									<h2>Project View</h2>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body">
+				
+										<div class="widget-body-toolbar bg-color-white">
+				
+											<form class="form-inline" role="form">
+				
+												<div class="row">
+				
+													<div class="col-sm-12 col-md-10">
+				
+														<div class="form-group">
+															<label class="sr-only">Branch</label>
+															<select class="form-control input-sm">
+																<option>Week 1</option>
+																<option>Week 2</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label class="sr-only">Days</label>
+															<select class="form-control input-sm">
+																<option>Monday</option>
+																<option>Tuesday</option>
+																<option>Wednesday</option>
+																<option>Thursday</option>
+																<option>Friday</option>
+																<option>Saturday</option>
+																<option>Sunday</option>
+															</select>
+														</div>
+				
+													</div>
+				
+													<div class="col-sm-12 col-md-2 text-align-right">
+				
+														<button type="submit" class="btn btn-warning btn-xs">
+															<i class="fa fa-plus"></i> Add File
+														</button>
+				
+													</div>
+				
+												</div>
+				
+											</form>
+				
+										</div>
+				
+										<div class="tree">
+											<ul>
+												<li>
+													<span><i class="fa fa-lg fa-calendar"></i> 2013, Week 2</span>
+													<ul>
+														<li>
+															<span class="label label-success"><i class="fa fa-lg fa-plus-circle"></i> Monday, January 7: 8.00 hours</span>
+															<ul>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 8.00</span> &ndash; <a href="javascript:void(0);">Changed CSS to accomodate...</a>
+																</li>
+															</ul>
 														</li>
-														<li class="well well-sm padding-5">
-															<strong>budget.xsl</strong>
-															<br>
-															400 kb
-															<br>
-															<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> Share</a>
+														<li>
+															<span class="label label-success"><i class="fa fa-lg fa-minus-circle"></i> Tuesday, January 8: 8.00 hours</span>
+															<ul>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 6.00</span> &ndash; <a href="javascript:void(0);">Altered code...</a>
+																</li>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 2.00</span> &ndash; <a href="javascript:void(0);">Simplified our approach to...</a>
+																</li>
+															</ul>
+														</li>
+														<li>
+															<span class="label label-warning"><i class="fa fa-lg fa-minus-circle"></i> Wednesday, January 9: 6.00 hours</span>
+															<ul>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 3.00</span> &ndash; <a href="javascript:void(0);">Fixed bug caused by...</a>
+																</li>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 3.00</span> &ndash; <a href="javascript:void(0);">Comitting latest code to Git...</a>
+																</li>
+															</ul>
+														</li>
+														<li>
+															<span class="label label-danger"><i class="fa fa-lg fa-minus-circle"></i> Wednesday, January 9: 4.00 hours</span>
+															<ul>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 2.00</span> &ndash; <a href="javascript:void(0);">Create component that...</a>
+																</li>
+															</ul>
 														</li>
 													</ul>
-												</div>
-												</tr>
-											</div>
-											
+												</li>
+												<li>
+													<span><i class="fa fa-lg fa-calendar"></i> 2013, Week 3</span>
+													<ul>
+														<li>
+															<span class="label label-success"><i class="fa fa-lg fa-minus-circle"></i> Monday, January 14: 8.00 hours</span>
+															<ul>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 7.75</span> &ndash; <a href="javascript:void(0);">Writing documentation...</a>
+																</li>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 0.25</span> &ndash; <a href="javascript:void(0);">Reverting code back to...</a>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
 										</div>
 				
 									</div>
+									<!-- end widget content -->
 				
-				</div>
+								</div>
+								<!-- end widget div -->
 				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+						<!-- WIDGET END -->
+				
+						<!-- NEW WIDGET START -->
+						<article class="col-sm-12 col-md-6 col-lg-8">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-black" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false" data-widget-deletebutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+									<h2>Markdown</h2>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body no-padding">
+				
+										<textarea id="mymarkdown" class="custom-scroll" >
+				### Hello there 
+				How are you?
+				
+				I have bellow task for you :
+				
+				Select from this text...
+				Click the bold on THIS WORD and make THESE ONE italic
+				Link GOOGLE to google.com
+				Test to insert image (and try to tab after write the image description)
+				Test Preview
+				And ending here... Click "List"
+				
+				Enjoy!							
+										</textarea>
+																
+									</div>
+									<!-- end widget content -->
+				
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+						<!-- WIDGET END -->
+				
+					</div>
+				
+					<!-- end row -->
+				
+					<!-- row -->
+				
+					<div class="row">
+				
+					</div>
+				
+					<!-- end row -->
+				
+				</section>
 				<!-- end row -->
 
 			</div>
@@ -574,53 +617,10 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> ÃÂÃÂ© 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin </span>
 				</div>
 
-				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
-					<div class="txt-color-white inline-block">
-						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
-						<div class="btn-group dropup">
-							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
-								<i class="fa fa-link"></i> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu pull-right text-left">
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Server Load</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<button class="btn btn-block btn-default">refresh</button>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 		<!-- END PAGE FOOTER -->
@@ -749,75 +749,174 @@
 		<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
-		
-		<script
-		src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
-		
-		
-		<!-- PAGE RELATED PLUGIN(S) -->
-		
-		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.cust.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.cust.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.resize.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.resize.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.time.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.time.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.tooltip.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.tooltip.min.js"></script> -->
-		
-		<!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
-		<script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js' />"></script>
-		<!-- <script src="js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js' />"></script>
-		<!-- <script src="js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script> -->
-		
-		<!-- Full Calendar -->
-		<script src="<c:url value='/resources/js/plugin/moment/moment.min.js' />"></script>
-		<!-- <script src="js/plugin/moment/moment.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/fullcalendar/jquery.fullcalendar.min.js' />"></script>
-		<!-- <script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/summernote/summernote.min.js' />"></script>
-		<!-- <script src="js/plugin/summernote/summernote.min.js"></script> -->
 
-		<script>
+		<!-- PAGE RELATED PLUGIN(S) 
+		<script src="..."></script>-->
+		<script src="<c:url value='/resources/js/plugin/markdown/markdown.min.js' />"></script>
+		<!-- <script src="js/plugin/markdown/markdown.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/markdown/to-markdown.min.js' />"></script>
+		<!-- <script src="js/plugin/markdown/to-markdown.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/markdown/bootstrap-markdown.min.js' />"></script>
+		<!-- <script src="js/plugin/markdown/bootstrap-markdown.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js' />"></script>
+		<!-- <script src="js/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js"></script> -->
+
+		<script type="text/javascript">
+
 			$(document).ready(function() {
-
-				// DO NOT REMOVE : GLOBAL FUNCTIONS!
-				pageSetUp();
-
-				/*
-				 * PAGE RELATED SCRIPTS
+			 	
+				/* DO NOT REMOVE : GLOBAL FUNCTIONS!
+				 *
+				 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+				 *
+				 * // activate tooltips
+				 * $("[rel=tooltip]").tooltip();
+				 *
+				 * // activate popovers
+				 * $("[rel=popover]").popover();
+				 *
+				 * // activate popovers with hover states
+				 * $("[rel=popover-hover]").popover({ trigger: "hover" });
+				 *
+				 * // activate inline charts
+				 * runAllCharts();
+				 *
+				 * // setup widgets
+				 * setup_widgets_desktop();
+				 *
+				 * // run form elements
+				 * runAllForms();
+				 *
+				 ********************************
+				 *
+				 * pageSetUp() is needed whenever you load a page.
+				 * It initializes and checks for all basic elements of the page
+				 * and makes rendering easier.
+				 *
 				 */
 				
+				 pageSetUp();
+				 
+				/*
+				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
+				 * eg alert("my home function");
+				 * 
+				 * var pagefunction = function() {
+				 *   ...
+				 * }
+				 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
+				 * 
+				 * TO LOAD A SCRIPT:
+				 * var pagefunction = function (){ 
+				 *  loadScript(".../plugin.js", run_after_loaded);	
+				 * }
+				 * 
+				 * OR
+				 * 
+				 * loadScript(".../plugin.js", run_after_loaded);
+				 */
+				 
+				 $('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
+					$('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch').on('click', function(e) {
+						var children = $(this).parent('li.parent_li').find(' > ul > li');
+						if (children.is(':visible')) {
+							children.hide('fast');
+							$(this).attr('title', 'Expand this branch').find(' > i').removeClass().addClass('fa fa-lg fa-plus-circle');
+						} else {
+							children.show('fast');
+							$(this).attr('title', 'Collapse this branch').find(' > i').removeClass().addClass('fa fa-lg fa-minus-circle');
+						}
+						e.stopPropagation();
+					});		
+				 
+				 $("#mymarkdown").markdown({
+						autofocus:false,
+						savable:true
+					})
+					
+					
+				$('#eg1').click(function(e) {
+		
+				$.bigBox({
+					title : "Big Information box",
+					content : "This message will dissapear in 6 seconds!",
+					color : "#C46A69",
+					//timeout: 6000,
+					icon : "fa fa-warning shake animated",
+					number : "1",
+					timeout : 6000
+				});
+		
+				e.preventDefault();
+		
+			})
+		
+			$('#eg2').click(function(e) {
+		
+				$.bigBox({
+					title : "Big Information box",
+					content : "Lorem ipsum dolor sit amet, test consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+					color : "#3276B1",
+					//timeout: 8000,
+					icon : "fa fa-bell swing animated",
+					number : "2"
+				});
+		
+				e.preventDefault();
+			})
+		
+			$('#eg3').click(function(e) {
+		
+				$.bigBox({
+					title : "Shield is up and running!",
+					content : "Lorem ipsum dolor sit amet, test consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+					color : "#C79121",
+					//timeout: 8000,
+					icon : "fa fa-shield fadeInLeft animated",
+					number : "3"
+				});
+		
+				e.preventDefault();
+		
+			})
+		
+			$('#eg4').click(function(e) {
+		
+				$.bigBox({
+					title : "Success Message Example",
+					content : "Lorem ipsum dolor sit amet, test consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+					color : "#739E73",
+					//timeout: 8000,
+					icon : "fa fa-check",
+					number : "4"
+				}, function() {
+					closedthis();
+				});
+		
+				e.preventDefault();
+		
+			})	
+			
+			function closedthis() {
+				$.smallBox({
+					title : "Great! You just closed that last alert!",
+					content : "This message will be gone in 5 seconds!",
+					color : "#739E73",
+					iconSmall : "fa fa-cloud",
+					timeout : 5000
+				});
+			}
 				
-			    
-			    $('#forumPost').summernote({
-					height : 180,
-					focus : false,
-					tabsize : 2
-				});
-			    $('#forumPostevaluate').summernote({
-					height : 180,
-					focus : false,
-					tabsize : 2
-				});
-				$('#forumPostRemarks').summernote({
-					height : 180,
-					focus : false,
-					tabsize : 2
-				});
-			});
-			
-			
+			})
+		
 		</script>
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-			_gaq.push(['_trackPageview']);
-
+				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+				_gaq.push(['_trackPageview']);
+			
 			(function() {
 				var ga = document.createElement('script');
 				ga.type = 'text/javascript';

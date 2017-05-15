@@ -464,6 +464,13 @@
 				<li class=""><a href="assignmentAnswer?" title="Companies"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Assignment Answer Test</span></a>
 				</li>
+				<li class=""><a href="projectstructure?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Project Directory</span></a>
+				</li>
+				<li class=""><a href="projectviewdetail?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Project View</span></a>
+				</li>
+				
 			</ul></li>		
 
 		<li class="chat-users top-menu-invisible"><a href="#"><i

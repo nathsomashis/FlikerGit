@@ -1071,6 +1071,23 @@ public class GuidancePreview {
 		
 		return userid;
 	}
+	
+	
+	public String getGuidanceProvideruserid(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		String userid = "";
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			userid = (String)theObj.get("provideruserid");
+		}
+		
+		
+		return userid;
+	}
 
 
 	public String getGuidanceType(String guidanceid, String accessuserid) {

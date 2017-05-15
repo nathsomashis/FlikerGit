@@ -3,6 +3,7 @@ package com.fliker.Controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeoutException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -642,8 +643,11 @@ public class GuidanceController {
 	@RequestMapping("/gotoguidanceproject")
 	public ModelAndView goToGuidanceProject(
 			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,
+			@RequestParam(value = "logid", required = false, defaultValue = "World") String logid,
 			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
+		
+		try{
  
 		ArrayList resourcesSearch = new ArrayList();
 		
@@ -690,6 +694,10 @@ public class GuidanceController {
 		
 		//mv.addObject("postlist", postlist);
 		return mv;
+		}catch (Exception timewex){
+			ModelAndView mv = new ModelAndView("/ErrorTimeOut");
+			return mv;
+		}
 	}
 	
 	
