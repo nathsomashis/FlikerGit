@@ -127,15 +127,20 @@
 			String profileimage = (String)request.getAttribute("ProfileImage");
 			String gender = (String)request.getAttribute("Gender");
 			String profilename = (String)request.getAttribute("FullName");
-			Timetable timeline = (Timetable)request.getAttribute("TimeTable");
+			String logo = "";
+			String guidanceid = "";
+			String timetableid = "";
+			String guideshareid = "";
+			String guidedash = "";
+			/* Timetable timeline = (Timetable)request.getAttribute("TimeTable");
 			GuidanceContentShared guidanceshare = (GuidanceContentShared)request.getAttribute("GuidShared");
 			GuidanceContentDashboard guiddash = (GuidanceContentDashboard)request.getAttribute("GuidDashBoard");
 			Blog blogs = (Blog)request.getAttribute("GuidBlog");
-			String logo = "";
+			
 			String guidanceid = (String)request.getAttribute("guidanceid");
 			String timetableid = timeline.getTimeableid();
 			String guideshareid = guidanceshare.getGuidancesharedid();
-			String guidedash = guiddash.getGuidancecontentDashid();
+			String guidedash = guiddash.getGuidancecontentDashid(); */
 			
 		
 		%>

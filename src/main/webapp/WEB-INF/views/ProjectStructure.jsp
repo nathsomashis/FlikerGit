@@ -321,622 +321,290 @@
 		<!-- #NAVIGATION -->
 		<!-- Left panel : Navigation area -->
 		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
-		<aside id="left-panel">
-
-			<!-- User info -->
-			<%
 		
-			String fullname = (String)request.getAttribute("FullName");
-			String gender = (String)request.getAttribute("Gender");
-			String imageid = (String)request.getAttribute("ProfileImage");
-			String logo = "";
-			
-			
-		
-		%>
-
-
-		<!-- User info -->
-
-		<%
-		/* if(imageid == ""){
-			if(gender.equalsIgnoreCase("female")){
-				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
-			}else{
-				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
-			}
-		}else{
-			
-		} */
-		
-		
-		%>
-		<div class="login-info">
-			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
-
-				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <%if(imageid == ""){
-					if(gender.equalsIgnoreCase("female")){
-						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
-					alt="me" class="online" /> <%
-					}else{
-						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
-					alt="me" class="online" /> <% 
-					}
-				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
-				</span> <i class="fa fa-angle-down"></i>
-			</a>
-
-			</span>
-		</div>
-		<!-- end user info -->
-			
-
-			<nav>
-				<!-- 
-				NOTE: Notice the gaps after each icon usage <i></i>..
-				Please note that these links work a bit different than
-				traditional href="" links. See documentation for details.
-				-->
-
-				<ul>
-		<li class="active"><a href="search?"><i
-				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
-				class="menu-item-parent">Search</span> </a></li>
-		<!-- <li><a href="dashboardanalysis?"><i
-				class="fa fa-lg fa-fw fa-briefcase"></i> <span
-				class="menu-item-parent">Dashboard</span> </a></li> -->
-		<li ><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet "></i> <span
-				class="menu-item-parent">Wall</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-
-		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
-				<span class="menu-item-parent">Profile</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
-				<span class="menu-item-parent">Timeline</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		<li><a href="createpost?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
-		</li>
-		<li><a href="classroom?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-		</li>
-		<li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
-			<ul>
-				<li class=""><a href="courseEdu?" title="NewPost"><i
-						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
-				</li>
-				<li class=""><a href="otherprofile?" title="ClassRoom"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-				</li>
-			</ul></li>
-		 <!-- <li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
-			<ul>		
-				<li class="active"><a href="#" title="NewCourse"><i
-								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
-								</li>
-				<li class=""><a href="createcourse?" title="NewCourse"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Course</span></a></li>	
-				<li class=""><a href="newspecialization?" title="NewSpecialization"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Specialization</span></a></li>
-				<li class=""><a href="neworganizations?" title="NewInstitution"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>
-			</ul>
-		</li> -->
-		<li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-briefcase"></i> <span
-				class="menu-item-parent">OSM</span></a>
-			<ul>
-				<li class=""><a href="ideatoimplement?" title="NewPost"><i
-						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
-				</li>
-				<li class=""><a href="osmprojectinfo?" title="NewJob"><i
-						class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
-				</li>
-				
-			</ul></li>
-		<!-- <li class=""><a href="organizations?" title="Organizations"><i
-						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
-				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
-						class="fa fa-plus-square"></i><span class="menu-item-parent">New Opportunity</span></a>
-				</li>
-				<li class=""><a href="companies?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Start New Company</span></a>
-				</li>
-			</ul></li> -->
-		<li class=""><a href="#" title="Organizations"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
-				<ul>
-				<li class=""><a href="standardguidance?" title="Academic"><i
-						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
-				</li>
-				<li class=""><a href="professionalguidance?" title="Profesional"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
-				</li>
-				<li class=""><a href="gotoguidance?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">GuidanceSheet Test</span></a>
-				</li>
-				<li class=""><a href="assignmentAnswer?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Assignment Answer Test</span></a>
-				</li>
-				<li class=""><a href="projectstructure?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Project Directory</span></a>
-				</li>
-				<li class=""><a href="projectviewdetail?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Project View</span></a>
-				</li>
-				
-			</ul></li>		
-
-		<li class="chat-users top-menu-invisible"><a href="#"><i
-				class="fa fa-lg fa-fw fa-comment-o"><em
-					class="bg-color-pink flash animated">!</em></i> <span
-				class="menu-item-parent">Smart Chat API <sup>beta</sup></span></a>
-			<ul>
-				<li>
-					<!-- DISPLAY USERS -->
-					<div class="display-users">
-
-						<input class="form-control chat-user-filter" placeholder="Filter"
-							type="text"> <a href="#" class="usr" data-chat-id="cha1"
-							data-chat-fname="Sadi" data-chat-lname="Orlaf"
-							data-chat-status="busy"
-							data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
-							data-chat-alertshow="true" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
-											<div class='usr-card'>
-												<img src='img/avatars/5.png' alt='Sadi Orlaf'>
-												<div class='usr-card-content'>
-													<h3>Sadi Orlaf</h3>
-													<p>Marketing Executive</p>
-												</div>
-											</div>
-										">
-							<i></i>Sadi Orlaf
-						</a> <a href="#" class="usr" data-chat-id="cha2"
-							data-chat-fname="Jessica" data-chat-lname="Dolof"
-							data-chat-status="online" data-chat-alertmsg=""
-							data-chat-alertshow="false" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
-											<div class='usr-card'>
-												<img src='img/avatars/1.png' alt='Jessica Dolof'>
-												<div class='usr-card-content'>
-													<h3>Jessica Dolof</h3>
-													<p>Sales Administrator</p>
-												</div>
-											</div>
-										">
-							<i></i>Jessica Dolof
-						</a> <a href="#" class="usr" data-chat-id="cha3"
-							data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
-							data-chat-status="online" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
-											<div class='usr-card'>
-												<img src='img/avatars/3.png' alt='Zekarburg Almandalie'>
-												<div class='usr-card-content'>
-													<h3>Zekarburg Almandalie</h3>
-													<p>Sales Admin</p>
-												</div>
-											</div>
-										">
-							<i></i>Zekarburg Almandalie
-						</a> <a href="#" class="usr" data-chat-id="cha4"
-							data-chat-fname="Barley" data-chat-lname="Krazurkth"
-							data-chat-status="away" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
-											<div class='usr-card'>
-												<img src='img/avatars/4.png' alt='Barley Krazurkth'>
-												<div class='usr-card-content'>
-													<h3>Barley Krazurkth</h3>
-													<p>Sales Director</p>
-												</div>
-											</div>
-										">
-							<i></i>Barley Krazurkth
-						</a> <a href="#" class="usr offline" data-chat-id="cha5"
-							data-chat-fname="Farhana" data-chat-lname="Amrin"
-							data-chat-status="incognito" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
-											<div class='usr-card'>
-												<img src='img/avatars/female.png' alt='Farhana Amrin'>
-												<div class='usr-card-content'>
-													<h3>Farhana Amrin</h3>
-													<p>Support Admin <small><i class='fa fa-music'></i> Playing Beethoven Classics</small></p>
-												</div>
-											</div>
-										">
-							<i></i>Farhana Amrin (offline)
-						</a> <a href="#" class="usr offline" data-chat-id="cha6"
-							data-chat-fname="Lezley" data-chat-lname="Jacob"
-							data-chat-status="incognito" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
-											<div class='usr-card'>
-												<img src='img/avatars/male.png' alt='Lezley Jacob'>
-												<div class='usr-card-content'>
-													<h3>Lezley Jacob</h3>
-													<p>Sales Director</p>
-												</div>
-											</div>
-										">
-							<i></i>Lezley Jacob (offline)
-						</a> <a href="ajax/chat.html"
-							class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
-							the API</a>
-
-					</div> <!-- END DISPLAY USERS -->
-				</li>
-			</ul></li>
-	</ul>
-			</nav>
-			
-
-			<span class="minifyme" data-action="minifyMenu"> 
-				<i class="fa fa-arrow-circle-left hit"></i> 
-			</span>
-
-		</aside>
 		<!-- END NAVIGATION -->
 
 		<!-- MAIN PANEL -->
-		<div id="main" role="main">
+		<div id="main" role="main" style="margin-left: 0px">
 
 			<!-- RIBBON -->
-			<div id="ribbon">
-
-				<span class="ribbon-button-alignment"> 
-					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
-						<i class="fa fa-refresh"></i>
-					</span> 
-				</span>
-
-				<!-- breadcrumb -->
-				<ol class="breadcrumb">
-					<li>Search Page</li>
-				</ol>
-				<!-- end breadcrumb -->
-
-				<!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right">
-				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-				</span> -->
-
-			</div>
+			
 			<!-- END RIBBON -->
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
-
-				<!-- row -->
-				
 				<div class="row">
+					<div class="col-sm-12 col-md-6 col-lg-12">
 				
-					<div class="col-sm-12">
-				
-						<ul id="myTab1" class="nav nav-tabs bordered">
-							<li class="active">
-								<a href="#s1" data-toggle="tab">Search</a>
-							</li>
-							<li>
-								<a href="#s2" data-toggle="tab">Content Search</a>
-							</li>
-							<li>
-								<a href="#s3" data-toggle="tab">Search History</a>
-							</li>
-							<!-- <li class="pull-right hidden-mobile">
-								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
-							</li> -->
-						</ul>
-				
-						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
-							<div class="tab-pane fade in active" id="s1">
-								<h1> Search <span class="semi-bold">Everything</span></h1>
-								<br>
-								<div class="input-group input-group-lg hidden-mobile">
-									<input class="form-control input-lg" type="text" placeholder="Search again..." id="search-project">
-									<div class="input-group-btn">
-										<button type="submit" class="btn btn-default">
-											&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
-										</button>
-									</div>
-								</div>
-				
-								<h1 class="font-md"> Search Results for <small class="text-danger"> &nbsp;&nbsp;(2,281 results)</small></h1>
-				
-								<div class="search-results clearfix smart-form">
-				
-									<h4><i class="fa fa-plus-square txt-color-blue"></i>&nbsp;<a href="javascript:void(0);">SmartAdmin - Responsive Dashboard Template</a></h4>
-				
-									<div>
-										<div class="rating display-inline">
-											<input type="radio" name="stars-rating" id="stars-rating-5">
-											<label for="stars-rating-5"><i class="fa fa-star"></i></label>
-											<input type="radio" name="stars-rating" id="stars-rating-4">
-											<label for="stars-rating-4"><i class="fa fa-star"></i></label>
-											<input type="radio" name="stars-rating" id="stars-rating-3">
-											<label for="stars-rating-3"><i class="fa fa-star"></i></label>
-											<input type="radio" name="stars-rating" id="stars-rating-2">
-											<label for="stars-rating-2"><i class="fa fa-star"></i></label>
-											<input type="radio" name="stars-rating" id="stars-rating-1">
-											<label for="stars-rating-1"><i class="fa fa-star"></i></label>
-										</div>
-										<br>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
-										</p>
-									</div>
-				
-								</div>
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here...
-										</p>
-									</div>
-								</div> -->
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-									<img src="img/demo/sample.jpg" alt="">
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Oct 1, 2006 - Uploaded by 02842356107
-											<br>
-											<br>
-											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
-										</p>
-									</div>
-				
-								</div> -->
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-				
-									<div>
-				
-										<span class="sparkline txt-color-blueLight" data-sparkline-type="line" data-sparkline-width="150px" data-sparkline-height="25px"> 10,3,8,4,3,10,7,8,4,6,4,6,8,3 </span>
-										<span class="display-inline note font-lg semi-bold"><small><i class="fa fa-arrow-circle-up text-success"></i> 143.43</small></span>
-				
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-										</p>
-									</div>
-				
-								</div> -->
-								
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);"> Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"></a><small>[PDF]</small></h4>
-									<span class="sparkline txt-color-blueLight display-inline" data-sparkline-type="pie"  data-sparkline-offset="90" data-sparkline-piesize="55px"> 10,3,8,4, </span>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
-										</p>
-									</div>
-				
-								</div> -->
-				
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-									</div>
-								</div> -->
-				
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
-										</p>
-									</div>
-								</div> -->
-				
-								<div class="text-center">
-									<hr>
-									<ul class="pagination no-margin">
-										<li class="prev disabled">
-											<a href="javascript:void(0);">Previous</a>
-										</li>
-										<li class="active">
-											<a href="javascript:void(0);">1</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">2</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">3</a>
-										</li>
-										<li class="next">
-											<a href="javascript:void(0);">Next</a>
-										</li>
-									</ul>
-									<br>
-									<br>
-									<br>
-								</div>
-				
-							</div>
-				
-							<div class="tab-pane fade" id="s2">
-								<h1> Search <span class="semi-bold">Users/Groups/Courses/Job Interviews/Organization/Institutions/Etc..</span></h1>
-								<br>
-								<div class="input-group input-group-lg">
-									<div class="input-group-btn">
-										<button id="searchparamset" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-											User <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li class="active">
-												<a href="javascript:void(0)"></i> Users</a>
+									<!-- well -->
+									<div class="well" style="direction: rtl;">
+										<ul class="demo-btns">
+											<li>
+												<a href="#" id="eg1" class="btn btn-primary"> <i class="fa fa-user-md"></i> Follow 1 </a>
 											</li>
 											<li>
-												<a href="javascript:void(0)">Groups</a>
+												<a href="#" id="eg2" class="btn btn-primary"> <i class="fa fa-code-fork"></i> Fork 2 </a>
 											</li>
 											<li>
-												<a href="javascript:void(0)">Organization</a>
+												<a href="#" id="eg3" class="btn btn-primary"> <i class="fa fa-shield"></i> Example 3 </a>
 											</li>
 											<li>
-												<a href="javascript:void(0)">Institutes</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Courses</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Job Interviews</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Specializations</a>
+												<a href="#" id="eg4" class="btn btn-primary"> <i class="fa fa-check"></i> Example 4 </a>
 											</li>
 										</ul>
+				
 									</div>
-									<input class="form-control input-lg" type="text" placeholder="Mention the type(eg: for Groups --> #Group groupname)..." id="search-user">
-									<div class="input-group-btn">
-										<button type="submit" class="btn btn-default">
-											<i class="fa fa-fw fa-search fa-lg"></i>
-										</button>
-									</div>
+									<!-- end well -->
+				
+									<!-- well -->
+									
+									<!-- end well -->
+				
 								</div>
-								<h1 class="font-md"> Search Results for <span class="semi-bold">Users</span><small class="text-danger"> &nbsp;&nbsp;(181 results)</small></h1>
-								<br>
-								<div class="search-results clearfix smart-form">
-									<div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-									<img src="img/demo/sample.jpg" alt="">
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+				
+				</div>
+				<!-- row -->
+				<section id="widget-grid" class="">
+				
+					<!-- row -->
+					<div class="row">
+				
+						<!-- NEW WIDGET START -->
+						<article class="col-sm-12 col-md-12 col-lg-4">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-black" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false"
+							data-widget-colorbutton="false" >
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon">  </span>
+									<h2>Project View</h2>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body">
+				
+										<div class="widget-body-toolbar bg-color-white">
+				
+											<form class="form-inline" role="form">
+				
+												<div class="row">
+				
+													<div class="col-sm-12 col-md-10">
+				
+														<div class="form-group">
+															<label class="sr-only">Branch</label>
+															<select class="form-control input-sm">
+																<option>Week 1</option>
+																<option>Week 2</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label class="sr-only">Days</label>
+															<select class="form-control input-sm">
+																<option>Monday</option>
+																<option>Tuesday</option>
+																<option>Wednesday</option>
+																<option>Thursday</option>
+																<option>Friday</option>
+																<option>Saturday</option>
+																<option>Sunday</option>
+															</select>
+														</div>
+				
+													</div>
+				
+													<div class="col-sm-12 col-md-2 text-align-right">
+				
+														<button type="submit" class="btn btn-warning btn-xs">
+															<i class="fa fa-plus"></i> Add File
+														</button>
+				
+													</div>
+				
+												</div>
+				
+											</form>
+				
 										</div>
-										<p class="description">
-											Oct 1, 2006 - Uploaded by 02842356107
-											<br>
-											<br>
-											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
-										</p>
+				
+										<div class="tree">
+											<ul>
+												<li>
+													<span><i class="fa fa-lg fa-calendar"></i> 2013, Week 2</span>
+													<ul>
+														<li>
+															<span class="label label-success"><i class="fa fa-lg fa-plus-circle"></i> Monday, January 7: 8.00 hours</span>
+															<ul>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 8.00</span> &ndash; <a href="javascript:void(0);">Changed CSS to accomodate...</a>
+																</li>
+															</ul>
+														</li>
+														<li>
+															<span class="label label-success"><i class="fa fa-lg fa-minus-circle"></i> Tuesday, January 8: 8.00 hours</span>
+															<ul>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 6.00</span> &ndash; <a href="javascript:void(0);">Altered code...</a>
+																</li>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 2.00</span> &ndash; <a href="javascript:void(0);">Simplified our approach to...</a>
+																</li>
+															</ul>
+														</li>
+														<li>
+															<span class="label label-warning"><i class="fa fa-lg fa-minus-circle"></i> Wednesday, January 9: 6.00 hours</span>
+															<ul>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 3.00</span> &ndash; <a href="javascript:void(0);">Fixed bug caused by...</a>
+																</li>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 3.00</span> &ndash; <a href="javascript:void(0);">Comitting latest code to Git...</a>
+																</li>
+															</ul>
+														</li>
+														<li>
+															<span class="label label-danger"><i class="fa fa-lg fa-minus-circle"></i> Wednesday, January 9: 4.00 hours</span>
+															<ul>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 2.00</span> &ndash; <a href="javascript:void(0);">Create component that...</a>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<span><i class="fa fa-lg fa-calendar"></i> 2013, Week 3</span>
+													<ul>
+														<li>
+															<span class="label label-success"><i class="fa fa-lg fa-minus-circle"></i> Monday, January 14: 8.00 hours</span>
+															<ul>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 7.75</span> &ndash; <a href="javascript:void(0);">Writing documentation...</a>
+																</li>
+																<li>
+																	<span><i class="fa fa-clock-o"></i> 0.25</span> &ndash; <a href="javascript:void(0);">Reverting code back to...</a>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+				
 									</div>
+									<!-- end widget content -->
 				
 								</div>
-								</div>
-								
-								<div class="text-center">
-									<hr>
-									<ul class="pagination no-margin">
-										<li class="prev disabled">
-											<a href="javascript:void(0);">Previous</a>
-										</li>
-										<li class="active">
-											<a href="javascript:void(0);">1</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">2</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">3</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">4</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">5</a>
-										</li>
-										<li class="next">
-											<a href="javascript:void(0);">Next</a>
-										</li>
-									</ul>
-									<br>
-									<br>
-									<br>
-								</div>
-							</div>
-				
-							<div class="tab-pane fade" id="s3">
-								<h1> Search <span class="semi-bold">history</span></h1>
-								<p class="alert alert-info">
-									Your search history is turned off.
-				
-								</p>
-				
-								<span class="onoffswitch-title">Auto save Search History</span>
-								<span class="onoffswitch">
-									<input type="checkbox" name="save_history" class="onoffswitch-checkbox" id="save_history" checked="checked">
-									<label class="onoffswitch-label" for="save_history"> <span class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></span> <span class="onoffswitch-switch"></span> </label> </span>
+								<!-- end widget div -->
 				
 							</div>
-						</div>
+							<!-- end widget -->
+				
+						</article>
+						<!-- WIDGET END -->
+				
+						<!-- NEW WIDGET START -->
+						<article class="col-sm-12 col-md-6 col-lg-8">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-black" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false" data-widget-deletebutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+									<h2>Markdown</h2>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body no-padding">
+				
+										<textarea id="mymarkdown" class="custom-scroll" >
+				### Hello there 
+				How are you?
+				
+				I have bellow task for you :
+				
+				Select from this text...
+				Click the bold on THIS WORD and make THESE ONE italic
+				Link GOOGLE to google.com
+				Test to insert image (and try to tab after write the image description)
+				Test Preview
+				And ending here... Click "List"
+				
+				Enjoy!							
+										</textarea>
+																
+									</div>
+									<!-- end widget content -->
+				
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+						<!-- WIDGET END -->
 				
 					</div>
 				
-				</div>
+					<!-- end row -->
 				
+					<!-- row -->
+				
+					<div class="row">
+				
+					</div>
+				
+					<!-- end row -->
+				
+				</section>
 				<!-- end row -->
 
 			</div>
@@ -1084,6 +752,14 @@
 
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
+		<script src="<c:url value='/resources/js/plugin/markdown/markdown.min.js' />"></script>
+		<!-- <script src="js/plugin/markdown/markdown.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/markdown/to-markdown.min.js' />"></script>
+		<!-- <script src="js/plugin/markdown/to-markdown.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/markdown/bootstrap-markdown.min.js' />"></script>
+		<!-- <script src="js/plugin/markdown/bootstrap-markdown.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js' />"></script>
+		<!-- <script src="js/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js"></script> -->
 
 		<script type="text/javascript">
 
@@ -1139,6 +815,97 @@
 				 * 
 				 * loadScript(".../plugin.js", run_after_loaded);
 				 */
+				 
+				 $('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
+					$('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch').on('click', function(e) {
+						var children = $(this).parent('li.parent_li').find(' > ul > li');
+						if (children.is(':visible')) {
+							children.hide('fast');
+							$(this).attr('title', 'Expand this branch').find(' > i').removeClass().addClass('fa fa-lg fa-plus-circle');
+						} else {
+							children.show('fast');
+							$(this).attr('title', 'Collapse this branch').find(' > i').removeClass().addClass('fa fa-lg fa-minus-circle');
+						}
+						e.stopPropagation();
+					});		
+				 
+				 $("#mymarkdown").markdown({
+						autofocus:false,
+						savable:true
+					})
+					
+					
+				$('#eg1').click(function(e) {
+		
+				$.bigBox({
+					title : "Big Information box",
+					content : "This message will dissapear in 6 seconds!",
+					color : "#C46A69",
+					//timeout: 6000,
+					icon : "fa fa-warning shake animated",
+					number : "1",
+					timeout : 6000
+				});
+		
+				e.preventDefault();
+		
+			})
+		
+			$('#eg2').click(function(e) {
+		
+				$.bigBox({
+					title : "Big Information box",
+					content : "Lorem ipsum dolor sit amet, test consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+					color : "#3276B1",
+					//timeout: 8000,
+					icon : "fa fa-bell swing animated",
+					number : "2"
+				});
+		
+				e.preventDefault();
+			})
+		
+			$('#eg3').click(function(e) {
+		
+				$.bigBox({
+					title : "Shield is up and running!",
+					content : "Lorem ipsum dolor sit amet, test consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+					color : "#C79121",
+					//timeout: 8000,
+					icon : "fa fa-shield fadeInLeft animated",
+					number : "3"
+				});
+		
+				e.preventDefault();
+		
+			})
+		
+			$('#eg4').click(function(e) {
+		
+				$.bigBox({
+					title : "Success Message Example",
+					content : "Lorem ipsum dolor sit amet, test consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+					color : "#739E73",
+					//timeout: 8000,
+					icon : "fa fa-check",
+					number : "4"
+				}, function() {
+					closedthis();
+				});
+		
+				e.preventDefault();
+		
+			})	
+			
+			function closedthis() {
+				$.smallBox({
+					title : "Great! You just closed that last alert!",
+					content : "This message will be gone in 5 seconds!",
+					color : "#739E73",
+					iconSmall : "fa fa-cloud",
+					timeout : 5000
+				});
+			}
 				
 			})
 		

@@ -211,4 +211,29 @@ public class ProjectController {
 	}
 	
 	
+	@RequestMapping("/projectstructure")
+	public ModelAndView showProjectStructure(
+			@RequestParam(value = "name", required = false, defaultValue = "World") String username, HttpSession session ) {
+		System.out.println("in classroom controller");
+ 
+		//ArrayList postlist = new ArrayList();
+		
+		/*DashboardSocialPreview dashpreview = new DashboardSocialPreview();
+		postlist = dashpreview.postlist(lastid);*/
+		
+		ModelAndView mv;
+		
+		
+		
+		
+		mv = new ModelAndView("/ProjectStructure");
+		
+		
+		
+		//mv.addObject("postlist", postlist);
+		mv.addObject("name", username);
+		return mv;
+	}
+	
+	
 }
