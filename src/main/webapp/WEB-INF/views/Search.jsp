@@ -429,13 +429,13 @@
 		</li> -->
 		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
-				class="menu-item-parent">Work</span></a>
+				class="menu-item-parent">OSM</span></a>
 			<ul>
 				<li class=""><a href="ideatoimplement?" title="NewPost"><i
 						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
 				</li>
-				<li class=""><a href="jobanalysis?" title="NewJob"><i
-						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional Way</span></a>
+				<li class=""><a href="osmprojectinfo?" title="NewJob"><i
+						class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
 				</li>
 				
 			</ul></li>

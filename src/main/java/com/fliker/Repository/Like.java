@@ -12,7 +12,22 @@ public class Like {
 	private String likeid;
 	private String likeOwner;
 	private String liketime;
+	private String likelocation;
+	private String likerating;
 	
+	
+	public String getLikelocation() {
+		return likelocation;
+	}
+	public void setLikelocation(String likelocation) {
+		this.likelocation = likelocation;
+	}
+	public String getLikerating() {
+		return likerating;
+	}
+	public void setLikerating(String likerating) {
+		this.likerating = likerating;
+	}
 	public String getLikeid() {
 		return likeid;
 	}

@@ -1,19 +1,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
 		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
-		<title> Guidance Dash </title>
+		<title> My Courses </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+		
 		<!-- #CSS Links -->
 		<!-- Basic Styles -->
 		<link href='<c:url value="/resources/css/bootstrap.min.css" />' rel="stylesheet">
@@ -31,7 +28,7 @@
 
 		<!-- SmartAdmin RTL Support -->
 		<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> --> 
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">  -->
 
 		<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
@@ -40,7 +37,6 @@
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
 		<link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet">
-
 
 		<!-- #FAVICONS -->
 		<link href='<c:url value="/resources/img/favicon/favicon.ico" />' rel="shortcut icon" type="image/x-icon">
@@ -54,9 +50,9 @@
 		<!-- #APP SCREEN / ICONS -->
 		<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-			 <link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">
+		<link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">	 
 		<!-- <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon" sizes="76x76">
+		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon">
 		<!-- <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png"> -->
 		<link href='<c:url value="/resources/img/splash/touch-icon-iphone-retina.png" />' rel="apple-touch-icon" sizes="120x120">
 		<!-- <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png"> -->
@@ -68,15 +64,15 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<!-- Startup image for web apps -->
+<!-- 		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-landscape.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
-		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
-		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
+		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
+		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
 
 	</head>
-	
+
 	<!--
 
 	TABLE OF CONTENTS.
@@ -96,12 +92,11 @@
 	|  09. #MOBILE                   |  mobile view dropdown          |
 	|  10. #SEARCH                   |  search field                  |
 	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #RIGHT PANEL              |  right panel userlist          |
-	|  13. #MAIN PANEL               |  main panel                    |
-	|  14. #MAIN CONTENT             |  content holder                |
-	|  15. #PAGE FOOTER              |  page footer                   |
-	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  17. #PLUGINS                  |  all scripts and plugins       |
+	|  12. #MAIN PANEL               |  main panel                    |
+	|  13. #MAIN CONTENT             |  content holder                |
+	|  14. #PAGE FOOTER              |  page footer                   |
+	|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  16. #PLUGINS                  |  all scripts and plugins       |
 	
 	===================================================================
 	
@@ -122,25 +117,8 @@
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
 	<body class="">
-	
-		<%
-			String profileimage = (String)request.getAttribute("ProfileImage");
-			String gender = (String)request.getAttribute("Gender");
-			String profilename = (String)request.getAttribute("FullName");
-			Timetable timeline = (Timetable)request.getAttribute("TimeTable");
-			GuidanceContentShared guidanceshare = (GuidanceContentShared)request.getAttribute("GuidShared");
-			GuidanceContentDashboard guiddash = (GuidanceContentDashboard)request.getAttribute("GuidDashBoard");
-			Blog blogs = (Blog)request.getAttribute("GuidBlog");
-			String logo = "";
-			String guidanceid = (String)request.getAttribute("guidanceid");
-			String timetableid = timeline.getTimeableid();
-			String guideshareid = guidanceshare.getGuidancesharedid();
-			String guidedash = guiddash.getGuidancecontentDashid();
-			
-		
-		%>
 
-		<!-- HEADER -->
+		<!-- #HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
@@ -380,23 +358,18 @@
 
 			<!-- User info -->
 			<div class="login-info">
-			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
-
-				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <%if(profileimage == ""){
-					if(gender.equalsIgnoreCase("female")){
-						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
-					alt="me" class="online" /> <%
-					}else{
-						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
-					alt="me" class="online" /> <% 
-					}
-				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=profilename%>
-				</span> <i class="fa fa-angle-down"></i>
-			</a>
-
-			</span>
-		</div>
+				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
+					
+					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
+						<span>
+							john.doe 
+						</span>
+						<i class="fa fa-angle-down"></i>
+					</a> 
+					
+				</span>
+			</div>
 			<!-- end user info -->
 
 			<nav>
@@ -407,22 +380,190 @@
 				-->
 
 				<ul>
-		<li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span
-				class="menu-item-parent">Guidance Dash</span> </a></li>
-		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-share-square-o"></i> <span
-				class="menu-item-parent">Guidance Share</span> </a></li>
+		<li><a href="searchresults?"><i
+				class="fa fa-lg fa-fw fa-search-plus"></i> <span
+				class="menu-item-parent">Search</span> </a></li>
+		<!-- <li><a href="dashboardanalysis?"><i
+				class="fa fa-lg fa-fw fa-briefcase"></i> <span
+				class="menu-item-parent">Dashboard</span> </a></li> -->
+		<li ><a href="dashboardsocial?"><i
+				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+				class="menu-item-parent">Wall</span> <span
+				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
-		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-calendar"></i>
-				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
+		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
+				<span class="menu-item-parent">Profile</span> <span
+				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+				<span class="menu-item-parent">Timeline</span> <span
+				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+		<li><a href="createpost?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
-		<li><a href="gotoguidanceexcersize?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-qrcode"></i>
-				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
-		</li>
-		<li class="active"><a href="gotoguidanceproject?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-sitemap txt-color-blue"></i>
-				<span class="menu-item-parent">Guidance Project</span> </a></li>
-		</li>
+		<!-- <li><a href="classroom?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+		</li> -->
+		<li class="active"><a href="#" title="Dashboard"><i
+				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
+			<ul>
+				<li class="active"><a href="courseEdu?" title="NewPost"><i
+						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
+				</li>
+				<li class=""><a href="classroom?" title="ClassRoom"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+				</li>
+			</ul></li>
+		 <!-- <li><a href="#" title="Dashboard"><i
+				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
+			<ul>		
+				<li class="active"><a href="#" title="NewCourse"><i
+								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
+								</li>
+				<li class=""><a href="createcourse?" title="NewCourse"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">Your Course</span></a></li>	
+				<li class=""><a href="newspecialization?" title="NewSpecialization"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">Your Specialization</span></a></li>
+				<li class=""><a href="neworganizations?" title="NewInstitution"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>
+			</ul>
+		</li> -->
+		<li><a href="#" title="Dashboard"><i
+				class="fa fa-lg fa-fw fa-briefcase"></i> <span
+				class="menu-item-parent">OSM</span></a>
+			<ul>
+				<li class=""><a href="ideatoimplement?" title="NewPost"><i
+						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+				</li>
+				<li class=""><a href="osmprojectinfo?" title="NewJob"><i
+						class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
+				</li>
+				
+			</ul></li>
+		<!-- <li class=""><a href="organizations?" title="Organizations"><i
+						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
+				<ul>
+				<li class=""><a href="createjob?" title="NewJob"><i
+						class="fa fa-plus-square"></i><span class="menu-item-parent">New Opportunity</span></a>
+				</li>
+				<li class=""><a href="companies?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Start New Company</span></a>
+				</li>
+			</ul></li> -->
+		<li class=""><a href="#" title="Organizations"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
+				<ul>
+				<li class=""><a href="createjob?" title="NewJob"><i
+						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
+				</li>
+				<li class=""><a href="companies?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
+				</li>
+			</ul></li>		
+
+		<li class="chat-users top-menu-invisible"><a href="#"><i
+				class="fa fa-lg fa-fw fa-comment-o"><em
+					class="bg-color-pink flash animated">!</em></i> <span
+				class="menu-item-parent">Smart Chat API <sup>beta</sup></span></a>
+			<ul>
+				<li>
+					<!-- DISPLAY USERS -->
+					<div class="display-users">
+
+						<input class="form-control chat-user-filter" placeholder="Filter"
+							type="text"> <a href="#" class="usr" data-chat-id="cha1"
+							data-chat-fname="Sadi" data-chat-lname="Orlaf"
+							data-chat-status="busy"
+							data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
+							data-chat-alertshow="true" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/5.png' alt='Sadi Orlaf'>
+												<div class='usr-card-content'>
+													<h3>Sadi Orlaf</h3>
+													<p>Marketing Executive</p>
+												</div>
+											</div>
+										">
+							<i></i>Sadi Orlaf
+						</a> <a href="#" class="usr" data-chat-id="cha2"
+							data-chat-fname="Jessica" data-chat-lname="Dolof"
+							data-chat-status="online" data-chat-alertmsg=""
+							data-chat-alertshow="false" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/1.png' alt='Jessica Dolof'>
+												<div class='usr-card-content'>
+													<h3>Jessica Dolof</h3>
+													<p>Sales Administrator</p>
+												</div>
+											</div>
+										">
+							<i></i>Jessica Dolof
+						</a> <a href="#" class="usr" data-chat-id="cha3"
+							data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
+							data-chat-status="online" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/3.png' alt='Zekarburg Almandalie'>
+												<div class='usr-card-content'>
+													<h3>Zekarburg Almandalie</h3>
+													<p>Sales Admin</p>
+												</div>
+											</div>
+										">
+							<i></i>Zekarburg Almandalie
+						</a> <a href="#" class="usr" data-chat-id="cha4"
+							data-chat-fname="Barley" data-chat-lname="Krazurkth"
+							data-chat-status="away" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/4.png' alt='Barley Krazurkth'>
+												<div class='usr-card-content'>
+													<h3>Barley Krazurkth</h3>
+													<p>Sales Director</p>
+												</div>
+											</div>
+										">
+							<i></i>Barley Krazurkth
+						</a> <a href="#" class="usr offline" data-chat-id="cha5"
+							data-chat-fname="Farhana" data-chat-lname="Amrin"
+							data-chat-status="incognito" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/female.png' alt='Farhana Amrin'>
+												<div class='usr-card-content'>
+													<h3>Farhana Amrin</h3>
+													<p>Support Admin <small><i class='fa fa-music'></i> Playing Beethoven Classics</small></p>
+												</div>
+											</div>
+										">
+							<i></i>Farhana Amrin (offline)
+						</a> <a href="#" class="usr offline" data-chat-id="cha6"
+							data-chat-fname="Lezley" data-chat-lname="Jacob"
+							data-chat-status="incognito" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/male.png' alt='Lezley Jacob'>
+												<div class='usr-card-content'>
+													<h3>Lezley Jacob</h3>
+													<p>Sales Director</p>
+												</div>
+											</div>
+										">
+							<i></i>Lezley Jacob (offline)
+						</a> <a href="ajax/chat.html"
+							class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
+							the API</a>
+
+					</div> <!-- END DISPLAY USERS -->
+				</li>
+			</ul></li>
 	</ul>
 			</nav>
 			
@@ -448,7 +589,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Project</li>
+					<li><a href="hello?name=Eric?">Home</li><li>Course</li><li>My Course</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -465,318 +606,310 @@
 
 			</div>
 			<!-- END RIBBON -->
+			
+			
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
 
 				<!-- row -->
+				<div class="row">
+
+					<!-- col -->
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+						<h1 class="page-title txt-color-blueDark">
+							<!-- PAGE HEADER -->
+							<i class="fa-fw fa fa-home"></i> App Views <span>>
+								Blog </span>
+						</h1>
+					</div>
+					<!-- end col -->
+
+					<!-- right side of the page with the sparkline graphs -->
+					<!-- col -->
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+						<!-- sparks -->
+						<ul id="sparks">
+							<li class="sparks-info">
+								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
+								<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+									1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+								</div>
+							</li>
+							<li class="sparks-info">
+								<h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
+								<div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
+									110,150,300,130,400,240,220,310,220,300, 270, 210
+								</div>
+							</li>
+							<li class="sparks-info">
+								<h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
+								<div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
+									110,150,300,130,400,240,220,310,220,300, 270, 210
+								</div>
+							</li>
+						</ul>
+						<!-- end sparks -->
+					</div>
+					<!-- end col -->
+
+				</div>
+				<!-- end row -->
 				
 				<div class="row">
-				
-					<div class="col-sm-12">
-				
-						<ul id="myTab1" class="nav nav-tabs bordered">
-							<li class="active">
-								<a href="#s1" id="quizcreate" data-toggle="tab">OverView</a>
-							</li>
-							<li>
-								<a href="#s2" id="assignmentcreate" data-toggle="tab">Data</a>
-							</li>
-							<li>
-								<a href="#s3" id="history" data-toggle="tab">LeaderBoard</a>
-							</li>
-							<li>
-								<a href="#s4" id="history" data-toggle="tab">Discussion</a>
-							</li>
-							
-							<!-- <li class="pull-right hidden-mobile">
-								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
-							</li> -->
-						</ul>
-				
-						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
-							<div class="tab-pane fade in active" id="s1">
-								
-								<div class="widget-body">
-				
-										<div class="tabs-left">
-											<ul class="nav nav-tabs tabs-left" id="demo-pill-nav">
-												<li class="active">
-													<a href="#tab-r1" data-toggle="tab">Description </a>
-												</li>
-												<li>
-													<a href="#tab-r2" data-toggle="tab">Evaluation</a>
-												</li>
-												<li>
-													<a href="#tab-r3" data-toggle="tab">Remarks</a>
-												</li>
-											</ul>
-											<div class="tab-content">
-												<div class="tab-pane active" id="tab-r1">
-													<p>
-														Dear Math, please grow up and solve your own problems, I'm tired of solving them for you.
-													</p>
-				
-													<p>
-														They say that love is more important than money, but have you ever tried to pay your bills with a hug?
-													</p>
-												</div>
-												<div class="tab-pane" id="tab-r2">
-													<p>
-														Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
-													</p>
-												</div>
-												<div class="tab-pane" id="tab-r3">
-													<p>
-														Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table.
-													</p>
-												</div>
-											</div>
-										</div>
-				
-									</div>
-								
-								
-							</div>
-				
-							<div class="tab-pane fade" id="s2">
-								
-								<div class="widget-body">
-									
-									<div class="inbox-download">
-												2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a> 
-												
-												<ul class="inbox-download-list">
-													<li>
-														<div class="well well-sm">
-															<span>
-																<img src="img/demo/sample.jpg">
-															</span>
-															<br>
-															<strong>rocketlaunch.jpg</strong> 
-															<br>
-															400 kb 
-															<br> 
-															<a href="javascript:void(0);"> Download</a>  | <a href="javascript:void(0);"> View</a>
-														</div>
-													</li>
-													<li>
-														<div class="well well-sm">
-															<span>
-																<i class="fa fa-file"></i>
-															</span>
-															
-															<br>
-															<strong>timelogs.xsl</strong> 
-															<br>
-															1.3 mb 
-															<br> 
-															<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> Share</a>
-														</div>
-													</li>
-												</ul>
-											</div>
-									<!-- end widget -->
-	
-									
-									</div>
-									
+
+					<div class="col-sm-9">
+
+						<div class="well padding-10">
+
+							<div class="row">
+								<div class="col-md-4">
+									<img src="img/superbox/superbox-full-15.jpg" class="img-responsive" alt="img">
+									<ul class="list-inline padding-10">
+										<li>
+											<i class="fa fa-calendar"></i>
+											<a href="javascript:void(0);"> March 12, 2015 </a>
+										</li>
+										<li>
+											<i class="fa fa-comments"></i>
+											<a href="javascript:void(0);"> 38 Comments </a>
+										</li>
+									</ul>
 								</div>
-								
-							</div>
-				
-							<div class="tab-pane fade" id="s3">
-								<section id="widget-grid" class="">
+								<div class="col-md-8 padding-left-0">
+									<h3 class="margin-top-0"><a href="javascript:void(0);"> Why Should You Make A Separate Mobile Website for your Business? </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
+									<p>
+										At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. 
 
-									<!-- row -->
-									<div class="row">
-										
-										<!-- NEW WIDGET START -->
-										<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-											
-											<!-- <div class="alert alert-info">
-												<strong>NOTE:</strong> All the data is loaded from a seperate JSON file
-											</div> -->
-				
-											<!-- Widget ID (each widget will need unique ID)-->
-											<div class="jarviswidget well" id="wid-id-0">
-												<!-- widget options:
-													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-													
-													data-widget-colorbutton="false"	
-													data-widget-editbutton="false"
-													data-widget-togglebutton="false"
-													data-widget-deletebutton="false"
-													data-widget-fullscreenbutton="false"
-													data-widget-custombutton="false"
-													data-widget-collapsed="true" 
-													data-widget-sortable="false"
-													
-												-->
-												<header>
-													<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-													<h2>LeaderBoard</h2>				
-													
-												</header>
-				
-												<!-- widget div-->
-												<div>
-													
-													<!-- widget edit box -->
-													<div class="jarviswidget-editbox">
-														<!-- This area used as dropdown edit box -->
-														<input class="form-control" type="text">	
-													</div>
-													<!-- end widget edit box -->
-													
-													<!-- widget content -->
-													<div class="widget-body no-padding">
-														
-														<table id="submisionlist" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-													        <thead>
-													            <tr>
-													                <th></th><th>Team Name</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
-													                <th>Team Members</th>
-													                <th>Status</th>
-													                <th>Score</th>
-													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
-													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
-													                <th>Tracker</th>
-													            </tr>
-													        </thead>
-													    </table>
-				
-													</div>
-													<!-- end widget content -->
-													
-												</div>
-												<!-- end widget div -->
-												
-											</div>
-											<!-- end widget -->
-				
-										</article>
-										<!-- WIDGET END -->
-										
-									</div>
-				
-									<!-- end row -->
-				
-									<!-- row -->
-				
-									<div class="row">
-				
-										<!-- a blank row to get started -->
-										<div class="col-sm-12">
-											<!-- your contents here -->
-										</div>
-											
-									</div>
-				
-									<!-- end row -->
-				
-								</section>
-				
+										<br><br>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
+										<br><br>
+									</p>
+									<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
+									<a class="btn btn-warning" href="javascript:void(0);"> Edit </a>
+									<a class="btn btn-success" href="javascript:void(0);"> Publish </a>
+								</div>
 							</div>
-							<div class="tab-pane fade" id="s4">
-								<section id="widget-grid" class="">
+							<hr>
 
-									<!-- row -->
-									<div class="row">
-										
-										<!-- NEW WIDGET START -->
-										<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-											
-											<!-- <div class="alert alert-info">
-												<strong>NOTE:</strong> All the data is loaded from a seperate JSON file
-											</div> -->
-				
-											<!-- Widget ID (each widget will need unique ID)-->
-											<div class="jarviswidget well" id="wid-id-0">
-												<!-- widget options:
-													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-													
-													data-widget-colorbutton="false"	
-													data-widget-editbutton="false"
-													data-widget-togglebutton="false"
-													data-widget-deletebutton="false"
-													data-widget-fullscreenbutton="false"
-													data-widget-custombutton="false"
-													data-widget-collapsed="true" 
-													data-widget-sortable="false"
-													
-												-->
-												<header>
-													<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-													<h2>Discussion</h2>				
-													
-												</header>
-				
-												<!-- widget div-->
-												<div>
-													
-													<!-- widget edit box -->
-													<div class="jarviswidget-editbox">
-														<!-- This area used as dropdown edit box -->
-														<input class="form-control" type="text">	
-													</div>
-													<!-- end widget edit box -->
-													
-													<!-- widget content -->
-													<div class="widget-body no-padding">
-														
-														<table id="discussionlist" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-													        <thead>
-													            <tr>
-													                <th></th><th>Discussion Topic</th>
-													                <th>Contact</th>
-													                <th>Comments</th>
-													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Last Commented By</th>
-													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Share</th>
-													            </tr>
-													        </thead>
-													    </table>
-				
-													</div>
-													<!-- end widget content -->
-													
-												</div>
-												<!-- end widget div -->
-												
-											</div>
-											<!-- end widget -->
-				
-										</article>
-										<!-- WIDGET END -->
-										
-									</div>
-				
-									<!-- end row -->
-				
-									<!-- row -->
-				
-									<div class="row">
-				
-										<!-- a blank row to get started -->
-										<div class="col-sm-12">
-											<!-- your contents here -->
-										</div>
-											
-									</div>
-				
-									<!-- end row -->
-				
-								</section>
-				
+							<div class="row">
+								<div class="col-md-4">
+									<img src="img/superbox/superbox-full-19.jpg" class="img-responsive" alt="img">
+									<ul class="list-inline padding-10">
+										<li>
+											<i class="fa fa-calendar"></i>
+											<a href="javascript:void(0);"> March 12, 2015 </a>
+										</li>
+										<li>
+											<i class="fa fa-comments"></i>
+											<a href="javascript:void(0);"> 38 Comments </a>
+										</li>
+									</ul>
+								</div>
+								<div class="col-md-8 padding-left-0">
+									<h3 class="margin-top-0"><a href="javascript:void(0);"> Mums favorite shopping malls in USA </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
+									<p>
+										At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. 
+
+										<br><br>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
+										<br><br>
+									</p>
+									<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
+								</div>
 							</div>
-							
+							<hr>
+
+							<div class="row">
+								<div class="col-md-4">
+									<img src="img/superbox/superbox-full-24.jpg" class="img-responsive" alt="img">
+									<ul class="list-inline padding-10">
+										<li>
+											<i class="fa fa-calendar"></i>
+											<a href="javascript:void(0);"> March 12, 2015 </a>
+										</li>
+										<li>
+											<i class="fa fa-comments"></i>
+											<a href="javascript:void(0);"> 38 Comments </a>
+										</li>
+									</ul>
+								</div>
+								<div class="col-md-8 padding-left-0">
+									<h3 class="margin-top-0"><a href="javascript:void(0);"> Best (and Basic) Practices of Mobile Web Design </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
+									<p>
+										With the plethora of smartphones, mobile phones, and tablets available on the market today, research suggests that mobile devices will soon overtake PCs and laptops in a year. More and more,different platforms are made available for all types of consumers to access the web, even including TVs and gaming consoles. 
+
+										<br><br>
+
+										And all this in rapid-fire turnoverânew models and technologies quickly coming and going like fashion trends. So much so that any website that is not mobile friendly cannot claim to be user-friendly anymore. Increasingly, web developers and designers utilize fluid layouts allowing users to browse across different platforms.
+
+										<br><br>
+									</p>
+									<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="row">
+								<div class="col-md-4">
+									<img src="img/superbox/superbox-full-7.jpg" class="img-responsive" alt="img">
+									<ul class="list-inline padding-10">
+										<li>
+											<i class="fa fa-calendar"></i>
+											<a href="javascript:void(0);"> March 12, 2015 </a>
+										</li>
+										<li>
+											<i class="fa fa-comments"></i>
+											<a href="javascript:void(0);"> 38 Comments </a>
+										</li>
+									</ul>
+								</div>
+								<div class="col-md-8 padding-left-0">
+									<h3 class="margin-top-0"><a href="javascript:void(0);"> Responsive Design: Best Practices for Designing a Website </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
+									<p>
+										The term Responsive design means developing a website in a way that adapts all the computer screen resolutions. Particularly this concept allows a 4 column layout that is 1292px wide, on 1025px wide screen that is divided into 2 columns automatically. It is adaptable for android phones and tablet screens. This designing method is known as âresponsive web designâ
+
+										<br><br>
+										
+										Responsive designing is a different concept from traditional web designing, so the question arises how you should build a good responsive website. Here is a general practices that can help you to build a responsive website design.
+
+										<br><br>
+									</p>
+									<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
+								</div>
+							</div>	
+
 						</div>
-				
+
 					</div>
-				
+
+					<!-- <div class="col-sm-3">
+						<div class="well padding-10">
+							<h5 class="margin-top-0"><i class="fa fa-search"></i> Blog Search...</h5>
+							<div class="input-group">
+								<input type="text" class="form-control">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">
+										<i class="fa fa-search"></i>
+									</button> </span>
+							</div>
+							/input-group
+						</div>
+						/well
+						<div class="well padding-10">
+							<h5 class="margin-top-0"><i class="fa fa-tags"></i> Popular Tags:</h5>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li>
+											<a href=""><span class="badge badge-info">Windows 8</span></a>
+										</li>
+										<li>
+											<a href=""><span class="badge badge-info">C#</span></a>
+										</li>
+										<li>
+											<a href=""><span class="badge badge-info">Windows Forms</span></a>
+										</li>
+										<li>
+											<a href=""><span class="badge badge-info">WPF</span></a>
+										</li>
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li>
+											<a href=""><span class="badge badge-info">Bootstrap</span></a>
+										</li>
+										<li>
+											<a href=""><span class="badge badge-info">Joomla!</span></a>
+										</li>
+										<li>
+											<a href=""><span class="badge badge-info">CMS</span></a>
+										</li>
+										<li>
+											<a href=""><span class="badge badge-info">Java</span></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						/well
+						<div class="well padding-10">
+							<h5 class="margin-top-0"><i class="fa fa-thumbs-o-up"></i> Follow Us!</h5>
+							<ul class="no-padding no-margin">
+								<p class="no-margin">
+									<a title="Facebook" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x"></i></span></a>
+									<a title="Twitter" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x"></i></span></a>
+									<a title="Google+" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-google-plus fa-stack-1x"></i></span></a>
+									<a title="Linkedin" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x"></i></span></a>
+									<a title="GitHub" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-github fa-stack-1x"></i></span></a>
+									<a title="Bitbucket" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-bitbucket fa-stack-1x"></i></span></a>
+								</p>
+							</ul>
+						</div>
+						/well
+						/well
+						<div class="well padding-10">
+							<h5 class="margin-top-0"><i class="fa fa-fire"></i> Popular Posts:</h5>
+							<ul class="no-padding list-unstyled">
+								<li>
+									<a href="javascript:void(0);" class="margin-top-0">WPF vs. Windows Forms-Which is better?</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="padding-top-5 display-block">How to create responsive website with Bootstrap?</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="margin-top-5">The best Joomla! templates 2014</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="margin-top-5">ASP .NET cms list</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="margin-top-5">C# Hello, World! program</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="margin-top-5">Java random generator</a>
+								</li>
+							</ul>
+						</div>
+						/well
+
+						/well
+						<div class="well padding-10">
+							<h5 class="margin-top-0"><i class="fa fa-video-camera"></i> Featured Videos:</h5>
+							<div class="row">
+
+								<div class="col-lg-12">
+
+									<ul class="list-group no-margin">
+										<li class="list-group-item">
+											<a href=""> <span class="badge pull-right">15</span> Photograph </a>
+										</li>
+										<li class="list-group-item">
+											<a href=""> <span class="badge pull-right">30</span> Life style </a>
+										</li>
+										<li class="list-group-item">
+											<a href=""> <span class="badge pull-right">9</span> Food </a>
+										</li>
+										<li class="list-group-item">
+											<a href=""> <span class="badge pull-right">4</span> Travel world </a>
+										</li>
+									</ul>
+
+								</div>
+
+								<div class="col-lg-12">
+									<div class="margin-top-10">
+										<iframe allowfullscreen="" frameborder="0" height="210" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						/well
+
+					</div> -->
+
 				</div>
-				
-				<!-- end row -->
 
 			</div>
 			<!-- END MAIN CONTENT -->
@@ -788,7 +921,7 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> ÃÂ© 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> Â© 2014-2015</span>
 				</div>
 
 				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
@@ -963,187 +1096,75 @@
 		<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
-		
-		<script
-		src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
-		
-		
-		<!-- PAGE RELATED PLUGIN(S) -->
-		
-		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.cust.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.cust.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.resize.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.resize.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.time.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.time.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.tooltip.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.tooltip.min.js"></script> -->
-		
-		<!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
-		<script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js' />"></script>
-		<!-- <script src="js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js' />"></script>
-		<!-- <script src="js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script> -->
-		
-		<!-- Full Calendar -->
-		<script src="<c:url value='/resources/js/plugin/moment/moment.min.js' />"></script>
-		<!-- <script src="js/plugin/moment/moment.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/fullcalendar/jquery.fullcalendar.min.js' />"></script>
-		<!-- <script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
 
-		<script>
+		<!-- PAGE RELATED PLUGIN(S) 
+		<script src="..."></script>-->
+
+		<script type="text/javascript">
+
 			$(document).ready(function() {
-
-				// DO NOT REMOVE : GLOBAL FUNCTIONS!
-				pageSetUp();
-
-				/*
-				 * PAGE RELATED SCRIPTS
+			 	
+				/* DO NOT REMOVE : GLOBAL FUNCTIONS!
+				 *
+				 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+				 *
+				 * // activate tooltips
+				 * $("[rel=tooltip]").tooltip();
+				 *
+				 * // activate popovers
+				 * $("[rel=popover]").popover();
+				 *
+				 * // activate popovers with hover states
+				 * $("[rel=popover-hover]").popover({ trigger: "hover" });
+				 *
+				 * // activate inline charts
+				 * runAllCharts();
+				 *
+				 * // setup widgets
+				 * setup_widgets_desktop();
+				 *
+				 * // run form elements
+				 * runAllForms();
+				 *
+				 ********************************
+				 *
+				 * pageSetUp() is needed whenever you load a page.
+				 * It initializes and checks for all basic elements of the page
+				 * and makes rendering easier.
+				 *
 				 */
 				
-				function format ( d ) {
-				    // `d` is the original data object for the row
-				    return '<table cellpadding="5" cellspacing="0" border="0" class="table table-hover table-condensed">'+
-				        '<tr>'+
-				            '<td>Comments:</td>'+
-				            '<td>'+d.comments+'</td>'+
-				        '</tr>'+
-				        '<tr>'+
-				            '<td>Action:</td>'+
-				            '<td>'+d.action+'</td>'+
-				        '</tr>'+
-				    '</table>';
-				}
-
-				// clears the variable if left blank
-			    var table = $('#submisionlist').DataTable( {
-			    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
-						"t"+
-						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-			        "ajax": "data/dataList.json",
-			        "bDestroy": true,
-			        "iDisplayLength": 15,
-			        "oLanguage": {
-					    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-					},
-			        "columns": [
-			            {
-			                "class":          'details-control',
-			                "orderable":      false,
-			                "data":           null,
-			                "defaultContent": ''
-			            },
-			            { "data": "teamname" },
-			            { "data": "est" },
-			            { "data": "teammembers" },
-			            { "data": "status" },
-			            { "data": "score" },
-			            { "data": "starts" },
-			            { "data": "ends" },
-			            { "data": "tracker" },
-			        ],
-			        "order": [[1, 'asc']],
-			        "fnDrawCallback": function( oSettings ) {
-				       runAllCharts()
-				    }
-			    } );
-
-
-			     
-			    // Add event listener for opening and closing details
-			    $('#submisionlist tbody').on('click', 'td.details-control', function () {
-			        var tr = $(this).closest('tr');
-			        var row = table.row( tr );
-			 
-			        if ( row.child.isShown() ) {
-			            // This row is already open - close it
-			            row.child.hide();
-			            tr.removeClass('shown');
-			        }
-			        else {
-			            // Open this row
-			            row.child( format(row.data()) ).show();
-			            tr.addClass('shown');
-			        }
-			    });
-			    
-			    
-			    
-			    function format ( d ) {
-				    // `d` is the original data object for the row
-				    return '<table cellpadding="5" cellspacing="0" border="0" class="table table-hover table-condensed">'+
-				        '<tr>'+
-				            '<td>Comments:</td>'+
-				            '<td>'+d.comments+'</td>'+
-				        '</tr>'+
-				        '<tr>'+
-				            '<td>Action:</td>'+
-				            '<td>'+d.action+'</td>'+
-				        '</tr>'+
-				    '</table>';
-				}
-
-				// clears the variable if left blank
-			    var table = $('#discussionlist').DataTable( {
-			    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
-						"t"+
-						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-			        "ajax": "data/dataList.json",
-			        "bDestroy": true,
-			        "iDisplayLength": 15,
-			        "oLanguage": {
-					    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-					},
-			        "columns": [
-			            {
-			                "class":          'details-control',
-			                "orderable":      false,
-			                "data":           null,
-			                "defaultContent": ''
-			            },
-			            { "data": "topicid" },
-			            { "data": "contact" },
-			            { "data": "commentnumber" },
-			            { "data": "lastcommentby" },
-			            { "data": "shareid" }
-			            
-			        ],
-			        "order": [[1, 'asc']],
-			        "fnDrawCallback": function( oSettings ) {
-				       runAllCharts()
-				    }
-			    } );
-
-
-			     
-			    // Add event listener for opening and closing details
-			    $('#discussionlist tbody').on('click', 'td.details-control', function () {
-			        var tr = $(this).closest('tr');
-			        var row = table.row( tr );
-			 
-			        if ( row.child.isShown() ) {
-			            // This row is already open - close it
-			            row.child.hide();
-			            tr.removeClass('shown');
-			        }
-			        else {
-			            // Open this row
-			            row.child( format(row.data()) ).show();
-			            tr.addClass('shown');
-			        }
-			    });
-			});
-			
-			
+				 pageSetUp();
+				 
+				/*
+				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
+				 * eg alert("my home function");
+				 * 
+				 * var pagefunction = function() {
+				 *   ...
+				 * }
+				 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
+				 * 
+				 * TO LOAD A SCRIPT:
+				 * var pagefunction = function (){ 
+				 *  loadScript(".../plugin.js", run_after_loaded);	
+				 * }
+				 * 
+				 * OR
+				 * 
+				 * loadScript(".../plugin.js", run_after_loaded);
+				 */
+				
+			})
+		
 		</script>
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-			_gaq.push(['_trackPageview']);
-
+				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+				_gaq.push(['_trackPageview']);
+			
 			(function() {
 				var ga = document.createElement('script');
 				ga.type = 'text/javascript';
