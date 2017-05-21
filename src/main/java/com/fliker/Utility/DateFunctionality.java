@@ -95,7 +95,7 @@ public class DateFunctionality {
 	}
 	
 	
-	private Map<String, String> getRequestHeadersInMap(HttpServletRequest request) {
+	public Map<String, String> getRequestHeadersInMap(HttpServletRequest request) {
 
 	    Map<String, String> result = new HashMap<>();
 
@@ -110,7 +110,30 @@ public class DateFunctionality {
 	}
 	
 	
-	
+	public String getDateSystems(){
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM dd, yyyy HH:mm:ss a");
+        //String dateInString = "Friday, Jun 7, 2013 12:10:56 PM";//example
+        
+		
+		
+        Date datepack = new Date();
+        DateFunctionality datefunc = new DateFunctionality();
+        
+        String localdate = datefunc.getUniformDates(formatter.format(datepack));
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(datepack);
+        
+        String yearpack = Integer.toString(cal.get(Calendar.YEAR));
+        String monthspack = Integer.toString(cal.get(Calendar.MONTH));
+        String daypack = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
+        String hourpack = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
+        String minutespack  = Integer.toString(cal.get(Calendar.MINUTE));
+		
+		return localdate;
+		
+	}
 	
 	
 }

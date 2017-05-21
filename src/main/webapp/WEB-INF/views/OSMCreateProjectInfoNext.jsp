@@ -1,16 +1,19 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*,com.fliker.Repository.*,org.springframework.ui.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
 		<meta charset="utf-8">
-		<title> Search Unit </title>
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+		<title> Create New Course </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		
+
 		<!-- #CSS Links -->
 		<!-- Basic Styles -->
 		<link href='<c:url value="/resources/css/bootstrap.min.css" />' rel="stylesheet">
@@ -28,7 +31,7 @@
 
 		<!-- SmartAdmin RTL Support -->
 		<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> --> 
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">  -->
 
 		<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
@@ -50,9 +53,9 @@
 		<!-- #APP SCREEN / ICONS -->
 		<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-			 <link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">
+		<link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">	 
 		<!-- <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon" sizes="76x76">
+		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon">
 		<!-- <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png"> -->
 		<link href='<c:url value="/resources/img/splash/touch-icon-iphone-retina.png" />' rel="apple-touch-icon" sizes="120x120">
 		<!-- <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png"> -->
@@ -64,15 +67,15 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<!-- Startup image for web apps -->
+<!-- 		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-landscape.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
-		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
-		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
+		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
+		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
 
 	</head>
-
+	
 	<!--
 
 	TABLE OF CONTENTS.
@@ -92,11 +95,12 @@
 	|  09. #MOBILE                   |  mobile view dropdown          |
 	|  10. #SEARCH                   |  search field                  |
 	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #MAIN PANEL               |  main panel                    |
-	|  13. #MAIN CONTENT             |  content holder                |
-	|  14. #PAGE FOOTER              |  page footer                   |
-	|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  16. #PLUGINS                  |  all scripts and plugins       |
+	|  12. #RIGHT PANEL              |  right panel userlist          |
+	|  13. #MAIN PANEL               |  main panel                    |
+	|  14. #MAIN CONTENT             |  content holder                |
+	|  15. #PAGE FOOTER              |  page footer                   |
+	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  17. #PLUGINS                  |  all scripts and plugins       |
 	
 	===================================================================
 	
@@ -116,14 +120,14 @@
 		* 'fixed-page-footer' - Fixes footer
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
-	<body class="">
+	<body class="" onload="geoFindMe()">
 
-		<!-- #HEADER -->
+		<!-- HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
+				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -171,27 +175,28 @@
 			</div>
 
 			<!-- projects dropdown -->
-	<div class="project-context hidden-xs">
+			<div class="project-context hidden-xs" >
 
-		<span class="label">Projects:</span> <span
-			class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
-			projects <i class="fa fa-angle-down"></i>
-		</span>
+				<span class="label">Projects:</span>
+				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
 
-		<!-- Suggestion: populate this list with fetch and push technique -->
-		<ul class="dropdown-menu" style="border: 1px solid black">
-			<h5>Daily Note</h5>
-			<li><textarea id="notemessage" class="form-control"
-					name="notemessage" rows="3" style="width: 400px"></textarea></li>
+				<!-- Suggestion: populate this list with fetch and push technique -->
+				<ul class="dropdown-menu" style="border: 1px solid black">
+					<h5>Daily Note</h5>
+					<li>
+						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
+					</li>
+					
+					<li class="divider"></li>
+					<li>
+						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
+					</li>
+				</ul>
+				<!-- end dropdown-menu-->
 
-			<li class="divider"></li>
-			<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
-					Note Down</a></li>
-		</ul>
-		<!-- end dropdown-menu-->
-
-	</div>
-	<!-- end projects dropdown -->
+			</div>
+			
+			<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
 			<div class="pull-right">
@@ -235,7 +240,7 @@
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+					<span> <a href="logout?" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
 				<!-- end logout button -->
 
@@ -244,6 +249,38 @@
 					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
 				</div>
 				<!-- end search mobile button -->
+
+				<!-- input: search field -->
+				<form action="searchresults?" class="header-search pull-right">
+					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
+					"ActionScript",
+					"AppleScript",
+					"Asp",
+					"BASIC",
+					"C",
+					"C++",
+					"Clojure",
+					"COBOL",
+					"ColdFusion",
+					"Erlang",
+					"Fortran",
+					"Groovy",
+					"Haskell",
+					"Java",
+					"JavaScript",
+					"Lisp",
+					"Perl",
+					"PHP",
+					"Python",
+					"Ruby",
+					"Scala",
+					"Scheme"]'>
+					<button type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+				</form>
+				<!-- end input: search field -->
 
 				<!-- fullscreen button -->
 				<div id="fullscreen" class="btn-header transparent pull-right">
@@ -318,59 +355,25 @@
 		</header>
 		<!-- END HEADER -->
 
-		<!-- #NAVIGATION -->
 		<!-- Left panel : Navigation area -->
 		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<%
-		
-			String fullname = (String)request.getAttribute("FullName");
-			String gender = (String)request.getAttribute("Gender");
-			String imageid = (String)request.getAttribute("ProfileImage");
-			String logo = "";
-			
-			
-		
-		%>
-
-
-		<!-- User info -->
-
-		<%
-		/* if(imageid == ""){
-			if(gender.equalsIgnoreCase("female")){
-				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
-			}else{
-				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
-			}
-		}else{
-			
-		} */
-		
-		
-		%>
-		<div class="login-info">
-			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
-
-				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <%if(imageid == ""){
-					if(gender.equalsIgnoreCase("female")){
-						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
-					alt="me" class="online" /> <%
-					}else{
-						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
-					alt="me" class="online" /> <% 
-					}
-				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
-				</span> <i class="fa fa-angle-down"></i>
-			</a>
-
-			</span>
-		</div>
-		<!-- end user info -->
-			
+			<div class="login-info">
+				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
+					
+					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
+						<span>
+							john.doe 
+						</span>
+						<i class="fa fa-angle-down"></i>
+					</a> 
+					
+				</span>
+			</div>
+			<!-- end user info -->
 
 			<nav>
 				<!-- 
@@ -380,14 +383,14 @@
 				-->
 
 				<ul>
-		<li class="active"><a href="search?"><i
-				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
+		<li><a href="searchresults?"><i
+				class="fa fa-lg fa-fw fa-search-plus"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
 		<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
 		<li ><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet "></i> <span
+				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
@@ -397,19 +400,19 @@
 		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
 				<span class="menu-item-parent">Timeline</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		<li><a href="createpost?" title="NewPost"><i
+		<li class="active"><a href="createpost?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
-		<li><a href="classroom?" title="NewPost"><i
+		<!-- <li><a href="classroom?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-		</li>
+		</li> -->
 		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
 			<ul>
 				<li class=""><a href="courseEdu?" title="NewPost"><i
 						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
-				<li class=""><a href="otherprofile?" title="ClassRoom"><i
+				<li class=""><a href="classroom?" title="ClassRoom"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
 			</ul></li>
@@ -429,13 +432,13 @@
 		</li> -->
 		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
-				class="menu-item-parent">OSM</span></a>
+				class="menu-item-parent">Work</span></a>
 			<ul>
 				<li class=""><a href="ideatoimplement?" title="NewPost"><i
 						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
 				</li>
-				<li class=""><a href="osmprojectinfo?" title="NewJob"><i
-						class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
+				<li class=""><a href="jobanalysis?" title="NewJob"><i
+						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional Way</span></a>
 				</li>
 				
 			</ul></li>
@@ -452,26 +455,12 @@
 		<li class=""><a href="#" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
 				<ul>
-				<li class=""><a href="standardguidance?" title="Academic"><i
+				<li class=""><a href="createjob?" title="NewJob"><i
 						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
 				</li>
-				<li class=""><a href="professionalguidance?" title="Profesional"><i
+				<li class=""><a href="companies?" title="Companies"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
 				</li>
-				<li class=""><a href="gotoguidance?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">GuidanceSheet Test</span></a>
-				</li>
-				<li class=""><a href="assignmentAnswer?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Assignment Answer Test</span></a>
-				</li>
-				<li class=""><a href="projectstructure?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Project Directory</span></a>
-				</li>
-				<li class=""><a href="projectviewdetail?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Project View</span></a>
-				</li>
-				
-				
 			</ul></li>		
 
 		<li class="chat-users top-menu-invisible"><a href="#"><i
@@ -600,10 +589,10 @@
 						<i class="fa fa-refresh"></i>
 					</span> 
 				</span>
-
+				
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Search Page</li>
+					<li>Home</li><li>Forms</li><li>Wizards</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -624,321 +613,169 @@
 			<!-- MAIN CONTENT -->
 			<div id="content">
 
-				<!-- row -->
 				
-				<div class="row">
 				
-					<div class="col-sm-12">
+				<!-- widget grid -->
+				<section id="widget-grid" class="">
 				
-						<ul id="myTab1" class="nav nav-tabs bordered">
-							<li class="active">
-								<a href="#s1" data-toggle="tab">Search</a>
-							</li>
-							<li>
-								<a href="#s2" data-toggle="tab">Content Search</a>
-							</li>
-							<li>
-								<a href="#s3" data-toggle="tab">Search History</a>
-							</li>
-							<!-- <li class="pull-right hidden-mobile">
-								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
-							</li> -->
-						</ul>
+					<!-- row -->
+					<div class="row">
 				
-						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
-							<div class="tab-pane fade in active" id="s1">
-								<h1> Search <span class="semi-bold">Everything</span></h1>
-								<br>
-								<div class="input-group input-group-lg hidden-mobile">
-									<input class="form-control input-lg" type="text" placeholder="Search again..." id="search-project">
-									<div class="input-group-btn">
-										<button type="submit" class="btn btn-default">
-											&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
-										</button>
+						<!-- NEW WIDGET START -->
+						<article class="col-sd-12">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-check"></i> </span>
+									<h2>New Posts</h2>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
 									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body">
+										<div class="row">
+
+											<!-- NEW WIDGET START -->
+											<article class="col-sm-12">
+									
+												
+												
+												<!-- Widget ID (each widget will need unique ID)-->
+												<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
+													<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+													data-widget-colorbutton="false"
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true"
+													data-widget-sortable="false"
+									
+													-->
+													<header>
+														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
+														<h2>New Post</h2>
+									
+													</header>
+									
+													<!-- widget div-->
+													<div>
+									
+														<!-- widget edit box -->
+														<div class="jarviswidget-editbox">
+															<!-- This area used as dropdown edit box -->
+									
+														</div>
+														<!-- end widget edit box -->
+									
+														<!-- widget content -->
+														<div class="widget-body">
+									
+															<form action="upload.php" class="dropzone" id="mydropzone"></form>
+									
+														</div>
+														<!-- end widget content -->
+									
+													</div>
+													<!-- end widget div -->
+									
+												</div>
+												<!-- end widget -->
+									
+											</article>
+											<!-- WIDGET END -->
+									
+										</div>
+										<div class="row">
+											<form id="wizard-1" novalidate="novalidate" action="postcreate?" method="post" enctype="multipart/form-data">
+												<div id="bootstrap-wizard-1" class="col-sm-12">
+													
+													<div class="tab-content">
+														<div class="tab-pane active" id="tab1">
+															
+				
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<div class="input-group">
+																			
+																		</div>
+																	</div>
+																</div>
+															</div>
+															
+															<div class="row">
+																<div class="col-sm-12">
+																	<form method="post" action="postcreate?" class="well padding-bottom-10" onsubmit="return false;">
+																		<input type="hidden" class="form-control" id="location" name="location" >
+																		<textarea rows="2" class="form-control" placeholder="Write a review" name="postdescription" id="postdescription"></textarea>
+																		<div class="margin-top-10">
+																			<button type="submit" onclick="geoFindMe()" class="btn btn-sm btn-primary pull-right">
+																				Submit Post
+																			</button>
+																			<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Location"><i class="fa fa-location-arrow"></i></a>
+																		</div>
+																	</form>
+																</div>
+																
+															</div>
+				
+														</div>
+				
+														
+				
+												</div>
+											</form>
+										</div>
+				
+									</div>
+									<!-- end widget content -->
+				
 								</div>
-				
-								<h1 class="font-md"> Search Results for <small class="text-danger"> &nbsp;&nbsp;(2,281 results)</small></h1>
-				
-								<div class="search-results clearfix smart-form">
-				
-									<h4><i class="fa fa-plus-square txt-color-blue"></i>&nbsp;<a href="javascript:void(0);">SmartAdmin - Responsive Dashboard Template</a></h4>
-				
-									<div>
-										<div class="rating display-inline">
-											<input type="radio" name="stars-rating" id="stars-rating-5">
-											<label for="stars-rating-5"><i class="fa fa-star"></i></label>
-											<input type="radio" name="stars-rating" id="stars-rating-4">
-											<label for="stars-rating-4"><i class="fa fa-star"></i></label>
-											<input type="radio" name="stars-rating" id="stars-rating-3">
-											<label for="stars-rating-3"><i class="fa fa-star"></i></label>
-											<input type="radio" name="stars-rating" id="stars-rating-2">
-											<label for="stars-rating-2"><i class="fa fa-star"></i></label>
-											<input type="radio" name="stars-rating" id="stars-rating-1">
-											<label for="stars-rating-1"><i class="fa fa-star"></i></label>
-										</div>
-										<br>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
-										</p>
-									</div>
-				
-								</div>
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here...
-										</p>
-									</div>
-								</div> -->
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-									<img src="img/demo/sample.jpg" alt="">
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Oct 1, 2006 - Uploaded by 02842356107
-											<br>
-											<br>
-											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
-										</p>
-									</div>
-				
-								</div> -->
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-				
-									<div>
-				
-										<span class="sparkline txt-color-blueLight" data-sparkline-type="line" data-sparkline-width="150px" data-sparkline-height="25px"> 10,3,8,4,3,10,7,8,4,6,4,6,8,3 </span>
-										<span class="display-inline note font-lg semi-bold"><small><i class="fa fa-arrow-circle-up text-success"></i> 143.43</small></span>
-				
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-										</p>
-									</div>
-				
-								</div> -->
-								
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);"> Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"></a><small>[PDF]</small></h4>
-									<span class="sparkline txt-color-blueLight display-inline" data-sparkline-type="pie"  data-sparkline-offset="90" data-sparkline-piesize="55px"> 10,3,8,4, </span>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
-										</p>
-									</div>
-				
-								</div> -->
-				
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-									</div>
-								</div> -->
-				
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
-										</p>
-									</div>
-								</div> -->
-				
-								<div class="text-center">
-									<hr>
-									<ul class="pagination no-margin">
-										<li class="prev disabled">
-											<a href="javascript:void(0);">Previous</a>
-										</li>
-										<li class="active">
-											<a href="javascript:void(0);">1</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">2</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">3</a>
-										</li>
-										<li class="next">
-											<a href="javascript:void(0);">Next</a>
-										</li>
-									</ul>
-									<br>
-									<br>
-									<br>
-								</div>
+								<!-- end widget div -->
 				
 							</div>
+							<!-- end widget -->
 				
-							<div class="tab-pane fade" id="s2">
-								<h1> Search <span class="semi-bold">Users/Groups/Courses/Job Interviews/Organization/Institutions/Etc..</span></h1>
-								<br>
-								<div class="input-group input-group-lg">
-									<div class="input-group-btn">
-										<button id="searchparamset" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-											User <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li class="active">
-												<a href="javascript:void(0)"></i> Users</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Groups</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Organization</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Institutes</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Courses</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Job Interviews</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Specializations</a>
-											</li>
-										</ul>
-									</div>
-									<input class="form-control input-lg" type="text" placeholder="Mention the type(eg: for Groups --> #Group groupname)..." id="search-user">
-									<div class="input-group-btn">
-										<button type="submit" class="btn btn-default">
-											<i class="fa fa-fw fa-search fa-lg"></i>
-										</button>
-									</div>
-								</div>
-								<h1 class="font-md"> Search Results for <span class="semi-bold">Users</span><small class="text-danger"> &nbsp;&nbsp;(181 results)</small></h1>
-								<br>
-								<div class="search-results clearfix smart-form">
-									<div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-									<img src="img/demo/sample.jpg" alt="">
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Oct 1, 2006 - Uploaded by 02842356107
-											<br>
-											<br>
-											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
-										</p>
-									</div>
+						</article>
+						<!-- WIDGET END -->
 				
-								</div>
-								</div>
-								
-								<div class="text-center">
-									<hr>
-									<ul class="pagination no-margin">
-										<li class="prev disabled">
-											<a href="javascript:void(0);">Previous</a>
-										</li>
-										<li class="active">
-											<a href="javascript:void(0);">1</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">2</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">3</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">4</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">5</a>
-										</li>
-										<li class="next">
-											<a href="javascript:void(0);">Next</a>
-										</li>
-									</ul>
-									<br>
-									<br>
-									<br>
-								</div>
-							</div>
-				
-							<div class="tab-pane fade" id="s3">
-								<h1> Search <span class="semi-bold">history</span></h1>
-								<p class="alert alert-info">
-									Your search history is turned off.
-				
-								</p>
-				
-								<span class="onoffswitch-title">Auto save Search History</span>
-								<span class="onoffswitch">
-									<input type="checkbox" name="save_history" class="onoffswitch-checkbox" id="save_history" checked="checked">
-									<label class="onoffswitch-label" for="save_history"> <span class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></span> <span class="onoffswitch-switch"></span> </label> </span>
-				
-							</div>
-						</div>
+						<!-- NEW WIDGET START -->
+						
+						<!-- WIDGET END -->
 				
 					</div>
 				
-				</div>
+					<!-- end row -->
 				
-				<!-- end row -->
+				</section>
+				<!-- end widget grid -->
 
 			</div>
 			<!-- END MAIN CONTENT -->
@@ -950,10 +787,53 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin </span>
+					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> © 2014-2015</span>
 				</div>
 
-				
+				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
+					<div class="txt-color-white inline-block">
+						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
+						<div class="btn-group dropup">
+							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
+								<i class="fa fa-link"></i> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu pull-right text-left">
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Server Load</p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<button class="btn btn-block btn-default">refresh</button>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- END PAGE FOOTER -->
@@ -1005,6 +885,8 @@
 				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
 			}
 		</script>
+		
+		
 
 		<!-- IMPORTANT: APP CONFIG -->
 		<script src="<c:url value='/resources/js/app.config.js' />"></script>
@@ -1082,67 +964,185 @@
 		<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
+		
+		<script src="<c:url value='/resources/js/plugin/jqgrid/jquery.jqGrid.min.js' />"></script>
+		<!-- <script src="js/plugin/jqgrid/jquery.jqGrid.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/jqgrid/grid.locale-en.min.js' />"></script>
+		<!-- <script src="js/plugin/jqgrid/grid.locale-en.min.js"></script> -->
+		
+		<script src="<c:url value='/resources/js/clone-form-td-multiple.js' />"></script>
+		<!-- <script type="text/javascript" src="js/clone-form-td-multiple.js"></script> -->
+		
+		<script src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
 
-		<!-- PAGE RELATED PLUGIN(S) 
-		<script src="..."></script>-->
+		<!--  PAGE RELATED PLUGIN(S) --> 
+		<script src="<c:url value='/resources/js/plugin/maxlength/bootstrap-maxlength.min.js' />"></script>
+		<!-- <script src="js/plugin/maxlength/bootstrap-maxlength.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js' />"></script>
+		<!-- <script src="js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/clockpicker/clockpicker.min.js' />"></script>
+		<!-- <script src="js/plugin/clockpicker/clockpicker.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js' />"></script>
+		<!-- <script src="js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/noUiSlider/jquery.nouislider.min.js' />"></script>
+		<!-- <script src="js/plugin/noUiSlider/jquery.nouislider.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/ion-slider/ion.rangeSlider.min.js' />"></script>
+		<!-- <script src="js/plugin/ion-slider/ion.rangeSlider.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js' />"></script>
+		<!-- <script src="js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>	 -->
+		<script src="<c:url value='/resources/js/plugin/colorpicker/bootstrap-colorpicker.min.js' />"></script>	
+		<!-- <script src="js/plugin/colorpicker/bootstrap-colorpicker.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/knob/jquery.knob.min.js' />"></script>
+		<!-- <script src="js/plugin/knob/jquery.knob.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/x-editable/moment.min.js' />"></script>
+		<!-- <script src="js/plugin/x-editable/moment.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/x-editable/jquery.mockjax.min.js' />"></script>
+		<!-- <script src="js/plugin/x-editable/jquery.mockjax.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/x-editable/x-editable.min.js' />"></script>
+		<!-- <script src="js/plugin/x-editable/x-editable.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/typeahead/typeahead.min.js' />"></script>
+		<!-- <script src="js/plugin/typeahead/typeahead.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/typeahead/typeaheadjs.min.js' />"></script>
+		<!-- <script src="js/plugin/typeahead/typeaheadjs.min.js"></script> -->
+		
+		<!-- PAGE RELATED PLUGIN(S) -->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js' />"></script>
+		<script src="<c:url value='/resources/js/plugin/fuelux/wizard/wizard.min.js' />"></script>
+		
 
 		<script type="text/javascript">
-
-			$(document).ready(function() {
-			 	
-				/* DO NOT REMOVE : GLOBAL FUNCTIONS!
-				 *
-				 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
-				 *
-				 * // activate tooltips
-				 * $("[rel=tooltip]").tooltip();
-				 *
-				 * // activate popovers
-				 * $("[rel=popover]").popover();
-				 *
-				 * // activate popovers with hover states
-				 * $("[rel=popover-hover]").popover({ trigger: "hover" });
-				 *
-				 * // activate inline charts
-				 * runAllCharts();
-				 *
-				 * // setup widgets
-				 * setup_widgets_desktop();
-				 *
-				 * // run form elements
-				 * runAllForms();
-				 *
-				 ********************************
-				 *
-				 * pageSetUp() is needed whenever you load a page.
-				 * It initializes and checks for all basic elements of the page
-				 * and makes rendering easier.
-				 *
-				 */
-				
-				 pageSetUp();
-				 
-				/*
-				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
-				 * eg alert("my home function");
-				 * 
-				 * var pagefunction = function() {
-				 *   ...
-				 * }
-				 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
-				 * 
-				 * TO LOAD A SCRIPT:
-				 * var pagefunction = function (){ 
-				 *  loadScript(".../plugin.js", run_after_loaded);	
-				 * }
-				 * 
-				 * OR
-				 * 
-				 * loadScript(".../plugin.js", run_after_loaded);
-				 */
-				
-			})
 		
+		// DO NOT REMOVE : GLOBAL FUNCTIONS!
+		
+		$(document).ready(function() {
+			
+			pageSetUp();
+			
+			
+			function geoFindMe() {
+				  //var output = document.getElementById("out");
+
+				  /* if (!navigator.geolocation){
+				    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+				    return;
+				  } */
+
+				  function success(position) {
+				    var latitude  = position.coords.latitude;
+				    var longitude = position.coords.longitude;
+				    alert(longitude);
+				    alert(latitude);
+
+				    //output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+				    var img = new Image();
+				    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+				    //output.appendChild(img);
+				  };
+
+				  function error() {
+				    //output.innerHTML = "Unable to retrieve your location";
+				  };
+
+				 // output.innerHTML = "<p>Locating…</p>";
+
+				  navigator.geolocation.getCurrentPosition(success, error);
+				}
+			
+			Dropzone.autoDiscover = false;
+			$("#mydropzone").dropzone({
+				url: "file?",
+				paramName: "file",		
+				addRemoveLinks : true,
+				maxFilesize: 500,
+				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
+				dictResponseError: 'Error uploading file!'
+			});
+	
+			//Bootstrap Wizard Validations
+
+			 function submitPost(){
+				
+				 event.preventDefault();
+				 var formData = new FormData($('#wizard-1')[0][1]);
+				 alert(formData);
+				
+			}
+				
+			  
+			  $('#finishCourse').click(function(){
+
+			      /* stop form from submitting normally */
+			      //event.preventDefault();
+
+			      var formData = new FormData($('#wizard-1')[0][1]);
+			      alert(formData);
+			     //var comment = new FormData($('#comments')[0]);
+			      
+			      /* get some values from elements on the page: */
+			      $.ajax({
+		                url: "rest/file/upload?",
+		                type: 'POST',
+		                data : formData,
+		                paramName: "file",
+		                success: function(result) {
+		                    // ... Process the result ...
+		                },
+		                cache: false,
+		                contentType: false,
+		                processData: false
+		            });
+
+			      /* Alerts the results */
+			      /* posting.done(function( data ) {
+			        alert('success');
+			      }); */
+			    });
+			  
+			 
+
+		
+		})
+
+		</script>
+		
+		<script type="text/javascript">
+		
+		 function geoFindMe() {
+			  //var output = document.getElementById("out");
+
+			  /* if (!navigator.geolocation){
+			    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+			    return;
+			  } */
+
+			  function success(position) {
+			    var latitude  = position.coords.latitude;
+			    var longitude = position.coords.longitude;
+			    alert(longitude);
+			    
+			    var location = document.getElementById("location");
+			    location.value = latitude+","+longitude;
+			    alert(location.value);
+			    console.log(location);
+
+			    //output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+			    var img = new Image();
+			    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+			    //output.appendChild(img);
+			  };
+
+			  function error() {
+			    //output.innerHTML = "Unable to retrieve your location";
+			  };
+
+			 // output.innerHTML = "<p>Locating…</p>";
+
+			  navigator.geolocation.getCurrentPosition(success, error);
+			}
 		</script>
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->

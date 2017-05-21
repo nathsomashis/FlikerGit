@@ -10,20 +10,15 @@ public class OSMModel {
 	private String osmid;
 	private String osmdemandid;
 	private String osmsupplyid;
-	private String osmstakeholdingid;
+	private String[] osmstakeholdingid;
 	private String osmhealthid;
-	private String osmbackupid;
-	private String osmpartnerid;
+	private String[] osmbackupid;
+	private String[] osmpartnerid;
 	private String[] osmdependentid;
 	private String osmstockid;
+	private String osmlocation;
 	
 	
-	public String getOsmpartnerid() {
-		return osmpartnerid;
-	}
-	public void setOsmpartnerid(String osmpartnerid) {
-		this.osmpartnerid = osmpartnerid;
-	}
 	public String getOsmid() {
 		return osmid;
 	}
@@ -42,10 +37,10 @@ public class OSMModel {
 	public void setOsmsupplyid(String osmsupplyid) {
 		this.osmsupplyid = osmsupplyid;
 	}
-	public String getOsmstakeholdingid() {
+	public String[] getOsmstakeholdingid() {
 		return osmstakeholdingid;
 	}
-	public void setOsmstakeholdingid(String osmstakeholdingid) {
+	public void setOsmstakeholdingid(String[] osmstakeholdingid) {
 		this.osmstakeholdingid = osmstakeholdingid;
 	}
 	public String getOsmhealthid() {
@@ -54,11 +49,17 @@ public class OSMModel {
 	public void setOsmhealthid(String osmhealthid) {
 		this.osmhealthid = osmhealthid;
 	}
-	public String getOsmbackupid() {
+	public String[] getOsmbackupid() {
 		return osmbackupid;
 	}
-	public void setOsmbackupid(String osmbackupid) {
+	public void setOsmbackupid(String[] osmbackupid) {
 		this.osmbackupid = osmbackupid;
+	}
+	public String[] getOsmpartnerid() {
+		return osmpartnerid;
+	}
+	public void setOsmpartnerid(String[] osmpartnerid) {
+		this.osmpartnerid = osmpartnerid;
 	}
 	public String[] getOsmdependentid() {
 		return osmdependentid;
@@ -72,6 +73,15 @@ public class OSMModel {
 	public void setOsmstockid(String osmstockid) {
 		this.osmstockid = osmstockid;
 	}
+	public String getOsmlocation() {
+		return osmlocation;
+	}
+	public void setOsmlocation(String osmlocation) {
+		this.osmlocation = osmlocation;
+	}
+	
+	
+	
 	
 	
 	

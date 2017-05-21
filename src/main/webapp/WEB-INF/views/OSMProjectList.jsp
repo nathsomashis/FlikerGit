@@ -1,11 +1,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html lang="en-us">
-	<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
 		<meta charset="utf-8">
-		<title> My Courses </title>
+		<title> OSM Projects </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -28,7 +28,7 @@
 
 		<!-- SmartAdmin RTL Support -->
 		<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">  -->
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> --> 
 
 		<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
@@ -50,9 +50,9 @@
 		<!-- #APP SCREEN / ICONS -->
 		<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-		<link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">	 
+			 <link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">
 		<!-- <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon">
+		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon" sizes="76x76">
 		<!-- <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png"> -->
 		<link href='<c:url value="/resources/img/splash/touch-icon-iphone-retina.png" />' rel="apple-touch-icon" sizes="120x120">
 		<!-- <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png"> -->
@@ -64,12 +64,12 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<!-- Startup image for web apps -->
-<!-- 		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-landscape.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
+		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
+		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
 		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
+		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
 
 	</head>
 
@@ -123,7 +123,7 @@
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
+				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -171,28 +171,27 @@
 			</div>
 
 			<!-- projects dropdown -->
-			<div class="project-context hidden-xs" >
+	<div class="project-context hidden-xs">
 
-				<span class="label">Projects:</span>
-				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
+		<span class="label">Projects:</span> <span
+			class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
+			projects <i class="fa fa-angle-down"></i>
+		</span>
 
-				<!-- Suggestion: populate this list with fetch and push technique -->
-				<ul class="dropdown-menu" style="border: 1px solid black">
-					<h5>Daily Note</h5>
-					<li>
-						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
-					</li>
-					
-					<li class="divider"></li>
-					<li>
-						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
-					</li>
-				</ul>
-				<!-- end dropdown-menu-->
+		<!-- Suggestion: populate this list with fetch and push technique -->
+		<ul class="dropdown-menu" style="border: 1px solid black">
+			<h5>Daily Note</h5>
+			<li><textarea id="notemessage" class="form-control"
+					name="notemessage" rows="3" style="width: 400px"></textarea></li>
 
-			</div>
-			
-			<!-- end projects dropdown -->
+			<li class="divider"></li>
+			<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
+					Note Down</a></li>
+		</ul>
+		<!-- end dropdown-menu-->
+
+	</div>
+	<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
 			<div class="pull-right">
@@ -236,7 +235,7 @@
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="logout?" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+					<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
 				<!-- end logout button -->
 
@@ -245,38 +244,6 @@
 					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
 				</div>
 				<!-- end search mobile button -->
-
-				<!-- input: search field -->
-				<form action="searchresults?" class="header-search pull-right">
-					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"]'>
-					<button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-				</form>
-				<!-- end input: search field -->
 
 				<!-- fullscreen button -->
 				<div id="fullscreen" class="btn-header transparent pull-right">
@@ -357,20 +324,53 @@
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<div class="login-info">
-				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-					
-					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
-						<span>
-							john.doe 
-						</span>
-						<i class="fa fa-angle-down"></i>
-					</a> 
-					
-				</span>
-			</div>
-			<!-- end user info -->
+			<%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String gender = (String)request.getAttribute("Gender");
+			String imageid = (String)request.getAttribute("ProfileImage");
+			String logo = "";
+			
+			
+		
+		%>
+
+
+		<!-- User info -->
+
+		<%
+		/* if(imageid == ""){
+			if(gender.equalsIgnoreCase("female")){
+				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
+			}else{
+				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
+			}
+		}else{
+			
+		} */
+		
+		
+		%>
+		<div class="login-info">
+			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+				<a href="javascript:void(0);" id="show-shortcut"
+				data-action="toggleShortcut"> <%if(imageid == ""){
+					if(gender.equalsIgnoreCase("female")){
+						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
+					alt="me" class="online" /> <%
+					}else{
+						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
+					alt="me" class="online" /> <% 
+					}
+				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
+				</span> <i class="fa fa-angle-down"></i>
+			</a>
+
+			</span>
+		</div>
+		<!-- end user info -->
+			
 
 			<nav>
 				<!-- 
@@ -380,14 +380,14 @@
 				-->
 
 				<ul>
-		<li><a href="searchresults?"><i
-				class="fa fa-lg fa-fw fa-search-plus"></i> <span
+		<li class="active"><a href="search?"><i
+				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
 		<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
 		<li ><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+				class="fa fa-lg fa-fw fa-retweet "></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
@@ -400,16 +400,16 @@
 		<li><a href="createpost?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
-		<!-- <li><a href="classroom?" title="NewPost"><i
+		<li><a href="classroom?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-		</li> -->
-		<li class="active"><a href="#" title="Dashboard"><i
+		</li>
+		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
 			<ul>
-				<li class="active"><a href="courseEdu?" title="NewPost"><i
+				<li class=""><a href="courseEdu?" title="NewPost"><i
 						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
-				<li class=""><a href="classroom?" title="ClassRoom"><i
+				<li class=""><a href="otherprofile?" title="ClassRoom"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
 			</ul></li>
@@ -452,12 +452,26 @@
 		<li class=""><a href="#" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
 				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
+				<li class=""><a href="standardguidance?" title="Academic"><i
 						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
 				</li>
-				<li class=""><a href="companies?" title="Companies"><i
+				<li class=""><a href="professionalguidance?" title="Profesional"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
 				</li>
+				<li class=""><a href="gotoguidance?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">GuidanceSheet Test</span></a>
+				</li>
+				<li class=""><a href="assignmentAnswer?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Assignment Answer Test</span></a>
+				</li>
+				<li class=""><a href="projectstructure?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Project Directory</span></a>
+				</li>
+				<li class=""><a href="projectviewdetail?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Project View</span></a>
+				</li>
+				
+				
 			</ul></li>		
 
 		<li class="chat-users top-menu-invisible"><a href="#"><i
@@ -589,7 +603,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li><a href="hello?name=Eric?">Home</li><li>Course</li><li>My Course</li>
+					<li>OSM Projects</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -606,310 +620,325 @@
 
 			</div>
 			<!-- END RIBBON -->
-			
-			
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
 
 				<!-- row -->
-				<div class="row">
-
-					<!-- col -->
-					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-						<h1 class="page-title txt-color-blueDark">
-							<!-- PAGE HEADER -->
-							<i class="fa-fw fa fa-home"></i> App Views <span>>
-								Blog </span>
-						</h1>
-					</div>
-					<!-- end col -->
-
-					<!-- right side of the page with the sparkline graphs -->
-					<!-- col -->
-					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-						<!-- sparks -->
-						<ul id="sparks">
-							<li class="sparks-info">
-								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
-								<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-									1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-								</div>
-							</li>
-							<li class="sparks-info">
-								<h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
-								<div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
-									110,150,300,130,400,240,220,310,220,300, 270, 210
-								</div>
-							</li>
-							<li class="sparks-info">
-								<h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
-								<div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
-									110,150,300,130,400,240,220,310,220,300, 270, 210
-								</div>
-							</li>
-						</ul>
-						<!-- end sparks -->
-					</div>
-					<!-- end col -->
-
-				</div>
-				<!-- end row -->
 				
 				<div class="row">
-
-					<div class="col-sm-9">
-
-						<div class="well padding-10">
-
-							<div class="row">
-								<div class="col-md-4">
-									<img src="img/superbox/superbox-full-15.jpg" class="img-responsive" alt="img">
-									<ul class="list-inline padding-10">
-										<li>
-											<i class="fa fa-calendar"></i>
-											<a href="javascript:void(0);"> March 12, 2015 </a>
-										</li>
-										<li>
-											<i class="fa fa-comments"></i>
-											<a href="javascript:void(0);"> 38 Comments </a>
-										</li>
-									</ul>
-								</div>
-								<div class="col-md-8 padding-left-0">
-									<h3 class="margin-top-0"><a href="javascript:void(0);"> Why Should You Make A Separate Mobile Website for your Business? </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
-									<p>
-										At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. 
-
-										<br><br>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
-										<br><br>
-									</p>
-									<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
-									<a class="btn btn-warning" href="javascript:void(0);"> Edit </a>
-									<a class="btn btn-success" href="javascript:void(0);"> Publish </a>
-								</div>
-							</div>
-							<hr>
-
-							<div class="row">
-								<div class="col-md-4">
-									<img src="img/superbox/superbox-full-19.jpg" class="img-responsive" alt="img">
-									<ul class="list-inline padding-10">
-										<li>
-											<i class="fa fa-calendar"></i>
-											<a href="javascript:void(0);"> March 12, 2015 </a>
-										</li>
-										<li>
-											<i class="fa fa-comments"></i>
-											<a href="javascript:void(0);"> 38 Comments </a>
-										</li>
-									</ul>
-								</div>
-								<div class="col-md-8 padding-left-0">
-									<h3 class="margin-top-0"><a href="javascript:void(0);"> Mums favorite shopping malls in USA </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
-									<p>
-										At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. 
-
-										<br><br>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
-										<br><br>
-									</p>
-									<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
-								</div>
-							</div>
-							<hr>
-
-							<div class="row">
-								<div class="col-md-4">
-									<img src="img/superbox/superbox-full-24.jpg" class="img-responsive" alt="img">
-									<ul class="list-inline padding-10">
-										<li>
-											<i class="fa fa-calendar"></i>
-											<a href="javascript:void(0);"> March 12, 2015 </a>
-										</li>
-										<li>
-											<i class="fa fa-comments"></i>
-											<a href="javascript:void(0);"> 38 Comments </a>
-										</li>
-									</ul>
-								</div>
-								<div class="col-md-8 padding-left-0">
-									<h3 class="margin-top-0"><a href="javascript:void(0);"> Best (and Basic) Practices of Mobile Web Design </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
-									<p>
-										With the plethora of smartphones, mobile phones, and tablets available on the market today, research suggests that mobile devices will soon overtake PCs and laptops in a year. More and more,different platforms are made available for all types of consumers to access the web, even including TVs and gaming consoles. 
-
-										<br><br>
-
-										And all this in rapid-fire turnoverânew models and technologies quickly coming and going like fashion trends. So much so that any website that is not mobile friendly cannot claim to be user-friendly anymore. Increasingly, web developers and designers utilize fluid layouts allowing users to browse across different platforms.
-
-										<br><br>
-									</p>
-									<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
-								</div>
-							</div>
-
-							<hr>
-
-							<div class="row">
-								<div class="col-md-4">
-									<img src="img/superbox/superbox-full-7.jpg" class="img-responsive" alt="img">
-									<ul class="list-inline padding-10">
-										<li>
-											<i class="fa fa-calendar"></i>
-											<a href="javascript:void(0);"> March 12, 2015 </a>
-										</li>
-										<li>
-											<i class="fa fa-comments"></i>
-											<a href="javascript:void(0);"> 38 Comments </a>
-										</li>
-									</ul>
-								</div>
-								<div class="col-md-8 padding-left-0">
-									<h3 class="margin-top-0"><a href="javascript:void(0);"> Responsive Design: Best Practices for Designing a Website </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
-									<p>
-										The term Responsive design means developing a website in a way that adapts all the computer screen resolutions. Particularly this concept allows a 4 column layout that is 1292px wide, on 1025px wide screen that is divided into 2 columns automatically. It is adaptable for android phones and tablet screens. This designing method is known as âresponsive web designâ
-
-										<br><br>
-										
-										Responsive designing is a different concept from traditional web designing, so the question arises how you should build a good responsive website. Here is a general practices that can help you to build a responsive website design.
-
-										<br><br>
-									</p>
-									<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
-								</div>
-							</div>	
-
-						</div>
-
-					</div>
-
-					<!-- <div class="col-sm-3">
-						<div class="well padding-10">
-							<h5 class="margin-top-0"><i class="fa fa-search"></i> Blog Search...</h5>
-							<div class="input-group">
-								<input type="text" class="form-control">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
-									</button> </span>
-							</div>
-							/input-group
-						</div>
-						/well
-						<div class="well padding-10">
-							<h5 class="margin-top-0"><i class="fa fa-tags"></i> Popular Tags:</h5>
-							<div class="row">
-								<div class="col-lg-6">
-									<ul class="list-unstyled">
-										<li>
-											<a href=""><span class="badge badge-info">Windows 8</span></a>
-										</li>
-										<li>
-											<a href=""><span class="badge badge-info">C#</span></a>
-										</li>
-										<li>
-											<a href=""><span class="badge badge-info">Windows Forms</span></a>
-										</li>
-										<li>
-											<a href=""><span class="badge badge-info">WPF</span></a>
-										</li>
-									</ul>
-								</div>
-								<div class="col-lg-6">
-									<ul class="list-unstyled">
-										<li>
-											<a href=""><span class="badge badge-info">Bootstrap</span></a>
-										</li>
-										<li>
-											<a href=""><span class="badge badge-info">Joomla!</span></a>
-										</li>
-										<li>
-											<a href=""><span class="badge badge-info">CMS</span></a>
-										</li>
-										<li>
-											<a href=""><span class="badge badge-info">Java</span></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						/well
-						<div class="well padding-10">
-							<h5 class="margin-top-0"><i class="fa fa-thumbs-o-up"></i> Follow Us!</h5>
-							<ul class="no-padding no-margin">
-								<p class="no-margin">
-									<a title="Facebook" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x"></i></span></a>
-									<a title="Twitter" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x"></i></span></a>
-									<a title="Google+" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-google-plus fa-stack-1x"></i></span></a>
-									<a title="Linkedin" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x"></i></span></a>
-									<a title="GitHub" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-github fa-stack-1x"></i></span></a>
-									<a title="Bitbucket" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-bitbucket fa-stack-1x"></i></span></a>
-								</p>
-							</ul>
-						</div>
-						/well
-						/well
-						<div class="well padding-10">
-							<h5 class="margin-top-0"><i class="fa fa-fire"></i> Popular Posts:</h5>
-							<ul class="no-padding list-unstyled">
-								<li>
-									<a href="javascript:void(0);" class="margin-top-0">WPF vs. Windows Forms-Which is better?</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" class="padding-top-5 display-block">How to create responsive website with Bootstrap?</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" class="margin-top-5">The best Joomla! templates 2014</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" class="margin-top-5">ASP .NET cms list</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" class="margin-top-5">C# Hello, World! program</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" class="margin-top-5">Java random generator</a>
-								</li>
-							</ul>
-						</div>
-						/well
-
-						/well
-						<div class="well padding-10">
-							<h5 class="margin-top-0"><i class="fa fa-video-camera"></i> Featured Videos:</h5>
-							<div class="row">
-
-								<div class="col-lg-12">
-
-									<ul class="list-group no-margin">
-										<li class="list-group-item">
-											<a href=""> <span class="badge pull-right">15</span> Photograph </a>
-										</li>
-										<li class="list-group-item">
-											<a href=""> <span class="badge pull-right">30</span> Life style </a>
-										</li>
-										<li class="list-group-item">
-											<a href=""> <span class="badge pull-right">9</span> Food </a>
-										</li>
-										<li class="list-group-item">
-											<a href=""> <span class="badge pull-right">4</span> Travel world </a>
-										</li>
-									</ul>
-
-								</div>
-
-								<div class="col-lg-12">
-									<div class="margin-top-10">
-										<iframe allowfullscreen="" frameborder="0" height="210" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
+				
+					<div class="col-sm-12">
+				
+						<ul id="myTab1" class="nav nav-tabs bordered">
+							<li class="active">
+								<a href="#s1" data-toggle="tab">Search</a>
+							</li>
+							<li>
+								<a href="#s2" data-toggle="tab">Existing Projects</a>
+							</li>
+							<li>
+								<a href="#s3" data-toggle="tab">Search History</a>
+							</li>
+							<!-- <li class="pull-right hidden-mobile">
+								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
+							</li> -->
+						</ul>
+				
+						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
+							<div class="tab-pane fade in active" id="s1">
+								<h1> Search <span class="semi-bold">Everything</span></h1>
+								<br>
+								<div class="input-group input-group-lg hidden-mobile">
+									<input class="form-control input-lg" type="text" placeholder="Search again..." id="search-project">
+									<div class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
+										</button>
 									</div>
 								</div>
+				
+								<h1 class="font-md"> Search Results for <small class="text-danger"> &nbsp;&nbsp;(2,281 results)</small></h1>
+				
+								<div class="search-results clearfix smart-form">
+				
+									<h4><i class="fa fa-plus-square txt-color-blue"></i>&nbsp;<a href="javascript:void(0);">SmartAdmin - Responsive Dashboard Template</a></h4>
+				
+									<div>
+										<div class="rating display-inline">
+											<input type="radio" name="stars-rating" id="stars-rating-5">
+											<label for="stars-rating-5"><i class="fa fa-star"></i></label>
+											<input type="radio" name="stars-rating" id="stars-rating-4">
+											<label for="stars-rating-4"><i class="fa fa-star"></i></label>
+											<input type="radio" name="stars-rating" id="stars-rating-3">
+											<label for="stars-rating-3"><i class="fa fa-star"></i></label>
+											<input type="radio" name="stars-rating" id="stars-rating-2">
+											<label for="stars-rating-2"><i class="fa fa-star"></i></label>
+											<input type="radio" name="stars-rating" id="stars-rating-1">
+											<label for="stars-rating-1"><i class="fa fa-star"></i></label>
+										</div>
+										<br>
+										<div class="url text-success">
+											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+										</p>
+									</div>
+				
+								</div>
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here...
+										</p>
+									</div>
+								</div> -->
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
+									<img src="img/demo/sample.jpg" alt="">
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Oct 1, 2006 - Uploaded by 02842356107
+											<br>
+											<br>
+											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
+										</p>
+									</div>
+				
+								</div> -->
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
+				
+									<div>
+				
+										<span class="sparkline txt-color-blueLight" data-sparkline-type="line" data-sparkline-width="150px" data-sparkline-height="25px"> 10,3,8,4,3,10,7,8,4,6,4,6,8,3 </span>
+										<span class="display-inline note font-lg semi-bold"><small><i class="fa fa-arrow-circle-up text-success"></i> 143.43</small></span>
+				
+										<p class="note">
+											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+										</p>
+									</div>
+				
+								</div> -->
+								
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);"> Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"></a><small>[PDF]</small></h4>
+									<span class="sparkline txt-color-blueLight display-inline" data-sparkline-type="pie"  data-sparkline-offset="90" data-sparkline-piesize="55px"> 10,3,8,4, </span>
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
+										</p>
+									</div>
+				
+								</div> -->
+				
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
+										</div>
+									</div>
+								</div> -->
+				
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
+										</p>
+									</div>
+								</div> -->
+				
+								<div class="text-center">
+									<hr>
+									<ul class="pagination no-margin">
+										<li class="prev disabled">
+											<a href="javascript:void(0);">Previous</a>
+										</li>
+										<li class="active">
+											<a href="javascript:void(0);">1</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">2</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">3</a>
+										</li>
+										<li class="next">
+											<a href="javascript:void(0);">Next</a>
+										</li>
+									</ul>
+									<br>
+									<br>
+									<br>
+								</div>
+				
 							</div>
-
+				
+							<div class="tab-pane fade" id="s2">
+								<h1> Search <span class="semi-bold">Users/Groups/Courses/Job Interviews/Organization/Institutions/Etc..</span></h1>
+								<br>
+								<div class="input-group input-group-lg">
+									<div class="input-group-btn">
+										<button id="searchparamset" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+											User <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li class="active">
+												<a href="javascript:void(0)"></i> Users</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Groups</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Organization</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Institutes</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Courses</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Job Interviews</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Specializations</a>
+											</li>
+										</ul>
+									</div>
+									<input class="form-control input-lg" type="text" placeholder="Mention the type(eg: for Groups --> #Group groupname)..." id="search-user">
+									<div class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											<i class="fa fa-fw fa-search fa-lg"></i>
+										</button>
+									</div>
+								</div>
+								<h1 class="font-md"> Search Results for <span class="semi-bold">Users</span><small class="text-danger"> &nbsp;&nbsp;(181 results)</small></h1>
+								<br>
+								<div class="search-results clearfix smart-form">
+									<div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
+									<img src="img/demo/sample.jpg" alt="">
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Oct 1, 2006 - Uploaded by 02842356107
+											<br>
+											<br>
+											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
+										</p>
+									</div>
+				
+								</div>
+								</div>
+								
+								<div class="text-center">
+									<hr>
+									<ul class="pagination no-margin">
+										<li class="prev disabled">
+											<a href="javascript:void(0);">Previous</a>
+										</li>
+										<li class="active">
+											<a href="javascript:void(0);">1</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">2</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">3</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">4</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">5</a>
+										</li>
+										<li class="next">
+											<a href="javascript:void(0);">Next</a>
+										</li>
+									</ul>
+									<br>
+									<br>
+									<br>
+								</div>
+							</div>
+				
+							<div class="tab-pane fade" id="s3">
+								<h1> Search <span class="semi-bold">history</span></h1>
+								<p class="alert alert-info">
+									Your search history is turned off.
+				
+								</p>
+				
+								<span class="onoffswitch-title">Auto save Search History</span>
+								<span class="onoffswitch">
+									<input type="checkbox" name="save_history" class="onoffswitch-checkbox" id="save_history" checked="checked">
+									<label class="onoffswitch-label" for="save_history"> <span class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></span> <span class="onoffswitch-switch"></span> </label> </span>
+				
+							</div>
 						</div>
-						/well
-
-					</div> -->
-
+				
+					</div>
+				
 				</div>
+				
+				<!-- end row -->
 
 			</div>
 			<!-- END MAIN CONTENT -->
@@ -921,53 +950,10 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> Â© 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin </span>
 				</div>
 
-				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
-					<div class="txt-color-white inline-block">
-						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
-						<div class="btn-group dropup">
-							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
-								<i class="fa fa-link"></i> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu pull-right text-left">
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Server Load</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<button class="btn btn-block btn-default">refresh</button>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 		<!-- END PAGE FOOTER -->
