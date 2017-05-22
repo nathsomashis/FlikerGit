@@ -5,8 +5,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import com.fliker.Repository.OSMModel;
+import com.fliker.Repository.OSMOperator;
 import com.fliker.Repository.OSMProjectInfo;
+import com.fliker.Repository.OSMProjectInvestment;
+import com.fliker.Repository.OSMProjectSeller;
+import com.fliker.Repository.OSMStakeHolding;
 import com.fliker.Repository.Post;
+import com.fliker.Repository.Stock;
 import com.mongodb.BasicDBObject;
 
 public class OSMFileUtility {
@@ -62,6 +67,86 @@ public class OSMFileUtility {
 		basicdbobj.put("projectresources", projectinfo.getProjectresources());
 		basicdbobj.put("projectstockprice", projectinfo.getProjectstockprice());
 		
+		
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formOSMProjectInvestDBObject(OSMProjectInvestment osmprojinvest) {
+		// TODO Auto-generated method stub
+		
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("osmmodelid", osmprojinvest.getOsmmodelid());
+		basicdbobj.put("osminvestmentdoc", osmprojinvest.getOsminvestmentdoc());
+		basicdbobj.put("osminvestorslink", osmprojinvest.getOsminvestorslink());
+		basicdbobj.put("osmstakedivision", osmprojinvest.getOsmstakedivision());
+		basicdbobj.put("osmstakeholdingid", osmprojinvest.getOsmstakeholdingid());
+		
+		
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formOSMProjectSellerDBObject(OSMProjectSeller projseller) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("osmmodelid", projseller.getOsmmodelid());
+		basicdbobj.put("projectsellerid",projseller.getProjectsellerid());
+		basicdbobj.put("sellerdescription", projseller.getSellerdescription());
+		basicdbobj.put("sellingmarketdoc", projseller.getSellingmarketdoc());
+		
+		
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formOSMOperatorDBObject(OSMOperator osmoperator) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("activeCompany", osmoperator.getActiveCompany());
+		basicdbobj.put("newsevents", osmoperator.getNewsevents());
+		basicdbobj.put("oldbuyings", osmoperator.getOldbuyings());
+		basicdbobj.put("olddevelopments", osmoperator.getOlddevelopments());
+		basicdbobj.put("oldinvestments", osmoperator.getOldinvestments());
+		basicdbobj.put("operatorComapnyid", osmoperator.getOperatorComapnyid());
+		basicdbobj.put("operatorid", osmoperator.getOperatorid());
+		basicdbobj.put("operatorStory", osmoperator.getOperatorStory());
+		basicdbobj.put("osmmodelid", osmoperator.getOsmmodelid());
+		basicdbobj.put("osmownerids", osmoperator.getOsmownerids());
+		basicdbobj.put("stockholdings", osmoperator.getStockholdings());
+		basicdbobj.put("userid", osmoperator.getUserid());
+		
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formOSMStakeHoldingDBObject(OSMStakeHolding stakeholding) {
+		// TODO Auto-generated method stub
+		
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("stakeamount", stakeholding.getStakeamount());
+		basicdbobj.put("stakeholderlocation",stakeholding.getStakeholderlocation());
+		basicdbobj.put("stakeholdingid", stakeholding.getStakeholdingid());
+		basicdbobj.put("stakeownerid", stakeholding.getStakeownerid());
+		basicdbobj.put("stakepercentage", stakeholding.getStakepercentage());
+		basicdbobj.put("stakestokpriceid", stakeholding.getStakestokpriceid());
+		basicdbobj.put("starstokprice", stakeholding.getStarstokprice());
+		
+		
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formOSMStockDBObject(Stock stock) {
+		// TODO Auto-generated method stub
+		
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("closingvalue", stock.getClosingvalue());
+		basicdbobj.put("companyid",stock.getCompanyid());
+		basicdbobj.put("openingvalue", stock.getOpeningvalue());
+		basicdbobj.put("stockamount", stock.getStockamount());
+		basicdbobj.put("stockid", stock.getStockid());
+		basicdbobj.put("stockprice", stock.getStockprice());
 		
 		return basicdbobj;
 	}

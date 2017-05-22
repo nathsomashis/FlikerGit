@@ -18,6 +18,15 @@ public class OSMProjectInfo {
 	private String[] projectbuyers;
 	private String projectstockprice;
 	private String[] projectresources;
+	private String[] projectrequestors;
+	
+	
+	public String[] getProjectrequestors() {
+		return projectrequestors;
+	}
+	public void setProjectrequestors(String[] projectrequestors) {
+		this.projectrequestors = projectrequestors;
+	}
 	public String getProjectinfoid() {
 		return projectinfoid;
 	}

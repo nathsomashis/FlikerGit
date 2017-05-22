@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,8 +19,14 @@ import com.fliker.Repository.Company;
 import com.fliker.Repository.FileUnionTimeFrame;
 import com.fliker.Repository.FileUpload;
 import com.fliker.Repository.OSMModel;
+import com.fliker.Repository.OSMOperator;
+import com.fliker.Repository.OSMProjectDevelopment;
 import com.fliker.Repository.OSMProjectInfo;
+import com.fliker.Repository.OSMProjectInvestment;
+import com.fliker.Repository.OSMProjectSeller;
+import com.fliker.Repository.OSMStakeHolding;
 import com.fliker.Repository.SearchContent;
+import com.fliker.Repository.Stock;
 import com.fliker.Utility.DateFunctionality;
 import com.fliker.Utility.OSMFileUtility;
 import com.fliker.Utility.ServicesUtil;
@@ -62,7 +69,7 @@ public class OSMPreview {
 				osmprojinf.setProjectname((String)theObjosm.get("projectname"));
 				osmprojinf.setProjectresources((String[])theObjosm.get("projectresources"));
 				osmprojinf.setProjectstockprice((String)theObjosm.get("projectstockprice"));
-				
+				osmprojinf.setProjectrequestors((String[])theObjosm.get("projectrequestors"));
 				projectlist.add(osmprojinf);
 				
 			}
@@ -436,8 +443,638 @@ public class OSMPreview {
 		
 		
 	}
+
+	public HashMap opensubscriptionAs(String userid, String subscriptiontype, String token) {
+		// TODO Auto-generated method stub
 		
+		HashMap<String, ArrayList> holdinglist = new HashMap<String, ArrayList>(); 
+		ArrayList subscribelist = new ArrayList(); 
+		
+		String subscribelink= "";
+		
+		if(subscriptiontype.equalsIgnoreCase("Investor")){
+			
+			MongoConnection mongoconinner = new MongoConnection();
+			DBCursor resultcursor = mongoconinner.getDBObject("osmmodelid", token, "OSMProjectInvestment");
+			if(resultcursor.hasNext()){
+				DBObject osmprojObj = resultcursor.next();
+				
+				OSMProjectInvestment osmprojinvest = new OSMProjectInvestment();
+				
+				osmprojinvest.setOsminvestmentdoc((String[])osmprojObj.get("osminvestmentdoc"));
+				osmprojinvest.setOsminvestorslink((String)osmprojObj.get("osminvestorslink"));
+				osmprojinvest.setOsmstakeholdingid((String)osmprojObj.get("osmstakeholdingid"));
+				osmprojinvest.setOsmmodelid((String)osmprojObj.get("osmmodelid"));
+				
+				subscribelist.add(osmprojinvest);
+				
+			}
+			holdinglist.put("/OSMProjectInvestor", subscribelist);
+			
+		}else if(subscriptiontype.equalsIgnoreCase("Buyer")){
+			
+			MongoConnection mongoconinner = new MongoConnection();
+			DBCursor resultcursor = mongoconinner.getDBObject("osmmodelid", token, "OSMProjectSeller");
+			if(resultcursor.hasNext()){
+				DBObject osmprojObj = resultcursor.next();
+				
+				OSMProjectSeller osmprojsell = new OSMProjectSeller();
+				
+				osmprojsell.setProjectsellerid((String)osmprojObj.get("projectsellerid"));
+				osmprojsell.setOsmmodelid((String)osmprojObj.get("osmmodelid"));
+				osmprojsell.setSellerdescription((String)osmprojObj.get("sellerdescription"));
+				osmprojsell.setSellingmarketdoc((String)osmprojObj.get("sellingmarketdoc"));
+				
+				subscribelist.add(osmprojsell);
+				
+			}
+			holdinglist.put("/OSMProjectBuying", subscribelist);
+			
+		}else if(subscriptiontype.equalsIgnoreCase("Developer")){
+			
+			MongoConnection mongoconinner = new MongoConnection();
+			DBCursor resultcursor = mongoconinner.getDBObject("osmmodelid", token, "OSMProjectDevelopment");
+			if(resultcursor.hasNext()){
+				DBObject osmprojObj = resultcursor.next();
+				
+				OSMProjectDevelopment osmprojdevelop = new OSMProjectDevelopment();
+				
+				osmprojdevelop.setOsmmodelid((String)osmprojObj.get("osmmodelid"));
+				osmprojdevelop.setOsmprojectdevelopmentid((String)osmprojObj.get("osmprojectdevelopmentid"));
+				osmprojdevelop.setOsmresourceid((String[])osmprojObj.get("osmresourceid"));
+				osmprojdevelop.setProjectflodocs((String[])osmprojObj.get("projectflodocs"));
+				osmprojdevelop.setProjectidlink((String)osmprojObj.get("projectidlink"));
+				osmprojdevelop.setProjectlinkaccess((String)osmprojObj.get("projectlinkaccess"));
+				osmprojdevelop.setProjectslidesid((String)osmprojObj.get("projectslidesid"));
+				
+				subscribelist.add(osmprojdevelop);
+				
+			}
+			
+			holdinglist.put("/OSMProjectResource", subscribelist);
+		}
+		
+		
+		
+		
+		
+		return holdinglist;
+	}
+
+	public void saveOSMModelInvest(String token, String ownerid) {
+		// TODO Auto-generated method stub
+		
+		
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("osmmodelid", token, "OSMProjectInfo");
+		if(resultosms.hasNext()){
+			DBObject osmprojObj = resultosms.next();
+			
+			MongoConnection mongoconn = new MongoConnection();
+			mongoconn.updateObject(new BasicDBObject("osmmodelid", token), new BasicDBObject("$push", new BasicDBObject("projectinvestors", ownerid)), "OSMProjectInfo");
+		
+			mongoconn.updateObject(new BasicDBObject("userid", ownerid), new BasicDBObject("$push", new BasicDBObject("oldinvestments", token)), "OSMOperator");
+			mongoconn.updateObject(new BasicDBObject("userid", ownerid), new BasicDBObject("$push", new BasicDBObject("osmmodelid", token)), "OSMOperator");
+		}
+	}
+
+	public void saveOSMModelBuying(String token, String ownerid) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("osmmodelid", token, "OSMProjectInfo");
+		if(resultosms.hasNext()){
+			DBObject osmprojObj = resultosms.next();
+			
+			MongoConnection mongoconn = new MongoConnection();
+			mongoconn.updateObject(new BasicDBObject("osmmodelid", token), new BasicDBObject("$push", new BasicDBObject("projectbuyers", ownerid)), "OSMProjectInfo");
+		
+			mongoconn.updateObject(new BasicDBObject("userid", ownerid), new BasicDBObject("$push", new BasicDBObject("oldbuyings", token)), "OSMOperator");
+			mongoconn.updateObject(new BasicDBObject("userid", ownerid), new BasicDBObject("$push", new BasicDBObject("osmmodelid", token)), "OSMOperator");
+		}
+	}
+
+	public ArrayList getRelatedOSMModels(String ownerid) {
+		// TODO Auto-generated method stub
+		ArrayList  projectlist = new ArrayList();
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("userid", ownerid, "OSMOperator");
+		while(resultosms.hasNext()){
+			
+			DBObject osmprojObj = resultosms.next();
+			String[] osmmodelids = (String[])osmprojObj.get("osmmodelid");
+			
+			for(int d=0;d<osmmodelids.length;d++){
+				
+				MongoConnection mongoconinner = new MongoConnection();
+				DBCursor resultcursor = mongoconinner.getDBObject("osmmodelid", osmmodelids[d], "OSMProjectInfo");
+				if(resultcursor.hasNext()){
+					
+					DBObject theObjosm = resultcursor.next();
+					
+					OSMProjectInfo osmprojinf = new OSMProjectInfo();
+					osmprojinf.setOsmmodelid((String)theObjosm.get("osmmodelid"));
+					osmprojinf.setProjectbuyers((String[])theObjosm.get("projectbuyers"));
+					osmprojinf.setProjectdemandchart((String)theObjosm.get("projectdemandchart"));
+					osmprojinf.setProjectdescription((String)theObjosm.get("projectdescription"));
+					osmprojinf.setProjectdocs((String[])theObjosm.get("projectdocs"));
+					osmprojinf.setProjectinfoid((String)theObjosm.get("projectinfoid"));
+					osmprojinf.setProjectinvestors((String[])theObjosm.get("projectinvestors"));
+					osmprojinf.setProjectmarkettingdoc((String)theObjosm.get("projectmarkettingdoc"));
+					osmprojinf.setProjectname((String)theObjosm.get("projectname"));
+					osmprojinf.setProjectresources((String[])theObjosm.get("projectresources"));
+					osmprojinf.setProjectstockprice((String)theObjosm.get("projectstockprice"));
+					osmprojinf.setProjectrequestors((String[])theObjosm.get("projectrequestors"));
+					
+					projectlist.add(osmprojinf);
+					
+				}
+				
+				
+			}
+			
+			
+		}
+		
+		return null;
+	}
+
+	public void saveOSMModelDevloping(String token, String ownerid) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("osmmodelid", token, "OSMProjectInfo");
+		if(resultosms.hasNext()){
+			DBObject osmprojObj = resultosms.next();
+			
+			MongoConnection mongoconn = new MongoConnection();
+			mongoconn.updateObject(new BasicDBObject("osmmodelid", token), new BasicDBObject("$push", new BasicDBObject("projectrequestors", ownerid)), "OSMProjectInfo");
+		
+			mongoconn.updateObject(new BasicDBObject("userid", ownerid), new BasicDBObject("$push", new BasicDBObject("olddevelopments", token)), "OSMOperator");
+			mongoconn.updateObject(new BasicDBObject("userid", ownerid), new BasicDBObject("$push", new BasicDBObject("osmmodelid", token)), "OSMOperator");
+		}
+		
+	}
+
+	public void saveOSMModelDevloplist(String osmmodelid, String developerid) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("osmmodelid", osmmodelid, "OSMProjectInfo");
+		if(resultosms.hasNext()){
+			DBObject osmprojObj = resultosms.next();
+			
+			MongoConnection mongoconn = new MongoConnection();
+			mongoconn.updateObject(new BasicDBObject("osmmodelid", osmmodelid), new BasicDBObject("$push", new BasicDBObject("projectresources", developerid)), "OSMProjectInfo");
+		
+			/*mongoconn.updateObject(new BasicDBObject("userid", developerid), new BasicDBObject("$push", new BasicDBObject("olddevelopments", osmmodelid)), "OSMOperator");
+			mongoconn.updateObject(new BasicDBObject("userid", developerid), new BasicDBObject("$push", new BasicDBObject("osmmodelid", osmmodelid)), "OSMOperator");*/
+		}
+		
+		
+		
+	}
+
+	public void createOSMModelInvestSet(String osmmodelid, String stakeamount, String stakedivision, String ownerid, String projectinvestlink) {
+		// TODO Auto-generated method stub
+		
+		OSMProjectInvestment osmprojinvest = new OSMProjectInvestment();
+		osmprojinvest.setOsmmodelid(osmmodelid);
+		osmprojinvest.setOsmstakedivision(stakedivision);
+		osmprojinvest.setOsminvestorslink(projectinvestlink);
+		OSMFileUtility osmfileutility = new OSMFileUtility();
+		
+		String uniqueid = "";
+		try {
+			uniqueid = osmfileutility.makeSHA1Hash(osmmodelid);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		osmprojinvest.setOsmstakeholdingid(uniqueid);
+		StringBuffer projectinvestdoc = new StringBuffer();
+		
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("tempid", osmmodelid, "FileUnionTimeFrame");
+		while(resultosms.hasNext()){
+			DBObject osmprojObj = resultosms.next();
+			
+			FileUnionTimeFrame fileunion = new FileUnionTimeFrame();
+			
+			if(((String)osmprojObj.get("userid")).equalsIgnoreCase(ownerid)){
+				
+				if(((String)osmprojObj.get("context")).contains("OSMProjectInvestDoc")){
+					
+					String projectdoc = (String)osmprojObj.get("fileid");
+					projectinvestdoc.append(projectdoc);
+					projectinvestdoc.append(",");
+				}
+				
+			}
+		}
+		
+		String[] projectinvestdocarr = (projectinvestdoc.substring(0, projectinvestdoc.length()-1)).split(",");
+		osmprojinvest.setOsminvestmentdoc(projectinvestdocarr);
+		
+		
+		MongoConnection mongoconproj = new MongoConnection();
+		
+		BasicDBObject basicreqobjproj =  osmfileutility.formOSMProjectInvestDBObject(osmprojinvest);
+		mongoconproj.saveObject(basicreqobjproj, "OSMProjectInvestment");
+		
+		//lots of operation needed to do here
+		
+		/*
+		
+		
+		SearchContent searchcontent = new SearchContent();
+		searchcontent.setSearchid(uniqueid);
+		searchcontent.setContentDescription("Project Name ::"+projectname+"Project Description ::"+projectdescription+"Project Investors ::"+projectinvestors.split(",")+"Project Buyers::"+projectbuyers.split(",")+"Location ::"+locationaddress);
+		searchcontent.setContentLink("");
+		searchcontent.setContentType("OSM");
+		
+		MongoConnection mongoconsearch = new MongoConnection();
+		SearchPreview searchprev = new SearchPreview();
+		BasicDBObject basicreqobjsearch =  searchprev.formDBObject(searchcontent);
+		
+		mongoconsearch.saveObject(basicreqobjsearch, "Content");*/
+		
+	}
+
+	public void saveOSMModelInvestDocSave(String token, String stakeamount, String stakedivision, String ownerid, String projectinvestlink) {
+		// TODO Auto-generated method stub
+		
+		
+		StringBuffer projectdocbuff = new StringBuffer();
+		String[] filearr = null;
+		
+		MongoConnection mongoconcheck = new MongoConnection();
+		DBCursor resultcheck = mongoconcheck.getDBObject("osmmodelid", token, "OSMProjectInvestment");
+		if(resultcheck.hasNext()){
+			DBObject osmprojObj = resultcheck.next();
+			
+			filearr = (String[])osmprojObj.get("osminvestmentdoc");
+			
+		}
+		
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("tempid", token, "FileUnionTimeFrame");
+		while(resultosms.hasNext()){
+			DBObject osmprojObj = resultosms.next();
+			
+			FileUnionTimeFrame fileunion = new FileUnionTimeFrame();
+			
+			if(((String)osmprojObj.get("userid")).equalsIgnoreCase(ownerid)){
+				
+				if(((String)osmprojObj.get("context")).contains("OSMProjectInvestDoc")){
+					
+					String projectdoc = (String)osmprojObj.get("fileid");
+					
+					if(filearr!=null){
+						
+						for(int s=0;s<filearr.length;s++){
+							
+							if(!filearr[s].equalsIgnoreCase(projectdoc)){
+								projectdocbuff.append(projectdoc);
+								projectdocbuff.append(",");
+							}
+							
+						}
+						
+					}else{
+						projectdocbuff.append(projectdoc);
+						projectdocbuff.append(",");
+					}
+					
+					
+					
+				}
+				
+			}
+			
+		}
+		
+		String[] projectdocarr = (projectdocbuff.substring(0, projectdocbuff.length()-1)).split(",");
+		
+		MongoConnection mongoconn = new MongoConnection();
+		mongoconn.updateObject(new BasicDBObject("osmmodelid", token), new BasicDBObject("$push", new BasicDBObject("osminvestmentdoc", projectdocarr)), "OSMProjectInvestment");
+		mongoconn.updateObject(new BasicDBObject("osmmodelid", token), new BasicDBObject("$set", new BasicDBObject("osmstakedivision", stakedivision)), "OSMProjectInvestment");
+		mongoconn.updateObject(new BasicDBObject("osmmodelid", token), new BasicDBObject("$set", new BasicDBObject("osminvestorslink", projectinvestlink)), "OSMProjectInvestment");
+		
+		
+	}
+
+	/*public void saveOSMProjectInvestUpdate(String projectinvestlink, String token) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongoconn = new MongoConnection();
+		mongoconn.updateObject(new BasicDBObject("osmmodelid", token), new BasicDBObject("$set", new BasicDBObject("osminvestorslink", projectinvestlink)), "OSMProjectInvestment");
+	}*/
+
+	public void createOSMModelSellerSet(String osmmodelid, String sellerdescription) {
+		// TODO Auto-generated method stub
+		
+		OSMProjectSeller projseller = new OSMProjectSeller();
+		projseller.setOsmmodelid(osmmodelid);
+		projseller.setSellerdescription(sellerdescription);
+		
+		OSMFileUtility osmfileutility = new OSMFileUtility();
+		
+		String uniqueid = "";
+		try {
+			uniqueid = osmfileutility.makeSHA1Hash(osmmodelid);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		projseller.setProjectsellerid(uniqueid);
+		
+		MongoConnection mongoconproj = new MongoConnection();
+		
+		BasicDBObject basicreqobjproj =  osmfileutility.formOSMProjectSellerDBObject(projseller);
+		mongoconproj.saveObject(basicreqobjproj, "OSMProjectSeller");
+		
+		
+		
+		
+		
+	}
+
+	public void saveOSMModelSellerDocSave(String token, String ownerid) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("tempid", token, "FileUnionTimeFrame");
+		while(resultosms.hasNext()){
+			DBObject osmprojObj = resultosms.next();
+			
+			FileUnionTimeFrame fileunion = new FileUnionTimeFrame();
+			
+			if(((String)osmprojObj.get("userid")).equalsIgnoreCase(ownerid)){
+				
+				if(((String)osmprojObj.get("context")).contains("OSMProjectSellerDoc")){
+					
+					String projectdoc = (String)osmprojObj.get("fileid");
+					
+					MongoConnection mongoconn = new MongoConnection();
+					mongoconn.updateObject(new BasicDBObject("osmmodelid", token), new BasicDBObject("$set", new BasicDBObject("sellingmarketdoc", projectdoc)), "OSMProjectSeller");
+					
+				}
+				
+			}
+			
+		}
+		
+		
+	}
+
+	public String checkInvestSet(String osmmodelid) {
+		// TODO Auto-generated method stub
+		String osmmodelinvest = "false";
+		
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("osmmodelid", osmmodelid, "OSMProjectInvestment");
+		if(resultosms.hasNext()){
+			
+			osmmodelinvest = "true";
+		}
+		
+		
+		return osmmodelinvest;
+	}
+
+	public OSMProjectInvestment getInvestDataDetails(String osmmodelid) {
+		// TODO Auto-generated method stub
+		
+		OSMProjectInvestment osminvestment = new OSMProjectInvestment();
+		
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("osmmodelid", osmmodelid, "OSMProjectInvestment");
+		if(resultosms.hasNext()){
+			DBObject osmprojObj = resultosms.next();
+			
+			osminvestment.setOsminvestmentdoc((String[])osmprojObj.get("osminvestmentdoc"));
+			osminvestment.setOsminvestorslink((String)osmprojObj.get("osminvestorslink"));
+			osminvestment.setOsmstakedivision((String)osmprojObj.get("osmstakedivision"));
+			osminvestment.setOsmstakeholdingid((String)osmprojObj.get("osmstakeholdingid"));
+		}
+		
+		return osminvestment;
+	}
+
+	public ArrayList getProjectInvestors(String osmmodelid) {
+		// TODO Auto-generated method stub
+		
+		ArrayList investorlist = new ArrayList();
+		
+		MongoConnection mongoconosms = new MongoConnection();
+		DBCursor resultosms = mongoconosms.getDBObject("osmid", osmmodelid, "OSM");
+		while(resultosms.hasNext()){
+			DBObject osmprojObj = resultosms.next();
+		
+			String[] stakeholdersid = (String[])osmprojObj.get("osmstakeholdingid");
+			
+			for(int m=0;m<stakeholdersid.length;m++){
+				
+				HashMap stakeholderinfo = new HashMap();
+				
+				MongoConnection mongoconstake = new MongoConnection();
+				DBCursor resultstake = mongoconstake.getDBObject("stakeholdingid", stakeholdersid[m], "OSMStakeHold");
+				while(resultstake.hasNext()){
+					DBObject osmstake = resultstake.next();
+					
+					stakeholderinfo.put("stakeamount", osmstake.get("stakeamount"));
+					stakeholderinfo.put("stakeholderlocation", osmstake.get("stakeholderlocation"));
+					stakeholderinfo.put("stakepercentage", osmstake.get("stakepercentage"));
+					
+					String stakeowner = (String)osmstake.get("stakeownerid");
+					
+					MongoConnection mongoconstakeowner = new MongoConnection();
+					DBCursor resultstakeowner = mongoconstakeowner.getDBObject("userid", stakeowner, "OSMOperator");
+					if(resultstakeowner.hasNext()){
+						DBObject osmstakeowner = resultstakeowner.next();
+						
+						String activecompany = (String)osmstakeowner.get("activeCompany");
+						
+						MongoConnection mongoconstakeownercompany = new MongoConnection();
+						DBCursor resultstakeownercompany = mongoconstakeownercompany.getDBObject("companyid", activecompany, "Company");
+						if(resultstakeownercompany.hasNext()){
+							DBObject osmstakeownercompany = resultstakeownercompany.next();
+						
+							stakeholderinfo.put("Company Name", osmstakeownercompany.get("companyname"));
+							stakeholderinfo.put("Company Image", osmstakeownercompany.get("companyImageid"));
+							stakeholderinfo.put("Company Logo", osmstakeownercompany.get("companylogoid"));
+							stakeholderinfo.put("Company Website", osmstakeownercompany.get("companyWebsite"));
+							
+					}
+					
+					
+				}
+				
+				
+			}
+				investorlist.add(stakeholderinfo);
+			}
+		}
+		
+		return investorlist;
+	}
+
+	public void saveInvestMent(String ownerid, String osmmodelid, String investamount, String investpercentage,
+			String stockprice, String initialstockprice, String enabletrading) {
+		// TODO Auto-generated method stub
+		OSMPreview osmprev = new OSMPreview();
+		MongoConnection mongoconn = new MongoConnection();
+		
+		String checkoperator = osmprev.checkOperator(ownerid);
+		
+		if(checkoperator.equalsIgnoreCase("true")){
+			
+			mongoconn.updateObject(new BasicDBObject("userid", ownerid), new BasicDBObject("$push", new BasicDBObject("oldinvestments", osmmodelid)), "OSMOperator");
+		}
+		
+		osmprev.saveStakeHoldings(ownerid,investamount,investpercentage,stockprice,enabletrading);
+		
+		
+		mongoconn.updateObject(new BasicDBObject("osmid", osmmodelid), new BasicDBObject("$push", new BasicDBObject("osmstakeholdingid", ownerid)), "OSM");
+		mongoconn.updateObject(new BasicDBObject("osmid", osmmodelid), new BasicDBObject("$push", new BasicDBObject("osmstakeholdingid", ownerid)), "OSM");
+		
+		
+		
+		
+		
+		
+	}
 	
+	
+	private String saveStakeHoldings(String ownerid, String investamount, String investpercentage, String stockprice, String enabletrading) {
+		// TODO Auto-generated method stub
+		
+		OSMStakeHolding stakeholding = new OSMStakeHolding();
+		stakeholding.setStakeamount(investamount);
+		stakeholding.setStakeownerid(ownerid);
+		stakeholding.setStakepercentage(investpercentage);
+		stakeholding.setStarstokprice(stockprice);
+		
+		OSMFileUtility osmfileutility = new OSMFileUtility();
+		
+		String uniquestockid = "";
+		
+		if(enabletrading.equalsIgnoreCase("true")){
+			
+			Stock stock = new Stock();
+			stock.setStockamount(investamount);
+			stock.setStockprice(stockprice);
+			String comapnyid = "";
+			
+			MongoConnection mongoconstakeowner = new MongoConnection();
+			DBCursor resultstakeowner = mongoconstakeowner.getDBObject("userid", ownerid, "OSMOperator");
+			if(resultstakeowner.hasNext()){
+				DBObject osmstakeowner = resultstakeowner.next();
+				
+				comapnyid = (String)osmstakeowner.get("activeCompany");
+				
+				
+			}
+			
+			stock.setCompanyid(comapnyid);
+			
+			
+			try {
+				uniquestockid = osmfileutility.makeSHA1Hash(ownerid+stockprice);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			stock.setStockid(uniquestockid);
+			
+			MongoConnection mongoconsearch = new MongoConnection();
+			//SearchPreview searchprev = new SearchPreview();
+			BasicDBObject basicreqobjsearch =  osmfileutility.formOSMStockDBObject(stock);
+			
+			mongoconsearch.saveObject(basicreqobjsearch, "Stock");
+			
+		}
+		stakeholding.setStakestokpriceid(uniquestockid);
+		
+		String uniqueid = "";
+		try {
+			uniqueid = osmfileutility.makeSHA1Hash(ownerid+investpercentage);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		stakeholding.setStakeholdingid(uniqueid);
+		
+		MongoConnection mongoconsearch = new MongoConnection();
+		//SearchPreview searchprev = new SearchPreview();
+		BasicDBObject basicreqobjsearch =  osmfileutility.formOSMStakeHoldingDBObject(stakeholding);
+		
+		mongoconsearch.saveObject(basicreqobjsearch, "OSMStakeHold");
+		
+		return uniqueid;
+	}
+
+	public String checkOperator(String ownerid){
+		
+		String ownerpresent = "false";
+		OSMPreview osmprev = new OSMPreview();
+		
+		MongoConnection mongoconstakeowner = new MongoConnection();
+		DBCursor resultstakeowner = mongoconstakeowner.getDBObject("userid", ownerid, "OSMOperator");
+		if(resultstakeowner.hasNext()){
+			
+			ownerpresent = "true";
+		}else{
+			
+			OSMFileUtility osmfileutility = new OSMFileUtility();
+			
+			String uniqueid = "";
+			try {
+				uniqueid = osmfileutility.makeSHA1Hash(ownerid);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			OSMOperator osmoperator = new OSMOperator();
+			osmoperator.setOperatorid(uniqueid);
+			osmoperator.setUserid(ownerid);
+			
+			MongoConnection mongoconsearch = new MongoConnection();
+			//SearchPreview searchprev = new SearchPreview();
+			BasicDBObject basicreqobjsearch =  osmfileutility.formOSMOperatorDBObject(osmoperator);
+			
+			mongoconsearch.saveObject(basicreqobjsearch, "OSMOperator");
+			
+			ownerpresent = "true";
+			
+		}
+		
+		
+		return ownerpresent;
+	}
+
+		
 	
 	
 }

@@ -66,4 +66,99 @@ public class OSMFileController {
 
 	}
 	
+	
+	@RequestMapping("/projectinvestdoc")
+	public void projectinvestdocfile(MultipartHttpServletRequest request, HttpServletResponse response,HttpServletRequest requests,
+			@RequestParam("file") MultipartFile file1, HttpSession session) {
+		System.out.println("in file controller");
+
+		OSMPreview prevosm = new OSMPreview();
+		ServletContext context = requests.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		String token = (String)context.getAttribute("osmid");
+		
+		prevosm.saveFile(request.getFileMap(),userid,"OSMProjectInvestDoc",token);
+
+		/*ServletContext context = request.getSession().getServletContext();
+		context.setAttribute("weekfourth", weekfourth);*/
+
+	}
+	
+	
+	@RequestMapping("/projectsellerdoc")
+	public void projectsellerdocfile(MultipartHttpServletRequest request, HttpServletResponse response,HttpServletRequest requests,
+			@RequestParam("file") MultipartFile file1, HttpSession session) {
+		System.out.println("in file controller");
+
+		OSMPreview prevosm = new OSMPreview();
+		ServletContext context = requests.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		String token = (String)context.getAttribute("osmid");
+		
+		prevosm.saveFile(request.getFileMap(),userid,"OSMProjectSellerDoc",token);
+
+		/*ServletContext context = request.getSession().getServletContext();
+		context.setAttribute("weekfourth", weekfourth);*/
+
+	}
+	
+	@RequestMapping("/projectdeveloperdoc")
+	public void projectdeveloperdocfile(MultipartHttpServletRequest request, HttpServletResponse response,HttpServletRequest requests,
+			@RequestParam("file") MultipartFile file1, HttpSession session) {
+		System.out.println("in file controller");
+
+		OSMPreview prevosm = new OSMPreview();
+		ServletContext context = requests.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		String token = (String)context.getAttribute("osmid");
+		
+		prevosm.saveFile(request.getFileMap(),userid,"OSMProjectDeveloperDoc",token);
+
+		/*ServletContext context = request.getSession().getServletContext();
+		context.setAttribute("weekfourth", weekfourth);*/
+
+	}
+	
+	@RequestMapping("/projectdevslidesdoc")
+	public void projectdeveloperslidesdocfile(MultipartHttpServletRequest request, HttpServletResponse response,HttpServletRequest requests,
+			@RequestParam("file") MultipartFile file1, HttpSession session) {
+		System.out.println("in file controller");
+
+		OSMPreview prevosm = new OSMPreview();
+		ServletContext context = requests.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		String token = (String)context.getAttribute("osmid");
+		
+		prevosm.saveFile(request.getFileMap(),userid,"OSMProjectDeveloperSlidesDoc",token);
+
+		/*ServletContext context = request.getSession().getServletContext();
+		context.setAttribute("weekfourth", weekfourth);*/
+
+	}
+	
+	
 }

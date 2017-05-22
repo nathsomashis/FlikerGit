@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "Company")
 public class Company {
 
-	
+	@Id
 	private String companyid;
 	private String companyname;
 	private String companyImageid;
