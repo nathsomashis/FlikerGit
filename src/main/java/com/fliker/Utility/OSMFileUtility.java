@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.fliker.Repository.OSMDemand;
 import com.fliker.Repository.OSMModel;
 import com.fliker.Repository.OSMOperator;
 import com.fliker.Repository.OSMProjectInfo;
@@ -147,6 +148,22 @@ public class OSMFileUtility {
 		basicdbobj.put("stockamount", stock.getStockamount());
 		basicdbobj.put("stockid", stock.getStockid());
 		basicdbobj.put("stockprice", stock.getStockprice());
+		
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formOSMDemandDBObject(OSMDemand osmdemand) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("osmdemandcomplexity", osmdemand.getOsmdemandcomplexity());
+		basicdbobj.put("osmdemandid",osmdemand.getOsmdemandid());
+		basicdbobj.put("osmdemandvariation", osmdemand.getOsmdemandvariation());
+		basicdbobj.put("osmlikeid", osmdemand.getOsmlikeid());
+		basicdbobj.put("osmmodelid", osmdemand.getOsmmodelid());
+		basicdbobj.put("osmshareid", osmdemand.getOsmshareid());
+		basicdbobj.put("osmstockpricevariation", osmdemand.getOsmstockpricevariation());
+		basicdbobj.put("osmsubscriptionid", osmdemand.getOsmsubscriptionid());
 		
 		return basicdbobj;
 	}

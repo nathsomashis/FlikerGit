@@ -8,46 +8,59 @@ public class OSMDemand {
 
 	@Id
 	private String osmdemandid;
-	private String osmlikeid;
-	private String osmshareid;
-	private String osmsubscriptionid;
-	private String osmstockpricevariation;
-	private String osmdemandvariation;//like rating, share , subscription location, like location
+	private String osmmodelid;
+	private String[] osmlikeid;
+	private String[] osmshareid;
+	private String[] osmsubscriptionid;
+	private String[] osmstockpricevariation;
+	private String[] osmdemandvariation;//like rating, share , subscription location, like location
 	private String osmdemandcomplexity;//subscription type, subscribtion location
+	
+	
+	public String getOsmmodelid() {
+		return osmmodelid;
+	}
+	public void setOsmmodelid(String osmmodelid) {
+		this.osmmodelid = osmmodelid;
+	}
 	public String getOsmdemandid() {
 		return osmdemandid;
 	}
 	public void setOsmdemandid(String osmdemandid) {
 		this.osmdemandid = osmdemandid;
 	}
-	public String getOsmlikeid() {
+	
+	
+	public String[] getOsmlikeid() {
 		return osmlikeid;
 	}
-	public void setOsmlikeid(String osmlikeid) {
+	public void setOsmlikeid(String[] osmlikeid) {
 		this.osmlikeid = osmlikeid;
 	}
-	public String getOsmshareid() {
+	public String[] getOsmshareid() {
 		return osmshareid;
 	}
-	public void setOsmshareid(String osmshareid) {
+	public void setOsmshareid(String[] osmshareid) {
 		this.osmshareid = osmshareid;
 	}
-	public String getOsmsubscriptionid() {
+	public String[] getOsmsubscriptionid() {
 		return osmsubscriptionid;
 	}
-	public void setOsmsubscriptionid(String osmsubscriptionid) {
+	public void setOsmsubscriptionid(String[] osmsubscriptionid) {
 		this.osmsubscriptionid = osmsubscriptionid;
 	}
-	public String getOsmstockpricevariation() {
+	
+	public String[] getOsmstockpricevariation() {
 		return osmstockpricevariation;
 	}
-	public void setOsmstockpricevariation(String osmstockpricevariation) {
+	public void setOsmstockpricevariation(String[] osmstockpricevariation) {
 		this.osmstockpricevariation = osmstockpricevariation;
 	}
-	public String getOsmdemandvariation() {
+	
+	public String[] getOsmdemandvariation() {
 		return osmdemandvariation;
 	}
-	public void setOsmdemandvariation(String osmdemandvariation) {
+	public void setOsmdemandvariation(String[] osmdemandvariation) {
 		this.osmdemandvariation = osmdemandvariation;
 	}
 	public String getOsmdemandcomplexity() {

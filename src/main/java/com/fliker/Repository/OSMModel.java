@@ -17,8 +17,23 @@ public class OSMModel {
 	private String[] osmdependentid;
 	private String osmstockid;
 	private String osmlocation;
+	private String[] osmbuyerids;
+	private String[] osminvestors;
 	
 	
+	
+	public String[] getOsminvestors() {
+		return osminvestors;
+	}
+	public void setOsminvestors(String[] osminvestors) {
+		this.osminvestors = osminvestors;
+	}
+	public String[] getOsmbuyerids() {
+		return osmbuyerids;
+	}
+	public void setOsmbuyerids(String[] osmbuyerids) {
+		this.osmbuyerids = osmbuyerids;
+	}
 	public String getOsmid() {
 		return osmid;
 	}

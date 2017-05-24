@@ -16,13 +16,21 @@ public class OSMOperator {
 	private String[] oldbuyings;
 	private String[] osmmodelid;
 	private String activeCompany;
-	private String[] stockholdings;
+	private String[] stockholdings; //multiple stakeholding id not stock...
 	private String[] olddevelopments;
 	private String[] osmownerids;
+	private String[] tradepresaleid;
 	
 	
 	
 	
+	
+	public String[] getTradepresaleid() {
+		return tradepresaleid;
+	}
+	public void setTradepresaleid(String[] tradepresaleid) {
+		this.tradepresaleid = tradepresaleid;
+	}
 	public String[] getOsmownerids() {
 		return osmownerids;
 	}

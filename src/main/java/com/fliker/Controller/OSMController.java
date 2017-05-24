@@ -164,7 +164,7 @@ public class OSMController {
 	}
 	
 	
-	@RequestMapping("/osmcomapnylists")
+	@RequestMapping("/osmlists")
 	public String getExistingOSMStructure(){
 		
 		OSMPreview osmprev = new OSMPreview();
@@ -174,6 +174,8 @@ public class OSMController {
 		return comapanyset;
 	}
 	
+	
+	//to see after subscription
 	@RequestMapping("/osmprojectsubscription")
 	public ModelAndView osmprojectsubscription(
 			@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,
@@ -220,8 +222,25 @@ public class OSMController {
 	}
 	
 	
+	@RequestMapping("/osmlike")
+	public void osmlikes(@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid){
+		
+		OSMPreview osmprev = new OSMPreview();
+		osmprev.saveLikeInfo(ownerid,osmmodelid);
+		
+	}
+
+	@RequestMapping("/osmshare")
+	public void osmshare(@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid){
+		
+		OSMPreview osmprev = new OSMPreview();
+		osmprev.saveShareInfo(ownerid,osmmodelid);
+		
+	}
 	
-	
+	//subscribing by buyer
 	@RequestMapping("/osmsubscribebuying")
 	public ModelAndView submitbuying(
 			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
@@ -255,7 +274,7 @@ public class OSMController {
 		return mv;
 	}
 	
-	
+	//subscribe by developer
 	@RequestMapping("/osmsubscribedevelop")
 	public ModelAndView submitdevelopment(
 			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
@@ -287,7 +306,7 @@ public class OSMController {
 		return mv;
 	}
 	
-	
+	//accept the developer
 	@RequestMapping("/osmacceptdeveloper")
 	public void enrolldeveloper(
 			@RequestParam(value = "developerid", required = false, defaultValue = "World") String developerid,
@@ -321,7 +340,7 @@ public class OSMController {
 	 * @return
 	 */
 	
-	
+	//on subscribing for the investment by investor
 	@RequestMapping("/osmsubscribeinvest")
 	public ModelAndView submitinvestment(
 			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
@@ -355,6 +374,39 @@ public class OSMController {
 	}
 	
 	
+	/*@RequestMapping("/osminvestmentdemand")
+	public ModelAndView investmentdemand(
+			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+			HttpServletRequest requests) {
+		System.out.println("in controller");
+		
+		OSMPreview osmprev = new OSMPreview();
+		ArrayList existingprojectlist = new ArrayList();
+		ServletContext context = requests.getSession().getServletContext();
+		String token = (String)context.getAttribute("osmid");
+		osmprev.saveOSMModelInvest(token,ownerid);
+		
+		existingprojectlist = osmprev.getRelatedOSMModels(ownerid);
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		
+		ModelAndView mv = new ModelAndView("/OSMProjectList");
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		//mv.addObject("existingprojectsdoc", existingprojectsdoc);
+		return mv;
+	}*/
+	
+	//on investing for the investment by investor
 	@RequestMapping("/osminvest")
 	public ModelAndView investment(
 			@RequestParam(value = "ownerid", required = false) String ownerid,
@@ -374,6 +426,7 @@ public class OSMController {
 		
 		osmprev.saveInvestMent(ownerid,osmmodelid,investamount,investpercentage,stockprice,initialstockprice, enabletrading);
 		
+		//osmprev.saveDemandChart(ownerid,osmmodelid);
 		//existingprojectlist = osmprev.getRelatedOSMModels(ownerid);
 		
 		User userinf = (User) context.getAttribute("UserValues");
@@ -394,7 +447,7 @@ public class OSMController {
 		return mv;
 	}
 	
-	
+	//invester scren edit for the project provider
 	@RequestMapping("/osmprojectinvestmentnew")
 	public ModelAndView createprojectinvestdata(
 			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid,
@@ -436,7 +489,7 @@ public class OSMController {
 	}
 	
 	
-	
+	// get all existing projectinvestors list
 	@RequestMapping("/osmprojectinvester")
 	public ModelAndView projectinvesters(
 			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid,
@@ -479,6 +532,7 @@ public class OSMController {
 	}
 	
 	
+	//save existing project investment or create new project investment
 	@RequestMapping("/osmprojectinvestmentsubmit")
 	public ModelAndView submitprojectinvestfinal(
 			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
@@ -637,5 +691,46 @@ public class OSMController {
 		//mv.addObject("existingprojectsdoc", existingprojectsdoc);
 		return mv;
 	}
+	
+	
+	@RequestMapping("/osmmodelprojectpublish")
+	public String publishprojectmodel(
+			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid,
+			HttpServletRequest requests) {
+		System.out.println("in controller");
+		
+		OSMPreview osmprev = new OSMPreview();
+		ServletContext context = requests.getSession().getServletContext();
+		
+		String check = osmprev.checkAllProjectData(osmmodelid);
+		
+		if(check.equalsIgnoreCase("true")){
+			
+		}
+		//osmprev.createOSMModelResourceSet(osmmodelid);
+		
+		//osmprev.saveOSMModelDevloping(token,ownerid);
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		
+		
+		/*ModelAndView mv = new ModelAndView("/OSMProjectResourceDocScreen");
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		mv.addObject("osmmodelid", osmmodelid);*/
+		//mv.addObject("existingprojectsdoc", existingprojectsdoc);
+		return check;
+	}
+	
+	
+	
 	
 }
