@@ -37,10 +37,10 @@ public class DateFunctionality {
 			long diffHours = diff / (60 * 60 * 1000) % 24;
 			long diffDays = diff / (24 * 60 * 60 * 1000);
 			
-			String day=" ";
-			String hours = " ";
-			String minutes = " ";
-			String second = " ";
+			String day="";
+			String hours = "";
+			String minutes = "";
+			String second = "";
 
 			System.out.print(diffDays + " days, ");
 			System.out.print(diffHours + " hours, ");

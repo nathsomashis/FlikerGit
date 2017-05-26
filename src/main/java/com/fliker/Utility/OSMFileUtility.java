@@ -13,6 +13,7 @@ import com.fliker.Repository.OSMProjectSeller;
 import com.fliker.Repository.OSMStakeHolding;
 import com.fliker.Repository.Post;
 import com.fliker.Repository.Stock;
+import com.fliker.Repository.TradeTemporarySaleSorting;
 import com.mongodb.BasicDBObject;
 
 public class OSMFileUtility {
@@ -165,6 +166,18 @@ public class OSMFileUtility {
 		basicdbobj.put("osmstockpricevariation", osmdemand.getOsmstockpricevariation());
 		basicdbobj.put("osmsubscriptionid", osmdemand.getOsmsubscriptionid());
 		
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formTradeTempSaleDBObject(TradeTemporarySaleSorting tradetempsort) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("tradetempsaleid", tradetempsort.getTradetempsaleid());
+		basicdbobj.put("tradeenddatetime",tradetempsort.getTradeenddatetime());
+		basicdbobj.put("tradecompositeamount", tradetempsort.getTradecompositeamount());
+		basicdbobj.put("tradepresaleid", tradetempsort.getTradepresaleid());
+		basicdbobj.put("saleamount", tradetempsort.getSaleamount());
 		return basicdbobj;
 	}
 	
