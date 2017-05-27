@@ -422,6 +422,44 @@ public class TradePreview {
 		return temppresaleid;
 	}
 
+	public void buyout(ArrayList tradesalelist) {
+		// TODO Auto-generated method stub
+		
+		for(int f=0;f<tradesalelist.size();f++){
+			String elements = (String) tradesalelist.get(f);
+			String[] elemnetid = elements.split("::");
+			String tempsaleid = elemnetid[0];
+			String percentagesale = elemnetid[1];
+			
+			MongoConnection mongoconstakestock = new MongoConnection();
+			DBCursor resultstakestock = mongoconstakestock.getDBObject("tradepresaleid", tempsaleid, "TradePreSale");
+			while(resultstakestock.hasNext()){
+				DBObject osmstakestock = resultstakestock.next();
+				
+				if(percentagesale.equalsIgnoreCase("full")){
+					
+					String wholecompoundamount = (String)osmstakestock.get("leftcompundamount");
+					MongoConnection mongoconnewprice = new MongoConnection();
+					mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tempsaleid), new BasicDBObject("$set", new BasicDBObject("lockedcompoundamount", wholecompoundamount)), "TradePreSale");
+					mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tempsaleid), new BasicDBObject("$set", new BasicDBObject("leftcompundamount", 0)), "TradePreSale");
+					
+					//Billing details
+					
+				}else{
+					
+					
+					
+				}
+				
+			}
+			
+			
+			
+		}
+		
+		
+	}
+
 	/*public void stockchangeonInvesting(String token) {
 		// TODO Auto-generated method stub
 		

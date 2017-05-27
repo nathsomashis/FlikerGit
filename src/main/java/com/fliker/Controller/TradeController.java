@@ -54,9 +54,9 @@ public class TradeController {
 		HashMap<String,LinkedList<String>> tradeavaillist = (HashMap<String,LinkedList<String>>)context.getAttribute("TradeAvailList");
 		String totalstock = (String)context.getAttribute("TradeTotalList");
 		
-		tradeprev.proceedToBuyout(totalstock,stockamount,ownerid,tradeavaillist);
+		ArrayList tradesalelist = tradeprev.proceedToBuyout(totalstock,stockamount,ownerid,tradeavaillist);
 		
-		
+		tradeprev.buyout(tradesalelist);
 		
 		/*
 		HashMap<String,LinkedList<String>> istradeavail = tradeprev.checkAvalability(osmmodelid,stockid,stockamount,stockprice);
