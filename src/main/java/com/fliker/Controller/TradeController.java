@@ -45,6 +45,7 @@ public class TradeController {
 	public String stockbuying(
 			@RequestParam(value = "stockamount", required = false, defaultValue = "World") String stockamount,
 			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+			@RequestParam(value = "stockprice", required = false, defaultValue = "World") String stockprice,
 			HttpServletRequest request) {
 		System.out.println("in controller");
 		
@@ -56,7 +57,7 @@ public class TradeController {
 		
 		ArrayList tradesalelist = tradeprev.proceedToBuyout(totalstock,stockamount,ownerid,tradeavaillist);
 		
-		tradeprev.buyout(tradesalelist);
+		tradeprev.buyout(tradesalelist,ownerid,stockprice);
 		
 		/*
 		HashMap<String,LinkedList<String>> istradeavail = tradeprev.checkAvalability(osmmodelid,stockid,stockamount,stockprice);
@@ -74,6 +75,7 @@ public class TradeController {
 	public int stockavaliable(
 			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid,
 			@RequestParam(value = "stockprice", required = false, defaultValue = "World") String stockprice,
+			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
 			HttpServletRequest request) {
 		System.out.println("in controller");
 		
@@ -81,7 +83,7 @@ public class TradeController {
 		int totalstock = 0;
 		
 		TradePreview tradeprev = new TradePreview();
-		HashMap<String,LinkedList<String>> istradeavail = tradeprev.checkAvalability(osmmodelid);
+		HashMap<String,LinkedList<String>> istradeavail = tradeprev.checkAvalability(osmmodelid,ownerid);
 		String elements = tradeprev.checkElements(istradeavail);
 		if(!elements.isEmpty()){
 			totalstock = tradeprev.getAllTradeElements(elements,stockprice);
@@ -91,6 +93,56 @@ public class TradeController {
 		context.setAttribute("TradeTotalList", elements);
 		
 		return totalstock;
+		
+	}
+	
+	
+	@RequestMapping("/cancelbuystock")
+	public String cancelbuystock(
+			@RequestParam(value = "stockamount", required = false, defaultValue = "World") String stockamount,
+			@RequestParam(value = "stockprice", required = false, defaultValue = "World") String stockprice,
+			@RequestParam(value = "stockid", required = false, defaultValue = "World") String stockid,
+			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid,
+			HttpServletRequest request) {
+		System.out.println("in controller");
+		
+		String stockavalable = "true";
+		ServletContext context = request.getSession().getServletContext();
+		//HashMap<String,LinkedList<String>> tradeavaillist = (HashMap<String,LinkedList<String>>)context.getAttribute("TradeAvailList");
+		HashMap<String,LinkedList<String>> tradeavaillist = (HashMap<String,LinkedList<String>>)context.getAttribute("TradeAvailList");
+		
+		TradePreview tradeprev = new TradePreview();
+		tradeprev.releaseLockTrade(tradeavaillist,ownerid,osmmodelid);
+		
+		
+		
+		return stockavalable;
+		
+	}
+	
+	
+	@RequestMapping("/proceedPayment")
+	public String proceedpayment(
+			@RequestParam(value = "stockamount", required = false, defaultValue = "World") String stockamount,
+			@RequestParam(value = "stockprice", required = false, defaultValue = "World") String stockprice,
+			@RequestParam(value = "stockid", required = false, defaultValue = "World") String stockid,
+			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid,
+			HttpServletRequest request) {
+		System.out.println("in controller");
+		
+		String stockavalable = "true";
+		ServletContext context = request.getSession().getServletContext();
+		//HashMap<String,LinkedList<String>> tradeavaillist = (HashMap<String,LinkedList<String>>)context.getAttribute("TradeAvailList");
+		HashMap<String,LinkedList<String>> tradeavaillist = (HashMap<String,LinkedList<String>>)context.getAttribute("TradeAvailList");
+		
+		TradePreview tradeprev = new TradePreview();
+		tradeprev.releaseLockTrade(tradeavaillist,ownerid,osmmodelid);
+		
+		
+		
+		return stockavalable;
 		
 	}
 }

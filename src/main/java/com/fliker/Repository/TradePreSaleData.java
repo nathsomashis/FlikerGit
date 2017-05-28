@@ -12,16 +12,24 @@ public class TradePreSaleData {
 	private String salestartdate;
 	private String saleenddate;
 	private String saleamount;
-	private String salestockprice;
+	private String salestockprice; 
 	private String startcompundamount;
 	private String lockedcompoundamount;
 	private String leftcompundamount;
 	private String[] lockedid;
 	private String[] billingsid;
+	private String currenlock;
 	
 	
 	
 	
+	
+	public String getCurrenlock() {
+		return currenlock;
+	}
+	public void setCurrenlock(String currenlock) {
+		this.currenlock = currenlock;
+	}
 	public String[] getBillingsid() {
 		return billingsid;
 	}

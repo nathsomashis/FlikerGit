@@ -11,6 +11,7 @@ import java.util.Set;
 
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.OSMModel;
+import com.fliker.Repository.TradeBilling;
 import com.fliker.Repository.TradePreSaleData;
 import com.fliker.Repository.TradeTemporarySaleSorting;
 import com.fliker.Utility.DateFunctionality;
@@ -284,7 +285,7 @@ public class TradePreview {
 		
 	}
 
-	public HashMap<String,LinkedList<String>> checkAvalability(String osmmodelid) {
+	public HashMap<String,LinkedList<String>> checkAvalability(String osmmodelid, String ownerid) {
 		// TODO Auto-generated method stub
 		
 		LinkedList temptradeset = new LinkedList();
@@ -301,6 +302,9 @@ public class TradePreview {
 		DBCursor resultstakestock = mongoconstakestock.getDBObject("osmmodelid", osmmodelid, "TradePreSale");
 		while(resultstakestock.hasNext()){
 			DBObject osmstakestock = resultstakestock.next();
+			String lockedownerid = (String)osmstakestock.get("currenlock");
+			
+			if(lockedownerid.isEmpty()){
 			
 			TradePreSaleData tradesaledata = new TradePreSaleData();
 			
@@ -308,6 +312,10 @@ public class TradePreview {
 			String saleamount = (String)osmstakestock.get("saleamount");
 			String saleendtime = (String)osmstakestock.get("saleenddate");
 			String leftamt = (String)osmstakestock.get("leftcompundamount");
+			
+			MongoConnection mongoconnewprice = new MongoConnection();
+			mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", salepreid), new BasicDBObject("$set", new BasicDBObject("currenlock", ownerid)), "TradePreSale");
+			
 			leftamount = leftamount + Double.parseDouble(leftamt);
 			
 			String currentdatediff = datefunc.getDateDiffference(currentdate, saleendtime);
@@ -321,12 +329,15 @@ public class TradePreview {
 				tradetempsort.setTradepresaleid(salepreid);
 				tradetempsort.setSaleamount(saleamount);
 				
+				
 				MongoConnection mongocondemand = new MongoConnection();
 
 				BasicDBObject basicreqobjdemand = osmfileutility.formTradeTempSaleDBObject(tradetempsort);
 				mongocondemand.saveObject(basicreqobjdemand, "TradeTemporarySale");
 				
 				temptradeset.add(tradetempsort);
+				
+			}
 			}
 		}
 		trademap.put(currentdate, temptradeset);
@@ -422,7 +433,7 @@ public class TradePreview {
 		return temppresaleid;
 	}
 
-	public void buyout(ArrayList tradesalelist) {
+	public void buyout(ArrayList tradesalelist, String ownerid, String stockpricerate) {
 		// TODO Auto-generated method stub
 		
 		for(int f=0;f<tradesalelist.size();f++){
@@ -442,18 +453,95 @@ public class TradePreview {
 					MongoConnection mongoconnewprice = new MongoConnection();
 					mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tempsaleid), new BasicDBObject("$set", new BasicDBObject("lockedcompoundamount", wholecompoundamount)), "TradePreSale");
 					mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tempsaleid), new BasicDBObject("$set", new BasicDBObject("leftcompundamount", 0)), "TradePreSale");
+					mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tempsaleid), new BasicDBObject("$set", new BasicDBObject("saleamount", 0)), "TradePreSale");
 					
+					TradeBilling tradebill = new TradeBilling();
+					tradebill.setBilledto((String)osmstakestock.get("userid"));
+					tradebill.setBilledfrom(ownerid);
+					
+					String stockprice = (String)osmstakestock.get("salestockprice");
+					double stockstartprice = Double.parseDouble(stockprice);
+					double currentstock = Double.parseDouble(stockpricerate);
+					double payableamount = 0.00;
+					double compoundamount = Double.parseDouble(wholecompoundamount);
+					
+					payableamount = compoundamount/(currentstock);
+					 
+					tradebill.setBillingamount(Double.toString(payableamount));
 					//Billing details
 					
 				}else{
+					String wholecompoundamount = (String)osmstakestock.get("leftcompundamount");
+					String salestockprice = (String)osmstakestock.get("salestockprice");
+					String saleamount = (String)osmstakestock.get("saleamount");
+					int amounttaken = Integer.parseInt(saleamount) - Integer.parseInt(percentagesale);
+					double leftamount = Double.parseDouble(salestockprice)* amounttaken;
+					double lockamount = Double.parseDouble(salestockprice)*Integer.parseInt(percentagesale);
 					
+					MongoConnection mongoconnewprice = new MongoConnection();
+					mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tempsaleid), new BasicDBObject("$set", new BasicDBObject("leftcompundamount", leftamount)), "TradePreSale");
+					mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tempsaleid), new BasicDBObject("$set", new BasicDBObject("lockedcompoundamount", lockamount)), "TradePreSale");
+					mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tempsaleid), new BasicDBObject("$set", new BasicDBObject("saleamount", amounttaken)), "TradePreSale");
 					
+					TradeBilling tradebill = new TradeBilling();
+					tradebill.setBilledto((String)osmstakestock.get("userid"));
+					tradebill.setBilledfrom(ownerid);
+					
+					String stockprice = (String)osmstakestock.get("salestockprice");
+					double stockstartprice = Double.parseDouble(stockprice);
+					double currentstock = Double.parseDouble(stockpricerate);
+					double payableamount = 0.00;
+					double compoundamount = lockamount;
+					
+					payableamount = compoundamount/(currentstock);
+					 
+					tradebill.setBillingamount(Double.toString(payableamount));
 					
 				}
 				
 			}
 			
 			
+			
+		}
+		
+		
+	}
+
+	public void releaseLockTrade(HashMap<String, LinkedList<String>> tradeavaillist, String ownerid, String osmmodelid) {
+		// TODO Auto-generated method stub
+		
+		Set tradeset = tradeavaillist.entrySet();
+		Iterator tradeit = tradeset.iterator();
+		while(tradeit.hasNext()){
+			
+			Map.Entry meiter = (Map.Entry)tradeit.next();
+			LinkedList tradetempid = (LinkedList)meiter.getValue();
+			
+			for(int s=0;s<tradetempid.size();s++){
+				
+				String tradetempsaleidcombine = (String)tradetempid.get(s);
+				String tradetempsaleid = tradetempsaleidcombine.split("::")[0];
+				
+				MongoConnection mongoconstakestock = new MongoConnection();
+				DBCursor resultstakestock = mongoconstakestock.getDBObject("tradepresaleid", tradetempsaleid, "TradePreSale");
+				while(resultstakestock.hasNext()){
+					DBObject osmstakestock = resultstakestock.next();
+					
+					String osmmodelidselect = (String)osmstakestock.get("osmmodelid");
+					if(osmmodelid.equalsIgnoreCase(osmmodelidselect)){
+						String lockerowner = (String)osmstakestock.get("currenlock");
+						if(lockerowner.equalsIgnoreCase(ownerid)){
+							
+							MongoConnection mongoconnewprice = new MongoConnection();
+							mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tradetempsaleid), new BasicDBObject("$set", new BasicDBObject("currenlock", "")), "TradePreSale");
+						}
+						
+					}
+					
+				}
+				
+			}
 			
 		}
 		
