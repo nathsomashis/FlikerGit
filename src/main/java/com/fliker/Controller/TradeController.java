@@ -27,12 +27,32 @@ public class TradeController {
 			@RequestParam(value = "stockprice", required = false, defaultValue = "World") String stockprice,
 			@RequestParam(value = "stockid", required = false, defaultValue = "World") String stockid,
 			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid,
 			HttpServletRequest request) {
 		System.out.println("in controller");
 		
 		String stockavalable = "true";
 		
+		TradePreview tradeprev = new TradePreview();
+		tradeprev.releaseStockToSell(stockamount,stockprice,stockid,ownerid,osmmodelid);
 		
+		
+		
+		return stockavalable;
+		
+	}
+	
+	
+	@RequestMapping("/retrieveStock")
+	public String retrieveStock(
+			@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+			HttpServletRequest request) {
+		System.out.println("in controller");
+		
+		String stockavalable = "true";
+		
+		TradePreview tradeprev = new TradePreview();
+		tradeprev.retrieveStocks(ownerid);
 		
 		
 		

@@ -19,9 +19,23 @@ public class OSMModel {
 	private String osmlocation;
 	private String[] osmbuyerids;
 	private String[] osminvestors;
+	private String osmowner;
+	private String osmtype;
 	
 	
 	
+	public String getOsmtype() {
+		return osmtype;
+	}
+	public void setOsmtype(String osmtype) {
+		this.osmtype = osmtype;
+	}
+	public String getOsmowner() {
+		return osmowner;
+	}
+	public void setOsmowner(String osmowner) {
+		this.osmowner = osmowner;
+	}
 	public String[] getOsminvestors() {
 		return osminvestors;
 	}

@@ -13,6 +13,8 @@ import com.fliker.Repository.OSMProjectSeller;
 import com.fliker.Repository.OSMStakeHolding;
 import com.fliker.Repository.Post;
 import com.fliker.Repository.Stock;
+import com.fliker.Repository.TradePreBuyData;
+import com.fliker.Repository.TradePreSaleData;
 import com.fliker.Repository.TradeTemporarySaleSorting;
 import com.mongodb.BasicDBObject;
 
@@ -178,6 +180,46 @@ public class OSMFileUtility {
 		basicdbobj.put("tradecompositeamount", tradetempsort.getTradecompositeamount());
 		basicdbobj.put("tradepresaleid", tradetempsort.getTradepresaleid());
 		basicdbobj.put("saleamount", tradetempsort.getSaleamount());
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formTradePreSaleDBObject(TradePreSaleData tradepresale) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("currenlock", tradepresale.getCurrenlock());
+		basicdbobj.put("leftcompundamount",tradepresale.getLeftcompundamount());
+		basicdbobj.put("lockedcompoundamount", tradepresale.getLockedcompoundamount());
+		basicdbobj.put("lockedid", tradepresale.getLockedid());
+		basicdbobj.put("osmmodelid", tradepresale.getOsmmodelid());
+		basicdbobj.put("osmstakeholdingid", tradepresale.getOsmstakeholdingid());
+		basicdbobj.put("saleamount", tradepresale.getSaleamount());
+		basicdbobj.put("saleenddate", tradepresale.getSaleenddate());
+		basicdbobj.put("salestartdate", tradepresale.getSalestartdate());
+		basicdbobj.put("salestockprice", tradepresale.getSalestockprice());
+		basicdbobj.put("startcompundamount", tradepresale.getStartcompundamount());
+		basicdbobj.put("tradepresaleid", tradepresale.getTradepresaleid());
+		basicdbobj.put("userid", tradepresale.getUserid());
+		basicdbobj.put("billingsid", tradepresale.getBillingsid());
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formTradePreBuyDBObject(TradePreBuyData tradeprebuy) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("billingextendtime", tradeprebuy.getBillingextendtime());
+		basicdbobj.put("billingsid",tradeprebuy.getBillingsid());
+		basicdbobj.put("buyendtime", tradeprebuy.getBuyendtime());
+		basicdbobj.put("buystarttime", tradeprebuy.getBuystarttime());
+		basicdbobj.put("currentstockprice", tradeprebuy.getCurrentstockprice());
+		basicdbobj.put("lockedtradepresaleamount", tradeprebuy.getLockedtradepresaleamount());
+		basicdbobj.put("osmmodelid", tradeprebuy.getOsmmodelid());
+		basicdbobj.put("stockamount", tradeprebuy.getStockamount());
+		basicdbobj.put("tradeprebuyid", tradeprebuy.getTradeprebuyid());
+		basicdbobj.put("userid", tradeprebuy.getUserid());
+		basicdbobj.put("osmstakeholdingid", tradeprebuy.getOsmstakeholdingid());
+		
 		return basicdbobj;
 	}
 	

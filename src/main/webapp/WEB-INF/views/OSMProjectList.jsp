@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -592,6 +593,12 @@
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
 
+		<%
+			ArrayList projectlist = (ArrayList)request.getAttribute("osmprojectlist");
+			
+		%>
+
+
 			<!-- RIBBON -->
 			<div id="ribbon">
 
@@ -647,7 +654,7 @@
 				
 						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
 							<div class="tab-pane fade in active" id="s1">
-								<h1> Search <span class="semi-bold">Everything</span></h1>
+								<h1> Search <span class="semi-bold">Projects</span></h1>
 								<br>
 								<div class="input-group input-group-lg hidden-mobile">
 									<input class="form-control input-lg" type="text" placeholder="Search again..." id="search-project">
@@ -658,7 +665,7 @@
 									</div>
 								</div>
 				
-								<h1 class="font-md"> Search Results for <small class="text-danger"> &nbsp;&nbsp;(2,281 results)</small></h1>
+								<h1 class="font-md"> Search Results for </h1>
 				
 								<div class="search-results clearfix smart-form">
 				
@@ -824,69 +831,203 @@
 							</div>
 				
 							<div class="tab-pane fade" id="s2">
-								<h1> Search <span class="semi-bold">Users/Groups/Courses/Job Interviews/Organization/Institutions/Etc..</span></h1>
-								<br>
-								<div class="input-group input-group-lg">
-									<div class="input-group-btn">
-										<button id="searchparamset" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-											User <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li class="active">
-												<a href="javascript:void(0)"></i> Users</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Groups</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Organization</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Institutes</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Courses</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Job Interviews</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Specializations</a>
-											</li>
-										</ul>
-									</div>
-									<input class="form-control input-lg" type="text" placeholder="Mention the type(eg: for Groups --> #Group groupname)..." id="search-user">
-									<div class="input-group-btn">
-										<button type="submit" class="btn btn-default">
-											<i class="fa fa-fw fa-search fa-lg"></i>
-										</button>
-									</div>
-								</div>
-								<h1 class="font-md"> Search Results for <span class="semi-bold">Users</span><small class="text-danger"> &nbsp;&nbsp;(181 results)</small></h1>
-								<br>
-								<div class="search-results clearfix smart-form">
-									<div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-									<img src="img/demo/sample.jpg" alt="">
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+								<%for(int i=0;i<projectlist.size();i++){
+									OSMProjectInfo osmprofinfo = (OSMProjectInfo)projectlist.get(i);
+									String osmmodelid = osmprofinfo.getOsmmodelid();
+									String projectdescription = osmprofinfo.getProjectdescription();
+									String projectname = osmprofinfo.getProjectname();
+									String marketingdoc = osmprofinfo.getProjectmarkettingdoc();
+									String osmtype = osmprofinfo.getOsmtype();
+									%>
+									<div id="<%=osmmodelid%>" class="col-sm-12 col-md-12 col-lg-12">
+										<!-- Project -->
+										<div class="product-content product-wrap clearfix product-deatil">
+											<div class="row">
+												<div class="col-md-5 col-sm-12 col-xs-12 ">
+													<div class="margin-top-10">
+														<iframe allowfullscreen="" frameborder="0" height="210" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
+													</div>
+												</div>
+												<div class="col-md-7 col-sm-12 col-xs-12">
+													<h2><%=projectname%></h2>
+													<small>Product by </small> <img src="/Fliker/osmcontrol/<%=osmmodelid%>" alt="img"
+																					style="height: 50; width: 50" class="online" onclick="gotoCompany('<%osmmodelid%>')">
+																					
+												</div>
+											</div>
 										</div>
-										<p class="description">
-											Oct 1, 2006 - Uploaded by 02842356107
-											<br>
-											<br>
-											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
-										</p>
+										
 									</div>
-				
-								</div>
-								</div>
+									
+									
+									
+									
+									
+								<%	
+								}
+								 %>
+								<div class="col-sm-12 col-md-12 col-lg-12">
+										<!-- product -->
+										<div class="product-content product-wrap clearfix product-deatil">
+											<div class="row">
+													
+													<div class="col-md-7 col-sm-12 col-xs-12">
+												
+													<h2 class="name">
+														Product Name Title Here 
+														<small>Product by <a href="javascript:void(0);">Adeline</a></small>
+														<i class="fa fa-star fa-2x text-primary"></i>
+														<i class="fa fa-star fa-2x text-primary"></i>
+														<i class="fa fa-star fa-2x text-primary"></i>
+														<i class="fa fa-star fa-2x text-primary"></i>
+														<i class="fa fa-star fa-2x text-muted"></i>
+														<span class="fa fa-2x"><h5>(109) Votes</h5></span>	
+														
+														<a href="javascript:void(0);">109 customer reviews</a>
+							 
+													</h2>
+													<hr>
+													<h3 class="price-container">
+														$129.54
+														<small>*includes tax</small>
+													</h3>
+												
+													<div class="certified">
+														<ul>
+															<li><a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a></li>
+															<li><a href="javascript:void(0);">Certified<span>Quality Assured</span></a></li>
+														</ul>
+													</div>
+													<hr>
+													<div class="description description-tabs">
+			
+			
+														<ul id="myTab" class="nav nav-pills">
+															<li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product Description </a></li>
+															<li class=""><a href="#specifications" data-toggle="tab">Specifications</a></li>
+															<li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
+														</ul>
+														<div id="myTabContent" class="tab-content">
+															<div class="tab-pane fade active in" id="more-information">
+																<br>
+																<strong>Description Title</strong>
+																<p>Integer egestas, orci id condimentum eleifend, nibh nisi pulvinar eros, vitae ornare massa neque ut orci. Nam aliquet lectus sed odio eleifend, at iaculis dolor egestas. Nunc elementum pellentesque augue sodales porta. Etiam aliquet rutrum turpis, feugiat sodales ipsum consectetur nec. </p>
+															</div>
+															<div class="tab-pane fade" id="specifications">
+																<br>
+																<dl class="">
+																		<dt>Gravina</dt>
+								                                        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+								                                        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+								                                        <dd>Eget lacinia odio sem nec elit.</dd>
+								                                        <br>
+			
+								                                        <dt>Test lists</dt>
+								                                        <dd>A description list is perfect for defining terms.</dd>
+								                                        <br>	
+			
+								                                        <dt>Altra porta</dt>
+								                                        <dd>Vestibulum id ligula porta felis euismod semper</dd>
+								                                    </dl>
+															</div>
+															<div class="tab-pane fade" id="reviews">
+																<br>
+																<form method="post" class="well padding-bottom-10" onsubmit="return false;">
+																	<textarea rows="2" class="form-control" placeholder="Write a review"></textarea>
+																	<div class="margin-top-10">
+																		<button type="submit" class="btn btn-sm btn-primary pull-right">
+																			Submit Review
+																		</button>
+																		<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Location"><i class="fa fa-location-arrow"></i></a>
+																		<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Voice"><i class="fa fa-microphone"></i></a>
+																		<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Photo"><i class="fa fa-camera"></i></a>
+																		<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add File"><i class="fa fa-file"></i></a>
+																	</div>
+																</form>
+			
+																<div class="chat-body no-padding profile-message">
+																	<ul>
+																		<li class="message">
+																			<img src="img/avatars/1.png" class="online">
+																			<span class="message-text"> 
+																				<a href="javascript:void(0);" class="username">
+																					Alisha Molly 
+																					<span class="badge">Purchase Verified</span> 
+																					<span class="pull-right">
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-muted"></i>
+																					</span>
+																				</a> 
+																				
+																				
+																				Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very image let unto fowl isn't in blessed fill life yielding above all moved 
+																			</span>
+																			<ul class="list-inline font-xs">
+																				<li>
+																					<a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
+																				</li>
+																				<li class="pull-right">
+																					<small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
+																				</li>
+																			</ul>
+																		</li>
+																		<li class="message">
+																			<img src="img/avatars/2.png" class="online">
+																			<span class="message-text"> 
+																				<a href="javascript:void(0);" class="username">
+																					Aragon Zarko 
+																					<span class="badge">Purchase Verified</span> 
+																					<span class="pull-right">
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																					</span>
+																				</a> 
+																				
+																				
+																				Excellent product, love it!
+																			</span>
+																			<ul class="list-inline font-xs">
+																				<li>
+																					<a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
+																				</li>
+																				<li class="pull-right">
+																					<small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
+																				</li>
+																			</ul>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+												
+			
+													</div>
+													<hr>
+													<div class="row">
+														<div class="col-sm-12 col-md-6 col-lg-6">
+															
+																<a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
+															
+														</div>
+														<div class="col-sm-12 col-md-6 col-lg-6">
+															<div class="btn-group pull-right">
+									                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist </button>
+									                            <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
+									                        </div>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+										</div>
+										<!-- end product -->
+									</div>	
 								
 								<div class="text-center">
 									<hr>
@@ -1142,6 +1283,19 @@
 				 */
 				
 			})
+			
+			function gotoCompany(osmmodelid){
+				
+				$.ajax({
+					url : "osmcompanyidentify/osmmodelid="+osmmodelid,
+					method : 'GET',
+					success : function(){
+							
+						
+					}
+				});
+				
+			}
 		
 		</script>
 

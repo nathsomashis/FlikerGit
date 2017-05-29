@@ -12,6 +12,7 @@ import java.util.Set;
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.OSMModel;
 import com.fliker.Repository.TradeBilling;
+import com.fliker.Repository.TradePreBuyData;
 import com.fliker.Repository.TradePreSaleData;
 import com.fliker.Repository.TradeTemporarySaleSorting;
 import com.fliker.Utility.DateFunctionality;
@@ -483,6 +484,7 @@ public class TradePreview {
 					mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tempsaleid), new BasicDBObject("$set", new BasicDBObject("lockedcompoundamount", lockamount)), "TradePreSale");
 					mongoconnewprice.updateObject(new BasicDBObject("tradepresaleid", tempsaleid), new BasicDBObject("$set", new BasicDBObject("saleamount", amounttaken)), "TradePreSale");
 					
+					
 					TradeBilling tradebill = new TradeBilling();
 					tradebill.setBilledto((String)osmstakestock.get("userid"));
 					tradebill.setBilledfrom(ownerid);
@@ -547,6 +549,109 @@ public class TradePreview {
 		
 		
 	}
+
+	public void releaseStockToSell(String stockamount, String stockprice, String stockid, String ownerid,
+			String osmmodelid) {
+		// TODO Auto-generated method stub
+		
+		OSMFileUtility osmfileutility = new OSMFileUtility();
+		TradePreSaleData tradepresale = new TradePreSaleData();
+		tradepresale.setUserid(ownerid);
+		
+		String uniqueid = "";
+		try {
+			uniqueid = osmfileutility.makeSHA1Hash(stockamount+stockprice+osmmodelid+ownerid);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		tradepresale.setTradepresaleid(uniqueid);
+		double startcompamt = Double.parseDouble(stockamount)* Double.parseDouble(stockprice);
+		String startcompundamount = Double.toString(startcompamt);
+		tradepresale.setStartcompundamount(startcompundamount);
+		tradepresale.setSalestockprice(stockprice);
+		
+		DateFunctionality datefunc = new DateFunctionality();
+		datefunc.getCurrentdate();
+		String[] lockidarr = new String[0];
+		String[] billingarr = new String[0];
+		
+		tradepresale.setSalestartdate(datefunc.getCurrentdate());
+		tradepresale.setSaleenddate(datefunc.getFuturedate(2));
+		tradepresale.setSaleamount(stockamount);
+		tradepresale.setOsmstakeholdingid(stockid);
+		tradepresale.setOsmmodelid(osmmodelid);
+		tradepresale.setLockedcompoundamount("0");
+		tradepresale.setLeftcompundamount("0");
+		tradepresale.setCurrenlock("");
+		tradepresale.setLockedid(lockidarr);
+		tradepresale.setBillingsid(billingarr);
+		
+		MongoConnection mongocon = new MongoConnection();
+
+		BasicDBObject basicreqobj = osmfileutility.formTradePreSaleDBObject(tradepresale);
+		mongocon.saveObject(basicreqobj, "TradePreSale");
+		
+		
+	}
+
+	public String[] retrieveStocks(String ownerid) {
+		// TODO Auto-generated method stub
+		
+		String[] osmodelid = null;
+		MongoConnection mongoconstakestock = new MongoConnection();
+		DBCursor resultstakestock = mongoconstakestock.getDBObject("userid", ownerid, "OSMOperator");
+		while(resultstakestock.hasNext()){
+			DBObject osmstakestock = resultstakestock.next();
+			
+			osmodelid = (String[])osmstakestock.get("osmmodelid");
+			
+		}
+		
+		return osmodelid;
+	}
+	
+	public void buyoutTrade(String osmmodelid,String osmstakeholdingid, String userid, String currentstockprice, String stockamount, String billingsid){
+		
+		OSMFileUtility osmfileutility = new OSMFileUtility();
+		String[] lockstockamt = new String[0];
+		String[] billings = new String[0];
+		DateFunctionality datefunc = new DateFunctionality();
+		TradePreBuyData tradeprebuy = new TradePreBuyData();
+		tradeprebuy.setUserid(userid);
+		
+		String uniqueid = "";
+		try {
+			uniqueid = osmfileutility.makeSHA1Hash(stockamount+osmstakeholdingid+osmmodelid+userid);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		tradeprebuy.setTradeprebuyid(uniqueid);
+		tradeprebuy.setStockamount(stockamount);
+		tradeprebuy.setOsmstakeholdingid(osmstakeholdingid);
+		tradeprebuy.setOsmmodelid(osmmodelid);
+		tradeprebuy.setCurrentstockprice(currentstockprice);
+		tradeprebuy.setBuystarttime(datefunc.getCurrentdate());
+		tradeprebuy.setBuyendtime("");
+		tradeprebuy.setBillingsid(billings);
+		tradeprebuy.setLockedtradepresaleamount(lockstockamt);
+		tradeprebuy.setBillingextendtime(datefunc.getFuturedate(2));
+		
+		
+		MongoConnection mongocon = new MongoConnection();
+
+		BasicDBObject basicreqobj = osmfileutility.formTradePreBuyDBObject(tradeprebuy);
+		mongocon.saveObject(basicreqobj, "TradePreBuy");
+	}
+	
 
 	/*public void stockchangeonInvesting(String token) {
 		// TODO Auto-generated method stub

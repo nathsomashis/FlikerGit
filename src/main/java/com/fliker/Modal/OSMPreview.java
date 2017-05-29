@@ -1,5 +1,6 @@
 package com.fliker.Modal;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -12,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fliker.Connection.MongoConnection;
@@ -35,6 +39,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.gridfs.GridFSDBFile;
 
 public class OSMPreview {
 
@@ -136,6 +141,7 @@ public class OSMPreview {
 		osmmodel.setOsmdependentid(osmdependependid.split(","));
 		osmmodel.setOsmpartnerid(osmpartners.split(","));
 		osmmodel.setOsmhealthid("0");
+		osmmodel.setOsmowner(ownerid);
 
 		ServicesUtil servutil = new ServicesUtil();
 		String locationaddress = servutil.getLocationAddress(location);
@@ -1179,5 +1185,138 @@ public class OSMPreview {
 		
 		
 	}
+	
+	public ArrayList getOSMOperatorID(String osmmodelid){
+		
+		String osmowner = "";
+		String company = "";
+		ArrayList companyinfo = new ArrayList(); 
+		
+		
+		MongoConnection mongocondemand = new MongoConnection();
+		DBCursor resultdemand = mongocondemand.getDBObject("osmid", osmmodelid, "OSM");
+		if (resultdemand.hasNext()) {
+			DBObject osmdemand = resultdemand.next();
+			osmowner =  (String)osmdemand.get("osmowner");
+			
+			MongoConnection mongoconcompany = new MongoConnection();
+			DBCursor resultcompany = mongoconcompany.getDBObject("userid", osmowner, "OSMOperator");
+			if (resultcompany.hasNext()) {
+				DBObject osmcompany = resultcompany.next();
+				company = (String)osmcompany.get("activeCompany");
+				
+				MongoConnection mongoconcompan = new MongoConnection();
+				DBCursor resultcompan = mongoconcompan.getDBObject("userid", osmowner, "OSMOperator");
+				if (resultcompan.hasNext()) {
+					DBObject osmcompan = resultcompan.next();
+					
+					Company compinfo = new Company();
+					compinfo.setCompanyid((String)osmcompan.get("companyid"));
+					compinfo.setCompanyImageid((String)osmcompan.get("companyImageid"));
+					compinfo.setCompanylogoid((String)osmcompan.get("companylogoid"));
+					
+					companyinfo.add(compinfo);
+				}
+			}
+			
+		}
+		
+		return companyinfo;
+	}
+	
+	
+	public String getOSMOperatorCompanyLogo(String osmmodelid){
+		
+		String osmowner = "";
+		String company = "";
+		String companyname = "";
+		
+		
+		MongoConnection mongocondemand = new MongoConnection();
+		DBCursor resultdemand = mongocondemand.getDBObject("osmid", osmmodelid, "OSM");
+		if (resultdemand.hasNext()) {
+			DBObject osmdemand = resultdemand.next();
+			osmowner =  (String)osmdemand.get("osmowner");
+			
+			MongoConnection mongoconcompany = new MongoConnection();
+			DBCursor resultcompany = mongoconcompany.getDBObject("userid", osmowner, "OSMOperator");
+			if (resultcompany.hasNext()) {
+				DBObject osmcompany = resultcompany.next();
+				company = (String)osmcompany.get("activeCompany");
+				
+				MongoConnection mongoconcompan = new MongoConnection();
+				DBCursor resultcompan = mongoconcompan.getDBObject("userid", osmowner, "OSMOperator");
+				if (resultcompan.hasNext()) {
+					DBObject osmcompan = resultcompan.next();
+					
+					/*Company compinfo = new Company();
+					compinfo.setCompanyid((String)osmcompan.get("companyid"));
+					compinfo.setCompanyImageid((String)osmcompan.get("companyImageid"));
+					compinfo.setCompanylogoid((String)osmcompan.get("companylogoid"));*/
+					
+					companyname = (String)osmcompan.get("companylogoid");
+				}
+			}
+			
+		}
+		
+		return companyname;
+	}
 
+	public byte[] imagefromid(String imageId) {
+
+		CoursePreview courseprev = new CoursePreview();
+		GridFSDBFile imagecontent = courseprev.getFiles(imageId);
+		System.out.println("imagecontent ++" + imagecontent.getInputStream());
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			imagecontent.writeTo(baos);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		byte[] imageblob = baos.toByteArray();
+
+		return imageblob;
+	}
+
+	public String getOSMOperatorCompanyID(String osmmodelid) {
+		// TODO Auto-generated method stub
+		String osmowner = "";
+		String company = "";
+		String companyid = "";
+		
+		
+		MongoConnection mongocondemand = new MongoConnection();
+		DBCursor resultdemand = mongocondemand.getDBObject("osmid", osmmodelid, "OSM");
+		if (resultdemand.hasNext()) {
+			DBObject osmdemand = resultdemand.next();
+			osmowner =  (String)osmdemand.get("osmowner");
+			
+			MongoConnection mongoconcompany = new MongoConnection();
+			DBCursor resultcompany = mongoconcompany.getDBObject("userid", osmowner, "OSMOperator");
+			if (resultcompany.hasNext()) {
+				DBObject osmcompany = resultcompany.next();
+				company = (String)osmcompany.get("activeCompany");
+				
+				MongoConnection mongoconcompan = new MongoConnection();
+				DBCursor resultcompan = mongoconcompan.getDBObject("userid", osmowner, "OSMOperator");
+				if (resultcompan.hasNext()) {
+					DBObject osmcompan = resultcompan.next();
+					
+					/*Company compinfo = new Company();
+					compinfo.setCompanyid((String)osmcompan.get("companyid"));
+					compinfo.setCompanyImageid((String)osmcompan.get("companyImageid"));
+					compinfo.setCompanylogoid((String)osmcompan.get("companylogoid"));*/
+					
+					companyid = (String)osmcompan.get("companyid");
+				}
+			}
+			
+		}
+		
+		return companyid;
+	}
+	
+	
 }

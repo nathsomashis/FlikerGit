@@ -1,5 +1,7 @@
 package com.fliker.Controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,14 +12,20 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fliker.Modal.CoursePreview;
 import com.fliker.Modal.OSMPreview;
 import com.fliker.Modal.ProfilePreview;
+import com.fliker.Repository.Company;
 import com.fliker.Repository.OSMProjectInvestment;
+import com.fliker.Repository.Profile;
 import com.fliker.Repository.User;
+import com.mongodb.gridfs.GridFSDBFile;
 
 @Controller
 public class OSMController {
@@ -730,7 +738,34 @@ public class OSMController {
 		return check;
 	}
 	
+	@RequestMapping(value = "/osmcontrol/{osmmodelid}")
+	@ResponseBody
+	public byte[] osmcompanyimagename(@PathVariable String osmmodelid) {
+
+		String companyimagename = "";
+		
+		OSMPreview osmprev = new OSMPreview();
+		String companylogoid = osmprev.getOSMOperatorCompanyLogo(osmmodelid);
+		
+		
+		
+		return osmprev.imagefromid(companylogoid);
+	}
 	
+	
+	@RequestMapping(value = "/osmcompanyidentify/{osmmodelid}")
+	@ResponseBody
+	public String osmcompanyimageid(@PathVariable String osmmodelid) {
+
+		String companyimagename = "";
+		
+		OSMPreview osmprev = new OSMPreview();
+		String companylogoid = osmprev.getOSMOperatorCompanyID(osmmodelid);
+		
+		
+		
+		return companylogoid;
+	}
 	
 	
 }

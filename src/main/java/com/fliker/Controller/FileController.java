@@ -720,6 +720,26 @@ public class FileController {
 
 		return imageblob;
 	}
+	
+	
+	@RequestMapping(value = "/videoController/{videoid}")
+	@ResponseBody
+	public byte[] videoControl(@PathVariable String videoid) {
+
+		CoursePreview courseprev = new CoursePreview();
+		GridFSDBFile imagecontent = courseprev.getFiles(videoid);
+		System.out.println("imagecontent ++" + imagecontent.getInputStream());
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			imagecontent.writeTo(baos);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		byte[] imageblob = baos.toByteArray();
+
+		return imageblob;
+	}
 
 	@RequestMapping(value = "/imageFromUserid/{userid}")
 	@ResponseBody

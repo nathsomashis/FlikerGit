@@ -79,6 +79,19 @@ public class DateFunctionality {
 		return currentDate;
 	}
 	
+	public String getFuturedate(int nofdays){
+		String currentDate = "";
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		c.add(Calendar.DATE, nofdays);
+		Date today = c.getTime();  
+		System.out.println(dateFormat.format(today)); //2016/11/16 12:08:43
+		currentDate = dateFormat.format(today);
+		return currentDate;
+	}
+	
 	
 	public String getUniformDates(String date){
 		
