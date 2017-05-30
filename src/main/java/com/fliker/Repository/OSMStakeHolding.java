@@ -10,11 +10,25 @@ public class OSMStakeHolding {
 	private String stakeholdingid;
 	private String stakeownerid;
 	private String stakeamount;
-	private String stakestokprice;
+	private String stakestokpriceid;
 	private String stakeholderlocation;
-
+	private String stakepercentage;
+	private String starstokprice;
 	
 	
+	
+	public String getStakepercentage() {
+		return stakepercentage;
+	}
+	public void setStakepercentage(String stakepercentage) {
+		this.stakepercentage = stakepercentage;
+	}
+	public String getStarstokprice() {
+		return starstokprice;
+	}
+	public void setStarstokprice(String starstokprice) {
+		this.starstokprice = starstokprice;
+	}
 	public String getStakeholderlocation() {
 		return stakeholderlocation;
 	}
@@ -39,12 +53,13 @@ public class OSMStakeHolding {
 	public void setStakeamount(String stakeamount) {
 		this.stakeamount = stakeamount;
 	}
-	public String getStakestokprice() {
-		return stakestokprice;
+	public String getStakestokpriceid() {
+		return stakestokpriceid;
 	}
-	public void setStakestokprice(String stakestokprice) {
-		this.stakestokprice = stakestokprice;
+	public void setStakestokpriceid(String stakestokpriceid) {
+		this.stakestokpriceid = stakestokpriceid;
 	}
+	
 
 	
 	

@@ -37,10 +37,10 @@ public class DateFunctionality {
 			long diffHours = diff / (60 * 60 * 1000) % 24;
 			long diffDays = diff / (24 * 60 * 60 * 1000);
 			
-			String day=" ";
-			String hours = " ";
-			String minutes = " ";
-			String second = " ";
+			String day="";
+			String hours = "";
+			String minutes = "";
+			String second = "";
 
 			System.out.print(diffDays + " days, ");
 			System.out.print(diffHours + " hours, ");
@@ -79,6 +79,19 @@ public class DateFunctionality {
 		return currentDate;
 	}
 	
+	public String getFuturedate(int nofdays){
+		String currentDate = "";
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		c.add(Calendar.DATE, nofdays);
+		Date today = c.getTime();  
+		System.out.println(dateFormat.format(today)); //2016/11/16 12:08:43
+		currentDate = dateFormat.format(today);
+		return currentDate;
+	}
+	
 	
 	public String getUniformDates(String date){
 		
@@ -95,7 +108,7 @@ public class DateFunctionality {
 	}
 	
 	
-	private Map<String, String> getRequestHeadersInMap(HttpServletRequest request) {
+	public Map<String, String> getRequestHeadersInMap(HttpServletRequest request) {
 
 	    Map<String, String> result = new HashMap<>();
 
@@ -110,7 +123,30 @@ public class DateFunctionality {
 	}
 	
 	
-	
+	public String getDateSystems(){
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM dd, yyyy HH:mm:ss a");
+        //String dateInString = "Friday, Jun 7, 2013 12:10:56 PM";//example
+        
+		
+		
+        Date datepack = new Date();
+        DateFunctionality datefunc = new DateFunctionality();
+        
+        String localdate = datefunc.getUniformDates(formatter.format(datepack));
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(datepack);
+        
+        String yearpack = Integer.toString(cal.get(Calendar.YEAR));
+        String monthspack = Integer.toString(cal.get(Calendar.MONTH));
+        String daypack = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
+        String hourpack = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
+        String minutespack  = Integer.toString(cal.get(Calendar.MINUTE));
+		
+		return localdate;
+		
+	}
 	
 	
 }

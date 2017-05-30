@@ -3,10 +3,10 @@ package com.fliker.Repository;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "CompanyProfile")
+@Document(collection = "Company")
 public class Company {
 
-	
+	@Id
 	private String companyid;
 	private String companyname;
 	private String companyImageid;

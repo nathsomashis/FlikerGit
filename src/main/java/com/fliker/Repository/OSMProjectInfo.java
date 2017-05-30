@@ -14,23 +14,30 @@ public class OSMProjectInfo {
 	private String[] projectdocs;
 	private String projectmarkettingdoc;
 	private String projectdemandchart;
-	private String projectinvestors;
-	private String projectbuyers;
+	private String[] projectinvestors;
+	private String[] projectbuyers;
 	private String projectstockprice;
-	private String projectresources;
+	private String[] projectresources;
+	private String[] projectrequestors;
 	
 	
-	public String getOsmmodelid() {
-		return osmmodelid;
+	public String[] getProjectrequestors() {
+		return projectrequestors;
 	}
-	public void setOsmmodelid(String osmmodelid) {
-		this.osmmodelid = osmmodelid;
+	public void setProjectrequestors(String[] projectrequestors) {
+		this.projectrequestors = projectrequestors;
 	}
 	public String getProjectinfoid() {
 		return projectinfoid;
 	}
 	public void setProjectinfoid(String projectinfoid) {
 		this.projectinfoid = projectinfoid;
+	}
+	public String getOsmmodelid() {
+		return osmmodelid;
+	}
+	public void setOsmmodelid(String osmmodelid) {
+		this.osmmodelid = osmmodelid;
 	}
 	public String getProjectname() {
 		return projectname;
@@ -62,16 +69,16 @@ public class OSMProjectInfo {
 	public void setProjectdemandchart(String projectdemandchart) {
 		this.projectdemandchart = projectdemandchart;
 	}
-	public String getProjectinvestors() {
+	public String[] getProjectinvestors() {
 		return projectinvestors;
 	}
-	public void setProjectinvestors(String projectinvestors) {
+	public void setProjectinvestors(String[] projectinvestors) {
 		this.projectinvestors = projectinvestors;
 	}
-	public String getProjectbuyers() {
+	public String[] getProjectbuyers() {
 		return projectbuyers;
 	}
-	public void setProjectbuyers(String projectbuyers) {
+	public void setProjectbuyers(String[] projectbuyers) {
 		this.projectbuyers = projectbuyers;
 	}
 	public String getProjectstockprice() {
@@ -80,13 +87,12 @@ public class OSMProjectInfo {
 	public void setProjectstockprice(String projectstockprice) {
 		this.projectstockprice = projectstockprice;
 	}
-	public String getProjectresources() {
+	public String[] getProjectresources() {
 		return projectresources;
 	}
-	public void setProjectresources(String projectresources) {
+	public void setProjectresources(String[] projectresources) {
 		this.projectresources = projectresources;
 	}
-	
 	
 	
 	
