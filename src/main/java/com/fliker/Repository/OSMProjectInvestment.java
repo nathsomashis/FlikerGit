@@ -13,9 +13,23 @@ public class OSMProjectInvestment {
 	private String[] osminvestmentdoc;
 	private String osminvestorslink;
 	private String osmstakedivision;
+	private String osminvestmentdescription;
+	private String osminvestmenttermsandcondition;
 	
 	
 	
+	public String getOsminvestmentdescription() {
+		return osminvestmentdescription;
+	}
+	public void setOsminvestmentdescription(String osminvestmentdescription) {
+		this.osminvestmentdescription = osminvestmentdescription;
+	}
+	public String getOsminvestmenttermsandcondition() {
+		return osminvestmenttermsandcondition;
+	}
+	public void setOsminvestmenttermsandcondition(String osminvestmenttermsandcondition) {
+		this.osminvestmenttermsandcondition = osminvestmenttermsandcondition;
+	}
 	public String getOsmstakedivision() {
 		return osmstakedivision;
 	}

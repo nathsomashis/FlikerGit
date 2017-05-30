@@ -19,8 +19,16 @@ public class OSMProjectInfo {
 	private String projectstockprice;
 	private String[] projectresources;
 	private String[] projectrequestors;
+	private String osmtype;
 	
 	
+	
+	public String getOsmtype() {
+		return osmtype;
+	}
+	public void setOsmtype(String osmtype) {
+		this.osmtype = osmtype;
+	}
 	public String[] getProjectrequestors() {
 		return projectrequestors;
 	}
