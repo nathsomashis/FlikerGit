@@ -471,6 +471,8 @@ public class OSMPreview {
 				osmprojinvest.setOsminvestorslink((String) osmprojObj.get("osminvestorslink"));
 				osmprojinvest.setOsmstakeholdingid((String) osmprojObj.get("osmstakeholdingid"));
 				osmprojinvest.setOsmmodelid((String) osmprojObj.get("osmmodelid"));
+				osmprojinvest.setOsminvestmentdescription((String) osmprojObj.get("osminvestmentdescription"));
+				osmprojinvest.setOsminvestmenttermsandcondition((String) osmprojObj.get("osminvestmenttermsandcondition"));
 
 				subscribelist.add(osmprojinvest);
 
