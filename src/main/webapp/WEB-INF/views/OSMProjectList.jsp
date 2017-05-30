@@ -838,34 +838,63 @@
 									String projectname = osmprofinfo.getProjectname();
 									String marketingdoc = osmprofinfo.getProjectmarkettingdoc();
 									String osmtype = osmprofinfo.getOsmtype();
+									String[] buyers = osmprofinfo.getProjectbuyers();
+									String demandchart = osmprofinfo.getProjectdemandchart();
+									String[] projectdoc = osmprofinfo.getProjectdocs();
+									String projectinfoid = osmprofinfo.getProjectinfoid();
+									String[] investors = osmprofinfo.getProjectinvestors();
+									String[] projectreq = osmprofinfo.getProjectrequestors();
+									int noofreq = projectreq.length;
+									String[] projectres = osmprofinfo.getProjectresources();
+									int noofres = projectres.length;
+									String stockprice = osmprofinfo.getProjectstockprice();
 									%>
-									<div id="<%=osmmodelid%>" class="col-sm-12 col-md-12 col-lg-12">
+									<div id="<%=osmmodelid%>" class="search-results clearfix">
 										<!-- Project -->
-										<div class="product-content product-wrap clearfix product-deatil">
-											<div class="row">
-												<div class="col-md-5 col-sm-12 col-xs-12 ">
-													<div class="margin-top-10">
-														<iframe allowfullscreen="" frameborder="0" height="210" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
-													</div>
-												</div>
-												<div class="col-md-7 col-sm-12 col-xs-12">
-													<h2><%=projectname%></h2>
-													<small>Product by </small> <img src="/Fliker/osmcontrol/<%=osmmodelid%>" alt="img"
-																					style="height: 50; width: 50" class="online" onclick="gotoCompany('<%osmmodelid%>')">
-																					
-												</div>
-											</div>
+										<h4><a href="osmprojectinfo?projectinfoid='<%=projectinfoid%>'"><%=projectname%></a>&nbsp;&nbsp;</h4>
+										<iframe allowfullscreen="" frameborder="0" height="210" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
+										<div>
+											<p class="note">
+												<a href="osmlike?" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+												<a href="osmshare?"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											</p>
+											<p class="description">
+												(<%=noofreq%>) Requests <span class="fa fa-2x"><h5>(<%=noofres%>) Resources</h5></span>
+												<br>
+												<br>
+												<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
+											</p>
+											<span class="sparkline txt-color-blueLight" data-sparkline-type="line" data-sparkline-width="150px" data-sparkline-height="25px"><%=demandchart%></span>
+											<span class="display-inline note font-lg semi-bold"><small><i class="fa fa-arrow-circle-up text-success"></i><%=stockprice%></small></span>
 										</div>
-										
 									</div>
-									
-									
-									
-									
 									
 								<%	
 								}
 								 %>
+								 
+								 <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
+									<img src="img/demo/sample.jpg" alt="">
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Oct 1, 2006 - Uploaded by 02842356107
+											<br>
+											<br>
+											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
+										</p>
+									</div>
+				
+								</div>
+								 
 								<div class="col-sm-12 col-md-12 col-lg-12">
 										<!-- product -->
 										<div class="product-content product-wrap clearfix product-deatil">
