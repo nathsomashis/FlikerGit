@@ -1,7 +1,9 @@
 package com.fliker.Controller;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,6 +27,7 @@ import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -725,39 +728,69 @@ public class FileController {
 	}
 	
 	@RequestMapping(value = "/imageDownload/{imageId}")
-	@ResponseBody
-	public void imagedownload(@PathVariable String imageId) {
+	public void imagedownload(@PathVariable String imageId, HttpServletResponse response,HttpServletRequest req) {
 
 		System.out.println("Starting download");
         long t1 = System.currentTimeMillis();
 		CoursePreview courseprev = new CoursePreview();
 		GridFSDBFile imagecontent = courseprev.getFiles(imageId);
-		System.out.println("imagecontent ++" + imagecontent.getInputStream());
+		String applicationcontenttype = "";
+		System.out.println("imagecontent ++" + imagecontent.getInputStream()+" Content Type :"+imagecontent.getFilename());
+		String fileexten = imagecontent.getFilename().substring(imagecontent.getFilename().indexOf(".")+1, imagecontent.getFilename().length()); 
+		/*if(fileexten.equalsIgnoreCase("jpg")||fileexten.equalsIgnoreCase("jpeg")||fileexten.equalsIgnoreCase("png")|| 
+				fileexten.equalsIgnoreCase("gif")||fileexten.equalsIgnoreCase("exif")||
+				fileexten.equalsIgnoreCase("tiff")||fileexten.equalsIgnoreCase("bmp")||
+				fileexten.equalsIgnoreCase("jpg")||fileexten.equalsIgnoreCase("heif")||
+				fileexten.equalsIgnoreCase("bat")){
+			
+			applicationcontenttype = "image/jpeg";
+		}*/
+		ServletContext cntx= req.getServletContext();
+		String mime = cntx.getMimeType(imagecontent.getFilename());
+		System.out.println(" mime type ::"+mime);
+		
+		if (mime == null) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+	        return;
+	      }
+		
+		System.out.println(" file extension :"+fileexten);
+		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		byte[] imageblob = null;
 		
 		
+		
+		
 		try {
 			imagecontent.writeTo(baos);
-			File downloads = new File("/path/to/download/folder");
-			File outputfile = new File("newfilename.jpg");
+			//File downloads = new File("/path/to/download/folder");
+			File outputfile = new File("C:/Users/Somashis/Desktop/newfilename.jpg");
 			
-			FileUtils.copyFileToDirectory(outputfile, downloads);
+			response.setContentType(mime);
+            response.addHeader("Content-Disposition", "attachment; filename="+imageId);
+            
+            
+			
 			//FileUtils.copyURLToFile(url, new File(downloads, "file.xls"));
-			FileOutputStream fos = new FileOutputStream(outputfile);
-			baos.writeTo(fos);
+			//FileOutputStream fos = new FileOutputStream(outputfile);
+			//baos.writeTo(fos);
 			int bytesRead;
 			imageblob =  baos.toByteArray();
+			//BufferedInputStream in = new BufferedInputStream(new FileInputStream(outputfile));
+			
+			FileCopyUtils.copy(imageblob, response.getOutputStream());
 			
             /*while ((bytesRead = in.read(imageblob)) != -1) {
             	fos.write(imageblob, 0, bytesRead);
             	fos.w
             }*/
-			fos.write(imageblob);
+			//fos.write(imageblob);
+			//FileUtils.copyFile(outputfile, downloads);
             long t2 = System.currentTimeMillis();
             System.out.println("Time for download & save file in millis:"+(t2-t1));
 			
-			fos.close();
+			//fos.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

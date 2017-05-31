@@ -281,19 +281,19 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃÂ§ais</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃÂ±ol</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
 							</li>
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> Ã¦âÂ¥Ã¦ÅÂ¬Ã¨ÂªÅ¾</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> Ã¤Â¸Â­Ã¦ââ¡</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
 							</li>	
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
@@ -302,10 +302,10 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> ÃÂ ÃÆÃÂÃÂÃÂºÃÂ¸ÃÂ¹ ÃÂÃÂ·Ãâ¹ÃÂº</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Ã­â¢ÅÃªÂµÂ­Ã¬âÂ´</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
 							</li>						
 							
 						</ul>
@@ -635,121 +635,477 @@
 				
 				<div class="row">
 				
-					<div class="col-sm-12 col-md-12 col-lg-12">
-							<h1 style="text-align: center;text-transform: uppercase;font-weight: bold;">Project Title</h1>
-						
-					</div>
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<div class="margin-top-10">
-							<iframe allowfullscreen="" frameborder="0" height="310" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
-						</div>
-					</div>
-					
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<h1> Apollo 11</h1>
-
-						<p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p>
-						
-						<p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)" title="Michael Collins (astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module" title="Apollo Command/Service Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-						
-						<h2>Broadcasting and <em>quotes</em> <a id="quotes" name="quotes"></a></h2>
-						
-						<p>Broadcast on live TV to a world-wide audience, Armstrong stepped onto the lunar surface and described the event as:</p>
-						
-						<blockquote>
-						<p>One small step for [a] man, one giant leap for mankind.</p>
-						</blockquote>
-						
-						<p>Apollo 11 effectively ended the <a href="http://en.wikipedia.org/wiki/Space_Race" title="Space Race">Space Race</a> and fulfilled a national goal proposed in 1961 by the late U.S. President <a href="http://en.wikipedia.org/wiki/John_F._Kennedy" title="John F. Kennedy">John F. Kennedy</a> in a speech before the United States Congress:</p>
-						
-						<blockquote>
-						<p>[...] before this decade is out, of landing a man on the Moon and returning him safely to the Earth.</p>
-						</blockquote>
-						
-						<h2>Technical details <a id="tech-details" name="tech-details"></a></h2>
-						
-						<table align="right" border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse; margin:10px 0 10px 15px">
-							<caption><strong>Mission crew</strong></caption>
-							<thead>
-								<tr>
-									<th scope="col">Position</th>
-									<th scope="col">Astronaut</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Commander</td>
-									<td>Neil A. Armstrong</td>
-								</tr>
-								<tr>
-									<td>Command Module Pilot</td>
-									<td>Michael Collins</td>
-								</tr>
-								<tr>
-									<td>Lunar Module Pilot</td>
-									<td>Edwin &quot;Buzz&quot; E. Aldrin, Jr.</td>
-								</tr>
-							</tbody>
-						</table>
-						
-						<p>Launched by a <strong>Saturn V</strong> rocket from <a href="http://en.wikipedia.org/wiki/Kennedy_Space_Center" title="Kennedy Space Center">Kennedy Space Center</a> in Merritt Island, Florida on July 16, Apollo 11 was the fifth manned mission of <a href="http://en.wikipedia.org/wiki/NASA" title="NASA">NASA</a>&#39;s Apollo program. The Apollo spacecraft had three parts:</p>
-						
-						<ol>
-							<li><strong>Command Module</strong> with a cabin for the three astronauts which was the only part which landed back on Earth</li>
-							<li><strong>Service Module</strong> which supported the Command Module with propulsion, electrical power, oxygen and water</li>
-							<li><strong>Lunar Module</strong> for landing on the Moon.</li>
-						</ol>
-						
-						<p>After being sent to the Moon by the Saturn V&#39;s upper stage, the astronauts separated the spacecraft from it and travelled for three days until they entered into lunar orbit. Armstrong and Aldrin then moved into the Lunar Module and landed in the <a href="http://en.wikipedia.org/wiki/Mare_Tranquillitatis" title="Mare Tranquillitatis">Sea of Tranquility</a>. They stayed a total of about 21 and a half hours on the lunar surface. After lifting off in the upper part of the Lunar Module and rejoining Collins in the Command Module, they returned to Earth and landed in the <a href="http://en.wikipedia.org/wiki/Pacific_Ocean" title="Pacific Ocean">Pacific Ocean</a> on July 24.</p>
-						
-						<hr />
-						<p style="text-align:right"><small>Source: <a href="http://en.wikipedia.org/wiki/Apollo_11">Wikipedia.org</a></small></p>
-
-
-					</div>
-					<hr>
-					
+					<div class="col-sm-12">
 				
-				</div>
-				<div class="row">
+						<ul id="myTab1" class="nav nav-tabs bordered">
+							<li class="active">
+								<a href="#s1" data-toggle="tab">Search</a>
+							</li>
+							<li>
+								<a href="#s2" data-toggle="tab">Existing Projects</a>
+							</li>
+							<li>
+								<a href="#s3" data-toggle="tab">Search History</a>
+							</li>
+							<!-- <li class="pull-right hidden-mobile">
+								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
+							</li> -->
+						</ul>
 				
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						
-							<div class="inbox-download">
-								2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a> 
+						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
+							<div class="tab-pane fade in active" id="s1">
+								<h1> Search <span class="semi-bold">Projects</span></h1>
+								<br>
+								<div class="input-group input-group-lg hidden-mobile">
+									<input class="form-control input-lg" type="text" placeholder="Search again..." id="search-project">
+									<div class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
+										</button>
+									</div>
+								</div>
+				
+								<h1 class="font-md"> Search Results for </h1>
+				
+								<div class="search-results clearfix smart-form">
+				
+									<h4><i class="fa fa-plus-square txt-color-blue"></i>&nbsp;<a href="javascript:void(0);">SmartAdmin - Responsive Dashboard Template</a></h4>
+				
+									<div>
+										<div class="rating display-inline">
+											<input type="radio" name="stars-rating" id="stars-rating-5">
+											<label for="stars-rating-5"><i class="fa fa-star"></i></label>
+											<input type="radio" name="stars-rating" id="stars-rating-4">
+											<label for="stars-rating-4"><i class="fa fa-star"></i></label>
+											<input type="radio" name="stars-rating" id="stars-rating-3">
+											<label for="stars-rating-3"><i class="fa fa-star"></i></label>
+											<input type="radio" name="stars-rating" id="stars-rating-2">
+											<label for="stars-rating-2"><i class="fa fa-star"></i></label>
+											<input type="radio" name="stars-rating" id="stars-rating-1">
+											<label for="stars-rating-1"><i class="fa fa-star"></i></label>
+										</div>
+										<br>
+										<div class="url text-success">
+											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+										</p>
+									</div>
+				
+								</div>
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here...
+										</p>
+									</div>
+								</div> -->
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
+									<img src="img/demo/sample.jpg" alt="">
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Oct 1, 2006 - Uploaded by 02842356107
+											<br>
+											<br>
+											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
+										</p>
+									</div>
+				
+								</div> -->
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
+				
+									<div>
+				
+										<span class="sparkline txt-color-blueLight" data-sparkline-type="line" data-sparkline-width="150px" data-sparkline-height="25px"> 10,3,8,4,3,10,7,8,4,6,4,6,8,3 </span>
+										<span class="display-inline note font-lg semi-bold"><small><i class="fa fa-arrow-circle-up text-success"></i> 143.43</small></span>
+				
+										<p class="note">
+											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+										</p>
+									</div>
+				
+								</div> -->
 								
-								<ul class="inbox-download-list">
-									<li>
-										<div class="well well-sm">
-											<span>
-												<img src="img/demo/sample.jpg">
-											</span>
-											<br>
-											<strong>rocketlaunch.jpg</strong> 
-											<br>
-											400 kb 
-											<br> 
-											<a href="imageDownload/d00a59d99412ef193b81a569c65674934b38f6bd1468208234291"> Download</a>  | <a href="javascript:void(0);"> View</a>
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);"> Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"></a><small>[PDF]</small></h4>
+									<span class="sparkline txt-color-blueLight display-inline" data-sparkline-type="pie"  data-sparkline-offset="90" data-sparkline-piesize="55px"> 10,3,8,4, </span>
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
 										</div>
-									</li>
-									<li>
-										<div class="well well-sm">
-											<span>
-												<i class="fa fa-file"></i>
-											</span>
-											
-											<br>
-											<strong>timelogs.xsl</strong> 
-											<br>
-											1.3 mb 
-											<br> 
-											<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> Share</a>
+										<p class="description">
+											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
+										</p>
+									</div>
+				
+								</div> -->
+				
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
 										</div>
-									</li>
-								</ul>
+									</div>
+								</div> -->
+				
+								<!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
+										</p>
+									</div>
+								</div> -->
+				
+								<div class="text-center">
+									<hr>
+									<ul class="pagination no-margin">
+										<li class="prev disabled">
+											<a href="javascript:void(0);">Previous</a>
+										</li>
+										<li class="active">
+											<a href="javascript:void(0);">1</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">2</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">3</a>
+										</li>
+										<li class="next">
+											<a href="javascript:void(0);">Next</a>
+										</li>
+									</ul>
+									<br>
+									<br>
+									<br>
+								</div>
+				
 							</div>
-						
+				
+							<div class="tab-pane fade" id="s2">
+								<%for(int i=0;i<projectlist.size();i++){
+									OSMProjectInfo osmprofinfo = (OSMProjectInfo)projectlist.get(i);
+									String osmmodelid = osmprofinfo.getOsmmodelid();
+									String projectdescription = osmprofinfo.getProjectdescription();
+									String projectname = osmprofinfo.getProjectname();
+									String marketingdoc = osmprofinfo.getProjectmarkettingdoc();
+									String osmtype = osmprofinfo.getOsmtype();
+									String[] buyers = osmprofinfo.getProjectbuyers();
+									String demandchart = osmprofinfo.getProjectdemandchart();
+									String[] projectdoc = osmprofinfo.getProjectdocs();
+									String projectinfoid = osmprofinfo.getProjectinfoid();
+									String[] investors = osmprofinfo.getProjectinvestors();
+									String[] projectreq = osmprofinfo.getProjectrequestors();
+									int noofreq = projectreq.length;
+									String[] projectres = osmprofinfo.getProjectresources();
+									int noofres = projectres.length;
+									String stockprice = osmprofinfo.getProjectstockprice();
+									%>
+									<div id="<%=osmmodelid%>" class="search-results clearfix">
+										<!-- Project -->
+										<h4><a href="osmprojectinfo?projectinfoid='<%=projectinfoid%>'"><%=projectname%></a>&nbsp;&nbsp;</h4>
+										<iframe allowfullscreen="" frameborder="0" height="210" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
+										<div>
+											<p class="note">
+												<a href="osmlike?" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+												<a href="osmshare?"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											</p>
+											<p class="description">
+												(<%=noofreq%>) Requests <span class="fa fa-2x"><h5>(<%=noofres%>) Resources</h5></span>
+												<br>
+												<br>
+												<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
+											</p>
+											<span class="sparkline txt-color-blueLight" data-sparkline-type="line" data-sparkline-width="150px" data-sparkline-height="25px"><%=demandchart%></span>
+											<span class="display-inline note font-lg semi-bold"><small><i class="fa fa-arrow-circle-up text-success"></i><%=stockprice%></small></span>
+										</div>
+									</div>
+									
+								<%	
+								}
+								 %>
+								 
+								 <!-- <div class="search-results clearfix">
+									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
+									<img src="img/demo/sample.jpg" alt="">
+									<div>
+										<p class="note">
+											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+										</p>
+										<div class="url text-success">
+											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+										</div>
+										<p class="description">
+											Oct 1, 2006 - Uploaded by 02842356107
+											<br>
+											<br>
+											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
+										</p>
+									</div>
+				
+								</div> -->
+								 
+								<!-- <div class="col-sm-12 col-md-12 col-lg-12">
+										product
+										<div class="product-content product-wrap clearfix product-deatil">
+											<div class="row">
+													
+													<div class="col-md-7 col-sm-12 col-xs-12">
+												
+													<h2 class="name">
+														Product Name Title Here 
+														<small>Product by <a href="javascript:void(0);">Adeline</a></small>
+														<i class="fa fa-star fa-2x text-primary"></i>
+														<i class="fa fa-star fa-2x text-primary"></i>
+														<i class="fa fa-star fa-2x text-primary"></i>
+														<i class="fa fa-star fa-2x text-primary"></i>
+														<i class="fa fa-star fa-2x text-muted"></i>
+														<span class="fa fa-2x"><h5>(109) Votes</h5></span>	
+														
+														<a href="javascript:void(0);">109 customer reviews</a>
+							 
+													</h2>
+													<hr>
+													<h3 class="price-container">
+														$129.54
+														<small>*includes tax</small>
+													</h3>
+												
+													<div class="certified">
+														<ul>
+															<li><a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a></li>
+															<li><a href="javascript:void(0);">Certified<span>Quality Assured</span></a></li>
+														</ul>
+													</div>
+													<hr>
+													<div class="description description-tabs">
+			
+			
+														<ul id="myTab" class="nav nav-pills">
+															<li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product Description </a></li>
+															<li class=""><a href="#specifications" data-toggle="tab">Specifications</a></li>
+															<li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
+														</ul>
+														<div id="myTabContent" class="tab-content">
+															<div class="tab-pane fade active in" id="more-information">
+																<br>
+																<strong>Description Title</strong>
+																<p>Integer egestas, orci id condimentum eleifend, nibh nisi pulvinar eros, vitae ornare massa neque ut orci. Nam aliquet lectus sed odio eleifend, at iaculis dolor egestas. Nunc elementum pellentesque augue sodales porta. Etiam aliquet rutrum turpis, feugiat sodales ipsum consectetur nec. </p>
+															</div>
+															<div class="tab-pane fade" id="specifications">
+																<br>
+																<dl class="">
+																		<dt>Gravina</dt>
+								                                        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+								                                        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+								                                        <dd>Eget lacinia odio sem nec elit.</dd>
+								                                        <br>
+			
+								                                        <dt>Test lists</dt>
+								                                        <dd>A description list is perfect for defining terms.</dd>
+								                                        <br>	
+			
+								                                        <dt>Altra porta</dt>
+								                                        <dd>Vestibulum id ligula porta felis euismod semper</dd>
+								                                    </dl>
+															</div>
+															<div class="tab-pane fade" id="reviews">
+																<br>
+																<form method="post" class="well padding-bottom-10" onsubmit="return false;">
+																	<textarea rows="2" class="form-control" placeholder="Write a review"></textarea>
+																	<div class="margin-top-10">
+																		<button type="submit" class="btn btn-sm btn-primary pull-right">
+																			Submit Review
+																		</button>
+																		<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Location"><i class="fa fa-location-arrow"></i></a>
+																		<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Voice"><i class="fa fa-microphone"></i></a>
+																		<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Photo"><i class="fa fa-camera"></i></a>
+																		<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add File"><i class="fa fa-file"></i></a>
+																	</div>
+																</form>
+			
+																<div class="chat-body no-padding profile-message">
+																	<ul>
+																		<li class="message">
+																			<img src="img/avatars/1.png" class="online">
+																			<span class="message-text"> 
+																				<a href="javascript:void(0);" class="username">
+																					Alisha Molly 
+																					<span class="badge">Purchase Verified</span> 
+																					<span class="pull-right">
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-muted"></i>
+																					</span>
+																				</a> 
+																				
+																				
+																				Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very image let unto fowl isn't in blessed fill life yielding above all moved 
+																			</span>
+																			<ul class="list-inline font-xs">
+																				<li>
+																					<a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
+																				</li>
+																				<li class="pull-right">
+																					<small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
+																				</li>
+																			</ul>
+																		</li>
+																		<li class="message">
+																			<img src="img/avatars/2.png" class="online">
+																			<span class="message-text"> 
+																				<a href="javascript:void(0);" class="username">
+																					Aragon Zarko 
+																					<span class="badge">Purchase Verified</span> 
+																					<span class="pull-right">
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																						<i class="fa fa-star fa-2x text-primary"></i>
+																					</span>
+																				</a> 
+																				
+																				
+																				Excellent product, love it!
+																			</span>
+																			<ul class="list-inline font-xs">
+																				<li>
+																					<a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
+																				</li>
+																				<li class="pull-right">
+																					<small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
+																				</li>
+																			</ul>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+												
+			
+													</div>
+													<hr>
+													<div class="row">
+														<div class="col-sm-12 col-md-6 col-lg-6">
+															
+																<a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
+															
+														</div>
+														<div class="col-sm-12 col-md-6 col-lg-6">
+															<div class="btn-group pull-right">
+									                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist </button>
+									                            <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
+									                        </div>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+										</div>
+										end product
+									</div>	 -->
+								
+								<div class="text-center">
+									<hr>
+									<ul class="pagination no-margin">
+										<li class="prev disabled">
+											<a href="javascript:void(0);">Previous</a>
+										</li>
+										<li class="active">
+											<a href="javascript:void(0);">1</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">2</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">3</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">4</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">5</a>
+										</li>
+										<li class="next">
+											<a href="javascript:void(0);">Next</a>
+										</li>
+									</ul>
+									<br>
+									<br>
+									<br>
+								</div>
+							</div>
+				
+							<div class="tab-pane fade" id="s3">
+								<h1> Search <span class="semi-bold">history</span></h1>
+								<p class="alert alert-info">
+									Your search history is turned off.
+				
+								</p>
+				
+								<span class="onoffswitch-title">Auto save Search History</span>
+								<span class="onoffswitch">
+									<input type="checkbox" name="save_history" class="onoffswitch-checkbox" id="save_history" checked="checked">
+									<label class="onoffswitch-label" for="save_history"> <span class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></span> <span class="onoffswitch-switch"></span> </label> </span>
+				
+							</div>
+						</div>
+				
 					</div>
+				
 				</div>
 				
 				<!-- end row -->
