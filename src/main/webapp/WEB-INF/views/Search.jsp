@@ -437,6 +437,10 @@
 				<li class=""><a href="osmprojectinfo?" title="NewJob"><i
 						class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
 				</li>
+				<li class=""><a href="osmprojectsubscription?" title="NewJob"><i
+						class="fa fa-suitcase"></i><span class="menu-item-parent">Project Resource</span></a>
+				</li>
+				
 				
 			</ul></li>
 		<!-- <li class=""><a href="organizations?" title="Organizations"><i

@@ -630,303 +630,260 @@
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
-				
 				<div class="row">
-
-					<!-- col -->
-					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-						<h1 class="page-title txt-color-blueDark">
-							<!-- PAGE HEADER -->
-							Status<span>
-						</h1>
-					</div>
-					<!-- end col -->
 
 					<!-- right side of the page with the sparkline graphs -->
 					<!-- col -->
 					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
 						<!-- sparks -->
-						<ul id="sparks">
-							<li class="sparks-info">
-								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
-								<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-									1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-								</div>
-							</li>
-							<li class="sparks-info">
-								<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45</span></h5>
-							</li>
-							<li class="sparks-info">
-								<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;2447</span></h5>
-							</li>
-							<li class="sparks-info" >
-								<h5> Investors <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;5</span></h5>
-							</li>
-						</ul>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#createnew">Create New OSM Project</button>
 						<!-- end sparks -->
 					</div>
 					<!-- end col -->
 
 				</div>
-				
-				<!-- row -->
-				
-				<div class="row">
-				
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<div class="col-md-10">
-							<h1 style="text-align:left;text-transform: uppercase;font-weight: bold;">Project Title</h1>
-						</div>
-						<div class="col-md-2">
-							<!-- <a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Invest</a> -->
-							<a href="osmbuyingplan?" id="dialog_link" class="btn btn-primary btn-lg">Plans Available</a>
-						</div>
-					</div>
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<div class="margin-top-10">
-							<iframe allowfullscreen="" frameborder="0" height="310" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
-						</div>
-					</div>
-					
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<h1> Apollo 11</h1>
-
-						<p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p>
-						
-						<p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)" title="Michael Collins (astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module" title="Apollo Command/Service Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-						
-						<h2>Broadcasting and <em>quotes</em> <a id="quotes" name="quotes"></a></h2>
-						
-						<p>Broadcast on live TV to a world-wide audience, Armstrong stepped onto the lunar surface and described the event as:</p>
-						
-						<blockquote>
-						<p>One small step for [a] man, one giant leap for mankind.</p>
-						</blockquote>
-						
-						<p>Apollo 11 effectively ended the <a href="http://en.wikipedia.org/wiki/Space_Race" title="Space Race">Space Race</a> and fulfilled a national goal proposed in 1961 by the late U.S. President <a href="http://en.wikipedia.org/wiki/John_F._Kennedy" title="John F. Kennedy">John F. Kennedy</a> in a speech before the United States Congress:</p>
-						
-						<blockquote>
-						<p>[...] before this decade is out, of landing a man on the Moon and returning him safely to the Earth.</p>
-						</blockquote>
-						
-						<h2>Technical details <a id="tech-details" name="tech-details"></a></h2>
-						
-						<table align="right" border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse; margin:10px 0 10px 15px">
-							<caption><strong>Mission crew</strong></caption>
-							<thead>
-								<tr>
-									<th scope="col">Position</th>
-									<th scope="col">Astronaut</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Commander</td>
-									<td>Neil A. Armstrong</td>
-								</tr>
-								<tr>
-									<td>Command Module Pilot</td>
-									<td>Michael Collins</td>
-								</tr>
-								<tr>
-									<td>Lunar Module Pilot</td>
-									<td>Edwin &quot;Buzz&quot; E. Aldrin, Jr.</td>
-								</tr>
-							</tbody>
-						</table>
-						
-						<p>Launched by a <strong>Saturn V</strong> rocket from <a href="http://en.wikipedia.org/wiki/Kennedy_Space_Center" title="Kennedy Space Center">Kennedy Space Center</a> in Merritt Island, Florida on July 16, Apollo 11 was the fifth manned mission of <a href="http://en.wikipedia.org/wiki/NASA" title="NASA">NASA</a>&#39;s Apollo program. The Apollo spacecraft had three parts:</p>
-						
-						<ol>
-							<li><strong>Command Module</strong> with a cabin for the three astronauts which was the only part which landed back on Earth</li>
-							<li><strong>Service Module</strong> which supported the Command Module with propulsion, electrical power, oxygen and water</li>
-							<li><strong>Lunar Module</strong> for landing on the Moon.</li>
-						</ol>
-						
-						<p>After being sent to the Moon by the Saturn V&#39;s upper stage, the astronauts separated the spacecraft from it and travelled for three days until they entered into lunar orbit. Armstrong and Aldrin then moved into the Lunar Module and landed in the <a href="http://en.wikipedia.org/wiki/Mare_Tranquillitatis" title="Mare Tranquillitatis">Sea of Tranquility</a>. They stayed a total of about 21 and a half hours on the lunar surface. After lifting off in the upper part of the Lunar Module and rejoining Collins in the Command Module, they returned to Earth and landed in the <a href="http://en.wikipedia.org/wiki/Pacific_Ocean" title="Pacific Ocean">Pacific Ocean</a> on July 24.</p>
-						
-						<hr />
-						<p style="text-align:right"><small>Source: <a href="http://en.wikipedia.org/wiki/Apollo_11">Wikipedia.org</a></small></p>
-
-
-					</div>
-					<hr>
-					
-				
-				</div>
-				<div class="row">
-				
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						
-							<div class="inbox-download">
-								2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a> 
 								
-								<ul class="inbox-download-list">
-									<li>
-										<div class="well well-sm">
-											<span>
-												<img src="img/demo/sample.jpg">
-											</span>
-											<br>
-											<strong>rocketlaunch.jpg</strong> 
-											<br>
-											400 kb 
-											<br> 
-											<a href="imageDownload/d00a59d99412ef193b81a569c65674934b38f6bd1468208234291"> Download</a>  | <a href="javascript:void(0);"> View</a>
+				<div class="row">
+					<div class="col-sm-12 col-md-12 col-lg-12">
+						<div class="row" style="border: 1px black">
+							<div class="col-xs-12 col-sm-7 col-md-7 col-lg-2">
+								<h1 class="page-title txt-color-blueDark">
+									<!-- PAGE HEADER -->
+									Project Name<span>
+								</h1>
+							</div>
+							<!-- col -->
+							<div class="col-xs-12 col-sm-5 col-md-5 col-lg-10">
+								<!-- sparks -->
+								<ul id="sparks">
+									<li class="sparks-info">
+										<h5>Demand<span class="txt-color-blue">$47,171</span></h5>
+										<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+											1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
 										</div>
 									</li>
-									<li>
-										<div class="well well-sm">
-											<span>
-												<i class="fa fa-file"></i>
-											</span>
-											
-											<br>
-											<strong>timelogs.xsl</strong> 
-											<br>
-											1.3 mb 
-											<br> 
-											<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> Share</a>
-										</div>
+									<li class="sparks-info">
+										<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45</span></h5>
+									</li>
+									<li class="sparks-info">
+										<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;2447</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Investors <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;5</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Buyers <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;10</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Resources <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;21</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Request Resource <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;11</span></h5>
 									</li>
 								</ul>
+								<!-- end sparks -->
 							</div>
-						
-					</div>
-				</div>
-				<div class="row"> 
-					<article class="col-sm-12 col-md-12">
-				
-							<!-- Widget ID (each widget will need unique ID)-->
-							<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-x" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
-								<!-- widget options:
-								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-				
-								data-widget-colorbutton="false"
-								data-widget-editbutton="false"
-								data-widget-togglebutton="false"
-								data-widget-deletebutton="false"
-								data-widget-fullscreenbutton="false"
-								data-widget-custombutton="false"
-								data-widget-collapsed="true"
-								data-widget-sortable="false"
-				
-								-->
-								<header>
-									<span class="widget-icon"> <i class="fa fa-align-justify"></i> </span>
-									<h2>Existing Buyers</h2>
-				
-								</header>
-								
-								<div class="col-sm-12 col-md-12 col-lg-12">
-										<div class="superbox col-sm-12">
-											<div class="superbox-list">
-												<img src="img/superbox/superbox-thumb-1.jpg" data-img="img/superbox/superbox-full-1.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
-											</div><!--
-											--><div class="superbox-list">
-												<img src="img/superbox/superbox-thumb-2.jpg" data-img="img/superbox/superbox-full-2.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Bridge of Edgen" class="superbox-img">
-											</div><!--
-											--><div class="superbox-list">
-												<img src="img/superbox/superbox-thumb-3.jpg" data-img="img/superbox/superbox-full-3.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Lines of Friendship" class="superbox-img">
-											</div>
+							<!-- end col -->
+		
+						</div>
+						<div class="row">
+						<div class="col-md-12 padding-left-0">	
+							<h3 class="margin-top-0"><a href="javascript:void(0);"> Why Should You Make A Separate Mobile Website for your Business? </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
+							<p>
+								At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. 
+
+								<br><br>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
+								<br><br>
+							</p>
+							<div class="btn-group">
+											<button class="btn btn-primary">
+												Subscribe As :
+											</button>
+											<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li>
+													<a href="osmprojectsubscription?subscriptiontype=Buyer">Buyer</a>
+												</li>
+												<li>
+													<a href="osmprojectsubscription?subscriptiontype=Investor">Investor</a>
+												</li>
+												<li>
+													<a href="osmprojectsubscription?subscriptiontype=Developer">Resource</a>
+												</li>
+											</ul>
 										</div>
-										<!-- /SuperBox -->
-										
-										<div class="superbox-show" style="height:300px; display: none"></div>	
-											
-								</div>
-								
-				
-							</div>
-							<!-- end widget -->
-				
-						</article>
-				
-					
+						</div>	
+						</div>
+					</div>
 					
 				</div>
+				<hr>
+				<div class="row">
+					<div class="col-sm-12 col-md-12 col-lg-12">
+						<div class="row" style="border: 1px black">
+							<div class="col-xs-12 col-sm-7 col-md-7 col-lg-2">
+								<h1 class="page-title txt-color-blueDark">
+									<!-- PAGE HEADER -->
+									Project Name<span>
+								</h1>
+							</div>
+							<!-- col -->
+							<div class="col-xs-12 col-sm-5 col-md-5 col-lg-10">
+								<!-- sparks -->
+								<ul id="sparks">
+									<li class="sparks-info">
+										<h5>Demand<span class="txt-color-blue">$47,171</span></h5>
+										<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+											1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+										</div>
+									</li>
+									<li class="sparks-info">
+										<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45</span></h5>
+									</li>
+									<li class="sparks-info">
+										<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;2447</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Investors <span class="txt-color-greenDark"><i class="fa fa-money" id='investors' ></i>&nbsp;5</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Buyers <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;10</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Resources <span class="txt-color-greenDark"><i class="fa fa-group" id='investors' ></i>&nbsp;21</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Request Resource <span class="txt-color-greenDark"><i class="fa fa-child" id='investors' ></i>&nbsp;11</span></h5>
+									</li>
+								</ul>
+								<!-- end sparks -->
+							</div>
+							<!-- end col -->
+		
+						</div>
+						<div class="row">
+						<div class="col-md-12 padding-left-0">	
+							<h3 class="margin-top-0"><a href="javascript:void(0);"> Why Should You Make A Separate Mobile Website for your Business? </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
+							<p>
+								At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. 
+
+								<br><br>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
+								<br><br>
+							</p>
+							<div class="btn-group">
+											<button class="btn btn-primary">
+												Subscribe As :
+											</button>
+											<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li>
+													<a href="javascript:void(0);">Investor</a>
+												</li>
+												<li>
+													<a href="javascript:void(0);">Resource</a>
+												</li>
+											</ul>
+										</div>
+						</div>	
+						</div>
+					</div>
 				
-				<!-- end row -->
-				<a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Buy</a>
+				</div>
 			</div>
 			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Article Post</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Title" required />
-										</div>
-										<div class="form-group">
-											<textarea class="form-control" placeholder="Content" rows="5" required></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="category"> Category</label>
-											<select class="form-control" id="category">
-												<option>Articles</option>
-												<option>Tutorials</option>
-												<option>Freebies</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="tags"> Tags</label>
-											<input type="text" class="form-control" id="tags" placeholder="Tags" />
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="well well-sm well-primary">
-											<form class="form form-inline " role="form">
-												<div class="form-group">
-													<input type="text" class="form-control" value="" placeholder="Date" required />
+			<div class="modal fade" id="createnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+													&times;
+												</button>
+												<h4 class="modal-title" id="projectname">Create New Project with some info :</h4>
+											</div>
+											<div class="modal-body">
+								
+												<div class="row">
+													<div class="col-md-12">
+														<div class="form-group">
+															<input type="text" class="form-control" placeholder="Project name" required />
+														</div>
+														<div class="form-group">
+															<textarea id="projectdescription" class="form-control" placeholder="Project Description to start on: later u can edit it.." rows="5" required></textarea>
+														</div>
+													</div>
 												</div>
-												<div class="form-group">
-													<select class="form-control">
-														<option>Draft</option>
-														<option>Published</option>
-													</select>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="category"> Partners</label>
+															<select class="form-control" id="osmpartners">
+																<option>Articles</option>
+																<option>Tutorials</option>
+																<option>Freebies</option>
+															</select>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="category"> Backed Up</label>
+															<select class="form-control" id="osmbackupcompany">
+																<option>Articles</option>
+																<option>Tutorials</option>
+																<option>Freebies</option>
+															</select>
+														</div>
+													</div>
 												</div>
-												<div class="form-group">
-													<button type="submit" class="btn btn-success btn-sm">
-														<span class="glyphicon glyphicon-floppy-disk"></span> Save
-													</button>
-													<button type="button" class="btn btn-default btn-sm">
-														<span class="glyphicon glyphicon-eye-open"></span> Preview
-													</button>
+												<div class="row">
+													<div class="col-md-12">
+														<div class="form-group">
+															<label for="category">OSM Dependency</label>
+															<select class="form-control" id="osmdependependid">
+																<option>Articles</option>
+																<option>Tutorials</option>
+																<option>Freebies</option>
+															</select>
+														</div>
+													</div>
 												</div>
-											</form>
-										</div>
-									</div>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="category"> Company Investment</label>
+															<select class="form-control" id="projectinvestors">
+																<option>Articles</option>
+																<option>Tutorials</option>
+																<option>Freebies</option>
+															</select>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="category"> Buyers </label>
+															<select class="form-control" id="projectbuyers">
+																<option>Articles</option>
+																<option>Tutorials</option>
+																<option>Freebies</option>
+															</select>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													Cancel
+												</button>
+												<button type="button" class="btn btn-primary">
+													Create New Project
+												</button>
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
 								</div>
-				
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary">
-									Post Article
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div>
 		</div>
 		<!-- END MAIN PANEL -->
 

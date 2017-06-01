@@ -21,9 +21,16 @@ public class OSMModel {
 	private String[] osminvestors;
 	private String osmowner;
 	private String osmtype;
+	private String osmprojectsellerid;
 	
 	
 	
+	public String getOsmprojectsellerid() {
+		return osmprojectsellerid;
+	}
+	public void setOsmprojectsellerid(String osmprojectsellerid) {
+		this.osmprojectsellerid = osmprojectsellerid;
+	}
 	public String getOsmtype() {
 		return osmtype;
 	}

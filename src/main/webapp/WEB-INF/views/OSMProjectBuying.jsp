@@ -679,7 +679,7 @@
 						</div>
 						<div class="col-md-2">
 							<!-- <a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Invest</a> -->
-							<a href="" id="dialog_link" class="btn btn-primary btn-lg">Buy this Item</a>
+							<a href="osmbuyingplan?" id="dialog_link" class="btn btn-primary btn-lg">Plans Available</a>
 						</div>
 					</div>
 					<div class="col-sm-12 col-md-12 col-lg-12">

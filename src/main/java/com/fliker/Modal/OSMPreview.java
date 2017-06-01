@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fliker.Connection.MongoConnection;
+import com.fliker.Repository.Bill;
 import com.fliker.Repository.Company;
+import com.fliker.Repository.Contract;
 import com.fliker.Repository.FileUnionTimeFrame;
 import com.fliker.Repository.FileUpload;
+import com.fliker.Repository.LicenseType;
 import com.fliker.Repository.OSMDemand;
 import com.fliker.Repository.OSMModel;
 import com.fliker.Repository.OSMOperator;
@@ -30,6 +33,7 @@ import com.fliker.Repository.OSMProjectInfo;
 import com.fliker.Repository.OSMProjectInvestment;
 import com.fliker.Repository.OSMProjectSeller;
 import com.fliker.Repository.OSMStakeHolding;
+import com.fliker.Repository.PlanType;
 import com.fliker.Repository.SearchContent;
 import com.fliker.Repository.Stock;
 import com.fliker.Utility.DateFunctionality;
@@ -1318,6 +1322,269 @@ public class OSMPreview {
 		}
 		
 		return companyid;
+	}
+
+	public HashMap generatePaymentOptions(String projectsellerid) {
+		// TODO Auto-generated method stub
+		
+		HashMap totalmap = new HashMap();
+		ArrayList plantypelist = new ArrayList();
+		ArrayList contractlist = new ArrayList();
+		ArrayList licenselist = new ArrayList();
+		
+		MongoConnection mongocondemand = new MongoConnection();
+		DBCursor resultdemand = mongocondemand.getDBObject("projectsellerid", projectsellerid, "OSMProjectSeller");
+		if (resultdemand.hasNext()) {
+			DBObject osmdemand = resultdemand.next();
+			String[] sellingploanid  =  (String[])osmdemand.get("sellingplanid");
+			String[] sellingcontractid = (String[])osmdemand.get("sellingcontractid");
+			String[] sellinglicenseid = (String[])osmdemand.get("sellinglicenseid");
+			
+			if(sellingploanid.length >0){
+				
+				for(int m=0;m<sellingploanid.length;m++){
+					
+					MongoConnection mongoconcompan = new MongoConnection();
+					DBCursor resultcompan = mongoconcompan.getDBObject("planid", sellingploanid[m], "Plan");
+					if (resultcompan.hasNext()) {
+						DBObject osmcompan = resultcompan.next();
+						
+						PlanType plantype = new PlanType();
+						plantype.setPlanid((String)osmcompan.get("planid"));
+						plantype.setPlanname((String)osmcompan.get("planname"));
+						plantype.setPlanperday((String)osmcompan.get("planperday"));
+						plantype.setPlanamount((String)osmcompan.get("planamount"));
+						plantype.setPlanduration((String)osmcompan.get("planduration"));
+						plantype.setPlanpermonth((String)osmcompan.get("planpermonth"));
+						plantype.setPlanperyear((String)osmcompan.get("planperyear"));
+						
+						plantypelist.add(plantype);
+					}
+					
+				}
+				
+				
+			}
+			
+			if(sellingcontractid.length > 0){
+				
+				for(int n=0;n<sellingcontractid.length;n++){
+					
+					MongoConnection mongoconcompan = new MongoConnection();
+					DBCursor resultcompan = mongoconcompan.getDBObject("planid", sellingcontractid[n], "Plan");
+					if (resultcompan.hasNext()) {
+						DBObject osmcompan = resultcompan.next();
+						
+						Contract contract = new Contract();
+						
+						contract.setContractid((String)osmcompan.get("contractid"));
+						contract.setContractdocid((String)osmcompan.get("contractdocid"));
+						contract.setContractlegalnotice((String)osmcompan.get("contractlegalnotice"));
+						
+						contractlist.add(contract);
+						
+					}
+					
+					
+					
+				}
+				
+				
+			}
+			
+			if(sellinglicenseid.length > 0){
+				
+				for(int o=0;o<sellinglicenseid.length;o++){
+					MongoConnection mongoconcompan = new MongoConnection();
+					DBCursor resultcompan = mongoconcompan.getDBObject("licenseid", sellinglicenseid[o], "License");
+					if (resultcompan.hasNext()) {
+						DBObject osmcompan = resultcompan.next();
+						
+						LicenseType license = new LicenseType();
+						license.setLicenseid((String)osmcompan.get("licenseid"));
+						license.setLicenseduration((String)osmcompan.get("licenseduration"));
+						license.setLicensetype((String)osmcompan.get("licensetype"));
+						
+						licenselist.add(license);
+						
+					}
+					
+					
+				}
+				
+				
+			}
+			
+		}
+		
+		
+		totalmap.put("plan", plantypelist);
+		totalmap.put("contract", contractlist);
+		totalmap.put("license", licenselist);
+		
+		return totalmap;
+		
+	}
+
+	public Bill generateBill(String planid, String contractid, String licenseid, String selectedtype, String buyerid, String paytoid, String payamount) {
+		// TODO Auto-generated method stub
+		
+		Bill bill = new Bill();
+		
+		if(selectedtype.equalsIgnoreCase("plan")){
+			
+			
+			OSMFileUtility osmfileutility = new OSMFileUtility();
+
+			String uniqueid = "";
+			try {
+				uniqueid = osmfileutility.makeSHA1Hash(planid);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			bill.setBillid(uniqueid);
+			bill.setContractid("");
+			bill.setInvoiceid(uniqueid);
+			bill.setLicenseid("");
+			bill.setPayfromid(buyerid);
+			bill.setPaymentmethods("");
+			bill.setPaytoid(paytoid);
+			bill.setPlanid(planid);
+			bill.setItem("Service");
+			bill.setTotalamount(payamount);
+				
+			MongoConnection mongoconsearch = new MongoConnection();
+			// SearchPreview searchprev = new SearchPreview();
+			BasicDBObject basicreqobjsearch = osmfileutility.formOSMOperatorBillDBObject(bill);
+
+			mongoconsearch.saveObject(basicreqobjsearch, "Bill");
+			
+		}else if(selectedtype.equalsIgnoreCase("contract")){
+			
+			OSMFileUtility osmfileutility = new OSMFileUtility();
+
+			String uniqueid = "";
+			try {
+				uniqueid = osmfileutility.makeSHA1Hash(planid);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			bill.setBillid(uniqueid);
+			bill.setContractid(contractid);
+			bill.setInvoiceid(uniqueid);
+			bill.setLicenseid("");
+			bill.setPayfromid(buyerid);
+			bill.setPaymentmethods("");
+			bill.setPaytoid(paytoid);
+			bill.setPlanid("");
+			bill.setItem("Service");
+			bill.setTotalamount(payamount);
+				
+			MongoConnection mongoconsearch = new MongoConnection();
+			// SearchPreview searchprev = new SearchPreview();
+			BasicDBObject basicreqobjsearch = osmfileutility.formOSMOperatorBillDBObject(bill);
+
+			mongoconsearch.saveObject(basicreqobjsearch, "Bill");
+			
+			
+		}else if(selectedtype.equalsIgnoreCase("license")){
+			
+			OSMFileUtility osmfileutility = new OSMFileUtility();
+
+			String uniqueid = "";
+			try {
+				uniqueid = osmfileutility.makeSHA1Hash(planid);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			bill.setBillid(uniqueid);
+			bill.setContractid("");
+			bill.setInvoiceid(uniqueid);
+			bill.setLicenseid(licenseid);
+			bill.setPayfromid(buyerid);
+			bill.setPaymentmethods("");
+			bill.setPaytoid(paytoid);
+			bill.setPlanid("");
+			bill.setItem("Product");
+			bill.setTotalamount(payamount);
+				
+			MongoConnection mongoconsearch = new MongoConnection();
+			// SearchPreview searchprev = new SearchPreview();
+			BasicDBObject basicreqobjsearch = osmfileutility.formOSMOperatorBillDBObject(bill);
+
+			mongoconsearch.saveObject(basicreqobjsearch, "Bill");
+			
+		}
+		
+		return bill;
+	}
+
+	public Bill generateInvestBill(String osmmodelid, String investamount, String investpercentage, String stockprice,
+			String stockamount, String ownerid) {
+		// TODO Auto-generated method stub
+		
+		Bill bill = new Bill();
+		
+		OSMFileUtility osmfileutility = new OSMFileUtility();
+
+		String uniqueid = "";
+		try {
+			uniqueid = osmfileutility.makeSHA1Hash(osmmodelid+stockamount);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		bill.setBillid(uniqueid);
+		bill.setContractid("");
+		bill.setInvoiceid(uniqueid);
+		bill.setLicenseid("");
+		
+		String payto = "";
+		MongoConnection mongoconcompan = new MongoConnection();
+		DBCursor resultcompan = mongoconcompan.getDBObject("osmid", osmmodelid, "OSM");
+		if (resultcompan.hasNext()) {
+			DBObject osmcompan = resultcompan.next();
+			payto = (String)osmcompan.get("osmowner");
+			
+		}
+		
+		String totalamount = Double.toString(Double.parseDouble(stockamount)* Double.parseDouble(stockprice));
+		
+		bill.setPayfromid(ownerid);
+		bill.setPaymentmethods("");
+		bill.setPaytoid(payto);
+		bill.setPlanid("");
+		bill.setItem("Stock");
+		bill.setTotalamount(totalamount);
+			
+		MongoConnection mongoconsearch = new MongoConnection();
+		// SearchPreview searchprev = new SearchPreview();
+		BasicDBObject basicreqobjsearch = osmfileutility.formOSMOperatorBillDBObject(bill);
+
+		mongoconsearch.saveObject(basicreqobjsearch, "Bill");
+		
+		
+		
+		return bill;
 	}
 	
 	

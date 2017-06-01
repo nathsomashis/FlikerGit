@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.fliker.Repository.Bill;
 import com.fliker.Repository.OSMDemand;
 import com.fliker.Repository.OSMModel;
 import com.fliker.Repository.OSMOperator;
@@ -219,6 +220,26 @@ public class OSMFileUtility {
 		basicdbobj.put("tradeprebuyid", tradeprebuy.getTradeprebuyid());
 		basicdbobj.put("userid", tradeprebuy.getUserid());
 		basicdbobj.put("osmstakeholdingid", tradeprebuy.getOsmstakeholdingid());
+		
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formOSMOperatorBillDBObject(Bill bill) {
+		// TODO Auto-generated method stub
+		
+		BasicDBObject basicdbobj = new BasicDBObject();
+		
+		basicdbobj.put("billid", bill.getBillid());
+		basicdbobj.put("contractid",bill.getContractid());
+		basicdbobj.put("invoiceid", bill.getInvoiceid());
+		basicdbobj.put("item", bill.getItem());
+		basicdbobj.put("licenseid", bill.getLicenseid());
+		basicdbobj.put("payfromid", bill.getPayfromid());
+		basicdbobj.put("paymentmethods", bill.getPaymentmethods());
+		basicdbobj.put("paytoid", bill.getPaytoid());
+		basicdbobj.put("planid", bill.getPlanid());
+		basicdbobj.put("totalamount", bill.getTotalamount());
 		
 		return basicdbobj;
 	}
