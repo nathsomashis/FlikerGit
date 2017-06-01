@@ -2,11 +2,11 @@
 <%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html lang="en-us">
-	<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
 		<meta charset="utf-8">
-		<title>OSM Project Investment</title>
+		<title> OSM Projects </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -29,7 +29,7 @@
 
 		<!-- SmartAdmin RTL Support -->
 		<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">  -->
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> --> 
 
 		<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
@@ -51,9 +51,9 @@
 		<!-- #APP SCREEN / ICONS -->
 		<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-		<link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">	 
+			 <link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">
 		<!-- <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon">
+		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon" sizes="76x76">
 		<!-- <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png"> -->
 		<link href='<c:url value="/resources/img/splash/touch-icon-iphone-retina.png" />' rel="apple-touch-icon" sizes="120x120">
 		<!-- <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png"> -->
@@ -65,12 +65,12 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<!-- Startup image for web apps -->
-<!-- 		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-landscape.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
+		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
+		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
 		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
+		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
 
 	</head>
 
@@ -124,7 +124,7 @@
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
+				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -172,28 +172,27 @@
 			</div>
 
 			<!-- projects dropdown -->
-			<div class="project-context hidden-xs" >
+	<div class="project-context hidden-xs">
 
-				<span class="label">Projects:</span>
-				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
+		<span class="label">Projects:</span> <span
+			class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
+			projects <i class="fa fa-angle-down"></i>
+		</span>
 
-				<!-- Suggestion: populate this list with fetch and push technique -->
-				<ul class="dropdown-menu" style="border: 1px solid black">
-					<h5>Daily Note</h5>
-					<li>
-						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
-					</li>
-					
-					<li class="divider"></li>
-					<li>
-						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
-					</li>
-				</ul>
-				<!-- end dropdown-menu-->
+		<!-- Suggestion: populate this list with fetch and push technique -->
+		<ul class="dropdown-menu" style="border: 1px solid black">
+			<h5>Daily Note</h5>
+			<li><textarea id="notemessage" class="form-control"
+					name="notemessage" rows="3" style="width: 400px"></textarea></li>
 
-			</div>
-			
-			<!-- end projects dropdown -->
+			<li class="divider"></li>
+			<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
+					Note Down</a></li>
+		</ul>
+		<!-- end dropdown-menu-->
+
+	</div>
+	<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
 			<div class="pull-right">
@@ -237,7 +236,7 @@
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="logout?" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+					<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
 				<!-- end logout button -->
 
@@ -246,16 +245,6 @@
 					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
 				</div>
 				<!-- end search mobile button -->
-
-				<!-- input: search field -->
-				<form action="searchresults?" class="header-search pull-right">
-					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[]'>
-					<button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-				</form>
-				<!-- end input: search field -->
 
 				<!-- fullscreen button -->
 				<div id="fullscreen" class="btn-header transparent pull-right">
@@ -292,19 +281,19 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃÂ§ais</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃÂ±ol</a>
 							</li>
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> Ã¦âÂ¥Ã¦ÅÂ¬Ã¨ÂªÅ¾</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> Ã¤Â¸Â­Ã¦ââ¡</a>
 							</li>	
 							<li>
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
@@ -313,10 +302,10 @@
 								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> ÃÂ ÃÆÃÂÃÂÃÂºÃÂ¸ÃÂ¹ ÃÂÃÂ·Ãâ¹ÃÂº</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
+								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Ã­â¢ÅÃªÂµÂ­Ã¬âÂ´</a>
 							</li>						
 							
 						</ul>
@@ -335,7 +324,6 @@
 		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
 		<aside id="left-panel">
 
-			<!-- User info -->
 			<!-- User info -->
 			<%
 		
@@ -382,7 +370,8 @@
 
 			</span>
 		</div>
-			<!-- end user info -->
+		<!-- end user info -->
+			
 
 			<nav>
 				<!-- 
@@ -392,14 +381,14 @@
 				-->
 
 				<ul>
-		<li><a href="searchresults?"><i
-				class="fa fa-lg fa-fw fa-search-plus"></i> <span
+		<li class="active"><a href="search?"><i
+				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
 		<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
 		<li ><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+				class="fa fa-lg fa-fw fa-retweet "></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
@@ -412,16 +401,16 @@
 		<li><a href="createpost?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
-		<!-- <li><a href="classroom?" title="NewPost"><i
+		<li><a href="classroom?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-		</li> -->
-		<li class="active"><a href="#" title="Dashboard"><i
+		</li>
+		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
 			<ul>
-				<li class="active"><a href="courseEdu?" title="NewPost"><i
+				<li class=""><a href="courseEdu?" title="NewPost"><i
 						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
-				<li class=""><a href="classroom?" title="ClassRoom"><i
+				<li class=""><a href="otherprofile?" title="ClassRoom"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
 			</ul></li>
@@ -464,12 +453,26 @@
 		<li class=""><a href="#" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
 				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
+				<li class=""><a href="standardguidance?" title="Academic"><i
 						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
 				</li>
-				<li class=""><a href="companies?" title="Companies"><i
+				<li class=""><a href="professionalguidance?" title="Profesional"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
 				</li>
+				<li class=""><a href="gotoguidance?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">GuidanceSheet Test</span></a>
+				</li>
+				<li class=""><a href="assignmentAnswer?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Assignment Answer Test</span></a>
+				</li>
+				<li class=""><a href="projectstructure?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Project Directory</span></a>
+				</li>
+				<li class=""><a href="projectviewdetail?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Project View</span></a>
+				</li>
+				
+				
 			</ul></li>		
 
 		<li class="chat-users top-menu-invisible"><a href="#"><i
@@ -590,6 +593,12 @@
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
 
+		<%
+			ArrayList projectlist = (ArrayList)request.getAttribute("osmprojectlist");
+			
+		%>
+
+
 			<!-- RIBBON -->
 			<div id="ribbon">
 
@@ -601,7 +610,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>OSM Investment</li>
+					<li>OSM Projects</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -618,31 +627,17 @@
 
 			</div>
 			<!-- END RIBBON -->
-			
-			
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
-	
-				<%
-					OSMProjectInvestment osmprojinvest = new OSMProjectInvestment();
-					ArrayList projectinvestinfo = (ArrayList)request.getAttribute("existingprojectsdoc");
-					for(int r=0;r<projectinvestinfo.size();r++){
-						
-						osmprojinvest = (OSMProjectInvestment)projectinvestinfo.get(r);
-					}
 				
-				%>
-				
-				<!-- row -->
 				<div class="row">
 
 					<!-- col -->
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 						<h1 class="page-title txt-color-blueDark">
 							<!-- PAGE HEADER -->
-							<i class="fa-fw fa fa-home"></i> App Views <span>>
-								Blog </span>
+							Status<span>
 						</h1>
 					</div>
 					<!-- end col -->
@@ -658,26 +653,115 @@
 									1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
 								</div>
 							</li>
+							<li class="sparks-info">
+								<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45</span></h5>
+							</li>
+							<li class="sparks-info">
+								<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;2447</span></h5>
+							</li>
+							<li class="sparks-info" >
+								<h5> Sell <span class="txt-color-greenDark"><i class="fa fa-barcode" id='buyersm' ></i>&nbsp;5</span></h5>
+							</li>
 						</ul>
 						<!-- end sparks -->
 					</div>
 					<!-- end col -->
 
 				</div>
-				<!-- end row -->
+				
+				<!-- row -->
 				
 				<div class="row">
+				
+					<div class="col-sm-12 col-md-12 col-lg-12">
+						<div class="col-md-10">
+							<h1 style="text-align:left;text-transform: uppercase;font-weight: bold;">Project Title</h1>
+						</div>
+						<div class="col-md-2">
+							<!-- <a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Invest</a> -->
+							<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Investment</button>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-lg-12">
+						<div class="margin-top-10">
+							<iframe allowfullscreen="" frameborder="0" height="310" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
+						</div>
+					</div>
 					
-					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-12">
+					<div class="col-sm-12 col-md-12 col-lg-12">
+						<h1> Apollo 11</h1>
+
+						<p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p>
 						
-						<p><%=osmprojinvest.getOsminvestmentdescription()%></p>
-						<ul class="inbox-download-list">
+						<p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)" title="Michael Collins (astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module" title="Apollo Command/Service Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
 						
-						<%	String[] investmentdocs =  osmprojinvest.getOsminvestmentdoc();
-								for(int t=0;t<investmentdocs.length;t++){
-									
-									
-								%>
+						<h2>Broadcasting and <em>quotes</em> <a id="quotes" name="quotes"></a></h2>
+						
+						<p>Broadcast on live TV to a world-wide audience, Armstrong stepped onto the lunar surface and described the event as:</p>
+						
+						<blockquote>
+						<p>One small step for [a] man, one giant leap for mankind.</p>
+						</blockquote>
+						
+						<p>Apollo 11 effectively ended the <a href="http://en.wikipedia.org/wiki/Space_Race" title="Space Race">Space Race</a> and fulfilled a national goal proposed in 1961 by the late U.S. President <a href="http://en.wikipedia.org/wiki/John_F._Kennedy" title="John F. Kennedy">John F. Kennedy</a> in a speech before the United States Congress:</p>
+						
+						<blockquote>
+						<p>[...] before this decade is out, of landing a man on the Moon and returning him safely to the Earth.</p>
+						</blockquote>
+						
+						<h2>Technical details <a id="tech-details" name="tech-details"></a></h2>
+						
+						<table align="right" border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse; margin:10px 0 10px 15px">
+							<caption><strong>Mission crew</strong></caption>
+							<thead>
+								<tr>
+									<th scope="col">Position</th>
+									<th scope="col">Astronaut</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Commander</td>
+									<td>Neil A. Armstrong</td>
+								</tr>
+								<tr>
+									<td>Command Module Pilot</td>
+									<td>Michael Collins</td>
+								</tr>
+								<tr>
+									<td>Lunar Module Pilot</td>
+									<td>Edwin &quot;Buzz&quot; E. Aldrin, Jr.</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<p>Launched by a <strong>Saturn V</strong> rocket from <a href="http://en.wikipedia.org/wiki/Kennedy_Space_Center" title="Kennedy Space Center">Kennedy Space Center</a> in Merritt Island, Florida on July 16, Apollo 11 was the fifth manned mission of <a href="http://en.wikipedia.org/wiki/NASA" title="NASA">NASA</a>&#39;s Apollo program. The Apollo spacecraft had three parts:</p>
+						
+						<ol>
+							<li><strong>Command Module</strong> with a cabin for the three astronauts which was the only part which landed back on Earth</li>
+							<li><strong>Service Module</strong> which supported the Command Module with propulsion, electrical power, oxygen and water</li>
+							<li><strong>Lunar Module</strong> for landing on the Moon.</li>
+						</ol>
+						
+						<p>After being sent to the Moon by the Saturn V&#39;s upper stage, the astronauts separated the spacecraft from it and travelled for three days until they entered into lunar orbit. Armstrong and Aldrin then moved into the Lunar Module and landed in the <a href="http://en.wikipedia.org/wiki/Mare_Tranquillitatis" title="Mare Tranquillitatis">Sea of Tranquility</a>. They stayed a total of about 21 and a half hours on the lunar surface. After lifting off in the upper part of the Lunar Module and rejoining Collins in the Command Module, they returned to Earth and landed in the <a href="http://en.wikipedia.org/wiki/Pacific_Ocean" title="Pacific Ocean">Pacific Ocean</a> on July 24.</p>
+						
+						<hr />
+						<p style="text-align:right"><small>Source: <a href="http://en.wikipedia.org/wiki/Apollo_11">Wikipedia.org</a></small></p>
+
+
+					</div>
+					<hr>
+					
+				
+				</div>
+				<div class="row">
+				
+					<div class="col-sm-12 col-md-12 col-lg-12">
+						
+							<div class="inbox-download">
+								2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a> 
+								
+								<ul class="inbox-download-list">
 									<li>
 										<div class="well well-sm">
 											<span>
@@ -688,60 +772,161 @@
 											<br>
 											400 kb 
 											<br> 
-											<a href="javascript:void(0);"> Download</a>  | <a href="javascript:void(0);"> View</a>
+											<a href="imageDownload/d00a59d99412ef193b81a569c65674934b38f6bd1468208234291"> Download</a>  | <a href="javascript:void(0);"> View</a>
 										</div>
 									</li>
-									
-							<%	}
+									<li>
+										<div class="well well-sm">
+											<span>
+												<i class="fa fa-file"></i>
+											</span>
+											
+											<br>
+											<strong>timelogs.xsl</strong> 
+											<br>
+											1.3 mb 
+											<br> 
+											<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> Share</a>
+										</div>
+									</li>
+								</ul>
+							</div>
 						
-						%>
-						
-						
-							
-						</ul>
-						
-						<div class="col-sm-6"><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#subscribe">Subscribe</button></div>
-						<div class="col-sm-6"></div>
 					</div>
-
 				</div>
-
+				<div class="row"> 
+					<article class="col-sm-12 col-md-12">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-x" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-align-justify"></i> </span>
+									<h2>Investors</h2>
+				
+								</header>
+								
+								<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="superbox col-sm-12">
+											<div class="superbox-list">
+												<img src="img/superbox/superbox-thumb-1.jpg" data-img="img/superbox/superbox-full-1.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
+											</div><!--
+											--><div class="superbox-list">
+												<img src="img/superbox/superbox-thumb-2.jpg" data-img="img/superbox/superbox-full-2.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Bridge of Edgen" class="superbox-img">
+											</div><!--
+											--><div class="superbox-list">
+												<img src="img/superbox/superbox-thumb-3.jpg" data-img="img/superbox/superbox-full-3.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Lines of Friendship" class="superbox-img">
+											</div>
+										</div>
+										<!-- /SuperBox -->
+										
+										<div class="superbox-show" style="height:300px; display: none"></div>	
+											
+								</div>
+								
+				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+				
+					
+					
+				</div>
+				
+				<!-- end row -->
+				<a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Invest</a>
 			</div>
 			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="subscribe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									&times;
 								</button>
-								<h4 class="modal-title" id="myModalLabel">Subscribe</h4>
+								<h4 class="modal-title" id="myModalLabel">Article Post</h4>
 							</div>
 							<div class="modal-body">
 				
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											<label for="subscriptiontype"> As</label>
-											<select class="form-control" id="subscriptiontype">
-												<option>Investor</option>
-												<option>Buyer</option>
-												<option>Resource</option>
-											</select>
+											<input type="text" class="form-control" placeholder="Title" required />
+										</div>
+										<div class="form-group">
+											<textarea class="form-control" placeholder="Content" rows="5" required></textarea>
 										</div>
 									</div>
 								</div>
-								
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="category"> Category</label>
+											<select class="form-control" id="category">
+												<option>Articles</option>
+												<option>Tutorials</option>
+												<option>Freebies</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="tags"> Tags</label>
+											<input type="text" class="form-control" id="tags" placeholder="Tags" />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="well well-sm well-primary">
+											<form class="form form-inline " role="form">
+												<div class="form-group">
+													<input type="text" class="form-control" value="" placeholder="Date" required />
+												</div>
+												<div class="form-group">
+													<select class="form-control">
+														<option>Draft</option>
+														<option>Published</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<button type="submit" class="btn btn-success btn-sm">
+														<span class="glyphicon glyphicon-floppy-disk"></span> Save
+													</button>
+													<button type="button" class="btn btn-default btn-sm">
+														<span class="glyphicon glyphicon-eye-open"></span> Preview
+													</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+				
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Cancel
 								</button>
-								<a href="osmprojectsubscription?" id="subscribe" class="btn btn-primary"> <i class="fa fa-warning"></i> Subscribe </a>
+								<button type="button" class="btn btn-primary">
+									Post Article
+								</button>
 							</div>
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
+				</div>
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -749,7 +934,7 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 </span>
+					<span class="txt-color-white">SmartAdmin </span>
 				</div>
 
 				
@@ -884,6 +1069,21 @@
 
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
+		
+		<script>
+		function showBuyers(){
+			
+			alert("in the buyer");
+			
+			var buyersmodal = "<div class='modal fade' id='buyer' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>"+
+							  "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>"+
+							  "&times;</button><h4 class='modal-title' id='myModalLabel'>Article Post</h4></div></div></div></div>";
+							  
+			$('#content').append(buyersmodal);				  
+			
+		}
+		
+		</script>
 
 		<script type="text/javascript">
 
@@ -920,6 +1120,34 @@
 				 */
 				
 				 pageSetUp();
+				 $('.superbox').SuperBox();
+				 
+				 $('#buyersm').click(function() {
+						$('#dialog_simple').dialog('open');
+						return false;
+				
+					});
+				
+					$('#dialog_simple').dialog({
+						autoOpen : false,
+						width : 600,
+						resizable : false,
+						modal : true,
+						title : "<div class='widget-header'><h4><i class='fa fa-warning'></i> Empty the recycle bin?</h4></div>",
+						buttons : [{
+							html : "<i class='fa fa-trash-o'></i>&nbsp; Delete all items",
+							"class" : "btn btn-danger",
+							click : function() {
+								$(this).dialog("close");
+							}
+						}, {
+							html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+							"class" : "btn btn-default",
+							click : function() {
+								$(this).dialog("close");
+							}
+						}]
+					});
 				 
 				/*
 				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
@@ -939,8 +1167,25 @@
 				 * 
 				 * loadScript(".../plugin.js", run_after_loaded);
 				 */
+				 
+				 
 				
 			})
+			
+			function gotoCompany(osmmodelid){
+				
+				$.ajax({
+					url : "osmcompanyidentify/osmmodelid="+osmmodelid,
+					method : 'GET',
+					success : function(){
+							
+						
+					}
+				});
+				
+			}
+			
+			
 		
 		</script>
 
