@@ -679,25 +679,16 @@
 				
 												<div class="col-sm-4">
 				
-													<div class="input-group">
-														<input class="form-control" type="text" placeholder="Type invoice number or date...">
-														<div class="input-group-btn">
-															<button class="btn btn-default" type="button">
-																<i class="fa fa-search"></i> Search
-															</button>
-														</div>
-													</div>
+													
 												</div>
 				
 												<div class="col-sm-8 text-align-right">
 				
 													<div class="btn-group">
-														<a href="javascript:void(0)" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> Edit </a>
+														<div id="paypal-button"></div>
+														<!-- <a href="javascript:void(0)" class="btn btn-sm btn-success"> <i class="fa fa-plus"></i>PayPal</a> -->
 													</div>
-				
-													<div class="btn-group">
-														<a href="javascript:void(0)" class="btn btn-sm btn-success"> <i class="fa fa-plus"></i> Create New </a>
-													</div>
+													
 				
 												</div>
 				
@@ -862,83 +853,7 @@
 				
 			</div>
 			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Article Post</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Title" required />
-										</div>
-										<div class="form-group">
-											<textarea class="form-control" placeholder="Content" rows="5" required></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="category"> Category</label>
-											<select class="form-control" id="category">
-												<option>Articles</option>
-												<option>Tutorials</option>
-												<option>Freebies</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="tags"> Tags</label>
-											<input type="text" class="form-control" id="tags" placeholder="Tags" />
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="well well-sm well-primary">
-											<form class="form form-inline " role="form">
-												<div class="form-group">
-													<input type="text" class="form-control" value="" placeholder="Date" required />
-												</div>
-												<div class="form-group">
-													<select class="form-control">
-														<option>Draft</option>
-														<option>Published</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<button type="submit" class="btn btn-success btn-sm">
-														<span class="glyphicon glyphicon-floppy-disk"></span> Save
-													</button>
-													<button type="button" class="btn btn-default btn-sm">
-														<span class="glyphicon glyphicon-eye-open"></span> Preview
-													</button>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-				
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary">
-									Post Article
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div>
+			
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -1001,7 +916,7 @@
 				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
 			}
 		</script>
-
+		<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 		<!-- IMPORTANT: APP CONFIG -->
 		<script src="<c:url value='/resources/js/app.config.js' />"></script>
 		<!-- <script src="js/app.config.js"></script> -->
@@ -1081,7 +996,23 @@
 
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
-		
+		<script>
+        paypal.Button.render({
+
+            env: 'production', // Or 'sandbox',
+
+            commit: true, // Show a 'Pay Now' button
+
+            payment: function() {
+                // Set up the payment here
+            },
+
+            onAuthorize: function(data, actions) {
+                // Execute the payment here
+           }
+
+        }, '#paypal-button');
+    	</script>
 		<script>
 		function showBuyers(){
 			
