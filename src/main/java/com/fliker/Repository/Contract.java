@@ -7,6 +7,15 @@ public class Contract {
 
 	private String contractid;
 	private String contractlegalnotice;
+	private String contractdocid;
+	
+	
+	public String getContractdocid() {
+		return contractdocid;
+	}
+	public void setContractdocid(String contractdocid) {
+		this.contractdocid = contractdocid;
+	}
 	public String getContractid() {
 		return contractid;
 	}

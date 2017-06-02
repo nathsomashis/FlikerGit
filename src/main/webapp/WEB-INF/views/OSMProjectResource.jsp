@@ -633,125 +633,699 @@
 
 				<!-- row -->
 				
-				<div class="row">
 				
-					<div class="col-sm-12 col-md-12 col-lg-12">
-							<h1 style="text-align: center;text-transform: uppercase;font-weight: bold;">Project Title</h1>
-						
-					</div>
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<div class="margin-top-10">
-							<iframe allowfullscreen="" frameborder="0" height="310" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
-						</div>
-					</div>
-					
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<h1> Apollo 11</h1>
-
-						<p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p>
-						
-						<p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)" title="Michael Collins (astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module" title="Apollo Command/Service Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-						
-						<h2>Broadcasting and <em>quotes</em> <a id="quotes" name="quotes"></a></h2>
-						
-						<p>Broadcast on live TV to a world-wide audience, Armstrong stepped onto the lunar surface and described the event as:</p>
-						
-						<blockquote>
-						<p>One small step for [a] man, one giant leap for mankind.</p>
-						</blockquote>
-						
-						<p>Apollo 11 effectively ended the <a href="http://en.wikipedia.org/wiki/Space_Race" title="Space Race">Space Race</a> and fulfilled a national goal proposed in 1961 by the late U.S. President <a href="http://en.wikipedia.org/wiki/John_F._Kennedy" title="John F. Kennedy">John F. Kennedy</a> in a speech before the United States Congress:</p>
-						
-						<blockquote>
-						<p>[...] before this decade is out, of landing a man on the Moon and returning him safely to the Earth.</p>
-						</blockquote>
-						
-						<h2>Technical details <a id="tech-details" name="tech-details"></a></h2>
-						
-						<table align="right" border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse; margin:10px 0 10px 15px">
-							<caption><strong>Mission crew</strong></caption>
-							<thead>
-								<tr>
-									<th scope="col">Position</th>
-									<th scope="col">Astronaut</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Commander</td>
-									<td>Neil A. Armstrong</td>
-								</tr>
-								<tr>
-									<td>Command Module Pilot</td>
-									<td>Michael Collins</td>
-								</tr>
-								<tr>
-									<td>Lunar Module Pilot</td>
-									<td>Edwin &quot;Buzz&quot; E. Aldrin, Jr.</td>
-								</tr>
-							</tbody>
-						</table>
-						
-						<p>Launched by a <strong>Saturn V</strong> rocket from <a href="http://en.wikipedia.org/wiki/Kennedy_Space_Center" title="Kennedy Space Center">Kennedy Space Center</a> in Merritt Island, Florida on July 16, Apollo 11 was the fifth manned mission of <a href="http://en.wikipedia.org/wiki/NASA" title="NASA">NASA</a>&#39;s Apollo program. The Apollo spacecraft had three parts:</p>
-						
-						<ol>
-							<li><strong>Command Module</strong> with a cabin for the three astronauts which was the only part which landed back on Earth</li>
-							<li><strong>Service Module</strong> which supported the Command Module with propulsion, electrical power, oxygen and water</li>
-							<li><strong>Lunar Module</strong> for landing on the Moon.</li>
-						</ol>
-						
-						<p>After being sent to the Moon by the Saturn V&#39;s upper stage, the astronauts separated the spacecraft from it and travelled for three days until they entered into lunar orbit. Armstrong and Aldrin then moved into the Lunar Module and landed in the <a href="http://en.wikipedia.org/wiki/Mare_Tranquillitatis" title="Mare Tranquillitatis">Sea of Tranquility</a>. They stayed a total of about 21 and a half hours on the lunar surface. After lifting off in the upper part of the Lunar Module and rejoining Collins in the Command Module, they returned to Earth and landed in the <a href="http://en.wikipedia.org/wiki/Pacific_Ocean" title="Pacific Ocean">Pacific Ocean</a> on July 24.</p>
-						
-						<hr />
-						<p style="text-align:right"><small>Source: <a href="http://en.wikipedia.org/wiki/Apollo_11">Wikipedia.org</a></small></p>
-
-
-					</div>
-					<hr>
-					
+				<div class="jarviswidget" id="wid-id-7" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 				
-				</div>
-				<div class="row">
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
 				
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						
-							<div class="inbox-download">
-								2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a> 
+								-->
+								<header>
+									<ul class="nav nav-tabs pull-left in">
+				
+										<li class="active">
+											<a data-toggle="tab" href="#hr1"> <span class="hidden-mobile hidden-tablet">Description</span> </a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#hr2"> <span class="hidden-mobile hidden-tablet">Data</span> </a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#hr3"> <span class="hidden-mobile hidden-tablet">Discussion</span> </a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#hr4"> <span class="hidden-mobile hidden-tablet">TimeLine</span> </a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#hr5"> <span class="hidden-mobile hidden-tablet">Project</span> </a>
+										</li>
+				
+									</ul>
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body">
+				
+										<div class="tab-content">
+											<div class="tab-pane active" id="hr1">
+												<div class="row">
+
+													<!-- col -->
+													<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+														<h1 class="page-title txt-color-blueDark">
+															<!-- PAGE HEADER -->
+															Status<span>
+														</h1>
+													</div>
+													<!-- end col -->
 								
-								<ul class="inbox-download-list">
-									<li>
-										<div class="well well-sm">
-											<span>
-												<img src="img/demo/sample.jpg">
-											</span>
-											<br>
-											<strong>rocketlaunch.jpg</strong> 
-											<br>
-											400 kb 
-											<br> 
-											<a href="imageDownload/d00a59d99412ef193b81a569c65674934b38f6bd1468208234291"> Download</a>  | <a href="javascript:void(0);"> View</a>
-										</div>
-									</li>
-									<li>
-										<div class="well well-sm">
-											<span>
-												<i class="fa fa-file"></i>
-											</span>
-											
-											<br>
-											<strong>timelogs.xsl</strong> 
-											<br>
-											1.3 mb 
-											<br> 
-											<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> Share</a>
-										</div>
-									</li>
-								</ul>
-							</div>
-						
-					</div>
-				</div>
+													<!-- right side of the page with the sparkline graphs -->
+													<!-- col -->
+													<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+														<!-- sparks -->
+														<ul id="sparks">
+															<li class="sparks-info">
+																<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
+																<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+																	1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+																</div>
+															</li>
+															<li class="sparks-info">
+																<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45</span></h5>
+															</li>
+															<li class="sparks-info">
+																<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;2447</span></h5>
+															</li>
+															<li class="sparks-info" >
+																<h5> Investors <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;5</span></h5>
+															</li>
+														</ul>
+														<!-- end sparks -->
+													</div>
+													<!-- end col -->
+								
+												</div>
+												<div class="row">
 				
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<div class="col-md-10">
+															<h1 style="text-align:left;text-transform: uppercase;font-weight: bold;">Project Title</h1>
+														</div>
+														<div class="col-md-2">
+															<!-- <a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Invest</a> -->
+															<!-- <a href="" id="dialog_link" class="btn btn-primary btn-lg">Request For Developer</a> -->
+															<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Request For Developer</button>
+														</div>
+													</div>
+													
+													
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<h1> Apollo 11</h1>
+								
+														<p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p>
+														
+														<p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)" title="Michael Collins (astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module" title="Apollo Command/Service Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
+														
+														<h2>Broadcasting and <em>quotes</em> <a id="quotes" name="quotes"></a></h2>
+														
+														<p>Broadcast on live TV to a world-wide audience, Armstrong stepped onto the lunar surface and described the event as:</p>
+														
+														<blockquote>
+														<p>One small step for [a] man, one giant leap for mankind.</p>
+														</blockquote>
+														
+														<p>Apollo 11 effectively ended the <a href="http://en.wikipedia.org/wiki/Space_Race" title="Space Race">Space Race</a> and fulfilled a national goal proposed in 1961 by the late U.S. President <a href="http://en.wikipedia.org/wiki/John_F._Kennedy" title="John F. Kennedy">John F. Kennedy</a> in a speech before the United States Congress:</p>
+														
+														<blockquote>
+														<p>[...] before this decade is out, of landing a man on the Moon and returning him safely to the Earth.</p>
+														</blockquote>
+														
+														<h2>Technical details <a id="tech-details" name="tech-details"></a></h2>
+														
+														<table align="right" border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse; margin:10px 0 10px 15px">
+															<caption><strong>Mission crew</strong></caption>
+															<thead>
+																<tr>
+																	<th scope="col">Position</th>
+																	<th scope="col">Astronaut</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>Commander</td>
+																	<td>Neil A. Armstrong</td>
+																</tr>
+																<tr>
+																	<td>Command Module Pilot</td>
+																	<td>Michael Collins</td>
+																</tr>
+																<tr>
+																	<td>Lunar Module Pilot</td>
+																	<td>Edwin &quot;Buzz&quot; E. Aldrin, Jr.</td>
+																</tr>
+															</tbody>
+														</table>
+														
+														<p>Launched by a <strong>Saturn V</strong> rocket from <a href="http://en.wikipedia.org/wiki/Kennedy_Space_Center" title="Kennedy Space Center">Kennedy Space Center</a> in Merritt Island, Florida on July 16, Apollo 11 was the fifth manned mission of <a href="http://en.wikipedia.org/wiki/NASA" title="NASA">NASA</a>&#39;s Apollo program. The Apollo spacecraft had three parts:</p>
+														
+														<ol>
+															<li><strong>Command Module</strong> with a cabin for the three astronauts which was the only part which landed back on Earth</li>
+															<li><strong>Service Module</strong> which supported the Command Module with propulsion, electrical power, oxygen and water</li>
+															<li><strong>Lunar Module</strong> for landing on the Moon.</li>
+														</ol>
+														
+														<p>After being sent to the Moon by the Saturn V&#39;s upper stage, the astronauts separated the spacecraft from it and travelled for three days until they entered into lunar orbit. Armstrong and Aldrin then moved into the Lunar Module and landed in the <a href="http://en.wikipedia.org/wiki/Mare_Tranquillitatis" title="Mare Tranquillitatis">Sea of Tranquility</a>. They stayed a total of about 21 and a half hours on the lunar surface. After lifting off in the upper part of the Lunar Module and rejoining Collins in the Command Module, they returned to Earth and landed in the <a href="http://en.wikipedia.org/wiki/Pacific_Ocean" title="Pacific Ocean">Pacific Ocean</a> on July 24.</p>
+														
+														<hr />
+														<p style="text-align:right"><small>Source: <a href="http://en.wikipedia.org/wiki/Apollo_11">Wikipedia.org</a></small></p>
+								
+								
+													</div>
+													<hr>
+													
+												
+												</div>
+												
+				
+											</div>
+											<div class="tab-pane" id="hr2">
+											
+												<div class="row">
+				
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														
+															<div class="inbox-download">
+																2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a> 
+																
+																<ul class="inbox-download-list">
+																	<li>
+																		<div class="well well-sm">
+																			<span>
+																				<img src="img/demo/sample.jpg">
+																			</span>
+																			<br>
+																			<strong>rocketlaunch.jpg</strong> 
+																			<br>
+																			400 kb 
+																			<br> 
+																			<a href="imageDownload/d00a59d99412ef193b81a569c65674934b38f6bd1468208234291"> Download</a>  | <a href="javascript:void(0);"> View</a>
+																		</div>
+																	</li>
+																	<li>
+																		<div class="well well-sm">
+																			<span>
+																				<i class="fa fa-file"></i>
+																			</span>
+																			
+																			<br>
+																			<strong>timelogs.xsl</strong> 
+																			<br>
+																			1.3 mb 
+																			<br> 
+																			<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> Share</a>
+																		</div>
+																	</li>
+																</ul>
+															</div>
+														
+													</div>
+												</div>
+												
+												
+				
+											</div>
+											<div class="tab-pane" id="hr3">
+												<div class="row">
+				
+													<div class="col-sm-12">
+												
+														<div class="well">
+												
+															<table class="table table-striped table-forum">
+																<thead>
+																	<tr>
+																		<th colspan="2"><a href="forum.html"> Projects </a> > Business Requirement Docs</th>
+																		<th class="text-center hidden-xs hidden-sm" style="width: 100px;">Topics</th>
+																		<th class="text-center hidden-xs hidden-sm" style="width: 100px;">Posts</th>
+																		<th class="hidden-xs hidden-sm" style="width: 200px;">Last Post</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	
+																	<!-- TR -->
+																	<tr class="warning">
+																		<td class="text-center" style="width: 40px;"><i class="glyphicon glyphicon-pushpin fa-2x text-danger"></i></td>
+																		<td>
+																			<h4><a href="forum-post.html">
+																				Welcome message
+																			</a>
+																				<small><a href="profile.html">John Doe</a> on <em>January 1, 2014</em></small>
+																			</h4>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">431</a>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">1342</a>
+																		</td>
+																		<td class="hidden-xs hidden-sm">by 
+																			<a href="javascript:void(0);">John Doe</a>
+																			<br>
+																			<small><i>January 1, 2014</i></small>
+																		</td>
+																	</tr>
+																	<!-- end TR -->
+																	
+																	<!-- TR -->
+																	<tr class="warning">
+																		<td class="text-center" style="width: 40px;"><i class="glyphicon glyphicon-pushpin fa-2x text-danger"></i></td>
+																		<td>
+																			<h4><a href="forum-post.html">
+																				Latest Updates
+																			</a>
+																				<small><a href="profile.html">John Doe</a> on <em>January 1, 2014</em></small>
+																			</h4>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">431</a>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">1342</a>
+																		</td>
+																		<td class="hidden-xs hidden-sm">by 
+																			<a href="javascript:void(0);">John Doe</a>
+																			<br>
+																			<small><i>January 1, 2014</i></small>
+																		</td>
+																	</tr>
+																	<!-- end TR -->
+																	
+																	<!-- TR -->
+																	<tr>
+																		<td colspan="2">
+																			<h4><a href="forum-post.html">
+																				Nam quam nunc blandit vel
+																			</a>
+																				<small><a href="profile.html">John Doe</a> on <em>January 1, 2014</em></small>
+																			</h4>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">431</a>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">1342</a>
+																		</td>
+																		<td class="hidden-xs hidden-sm">by 
+																			<a href="javascript:void(0);">John Doe</a>
+																			<br>
+																			<small><i>January 1, 2014</i></small>
+																		</td>
+																	</tr>
+																	<!-- end TR -->
+																	
+																	<!-- TR -->
+																	<tr>
+																		<td colspan="2">
+																			<h4><a href="forum-post.html">
+																				Maecenas nec odio et ante tincidun
+																			</a>
+																				<small><a href="profile.html">John Doe</a> on <em>January 1, 2014</em></small>
+																			</h4>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">431</a>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">1342</a>
+																		</td>
+																		<td class="hidden-xs hidden-sm">by 
+																			<a href="javascript:void(0);">John Doe</a>
+																			<br>
+																			<small><i>January 1, 2014</i></small>
+																		</td>
+																	</tr>
+																	<!-- end TR -->
+												
+																	<!-- TR -->
+																	<tr>
+																		<td colspan="2">
+																			<h4><a href="forum-post.html">
+																				Donec sodales sagittis magna
+																			</a>
+																				<small><a href="profile.html">John Doe</a> on <em>January 1, 2014</em></small>
+																			</h4>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">431</a>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">1342</a>
+																		</td>
+																		<td class="hidden-xs hidden-sm">by 
+																			<a href="javascript:void(0);">John Doe</a>
+																			<br>
+																			<small><i>January 1, 2014</i></small>
+																		</td>
+																	</tr>
+																	<!-- end TR -->
+												
+																	<!-- TR -->
+																	<tr>
+																		<td colspan="2">
+																			<h4><a href="forum-post.html">
+																				Sed consequat, leo eget bibendum sodales
+																			</a>
+																				<small><a href="profile.html">John Doe</a> on <em>January 1, 2014</em></small>
+																			</h4>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">431</a>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">1342</a>
+																		</td>
+																		<td class="hidden-xs hidden-sm">by 
+																			<a href="javascript:void(0);">John Doe</a>
+																			<br>
+																			<small><i>January 1, 2014</i></small>
+																		</td>
+																	</tr>
+																	<!-- end TR -->
+												
+																	<!-- TR -->
+																	<tr>
+																		<td colspan="2">
+																			<h4><a href="forum-post.html">
+																				Consectetuer adipiscing elit
+																			</a>
+																				<small><a href="profile.html">John Doe</a> on <em>January 1, 2014</em></small>
+																			</h4>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">431</a>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">1342</a>
+																		</td>
+																		<td class="hidden-xs hidden-sm">by 
+																			<a href="javascript:void(0);">John Doe</a>
+																			<br>
+																			<small><i>January 1, 2014</i></small>
+																		</td>
+																	</tr>
+																	<!-- end TR -->
+												
+																	<!-- TR -->
+																	<tr class="locked">
+																		<td colspan="2">
+																			<h4><a href="forum-post.html">
+																				This is a locked topic!
+																			</a>
+																				<small><a href="profile.html">John Doe</a> on <em>January 1, 2014</em></small>
+																			</h4>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">431</a>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">1342</a>
+																		</td>
+																		<td class="hidden-xs hidden-sm">by 
+																			<a href="javascript:void(0);">John Doe</a>
+																			<br>
+																			<small><i>January 1, 2014</i></small>
+																		</td>
+																	</tr>
+																	<!-- end TR -->
+												
+																	<!-- TR -->
+																	<tr class="closed">
+																		<td colspan="2">
+																			<h4><a href="forum-post.html">
+																				This is a closed topic!
+																			</a>
+																				<small><a href="javascript:void(0);">John Doe</a> on <em>January 1, 2014</em></small>
+																			</h4>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">431</a>
+																		</td>
+																		<td class="text-center hidden-xs hidden-sm">
+																			<a href="javascript:void(0);">1342</a>
+																		</td>
+																		<td class="hidden-xs hidden-sm">by 
+																			<a href="javascript:void(0);">John Doe</a>
+																			<br>
+																			<small><i>January 1, 2014</i></small>
+																		</td>
+																	</tr>
+																	<!-- end TR -->									
+																	
+																</tbody>
+															</table>
+												
+															<div class="text-center">
+												                <ul class="pagination pagination-sm">
+												                    <li class="disabled"><a href="javascript:void(0);">Prev</a></li>
+												                    <li class="active"><a href="javascript:void(0);">1</a></li>
+												                    <li><a href="javascript:void(0);">2</a></li>
+												                    <li><a href="javascript:void(0);">3</a></li>
+												                    <li><a href="javascript:void(0);">...</a></li>
+												                    <li><a href="javascript:void(0);">99</a></li>
+												                    <li><a href="javascript:void(0);">Next</a></li>
+												                </ul>
+												            </div>
+												
+														</div>
+													</div>
+												
+												</div>
+											</div>
+											<div class="tab-pane" id="hr4">
+												<div class="row">
+				
+													<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												
+														<div class="well well-sm">
+															<!-- Timeline Content -->
+															<div class="smart-timeline">
+																<ul class="smart-timeline-list">
+																	<li>
+																		<div class="smart-timeline-icon">
+																			<img src="img/avatars/sunny.png" width="32" height="32" alt="user" />
+																		</div>
+																		<div class="smart-timeline-time">
+																			<small>just now</small>
+																		</div>
+																		<div class="smart-timeline-content">
+																			<p>
+																				<a href="javascript:void(0);"><strong>Trip to Adalaskar</strong></a>
+																			</p>
+																			<p>
+																				Check out my tour to Adalaskar
+																			</p>
+																			<p>
+																				<a href="javascript:void(0);" class="btn btn-xs btn-primary"><i class="fa fa-file"></i> Read the post</a>
+																			</p>
+																			<img src="img/superbox/superbox-thumb-4.jpg" alt="img" width="150">
+												
+																					
+																				
+																		</div>
+																	</li>
+																	<li>
+																		<div class="smart-timeline-icon">
+																			<i class="fa fa-file-text"></i>
+																		</div>
+																		<div class="smart-timeline-time">
+																			<small>1 min ago</small>
+																		</div>
+																		<div class="smart-timeline-content">
+																			<p>
+																				<strong>Meeting invite for "GENERAL GNU" [<a href="javascript:void(0);"><i>Go to my calendar</i></a>]</strong>
+																			</p>
+																			
+																			<div class="well well-sm display-inline">
+																				<p>Will you be able to attend the meeting - <strong> 10:00 am</strong> tomorrow?</p>
+																				<button class="btn btn-xs btn-default">Confirm Attendance</button>
+																			</div>		
+																						
+																		</div>
+																	</li>
+																	<li>
+																		<div class="smart-timeline-icon bg-color-greenDark">
+																			<i class="fa fa-bar-chart-o"></i>
+																		</div>
+																		<div class="smart-timeline-time">
+																			<small>5 hrs ago</small>
+																		</div>
+																		<div class="smart-timeline-content">
+																			<p>
+																				<strong class="txt-color-greenDark">24hrs User Feed</strong>
+																			</p>
+																			
+																			<div class="sparkline" 
+																			data-sparkline-type="compositeline" 
+																			data-sparkline-spotradius-top="5" 
+																			data-sparkline-color-top="#3a6965" 
+																			data-sparkline-line-width-top="3" 
+																			data-sparkline-color-bottom="#2b5c59" 
+																			data-sparkline-spot-color="#2b5c59" 
+																			data-sparkline-minspot-color-top="#97bfbf" 
+																			data-sparkline-maxspot-color-top="#c2cccc" 
+																			data-sparkline-highlightline-color-top="#cce8e4" 
+																			data-sparkline-highlightspot-color-top="#9dbdb9" 
+																			data-sparkline-width="170px" 
+																			data-sparkline-height="40px" 
+																			data-sparkline-line-val="[6,4,7,8,4,3,2,2,5,6,7,4,1,5,7,9,9,8,7,6]" 
+																			data-sparkline-bar-val="[4,1,5,7,9,9,8,7,6,6,4,7,8,4,3,2,2,5,6,7]"></div>
+																			
+																			<br>
+																		</div>
+																	</li>
+																	<li>
+																		<div class="smart-timeline-icon">
+																			<i class="fa fa-user"></i>
+																		</div>
+																		<div class="smart-timeline-time">
+																			<small>yesterday</small>
+																		</div>
+																		<div class="smart-timeline-content">
+																			<p>
+																				<a href="javascript:void(0);"><strong>Update user information</strong></a>
+																			</p>
+																			<p>
+																				Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.
+																			</p>
+																			
+																			Tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit
+																			
+																			<ul class="list-inline">
+																				<li>
+																					<img src="img/superbox/superbox-thumb-6.jpg" alt="img" width="50">
+																				</li>
+																				<li>
+																					<img src="img/superbox/superbox-thumb-5.jpg" alt="img" width="50">
+																				</li>
+																				<li>
+																					<img src="img/superbox/superbox-thumb-7.jpg" alt="img" width="50">
+																				</li>
+																			</ul>
+																		</div>
+																	</li>
+																	<li>
+																		<div class="smart-timeline-icon">
+																			<i class="fa fa-pencil"></i>
+																		</div>
+																		<div class="smart-timeline-time">
+																			<small>12 Mar, 2013</small>
+																		</div>
+																		<div class="smart-timeline-content">
+																			<p>
+																				<a href="javascript:void(0);"><strong>Nabi Resource Report</strong></a>
+																			</p>
+																			<p>
+																				Ean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis.
+																			</p>
+																			<a href="javascript:void(0);" class="btn btn-xs btn-default">Read more</a>
+																		</div>
+																	</li>
+																	<li class="text-center">
+																		<a href="javascript:void(0)" class="btn btn-sm btn-default"><i class="fa fa-arrow-down text-muted"></i> LOAD MORE</a>
+																	</li>
+																</ul>
+															</div>
+															<!-- END Timeline Content -->
+												
+														</div>
+												
+													</div>
+												
+												</div>
+											</div>
+										</div>
+				
+									</div>
+									<!-- end widget content -->
+				
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+													&times;
+												</button>
+												<h4 class="modal-title" id="myModalLabel">Requested Resource</h4>
+											</div>
+											<div class="modal-body">
+								
+												<div class="row">
+													<div class="col-md-12">
+														<div class="form-group">
+															<input type="text" class="form-control" placeholder="Title" required />
+														</div>
+														<div class="form-group">
+															<textarea class="form-control" placeholder="Content" rows="5" required></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="category"> Category</label>
+															<select class="form-control" id="category">
+																<option>Articles</option>
+																<option>Tutorials</option>
+																<option>Freebies</option>
+															</select>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="tags"> Tags</label>
+															<input type="text" class="form-control" id="tags" placeholder="Tags" />
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-12">
+														<div class="well well-sm well-primary">
+															<form class="form form-inline " role="form">
+																<div class="form-group">
+																	<input type="text" class="form-control" value="" placeholder="Date" required />
+																</div>
+																<div class="form-group">
+																	<select class="form-control">
+																		<option>Draft</option>
+																		<option>Published</option>
+																	</select>
+																</div>
+																<div class="form-group">
+																	<button type="submit" class="btn btn-success btn-sm">
+																		<span class="glyphicon glyphicon-floppy-disk"></span> Save
+																	</button>
+																	<button type="button" class="btn btn-default btn-sm">
+																		<span class="glyphicon glyphicon-eye-open"></span> Preview
+																	</button>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+								
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													Cancel
+												</button>
+												<button type="button" class="btn btn-primary">
+													Post Article
+												</button>
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+								</div>
 				<!-- end row -->
 
 			</div>
