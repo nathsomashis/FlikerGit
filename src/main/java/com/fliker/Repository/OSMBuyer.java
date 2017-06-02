@@ -10,6 +10,29 @@ public class OSMBuyer {
 	private String buyerid;
 	private String buyerlocation;
 	private String buyercluster; //according to supplymodule, supply percentage
+	private String contractid;
+	private String planid;
+	private String licenseid;
+	
+	
+	public String getContractid() {
+		return contractid;
+	}
+	public void setContractid(String contractid) {
+		this.contractid = contractid;
+	}
+	public String getPlanid() {
+		return planid;
+	}
+	public void setPlanid(String planid) {
+		this.planid = planid;
+	}
+	public String getLicenseid() {
+		return licenseid;
+	}
+	public void setLicenseid(String licenseid) {
+		this.licenseid = licenseid;
+	}
 	public String getBuyerid() {
 		return buyerid;
 	}

@@ -4,9 +4,11 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.fliker.Repository.Bill;
 import com.fliker.Repository.OSMDemand;
 import com.fliker.Repository.OSMModel;
 import com.fliker.Repository.OSMOperator;
+import com.fliker.Repository.OSMProjectDevelopment;
 import com.fliker.Repository.OSMProjectInfo;
 import com.fliker.Repository.OSMProjectInvestment;
 import com.fliker.Repository.OSMProjectSeller;
@@ -98,6 +100,9 @@ public class OSMFileUtility {
 		basicdbobj.put("projectsellerid",projseller.getProjectsellerid());
 		basicdbobj.put("sellerdescription", projseller.getSellerdescription());
 		basicdbobj.put("sellingmarketdoc", projseller.getSellingmarketdoc());
+		basicdbobj.put("sellingcontractid", projseller.getSellingcontractid());
+		basicdbobj.put("sellinglicenseid", projseller.getSellinglicenseid());
+		basicdbobj.put("sellingplanid", projseller.getSellingplanid());
 		
 		
 		return basicdbobj;
@@ -219,6 +224,41 @@ public class OSMFileUtility {
 		basicdbobj.put("tradeprebuyid", tradeprebuy.getTradeprebuyid());
 		basicdbobj.put("userid", tradeprebuy.getUserid());
 		basicdbobj.put("osmstakeholdingid", tradeprebuy.getOsmstakeholdingid());
+		
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formOSMOperatorBillDBObject(Bill bill) {
+		// TODO Auto-generated method stub
+		
+		BasicDBObject basicdbobj = new BasicDBObject();
+		
+		basicdbobj.put("billid", bill.getBillid());
+		basicdbobj.put("contractid",bill.getContractid());
+		basicdbobj.put("invoiceid", bill.getInvoiceid());
+		basicdbobj.put("item", bill.getItem());
+		basicdbobj.put("licenseid", bill.getLicenseid());
+		basicdbobj.put("payfromid", bill.getPayfromid());
+		basicdbobj.put("paymentmethods", bill.getPaymentmethods());
+		basicdbobj.put("paytoid", bill.getPaytoid());
+		basicdbobj.put("planid", bill.getPlanid());
+		basicdbobj.put("totalamount", bill.getTotalamount());
+		
+		return basicdbobj;
+	}
+
+
+	public BasicDBObject formOSMProjectResourceDBObject(OSMProjectDevelopment osmprojdev) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("osmmodelid", osmprojdev.getOsmmodelid());
+		basicdbobj.put("osmprojectdevelopmentid",osmprojdev.getOsmprojectdevelopmentid());
+		basicdbobj.put("osmresourceid",osmprojdev.getOsmresourceid());
+		basicdbobj.put("projectflodocs", osmprojdev.getProjectflodocs());
+		basicdbobj.put("projectidlink", osmprojdev.getProjectidlink());
+		basicdbobj.put("projectlinkaccess", osmprojdev.getProjectlinkaccess());
+		basicdbobj.put("projectslidesid", osmprojdev.getProjectslidesid());
 		
 		return basicdbobj;
 	}

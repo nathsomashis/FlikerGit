@@ -7,8 +7,11 @@ public class LicenseType {
 
 	private String licenseid;
 	private String licenseTo;
-	private String licenseexpirydate;
+	private String licenseduration;
 	private String licensetype;
+	
+	
+	
 	public String getLicenseid() {
 		return licenseid;
 	}
@@ -21,11 +24,12 @@ public class LicenseType {
 	public void setLicenseTo(String licenseTo) {
 		this.licenseTo = licenseTo;
 	}
-	public String getLicenseexpirydate() {
-		return licenseexpirydate;
+	
+	public String getLicenseduration() {
+		return licenseduration;
 	}
-	public void setLicenseexpirydate(String licenseexpirydate) {
-		this.licenseexpirydate = licenseexpirydate;
+	public void setLicenseduration(String licenseduration) {
+		this.licenseduration = licenseduration;
 	}
 	public String getLicensetype() {
 		return licensetype;
