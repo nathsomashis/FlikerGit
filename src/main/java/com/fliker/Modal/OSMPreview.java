@@ -148,9 +148,9 @@ public class OSMPreview {
 		osmmodel.setOsmowner(ownerid);
 
 		ServicesUtil servutil = new ServicesUtil();
-		String locationaddress = servutil.getLocationAddress(location);
-		System.out.println(" locationaddress ++" + locationaddress);
-		osmmodel.setOsmlocation(locationaddress);
+		//String locationaddress = servutil.getLocationAddress(location);
+		//System.out.println(" locationaddress ++" + locationaddress);
+		osmmodel.setOsmlocation("");
 
 		MongoConnection mongocon = new MongoConnection();
 
@@ -199,7 +199,7 @@ public class OSMPreview {
 		searchcontent.setSearchid(uniqueid);
 		searchcontent.setContentDescription("Project Name ::" + projectname + "Project Description ::"
 				+ projectdescription + "Project Investors ::" + projectinvestors.split(",") + "Project Buyers::"
-				+ projectbuyers.split(",") + "Location ::" + locationaddress);
+				+ projectbuyers.split(",") + "Location ::");
 		searchcontent.setContentLink("");
 		searchcontent.setContentType("OSM");
 
@@ -1586,6 +1586,131 @@ public class OSMPreview {
 		
 		return bill;
 	}
+
+	public OSMProjectInfo editProjectInfo(String osmmodelid) {
+		// TODO Auto-generated method stub
+		OSMProjectInfo projectinfo = new OSMProjectInfo();
+		MongoConnection mongoconcompan = new MongoConnection();
+		DBCursor resultcompan = mongoconcompan.getDBObject("osmmodelid", osmmodelid, "OSMProjectInfo");
+		if (resultcompan.hasNext()) {
+			DBObject osmcompan = resultcompan.next();
+			
+			projectinfo.setOsmmodelid((String)osmcompan.get("osmmodelid"));
+			projectinfo.setOsmtype((String)osmcompan.get("osmtype"));
+			projectinfo.setProjectbuyers((String[])osmcompan.get("projectbuyers"));
+			projectinfo.setProjectdemandchart((String)osmcompan.get("projectdemandchart"));
+			projectinfo.setProjectdescription((String)osmcompan.get("projectdescription"));
+			projectinfo.setProjectdocs((String[])osmcompan.get("projectdocs"));
+			projectinfo.setProjectinfoid((String)osmcompan.get("projectinfoid"));
+			projectinfo.setProjectinvestors((String[])osmcompan.get("projectinvestors"));
+			projectinfo.setProjectmarkettingdoc((String)osmcompan.get("projectmarkettingdoc"));
+			projectinfo.setProjectname((String)osmcompan.get("projectname"));
+			
+			
+			
+			
+		}
+		
+		
+		return projectinfo;
+	}
+
+	public void createProjectExtraInfo(String osmid) {
+		// TODO Auto-generated method stub
+		
+		String[] projectivestdocs = new String[0];
+		OSMProjectInvestment osmprojinvest = new OSMProjectInvestment();
+		osmprojinvest.setOsmmodelid(osmid);
+		
+		OSMFileUtility osmfileutility = new OSMFileUtility();
+
+		String uniqueid = "";
+		try {
+			uniqueid = osmfileutility.makeSHA1Hash(osmid+"ProjectInvestment");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		osmprojinvest.setOsmstakeholdingid(uniqueid);
+		osmprojinvest.setOsminvestmentdescription("");
+		osmprojinvest.setOsminvestmentdoc(projectivestdocs);
+		osmprojinvest.setOsminvestmenttermsandcondition("");
+		osmprojinvest.setOsminvestorslink("");
+		osmprojinvest.setOsmstakedivision("");
+		
+		MongoConnection mongoconproj = new MongoConnection();
+
+		BasicDBObject basicreqobjproj = osmfileutility.formOSMProjectInvestDBObject(osmprojinvest);
+		mongoconproj.saveObject(basicreqobjproj, "OSMProjectInvestment");
+		
+		
+		OSMProjectDevelopment osmprojdev = new OSMProjectDevelopment();
+		osmprojdev.setOsmmodelid(osmid);
+		
+
+		String uniqueiddev = "";
+		try {
+			uniqueiddev = osmfileutility.makeSHA1Hash(osmid+"ProjectResources");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String[] projresourcearr = new String[0];
+		String[] projectresourcedoc = new String[0];
+		
+		osmprojdev.setOsmprojectdevelopmentid(uniqueiddev);
+		osmprojdev.setProjectidlink("");
+		osmprojdev.setProjectlinkaccess("");
+		osmprojdev.setProjectslidesid("");
+		osmprojdev.setOsmresourceid(projresourcearr);
+		osmprojdev.setProjectflodocs(projectresourcedoc);
+		
+		MongoConnection mongoconprojdev = new MongoConnection();
+
+		BasicDBObject basicreqobjprojdev = osmfileutility.formOSMProjectResourceDBObject(osmprojdev);
+		mongoconprojdev.saveObject(basicreqobjprojdev, "OSMProjectDevelopment");
+		
+		
+		String uniqueidsell = "";
+		try {
+			uniqueidsell = osmfileutility.makeSHA1Hash(osmid+"ProjectSell");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String[] projsellercontract = new String[0];
+		String[] projselllicense = new String[0];
+		String[] projsellplan = new String[0];
+		OSMProjectSeller osmprojsell = new OSMProjectSeller();
+		osmprojsell.setOsmmodelid(osmid);
+		osmprojsell.setProjectsellerid(uniqueidsell);
+		osmprojsell.setSellerdescription("");
+		osmprojsell.setSellingcontractid(projsellercontract);
+		osmprojsell.setSellinglicenseid(projselllicense);
+		osmprojsell.setSellingplanid(projsellplan);
+		osmprojsell.setSellingmarketdoc("");
+		
+		
+		MongoConnection mongoconprojsell = new MongoConnection();
+
+		BasicDBObject basicreqobjprojsell = osmfileutility.formOSMProjectSellerDBObject(osmprojsell);
+		mongoconprojsell.saveObject(basicreqobjprojsell, "OSMProjectSeller");
+		
+		
+	}
+	
+	
+	
 	
 	
 }

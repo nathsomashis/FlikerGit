@@ -713,7 +713,8 @@
 													<a href="osmprojectsubscription?subscriptiontype=Developer">Resource</a>
 												</li>
 											</ul>
-										</div>
+											&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-primary" id="editcurrentproject">Edit</a>
+							</div>
 						</div>	
 						</div>
 					</div>
@@ -877,7 +878,7 @@
 												<button type="button" class="btn btn-default" data-dismiss="modal">
 													Cancel
 												</button>
-												<button type="button" class="btn btn-primary">
+												<button id="createnewproject" type="button" class="btn btn-primary">
 													Create New Project
 												</button>
 											</div>
@@ -1077,6 +1078,20 @@
 				 */
 				
 				 pageSetUp();
+				 
+				 $('#createnewproject').click(function() {
+					 
+					 window.open("osmprojectinfonew?");
+					 
+				 });
+				 
+				 
+				$('#editcurrentproject').click(function() {
+					 
+					 window.open("osmprojectinfonew?");
+					 
+				 });
+				 
 				 $('.superbox').SuperBox();
 				 
 				 $('#buyersm').click(function() {

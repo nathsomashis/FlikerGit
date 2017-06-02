@@ -23,6 +23,7 @@ import com.fliker.Modal.OSMPreview;
 import com.fliker.Modal.ProfilePreview;
 import com.fliker.Repository.Bill;
 import com.fliker.Repository.Company;
+import com.fliker.Repository.OSMProjectInfo;
 import com.fliker.Repository.OSMProjectInvestment;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.User;
@@ -82,6 +83,12 @@ public class OSMController {
 		OSMPreview osmprev = new OSMPreview();
 		String osmid = osmprev.createNewProjectInfo(projectdescription,projectname, ownerid,companyid,projectinvestors,projectbuyers,osmpartners, osmbackupcompany, osmdependependid, location);
 		
+		osmprev.createProjectExtraInfo(osmid);
+		
+		OSMProjectInfo projinfo = osmprev.editProjectInfo(osmid);
+		
+		
+		
 		ServletContext context = request.getSession().getServletContext();
 		
 		User userinf = (User) context.getAttribute("UserValues");
@@ -94,12 +101,73 @@ public class OSMController {
 		
 		String profileimageid = profprev.profileimage(userid);
 		ModelAndView mv = new ModelAndView("/OSMCreateProjectInfoNext");
+		mv.addObject("projinfo", projinfo);
 		mv.addObject("osmid", osmid);
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
 		return mv;
 	}
+	
+	@RequestMapping("/osmprojectinfoedit")
+	public ModelAndView osmeditProjectInfo(
+			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid,
+			HttpServletRequest request) {
+		System.out.println("in controller");
+		
+		OSMPreview osmprev = new OSMPreview();
+		OSMProjectInfo projinfo = osmprev.editProjectInfo(osmmodelid);
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		ModelAndView mv = new ModelAndView("/OSMCreateProjectInfoNext");
+		mv.addObject("projinfo", projinfo);
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		mv.addObject("osmmodelid", osmmodelid);
+		return mv;
+	}
+	
+	
+	@RequestMapping("/osmprojectinvestedit")
+	public ModelAndView osmeditProjectInvest(
+			@RequestParam(value = "osmmodelid", required = false, defaultValue = "World") String osmmodelid,
+			HttpServletRequest request) {
+		System.out.println("in controller");
+		
+		OSMPreview osmprev = new OSMPreview();
+		OSMProjectInfo projinfo = osmprev.editProjectInfo(osmmodelid);
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		ModelAndView mv = new ModelAndView("/OSMCreateProjectInfoNext");
+		mv.addObject("projinfo", projinfo);
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		mv.addObject("osmmodelid", osmmodelid);
+		return mv;
+	}
+	
 	
 	@RequestMapping("/osmprojectinfonext")
 	public ModelAndView osmprojectinfolink(
