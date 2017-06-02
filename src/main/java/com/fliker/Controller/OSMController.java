@@ -282,6 +282,76 @@ public class OSMController {
 		return mv;
 	}
 	
+	
+	//buying plans
+		@RequestMapping("/osmbuyingplan")
+		public ModelAndView planforbuying(
+				@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+				HttpServletRequest requests) {
+			System.out.println("in controller");
+			
+			OSMPreview osmprev = new OSMPreview();
+			ArrayList existingprojectlist = new ArrayList();
+			ServletContext context = requests.getSession().getServletContext();
+			String token = (String)context.getAttribute("osmid");
+			//osmprev.saveOSMModelBuying(token,ownerid);
+			
+			
+			User userinf = (User) context.getAttribute("UserValues");
+			String userid = userinf.getUserid();
+			String userfirstname = userinf.getFirstname();
+			String userlastname = userinf.getLastname();
+			String gender = userinf.getGender();
+			
+			ProfilePreview profprev = new ProfilePreview();
+			
+			String profileimageid = profprev.profileimage(userid);
+			
+			//existingprojectlist = osmprev.getRelatedOSMModels(ownerid);
+			
+			ModelAndView mv = new ModelAndView("/OSMProjectBuy");
+			mv.addObject("ProfileImage", profileimageid);
+			mv.addObject("Gender", gender);
+			mv.addObject("FullName", userfirstname+" "+userlastname);
+			//mv.addObject("existingprojectsdoc", existingprojectsdoc);
+			return mv;
+		}
+		
+		//buying plans
+				@RequestMapping("/osmplanbuy")
+				public ModelAndView plantypebuy(
+						@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+						HttpServletRequest requests) {
+					System.out.println("in controller");
+					
+					OSMPreview osmprev = new OSMPreview();
+					ArrayList existingprojectlist = new ArrayList();
+					ServletContext context = requests.getSession().getServletContext();
+					String token = (String)context.getAttribute("osmid");
+					//osmprev.saveOSMModelBuying(token,ownerid);
+					
+					
+					User userinf = (User) context.getAttribute("UserValues");
+					String userid = userinf.getUserid();
+					String userfirstname = userinf.getFirstname();
+					String userlastname = userinf.getLastname();
+					String gender = userinf.getGender();
+					
+					ProfilePreview profprev = new ProfilePreview();
+					
+					String profileimageid = profprev.profileimage(userid);
+					
+					//existingprojectlist = osmprev.getRelatedOSMModels(ownerid);
+					
+					ModelAndView mv = new ModelAndView("/OSMBill");
+					mv.addObject("ProfileImage", profileimageid);
+					mv.addObject("Gender", gender);
+					mv.addObject("FullName", userfirstname+" "+userlastname);
+					//mv.addObject("existingprojectsdoc", existingprojectsdoc);
+					return mv;
+				}	
+		
+	
 	//subscribe by developer
 	@RequestMapping("/osmsubscribedevelop")
 	public ModelAndView submitdevelopment(
