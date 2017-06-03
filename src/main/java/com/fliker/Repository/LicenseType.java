@@ -9,9 +9,17 @@ public class LicenseType {
 	private String licenseTo;
 	private String licenseduration;
 	private String licensetype;
+	private String licenseamount;
 	
 	
 	
+	
+	public String getLicenseamount() {
+		return licenseamount;
+	}
+	public void setLicenseamount(String licenseamount) {
+		this.licenseamount = licenseamount;
+	}
 	public String getLicenseid() {
 		return licenseid;
 	}

@@ -390,7 +390,7 @@
 				class="fa fa-lg fa-fw fa-money "></i> <span
 				class="menu-item-parent">Project Investment Info</span></a></li>
 
-		<li><a href="osmprojectsellernew?"><i class="fa fa-lg fa-fw fa-info"></i>
+		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
 				<span class="menu-item-parent">Project Selling Info</span></a></li>
 		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
 				<span class="menu-item-parent">Project Resource Info</span></a></li>
@@ -596,453 +596,144 @@
 		
 						</div>
 				
-
-				<div class="row">
-				
-					<div class="col-sm-12">
-				
-				
-							<div class="well well-sm">
-				
-								<div class="row">
+				<div class="alert alert-danger alert-block">
+								<a class="close" data-dismiss="alert" href="#">×</a>
 								
-									<div class="col-sm-12">
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">Project Name</span> <input
-													class="form-control input-lg"
-													placeholder="projectname" type="text" name="course"
-													id="projectname">
-
-											</div>
-										</div>
-
-									</div>
 				
-									<div class="col-sm-12">
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">Project Description</span>
-												<textarea class="form-control input-lg" name="projectdescription" id="projectdescription" rows="8" placeholder="Project Description"></textarea>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label>Selling Option</label>
+						<select multiple style="width:100%" class="select2">
+							<optgroup label="Alaskan/Hawaiian Time Zone">
+								<option value="AK">Alaska</option>
+								<option value="HI">Hawaii</option>
+							</optgroup>
+							<optgroup label="Pacific Time Zone">
+								<option value="CA">California</option>
+								<option value="NV" selected="selected">Nevada</option>
+								<option value="OR">Oregon</option>
+								<option value="WA">Washington</option>
+							</optgroup>
+							<optgroup label="Mountain Time Zone">
+								<option value="AZ">Arizona</option>
+								<option value="CO">Colorado</option>
+								<option value="ID">Idaho</option>
+								<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
+								<option value="NM">New Mexico</option>
+								<option value="ND">North Dakota</option>
+								<option value="UT">Utah</option>
+								<option value="WY">Wyoming</option>
+							</optgroup>
+							<optgroup label="Central Time Zone">
+								<option value="AL">Alabama</option>
+								<option value="AR">Arkansas</option>
+								<option value="IL">Illinois</option>
+								<option value="IA">Iowa</option>
+								<option value="KS">Kansas</option>
+								<option value="KY">Kentucky</option>
+								<option value="LA">Louisiana</option>
+								<option value="MN">Minnesota</option>
+								<option value="MS">Mississippi</option>
+								<option value="MO">Missouri</option>
+								<option value="OK">Oklahoma</option>
+								<option value="SD">South Dakota</option>
+								<option value="TX">Texas</option>
+								<option value="TN">Tennessee</option>
+								<option value="WI">Wisconsin</option>
+							</optgroup>
+							<optgroup label="Eastern Time Zone">
+								<option value="CT">Connecticut</option>
+								<option value="DE">Delaware</option>
+								<option value="FL">Florida</option>
+								<option value="GA">Georgia</option>
+								<option value="IN">Indiana</option>
+								<option value="ME">Maine</option>
+								<option value="MD">Maryland</option>
+								<option value="MA">Massachusetts</option>
+								<option value="MI" selected="selected">Michigan</option>
+								<option value="NH">New Hampshire</option>
+								<option value="NJ">New Jersey</option>
+								<option value="NY">New York</option>
+								<option value="NC">North Carolina</option>
+								<option value="OH">Ohio</option>
+								<option value="PA">Pennsylvania</option>
+								<option value="RI">Rhode Island</option>
+								<option value="SC">South Carolina</option>
+								<option value="VT">Vermont</option>
+								<option value="VA">Virginia</option>
+								<option value="WV">West Virginia</option>
+							</optgroup>
+						</select>
 
-											</div>
-										</div>
-
-									</div>
-									<div class="col-sm-12">
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">OSM Type</span> <input
-													class="form-control input-lg"
-													placeholder="OSM Type" type="text" name="category"
-													id="category">
-
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row">
+						
+					</div>
 				
-						<!-- NEW COL START -->
-						<article class="col-sm-12">
+				</div>
+				<div class="row">
+						
+						<!-- NEW WIDGET START -->
+						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				
+							
+							
 							<!-- Widget ID (each widget will need unique ID)-->
-							<div class="jarviswidget" id="wid-id-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
 								<!-- widget options:
-								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-				
-								data-widget-colorbutton="false"
-								data-widget-editbutton="false"
-								data-widget-togglebutton="false"
-								data-widget-deletebutton="false"
-								data-widget-fullscreenbutton="false"
-								data-widget-custombutton="false"
-								data-widget-collapsed="true"
-								data-widget-sortable="false"
-				
+									usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+									data-widget-colorbutton="false"	
+									data-widget-editbutton="false"
+									data-widget-togglebutton="false"
+									data-widget-deletebutton="false"
+									data-widget-fullscreenbutton="false"
+									data-widget-custombutton="false"
+									data-widget-collapsed="true" 
+									data-widget-sortable="false"
+									
 								-->
 								<header>
-									<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-									<h2>Investors & Partners </h2>
-				
+									<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+									<h2>Project Investment Description</h2>				
+									
 								</header>
 				
 								<!-- widget div-->
 								<div>
-				
+									
 									<!-- widget edit box -->
 									<div class="jarviswidget-editbox">
 										<!-- This area used as dropdown edit box -->
-				
+										
 									</div>
 									<!-- end widget edit box -->
-				
+									
 									<!-- widget content -->
-									<div class="widget-body">
-				
-										<form class="">
-				
-											<fieldset>
-				
-												<div class="form-group">
-													<label>Investors</label>
-													<select multiple style="width:100%" class="select2">
-															<option value="AK">Alaska</option>
-															<option value="HI">Hawaii</option>
-															<option value="CA">California</option>
-															<option value="NV" selected="selected">Nevada</option>
-															<option value="OR">Oregon</option>
-															<option value="WA">Washington</option>
-															<option value="AZ">Arizona</option>
-															<option value="CO">Colorado</option>
-															<option value="ID">Idaho</option>
-															<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
-															<option value="NM">New Mexico</option>
-															<option value="ND">North Dakota</option>
-															<option value="UT">Utah</option>
-															<option value="WY">Wyoming</option>
-															<option value="AL">Alabama</option>
-															<option value="AR">Arkansas</option>
-															<option value="IL">Illinois</option>
-															<option value="IA">Iowa</option>
-															<option value="KS">Kansas</option>
-															<option value="KY">Kentucky</option>
-															<option value="LA">Louisiana</option>
-															<option value="MN">Minnesota</option>
-															<option value="MS">Mississippi</option>
-															<option value="MO">Missouri</option>
-															<option value="OK">Oklahoma</option>
-															<option value="SD">South Dakota</option>
-															<option value="TX">Texas</option>
-															<option value="TN">Tennessee</option>
-															<option value="WI">Wisconsin</option>
-															<option value="CT">Connecticut</option>
-															<option value="DE">Delaware</option>
-															<option value="FL">Florida</option>
-															<option value="GA">Georgia</option>
-															<option value="IN">Indiana</option>
-															<option value="ME">Maine</option>
-															<option value="MD">Maryland</option>
-															<option value="MA">Massachusetts</option>
-															<option value="MI" selected="selected">Michigan</option>
-															<option value="NH">New Hampshire</option>
-															<option value="NJ">New Jersey</option>
-															<option value="NY">New York</option>
-															<option value="NC">North Carolina</option>
-															<option value="OH">Ohio</option>
-															<option value="PA">Pennsylvania</option>
-															<option value="RI">Rhode Island</option>
-															<option value="SC">South Carolina</option>
-															<option value="VT">Vermont</option>
-															<option value="VA">Virginia</option>
-															<option value="WV">West Virginia</option>
-													</select>
-				
-												</div>
-				
-											</fieldset>
-				
-											
-										</form>
-				
+									<div class="widget-body no-padding">
+										
+											<textarea name="ckeditor">
+												&lt;h1&gt;&lt;img alt="Saturn V carrying Apollo 11" class="right" src="img/demo/sample.jpg"/&gt; Apollo 11&lt;/h1&gt; &lt;p&gt;&lt;b&gt;Apollo 11&lt;/b&gt; was the spaceflight that landed the first humans, Americans &lt;a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong"&gt;Neil Armstrong&lt;/a&gt; and &lt;a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin"&gt;Buzz Aldrin&lt;/a&gt;, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.&lt;/p&gt; &lt;p&gt;Armstrong spent about &lt;strike&gt;three and a half&lt;/strike&gt; two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&amp;nbsp;kg) of lunar material for return to Earth. A third member of the mission, &lt;a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)" title="Michael Collins (astronaut)"&gt;Michael Collins&lt;/a&gt;, piloted the &lt;a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module" title="Apollo Command/Service Module"&gt;command&lt;/a&gt; spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.&lt;/p&gt; &lt;h2&gt;Broadcasting and &lt;em&gt;quotes&lt;/em&gt; &lt;a id="quotes" name="quotes"&gt;&lt;/a&gt;&lt;/h2&gt; &lt;p&gt;Broadcast on live TV to a world-wide audience, Armstrong stepped onto the lunar surface and described the event as:&lt;/p&gt; &lt;blockquote&gt;&lt;p&gt;One small step for [a] man, one giant leap for mankind.&lt;/p&gt;&lt;/blockquote&gt; &lt;p&gt;Apollo 11 effectively ended the &lt;a href="http://en.wikipedia.org/wiki/Space_Race" title="Space Race"&gt;Space Race&lt;/a&gt; and fulfilled a national goal proposed in 1961 by the late U.S. President &lt;a href="http://en.wikipedia.org/wiki/John_F._Kennedy" title="John F. Kennedy"&gt;John F. Kennedy&lt;/a&gt; in a speech before the United States Congress:&lt;/p&gt; &lt;blockquote&gt;&lt;p&gt;[...] before this decade is out, of landing a man on the Moon and returning him safely to the Earth.&lt;/p&gt;&lt;/blockquote&gt; &lt;h2&gt;Technical details &lt;a id="tech-details" name="tech-details"&gt;&lt;/a&gt;&lt;/h2&gt; &lt;table align="right" border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;margin:10px 0 10px 15px;"&gt; &lt;caption&gt;&lt;strong&gt;Mission crew&lt;/strong&gt;&lt;/caption&gt; &lt;thead&gt; &lt;tr&gt; &lt;th scope="col"&gt;Position&lt;/th&gt; &lt;th scope="col"&gt;Astronaut&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td&gt;Commander&lt;/td&gt; &lt;td&gt;Neil A. Armstrong&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Command Module Pilot&lt;/td&gt; &lt;td&gt;Michael Collins&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Lunar Module Pilot&lt;/td&gt; &lt;td&gt;Edwin &amp;quot;Buzz&amp;quot; E. Aldrin, Jr.&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;p&gt;Launched by a &lt;strong&gt;Saturn V&lt;/strong&gt; rocket from &lt;a href="http://en.wikipedia.org/wiki/Kennedy_Space_Center" title="Kennedy Space Center"&gt;Kennedy Space Center&lt;/a&gt; in Merritt Island, Florida on July 16, Apollo 11 was the fifth manned mission of &lt;a href="http://en.wikipedia.org/wiki/NASA" title="NASA"&gt;NASA&lt;/a&gt;&amp;#39;s Apollo program. The Apollo spacecraft had three parts:&lt;/p&gt; &lt;ol&gt; &lt;li&gt;&lt;strong&gt;Command Module&lt;/strong&gt; with a cabin for the three astronauts which was the only part which landed back on Earth&lt;/li&gt; &lt;li&gt;&lt;strong&gt;Service Module&lt;/strong&gt; which supported the Command Module with propulsion, electrical power, oxygen and water&lt;/li&gt; &lt;li&gt;&lt;strong&gt;Lunar Module&lt;/strong&gt; for landing on the Moon.&lt;/li&gt; &lt;/ol&gt; &lt;p&gt;After being sent to the Moon by the Saturn V&amp;#39;s upper stage, the astronauts separated the spacecraft from it and travelled for three days until they entered into lunar orbit. Armstrong and Aldrin then moved into the Lunar Module and landed in the &lt;a href="http://en.wikipedia.org/wiki/Mare_Tranquillitatis" title="Mare Tranquillitatis"&gt;Sea of Tranquility&lt;/a&gt;. They stayed a total of about 21 and a half hours on the lunar surface. After lifting off in the upper part of the Lunar Module and rejoining Collins in the Command Module, they returned to Earth and landed in the &lt;a href="http://en.wikipedia.org/wiki/Pacific_Ocean" title="Pacific Ocean"&gt;Pacific Ocean&lt;/a&gt; on July 24.&lt;/p&gt; &lt;hr/&gt; &lt;p style="text-align: right;"&gt;&lt;small&gt;Source: &lt;a href="http://en.wikipedia.org/wiki/Apollo_11"&gt;Wikipedia.org&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+				                			</textarea>						
+										
 									</div>
 									<!-- end widget content -->
-									<div class="widget-body">
-				
-										<form class="">
-				
-											<fieldset>
-				
-												<div class="form-group">
-													<label>Partners</label>
-													<select multiple style="width:100%" class="select2">
-															<option value="AK">Alaska</option>
-															<option value="HI">Hawaii</option>
-															<option value="CA">California</option>
-															<option value="NV" selected="selected">Nevada</option>
-															<option value="OR">Oregon</option>
-															<option value="WA">Washington</option>
-															<option value="AZ">Arizona</option>
-															<option value="CO">Colorado</option>
-															<option value="ID">Idaho</option>
-															<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
-															<option value="NM">New Mexico</option>
-															<option value="ND">North Dakota</option>
-															<option value="UT">Utah</option>
-															<option value="WY">Wyoming</option>
-															<option value="AL">Alabama</option>
-															<option value="AR">Arkansas</option>
-															<option value="IL">Illinois</option>
-															<option value="IA">Iowa</option>
-															<option value="KS">Kansas</option>
-															<option value="KY">Kentucky</option>
-															<option value="LA">Louisiana</option>
-															<option value="MN">Minnesota</option>
-															<option value="MS">Mississippi</option>
-															<option value="MO">Missouri</option>
-															<option value="OK">Oklahoma</option>
-															<option value="SD">South Dakota</option>
-															<option value="TX">Texas</option>
-															<option value="TN">Tennessee</option>
-															<option value="WI">Wisconsin</option>
-															<option value="CT">Connecticut</option>
-															<option value="DE">Delaware</option>
-															<option value="FL">Florida</option>
-															<option value="GA">Georgia</option>
-															<option value="IN">Indiana</option>
-															<option value="ME">Maine</option>
-															<option value="MD">Maryland</option>
-															<option value="MA">Massachusetts</option>
-															<option value="MI" selected="selected">Michigan</option>
-															<option value="NH">New Hampshire</option>
-															<option value="NJ">New Jersey</option>
-															<option value="NY">New York</option>
-															<option value="NC">North Carolina</option>
-															<option value="OH">Ohio</option>
-															<option value="PA">Pennsylvania</option>
-															<option value="RI">Rhode Island</option>
-															<option value="SC">South Carolina</option>
-															<option value="VT">Vermont</option>
-															<option value="VA">Virginia</option>
-															<option value="WV">West Virginia</option>
-													</select>
-				
-												</div>
-				
-											</fieldset>
-				
-											
-										</form>
-				
-									</div>
-									<div class="widget-body">
-				
-										<form class="">
-				
-											<fieldset>
-				
-												<div class="form-group">
-													<label>Buyers</label>
-													<select multiple style="width:100%" class="select2">
-															<option value="AK">Alaska</option>
-															<option value="HI">Hawaii</option>
-															<option value="CA">California</option>
-															<option value="NV" selected="selected">Nevada</option>
-															<option value="OR">Oregon</option>
-															<option value="WA">Washington</option>
-															<option value="AZ">Arizona</option>
-															<option value="CO">Colorado</option>
-															<option value="ID">Idaho</option>
-															<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
-															<option value="NM">New Mexico</option>
-															<option value="ND">North Dakota</option>
-															<option value="UT">Utah</option>
-															<option value="WY">Wyoming</option>
-															<option value="AL">Alabama</option>
-															<option value="AR">Arkansas</option>
-															<option value="IL">Illinois</option>
-															<option value="IA">Iowa</option>
-															<option value="KS">Kansas</option>
-															<option value="KY">Kentucky</option>
-															<option value="LA">Louisiana</option>
-															<option value="MN">Minnesota</option>
-															<option value="MS">Mississippi</option>
-															<option value="MO">Missouri</option>
-															<option value="OK">Oklahoma</option>
-															<option value="SD">South Dakota</option>
-															<option value="TX">Texas</option>
-															<option value="TN">Tennessee</option>
-															<option value="WI">Wisconsin</option>
-															<option value="CT">Connecticut</option>
-															<option value="DE">Delaware</option>
-															<option value="FL">Florida</option>
-															<option value="GA">Georgia</option>
-															<option value="IN">Indiana</option>
-															<option value="ME">Maine</option>
-															<option value="MD">Maryland</option>
-															<option value="MA">Massachusetts</option>
-															<option value="MI" selected="selected">Michigan</option>
-															<option value="NH">New Hampshire</option>
-															<option value="NJ">New Jersey</option>
-															<option value="NY">New York</option>
-															<option value="NC">North Carolina</option>
-															<option value="OH">Ohio</option>
-															<option value="PA">Pennsylvania</option>
-															<option value="RI">Rhode Island</option>
-															<option value="SC">South Carolina</option>
-															<option value="VT">Vermont</option>
-															<option value="VA">Virginia</option>
-															<option value="WV">West Virginia</option>
-													</select>
-				
-												</div>
-				
-											</fieldset>
-				
-											
-										</form>
-				
-									</div>
-									<div class="widget-body">
-				
-										<form class="">
-				
-											<fieldset>
-				
-												<div class="form-group">
-													<label>BackUpCompany</label>
-													<select multiple style="width:100%" class="select2">
-															<option value="AK">Alaska</option>
-															<option value="HI">Hawaii</option>
-															<option value="CA">California</option>
-															<option value="NV" selected="selected">Nevada</option>
-															<option value="OR">Oregon</option>
-															<option value="WA">Washington</option>
-															<option value="AZ">Arizona</option>
-															<option value="CO">Colorado</option>
-															<option value="ID">Idaho</option>
-															<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
-															<option value="NM">New Mexico</option>
-															<option value="ND">North Dakota</option>
-															<option value="UT">Utah</option>
-															<option value="WY">Wyoming</option>
-															<option value="AL">Alabama</option>
-															<option value="AR">Arkansas</option>
-															<option value="IL">Illinois</option>
-															<option value="IA">Iowa</option>
-															<option value="KS">Kansas</option>
-															<option value="KY">Kentucky</option>
-															<option value="LA">Louisiana</option>
-															<option value="MN">Minnesota</option>
-															<option value="MS">Mississippi</option>
-															<option value="MO">Missouri</option>
-															<option value="OK">Oklahoma</option>
-															<option value="SD">South Dakota</option>
-															<option value="TX">Texas</option>
-															<option value="TN">Tennessee</option>
-															<option value="WI">Wisconsin</option>
-															<option value="CT">Connecticut</option>
-															<option value="DE">Delaware</option>
-															<option value="FL">Florida</option>
-															<option value="GA">Georgia</option>
-															<option value="IN">Indiana</option>
-															<option value="ME">Maine</option>
-															<option value="MD">Maryland</option>
-															<option value="MA">Massachusetts</option>
-															<option value="MI" selected="selected">Michigan</option>
-															<option value="NH">New Hampshire</option>
-															<option value="NJ">New Jersey</option>
-															<option value="NY">New York</option>
-															<option value="NC">North Carolina</option>
-															<option value="OH">Ohio</option>
-															<option value="PA">Pennsylvania</option>
-															<option value="RI">Rhode Island</option>
-															<option value="SC">South Carolina</option>
-															<option value="VT">Vermont</option>
-															<option value="VA">Virginia</option>
-															<option value="WV">West Virginia</option>
-													</select>
-				
-												</div>
-				
-											</fieldset>
-				
-											
-										</form>
-				
-									</div>
-									<div class="widget-body">
-				
-										<form class="">
-				
-											<fieldset>
-				
-												<div class="form-group">
-													<label>OSM Model Dependency</label>
-													<select multiple style="width:100%" class="select2">
-															<option value="AK">Alaska</option>
-															<option value="HI">Hawaii</option>
-															<option value="CA">California</option>
-															<option value="NV" selected="selected">Nevada</option>
-															<option value="OR">Oregon</option>
-															<option value="WA">Washington</option>
-															<option value="AZ">Arizona</option>
-															<option value="CO">Colorado</option>
-															<option value="ID">Idaho</option>
-															<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
-															<option value="NM">New Mexico</option>
-															<option value="ND">North Dakota</option>
-															<option value="UT">Utah</option>
-															<option value="WY">Wyoming</option>
-															<option value="AL">Alabama</option>
-															<option value="AR">Arkansas</option>
-															<option value="IL">Illinois</option>
-															<option value="IA">Iowa</option>
-															<option value="KS">Kansas</option>
-															<option value="KY">Kentucky</option>
-															<option value="LA">Louisiana</option>
-															<option value="MN">Minnesota</option>
-															<option value="MS">Mississippi</option>
-															<option value="MO">Missouri</option>
-															<option value="OK">Oklahoma</option>
-															<option value="SD">South Dakota</option>
-															<option value="TX">Texas</option>
-															<option value="TN">Tennessee</option>
-															<option value="WI">Wisconsin</option>
-															<option value="CT">Connecticut</option>
-															<option value="DE">Delaware</option>
-															<option value="FL">Florida</option>
-															<option value="GA">Georgia</option>
-															<option value="IN">Indiana</option>
-															<option value="ME">Maine</option>
-															<option value="MD">Maryland</option>
-															<option value="MA">Massachusetts</option>
-															<option value="MI" selected="selected">Michigan</option>
-															<option value="NH">New Hampshire</option>
-															<option value="NJ">New Jersey</option>
-															<option value="NY">New York</option>
-															<option value="NC">North Carolina</option>
-															<option value="OH">Ohio</option>
-															<option value="PA">Pennsylvania</option>
-															<option value="RI">Rhode Island</option>
-															<option value="SC">South Carolina</option>
-															<option value="VT">Vermont</option>
-															<option value="VA">Virginia</option>
-															<option value="WV">West Virginia</option>
-													</select>
-				
-												</div>
-				
-											</fieldset>
-				
-											
-										</form>
-				
-									</div>
+									
 								</div>
 								<!-- end widget div -->
-				
+								
 							</div>
 							<!-- end widget -->
 				
 						</article>
+						<!-- WIDGET END -->
 						
-						
-						
-						
-						
-						</div>
-				
-							</div>
-				
-				
 					</div>
-				
-				</div>
+					
+					
 					<div class="row">
 				
 						<!-- NEW WIDGET START -->
-						<article class="col-sd-6">
+						<article class="col-sd-12">
 				
 							<!-- Widget ID (each widget will need unique ID)-->
 							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
@@ -1080,7 +771,7 @@
 										<div class="row">
 
 											<!-- NEW WIDGET START -->
-											<article class="col-sm-6">
+											<article class="col-sm-12">
 									
 												
 												
@@ -1118,7 +809,7 @@
 														<!-- widget content -->
 														<div class="widget-body">
 									
-															<form action="upload.php" class="dropzone" id="marketingdropzone"></form>
+															<form action="upload.php" class="dropzone" id="termscondition"></form>
 									
 														</div>
 														<!-- end widget content -->
@@ -1131,57 +822,6 @@
 									
 											</article>
 											<!-- WIDGET END -->
-											<article class="col-sm-6">
-									
-												
-												
-												<!-- Widget ID (each widget will need unique ID)-->
-												<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
-													<!-- widget options:
-													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-									
-													data-widget-colorbutton="false"
-													data-widget-editbutton="false"
-													data-widget-togglebutton="false"
-													data-widget-deletebutton="false"
-													data-widget-fullscreenbutton="false"
-													data-widget-custombutton="false"
-													data-widget-collapsed="true"
-													data-widget-sortable="false"
-									
-													-->
-													<header>
-														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-														<h2>DropBox</h2>
-									
-													</header>
-									
-													<!-- widget div-->
-													<div>
-									
-														<!-- widget edit box -->
-														<div class="jarviswidget-editbox">
-															<!-- This area used as dropdown edit box -->
-									
-														</div>
-														<!-- end widget edit box -->
-									
-														<!-- widget content -->
-														<div class="widget-body">
-									
-															<form action="upload.php" class="dropzone" id="dropbox"></form>
-									
-														</div>
-														<!-- end widget content -->
-									
-													</div>
-													<!-- end widget div -->
-									
-												</div>
-												<!-- end widget -->
-									
-											</article>
-									
 										</div>
 									</div>
 									<!-- end widget content -->
@@ -1433,6 +1073,20 @@
 		<script src="<c:url value='/resources/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js' />"></script>
 		<script src="<c:url value='/resources/js/plugin/fuelux/wizard/wizard.min.js' />"></script>
 		
+		<script src="<c:url value='/resources/js/plugin/ckeditor/ckeditor.js' />"></script>
+		<!-- <script src="js/plugin/ckeditor/ckeditor.js"></script> -->
+		
+		<script src="<c:url value='/resources/js/plugin/datatables/jquery.dataTables.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/jquery.dataTables.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.colVis.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.colVis.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.tableTools.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.tableTools.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.bootstrap.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.bootstrap.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatable-responsive/datatables.responsive.min.js' />"></script>
+		<!-- <script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script> -->
+		
 
 		<script type="text/javascript">
 		
@@ -1475,7 +1129,7 @@
 				}
 			
 			Dropzone.autoDiscover = false;
-			$("#marketingdropzone").dropzone({
+			$("#termscondition").dropzone({
 				url: "file?",
 				paramName: "file",		
 				addRemoveLinks : true,
@@ -1485,7 +1139,7 @@
 			});
 			
 			Dropzone.autoDiscover = false;
-			$("#dropbox").dropzone({
+			$("#dropboxinvest").dropzone({
 				url: "file?",
 				paramName: "file",		
 				addRemoveLinks : true,
@@ -1503,6 +1157,18 @@
 				 alert(formData);
 				
 			}
+			
+			 CKEDITOR.replace( 'ckeditor', {
+					height: 300,
+					startupFocus : true,
+					// Configure your file manager integration. This example uses CKFinder 3 for PHP.
+					filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+					filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
+					filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+					filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+				} );
+			 
+			 
 				
 			  
 			  $('#finishCourse').click(function(){
@@ -1534,10 +1200,13 @@
 			      }); */
 			    });
 			  
-			 
+			  
+			  
 
-		
+
 		})
+		
+		
 
 		</script>
 		
