@@ -1,16 +1,19 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*,com.fliker.Repository.*,org.springframework.ui.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
 		<meta charset="utf-8">
-		<title>Selling Option</title>
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+		<title> New Project </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		
+
 		<!-- #CSS Links -->
 		<!-- Basic Styles -->
 		<link href='<c:url value="/resources/css/bootstrap.min.css" />' rel="stylesheet">
@@ -28,7 +31,7 @@
 
 		<!-- SmartAdmin RTL Support -->
 		<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> --> 
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">  -->
 
 		<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
@@ -50,9 +53,9 @@
 		<!-- #APP SCREEN / ICONS -->
 		<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-			 <link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">
+		<link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">	 
 		<!-- <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon" sizes="76x76">
+		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon">
 		<!-- <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png"> -->
 		<link href='<c:url value="/resources/img/splash/touch-icon-iphone-retina.png" />' rel="apple-touch-icon" sizes="120x120">
 		<!-- <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png"> -->
@@ -64,15 +67,15 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<!-- Startup image for web apps -->
+<!-- 		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-landscape.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
-		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
-		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
+		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
+		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
 
 	</head>
-
+	
 	<!--
 
 	TABLE OF CONTENTS.
@@ -92,11 +95,12 @@
 	|  09. #MOBILE                   |  mobile view dropdown          |
 	|  10. #SEARCH                   |  search field                  |
 	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #MAIN PANEL               |  main panel                    |
-	|  13. #MAIN CONTENT             |  content holder                |
-	|  14. #PAGE FOOTER              |  page footer                   |
-	|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  16. #PLUGINS                  |  all scripts and plugins       |
+	|  12. #RIGHT PANEL              |  right panel userlist          |
+	|  13. #MAIN PANEL               |  main panel                    |
+	|  14. #MAIN CONTENT             |  content holder                |
+	|  15. #PAGE FOOTER              |  page footer                   |
+	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  17. #PLUGINS                  |  all scripts and plugins       |
 	
 	===================================================================
 	
@@ -116,14 +120,14 @@
 		* 'fixed-page-footer' - Fixes footer
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
-	<body class="">
+	<body class="" onload="geoFindMe()">
 
-		<!-- #HEADER -->
+		<!-- HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
+				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -171,27 +175,28 @@
 			</div>
 
 			<!-- projects dropdown -->
-	<div class="project-context hidden-xs">
+			<div class="project-context hidden-xs" >
 
-		<span class="label">Projects:</span> <span
-			class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
-			projects <i class="fa fa-angle-down"></i>
-		</span>
+				<span class="label">Projects:</span>
+				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
 
-		<!-- Suggestion: populate this list with fetch and push technique -->
-		<ul class="dropdown-menu" style="border: 1px solid black">
-			<h5>Daily Note</h5>
-			<li><textarea id="notemessage" class="form-control"
-					name="notemessage" rows="3" style="width: 400px"></textarea></li>
+				<!-- Suggestion: populate this list with fetch and push technique -->
+				<ul class="dropdown-menu" style="border: 1px solid black">
+					<h5>Daily Note</h5>
+					<li>
+						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
+					</li>
+					
+					<li class="divider"></li>
+					<li>
+						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
+					</li>
+				</ul>
+				<!-- end dropdown-menu-->
 
-			<li class="divider"></li>
-			<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
-					Note Down</a></li>
-		</ul>
-		<!-- end dropdown-menu-->
-
-	</div>
-	<!-- end projects dropdown -->
+			</div>
+			
+			<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
 			<div class="pull-right">
@@ -235,7 +240,7 @@
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+					<span> <a href="logout?" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
 				<!-- end logout button -->
 
@@ -244,6 +249,38 @@
 					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
 				</div>
 				<!-- end search mobile button -->
+
+				<!-- input: search field -->
+				<form action="searchresults?" class="header-search pull-right">
+					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
+					"ActionScript",
+					"AppleScript",
+					"Asp",
+					"BASIC",
+					"C",
+					"C++",
+					"Clojure",
+					"COBOL",
+					"ColdFusion",
+					"Erlang",
+					"Fortran",
+					"Groovy",
+					"Haskell",
+					"Java",
+					"JavaScript",
+					"Lisp",
+					"Perl",
+					"PHP",
+					"Python",
+					"Ruby",
+					"Scala",
+					"Scheme"]'>
+					<button type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+				</form>
+				<!-- end input: search field -->
 
 				<!-- fullscreen button -->
 				<div id="fullscreen" class="btn-header transparent pull-right">
@@ -318,59 +355,25 @@
 		</header>
 		<!-- END HEADER -->
 
-		<!-- #NAVIGATION -->
 		<!-- Left panel : Navigation area -->
 		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<%
-		
-			String fullname = (String)request.getAttribute("FullName");
-			String gender = (String)request.getAttribute("Gender");
-			String imageid = (String)request.getAttribute("ProfileImage");
-			String logo = "";
-			
-			
-		
-		%>
-
-
-		<!-- User info -->
-
-		<%
-		/* if(imageid == ""){
-			if(gender.equalsIgnoreCase("female")){
-				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
-			}else{
-				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
-			}
-		}else{
-			
-		} */
-		
-		
-		%>
-		<div class="login-info">
-			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
-
-				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <%if(imageid == ""){
-					if(gender.equalsIgnoreCase("female")){
-						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
-					alt="me" class="online" /> <%
-					}else{
-						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
-					alt="me" class="online" /> <% 
-					}
-				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
-				</span> <i class="fa fa-angle-down"></i>
-			</a>
-
-			</span>
-		</div>
-		<!-- end user info -->
-			
+			<div class="login-info">
+				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
+					
+					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
+						<span>
+							john.doe 
+						</span>
+						<i class="fa fa-angle-down"></i>
+					</a> 
+					
+				</span>
+			</div>
+			<!-- end user info -->
 
 			<nav>
 				<!-- 
@@ -390,10 +393,10 @@
 		<li class="active"><a href="#"><i class="fa fa-lg fa-fw fa-info"></i>
 				<span class="menu-item-parent">Project Selling</span></a>
 				<ul>
-					<li class="active"><a href="sellingoptions?" title="Project Selling Plans"><i
+					<li class=""><a href="sellingoptions?" title="Project Selling Plans"><i
 							class="fa fa-tags"></i><span class="menu-item-parent">Project Selling Plans</span></a>
 					</li>
-					<li class=""><a href="osmprojectsellernew?" title="Project Selling Info"><i
+					<li class="active"><a href="osmprojectsellernew?" title="Project Selling Info"><i
 					class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Project Selling Info</span></a>
 					</li>
 				</ul>
@@ -409,6 +412,11 @@
 					</li>
 				</ul>
 		</li>
+		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+				<span class="menu-item-parent">Project Resource Info</span></a></li>
+		<!-- <li><a href="classroom?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+		</li> -->
 		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Project</span></a>
 			<ul>
@@ -545,10 +553,10 @@
 						<i class="fa fa-refresh"></i>
 					</span> 
 				</span>
-
+				
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Search Page</li>
+					<li>Project Info</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -568,366 +576,248 @@
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
+					<div class="row" style="border: 1px black">
+					
+							<div class="col-xs-12 col-sm-7 col-md-7 col-lg-2">
+									<img src="https://wallpaperbrowse.com/media/images/CMS_Creative_164657191_Kingfisher.jpg" data-img="https://wallpaperbrowse.com/media/images/CMS_Creative_164657191_Kingfisher.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img" >
+							</div>
+							<!-- col -->
+							<div class="col-xs-12 col-sm-5 col-md-5 col-lg-10">
+								<!-- sparks -->
+								<ul id="sparks">
+									<li class="sparks-info">
+										<h5>Demand<span class="txt-color-blue">$47,171</span></h5>
+										<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+											1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+										</div>
+									</li>
+									<li class="sparks-info">
+										<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45</span></h5>
+									</li>
+									<li class="sparks-info">
+										<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;2447</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Investors <span class="txt-color-greenDark"><i class="fa fa-money" id='investors' ></i>&nbsp;5</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Buyers <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;10</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Resources <span class="txt-color-greenDark"><i class="fa fa-group" id='investors' ></i>&nbsp;21</span></h5>
+									</li>
+									<li class="sparks-info" >
+										<h5> Request Resource <span class="txt-color-greenDark"><i class="fa fa-child" id='investors' ></i>&nbsp;11</span></h5>
+									</li>
+								</ul>
+								<!-- end sparks -->
+							</div>
+							<!-- end col -->
+		
+						</div>
+				
+				<div class="alert alert-danger alert-block">
+								<a class="close" data-dismiss="alert" href="#">�</a>
+								
+				
+				</div>
+				
+				
+				<hr><hr>
+				<div class="row">
+								
+					<div class="col-sm-12">
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon">Project Link</span> <input
+									class="form-control input-lg"
+									placeholder="projectname" type="text" name="course"
+									id="projectlink">
 
-				<!-- row -->
+							</div>
+						</div>
+
+					</div>
+				</div>
 				
 				<div class="row">
+						
+						<!-- NEW WIDGET START -->
+						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				
-					<div class="col-sm-12">
-				
-						<ul id="myTab1" class="nav nav-tabs bordered">
-							<li class="active">
-								<a href="#s1" data-toggle="tab">Selling Option</a>
-							</li>
-							<li class="">
-								<a href="#s2" data-toggle="tab">Histort</a>
-							</li>
 							
-						</ul>
-				
-						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
-							<div class="tab-pane fade in active" id="s1">
-								<div class="row" style="border: 1px black">
-					
-								<div class="col-xs-12 col-sm-7 col-md-7 col-lg-2">
-										<img src="https://wallpaperbrowse.com/media/images/CMS_Creative_164657191_Kingfisher.jpg" data-img="https://wallpaperbrowse.com/media/images/CMS_Creative_164657191_Kingfisher.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img" >
-								</div>
-								<!-- col -->
-								<div class="col-xs-12 col-sm-5 col-md-5 col-lg-10">
-									<!-- sparks -->
-									<ul id="sparks">
-										<li class="sparks-info">
-											<h5>Demand<span class="txt-color-blue">$47,171</span></h5>
-											<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-												1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-											</div>
-										</li>
-										<li class="sparks-info">
-											<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45</span></h5>
-										</li>
-										<li class="sparks-info">
-											<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;2447</span></h5>
-										</li>
-										<li class="sparks-info" >
-											<h5> Investors <span class="txt-color-greenDark"><i class="fa fa-money" id='investors' ></i>&nbsp;5</span></h5>
-										</li>
-										<li class="sparks-info" >
-											<h5> Buyers <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;10</span></h5>
-										</li>
-										<li class="sparks-info" >
-											<h5> Resources <span class="txt-color-greenDark"><i class="fa fa-group" id='investors' ></i>&nbsp;21</span></h5>
-										</li>
-										<li class="sparks-info" >
-											<h5> Request Resource <span class="txt-color-greenDark"><i class="fa fa-child" id='investors' ></i>&nbsp;11</span></h5>
-										</li>
-									</ul>
-									<!-- end sparks -->
-								</div>
-								<!-- end col -->
-			
-							</div>
-							<hr>
-							<div class="row">
-
-								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-									<div class="col-sm-4">
+							
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
+								<!-- widget options:
+									usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 									
-									<button class="btn btn-primary" data-toggle="modal" data-target="#serviceModal">
-														Provide As Service
-													</button>
-									</div>
-									<div class="col-sm-4">				
-									<button class="btn btn-primary " data-toggle="modal" data-target="#productModal">
-														Provide As Product
-													</button>
-									</div>
-									<div class="col-sm-4">				
-									<button class="btn btn-primary " data-toggle="modal" data-target="#caseModal">
-														Provide As Case Specific
-													</button>
-									</div>				
-								</div>
-			
-							</div>
-							<hr><hr>
-							
-							<div class="row">
-								<div class="search-results clearfix smart-form">
-									<div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Oct 1, 2006 - Uploaded by 02842356107
-											<br>
-											<br>
-											<a href="javascript:void(0)" class="btn btn-default btn-xs">Edit</a>
-										</p>
-									</div>
+									data-widget-colorbutton="false"	
+									data-widget-editbutton="false"
+									data-widget-togglebutton="false"
+									data-widget-deletebutton="false"
+									data-widget-fullscreenbutton="false"
+									data-widget-custombutton="false"
+									data-widget-collapsed="true" 
+									data-widget-sortable="false"
+									
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+									<h2>Project Description</h2>				
+									
+								</header>
 				
-								</div>
-								</div>
-							
-							</div>
-							
-							
-							</div>
-							<div class="tab-pane fade" id="s2">
-								<section id="widget-grid" class="">
-
-									<!-- row -->
-									<div class="row">
+								<!-- widget div-->
+								<div>
+									
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
 										
-										<!-- NEW WIDGET START -->
-										<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-											
-											<div class="alert alert-info">
-												<strong>NOTE:</strong> All the data is loaded from a seperate JSON file
-											</div>
+									</div>
+									<!-- end widget edit box -->
+									
+									<!-- widget content -->
+									<div class="widget-body no-padding">
+										
+											<textarea name="ckeditor">
+												&lt;h1&gt;&lt;img alt="Saturn V carrying Apollo 11" class="right" src="img/demo/sample.jpg"/&gt; Apollo 11&lt;/h1&gt; &lt;p&gt;&lt;b&gt;Apollo 11&lt;/b&gt; was the spaceflight that landed the first humans, Americans &lt;a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong"&gt;Neil Armstrong&lt;/a&gt; and &lt;a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin"&gt;Buzz Aldrin&lt;/a&gt;, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.&lt;/p&gt; &lt;p&gt;Armstrong spent about &lt;strike&gt;three and a half&lt;/strike&gt; two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&amp;nbsp;kg) of lunar material for return to Earth. A third member of the mission, &lt;a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)" title="Michael Collins (astronaut)"&gt;Michael Collins&lt;/a&gt;, piloted the &lt;a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module" title="Apollo Command/Service Module"&gt;command&lt;/a&gt; spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.&lt;/p&gt; &lt;h2&gt;Broadcasting and &lt;em&gt;quotes&lt;/em&gt; &lt;a id="quotes" name="quotes"&gt;&lt;/a&gt;&lt;/h2&gt; &lt;p&gt;Broadcast on live TV to a world-wide audience, Armstrong stepped onto the lunar surface and described the event as:&lt;/p&gt; &lt;blockquote&gt;&lt;p&gt;One small step for [a] man, one giant leap for mankind.&lt;/p&gt;&lt;/blockquote&gt; &lt;p&gt;Apollo 11 effectively ended the &lt;a href="http://en.wikipedia.org/wiki/Space_Race" title="Space Race"&gt;Space Race&lt;/a&gt; and fulfilled a national goal proposed in 1961 by the late U.S. President &lt;a href="http://en.wikipedia.org/wiki/John_F._Kennedy" title="John F. Kennedy"&gt;John F. Kennedy&lt;/a&gt; in a speech before the United States Congress:&lt;/p&gt; &lt;blockquote&gt;&lt;p&gt;[...] before this decade is out, of landing a man on the Moon and returning him safely to the Earth.&lt;/p&gt;&lt;/blockquote&gt; &lt;h2&gt;Technical details &lt;a id="tech-details" name="tech-details"&gt;&lt;/a&gt;&lt;/h2&gt; &lt;table align="right" border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;margin:10px 0 10px 15px;"&gt; &lt;caption&gt;&lt;strong&gt;Mission crew&lt;/strong&gt;&lt;/caption&gt; &lt;thead&gt; &lt;tr&gt; &lt;th scope="col"&gt;Position&lt;/th&gt; &lt;th scope="col"&gt;Astronaut&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td&gt;Commander&lt;/td&gt; &lt;td&gt;Neil A. Armstrong&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Command Module Pilot&lt;/td&gt; &lt;td&gt;Michael Collins&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Lunar Module Pilot&lt;/td&gt; &lt;td&gt;Edwin &amp;quot;Buzz&amp;quot; E. Aldrin, Jr.&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;p&gt;Launched by a &lt;strong&gt;Saturn V&lt;/strong&gt; rocket from &lt;a href="http://en.wikipedia.org/wiki/Kennedy_Space_Center" title="Kennedy Space Center"&gt;Kennedy Space Center&lt;/a&gt; in Merritt Island, Florida on July 16, Apollo 11 was the fifth manned mission of &lt;a href="http://en.wikipedia.org/wiki/NASA" title="NASA"&gt;NASA&lt;/a&gt;&amp;#39;s Apollo program. The Apollo spacecraft had three parts:&lt;/p&gt; &lt;ol&gt; &lt;li&gt;&lt;strong&gt;Command Module&lt;/strong&gt; with a cabin for the three astronauts which was the only part which landed back on Earth&lt;/li&gt; &lt;li&gt;&lt;strong&gt;Service Module&lt;/strong&gt; which supported the Command Module with propulsion, electrical power, oxygen and water&lt;/li&gt; &lt;li&gt;&lt;strong&gt;Lunar Module&lt;/strong&gt; for landing on the Moon.&lt;/li&gt; &lt;/ol&gt; &lt;p&gt;After being sent to the Moon by the Saturn V&amp;#39;s upper stage, the astronauts separated the spacecraft from it and travelled for three days until they entered into lunar orbit. Armstrong and Aldrin then moved into the Lunar Module and landed in the &lt;a href="http://en.wikipedia.org/wiki/Mare_Tranquillitatis" title="Mare Tranquillitatis"&gt;Sea of Tranquility&lt;/a&gt;. They stayed a total of about 21 and a half hours on the lunar surface. After lifting off in the upper part of the Lunar Module and rejoining Collins in the Command Module, they returned to Earth and landed in the &lt;a href="http://en.wikipedia.org/wiki/Pacific_Ocean" title="Pacific Ocean"&gt;Pacific Ocean&lt;/a&gt; on July 24.&lt;/p&gt; &lt;hr/&gt; &lt;p style="text-align: right;"&gt;&lt;small&gt;Source: &lt;a href="http://en.wikipedia.org/wiki/Apollo_11"&gt;Wikipedia.org&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+				                			</textarea>						
+										
+									</div>
+									<!-- end widget content -->
+									
+								</div>
+								<!-- end widget div -->
+								
+							</div>
+							<!-- end widget -->
 				
-											<!-- Widget ID (each widget will need unique ID)-->
-											<div class="jarviswidget well" id="wid-id-0">
-												<!-- widget options:
+						</article>
+						<!-- WIDGET END -->
+						
+					</div>
+					
+					
+					<div class="row">
+				
+						<!-- NEW WIDGET START -->
+						<article class="col-sd-12">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-check"></i> </span>
+									<h2>Docs</h2>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body">
+										<div class="row">
+
+											<!-- NEW WIDGET START -->
+											<article class="col-sm-12">
+									
+												
+												
+												<!-- Widget ID (each widget will need unique ID)-->
+												<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
+													<!-- widget options:
 													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-													
-													data-widget-colorbutton="false"	
+									
+													data-widget-colorbutton="false"
 													data-widget-editbutton="false"
 													data-widget-togglebutton="false"
 													data-widget-deletebutton="false"
 													data-widget-fullscreenbutton="false"
 													data-widget-custombutton="false"
-													data-widget-collapsed="true" 
+													data-widget-collapsed="true"
 													data-widget-sortable="false"
-													
-												-->
-												<header>
-													<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-													<h2>Widget Title </h2>				
-													
-												</header>
-				
-												<!-- widget div-->
-												<div>
-													
-													<!-- widget edit box -->
-													<div class="jarviswidget-editbox">
-														<!-- This area used as dropdown edit box -->
-														<input class="form-control" type="text">	
+									
+													-->
+													<header>
+														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
+														<h2>Marketing Doc</h2>
+									
+													</header>
+									
+													<!-- widget div-->
+													<div>
+									
+														<!-- widget edit box -->
+														<div class="jarviswidget-editbox">
+															<!-- This area used as dropdown edit box -->
+									
+														</div>
+														<!-- end widget edit box -->
+									
+														<!-- widget content -->
+														<div class="widget-body">
+									
+															<form action="upload.php" class="dropzone" id="termscondition"></form>
+									
+														</div>
+														<!-- end widget content -->
+									
 													</div>
-													<!-- end widget edit box -->
-													
-													<!-- widget content -->
-													<div class="widget-body no-padding">
-														
-														<table id="example" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-													        <thead>
-													            <tr>
-													                <th></th><th>Projects</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
-													                <th>Contacts</th>
-													                <th>Status</th>
-													                <th><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>
-													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
-													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
-													                <th>Tracker</th>
-													            </tr>
-													        </thead>
-													    </table>
-				
-													</div>
-													<!-- end widget content -->
-													
+													<!-- end widget div -->
+									
 												</div>
-												<!-- end widget div -->
-												
-											</div>
-											<!-- end widget -->
-				
-										</article>
-										<!-- WIDGET END -->
-										
-									</div>
-				
-									<!-- end row -->
-				
-									<!-- row -->
-				
-									<div class="row">
-				
-										<!-- a blank row to get started -->
-										<div class="col-sm-12">
-											<!-- your contents here -->
+												<!-- end widget -->
+									
+											</article>
+											<!-- WIDGET END -->
 										</div>
-											
 									</div>
+									<!-- end widget content -->
 				
-									<!-- end row -->
+								</div>
+								<!-- end widget div -->
 				
-								</section>
-							
 							</div>
-						</div>
+							<!-- end widget -->
+				
+						</article>
+						<!-- WIDGET END -->
+				
+						<!-- NEW WIDGET START -->
+						
+						<!-- WIDGET END -->
 				
 					</div>
 				
-				</div>
-				
-				<!-- end row -->
-
 			</div>
 			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="serviceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Provide As Service</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Service Name" required />
-										</div>
-										<div class="form-group">
-											<textarea class="form-control" placeholder="Service Points" rows="5" required></textarea>
-										</div>
-										<div class="input input-file">
-											<span class="button"><input id="file2" type="file" name="file2" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" placeholder="Include some files" readonly=""><button type="button" class="btn btn-default btn-sm">
-														Preview
-													</button>
-										</div>
-									</div>
-								</div>
-								
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="category"> Plan Type</label>
-											<select class="form-control" id="category">
-												<option>per/hour</option>
-												<option>per/usage</option>
-												<option>per/day</option>
-												<option>per/month</option>
-												<option>per/year</option>
-												<option>per/case</option>
-												<option>per/visit</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="tags"> Price</label>
-											<input type="text" class="form-control" id="price" placeholder="Price" />
-										</div>
-									</div>
-								</div>
-				
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary">
-									Create Plan Pricing
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
-				
-				<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Provide As Product</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Produt Name" required />
-										</div>
-										<div class="form-group">
-											<textarea class="form-control" placeholder="Product Contents" rows="5" required></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="tags"> Price</label>
-											<input type="text" class="form-control" id="tags" placeholder="Price" />
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary">
-									Create Product Pricing
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
-				
-				<div class="modal fade" id="caseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Case Based Selling</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Case Scenario" required />
-										</div>
-										<div class="form-group">
-											<textarea class="form-control" placeholder="Case Explaination as points" rows="5" required></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="tags">Price</label>
-											<input type="text" class="form-control" id="tags" placeholder="Price" />
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary">
-									Case Pricing
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
+
+			
+
+
+
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -935,10 +825,53 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin </span>
+					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> © 2014-2015</span>
 				</div>
 
-				
+				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
+					<div class="txt-color-white inline-block">
+						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
+						<div class="btn-group dropup">
+							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
+								<i class="fa fa-link"></i> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu pull-right text-left">
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Server Load</p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<button class="btn btn-block btn-default">refresh</button>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- END PAGE FOOTER -->
@@ -990,6 +923,8 @@
 				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
 			}
 		</script>
+		
+		
 
 		<!-- IMPORTANT: APP CONFIG -->
 		<script src="<c:url value='/resources/js/app.config.js' />"></script>
@@ -1067,7 +1002,54 @@
 		<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
+		
+		<script src="<c:url value='/resources/js/plugin/jqgrid/jquery.jqGrid.min.js' />"></script>
+		<!-- <script src="js/plugin/jqgrid/jquery.jqGrid.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/jqgrid/grid.locale-en.min.js' />"></script>
+		<!-- <script src="js/plugin/jqgrid/grid.locale-en.min.js"></script> -->
+		
+		<script src="<c:url value='/resources/js/clone-form-td-multiple.js' />"></script>
+		<!-- <script type="text/javascript" src="js/clone-form-td-multiple.js"></script> -->
+		
+		<script src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
 
+		<!--  PAGE RELATED PLUGIN(S) --> 
+		<script src="<c:url value='/resources/js/plugin/maxlength/bootstrap-maxlength.min.js' />"></script>
+		<!-- <script src="js/plugin/maxlength/bootstrap-maxlength.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js' />"></script>
+		<!-- <script src="js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/clockpicker/clockpicker.min.js' />"></script>
+		<!-- <script src="js/plugin/clockpicker/clockpicker.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js' />"></script>
+		<!-- <script src="js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/noUiSlider/jquery.nouislider.min.js' />"></script>
+		<!-- <script src="js/plugin/noUiSlider/jquery.nouislider.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/ion-slider/ion.rangeSlider.min.js' />"></script>
+		<!-- <script src="js/plugin/ion-slider/ion.rangeSlider.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js' />"></script>
+		<!-- <script src="js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>	 -->
+		<script src="<c:url value='/resources/js/plugin/colorpicker/bootstrap-colorpicker.min.js' />"></script>	
+		<!-- <script src="js/plugin/colorpicker/bootstrap-colorpicker.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/knob/jquery.knob.min.js' />"></script>
+		<!-- <script src="js/plugin/knob/jquery.knob.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/x-editable/moment.min.js' />"></script>
+		<!-- <script src="js/plugin/x-editable/moment.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/x-editable/jquery.mockjax.min.js' />"></script>
+		<!-- <script src="js/plugin/x-editable/jquery.mockjax.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/x-editable/x-editable.min.js' />"></script>
+		<!-- <script src="js/plugin/x-editable/x-editable.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/typeahead/typeahead.min.js' />"></script>
+		<!-- <script src="js/plugin/typeahead/typeahead.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/typeahead/typeaheadjs.min.js' />"></script>
+		<!-- <script src="js/plugin/typeahead/typeaheadjs.min.js"></script> -->
+		
+		<!-- PAGE RELATED PLUGIN(S) -->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js' />"></script>
+		<script src="<c:url value='/resources/js/plugin/fuelux/wizard/wizard.min.js' />"></script>
+		
+		<script src="<c:url value='/resources/js/plugin/ckeditor/ckeditor.js' />"></script>
+		<!-- <script src="js/plugin/ckeditor/ckeditor.js"></script> -->
+		
 		<script src="<c:url value='/resources/js/plugin/datatables/jquery.dataTables.min.js' />"></script>
 		<!-- <script src="js/plugin/datatables/jquery.dataTables.min.js"></script> -->
 		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.colVis.min.js' />"></script>
@@ -1078,145 +1060,166 @@
 		<!-- <script src="js/plugin/datatables/dataTables.bootstrap.min.js"></script> -->
 		<script src="<c:url value='/resources/js/plugin/datatable-responsive/datatables.responsive.min.js' />"></script>
 		<!-- <script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script> -->
-
-		<!-- PAGE RELATED PLUGIN(S) 
-		<script src="..."></script>-->
+		
 
 		<script type="text/javascript">
-
-			$(document).ready(function() {
-			 	
-				/* DO NOT REMOVE : GLOBAL FUNCTIONS!
-				 *
-				 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
-				 *
-				 * // activate tooltips
-				 * $("[rel=tooltip]").tooltip();
-				 *
-				 * // activate popovers
-				 * $("[rel=popover]").popover();
-				 *
-				 * // activate popovers with hover states
-				 * $("[rel=popover-hover]").popover({ trigger: "hover" });
-				 *
-				 * // activate inline charts
-				 * runAllCharts();
-				 *
-				 * // setup widgets
-				 * setup_widgets_desktop();
-				 *
-				 * // run form elements
-				 * runAllForms();
-				 *
-				 ********************************
-				 *
-				 * pageSetUp() is needed whenever you load a page.
-				 * It initializes and checks for all basic elements of the page
-				 * and makes rendering easier.
-				 *
-				 */
-				
-				 pageSetUp();
-				 
-				 function format ( d ) {
-					    // `d` is the original data object for the row
-					    return '<table cellpadding="5" cellspacing="0" border="0" class="table table-hover table-condensed">'+
-					        '<tr>'+
-					            '<td style="width:100px">Project Title:</td>'+
-					            '<td>'+d.name+'</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Deadline:</td>'+
-					            '<td>'+d.ends+'</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Extra info:</td>'+
-					            '<td>And any further details here (images etc)...</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Comments:</td>'+
-					            '<td>'+d.comments+'</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Action:</td>'+
-					            '<td>'+d.action+'</td>'+
-					        '</tr>'+
-					    '</table>';
-					}
-
-					// clears the variable if left blank
-				    var table = $('#example').DataTable( {
-				    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
-							"t"+
-							"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-				        "ajax": "data/dataList.json",
-				        "bDestroy": true,
-				        "iDisplayLength": 15,
-				        "oLanguage": {
-						    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-						},
-				        "columns": [
-				            {
-				                "class":          'details-control',
-				                "orderable":      false,
-				                "data":           null,
-				                "defaultContent": ''
-				            },
-				            { "data": "name" },
-				            { "data": "est" },
-				            { "data": "contacts" },
-				            { "data": "status" },
-				            { "data": "target-actual" },
-				            { "data": "starts" },
-				            { "data": "ends" },
-				            { "data": "tracker" },
-				        ],
-				        "order": [[1, 'asc']],
-				        "fnDrawCallback": function( oSettings ) {
-					       runAllCharts()
-					    }
-				    } );
-
-
-				     
-				    // Add event listener for opening and closing details
-				    $('#example tbody').on('click', 'td.details-control', function () {
-				        var tr = $(this).closest('tr');
-				        var row = table.row( tr );
-				 
-				        if ( row.child.isShown() ) {
-				            // This row is already open - close it
-				            row.child.hide();
-				            tr.removeClass('shown');
-				        }
-				        else {
-				            // Open this row
-				            row.child( format(row.data()) ).show();
-				            tr.addClass('shown');
-				        }
-				    });
-				 
-				/*
-				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
-				 * eg alert("my home function");
-				 * 
-				 * var pagefunction = function() {
-				 *   ...
-				 * }
-				 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
-				 * 
-				 * TO LOAD A SCRIPT:
-				 * var pagefunction = function (){ 
-				 *  loadScript(".../plugin.js", run_after_loaded);	
-				 * }
-				 * 
-				 * OR
-				 * 
-				 * loadScript(".../plugin.js", run_after_loaded);
-				 */
-				
-			})
 		
+		// DO NOT REMOVE : GLOBAL FUNCTIONS!
+		
+		$(document).ready(function() {
+			
+			pageSetUp();
+			
+			
+			function geoFindMe() {
+				  //var output = document.getElementById("out");
+
+				  /* if (!navigator.geolocation){
+				    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+				    return;
+				  } */
+
+				  function success(position) {
+				    var latitude  = position.coords.latitude;
+				    var longitude = position.coords.longitude;
+				    alert(longitude);
+				    alert(latitude);
+
+				    //output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+				    var img = new Image();
+				    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+				    //output.appendChild(img);
+				  };
+
+				  function error() {
+				    //output.innerHTML = "Unable to retrieve your location";
+				  };
+
+				 // output.innerHTML = "<p>Locating…</p>";
+
+				  navigator.geolocation.getCurrentPosition(success, error);
+				}
+			
+			Dropzone.autoDiscover = false;
+			$("#termscondition").dropzone({
+				url: "file?",
+				paramName: "file",		
+				addRemoveLinks : true,
+				maxFilesize: 500,
+				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
+				dictResponseError: 'Error uploading file!'
+			});
+			
+			Dropzone.autoDiscover = false;
+			$("#dropboxinvest").dropzone({
+				url: "file?",
+				paramName: "file",		
+				addRemoveLinks : true,
+				maxFilesize: 500,
+				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
+				dictResponseError: 'Error uploading file!'
+			});
+	
+			//Bootstrap Wizard Validations
+
+			 function submitPost(){
+				
+				 event.preventDefault();
+				 var formData = new FormData($('#wizard-1')[0][1]);
+				 alert(formData);
+				
+			}
+			
+			 CKEDITOR.replace( 'ckeditor', {
+					height: 300,
+					startupFocus : true,
+					// Configure your file manager integration. This example uses CKFinder 3 for PHP.
+					filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+					filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
+					filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+					filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+				} );
+			 
+			 
+				
+			  
+			  $('#finishCourse').click(function(){
+
+			      /* stop form from submitting normally */
+			      //event.preventDefault();
+
+			      var formData = new FormData($('#wizard-1')[0][1]);
+			      alert(formData);
+			     //var comment = new FormData($('#comments')[0]);
+			      
+			      /* get some values from elements on the page: */
+			      $.ajax({
+		                url: "rest/file/upload?",
+		                type: 'POST',
+		                data : formData,
+		                paramName: "file",
+		                success: function(result) {
+		                    // ... Process the result ...
+		                },
+		                cache: false,
+		                contentType: false,
+		                processData: false
+		            });
+
+			      /* Alerts the results */
+			      /* posting.done(function( data ) {
+			        alert('success');
+			      }); */
+			    });
+			  
+			  
+			  
+
+
+		})
+		
+		
+
+		</script>
+		
+		<script type="text/javascript">
+		
+		 function geoFindMe() {
+			  //var output = document.getElementById("out");
+
+			  /* if (!navigator.geolocation){
+			    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+			    return;
+			  } */
+
+			  function success(position) {
+			    var latitude  = position.coords.latitude;
+			    var longitude = position.coords.longitude;
+			    alert(longitude);
+			    
+			    var location = document.getElementById("location");
+			    location.value = latitude+","+longitude;
+			    alert(location.value);
+			    console.log(location);
+
+			    //output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+			    var img = new Image();
+			    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+			    //output.appendChild(img);
+			  };
+
+			  function error() {
+			    //output.innerHTML = "Unable to retrieve your location";
+			  };
+
+			 // output.innerHTML = "<p>Locating…</p>";
+
+			  navigator.geolocation.getCurrentPosition(success, error);
+			}
 		</script>
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->

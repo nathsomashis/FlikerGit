@@ -387,10 +387,10 @@
 				class="fa fa-lg fa-fw fa-money "></i> <span
 				class="menu-item-parent">Project Investment Info</span></a></li>
 
-		<li class="active"><a href="#"><i class="fa fa-lg fa-fw fa-info"></i>
+		<li class=""><a href="#"><i class="fa fa-lg fa-fw fa-info"></i>
 				<span class="menu-item-parent">Project Selling</span></a>
 				<ul>
-					<li class="active"><a href="sellingoptions?" title="Project Selling Plans"><i
+					<li class=""><a href="sellingoptions?" title="Project Selling Plans"><i
 							class="fa fa-tags"></i><span class="menu-item-parent">Project Selling Plans</span></a>
 					</li>
 					<li class=""><a href="osmprojectsellernew?" title="Project Selling Info"><i
@@ -401,10 +401,10 @@
 		<li class="active"><a href="#"><i class="fa fa-lg fa-fw fa-info"></i>
 				<span class="menu-item-parent">Project Resource</span></a>
 				<ul>
-					<li class=""><a href="resourcelist?" title="Project Selling Plans"><i
+					<li class="active"><a href="resourcelist?" title="Project Selling Plans"><i
 							class="fa fa-tags"></i><span class="menu-item-parent">Project Resource List</span></a>
 					</li>
-					<li class="active"><a href="osmprojectresourcenew?" title="Project Selling Info"><i
+					<li class=""><a href="osmprojectresourcenew?" title="Project Selling Info"><i
 					class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Project Resource Info</span></a>
 					</li>
 				</ul>
@@ -629,145 +629,70 @@
 							<hr>
 							<div class="row">
 
-								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-									<div class="col-sm-4">
-									
-									<button class="btn btn-primary" data-toggle="modal" data-target="#serviceModal">
-														Provide As Service
-													</button>
+								<div class="superbox col-sm-12">
+									<div class="superbox-list">
+										<img src="img/superbox/superbox-thumb-1.jpg" data-img="img/superbox/superbox-full-1.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
+									</div><!--
+									--><div class="superbox-list">
+										<img src="img/superbox/superbox-thumb-2.jpg" data-img="img/superbox/superbox-full-2.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Bridge of Edgen" class="superbox-img">
+									</div><!--
+									--><div class="superbox-list">
+										<img src="img/superbox/superbox-thumb-3.jpg" data-img="img/superbox/superbox-full-3.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Lines of Friendship" class="superbox-img">
+									</div><!--
+									--><div class="superbox-list">
+										<img src="img/superbox/superbox-thumb-4.jpg" data-img="img/superbox/superbox-full-4.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="My new car!" class="superbox-img">
+									</div><!--
+									--><div class="superbox-list">
+										<img src="img/superbox/superbox-thumb-5.jpg" data-img="img/superbox/superbox-full-5.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Study Time" class="superbox-img">
+									</div><!--
+									--><div class="superbox-list">
+										<img src="img/superbox/superbox-thumb-6.jpg" data-img="img/superbox/superbox-full-6.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="San Francisco Bridge"  class="superbox-img">
+									</div><!--
+									--><div class="superbox-list">
+										<img src="img/superbox/superbox-thumb-7.jpg" data-img="img/superbox/superbox-full-7.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="New Styla"  class="superbox-img">
+									</div><!--
+									--><div class="superbox-list">
+										<img src="img/superbox/superbox-thumb-8.jpg" data-img="img/superbox/superbox-full-8.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Cristpta"  class="superbox-img">
 									</div>
-									<div class="col-sm-4">				
-									<button class="btn btn-primary " data-toggle="modal" data-target="#productModal">
-														Provide As Product
-													</button>
-									</div>
-									<div class="col-sm-4">				
-									<button class="btn btn-primary " data-toggle="modal" data-target="#caseModal">
-														Provide As Case Specific
-													</button>
-									</div>				
 								</div>
-			
+								<!-- /SuperBox -->
+								
+								<div class="superbox-show" style="height:300px; display: none"></div>
 							</div>
 							<hr><hr>
-							
-							<div class="row">
-								<div class="search-results clearfix smart-form">
-									<div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Oct 1, 2006 - Uploaded by 02842356107
-											<br>
-											<br>
-											<a href="javascript:void(0)" class="btn btn-default btn-xs">Edit</a>
-										</p>
-									</div>
-				
-								</div>
-								</div>
-							
-							</div>
-							
 							
 							</div>
 							<div class="tab-pane fade" id="s2">
 								<section id="widget-grid" class="">
 
-									<!-- row -->
 									<div class="row">
-										
-										<!-- NEW WIDGET START -->
-										<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-											
-											<div class="alert alert-info">
-												<strong>NOTE:</strong> All the data is loaded from a seperate JSON file
-											</div>
-				
-											<!-- Widget ID (each widget will need unique ID)-->
-											<div class="jarviswidget well" id="wid-id-0">
-												<!-- widget options:
-													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-													
-													data-widget-colorbutton="false"	
-													data-widget-editbutton="false"
-													data-widget-togglebutton="false"
-													data-widget-deletebutton="false"
-													data-widget-fullscreenbutton="false"
-													data-widget-custombutton="false"
-													data-widget-collapsed="true" 
-													data-widget-sortable="false"
-													
-												-->
-												<header>
-													<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-													<h2>Widget Title </h2>				
-													
-												</header>
-				
-												<!-- widget div-->
-												<div>
-													
-													<!-- widget edit box -->
-													<div class="jarviswidget-editbox">
-														<!-- This area used as dropdown edit box -->
-														<input class="form-control" type="text">	
-													</div>
-													<!-- end widget edit box -->
-													
-													<!-- widget content -->
-													<div class="widget-body no-padding">
-														
-														<table id="example" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-													        <thead>
-													            <tr>
-													                <th></th><th>Projects</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
-													                <th>Contacts</th>
-													                <th>Status</th>
-													                <th><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>
-													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
-													                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
-													                <th>Tracker</th>
-													            </tr>
-													        </thead>
-													    </table>
-				
-													</div>
-													<!-- end widget content -->
-													
-												</div>
-												<!-- end widget div -->
-												
-											</div>
-											<!-- end widget -->
-				
-										</article>
-										<!-- WIDGET END -->
-										
-									</div>
-				
-									<!-- end row -->
-				
-									<!-- row -->
-				
-									<div class="row">
-				
-										<!-- a blank row to get started -->
-										<div class="col-sm-12">
-											<!-- your contents here -->
+										<div class="col-md-4">
+											<img src="img/superbox/superbox-full-15.jpg" class="img-responsive" alt="img">
+											<ul class="list-inline padding-10">
+												<li>
+													<i class="fa fa-calendar"></i>
+													<a href="javascript:void(0);"> March 12, 2015 </a>
+												</li>
+												<li>
+													<i class="fa fa-comments"></i>
+													<a href="javascript:void(0);"> 38 Comments </a>
+												</li>
+											</ul>
 										</div>
-											
+										<div class="col-md-8 padding-left-0">
+											<h3 class="margin-top-0"><a href="javascript:void(0);"> Why Should You Make A Separate Mobile Website for your Business? </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
+											<p>
+												At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. 
+		
+												<br><br>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
+												<br><br>
+											</p>
+											<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
+											<a class="btn btn-warning" href="javascript:void(0);"> Edit </a>
+											<a class="btn btn-success" href="javascript:void(0);"> Publish </a>
+										</div>
 									</div>
-				
-									<!-- end row -->
+									<hr>
 				
 								</section>
 							
@@ -782,152 +707,7 @@
 
 			</div>
 			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="serviceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Provide As Service</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Service Name" required />
-										</div>
-										<div class="form-group">
-											<textarea class="form-control" placeholder="Service Points" rows="5" required></textarea>
-										</div>
-										<div class="input input-file">
-											<span class="button"><input id="file2" type="file" name="file2" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" placeholder="Include some files" readonly=""><button type="button" class="btn btn-default btn-sm">
-														Preview
-													</button>
-										</div>
-									</div>
-								</div>
-								
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="category"> Plan Type</label>
-											<select class="form-control" id="category">
-												<option>per/hour</option>
-												<option>per/usage</option>
-												<option>per/day</option>
-												<option>per/month</option>
-												<option>per/year</option>
-												<option>per/case</option>
-												<option>per/visit</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="tags"> Price</label>
-											<input type="text" class="form-control" id="price" placeholder="Price" />
-										</div>
-									</div>
-								</div>
-				
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary">
-									Create Plan Pricing
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
-				
-				<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Provide As Product</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Produt Name" required />
-										</div>
-										<div class="form-group">
-											<textarea class="form-control" placeholder="Product Contents" rows="5" required></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="tags"> Price</label>
-											<input type="text" class="form-control" id="tags" placeholder="Price" />
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary">
-									Create Product Pricing
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
-				
-				<div class="modal fade" id="caseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Case Based Selling</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Case Scenario" required />
-										</div>
-										<div class="form-group">
-											<textarea class="form-control" placeholder="Case Explaination as points" rows="5" required></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="tags">Price</label>
-											<input type="text" class="form-control" id="tags" placeholder="Price" />
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary">
-									Case Pricing
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
+			
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -1079,6 +859,9 @@
 		<script src="<c:url value='/resources/js/plugin/datatable-responsive/datatables.responsive.min.js' />"></script>
 		<!-- <script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script> -->
 
+		<script src="<c:url value='/resources/js/plugin/superbox/superbox.min.js' />"></script>
+		<!-- <script src="js/plugin/superbox/superbox.min.js"></script> -->
+
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
 
@@ -1118,83 +901,7 @@
 				
 				 pageSetUp();
 				 
-				 function format ( d ) {
-					    // `d` is the original data object for the row
-					    return '<table cellpadding="5" cellspacing="0" border="0" class="table table-hover table-condensed">'+
-					        '<tr>'+
-					            '<td style="width:100px">Project Title:</td>'+
-					            '<td>'+d.name+'</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Deadline:</td>'+
-					            '<td>'+d.ends+'</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Extra info:</td>'+
-					            '<td>And any further details here (images etc)...</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Comments:</td>'+
-					            '<td>'+d.comments+'</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Action:</td>'+
-					            '<td>'+d.action+'</td>'+
-					        '</tr>'+
-					    '</table>';
-					}
-
-					// clears the variable if left blank
-				    var table = $('#example').DataTable( {
-				    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
-							"t"+
-							"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-				        "ajax": "data/dataList.json",
-				        "bDestroy": true,
-				        "iDisplayLength": 15,
-				        "oLanguage": {
-						    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-						},
-				        "columns": [
-				            {
-				                "class":          'details-control',
-				                "orderable":      false,
-				                "data":           null,
-				                "defaultContent": ''
-				            },
-				            { "data": "name" },
-				            { "data": "est" },
-				            { "data": "contacts" },
-				            { "data": "status" },
-				            { "data": "target-actual" },
-				            { "data": "starts" },
-				            { "data": "ends" },
-				            { "data": "tracker" },
-				        ],
-				        "order": [[1, 'asc']],
-				        "fnDrawCallback": function( oSettings ) {
-					       runAllCharts()
-					    }
-				    } );
-
-
-				     
-				    // Add event listener for opening and closing details
-				    $('#example tbody').on('click', 'td.details-control', function () {
-				        var tr = $(this).closest('tr');
-				        var row = table.row( tr );
-				 
-				        if ( row.child.isShown() ) {
-				            // This row is already open - close it
-				            row.child.hide();
-				            tr.removeClass('shown');
-				        }
-				        else {
-				            // Open this row
-				            row.child( format(row.data()) ).show();
-				            tr.addClass('shown');
-				        }
-				    });
+				 $('.superbox').SuperBox();
 				 
 				/*
 				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
