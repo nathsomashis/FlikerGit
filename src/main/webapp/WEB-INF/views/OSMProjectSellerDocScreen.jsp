@@ -390,8 +390,17 @@
 				class="fa fa-lg fa-fw fa-money "></i> <span
 				class="menu-item-parent">Project Investment Info</span></a></li>
 
-		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
-				<span class="menu-item-parent">Project Selling Info</span></a></li>
+		<li><a href="osmprojectsellernew?"><i class="fa fa-lg fa-fw fa-info"></i>
+				<span class="menu-item-parent">Project Selling Info</span></a>
+				<ul>
+					<li class=""><a href="courseEdu?" title="NewPost"><i
+							class="fa fa-tags"></i><span class="menu-item-parent">Project Selling Plans</span></a>
+					</li>
+					<!-- <li class=""><a href="classroom?" title="ClassRoom"><i
+					class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+					</li> -->
+				</ul>
+		</li>
 		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
 				<span class="menu-item-parent">Project Resource Info</span></a></li>
 		<!-- <li><a href="classroom?" title="NewPost"><i
@@ -602,74 +611,30 @@
 				
 				</div>
 				<div class="row">
-					<div class="form-group">
-						<label>Selling Option</label>
-						<select multiple style="width:100%" class="select2">
-							<optgroup label="Alaskan/Hawaiian Time Zone">
-								<option value="AK">Alaska</option>
-								<option value="HI">Hawaii</option>
-							</optgroup>
-							<optgroup label="Pacific Time Zone">
-								<option value="CA">California</option>
-								<option value="NV" selected="selected">Nevada</option>
-								<option value="OR">Oregon</option>
-								<option value="WA">Washington</option>
-							</optgroup>
-							<optgroup label="Mountain Time Zone">
-								<option value="AZ">Arizona</option>
-								<option value="CO">Colorado</option>
-								<option value="ID">Idaho</option>
-								<option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
-								<option value="NM">New Mexico</option>
-								<option value="ND">North Dakota</option>
-								<option value="UT">Utah</option>
-								<option value="WY">Wyoming</option>
-							</optgroup>
-							<optgroup label="Central Time Zone">
-								<option value="AL">Alabama</option>
-								<option value="AR">Arkansas</option>
-								<option value="IL">Illinois</option>
-								<option value="IA">Iowa</option>
-								<option value="KS">Kansas</option>
-								<option value="KY">Kentucky</option>
-								<option value="LA">Louisiana</option>
-								<option value="MN">Minnesota</option>
-								<option value="MS">Mississippi</option>
-								<option value="MO">Missouri</option>
-								<option value="OK">Oklahoma</option>
-								<option value="SD">South Dakota</option>
-								<option value="TX">Texas</option>
-								<option value="TN">Tennessee</option>
-								<option value="WI">Wisconsin</option>
-							</optgroup>
-							<optgroup label="Eastern Time Zone">
-								<option value="CT">Connecticut</option>
-								<option value="DE">Delaware</option>
-								<option value="FL">Florida</option>
-								<option value="GA">Georgia</option>
-								<option value="IN">Indiana</option>
-								<option value="ME">Maine</option>
-								<option value="MD">Maryland</option>
-								<option value="MA">Massachusetts</option>
-								<option value="MI" selected="selected">Michigan</option>
-								<option value="NH">New Hampshire</option>
-								<option value="NJ">New Jersey</option>
-								<option value="NY">New York</option>
-								<option value="NC">North Carolina</option>
-								<option value="OH">Ohio</option>
-								<option value="PA">Pennsylvania</option>
-								<option value="RI">Rhode Island</option>
-								<option value="SC">South Carolina</option>
-								<option value="VT">Vermont</option>
-								<option value="VA">Virginia</option>
-								<option value="WV">West Virginia</option>
-							</optgroup>
-						</select>
 
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="col-sm-4">
 						
+						<button class="btn btn-primary" data-toggle="modal" data-target="#serviceModal">
+											Provide As Service
+										</button>
+						</div>
+						<div class="col-sm-4">				
+						<button class="btn btn-primary " data-toggle="modal" data-target="#productModal">
+											Provide As Product
+										</button>
+						</div>
+						<div class="col-sm-4">				
+						<button class="btn btn-primary " data-toggle="modal" data-target="#caseModal">
+											Provide As Case Specific
+										</button>
+						</div>				
 					</div>
-				
+
 				</div>
+				
+				<hr><hr>
+				
 				<div class="row">
 						
 						<!-- NEW WIDGET START -->
@@ -843,6 +808,226 @@
 				
 			</div>
 			<!-- END MAIN CONTENT -->
+
+			<div class="modal fade" id="serviceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Provide As Service</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Service Name" required />
+										</div>
+										<div class="form-group">
+											<textarea class="form-control" placeholder="Service Points" rows="5" required></textarea>
+										</div>
+										<div class="input input-file">
+											<span class="button"><input id="file2" type="file" name="file2" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" placeholder="Include some files" readonly=""><button type="button" class="btn btn-default btn-sm">
+														Preview
+													</button>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="category"> Plan Type</label>
+											<select class="form-control" id="category">
+												<option>per/hour</option>
+												<option>per/usage</option>
+												<option>per/day</option>
+												<option>per/month</option>
+												<option>per/year</option>
+												<option>per/case</option>
+												<option>per/visit</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="tags"> Price</label>
+											<input type="text" class="form-control" id="price" placeholder="Price" />
+										</div>
+									</div>
+								</div>
+				
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" class="btn btn-primary">
+									Post Article
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				
+				<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Article Post</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Title" required />
+										</div>
+										<div class="form-group">
+											<textarea class="form-control" placeholder="Content" rows="5" required></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="category"> Category</label>
+											<select class="form-control" id="category">
+												<option>Articles</option>
+												<option>Tutorials</option>
+												<option>Freebies</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="tags"> Tags</label>
+											<input type="text" class="form-control" id="tags" placeholder="Tags" />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="well well-sm well-primary">
+											<form class="form form-inline " role="form">
+												<div class="form-group">
+													<input type="text" class="form-control" value="" placeholder="Date" required />
+												</div>
+												<div class="form-group">
+													<select class="form-control">
+														<option>Draft</option>
+														<option>Published</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<button type="submit" class="btn btn-success btn-sm">
+														<span class="glyphicon glyphicon-floppy-disk"></span> Save
+													</button>
+													<button type="button" class="btn btn-default btn-sm">
+														<span class="glyphicon glyphicon-eye-open"></span> Preview
+													</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+				
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" class="btn btn-primary">
+									Post Article
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				
+				<div class="modal fade" id="caseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Article Post</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Title" required />
+										</div>
+										<div class="form-group">
+											<textarea class="form-control" placeholder="Content" rows="5" required></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="category"> Category</label>
+											<select class="form-control" id="category">
+												<option>Articles</option>
+												<option>Tutorials</option>
+												<option>Freebies</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="tags"> Tags</label>
+											<input type="text" class="form-control" id="tags" placeholder="Tags" />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="well well-sm well-primary">
+											<form class="form form-inline " role="form">
+												<div class="form-group">
+													<input type="text" class="form-control" value="" placeholder="Date" required />
+												</div>
+												<div class="form-group">
+													<select class="form-control">
+														<option>Draft</option>
+														<option>Published</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<button type="submit" class="btn btn-success btn-sm">
+														<span class="glyphicon glyphicon-floppy-disk"></span> Save
+													</button>
+													<button type="button" class="btn btn-default btn-sm">
+														<span class="glyphicon glyphicon-eye-open"></span> Preview
+													</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+				
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" class="btn btn-primary">
+									Post Article
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+
+
 
 		</div>
 		<!-- END MAIN PANEL -->
