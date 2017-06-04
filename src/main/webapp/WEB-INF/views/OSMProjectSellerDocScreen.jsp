@@ -393,7 +393,7 @@
 		<li><a href="osmprojectsellernew?"><i class="fa fa-lg fa-fw fa-info"></i>
 				<span class="menu-item-parent">Project Selling Info</span></a>
 				<ul>
-					<li class=""><a href="courseEdu?" title="NewPost"><i
+					<li class=""><a href="sellingoptions?" title="NewPost"><i
 							class="fa fa-tags"></i><span class="menu-item-parent">Project Selling Plans</span></a>
 					</li>
 					<!-- <li class=""><a href="classroom?" title="ClassRoom"><i
