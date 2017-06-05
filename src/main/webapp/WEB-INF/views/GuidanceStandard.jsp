@@ -671,25 +671,32 @@
 		<div id="content">
 
 			<!-- row -->
+			
+			<div class="row">
+					
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-12">
+						
+						<div class="col-sm-2"><button class="btn btn-primary" data-toggle="modal" data-target="#guidance">Provide New Guidance</button></div>
+						<div class="col-sm-2"><button class="btn btn-primary" data-toggle="modal" data-target="#needguidance">Need Guidance</button></div>
+					</div>
 
+				</div>
 			<div class="row">
 
 				<div class="col-sm-12">
 
-					<ul id="myTab1" class="nav nav-tabs bordered">
+					<!-- <ul id="myTab1" class="nav nav-tabs bordered">
 						<li class="active"><a href="#s1" data-toggle="tab">Resource
 								Search<i class="fa fa-caret-down"></i>
 						</a></li>
 						<li><a href="#s2" data-toggle="tab">OnGoing Guidance</a></li>
-						<!-- <li><a href="#s3" data-toggle="tab">Progress</a></li> -->
-						<!-- <li class="pull-right hidden-mobile">
+						<li><a href="#s3" data-toggle="tab">Progress</a></li>
+						<li class="pull-right hidden-mobile">
 								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
-							</li> -->
-					</ul>
+							</li>
+					</ul> -->
 
-					<div id="myTabContent1"
-						class="tab-content bg-color-white padding-10">
-						<div class="tab-pane fade in active" id="s1">
+						<%-- <div class="tab-pane fade in active" id="s1">
 							<h1>
 								Search 
 							</h1>
@@ -809,47 +816,42 @@
 								<br> <br> <br>
 							</div>
 
-						</div>
+						</div> --%>
 
-						<div class="tab-pane fade" id="s2">
+						<!-- <div class="tab-pane fade" id="s2"> -->
 							<div class="row">
 
-								<div class="col-sm-9">
+								<div class="col-sm-12">
 
 									<div class="well padding-10">
 										<%
-										ArrayList resourcelist = (ArrayList)request.getAttribute("ongoingResources");
-										for(int m=0;m<guidancelist.size();m++){
+										ArrayList resourcelist = (ArrayList)request.getAttribute("resourcesSearch");
+										int listsize = resourcelist.size();
+										System.out.println(resourcelist);
+										for(int m=0;m<resourcelist.size();m++){
 											
 											String guidanceid="";
-											String sharetokenid="";
-											String dashboardid = "";
-											String averagevelocity = "";
-											String blogid="";
-											String profileid="";
+											String guidancesubject="";
 											String profileimage="";
 											String profilename="";
-											String timetableid="";
-											String consumeuserid= "";
-											String particiant = "";
-											String meetingtime = "";
-											String topiccount = "";
-											String provideruserid = "";
+											String guidancelocation="";
+											String guidanceduration= "";
+											String profileid = "";
 											
-											HashMap guidancemap = (HashMap)guidancelist.get(m);
+											HashMap guidancemap = (HashMap)resourcelist.get(m);
 											Set perset = guidancemap.entrySet();
 											Iterator perit = perset.iterator();
 											while (perit.hasNext()) {
 												Map.Entry perme = (Map.Entry) perit.next();
 												String keyvalue = (String) perme.getKey();
-												if (keyvalue.equalsIgnoreCase("sharetokenid")) {
-													sharetokenid = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("dashboardid")) {
-													dashboardid = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("averageVelocity")) {
-													averagevelocity = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("blogid")) {
-													blogid = (String)perme.getValue();
+												if (keyvalue.equalsIgnoreCase("guidanceid")) {
+													guidanceid = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("guidanceSubject")) {
+													guidancesubject = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("guidancelocation")) {
+													guidancelocation = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("guidanceduration")) {
+													guidanceduration = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("profileid")) {
 													profileid = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("profileImage")) {
@@ -858,19 +860,8 @@
 													profilename = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("guidanceid")) {
 													guidanceid = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("timetableid")) {
-													timetableid = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("userid")) {
-													consumeuserid = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("nextmeeting")) {
-													meetingtime = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("topiccount")) {
-													topiccount = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("provideruserid")) {
-													provideruserid = (String)perme.getValue();
 												}
 												
-												particiant = guidanceid+","+consumeuserid;
 												
 											}
 											
@@ -878,25 +869,19 @@
 											
 												<div class="row">
 													<div class="col-md-4">
-														<img src="/Fliker/imageController/<%=profileimage%>"
+														<img src="https://maps.googleapis.com/maps/api/staticmap?center=Berkeley,CA&zoom=14&size=400x400&key=YOUR_API_KEY"
 															class="img-responsive" alt="<%=profilename%>">
-														<ul class="list-inline padding-10">
-															<li><i class="fa fa-calendar"></i><a
-																href="javascript:void(0);"><%=meetingtime%></a></li>
-															<li><i class="fa fa-comments"></i> <a
-																href="javascript:void(0);"><%=topiccount%> Topics </a></li>
-														</ul>
 													</div>
 													<div class="col-md-8 padding-left-0">
 														<h3 class="margin-top-0">
-															<a href="javascript:void(0);"><%=averagevelocity%></a><br> <small
+															<br> <small
 																class="font-xs"><i>Taken by <a
 																	href="javascript:void(0);"><%=profilename%></a></i></small>
 														</h3>
 														
 														<a class="btn btn-primary" href="#" onclick="gotoguidance(<%=guidanceid%>)">
 															Guide </a> <a class="btn btn-warning"
-															href="#" onclick="endorse(<%=consumeuserid%>,<%=provideruserid%>)"> Endorse </a> <!-- <a
+															href="#" onclick="apply(<%=guidanceid%>)"> Apply </a> <!-- <a
 															class="btn btn-success" href="javascript:void(0);">
 															Publish </a> -->
 													</div>
@@ -914,7 +899,7 @@
 
 
 							</div>
-						</div>
+						<!-- </div> -->
 
 						<!-- <div class="tab-pane fade" id="s3">
 							MAIN CONTENT
@@ -922,7 +907,6 @@
 							END MAIN CONTENT
 
 						</div> -->
-					</div>
 
 				</div>
 
@@ -932,7 +916,117 @@
 
 		</div>
 		<!-- END MAIN CONTENT -->
-
+		<div class="modal fade" id="guidance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Provide Guidance</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Guidance Subject" required id="guidancesubject" />
+										</div>
+										<div class="form-group">
+											<textarea id="guidancereason" class="form-control" placeholder="Provide Information about your guidance. Why you are good on the above mentioned guidance.." rows="5" required></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" value="" placeholder="Duration" required id="duration" />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Location" required id="location"/>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="publish">Publish</label>
+											<select class="form-control" id="published">
+												<option>All</option>
+												<option>Friends</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<a href="#" id="createguidance" class="btn btn-primary"> <i class="fa fa-warning"></i>Create</a>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				
+				<div class="modal fade" id="needguidance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Need Guidance</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Guidance Subject" required id="guidancesubject" />
+										</div>
+										<div class="form-group">
+											<textarea id="guidancereason" class="form-control" placeholder="Practically what you missing? from the above mentioned subject.." rows="5" required></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" value="" placeholder="Duration if any leave it blank" id="duration" />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Any Location Specific" required id="location"/>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="publish">Publish</label>
+											<select class="form-control" id="published">
+												<option>All</option>
+												<option>Friends</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<a href="#" id="createguidance" class="btn btn-primary"></i>Create</a>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
 	</div>
 	<!-- END MAIN PANEL -->
 
@@ -1256,6 +1350,8 @@
 		<!-- <script src="js/plugin/moment/moment.min.js"></script> -->
 		<script src="<c:url value='/resources/js/plugin/fullcalendar/jquery.fullcalendar.min.js' />"></script>
 		<!-- <script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
+		
+		 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 
 	<script type="text/javascript">
@@ -1312,7 +1408,41 @@
 			 * loadScript(".../plugin.js", run_after_loaded);
 			 */
 			 
-			 
+			 $('#createguidance').click(function() {
+				 
+				 var guidancesubject = $('#guidancesubject').val();
+				 var guidancereason = $('#guidancereason').val();
+				 var duration = $('#duration').val();
+				 var location = $('#location').val();
+				 var published = $('#published').val();
+				 /* var coordinate = "";
+				 
+				 var geocoder =  new google.maps.Geocoder();
+				 geocoder.geocode( { 'address': location}, function(results, status) {
+				 if (status == google.maps.GeocoderStatus.OK) {
+					 coordinate = results[0].geometry.location.lat() + "," +results[0].geometry.location.lng(); 
+				     alert(coordinate);
+				     alert("result ::"+results[0].geometry.location.lat() + "," +results[0].geometry.location.lng())
+				 }
+				 }); */
+				 
+				 
+				 
+				 $.ajax({
+						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration,
+						method : 'POST',
+						success : function(data){
+							if(data.success == true){ // if true (1)
+							      setTimeout(function(){// wait for 5 secs(2)
+							           location.reload(); // then reload the page.(3)
+							      }, 5000); 
+							   }
+							
+						}
+					
+			        }); 
+				 
+			 });
 			 
 			 
 			$('.superbox').SuperBox(); 
@@ -1350,6 +1480,20 @@
 		 }
 		
 		function endorse(consumerid, providerid, guidancesubject){
+			
+			$.ajax({
+				url : "endorseStudent?student="+consumerid+"&provider="+providerid+"&guidanceSubject="+guidancesubject,
+				method : 'POST',
+				success : function(){
+					
+					
+				}
+			
+	        }); 
+			
+		}
+		
+	function apply(guidanceid){
 			
 			$.ajax({
 				url : "endorseStudent?student="+consumerid+"&provider="+providerid+"&guidanceSubject="+guidancesubject,

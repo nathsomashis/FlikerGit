@@ -77,6 +77,8 @@ public class GuidanceController {
 	}
 	
 	
+	
+	
 	@RequestMapping("/standardNextguidance")
 	public ModelAndView showNextSetGuidance(
 			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject,
@@ -167,35 +169,94 @@ public class GuidanceController {
 	
 	
 	@RequestMapping("/consumeguidance")
-	public void optGuidance(
-			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject,
-			@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request,
-			@RequestParam(value = "guidencetype", required = false, defaultValue = "World") String guidencetype) {
+	public ModelAndView optGuidance(
+			@RequestParam(value = "guidanceSubject", required = false) String guidanceSubject,
+			@RequestParam(value = "guidancereason", required = false) String guidancereason,
+			@RequestParam(value = "location", required = false) String location,
+			@RequestParam(value = "published", required = false) String published,
+			@RequestParam(value = "duration", required = false, defaultValue = "") String duration,
+			@RequestParam(value = "userid", required = false) String userid,HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
  
 		String[]  guidancesubjects = guidanceSubject.split(",");
 		String guidanceflag = "consume";
 		
 		GuidancePreview guidanceprev = new GuidancePreview();
-		guidanceprev.saveGidance(userid, guidancesubjects, request, guidanceflag,guidencetype);
+		guidanceprev.saveGidance(userid, guidanceSubject, request, guidanceflag,"consumer",location,published,duration);
 		
+		ArrayList resourcesSearch = new ArrayList();
+		resourcesSearch = guidanceprev.getGuidanceResources(guidanceSubject,"provider");
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userids = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceStandard");
+		
+		
+		
+		//mv.addObject("postlist", postlist);
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		mv.addObject("resourcesSearch", resourcesSearch);
+		
+		return mv;
 		
 	}
 	
 	
 	@RequestMapping("/provideguidance")
-	public void provideGuidance(
-			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject,
-			@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,HttpServletRequest request,
-			@RequestParam(value = "guidencetype", required = false, defaultValue = "World") String guidencetype) {
-		System.out.println("in dashboard social controller");
+	public ModelAndView provideGuidance(
+			@RequestParam(value = "guidanceSubject", required = false) String guidanceSubject,
+			@RequestParam(value = "guidancereason", required = false) String guidancereason,
+			@RequestParam(value = "location", required = false) String location,
+			@RequestParam(value = "published", required = false) String published,
+			@RequestParam(value = "duration", required = false, defaultValue = "") String duration,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller"+guidanceSubject+guidancereason+location+published);
  
-		String[]  guidancesubjects = guidanceSubject.split(",");
+		//String[]  guidancesubjects = guidanceSubject.split(",");
 		String guidanceflag = "provide";
 		
 		GuidancePreview guidanceprev = new GuidancePreview();
-		guidanceprev.saveGidance(userid, guidancesubjects, request, guidanceflag,guidencetype);
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userids = userinf.getUserid();
 		
+		guidanceprev.saveGidance(userids, guidanceSubject, request, guidanceflag,"provider",location,published,duration);
+		
+		ArrayList resourcesSearch = new ArrayList();
+		resourcesSearch = guidanceprev.getGuidanceUnPublishDetails(userids);
+		
+		
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userids);
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceStandard");
+		
+		
+		
+		//mv.addObject("postlist", postlist);
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		mv.addObject("resourcesSearch", resourcesSearch);
+		
+		return mv;
 		
 	}
 	

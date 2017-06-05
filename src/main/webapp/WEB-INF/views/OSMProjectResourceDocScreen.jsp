@@ -631,7 +631,7 @@
 							<div class="input-group">
 								<span class="input-group-addon">Project Link</span> <input
 									class="form-control input-lg"
-									placeholder="projectname" type="text" name="course"
+									placeholder="project link" type="text" name="course"
 									id="projectlink">
 
 							</div>

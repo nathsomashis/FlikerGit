@@ -8,10 +8,14 @@ public class Guidance {
 
 	@Id
 	private String guidanceid;
-	private String[] guidanceSubject;
+	private String guidanceSubject;
 	private String userid;
 	private String guidanceflag;
 	private String guidencetype;
+	private String guidancelocation;
+	private String guidanceduration;
+	
+	
 	
 	
 	
@@ -34,11 +38,24 @@ public class Guidance {
 	public void setGuidanceid(String guidanceid) {
 		this.guidanceid = guidanceid;
 	}
-	public String[] getGuidanceSubject() {
+	
+	public String getGuidanceSubject() {
 		return guidanceSubject;
 	}
-	public void setGuidanceSubject(String[] guidanceSubject) {
+	public void setGuidanceSubject(String guidanceSubject) {
 		this.guidanceSubject = guidanceSubject;
+	}
+	public String getGuidancelocation() {
+		return guidancelocation;
+	}
+	public void setGuidancelocation(String guidancelocation) {
+		this.guidancelocation = guidancelocation;
+	}
+	public String getGuidanceduration() {
+		return guidanceduration;
+	}
+	public void setGuidanceduration(String guidanceduration) {
+		this.guidanceduration = guidanceduration;
 	}
 	public String getUserid() {
 		return userid;

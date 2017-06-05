@@ -29,6 +29,7 @@ import com.fliker.Repository.GuidanceContent;
 import com.fliker.Repository.GuidanceContentDashboard;
 import com.fliker.Repository.GuidanceContentFiles;
 import com.fliker.Repository.GuidanceContentShared;
+import com.fliker.Repository.GuidanceEntry;
 import com.fliker.Repository.Post;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.SearchContent;
@@ -264,7 +265,7 @@ public class GuidancePreview {
 	}
 
 	
-  public void saveGidance(String userid, String[] guidancesubjects,HttpServletRequest request, String guidanceflag, String guidenctype){
+  public void saveGidance(String userid, String guidancesubjects,HttpServletRequest request, String guidanceflag, String guidenctype, String location, String published, String duration){
 		
 	  ArrayList profileinfo = new ArrayList();
 	  
@@ -274,6 +275,8 @@ public class GuidancePreview {
 		guidance.setUserid(userid);
 		guidance.setGuidanceflag(guidanceflag);
 		guidance.setGuidencetype(guidenctype);
+		guidance.setGuidanceduration(duration);
+		guidance.setGuidancelocation(location);
 		
 		GuidancePreview guidanceprev = new GuidancePreview();
 		
@@ -281,7 +284,7 @@ public class GuidancePreview {
 		String uniqueid = "";
 		
 		try {
-			uniqueid = guidanceprev.makeSHA1Hash(guidancesubjects.toString()+userid);
+			uniqueid = guidanceprev.makeSHA1Hash(guidancesubjects+userid);
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -301,11 +304,12 @@ public class GuidancePreview {
 		//lots of operation needed to do here
 		
 		
-		guidanceprev.searchContent(userid, uniqueid, guidancesubjects.toString());
+		guidanceprev.searchContent(userid, uniqueid, guidancesubjects);
 		
 		//mongoOperation.save(postentry);
 		
-		guidanceprev.publishContent(userid, uniqueid, guidancesubjects.toString());
+		System.out.println("Published ::"+published);
+		guidanceprev.publishContent(userid, uniqueid, guidancesubjects,location);
 		
 		
 	}
@@ -335,6 +339,11 @@ public class GuidancePreview {
 		basicdbobj.put("guidanceid", guidance.getGuidanceid());
 		basicdbobj.put("userid", guidance.getUserid());
 		basicdbobj.put("guidanceSubject", guidance.getGuidanceSubject());
+		basicdbobj.put("guidanceSubject", guidance.getGuidanceduration());
+		basicdbobj.put("guidanceSubject", guidance.getGuidanceflag());
+		basicdbobj.put("guidanceSubject", guidance.getGuidancelocation());
+		basicdbobj.put("guidanceSubject", guidance.getGuidencetype());
+		
 		
 		return basicdbobj;
 		
@@ -554,7 +563,7 @@ public class GuidancePreview {
   	}
   
   	
-  	 private void publishContent(String userid, String uniqueid, String location) {
+  	 private void publishContent(String userid, String uniqueid, String guidancesubject, String location) {
  		// TODO Auto-generated method stub
  		
  		  
@@ -613,10 +622,10 @@ public class GuidancePreview {
 			
 		}
 		
-		String PostComment = name+" Publish Guidance";
+		String PostComment = name+"is providing Guidance for the subject "+guidancesubject;
 		
 		PostPreview postprev = new PostPreview();
-		postprev.publishPost(userid, PostComment, location);
+		postprev.publishGuidance(userid, PostComment, location);
  		  
  		  
  	  }
@@ -1205,6 +1214,59 @@ public class GuidancePreview {
 		
 		
 		return null;
+	}
+
+
+	public void createNewGuidance(String guidancesubject, String guidancereason, String location, String published) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		
+		
+	}
+
+
+	public ArrayList getGuidanceUnPublishDetails(String userids) {
+		// TODO Auto-generated method stub
+		
+		ArrayList guidancelist = new ArrayList<Post>();
+
+		MongoConnection mongocon = new MongoConnection();
+		Assignment assignment = new Assignment();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userids, "GuidanceSelection");
+		while(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			HashMap totalSet = new HashMap();
+			
+			totalSet.put("guidanceid", (String)dbj.get("guidanceid"));
+			totalSet.put("guidanceSubject", (String)dbj.get("guidanceSubject"));
+			totalSet.put("guidancelocation", (String)dbj.get("guidancelocation"));
+			totalSet.put("guidanceduration", (String)dbj.get("guidanceduration"));
+			ProfilePreview profprev = new ProfilePreview();
+			ArrayList profileinfo = profprev.getProfileInfo((String)dbj.get("userid"));
+			for(int m=0;m<profileinfo.size();m++){
+				
+				if(profileinfo.get(m) instanceof Profile){
+					Profile profileinfos = (Profile)profileinfo.get(m);
+					
+					totalSet.put("profileid", profileinfos.getProfileid());
+					totalSet.put("profileImage", profileinfos.getProfileImageid());
+					totalSet.put("profileName", profileinfos.getName());
+					
+				}
+				
+				
+			}
+			
+			totalSet.put("userid", (String)dbj.get("userid"));
+			
+			guidancelist.add(totalSet);
+			
+		}
+		
+		return guidancelist;
+		
 	}
   	
 
