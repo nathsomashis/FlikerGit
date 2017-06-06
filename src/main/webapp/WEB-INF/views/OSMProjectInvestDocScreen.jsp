@@ -386,17 +386,32 @@
 		<li><a href="osmprojectinfoedit?"><i
 				class="fa fa-lg fa-fw fa-exclamation txt-color-white"></i> <span
 				class="menu-item-parent">Project Info</span> </a></li>
-		<li ><a href="osmprojectinvestmentnew?"><i
+		<li class="active"><a href="osmprojectinvestmentnew?"><i
 				class="fa fa-lg fa-fw fa-money "></i> <span
 				class="menu-item-parent">Project Investment Info</span></a></li>
 
-		<li><a href="osmprojectsellernew?"><i class="fa fa-lg fa-fw fa-info"></i>
-				<span class="menu-item-parent">Project Selling Info</span></a></li>
-		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
-				<span class="menu-item-parent">Project Resource Info</span></a></li>
-		<!-- <li><a href="classroom?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-		</li> -->
+		<li class=""><a href="#"><i class="fa fa-lg fa-fw fa-info"></i>
+				<span class="menu-item-parent">Project Selling</span></a>
+				<ul>
+					<li class=""><a href="sellingoptions?" title="Project Selling Plans"><i
+							class="fa fa-tags"></i><span class="menu-item-parent">Project Selling Plans</span></a>
+					</li>
+					<li class=""><a href="osmprojectsellernew?" title="Project Selling Info"><i
+					class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Project Selling Info</span></a>
+					</li>
+				</ul>
+		</li>
+		<li class="active"><a href="#"><i class="fa fa-lg fa-fw fa-info"></i>
+				<span class="menu-item-parent">Project Resource</span></a>
+				<ul>
+					<li class=""><a href="resourcelist?" title="Project Selling Plans"><i
+							class="fa fa-tags"></i><span class="menu-item-parent">Project Resource List</span></a>
+					</li>
+					<li class="active"><a href="osmprojectresourcenew?" title="Project Selling Info"><i
+					class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Project Resource Info</span></a>
+					</li>
+				</ul>
+		</li>
 		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Project</span></a>
 			<ul>

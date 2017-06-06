@@ -713,7 +713,7 @@
 													<a href="osmprojectsubscription?subscriptiontype=Developer">Resource</a>
 												</li>
 											</ul>
-											&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-primary" id="editcurrentproject">Edit</a>
+											&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-primary" id="editcurrentproject">Edit</a>
 							</div>
 						</div>	
 						</div>

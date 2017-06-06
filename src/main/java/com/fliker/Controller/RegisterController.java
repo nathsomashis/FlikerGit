@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fliker.Modal.LoginReview;
+import com.fliker.Modal.ProfilePreview;
 import com.fliker.Modal.RegisterPreview;
 
 @Controller
@@ -21,6 +22,7 @@ public class RegisterController {
 	public ModelAndView login(@RequestParam(value = "email", required = true) String email,@RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password,
 			@RequestParam(value = "firstname", required = true) String firstname,@RequestParam(value = "lastname", required = true) String lastname,@RequestParam(value = "gender", required = true) String gender,
 			@RequestParam(value = "request", required = true) String request,@RequestParam(value = "subscription", required = true) String subscription,@RequestParam(value = "terms", required = true) String terms,
+			@RequestParam(value = "contact", required = true) String contact,@RequestParam(value = "currentStatus", required = true) String currentStatus,
 			RedirectAttributes redirectAttributes){
 		
 		//username='+emailid+'&password='+passwordid+'&firstname'+firstname+'&gender'+gender+'&request'+request+'&subscription'+subscription+'&terms'+terms
@@ -32,11 +34,16 @@ public class RegisterController {
 		
 		String returnUserid = regprev.registerUser(email, username, password, firstname, lastname, gender, request, subscription, terms);
 		
+		ProfilePreview profprev = new ProfilePreview();
+		profprev.saveNewProfileData(returnUserid, email, username, password, firstname, lastname, gender, request, subscription, terms, contact, currentStatus);
+		
 		System.out.println("return userid"+returnUserid);
 		ModelMap model = new ModelMap();
 		model.addAttribute("useridnew", returnUserid);
+		model.addAttribute("email", email);
 		ModelAndView mv=new ModelAndView("redirect:/activationuserid",model);
 		mv.addObject("useridnew", returnUserid);
+		mv.addObject("email", email);
 		return mv;
 	}
 	

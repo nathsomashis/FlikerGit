@@ -18,7 +18,7 @@ public class ActivationController {
 
 	
 	@RequestMapping("/activationuserid")
-	public ModelAndView chatmessages(@RequestParam(value = "name", required = false, defaultValue = "World") String name,
+	public ModelAndView chatmessages(@RequestParam(value = "email", required = false, defaultValue = "World") String email,
 			@RequestParam(value = "useridnew", required = false, defaultValue = "World") String userid){
 		
 		
@@ -33,7 +33,7 @@ public class ActivationController {
 		System.out.println(userid);
 		
 		ActivationUtility activutil = new ActivationUtility();
-		activutil.createActivationLink(userid);
+		activutil.createActivationLink(userid,email);
 		
 		
 		return mv;
