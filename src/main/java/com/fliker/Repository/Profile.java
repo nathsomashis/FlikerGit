@@ -27,9 +27,16 @@ public class Profile {
 	private String[] skilliset;
 	private String[] projects;
 	private String[] courseids;
+	private String[] guidanceids;
 	
 	
 	
+	public String[] getGuidanceids() {
+		return guidanceids;
+	}
+	public void setGuidanceids(String[] guidanceids) {
+		this.guidanceids = guidanceids;
+	}
 	public String getSalaryhike() {
 		return salaryhike;
 	}

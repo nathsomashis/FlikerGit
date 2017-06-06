@@ -281,6 +281,18 @@
 											</label>
 										</section>
 									</div>
+									<div class="row">
+										<section class="col col-6">
+											<label class="input">
+												<input type="text" name="contact" placeholder="Contact">
+											</label>
+										</section>
+										<section class="col col-6">
+											<label class="input">
+												<input type="text" name="currentStatus" placeholder="Current Status">
+											</label>
+										</section>
+									</div>
 
 									<div class="row">
 										<section class="col col-6">
@@ -657,6 +669,12 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 						},
 						terms : {
 							required : true
+						},
+						contact : {
+							required : true
+						},
+						currentStatus : {
+							required : true
 						}
 					},
 
@@ -687,13 +705,19 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 						},
 						terms : {
 							required : 'You must agree with Terms and Conditions'
+						},
+						contact : {
+							required : 'You must provide proper contact number'
+						},
+						currentStatus : {
+							required : 'You working as '
 						}
 					},
 
 					// Ajax form submition
 					submitHandler : function(form) {
 						$(form).ajaxSubmit({
-							url: 'register?email='+email+'&username='+username+'&password='+password+'&firstname'+firstname+'&lastname='+lastname+'&gender'+gender+'&request'+request+'&subscription'+subscription+'&terms'+terms, 
+							url: 'register?email='+email+'&username='+username+'&password='+password+'&firstname'+firstname+'&lastname='+lastname+'&gender'+gender+'&request'+request+'&subscription'+subscription+'&terms'+terms+"&contact="+contact+"&currentStatus="+currentStatus, 
 							type: 'post',
 							success : function() {
 								$("#smart-form-register").addClass('submited');

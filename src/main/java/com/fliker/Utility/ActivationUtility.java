@@ -23,7 +23,7 @@ import com.mongodb.DBObject;
 public class ActivationUtility {
 
 	
-	public String createActivationLink(String newuserid){
+	public String createActivationLink(String newuserid, String email){
 		
 		
 		String newhyper = "";
@@ -68,7 +68,7 @@ public class ActivationUtility {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("somashis.nath@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("somashis.nath@gmail.com"));
+					InternetAddress.parse(email));
 			message.setSubject("Testing Subject");
 			message.setText("Dear Mail Crawler," +
 					"\n\n Verification mail from fliker, please click on the link to activate your account!"+

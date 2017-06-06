@@ -449,6 +449,84 @@ public class ProfilePreview {
 	}
 
 
+	public void saveNewProfileData(String userid, String email, String username, String password, String firstname, String lastname,
+			String gender, String request, String subscription, String terms,String contact,String currentStatus) {
+		// TODO Auto-generated method stub
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		
+		String[] articles = new String[0];
+		String[] connections = new String[0];
+		String[] courses = new String[0];
+		String[] followers = new String[0];
+		String[] guidance = new String[0];
+		String[] projects = new String[0];
+		String[] skillset = new String[0];
+		
+		
+		Profile profile = new Profile();
+		profile.setArticleids(articles);
+		profile.setConnectids(connections);
+		profile.setContact(contact);
+		profile.setCourseids(courses);
+		profile.setCurrentStatus(currentStatus);
+		profile.setEmailid(email);
+		profile.setExperience("");
+		profile.setFollwerids(followers);
+		profile.setGuidanceids(guidance);
+		profile.setHangoverid(email);
+		profile.setName(firstname+" "+lastname);
+		profile.setProfiledataid("");
+		profile.setProfileImageid("");
+		profile.setProjects(projects);
+		profile.setSalary("");
+		profile.setSalaryhike("");
+		profile.setSkilliset(skillset);
+		profile.setSkypeid(email);
+		profile.setTellmeaboutme("");
+		profile.setUserid(userid);
+		
+		
+		
+		MongoConnection mongocon = new MongoConnection();
+		
+		BasicDBObject basicreqobj =  profprev.formProfileDBObject(profile);
+		
+		mongocon.saveObject(basicreqobj, "Profile");
+		
+	}
+
+
+	private BasicDBObject formProfileDBObject(Profile profile) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("articleids", profile.getArticleids());
+		basicdbobj.put("connectids", profile.getConnectids());
+		basicdbobj.put("contact", profile.getContact());
+		basicdbobj.put("courseids", profile.getCourseids());
+		basicdbobj.put("currentStatus", profile.getCurrentStatus());
+		basicdbobj.put("emailid", profile.getEmailid());
+		basicdbobj.put("experience", profile.getExperience());
+		basicdbobj.put("follwerids", profile.getFollwerids());
+		basicdbobj.put("guidanceids", profile.getGuidanceids());
+		basicdbobj.put("hangoverid", profile.getHangoverid());
+		basicdbobj.put("name", profile.getName());
+		basicdbobj.put("profiledataid", profile.getProfiledataid());
+		basicdbobj.put("profileid", profile.getProfileid());
+		basicdbobj.put("profileImageid", profile.getProfileImageid());
+		basicdbobj.put("projects", profile.getProjects());
+		basicdbobj.put("salary", profile.getSalary());
+		basicdbobj.put("salaryhike", profile.getSalaryhike());
+		basicdbobj.put("skilliset", profile.getSkilliset());
+		basicdbobj.put("skypeid", profile.getSkypeid());
+		basicdbobj.put("tellmeaboutme", profile.getTellmeaboutme());
+		basicdbobj.put("userid", profile.getUserid());
+		
+		return basicdbobj;
+	}
+
+
 	/*public ArrayList getRecommendedList(String userid) {
 		
 		ArrayList recommendlist = new ArrayList();
