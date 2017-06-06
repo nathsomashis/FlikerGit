@@ -837,6 +837,7 @@
 											String guidancelocation="";
 											String guidanceduration= "";
 											String profileid = "";
+											String guidancereason="";
 											
 											HashMap guidancemap = (HashMap)resourcelist.get(m);
 											Set perset = guidancemap.entrySet();
@@ -858,11 +859,11 @@
 													profileimage = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("profileName")) {
 													profilename = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("guidanceid")) {
-													guidanceid = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("guidancereason")) {
+													guidancereason = (String)perme.getValue();
 												}
 												
-												
+												System.out.println("guidanceid >>"+guidanceid+" guidancesubject >>"+guidancesubject+" guidancelocation >>"+guidancelocation+" profileid >>"+profileid+" profilename >>"+profilename);
 											}
 											
 											%>
@@ -873,18 +874,212 @@
 															class="img-responsive" alt="<%=profilename%>">
 													</div>
 													<div class="col-md-8 padding-left-0">
-														<h3 class="margin-top-0">
-															<br> <small
-																class="font-xs"><i>Taken by <a
-																	href="javascript:void(0);"><%=profilename%></a></i></small>
-														</h3>
-														
-														<a class="btn btn-primary" href="#" onclick="gotoguidance(<%=guidanceid%>)">
-															Guide </a> <a class="btn btn-warning"
-															href="#" onclick="apply(<%=guidanceid%>)"> Apply </a> <!-- <a
+														<h3 class="margin-top-0"><a href="#"><%=guidancereason%></a><br><small class="font-xs"><i>Guidance Subject :<a href="#"><%=guidancesubject%></a></i></small></h3>
+														<small class="font-xs"><i>Guidance Duration :<a href="#"><%=guidanceduration%></a></i></small>
+														<a class="btn btn-primary" href="#" onclick="gotoguidance(<%=guidanceid%>)"> Go To Guide </a> <a class="btn btn-warning"
+															href="#" onclick="apply(<%=guidanceid%>)"> Publish Guide </a> <!-- <a
 															class="btn btn-success" href="javascript:void(0);">
 															Publish </a> -->
 													</div>
+												</div>
+												<hr>
+											<%
+										}
+										
+										
+										%>
+									</div>
+
+								</div>
+
+
+
+							</div>
+							<div class="row">
+
+								<div class="col-sm-12">
+
+									<div class="well padding-10">
+										<%
+										ArrayList ongoingResources = (ArrayList)request.getAttribute("ongoingResources");
+										int ongoingResourcessize = ongoingResources.size();
+										System.out.println(ongoingResourcessize);
+										for(int m=0;m<ongoingResources.size();m++){
+											
+											String guidanceid="";
+											String guidancesubject="";
+											String profileimage="";
+											String profilename="";
+											String guidancelocation="";
+											String guidanceduration= "";
+											String profileid = "";
+											String guidancereason="";
+											String guidancetype="";
+											String nextmeeting="";
+											String topiccount = "";
+											String timetableid="";
+											String providerprofileid="";
+											String providerprofileimage="";
+											String providername="";
+											String provideruserid="";
+											
+											StringBuffer consumerlisset = new StringBuffer();
+											
+											LinkedList consumerlist = new LinkedList();
+											
+											
+											HashMap guidancemap = (HashMap)ongoingResources.get(m);
+											Set perset = guidancemap.entrySet();
+											Iterator perit = perset.iterator();
+											while (perit.hasNext()) {
+												Map.Entry perme = (Map.Entry) perit.next();
+												String keyvalue = (String) perme.getKey();
+												if (keyvalue.equalsIgnoreCase("guidanceduration")) {
+													guidanceduration = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("guidancelocation")) {
+													guidancelocation = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("guidancereason")) {
+													guidancereason = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("guidancesubject")) {
+													guidancesubject = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("guidancetype")) {
+													guidancetype = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("nextmeeting")) {
+													nextmeeting = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("topiccount")) {
+													topiccount = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("consumerids")) {
+													consumerlist = (LinkedList)perme.getValue();
+													
+													for(int t=0;t<consumerlist.size();t++){
+														
+														String consumerprofile = "";
+														String consumerprofileimage="";
+														String consumername="";
+														String consumeruserid="";
+														
+														
+														HashMap consumermap = (HashMap)consumerlist.get(t);
+														Set cosumeset = consumermap.entrySet();
+														Iterator consumeit = cosumeset.iterator();
+														while (consumeit.hasNext()) {
+															Map.Entry consumeme = (Map.Entry) consumeit.next();
+															String consumekey = (String) consumeme.getKey();
+															if (consumekey.equalsIgnoreCase("profileid")) {
+																consumerprofile = (String)consumeme.getValue();
+															}else if (consumekey.equalsIgnoreCase("profileImage")) {
+																consumerprofileimage = (String)consumeme.getValue();
+															}else if (consumekey.equalsIgnoreCase("profileName")) {
+																consumername = (String)consumeme.getValue();
+															}else if (consumekey.equalsIgnoreCase("userid")) {
+																consumeruserid = (String)consumeme.getValue();
+															}
+															
+															
+															
+														}
+														
+														String composeconsumer = "<li><a href='#'><img src='/Fliker/imageFromUserid/"+consumeruserid+"' alt='"+consumername+"'></a></li>";
+														consumerlisset.append(composeconsumer);
+													}
+													
+												}else if (keyvalue.equalsIgnoreCase("guidanceid")) {
+													guidanceid = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("timetableid")) {
+													timetableid = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("consumerids")) {
+													guidanceid = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("providerprofileid")) {
+													providerprofileid = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("providerprofileimage")) {
+													providerprofileimage = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("providername")) {
+													providername = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("provideruserid")) {
+													provideruserid = (String)perme.getValue();
+												}
+												
+												
+												
+											}
+											
+											%>
+											
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<div class="row" style="border: 1px black">
+															<div class="col-xs-12 col-sm-7 col-md-7 col-lg-2">
+																<h1 class="page-title txt-color-blueDark">
+																	<!-- PAGE HEADER -->
+																	<%=guidancesubject%><span>
+																</h1>
+															</div>
+															<!-- col -->
+															<div class="col-xs-12 col-sm-5 col-md-5 col-lg-10">
+																<!-- sparks -->
+																<ul id="sparks">
+																	<li class="sparks-info">
+																		<h5>Demand<span class="txt-color-blue">$47,171</span></h5>
+																		<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+																			1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+																		</div>
+																	</li>
+																	<li class="sparks-info">
+																		<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45</span></h5>
+																	</li>
+																	<li class="sparks-info">
+																		<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;2447</span></h5>
+																	</li>
+																	<li class="sparks-info" >
+																		<h5> Duration <span class="txt-color-greenDark"><i class="fa fa-money" id='investors' ></i>&nbsp;<%=guidanceduration%></span></h5>
+																	</li>
+																	<li class="sparks-info" >
+																		<h5> Location <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;<img src="https://maps.googleapis.com/maps/api/staticmap?center="<%=guidancelocation%>"&zoom=14&size=100x100&key=YOUR_API_KEY" alt="friend-1"></span></h5>
+																	</li>
+																	<li class="sparks-info" >
+																		<h5> Resources <span class="txt-color-greenDark"><i class="fa fa-group" id='investors' ></i>&nbsp;21</span></h5>
+																	</li>
+																	<li class="sparks-info" >
+																		<h5> Request Resource <span class="txt-color-greenDark"><i class="fa fa-child" id='investors' ></i>&nbsp;11</span></h5>
+																	</li>
+																</ul>
+																<!-- end sparks -->
+															</div>
+															<!-- end col -->
+										
+														</div>
+														<div class="row">
+														<div class="col-md-12 padding-left-0">	
+															<h3 class="margin-top-0"><a href="javascript:void(0);"><%=guidancereason%></a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);"><%=providername %></a></i></small></h3>
+															<small class="font-xs"><i>Published by <a href="javascript:void(0);"><%=guidancetype%></a></i></small>
+															<p>
+																<div class="col-sm-3">
+																	<h1><small>Connections</small></h1>
+																	<ul class="list-inline friends-list">
+																		<%=consumerlisset.toString()%>
+																	</ul>
+																</div>	
+															</p>
+															<div class="btn-group">
+																			<button class="btn btn-primary">
+																				Subscribe As :
+																			</button>
+																			<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+																				<span class="caret"></span>
+																			</button>
+																			<ul class="dropdown-menu">
+																				<li>
+																					<a href="javascript:void(0);">Investor</a>
+																				</li>
+																				<li>
+																					<a href="javascript:void(0);">Resource</a>
+																				</li>
+																			</ul>
+																		</div>
+														</div>	
+														</div>
+													</div>
+												
 												</div>
 												<hr>
 											<%
@@ -938,9 +1133,27 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-md-3">
 										<div class="form-group">
-											<input type="text" class="form-control" value="" placeholder="Duration" required id="duration" />
+											<input type="text" class="form-control" value="" placeholder="Duration if any leave it blank" id="duration" />
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="durationtype">Duration Type</label>
+											<select class="form-control" id="durationtypeid">
+												<option>Month</option>
+												<option>Day</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="guidancetype">Guidance Type</label>
+											<select class="form-control" id="guidancetypeid">
+												<option>Acedamic</option>
+												<option>Professional</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -994,9 +1207,27 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-md-3">
 										<div class="form-group">
 											<input type="text" class="form-control" value="" placeholder="Duration if any leave it blank" id="duration" />
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="durationtype">Duration Type</label>
+											<select class="form-control" id="durationtypeid">
+												<option>Month</option>
+												<option>Day</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="publish">Guidance Type</label>
+											<select class="form-control" id="published">
+												<option>Acedamic</option>
+												<option>Professional</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -1412,9 +1643,10 @@
 				 
 				 var guidancesubject = $('#guidancesubject').val();
 				 var guidancereason = $('#guidancereason').val();
-				 var duration = $('#duration').val();
+				 var duration = $('#duration').val()+$('#durationtypeid').val();
 				 var location = $('#location').val();
 				 var published = $('#published').val();
+				 var guidancetype = $('#guidancetypeid').val();
 				 /* var coordinate = "";
 				 
 				 var geocoder =  new google.maps.Geocoder();
@@ -1429,14 +1661,14 @@
 				 
 				 
 				 $.ajax({
-						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration,
+						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype,
 						method : 'POST',
 						success : function(data){
-							if(data.success == true){ // if true (1)
+							//if(data.success == true){ // if true (1)
 							      setTimeout(function(){// wait for 5 secs(2)
 							           location.reload(); // then reload the page.(3)
 							      }, 5000); 
-							   }
+							  // }
 							
 						}
 					

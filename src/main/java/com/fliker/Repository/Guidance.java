@@ -14,12 +14,19 @@ public class Guidance {
 	private String guidencetype;
 	private String guidancelocation;
 	private String guidanceduration;
+	private String guidancereason;
 	
 	
 	
 	
 	
 	
+	public String getGuidancereason() {
+		return guidancereason;
+	}
+	public void setGuidancereason(String guidancereason) {
+		this.guidancereason = guidancereason;
+	}
 	public String getGuidencetype() {
 		return guidencetype;
 	}

@@ -68,7 +68,7 @@ public class ActivationUtility {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("somashis.nath@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("somashis.nath@gmail.com"));
+					InternetAddress.parse("sarkar4614@gmail.com"));
 			message.setSubject("Testing Subject");
 			message.setText("Dear Mail Crawler," +
 					"\n\n Verification mail from fliker, please click on the link to activate your account!"+

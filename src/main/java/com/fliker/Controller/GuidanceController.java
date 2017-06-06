@@ -57,7 +57,8 @@ public class GuidanceController {
 		String profileimageid = profprev.profileimage(userid);
 		
 		GuidancePreview guideprev = new GuidancePreview();
-		resourcesSearch = guideprev.getGuidanceResources(guidanceSubject,guidanceType);
+		resourcesSearch = guideprev.getGuidanceUnPublishDetails(userid);
+		
 		
 		ongoingResources = guideprev.onGoingResources(userid);
 		
@@ -182,7 +183,7 @@ public class GuidanceController {
 		String guidanceflag = "consume";
 		
 		GuidancePreview guidanceprev = new GuidancePreview();
-		guidanceprev.saveGidance(userid, guidanceSubject, request, guidanceflag,"consumer",location,published,duration);
+		guidanceprev.saveGidance(userid, guidanceSubject,guidancereason, request, guidanceflag,"consumer",location,published,duration);
 		
 		ArrayList resourcesSearch = new ArrayList();
 		resourcesSearch = guidanceprev.getGuidanceResources(guidanceSubject,"provider");
@@ -218,6 +219,7 @@ public class GuidanceController {
 	public ModelAndView provideGuidance(
 			@RequestParam(value = "guidanceSubject", required = false) String guidanceSubject,
 			@RequestParam(value = "guidancereason", required = false) String guidancereason,
+			@RequestParam(value = "guidencetype", required = false) String guidencetype,
 			@RequestParam(value = "location", required = false) String location,
 			@RequestParam(value = "published", required = false) String published,
 			@RequestParam(value = "duration", required = false, defaultValue = "") String duration,
@@ -232,10 +234,15 @@ public class GuidanceController {
 		User userinf = (User) context.getAttribute("UserValues");
 		String userids = userinf.getUserid();
 		
-		guidanceprev.saveGidance(userids, guidanceSubject, request, guidanceflag,"provider",location,published,duration);
+		guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,"provider",location,published,duration);
+		
+		guidanceprev.applyForGuidance(guidanceSubject,"",guidencetype,userids);
 		
 		ArrayList resourcesSearch = new ArrayList();
 		resourcesSearch = guidanceprev.getGuidanceUnPublishDetails(userids);
+		
+		ArrayList ongoingResources = new ArrayList();
+		ongoingResources = guidanceprev.onGoingResources(userids);
 		
 		
 		String userfirstname = userinf.getFirstname();
@@ -255,6 +262,7 @@ public class GuidanceController {
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
 		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("ongoingResources", ongoingResources);
 		
 		return mv;
 		

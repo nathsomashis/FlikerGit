@@ -30,8 +30,14 @@ public class SearchPreview {
 		
 		String newSearchparam = ".*"+searchparam+".*";
 		
+		System.out.println("newSearchparam ::??"+newSearchparam);
+		
 		MongoConnection mongocon = new MongoConnection();
-		DBCursor resultcursor = mongocon.getDBObject("Content_Description", newSearchparam, "SearchContent");
+		DBCollection collection = mongocon.getDBConnection("SearchContent");//db.getCollection("students");
+		BasicDBObject searchQuery = new BasicDBObject();
+		searchQuery.put("contentDescription", java.util.regex.Pattern.compile(newSearchparam));
+		DBCursor resultcursor = collection.find(searchQuery);
+		//DBCursor resultcursor = mongocon.getDBObject("Content_Description", newSearchparam, "SearchContent");
 		String uniqueid = "";
 		
 		UploadFileService upservice = new UploadFileService();
@@ -41,15 +47,15 @@ public class SearchPreview {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(resultcursor.hasNext()){
+		while(resultcursor.hasNext()){
 			DBObject theObj = resultcursor.next();
 			
 			SearchContent searchcontent = new SearchContent();
 			//searchcontent.get
-			searchcontent.getSearchid();
-			searchcontent.getContentType();
-			searchcontent.getContentDescription();
-			searchcontent.getContentLink();
+			searchcontent.setSearchid((String)theObj.get("searchid"));
+			searchcontent.setContentType((String)theObj.get("contentType"));
+			searchcontent.setContentDescription((String)theObj.get("contentDescription"));
+			searchcontent.setContentLink((String)theObj.get("contentLink"));
 			
 			serchres.add(searchcontent);
 			

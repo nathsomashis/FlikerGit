@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -648,23 +649,29 @@
 								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
 							</li> -->
 						</ul>
-				
+						<%
+						
+							ArrayList searchresults = (ArrayList)request.getAttribute("searchResult");
+							System.out.println(searchresults);
+						
+						%>
 						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
 							<div class="tab-pane fade in active" id="s1">
-								<h1> Search <span class="semi-bold">Everything</span></h1>
-								<br>
-								<div class="input-group input-group-lg hidden-mobile">
-									<input class="form-control input-lg" type="text" placeholder="Search again..." id="search-project">
-									<div class="input-group-btn">
-										<button type="submit" class="btn btn-default">
-											&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
-										</button>
+								<form action="searchresults?" id="search-form">
+									<h1> Search <span class="semi-bold">Everything</span></h1>
+									<br>
+									<div class="input-group input-group-lg hidden-mobile">
+										<input class="form-control input-lg" type="text" placeholder="Search again..." id="searchparam">
+										<div class="input-group-btn">
+											<button type="submit" class="btn btn-default" id="searchresult">
+												&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
+											</button>
+										</div>
 									</div>
-								</div>
+								</form>
+								<h1 class="font-md"> Search Results for <small class="text-danger" id="searchcount"> &nbsp;&nbsp;(2,281 results)</small></h1>
 				
-								<h1 class="font-md"> Search Results for <small class="text-danger"> &nbsp;&nbsp;(2,281 results)</small></h1>
-				
-								<div class="search-results clearfix smart-form">
+								<div id="searchresultid" class="search-results clearfix smart-form">
 				
 									<h4><i class="fa fa-plus-square txt-color-blue"></i>&nbsp;<a href="javascript:void(0);">SmartAdmin - Responsive Dashboard Template</a></h4>
 				
@@ -691,116 +698,6 @@
 									</div>
 				
 								</div>
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here...
-										</p>
-									</div>
-								</div> -->
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-									<img src="img/demo/sample.jpg" alt="">
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Oct 1, 2006 - Uploaded by 02842356107
-											<br>
-											<br>
-											<a href="javascript:void(0)" class="btn btn-default btn-xs">Go to gallery</a>
-										</p>
-									</div>
-				
-								</div> -->
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"><i class="fa fa-caret-up fa-lg"></i></a></h4>
-				
-									<div>
-				
-										<span class="sparkline txt-color-blueLight" data-sparkline-type="line" data-sparkline-width="150px" data-sparkline-height="25px"> 10,3,8,4,3,10,7,8,4,6,4,6,8,3 </span>
-										<span class="display-inline note font-lg semi-bold"><small><i class="fa fa-arrow-circle-up text-success"></i> 143.43</small></span>
-				
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-										</p>
-									</div>
-				
-								</div> -->
-								
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);"> Company project Timeline Stock</a>&nbsp;&nbsp;<a href="javascript:void(0);"></a><small>[PDF]</small></h4>
-									<span class="sparkline txt-color-blueLight display-inline" data-sparkline-type="pie"  data-sparkline-offset="90" data-sparkline-piesize="55px"> 10,3,8,4, </span>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											Dashboard > Projects > IT Report <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
-										</p>
-									</div>
-				
-								</div> -->
-				
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-									</div>
-								</div> -->
-				
-								<!-- <div class="search-results clearfix">
-									<h4><a href="javascript:void(0);">SmartAdmin- Responsive Dashboard Template</a></h4>
-									<div>
-										<p class="note">
-											<a href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
-											<a href="javascript:void(0);"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
-										</p>
-										<div class="url text-success">
-											http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-										</div>
-										<p class="description">
-											Last updated by <a href="javascript:void(0);">Rusho Burthoth </a>
-										</p>
-									</div>
-								</div> -->
-				
 								<div class="text-center">
 									<hr>
 									<ul class="pagination no-margin">
@@ -1144,6 +1041,61 @@
 				 * 
 				 * loadScript(".../plugin.js", run_after_loaded);
 				 */
+				 
+				 
+				 $("#search-form").on("submit", function(){
+					    //alert("form has been submitted.");
+					    var searchparam = $('#searchparam').val();
+					    alert(searchparam);
+					    
+					    $.ajax({
+					    	url: "searchresults?searchparam="+searchparam,
+					    	method : 'POST',
+							success : function() {
+								//$("#login-form").addClass('submited');
+							}	
+					    
+					    });
+					    
+					});
+				 
+				// $('#searchresult').click(function() {
+					 
+					
+					 /* var guidancereason = $('#guidancereason').val();
+					 var duration = $('#duration').val()+$('#durationtypeid').val();
+					 var location = $('#location').val();
+					 var published = $('#published').val();
+					 var guidancetype = $('#guidancetypeid').val(); */
+					 /* var coordinate = "";
+					 
+					 var geocoder =  new google.maps.Geocoder();
+					 geocoder.geocode( { 'address': location}, function(results, status) {
+					 if (status == google.maps.GeocoderStatus.OK) {
+						 coordinate = results[0].geometry.location.lat() + "," +results[0].geometry.location.lng(); 
+					     alert(coordinate);
+					     alert("result ::"+results[0].geometry.location.lat() + "," +results[0].geometry.location.lng())
+					 }
+					 }); */
+					 
+					 
+					 
+					 /* $.ajax({
+							url : "searchresults?searchparam="+searchparam,
+							method : 'POST',
+							success : function(data){
+								//if(data.success == true){ // if true (1)
+								      setTimeout(function(){// wait for 5 secs(2)
+								           location.reload(); // then reload the page.(3)
+								      }, 5000); 
+								  // }
+								
+							}
+						
+				        });  */
+					 
+				// }); 
+				 
 				
 			})
 		
