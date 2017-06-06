@@ -29,7 +29,7 @@ public class RegisterPreview {
 		mongoconn.saveObject(regprev.formDBObject(newuser), "User");
 		
 		
-		mongoconn.saveObject(regprev.postToProfile(newuser), "Profile");
+		//mongoconn.saveObject(regprev.postToProfile(newuser), "Profile");
 		
 		System.out.println("userinfo saved"+getUseridSave()+" same as variable "+newuserid);
 		
