@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.User;
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -55,9 +56,13 @@ public class ProfilePreview {
 			profileinfo.setSalaryhike((String)theObj.get("salaryhike"));
 			profileinfo.setTellmeaboutme((String)theObj.get("tellmeaboutme"));
 			String[] courseids = null;
-			if((String)theObj.get("courseids")!=null){
-				courseids = ((String)theObj.get("courseids")).split(",");
+			BasicDBList consumeridslist = (BasicDBList)theObj.get("courseids");
+			if(!consumeridslist.isEmpty()){
+				courseids = (String[]) consumeridslist.toArray();
 			}
+			/*if((String)theObj.get("courseids")!=null){
+				courseids = ((String)theObj.get("courseids")).split(",");
+			}*/
 			profileinfo.setCourseids(courseids);
 			
 			ProfilePreview profprev = new ProfilePreview();
@@ -67,39 +72,58 @@ public class ProfilePreview {
 			//articleids
 			HashMap articlemap = new HashMap();
 			ArrayList articles = new ArrayList();
-			String[] articlelist = (String[])theObj.get("articleids");
+			BasicDBList articlelist = (BasicDBList)theObj.get("articleids");
+			if(!articlelist.isEmpty()){
+				for(int m=0;m<articlelist.size();m++){
+					articles.add(profprev.getArticlelist((String)articlelist.get(m)));
+				}
+			}
+			/*String[] articlelist = (String[])theObj.get("articleids");
 			if(articlelist != null){
 				for(int i=0;i<articlelist.length;i++){
 					articles.add(profprev.getArticlelist(articlelist[i]));
 				}
-			}
+			}*/
 			articlemap.put("articles", articles);
 			profileArr.add(articlemap);
 			
 			//connectionids
 			HashMap connectionmap = new HashMap();
 			ArrayList connections = new ArrayList();
-			String[] connectionlist = (String[])theObj.get("connectids");
+			BasicDBList connectionlist = (BasicDBList)theObj.get("connectids");
+			if(!connectionlist.isEmpty()){
+				for(int m=0;m<connectionlist.size();m++){
+					connections.add(profprev.getProfileInfo((String)connectionlist.get(m)));
+				}
+			}
+			
+			/*String[] connectionlist = (String[])theObj.get("connectids");
 			if(connectionlist != null){
 				
 				for(int j=0;j<connectionlist.length;j++){
 					connections.add(profprev.getProfileInfo(connectionlist[j]));
 				}
 				
-			}
+			}*/
 			connectionmap.put("connections",connections);
 			profileArr.add(connectionmap);
 			
 			//followerids
 			HashMap followmap = new HashMap();
 			ArrayList followerslist = new ArrayList();
-			String[] followerarr = (String[])theObj.get("follwerids");
+			BasicDBList followerarr = (BasicDBList)theObj.get("follwerids");
+			if(!followerarr.isEmpty()){
+				for(int m=0;m<followerarr.size();m++){
+					followerslist.add(profprev.getFollowerslist((String)followerarr.get(m)));
+				}
+			}
+			/*String[] followerarr = (String[])theObj.get("follwerids");
 			if(followerarr != null){
 				
 				for(int k=0;k<followerarr.length;k++){
 					followerslist.add(profprev.getFollowerslist(followerarr[k]));
 				}
-			}
+			}*/
 			followmap.put("followers", followerslist);
 			profileArr.add(followmap);
 			
