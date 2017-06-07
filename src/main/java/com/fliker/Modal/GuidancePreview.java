@@ -98,12 +98,15 @@ public class GuidancePreview {
 				
 				
 				ProfilePreview profprev = new ProfilePreview();
-				String[] consumerids = (String[])dbj.get("consumeruserid");
+				BasicDBList consumeridslist = (BasicDBList)dbj.get("consumeruserid");
+				/*for(int i=0;i<fileids.size();i++){ 
+					String fileid = (String);
+					fileids.get(i); System.out.println("fileid ++"+fileid); }*/
 				LinkedList consumerlist = new LinkedList();
 				
-				for(int n=0;n<consumerids.length;n++){
+				for(int n=0;n<consumeridslist.size();n++){
 					
-					ArrayList profileinfo = profprev.getProfileInfo(consumerids[n]);
+					ArrayList profileinfo = profprev.getProfileInfo((String)consumeridslist.get(n));
 					
 					
 					for(int m=0;m<profileinfo.size();m++){
@@ -190,12 +193,12 @@ public class GuidancePreview {
 			
 			
 			ProfilePreview profprev = new ProfilePreview();
-			String[] consumerids = (String[])dbj.get("consumeruserid");
+			BasicDBList consumeridslist = (BasicDBList)dbj.get("consumeruserid");
 			LinkedList consumerlist = new LinkedList();
 			
-			for(int n=0;n<consumerids.length;n++){
+			for(int n=0;n<consumeridslist.size();n++){
 				
-				ArrayList profileinfo = profprev.getProfileInfo(consumerids[n]);
+				ArrayList profileinfo = profprev.getProfileInfo((String)consumeridslist.get(n));
 				
 				
 				for(int m=0;m<profileinfo.size();m++){
@@ -719,8 +722,8 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		
 		SearchContent searchcontent = new SearchContent();
 		searchcontent.setSearchid(uniqueid);
-		searchcontent.setContentDescription("Guidance Subject ::"+guidanceSubject+" Profile Image ::"+imageid+" Profile SkypeID ::"+skypeid+" Profile Name ::"+name+" Profile Email ::"+emailid+" Profile CurrenStatus ::"+currentStatus
-				+" Profile Experience ::"+experience+" Profile HangOver ID ::"+hangoverid+" Profile Contact ::"+contact);
+		searchcontent.setContentDescription("Guidance Subject ::"+guidanceSubject+",Profile Image ::"+imageid+",Profile SkypeID ::"+skypeid+",Profile Name ::"+name+",Profile Email ::"+emailid+",Profile CurrenStatus ::"+currentStatus
+				+",Profile Experience ::"+experience+",Profile HangOver ID ::"+hangoverid+",Profile Contact ::"+contact);
 		searchcontent.setContentLink("");
 		searchcontent.setContentType("Apply For Guidance");
 		
@@ -1153,7 +1156,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	public String getnextMeeting(String timetableid) {
 		// TODO Auto-generated method stub
 		
-		DateFormat dateFormat = new SimpleDateFormat("YYYY-mm-ddTHH:MM:ss");
+		DateFormat dateFormat = new SimpleDateFormat("YYYY-mm-dd HH:MM:ss");
 		Date date = new Date();
 		String currentdate = dateFormat.format(date);
 		System.out.println(dateFormat.format(date));

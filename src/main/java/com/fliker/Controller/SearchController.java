@@ -27,9 +27,14 @@ public class SearchController {
 		SearchPreview searchprev = new SearchPreview();
 		ArrayList searchresult = new ArrayList();
 		System.out.println(" Search >>"+searchparam);
+		ModelAndView mv = new ModelAndView("/Search");
 		
 		try{
-			searchresult = searchprev.getSearchResult(searchparam);
+			if(searchparam!= null){
+				searchresult = searchprev.getSearchResult(searchparam);
+				mv.addObject("searchResult", searchresult);
+			}
+			
 			
 		}catch (NullPointerException exc){
 			exc.getLocalizedMessage();
@@ -53,10 +58,54 @@ public class SearchController {
 		
 		System.out.println("userid ::"+userid);
 		
+		//mv.addObject("search", "searchresults");
+		
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		return mv;
+		
+	}
+	
+	
+	@RequestMapping("/searchfirst")
+	public ModelAndView searchfirst( HttpServletRequest request){
+		
+		//String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		
+		SearchPreview searchprev = new SearchPreview();
+		ArrayList searchresult = new ArrayList();
+		/*System.out.println(" Search >>"+searchparam);
+		
+		try{
+			searchresult = searchprev.getSearchResult(searchparam);
+			
+		}catch (NullPointerException exc){
+			exc.getLocalizedMessage();
+			searchresult.add("");
+			
+		}*/
+		
+		//System.out.println(" Search Result ::>>"+searchresult);
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		
+		System.out.println("userid ::"+userid);
+		
 		ModelAndView mv = new ModelAndView("/Search");
 		
 		//mv.addObject("search", "searchresults");
-		mv.addObject("searchResult", searchresult);
+		//mv.addObject("searchResult", searchresult);
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
