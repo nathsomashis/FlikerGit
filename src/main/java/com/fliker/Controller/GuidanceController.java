@@ -3,6 +3,7 @@ package com.fliker.Controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.TimeoutException;
 
 import javax.servlet.ServletContext;
@@ -59,6 +60,12 @@ public class GuidanceController {
 		GuidancePreview guideprev = new GuidancePreview();
 		resourcesSearch = guideprev.getGuidanceUnPublishDetails(userid);
 		
+		HashMap guidanceprovidingsubjectmap = new HashMap();
+		guidanceprovidingsubjectmap = guideprev.getAllGuidanceProvidingSubjectList(userid);// get all profiles for the subject i am providing guidance
+		
+		HashMap guidanceconsumesubjectmap = new HashMap();
+		guidanceconsumesubjectmap = guideprev.getAllGuidanceConsumingSubjectList(userid);// get all profiles for the subject i need guidance means provider
+		
 		
 		ongoingResources = guideprev.onGoingResources(userid);
 		
@@ -74,6 +81,8 @@ public class GuidanceController {
 		mv.addObject("FullName", userfirstname+" "+userlastname);
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("ongoingResources", ongoingResources);
+		mv.addObject("guidanceprovidingsubjectmap", guidanceprovidingsubjectmap);
+		mv.addObject("guidanceconsumesubjectmap", guidanceconsumesubjectmap);
 		return mv;
 	}
 	
@@ -182,12 +191,6 @@ public class GuidanceController {
 		String[]  guidancesubjects = guidanceSubject.split(",");
 		String guidanceflag = "consume";
 		
-		GuidancePreview guidanceprev = new GuidancePreview();
-		guidanceprev.saveGidance(userid, guidanceSubject,guidancereason, request, guidanceflag,"consumer",location,published,duration);
-		
-		ArrayList resourcesSearch = new ArrayList();
-		resourcesSearch = guidanceprev.getGuidanceResources(guidanceSubject,"provider");
-		
 		ServletContext context = request.getSession().getServletContext();
 		
 		User userinf = (User) context.getAttribute("UserValues");
@@ -195,6 +198,18 @@ public class GuidanceController {
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
 		String gender = userinf.getGender();
+		
+		GuidancePreview guidanceprev = new GuidancePreview();
+		guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,"consumer",location,published,duration);// save new guidance needed.
+		
+		ArrayList resourcesSearch = new ArrayList();
+		resourcesSearch = guidanceprev.getGuidanceResources(guidanceSubject,"provider");
+		
+		ArrayList guidanceToBeList = new ArrayList();
+		//guidanceToBeList = guidanceprev.getNewGuidance(userids);// No resources yet added
+		
+		ArrayList ongoingResources = new ArrayList();
+		ongoingResources = guidanceprev.onGoingResources(userids);// Ongoing guidance going on
 		
 		ProfilePreview profprev = new ProfilePreview();
 		
@@ -220,6 +235,7 @@ public class GuidanceController {
 			@RequestParam(value = "guidanceSubject", required = false) String guidanceSubject,
 			@RequestParam(value = "guidancereason", required = false) String guidancereason,
 			@RequestParam(value = "guidencetype", required = false) String guidencetype,
+			@RequestParam(value = "guidanceprice", required = false) String guidanceprice,
 			@RequestParam(value = "location", required = false) String location,
 			@RequestParam(value = "published", required = false) String published,
 			@RequestParam(value = "duration", required = false, defaultValue = "") String duration,
@@ -234,16 +250,21 @@ public class GuidanceController {
 		User userinf = (User) context.getAttribute("UserValues");
 		String userids = userinf.getUserid();
 		
-		guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,"provider",location,published,duration);
+		String guidanceid = guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,guidencetype,location,published,duration);// New Guidance to provide
 		
-		guidanceprev.applyForGuidance(guidanceSubject,"",guidencetype,userids);
+		guidanceprev.applyForGuidance(guidanceSubject,"",guidencetype,userids,guidanceid,guidanceprice);
 		
+		
+		//both returning same data
 		ArrayList resourcesSearch = new ArrayList();
-		resourcesSearch = guidanceprev.getGuidanceUnPublishDetails(userids);
+		resourcesSearch = guidanceprev.getGuidanceUnPublishDetails(userids);// No resources yet added 
 		
 		ArrayList ongoingResources = new ArrayList();
-		ongoingResources = guidanceprev.onGoingResources(userids);
+		ongoingResources = guidanceprev.onGoingResources(userids);// Ongoing guidance going on
 		
+		
+		HashMap guidanceprovidingsubjectmap = new HashMap();
+		guidanceprovidingsubjectmap = guidanceprev.getAllGuidanceProvidingSubjectList(userids);// get all profiles for the subject i am providing guidance
 		
 		String userfirstname = userinf.getFirstname();
 		String userlastname = userinf.getLastname();
@@ -293,7 +314,7 @@ public class GuidanceController {
 		System.out.println("in dashboard social controller");
  
 		GuidancePreview guidanceprev = new GuidancePreview();
-		guidanceprev.applyForGuidance(guidanceSubject,applyuserid,guidencetype,userid);
+		//guidanceprev.applyForGuidance(guidanceSubject,applyuserid,guidencetype,userid);
 		
 		
 		
@@ -323,7 +344,7 @@ public class GuidanceController {
 		System.out.println("in dashboard social controller");
  
 		GuidancePreview guidanceprev = new GuidancePreview();
-		guidanceprev.applyForGuidance(guidanceSubject,guidanceuserid,guidencetype,userid);
+		//guidanceprev.applyForGuidance(guidanceSubject,guidanceuserid,guidencetype,userid);
 		
 	}
 	
