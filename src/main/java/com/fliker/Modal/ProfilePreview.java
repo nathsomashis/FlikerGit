@@ -1,5 +1,7 @@
 package com.fliker.Modal;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.User;
+import com.fliker.Utility.UploadFileService;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
@@ -117,6 +120,15 @@ public class ProfilePreview {
 					followerslist.add(profprev.getFollowerslist((String)followerarr.get(m)));
 				}
 			}
+			
+			ArrayList guidancelist = new ArrayList();
+			BasicDBList guidancearr = (BasicDBList)theObj.get("guidanceids");
+			if(!guidancearr.isEmpty()){
+				for(int m=0;m<guidancearr.size();m++){
+					guidancelist.add(profprev.getFollowerslist((String)guidancearr.get(m)));
+				}
+			}
+			
 			/*String[] followerarr = (String[])theObj.get("follwerids");
 			if(followerarr != null){
 				
@@ -478,7 +490,19 @@ public class ProfilePreview {
 		// TODO Auto-generated method stub
 		
 		ProfilePreview profprev = new ProfilePreview();
+		UploadFileService uploadser = new UploadFileService();
 		
+		String uniqueid = "";
+		
+		try {
+			uniqueid = uploadser.makeSHA1Hash(username+password+userid+email);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String[] articles = new String[0];
 		String[] connections = new String[0];
@@ -510,7 +534,7 @@ public class ProfilePreview {
 		profile.setSkypeid(email);
 		profile.setTellmeaboutme("");
 		profile.setUserid(userid);
-		
+		profile.setProfileid(uniqueid);
 		
 		
 		MongoConnection mongocon = new MongoConnection();
