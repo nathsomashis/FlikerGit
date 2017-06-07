@@ -108,6 +108,8 @@ public class LoginController {
 		
 		ModelAndView mv = new ModelAndView("/Register");
 		
+		ProfilePreview profprev = new ProfilePreview();
+		
 		mv.addObject("name", name);
 		return mv;
 		

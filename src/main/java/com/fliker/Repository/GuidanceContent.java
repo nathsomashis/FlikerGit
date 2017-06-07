@@ -9,13 +9,16 @@ public class GuidanceContent {
 	@Id
 	private String guidanceid;
 	private String provideruserid;
-	private String consumeruserid;
+	private String[] consumeruserid;
 	private String sharetokenid;
 	private String dashboardid;
 	private String averageVelocity;
 	private String blogid;
 	private String timetableid;
 	private String projectid;
+	private String likeid;
+	private String sharedid;
+	
 	
 	
 
@@ -67,12 +70,30 @@ public class GuidanceContent {
 		this.provideruserid = provideruserid;
 	}
 
-	public String getConsumeruserid() {
+	
+
+	public String[] getConsumeruserid() {
 		return consumeruserid;
 	}
 
-	public void setConsumeruserid(String consumeruserid) {
+	public void setConsumeruserid(String[] consumeruserid) {
 		this.consumeruserid = consumeruserid;
+	}
+
+	public String getLikeid() {
+		return likeid;
+	}
+
+	public void setLikeid(String likeid) {
+		this.likeid = likeid;
+	}
+
+	public String getSharedid() {
+		return sharedid;
+	}
+
+	public void setSharedid(String sharedid) {
+		this.sharedid = sharedid;
 	}
 
 	public String getSharetokenid() {

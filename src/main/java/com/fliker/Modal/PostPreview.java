@@ -181,4 +181,47 @@ public class PostPreview {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	public void publishGuidance(String userid, String postComment, String location) {
+		// TODO Auto-generated method stub
+		
+		Post postentry = new Post();
+		location = location+"::";
+		String[] locationids = location.split("::");
+		
+		postentry.setUserid(userid);
+		postentry.setPostType("Guidance");
+		//postentry.setVoteid(null);
+		postentry.setPostDescription(postComment);
+		postentry.setPostFileid(locationids);
+		
+		ServicesUtil servutil = new ServicesUtil();
+		//String locationaddress = servutil.getLocationAddress(location);
+		//System.out.println(" locationaddress ++"+locationaddress);
+		postentry.setPostlocation(location);
+		
+		PostPreview postprev = new PostPreview();
+		String uniqueid = "";
+		
+		try {
+			uniqueid = postprev.makeSHA1Hash(postComment);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		postentry.setPostid(userid+uniqueid+System.currentTimeMillis());
+		
+		
+		MongoConnection mongocon = new MongoConnection();
+		
+		BasicDBObject basicreqobj =  postprev.formDBObject(postentry);
+		
+		mongocon.saveObject(basicreqobj, "Post");
+		
+	}
 }

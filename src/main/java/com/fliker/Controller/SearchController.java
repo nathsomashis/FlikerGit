@@ -26,6 +26,7 @@ public class SearchController {
 		
 		SearchPreview searchprev = new SearchPreview();
 		ArrayList searchresult = new ArrayList();
+		System.out.println(" Search >>"+searchparam);
 		
 		try{
 			searchresult = searchprev.getSearchResult(searchparam);
@@ -36,7 +37,7 @@ public class SearchController {
 			
 		}
 		
-		
+		System.out.println(" Search Result ::>>"+searchresult);
 		
 		ServletContext context = request.getSession().getServletContext();
 		
@@ -54,7 +55,7 @@ public class SearchController {
 		
 		ModelAndView mv = new ModelAndView("/Search");
 		
-		mv.addObject("search", "searchresults");
+		//mv.addObject("search", "searchresults");
 		mv.addObject("searchResult", searchresult);
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
