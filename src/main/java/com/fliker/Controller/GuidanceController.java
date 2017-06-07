@@ -202,8 +202,11 @@ public class GuidanceController {
 		GuidancePreview guidanceprev = new GuidancePreview();
 		guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,"consumer",location,published,duration);// save new guidance needed.
 		
-		ArrayList resourcesSearch = new ArrayList();
-		resourcesSearch = guidanceprev.getGuidanceResources(guidanceSubject,"provider");
+		HashMap guidanceconsumesubjectmap = new HashMap();
+		guidanceconsumesubjectmap = guidanceprev.getAllGuidanceConsumingSubjectList(userid);
+		
+		/*ArrayList resourcesSearch = new ArrayList();
+		resourcesSearch = guidanceprev.getGuidanceResources(guidanceSubject,"provider");*/
 		
 		ArrayList guidanceToBeList = new ArrayList();
 		//guidanceToBeList = guidanceprev.getNewGuidance(userids);// No resources yet added
@@ -223,7 +226,8 @@ public class GuidanceController {
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
-		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("ongoingResources", ongoingResources);
+		//mv.addObject("resourcesSearch", resourcesSearch);
 		
 		return mv;
 		

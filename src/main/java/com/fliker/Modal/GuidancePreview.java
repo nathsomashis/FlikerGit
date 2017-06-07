@@ -122,10 +122,10 @@ public class GuidancePreview {
 							
 							HashMap profileset = new HashMap();
 							
-							profileset.put("profileid", (String)dbj.get("profileid"));
-							profileset.put("profileImage", (String)dbj.get("profileImageid"));
-							profileset.put("profileName", (String)dbj.get("name"));
-							profileset.put("userid", (String)dbj.get("userid"));
+							profileset.put("profileid", profileinfos.getProfileid());
+							profileset.put("profileImage", profileinfos.getProfileImageid());
+							profileset.put("profileName", profileinfos.getName());
+							profileset.put("userid", profileinfos.getUserid());
 							
 							consumerlist.add(profileset);
 							
@@ -154,14 +154,12 @@ public class GuidancePreview {
 					if(providerprofileinfo.get(m) instanceof Profile){
 						Profile profileinfos = (Profile)providerprofileinfo.get(m);
 						
-						HashMap profileset = new HashMap();
+						totalSet.put("providerprofileid", profileinfos.getProfileid());
+						totalSet.put("providerprofileimage", profileinfos.getProfileImageid());
+						totalSet.put("providername", profileinfos.getName());
+						totalSet.put("provideruserid", profileinfos.getUserid());
 						
-						totalSet.put("providerprofileid", (String)dbj.get("profileid"));
-						totalSet.put("providerprofileimage", (String)dbj.get("profileImageid"));
-						totalSet.put("providername", (String)dbj.get("name"));
-						totalSet.put("provideruserid", (String)dbj.get("userid"));
-						
-						consumerlist.add(profileset);
+						//consumerlist.add(profileset);
 						
 					}
 					
@@ -214,10 +212,10 @@ public class GuidancePreview {
 						
 						HashMap profileset = new HashMap();
 						
-						profileset.put("profileid", (String)dbj.get("profileid"));
-						profileset.put("profileImage", (String)dbj.get("profileImageid"));
-						profileset.put("profileName", (String)dbj.get("name"));
-						profileset.put("userid", (String)dbj.get("userid"));
+						profileset.put("profileid", profileinfos.getProfileid());
+						profileset.put("profileImage", profileinfos.getProfileImageid());
+						profileset.put("profileName", profileinfos.getName());
+						profileset.put("userid", profileinfos.getUserid());
 						
 						consumerlist.add(profileset);
 						
@@ -248,10 +246,10 @@ public class GuidancePreview {
 					
 					HashMap profileset = new HashMap();
 					
-					totalSet.put("providerprofileid", (String)dbj.get("profileid"));
-					totalSet.put("providerprofileimage", (String)dbj.get("profileImageid"));
-					totalSet.put("providername", (String)dbj.get("name"));
-					totalSet.put("provideruserid", (String)dbj.get("userid"));
+					totalSet.put("providerprofileid", profileinfos.getProfileid());
+					totalSet.put("providerprofileimage", profileinfos.getProfileImageid());
+					totalSet.put("providername", profileinfos.getName());
+					totalSet.put("provideruserid", profileinfos.getUserid());
 					
 					consumerlist.add(profileset);
 					
@@ -536,6 +534,9 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		basicdbobj.put("averageVelocity", guidancecontent.getAverageVelocity());
 		basicdbobj.put("blogid", guidancecontent.getBlogid());
 		basicdbobj.put("timetableid", guidancecontent.getTimetableid());
+		basicdbobj.put("likeid", guidancecontent.getLikeid());
+		basicdbobj.put("sharedid", guidancecontent.getSharedid());
+		basicdbobj.put("price", guidancecontent.getPrice());
 		
 		return basicdbobj;
 		
