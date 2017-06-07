@@ -635,7 +635,7 @@
 				
 					<div class="col-sm-12">
 				
-						<!-- <ul id="myTab1" class="nav nav-tabs bordered">
+						<ul id="myTab1" class="nav nav-tabs bordered">
 							<li class="active">
 								<a href="#s1" data-toggle="tab">Search</a>
 							</li>
@@ -645,12 +645,12 @@
 							<li>
 								<a href="#s3" data-toggle="tab">Search History</a>
 							</li>
-							<li class="pull-right hidden-mobile">
+							<!-- <li class="pull-right hidden-mobile">
 								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
-							</li>
-						</ul> -->
-						<div class="row">
-							<!-- <div class="tab-pane fade in active" id="s1"> -->
+							</li> -->
+						</ul>
+						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
+							<div class="tab-pane fade in active" id="s1">
 								<form action="searchresults?" id="search-form">
 									<h1> Search <span class="semi-bold">Everything</span></h1>
 									<br>
@@ -772,7 +772,7 @@
 				
 							</div>
 				
-							<!-- <div class="tab-pane fade" id="s2">
+							<div class="tab-pane fade" id="s2">
 								<h1> Search <span class="semi-bold">Users/Groups/Courses/Job Interviews/Organization/Institutions/Etc..</span></h1>
 								<br>
 								<div class="input-group input-group-lg">
@@ -804,8 +804,8 @@
 											</li>
 										</ul>
 									</div>
-									<!-- <input class="form-control input-lg" type="text" placeholder="Mention the type(eg: for Groups --> #Group groupname)..." id="search-user"> -->
-									<!-- <div class="input-group-btn">
+									<input class="form-control input-lg" type="text" placeholder="Mention the type(eg: for Groups --> #Group groupname)..." id="search-user">
+									<div class="input-group-btn">
 										<button type="submit" class="btn btn-default">
 											<i class="fa fa-fw fa-search fa-lg"></i>
 										</button>
@@ -866,9 +866,9 @@
 									<br>
 									<br>
 								</div>
-							</div> --> -->
+							</div>
 				
-							<!-- <div class="tab-pane fade" id="s3">
+							<div class="tab-pane fade" id="s3">
 								<h1> Search <span class="semi-bold">history</span></h1>
 								<p class="alert alert-info">
 									Your search history is turned off.
@@ -880,7 +880,7 @@
 									<input type="checkbox" name="save_history" class="onoffswitch-checkbox" id="save_history" checked="checked">
 									<label class="onoffswitch-label" for="save_history"> <span class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></span> <span class="onoffswitch-switch"></span> </label> </span>
 				
-							</div> -->
+							</div>
 						</div>
 				
 					</div>
