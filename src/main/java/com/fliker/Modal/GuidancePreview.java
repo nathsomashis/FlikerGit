@@ -88,6 +88,12 @@ public class GuidancePreview {
 				totalSet.put("averageVelocity", (String)dbj.get("averageVelocity"));
 				totalSet.put("blogid", (String)dbj.get("blogid"));
 				
+				BasicDBList likedlist = (BasicDBList)dbj.get("likeid");
+				BasicDBList sharedlist = (BasicDBList)dbj.get("sharedid");
+				
+				totalSet.put("likeid", likedlist.size());
+				totalSet.put("shareid", sharedlist.size());
+				
 				Guidance guidance = guidprev.getGuidanceSection((String)dbj.get("guidanceid"));
 				
 				totalSet.put("guidanceduration", guidance.getGuidanceduration());
@@ -431,7 +437,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 	
-  public void saveGidance(String userid, String guidancesubjects,String guidancereason, HttpServletRequest request, String guidanceflag, String guidenctype, String location, String published, String duration){
+  public String saveGidance(String userid, String guidancesubjects,String guidancereason, HttpServletRequest request, String guidanceflag, String guidenctype, String location, String published, String duration){
 		
 	  ArrayList profileinfo = new ArrayList();
 	  
@@ -479,6 +485,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		System.out.println("Published ::"+published);
 		guidanceprev.publishContent(userid, uniqueid, guidancesubjects,location);
 		
+		return uniqueid;
 		
 	}
 	
@@ -585,38 +592,32 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 
-  public void applyForGuidance(String guidanceSubject, String userid, String guidencetype, String guidanceuserid) {
+  public void applyForGuidance(String guidanceSubject, String userid, String guidencetype, String guidanceuserid, String guidanceid, String guidanceprice) {
 	// TODO Auto-generated method stub
 	  
 	  String[] consumers = new String[0];
 	  System.out.println("guidanceSubject >>"+guidanceSubject+" guidencetype >>"+guidencetype+" guidanceuserid >>"+guidanceuserid);
 	  
 	  PublishPreview pubprev = new PublishPreview();
+	  String[] likeid = new String[0];
+	  String[] sharedid = new String[0];
 	  GuidanceContent guidancecontent = new GuidanceContent();
 	  GuidancePreview guidanceprev = new GuidancePreview();
 	  GuidanceContentDashboard guidancecondash = new GuidanceContentDashboard();
 	  GuidanceContentShared guidanceshare = new GuidanceContentShared();
 	  //GuidanceContentFiles guidancecontfile = new GuidanceContentFiles();
-	  String uniqueid = "";
-		
-		try {
-			uniqueid = guidanceprev.makeSHA1Hash(guidanceSubject.toString()+userid+guidencetype+guidanceuserid);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	  
 		guidancecontent.setConsumeruserid(consumers);
-		guidancecontent.setDashboardid(uniqueid);
-		guidancecontent.setGuidanceid(uniqueid);
+		guidancecontent.setDashboardid(guidanceid);
+		guidancecontent.setGuidanceid(guidanceid);
 		guidancecontent.setProvideruserid(guidanceuserid);
-		guidancecontent.setSharetokenid(uniqueid);
-		guidancecontent.setTimetableid(uniqueid);
+		guidancecontent.setSharetokenid(guidanceid);
+		guidancecontent.setTimetableid(guidanceid);
 		guidancecontent.setAverageVelocity("0");
-		guidancecontent.setBlogid(uniqueid);
+		guidancecontent.setBlogid(guidanceid);
+		guidancecontent.setLikeid(likeid);
+		guidancecontent.setSharedid(sharedid);
+		guidancecontent.setPrice(guidanceprice);
 		
 		MongoConnection mongocon = new MongoConnection();
 		
@@ -628,9 +629,9 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		
 		guidanceshare.setGuidancesharedid(guidancecontent.getSharetokenid());
 		
-		guidanceprev.searchContent(userid, uniqueid, guidanceSubject);
+		//guidanceprev.searchContent(userid, uniqueid, guidanceSubject);
 		
-		pubprev.publishtopublisher(guidanceSubject, userid, guidencetype, guidanceuserid, uniqueid);
+		//pubprev.publishtopublisher(guidanceSubject, userid, guidencetype, guidanceuserid, uniqueid);
 		
 	
   }
@@ -1444,6 +1445,177 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		return guidancelist;
 		
 	}
+	
+	public HashMap getAllGuidanceProvidingSubjectList(String userid) {
+		// TODO Auto-generated method stub
+		
+		
+		GuidancePreview guidprev = new GuidancePreview();
+		HashMap guidanceidset = new HashMap();
+
+		MongoConnection mongocon = new MongoConnection();
+		Assignment assignment = new Assignment();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "GuidanceSelection");
+		while(resultcursor.hasNext() ){
+			
+			DBObject dbj = resultcursor.next();
+			String provideid = (String)dbj.get("guidanceflag");
+			
+			if(provideid.equalsIgnoreCase("provide")){
+				
+				String guidancesubject = (String)dbj.get("guidanceSubject");
+				/*MongoConnection mongoconguid = new MongoConnection();
+				DBCursor resultguid = mongoconguid.getDBObject("guidanceid", guidanceid, "GuidanceSelection");
+				if(resultguid.hasNext()){*/
+					
+					/*DBObject thedbj = resultguid.next();
+					String guidsubject = (String)dbj.get("guidanceSubject");*/
+					
+					MongoConnection mongoconsub = new MongoConnection();
+					DBCursor resultsubject = mongoconsub.getDBObject("guidanceSubject", guidancesubject, "GuidanceSelection");
+					while(resultsubject.hasNext()){
+						DBObject thesubdbj = resultsubject.next();
+						String guidanceflag = (String)thesubdbj.get("guidanceflag");
+						if(guidanceflag.equalsIgnoreCase("consume")){
+							
+							ArrayList guidanceproviderlist = guidprev.checkGuidanceTake((String)thesubdbj.get("userid"), guidancesubject);
+							HashMap guidanceinfo = new HashMap();
+							guidanceinfo.put("guidancepresent", guidanceproviderlist);
+							guidanceinfo.put("guidancereason", (String)thesubdbj.get("guidancereason"));
+							guidanceinfo.put("guidancelocation", (String)thesubdbj.get("guidancelocation"));
+							guidanceinfo.put("guidanceduration", (String)thesubdbj.get("guidanceduration"));
+							guidanceinfo.put("guidanceuserid", (String)thesubdbj.get("userid"));
+							
+							
+							guidanceidset.put((String)thesubdbj.get("guidanceid"), guidanceinfo);
+							
+							
+						
+					}
+					
+				}
+				
+			}
+		}
+		
+		return guidanceidset;
+	}
+	
+	
+	
+	public ArrayList checkGuidanceTake(String userid, String guidancesubject){
+		
+		//String guidanceids = "";
+		ArrayList guidanceidlist = new ArrayList();
+		ProfilePreview profprev = new ProfilePreview();
+		ArrayList profilelist = profprev.getProfileInfo(userid);
+		
+		
+		//String[] guidancelist = new String[0];
+		
+		
+		for(int m=0;m<profilelist.size();m++){
+			
+			
+			if(profilelist.get(m) instanceof Profile){
+				Profile profileinform = (Profile)profilelist.get(m);
+				String[] guidancelist = profileinform.getGuidanceids();
+				
+				for(int n=0;n<guidancelist.length;n++){
+					
+					MongoConnection mongoconsub = new MongoConnection();
+					DBCursor resultsubject = mongoconsub.getDBObject("guidanceid", guidancelist[n], "GuidanceSelection");
+					if(resultsubject.hasNext()){
+						DBObject thesubdbj = resultsubject.next();
+						String guidancesubj = (String)thesubdbj.get("guidanceSubject");
+						
+						if(guidancesubj.equalsIgnoreCase(guidancesubject)){
+							guidanceidlist.add((String)thesubdbj.get("userid"));
+						}
+						
+					}
+					
+				}
+				
+				
+			}
+			
+		}
+		
+		return guidanceidlist;
+		
+	}
+
+
+	public HashMap getAllGuidanceConsumingSubjectList(String userid) {
+		// TODO Auto-generated method stub
+		
+		GuidancePreview guidprev = new GuidancePreview();
+		HashMap guidanceidset = new HashMap();
+
+		MongoConnection mongocon = new MongoConnection();
+		Assignment assignment = new Assignment();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "GuidanceSelection");
+		while(resultcursor.hasNext() ){
+			
+			DBObject dbj = resultcursor.next();
+			String provideid = (String)dbj.get("guidanceflag");
+			
+			if(provideid.equalsIgnoreCase("consume")){
+				
+				String guidancesubject = (String)dbj.get("guidanceSubject");
+				/*MongoConnection mongoconguid = new MongoConnection();
+				DBCursor resultguid = mongoconguid.getDBObject("guidanceid", guidanceid, "GuidanceSelection");
+				if(resultguid.hasNext()){*/
+					
+					/*DBObject thedbj = resultguid.next();
+					String guidsubject = (String)dbj.get("guidanceSubject");*/
+					
+					MongoConnection mongoconsub = new MongoConnection();
+					DBCursor resultsubject = mongoconsub.getDBObject("guidanceSubject", guidancesubject, "GuidanceSelection");
+					while(resultsubject.hasNext()){
+						DBObject thesubdbj = resultsubject.next();
+						String guidanceflag = (String)thesubdbj.get("guidanceflag");
+						if(guidanceflag.equalsIgnoreCase("provide")){
+							
+							HashMap guidanceinfo = new HashMap();
+							guidanceinfo.put("guidancereason", (String)thesubdbj.get("guidancereason"));
+							guidanceinfo.put("guidancelocation", (String)thesubdbj.get("guidancelocation"));
+							guidanceinfo.put("guidanceduration", (String)thesubdbj.get("guidanceduration"));
+							guidanceinfo.put("guidanceuserid", (String)thesubdbj.get("userid"));
+							
+							ProfilePreview profprev = new ProfilePreview();
+							ArrayList profileinfolist = profprev.getProfileInfo((String)thesubdbj.get("userid"));
+							
+							String profileid="";
+							
+							
+							for(int m=0;m<profileinfolist.size();m++){
+								
+								
+								if(profileinfolist.get(m) instanceof Profile){
+									Profile profileinform = (Profile)profileinfolist.get(m);
+									profileid = profileinform.getProfileid();
+									
+								}
+								
+							}
+							guidanceinfo.put("guidanceprofileid", profileid);
+							
+							guidanceidset.put((String)thesubdbj.get("guidanceid"), guidanceinfo);
+							
+							
+						}
+						
+					}
+			}
+			
+		}
+		
+		
+		return null;
+	}
+	
 	
 	
 	}

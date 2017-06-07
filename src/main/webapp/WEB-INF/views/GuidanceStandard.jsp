@@ -922,6 +922,9 @@
 											String providerprofileimage="";
 											String providername="";
 											String provideruserid="";
+											String likeid="";
+											String shareid="";
+											String consumernumber = "";
 											
 											StringBuffer consumerlisset = new StringBuffer();
 											
@@ -950,6 +953,7 @@
 													topiccount = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("consumerids")) {
 													consumerlist = (LinkedList)perme.getValue();
+													consumernumber = Integer.toString(consumerlist.size());
 													
 													for(int t=0;t<consumerlist.size();t++){
 														
@@ -987,6 +991,10 @@
 													guidanceid = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("timetableid")) {
 													timetableid = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("likeid")) {
+													likeid = (String)perme.getValue();
+												}else if (keyvalue.equalsIgnoreCase("shareid")) {
+													shareid = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("consumerids")) {
 													guidanceid = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("providerprofileid")) {
@@ -1019,28 +1027,19 @@
 																<!-- sparks -->
 																<ul id="sparks">
 																	<li class="sparks-info">
-																		<h5>Demand<span class="txt-color-blue">$47,171</span></h5>
-																		<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-																			1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-																		</div>
+																		<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;<%=likeid%></span></h5>
 																	</li>
 																	<li class="sparks-info">
-																		<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45</span></h5>
-																	</li>
-																	<li class="sparks-info">
-																		<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;2447</span></h5>
+																		<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;<%=shareid%></span></h5>
 																	</li>
 																	<li class="sparks-info" >
 																		<h5> Duration <span class="txt-color-greenDark"><i class="fa fa-money" id='investors' ></i>&nbsp;<%=guidanceduration%></span></h5>
 																	</li>
 																	<li class="sparks-info" >
-																		<h5> Location <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;<img src="https://maps.googleapis.com/maps/api/staticmap?center="<%=guidancelocation%>"&zoom=14&size=100x100&key=YOUR_API_KEY" alt="friend-1"></span></h5>
+																		<h5> Location <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;<img src="https://maps.googleapis.com/maps/api/staticmap?center="<%=guidancelocation%>"&zoom=14&size=100x100&key=YOUR_API_KEY" alt="<%=guidancelocation%>"></span></h5>
 																	</li>
 																	<li class="sparks-info" >
-																		<h5> Resources <span class="txt-color-greenDark"><i class="fa fa-group" id='investors' ></i>&nbsp;21</span></h5>
-																	</li>
-																	<li class="sparks-info" >
-																		<h5> Request Resource <span class="txt-color-greenDark"><i class="fa fa-child" id='investors' ></i>&nbsp;11</span></h5>
+																		<h5> Resources <span class="txt-color-greenDark"><i class="fa fa-group" id='investors' ></i>&nbsp;<%=consumernumber%></span></h5>
 																	</li>
 																</ul>
 																<!-- end sparks -->
@@ -1051,7 +1050,7 @@
 														<div class="row">
 														<div class="col-md-12 padding-left-0">	
 															<h3 class="margin-top-0"><a href="javascript:void(0);"><%=guidancereason%></a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);"><%=providername %></a></i></small></h3>
-															<small class="font-xs"><i>Published by <a href="javascript:void(0);"><%=guidancetype%></a></i></small>
+															<i><a href="javascript:void(0);"><%=guidancetype%></a></i>
 															<p>
 																<div class="col-sm-3">
 																	<h1><small>Connections</small></h1>
@@ -1060,22 +1059,7 @@
 																	</ul>
 																</div>	
 															</p>
-															<div class="btn-group">
-																			<button class="btn btn-primary">
-																				Subscribe As :
-																			</button>
-																			<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-																				<span class="caret"></span>
-																			</button>
-																			<ul class="dropdown-menu">
-																				<li>
-																					<a href="javascript:void(0);">Investor</a>
-																				</li>
-																				<li>
-																					<a href="javascript:void(0);">Resource</a>
-																				</li>
-																			</ul>
-																		</div>
+															
 														</div>	
 														</div>
 													</div>
@@ -1129,6 +1113,9 @@
 										</div>
 										<div class="form-group">
 											<textarea id="guidancereason" class="form-control" placeholder="Provide Information about your guidance. Why you are good on the above mentioned guidance.." rows="5" required></textarea>
+										</div>
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Guidance Price" required id="guidanceprice" />
 										</div>
 									</div>
 								</div>
@@ -1647,6 +1634,7 @@
 				 var location = $('#location').val();
 				 var published = $('#published').val();
 				 var guidancetype = $('#guidancetypeid').val();
+				 var guidanceprice = $('#guidanceprice').val();
 				 /* var coordinate = "";
 				 
 				 var geocoder =  new google.maps.Geocoder();
@@ -1661,7 +1649,7 @@
 				 
 				 
 				 $.ajax({
-						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype,
+						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype+"&guidanceprice="+guidanceprice,
 						method : 'POST',
 						success : function(data){
 							//if(data.success == true){ // if true (1)

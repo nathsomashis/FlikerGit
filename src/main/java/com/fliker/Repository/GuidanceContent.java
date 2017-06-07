@@ -16,11 +16,20 @@ public class GuidanceContent {
 	private String blogid;
 	private String timetableid;
 	private String projectid;
-	private String likeid;
-	private String sharedid;
+	private String[] likeid;
+	private String[] sharedid;
+	private String price;
 	
 	
 	
+	
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
 	public String getProjectid() {
 		return projectid;
@@ -80,19 +89,21 @@ public class GuidanceContent {
 		this.consumeruserid = consumeruserid;
 	}
 
-	public String getLikeid() {
+	
+
+	public String[] getLikeid() {
 		return likeid;
 	}
 
-	public void setLikeid(String likeid) {
+	public void setLikeid(String[] likeid) {
 		this.likeid = likeid;
 	}
 
-	public String getSharedid() {
+	public String[] getSharedid() {
 		return sharedid;
 	}
 
-	public void setSharedid(String sharedid) {
+	public void setSharedid(String[] sharedid) {
 		this.sharedid = sharedid;
 	}
 
