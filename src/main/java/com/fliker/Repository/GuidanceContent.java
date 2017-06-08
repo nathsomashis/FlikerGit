@@ -19,10 +19,19 @@ public class GuidanceContent {
 	private String[] likeid;
 	private String[] sharedid;
 	private String price;
+	private String infoid;
 	
 	
 	
 	
+	public String getInfoid() {
+		return infoid;
+	}
+
+	public void setInfoid(String infoid) {
+		this.infoid = infoid;
+	}
+
 	public String getPrice() {
 		return price;
 	}

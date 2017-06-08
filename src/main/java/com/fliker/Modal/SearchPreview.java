@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import com.fliker.Connection.MongoConnection;
+import com.fliker.Repository.GuidanceContentDashboard;
 import com.fliker.Repository.Post;
 import com.fliker.Repository.SearchContent;
 import com.fliker.Repository.SearchHistory;
@@ -293,6 +294,8 @@ public class SearchPreview {
 		return basicdbobj;
 		
 	}
-	
+
+
+
 	
 }

@@ -25,12 +25,14 @@ import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Assignment;
 import com.fliker.Repository.Blog;
 import com.fliker.Repository.DashBoardData;
+import com.fliker.Repository.Dashboard;
 import com.fliker.Repository.Guidance;
 import com.fliker.Repository.GuidanceContent;
 import com.fliker.Repository.GuidanceContentDashboard;
 import com.fliker.Repository.GuidanceContentFiles;
 import com.fliker.Repository.GuidanceContentShared;
 import com.fliker.Repository.GuidanceEntry;
+import com.fliker.Repository.GuidanceProject;
 import com.fliker.Repository.Post;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.SearchContent;
@@ -956,7 +958,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 			
 				guidancedash.setGuidancecontentDashid((String)theObjtime.get("guidancecontentDashid"));
 				guidancedash.setGuidancedashdataid((String[])theObjtime.get("guidancedashdataid"));
-				guidancedash.setGuidancefilelistid((String[])theObjtime.get("guidancefilelistid"));
+				//guidancedash.setGuidancefilelistid((String[])theObjtime.get("guidancefilelistid"));
 				
 				
 				
@@ -1671,6 +1673,64 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 			
 		}
 		
+	}
+
+
+	public void createGuidanceContentData(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		
+		String[] guidancedashdataid = new String[0];
+		String[] guidancelocationids = new String[0];
+		GuidanceContentDashboard guidancecontentdash = new GuidanceContentDashboard();
+		guidancecontentdash.setGuidancecontentDashid(guidanceid);
+		guidancecontentdash.setGuidancedashdataid(guidancedashdataid);
+		guidancecontentdash.setGuidancelocationids(guidancelocationids);
+		
+		MongoConnection mongoconsearch = new MongoConnection();
+		GuidancePreview guidprev = new GuidancePreview();
+		BasicDBObject basicreqobjsearch =  guidprev.formGuideContDashDBObject(guidancecontentdash);
+		mongoconsearch.saveObject(basicreqobjsearch, "GuidanceContentDash");
+		
+		
+		String[] guidancefilelistid = new String[0];
+		GuidanceContentShared guidancecontentshare = new GuidanceContentShared();
+		guidancecontentshare.setGuidancefilelistid(guidancefilelistid);
+		guidancecontentshare.setGuidancesharedid(guidanceid);
+		
+		BasicDBObject guidcontshare =  guidprev.formGuideContShareDBObject(guidancecontentshare);
+		mongoconsearch.saveObject(guidcontshare, "GuidanceContentShare");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+
+	private BasicDBObject formGuideContShareDBObject(GuidanceContentShared guidancecontentshare) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("guidancefilelistid", guidancecontentshare.getGuidancefilelistid());
+		basicdbobj.put("guidancesharedid", guidancecontentshare.getGuidancesharedid());
+		
+		return basicdbobj;
+	}
+
+
+	private BasicDBObject formGuideContDashDBObject(GuidanceContentDashboard guidancecontentdash) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("guidancecontentDashid", guidancecontentdash.getGuidancecontentDashid());
+		basicdbobj.put("guidancedashdataid", guidancecontentdash.getGuidancedashdataid());
+		basicdbobj.put("guidancelocationids", guidancecontentdash.getGuidancelocationids());
+		
+		return basicdbobj;
 	}
 	
 	

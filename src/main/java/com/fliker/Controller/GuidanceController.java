@@ -262,6 +262,8 @@ public class GuidanceController {
 		
 		guidanceprev.applyForGuidance(guidanceSubject,"",guidencetype,userids,guidanceid,guidanceprice);
 		
+		guidanceprev.createGuidanceContentData(guidanceid);
+		
 		
 		//both returning same data
 		ArrayList resourcesSearch = new ArrayList();
