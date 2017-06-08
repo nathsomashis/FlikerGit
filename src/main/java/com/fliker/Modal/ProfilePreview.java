@@ -369,11 +369,11 @@ public class ProfilePreview {
 			profileinfo.setSalary((String)theObj.get("salary"));
 			profileinfo.setSalaryhike((String)theObj.get("salaryhike"));
 			profileinfo.setTellmeaboutme((String)theObj.get("tellmeaboutme"));
-			String[] courseids = null;
+			/*String[] courseids = null;
 			if((String)theObj.get("courseids")!=null){
 				courseids = ((String)theObj.get("courseids")).split(",");
 			}
-			profileinfo.setCourseids(courseids);
+			profileinfo.setCourseids(courseids);*/
 			
 			ProfilePreview profprev = new ProfilePreview();
 			
