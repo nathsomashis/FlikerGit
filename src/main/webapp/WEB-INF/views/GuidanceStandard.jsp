@@ -1060,7 +1060,7 @@
 																	</ul>
 																</div>	
 															</p>
-															
+															<a href="#" onclick="gotoguidance('<%=guidanceid%>')" class="btn btn-default btn-xs">Go to guidance</a>
 														</div>	
 														</div>
 													</div>
@@ -1071,6 +1071,176 @@
 										}
 										
 										
+										%>
+									</div>
+
+								</div>
+
+
+
+							</div>
+							<div class="row">
+
+								<div class="col-sm-12">
+
+									<div class="well padding-10">
+										<%
+										HashMap guidanceconsumesubjectmap = (HashMap)request.getAttribute("guidanceconsumesubjectmap");
+										Set guidanceconsumeset = guidanceconsumesubjectmap.entrySet();
+										Iterator guidanceconsumeit = guidanceconsumeset.iterator();
+										while(guidanceconsumeit.hasNext()){
+											Map.Entry guidancecosumeme = (Map.Entry)guidanceconsumeit.next();
+											
+											String guidanceid = (String)guidancecosumeme.getKey();
+											HashMap guidacedata = (HashMap)guidancecosumeme.getValue();
+											String guidanceconsumereason = "";
+											String guidanceconsumelocation = "";
+											String guidanceconsumeduration="";
+											String guidanceproviderprofile = "";
+											String guidanceprovideruserid = "";
+											String guidanceconsumesubject = "";
+											String guidanceproviderprofilename="";
+											
+											Set guidacedataset = guidacedata.entrySet();
+											Iterator guidacedatasetit = guidacedataset.iterator();
+											while(guidacedatasetit.hasNext()){
+												Map.Entry guidedatame = (Map.Entry)guidacedatasetit.next();
+												String guiddatavalue = (String) guidedatame.getKey();
+												if (guiddatavalue.equalsIgnoreCase("guidancereason")) {
+													guidanceconsumereason = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidancelocation")) {
+													guidanceconsumelocation = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceduration")) {
+													guidanceconsumeduration = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceuserid")) {
+													guidanceprovideruserid = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceprofileid")) {
+													guidanceproviderprofile = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidancesubject")) {
+													guidanceconsumesubject = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceprofilename")) {
+													guidanceproviderprofilename = (String)guidedatame.getValue();
+												}
+												
+											}
+											
+											%>
+											<div class="row">
+											<div class="search-results clearfix">
+												<h4><%=guidanceconsumesubject%>- <%=guidanceconsumereason%>&nbsp;&nbsp;</h4>
+												<img src="/Fliker/imageFromUserid/<%=guidanceprovideruserid%>" alt="">
+												<div>
+													<p class="note">
+														<a href="#" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+														<a href="#"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+														<a href="#"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+													</p>
+													<div class="url text-success">
+														smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+													</div>
+													<p class="description">
+														<%=guidanceconsumeduration%> - Published by <%=guidanceproviderprofilename%>
+														<br>
+														<br>
+														<a href="#" onclick="pagingConsumer('<%=guidanceid%>')" class="btn btn-default btn-xs">Page</a>
+													</p>
+												</div>
+							
+											</div>	
+											</div>
+										<% 	
+											
+										}
+										%>
+									</div>
+
+								</div>
+
+
+
+							</div>
+							<div class="row">
+
+								<div class="col-sm-12">
+
+									<div class="well padding-10">
+										<%
+										HashMap guidanceprovidingsubjectmap = (HashMap)request.getAttribute("guidanceprovidingsubjectmap");
+										Set guidanceprovidingsubjectset = guidanceprovidingsubjectmap.entrySet();
+										Iterator guidanceprovidingsubjectit = guidanceprovidingsubjectset.iterator();
+										while(guidanceprovidingsubjectit.hasNext()){
+											Map.Entry guidanceprovidingsubjectme = (Map.Entry)guidanceprovidingsubjectit.next();
+											
+											String guidanceid = (String)guidanceprovidingsubjectme.getKey();
+											HashMap guidacedata = (HashMap)guidanceprovidingsubjectme.getValue();
+											String guidanceconsumereason = "";
+											String guidanceconsumelocation = "";
+											String guidanceconsumeduration="";
+											ArrayList guidanceproviderprofile = new ArrayList();
+											String guidanceprovideruserid = "";
+											String guidanceconsumesubject = "";
+											String guidanceproviderprofilename="";
+											String guidanceproviderlist = "";
+											StringBuffer providerlisset = new StringBuffer();
+											
+											Set guidacedataset = guidacedata.entrySet();
+											Iterator guidacedatasetit = guidacedataset.iterator();
+											while(guidacedatasetit.hasNext()){
+												Map.Entry guidedatame = (Map.Entry)guidacedatasetit.next();
+												String guiddatavalue = (String) guidedatame.getKey();
+												if (guiddatavalue.equalsIgnoreCase("guidancereason")) {
+													guidanceconsumereason = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidancelocation")) {
+													guidanceconsumelocation = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceduration")) {
+													guidanceconsumeduration = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceuserid")) {
+													guidanceprovideruserid = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidancepresent")) {
+													guidanceproviderprofile = (ArrayList)guidedatame.getValue();
+													
+													for(int f=0;f<guidanceproviderprofile.size();f++){
+														String composeprovider = "<li><a href='#'><img src='/Fliker/imageFromUserid/"+guidanceproviderprofile.get(f)+"' alt=''></a></li>";
+														providerlisset.append(composeprovider);
+													}
+													
+												}
+												
+											}
+											
+											%>
+											<div class="row">
+											<div class="search-results clearfix">
+												<h4><%=guidanceconsumesubject%>- <%=guidanceconsumereason%>&nbsp;&nbsp;</h4>
+												<img src="/Fliker/imageFromUserid/<%=guidanceprovideruserid%>" alt="">
+												<div>
+													<p class="note">
+														<a href="#" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+														<a href="#"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+														<a href="#"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+													</p>
+													<div class="url text-success">
+														smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+													</div>
+													<p class="description">
+														<%=guidanceconsumeduration%> - Published by <%=guidanceproviderprofilename%>
+														<p>
+																<div class="col-sm-3">
+																	<h1><small>providers</small></h1>
+																	<ul class="list-inline friends-list">
+																		<%=providerlisset.toString()%>
+																	</ul>
+																</div>	
+															</p>
+														<a href="#" onclick="gotoGuidanceView('<%=guidanceid%>')" class="btn btn-default btn-xs">Go to guidance</a>
+													</p>
+												</div>
+							
+											</div>	
+											</div>
+										<% 	
+											
+										}
 										%>
 									</div>
 
@@ -1738,6 +1908,12 @@
 			 
 		 }
 		
+		function gotoGuidanceView( guidanceid){
+			 window.open("guidanceview?guidanceid="+guidanceid);
+			 
+			 
+		 }
+		
 		function endorse(consumerid, providerid, guidancesubject){
 			
 			$.ajax({
@@ -1751,6 +1927,20 @@
 	        }); 
 			
 		}
+		
+		function pagingConsumer(guidanceid){
+			
+			$.ajax({
+				url : "pagingguidance?guidanceid="+guidanceid,
+				method : 'POST',
+				success : function(){
+					
+				}
+			
+	        }); 
+		}
+		
+		
 		
 	function apply(guidanceid){
 			

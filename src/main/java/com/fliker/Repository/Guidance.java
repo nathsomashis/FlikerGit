@@ -15,12 +15,26 @@ public class Guidance {
 	private String guidancelocation;
 	private String guidanceduration;
 	private String guidancereason;
+	private String[] guidancepaging;
+	private String[] guidanceinterest;
 	
 	
 	
 	
 	
 	
+	public String[] getGuidancepaging() {
+		return guidancepaging;
+	}
+	public void setGuidancepaging(String[] guidancepaging) {
+		this.guidancepaging = guidancepaging;
+	}
+	public String[] getGuidanceinterest() {
+		return guidanceinterest;
+	}
+	public void setGuidanceinterest(String[] guidanceinterest) {
+		this.guidanceinterest = guidanceinterest;
+	}
 	public String getGuidancereason() {
 		return guidancereason;
 	}
