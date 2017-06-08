@@ -1823,11 +1823,15 @@
 						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype+"&guidanceprice="+guidanceprice,
 						method : 'POST',
 						success : function(data){
-							//if(data.success == true){ // if true (1)
-							      setTimeout(function(){// wait for 5 secs(2)
+							if(data.success == "true"){ 
+								
+								$('#guidance').modal('hide');
+								
+								// if true (1)
+							     /*  setTimeout(function(){// wait for 5 secs(2)
 							           location.reload(); // then reload the page.(3)
-							      }, 5000); 
-							  // }
+							      }, 5000);  */
+							   }
 							
 						}
 					
@@ -1862,9 +1866,9 @@
 						method : 'POST',
 						success : function(data){
 							//if(data.success == true){ // if true (1)
-							      setTimeout(function(){// wait for 5 secs(2)
+							     /*  setTimeout(function(){// wait for 5 secs(2)
 							           location.reload(); // then reload the page.(3)
-							      }, 5000); 
+							      }, 5000);  */
 							  // }
 							
 						}
