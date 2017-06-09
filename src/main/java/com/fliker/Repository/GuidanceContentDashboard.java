@@ -9,7 +9,8 @@ public class GuidanceContentDashboard {
 	@Id
 	private String guidancecontentDashid;
 	private String[] guidancedashdataid;
-	private String[] guidancefilelistid;
+	private String[] guidancelocationids;
+	
 	
 	
 	
@@ -25,12 +26,13 @@ public class GuidanceContentDashboard {
 	public void setGuidancecontentDashid(String guidancecontentDashid) {
 		this.guidancecontentDashid = guidancecontentDashid;
 	}
-	public String[] getGuidancefilelistid() {
-		return guidancefilelistid;
+	public String[] getGuidancelocationids() {
+		return guidancelocationids;
 	}
-	public void setGuidancefilelistid(String[] guidancefilelistid) {
-		this.guidancefilelistid = guidancefilelistid;
+	public void setGuidancelocationids(String[] guidancelocationids) {
+		this.guidancelocationids = guidancelocationids;
 	}
+	
 	
 	
 	

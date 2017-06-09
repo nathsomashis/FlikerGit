@@ -819,7 +819,7 @@
 						</div> --%>
 
 						<!-- <div class="tab-pane fade" id="s2"> -->
-							<div class="row">
+							<%-- <div class="row">
 
 								<div class="col-sm-12">
 
@@ -894,7 +894,7 @@
 
 
 
-							</div>
+							</div> --%>
 							<div class="row">
 
 								<div class="col-sm-12">
@@ -925,7 +925,7 @@
 											String likeid="";
 											String shareid="";
 											String consumernumber = "";
-											
+											System.out.println("fghdfdf");
 											StringBuffer consumerlisset = new StringBuffer();
 											
 											LinkedList consumerlist = new LinkedList();
@@ -934,6 +934,7 @@
 											HashMap guidancemap = (HashMap)ongoingResources.get(m);
 											Set perset = guidancemap.entrySet();
 											Iterator perit = perset.iterator();
+											System.out.println("fghdfdf1");
 											while (perit.hasNext()) {
 												Map.Entry perme = (Map.Entry) perit.next();
 												String keyvalue = (String) perme.getKey();
@@ -992,9 +993,9 @@
 												}else if (keyvalue.equalsIgnoreCase("timetableid")) {
 													timetableid = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("likeid")) {
-													likeid = (String)perme.getValue();
+													//likeid = (Integer)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("shareid")) {
-													shareid = (String)perme.getValue();
+													//shareid = (Integer)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("consumerids")) {
 													guidanceid = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("providerprofileid")) {
@@ -1059,7 +1060,7 @@
 																	</ul>
 																</div>	
 															</p>
-															
+															<a href="#" onclick="gotoguidance('<%=guidanceid%>')" class="btn btn-default btn-xs">Go to guidance</a>
 														</div>	
 														</div>
 													</div>
@@ -1070,6 +1071,176 @@
 										}
 										
 										
+										%>
+									</div>
+
+								</div>
+
+
+
+							</div>
+							<div class="row">
+
+								<div class="col-sm-12">
+
+									<div class="well padding-10">
+										<%
+										HashMap guidanceconsumesubjectmap = (HashMap)request.getAttribute("guidanceconsumesubjectmap");
+										Set guidanceconsumeset = guidanceconsumesubjectmap.entrySet();
+										Iterator guidanceconsumeit = guidanceconsumeset.iterator();
+										while(guidanceconsumeit.hasNext()){
+											Map.Entry guidancecosumeme = (Map.Entry)guidanceconsumeit.next();
+											
+											String guidanceid = (String)guidancecosumeme.getKey();
+											HashMap guidacedata = (HashMap)guidancecosumeme.getValue();
+											String guidanceconsumereason = "";
+											String guidanceconsumelocation = "";
+											String guidanceconsumeduration="";
+											String guidanceproviderprofile = "";
+											String guidanceprovideruserid = "";
+											String guidanceconsumesubject = "";
+											String guidanceproviderprofilename="";
+											
+											Set guidacedataset = guidacedata.entrySet();
+											Iterator guidacedatasetit = guidacedataset.iterator();
+											while(guidacedatasetit.hasNext()){
+												Map.Entry guidedatame = (Map.Entry)guidacedatasetit.next();
+												String guiddatavalue = (String) guidedatame.getKey();
+												if (guiddatavalue.equalsIgnoreCase("guidancereason")) {
+													guidanceconsumereason = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidancelocation")) {
+													guidanceconsumelocation = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceduration")) {
+													guidanceconsumeduration = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceuserid")) {
+													guidanceprovideruserid = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceprofileid")) {
+													guidanceproviderprofile = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidancesubject")) {
+													guidanceconsumesubject = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceprofilename")) {
+													guidanceproviderprofilename = (String)guidedatame.getValue();
+												}
+												
+											}
+											
+											%>
+											<div class="row">
+											<div class="search-results clearfix">
+												<h4><%=guidanceconsumesubject%>- <%=guidanceconsumereason%>&nbsp;&nbsp;</h4>
+												<img src="/Fliker/imageFromUserid/<%=guidanceprovideruserid%>" alt="">
+												<div>
+													<p class="note">
+														<a href="#" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+														<a href="#"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+														<a href="#"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+													</p>
+													<div class="url text-success">
+														smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+													</div>
+													<p class="description">
+														<%=guidanceconsumeduration%> - Published by <%=guidanceproviderprofilename%>
+														<br>
+														<br>
+														<a href="#" onclick="pagingConsumer('<%=guidanceid%>')" class="btn btn-default btn-xs">Page</a>
+													</p>
+												</div>
+							
+											</div>	
+											</div>
+										<% 	
+											
+										}
+										%>
+									</div>
+
+								</div>
+
+
+
+							</div>
+							<div class="row">
+
+								<div class="col-sm-12">
+
+									<div class="well padding-10">
+										<%
+										HashMap guidanceprovidingsubjectmap = (HashMap)request.getAttribute("guidanceprovidingsubjectmap");
+										Set guidanceprovidingsubjectset = guidanceprovidingsubjectmap.entrySet();
+										Iterator guidanceprovidingsubjectit = guidanceprovidingsubjectset.iterator();
+										while(guidanceprovidingsubjectit.hasNext()){
+											Map.Entry guidanceprovidingsubjectme = (Map.Entry)guidanceprovidingsubjectit.next();
+											
+											String guidanceid = (String)guidanceprovidingsubjectme.getKey();
+											HashMap guidacedata = (HashMap)guidanceprovidingsubjectme.getValue();
+											String guidanceconsumereason = "";
+											String guidanceconsumelocation = "";
+											String guidanceconsumeduration="";
+											ArrayList guidanceproviderprofile = new ArrayList();
+											String guidanceprovideruserid = "";
+											String guidanceconsumesubject = "";
+											String guidanceproviderprofilename="";
+											String guidanceproviderlist = "";
+											StringBuffer providerlisset = new StringBuffer();
+											
+											Set guidacedataset = guidacedata.entrySet();
+											Iterator guidacedatasetit = guidacedataset.iterator();
+											while(guidacedatasetit.hasNext()){
+												Map.Entry guidedatame = (Map.Entry)guidacedatasetit.next();
+												String guiddatavalue = (String) guidedatame.getKey();
+												if (guiddatavalue.equalsIgnoreCase("guidancereason")) {
+													guidanceconsumereason = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidancelocation")) {
+													guidanceconsumelocation = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceduration")) {
+													guidanceconsumeduration = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceuserid")) {
+													guidanceprovideruserid = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidancepresent")) {
+													guidanceproviderprofile = (ArrayList)guidedatame.getValue();
+													
+													for(int f=0;f<guidanceproviderprofile.size();f++){
+														String composeprovider = "<li><a href='#'><img src='/Fliker/imageFromUserid/"+guidanceproviderprofile.get(f)+"' alt=''></a></li>";
+														providerlisset.append(composeprovider);
+													}
+													
+												}
+												
+											}
+											
+											%>
+											<div class="row">
+											<div class="search-results clearfix">
+												<h4><%=guidanceconsumesubject%>- <%=guidanceconsumereason%>&nbsp;&nbsp;</h4>
+												<img src="/Fliker/imageFromUserid/<%=guidanceprovideruserid%>" alt="">
+												<div>
+													<p class="note">
+														<a href="#" class="text-danger"><i class="fa fa-thumbs-up"></i> Like&nbsp;&nbsp;</a>
+														<a href="#"><i class="fa fa-chain"></i> Share this link&nbsp;&nbsp;</a>
+														<a href="#"><i class="fa fa-star txt-color-yellow"></i> Favorite&nbsp;&nbsp;</a>
+													</p>
+													<div class="url text-success">
+														smartadmin/index.html?#ajax/gallery.html <i class="fa fa-caret-down"></i>
+													</div>
+													<p class="description">
+														<%=guidanceconsumeduration%> - Published by <%=guidanceproviderprofilename%>
+														<p>
+																<div class="col-sm-3">
+																	<h1><small>providers</small></h1>
+																	<ul class="list-inline friends-list">
+																		<%=providerlisset.toString()%>
+																	</ul>
+																</div>	
+															</p>
+														<a href="#" onclick="gotoGuidanceView('<%=guidanceid%>')" class="btn btn-default btn-xs">Go to guidance</a>
+													</p>
+												</div>
+							
+											</div>	
+											</div>
+										<% 	
+											
+										}
 										%>
 									</div>
 
@@ -1186,23 +1357,23 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Guidance Subject" required id="guidancesubject" />
+											<input type="text" class="form-control" placeholder="Guidance Subject" required id="guidancesubjectneed" />
 										</div>
 										<div class="form-group">
-											<textarea id="guidancereason" class="form-control" placeholder="Practically what you missing? from the above mentioned subject.." rows="5" required></textarea>
+											<textarea id="guidancereasonneed" class="form-control" placeholder="Practically what you missing? from the above mentioned subject.." rows="5" required></textarea>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-3">
 										<div class="form-group">
-											<input type="text" class="form-control" value="" placeholder="Duration if any leave it blank" id="duration" />
+											<input type="text" class="form-control" value="" placeholder="Duration if any leave it blank" id="durationneed" />
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label for="durationtype">Duration Type</label>
-											<select class="form-control" id="durationtypeid">
+											<label for="durationtypeneed">Duration Type</label>
+											<select class="form-control" id="durationtypeidneed">
 												<option>Month</option>
 												<option>Day</option>
 											</select>
@@ -1210,8 +1381,8 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="publish">Guidance Type</label>
-											<select class="form-control" id="published">
+											<label for="guidancetypeneed">Guidance Type</label>
+											<select class="form-control" id="guidancetypeidneed">
 												<option>Acedamic</option>
 												<option>Professional</option>
 											</select>
@@ -1221,13 +1392,13 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Any Location Specific" required id="location"/>
+											<input type="text" class="form-control" placeholder="Any Location Specific" required id="locationneed"/>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="publish">Publish</label>
-											<select class="form-control" id="published">
+											<label for="publishneed">Publish</label>
+											<select class="form-control" id="publishedneed">
 												<option>All</option>
 												<option>Friends</option>
 											</select>
@@ -1240,7 +1411,7 @@
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Cancel
 								</button>
-								<a href="#" id="createguidance" class="btn btn-primary"></i>Create</a>
+								<a href="#" id="needguidanceto" class="btn btn-primary"></i>Create</a>
 							</div>
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
@@ -1652,10 +1823,52 @@
 						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype+"&guidanceprice="+guidanceprice,
 						method : 'POST',
 						success : function(data){
-							//if(data.success == true){ // if true (1)
-							      setTimeout(function(){// wait for 5 secs(2)
+							if(data.success == "true"){ 
+								
+								$('#guidance').modal('hide');
+								
+								// if true (1)
+							     /*  setTimeout(function(){// wait for 5 secs(2)
 							           location.reload(); // then reload the page.(3)
-							      }, 5000); 
+							      }, 5000);  */
+							   }
+							
+						}
+					
+			        }); 
+				 
+			 });
+			 
+			$('#needguidanceto').click(function() {
+				 
+				 var guidancesubject = $('#guidancesubjectneed').val();
+				 var guidancereason = $('#guidancereasonneed').val();
+				 var duration = $('#durationneed').val()+$('#durationtypeidneed').val();
+				 var location = $('#locationneed').val();
+				 var published = $('#publishedneed').val();
+				 var guidancetype = $('#guidancetypeidneed').val();
+				 //var guidanceprice = $('#guidanceprice').val();
+				 /* var coordinate = "";
+				 
+				 var geocoder =  new google.maps.Geocoder();
+				 geocoder.geocode( { 'address': location}, function(results, status) {
+				 if (status == google.maps.GeocoderStatus.OK) {
+					 coordinate = results[0].geometry.location.lat() + "," +results[0].geometry.location.lng(); 
+				     alert(coordinate);
+				     alert("result ::"+results[0].geometry.location.lat() + "," +results[0].geometry.location.lng())
+				 }
+				 }); */
+				 
+				 
+				 
+				 $.ajax({
+						url : "consumeguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype,
+						method : 'POST',
+						success : function(data){
+							//if(data.success == true){ // if true (1)
+							     /*  setTimeout(function(){// wait for 5 secs(2)
+							           location.reload(); // then reload the page.(3)
+							      }, 5000);  */
 							  // }
 							
 						}
@@ -1699,6 +1912,12 @@
 			 
 		 }
 		
+		function gotoGuidanceView( guidanceid){
+			 window.open("guidanceview?guidanceid="+guidanceid);
+			 
+			 
+		 }
+		
 		function endorse(consumerid, providerid, guidancesubject){
 			
 			$.ajax({
@@ -1712,6 +1931,20 @@
 	        }); 
 			
 		}
+		
+		function pagingConsumer(guidanceid){
+			
+			$.ajax({
+				url : "pagingguidance?guidanceid="+guidanceid,
+				method : 'POST',
+				success : function(){
+					
+				}
+			
+	        }); 
+		}
+		
+		
 		
 	function apply(guidanceid){
 			

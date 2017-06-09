@@ -19,10 +19,36 @@ public class GuidanceContent {
 	private String[] likeid;
 	private String[] sharedid;
 	private String price;
+	private String infoid;
+	private String[] quizids;
+	private String[] assignmentids;
 	
 	
 	
-	
+	public String[] getQuizids() {
+		return quizids;
+	}
+
+	public void setQuizids(String[] quizids) {
+		this.quizids = quizids;
+	}
+
+	public String[] getAssignmentids() {
+		return assignmentids;
+	}
+
+	public void setAssignmentids(String[] assignmentids) {
+		this.assignmentids = assignmentids;
+	}
+
+	public String getInfoid() {
+		return infoid;
+	}
+
+	public void setInfoid(String infoid) {
+		this.infoid = infoid;
+	}
+
 	public String getPrice() {
 		return price;
 	}
