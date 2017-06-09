@@ -639,7 +639,7 @@
 									<div class="widget-toolbar hidden-phone">
 										<div class="smart-form">
 											<label class="checkbox">
-												<button class="btn btn-primary" data-toggle="modal" data-target="#addachievement">Provide New Guidance</button>
+												<button class="btn btn-primary" data-toggle="modal" data-target="#addachievement" onclick="generateToken()">Provide New Achevements</button>
 												</label>
 										</div>
 									</div>
@@ -706,7 +706,7 @@
 
 			</div>
 			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="addachievement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="addachievement"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -726,13 +726,16 @@
 											<textarea id="achievementdescribe" class="form-control" placeholder="Provide Information about your guidance. Why you are good on the above mentioned guidance.." rows="5" required></textarea>
 										</div>
 										<div class="form-group">
+											<form id="form2" method="post" action="#" enctype="multipart/form-data">
 											<label class="col-md-2 control-label">File input</label>
 											<div class="col-md-10">
-												<input type="file" class="btn btn-default" id="achievementfile">
+												<input type="file" id="file2" name="file2" class="btn btn-default" id="achievementfile">
 											</div>
-											<button class="col-md-2"  type="button">
+											<button class="col-md-2"  type="button" onclick="uploadFormData()">
 												Upload
 											</button>
+											</form>
+											<input type="hidden" class="form-control" value="" required id="acheivetoken" />
 										</div>
 									</div>
 								</div>
@@ -954,6 +957,7 @@
 		<!-- <script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
 		
 		<script src="<c:url value='/resources/js/plugin/ckeditor/ckeditor.js' />"></script>
+		<script src="http://malsup.github.com/jquery.form.js"></script>
 
 		<script>
 			$(document).ready(function() {
@@ -981,6 +985,8 @@
 					 
 					 var achievementname = $('#guidanceachievement').val();
 					 var achevedesc = $('#achievementdescribe').val();
+					 var token = $('#acheivetoken').val();
+					 var guidanceid = '<%=guidanceid%>';
 					 
 					 //var guidanceprice = $('#guidanceprice').val();
 					 /* var coordinate = "";
@@ -997,9 +1003,10 @@
 					 
 					 
 					 $.ajax({
-							url : "consumeguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype,
-							method : 'POST',
+							url : "saveguidanceinfoachievement?guidanceachievement="+guidancesubject+"&achievementdescribe="+guidancereason+"&acheivetoken="+location+"&guidanceid="+published,
+							method : 'GET',
 							success : function(data){
+								alert(data);
 								//if(data.success == true){ // if true (1)
 								     /*  setTimeout(function(){// wait for 5 secs(2)
 								           location.reload(); // then reload the page.(3)
@@ -1011,6 +1018,9 @@
 				        }); 
 					 
 				 });
+				 
+				 
+				
 
 			});
 
@@ -1030,6 +1040,54 @@
 				var s = document.getElementsByTagName('script')[0];
 				s.parentNode.insertBefore(ga, s);
 			})();
+			
+			
+			 function uploadFormData(){
+				   // $('#result').html('');
+				 
+				   var file2 = $('#file2');
+				   var token = $('#acheivetoken').val();
+				   
+				  var oMyForm = new FormData();
+				  oMyForm.append("file", file2[0].files[0]);
+				  oMyForm.append("token", token);
+				 
+				  $.ajax({
+				    url: 'fileUploadAchieve?',
+				    data: oMyForm,
+				    dataType: 'text',
+				    processData: false,
+				    contentType: false,
+				    type: 'POST',
+				    success: function(data){
+				      alert(data);
+				    }
+				  });
+				  
+			 }
+			 
+			 function  generateToken(){
+				 
+				 var stringLength = 15;
+
+					// list containing characters for the random string
+					var stringArray = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','!','?'];
+
+					//$("#providachieve").click(function (){
+
+						var rndString = "";
+					
+						// build a string with random characters
+						for (var i = 1; i < stringLength; i++) { 
+							var rndNum = Math.ceil(Math.random() * stringArray.length) - 1;
+							rndString = rndString + stringArray[rndNum];
+						};
+						
+						$('#acheivetoken').val(rndString);
+
+					
+				 
+			 }
 
 		</script>
 
