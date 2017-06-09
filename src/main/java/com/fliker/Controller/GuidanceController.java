@@ -515,6 +515,34 @@ public class GuidanceController {
 	}
 	
 	
+	@RequestMapping("/saveguidanceinfoachievement")
+	public String saveGuidanceInfoAchievement(
+			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,
+			@RequestParam(value = "achievementdescribe", required = false, defaultValue = "World") String achievementdesc,
+			@RequestParam(value = "guidanceachievement", required = false, defaultValue = "World") String achievementname,
+			@RequestParam(value = "acheivetoken", required = false, defaultValue = "World") String token,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+		String result = "false";
+		try{
+			ArrayList resourcesSearch = new ArrayList();
+			
+			
+			GuidancePreview guideprev = new GuidancePreview();
+			//resourcesSearch = guideprev.getGuidanceData(guidanceid);
+			ServletContext context = request.getSession().getServletContext();
+			User userinf = (User) context.getAttribute("UserValues");
+			String userid = userinf.getUserid();
+			guideprev.saveGuidanceAchievementInfo(achievementdesc,achievementname,token,userid,guidanceid);
+			
+			
+		}catch(Exception ex){
+			return result;
+		}
+		return result;
+	}
+	
+	
 	@RequestMapping("/gotoguidanceexcersize")
 	public ModelAndView goToGuidanceExcersize(
 			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,

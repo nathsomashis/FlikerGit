@@ -21,11 +21,14 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
+
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Assignment;
 import com.fliker.Repository.Blog;
 import com.fliker.Repository.DashBoardData;
 import com.fliker.Repository.Dashboard;
+import com.fliker.Repository.FileUnionTimeFrame;
 import com.fliker.Repository.Guidance;
 import com.fliker.Repository.GuidanceContent;
 import com.fliker.Repository.GuidanceContentDashboard;
@@ -38,6 +41,7 @@ import com.fliker.Repository.Post;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.SearchContent;
 import com.fliker.Repository.Share;
+import com.fliker.Repository.TempFileHistory;
 import com.fliker.Repository.Timetable;
 import com.fliker.Utility.DateFunctionality;
 import com.fliker.Utility.ServicesUtil;
@@ -1856,6 +1860,85 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		basicdbobj.put("guidancelocationids", guidancecontentdash.getGuidancelocationids());
 		
 		return basicdbobj;
+	}
+
+
+	public void saveTempFilesAchieve(String fileuploadid, String token, String userid) {
+		
+		
+		// TODO Auto-generated method stub
+		
+		AssignmentFilePreview assignprev = new AssignmentFilePreview();
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM dd, yyyy HH:mm:ss a");
+        //String dateInString = "Friday, Jun 7, 2013 12:10:56 PM";//example
+        
+		
+		
+        Date datepack = new Date();
+        DateFunctionality datefunc = new DateFunctionality();
+        
+        String localdate = datefunc.getUniformDates(formatter.format(datepack));
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(datepack);
+        
+        String yearpack = Integer.toString(cal.get(Calendar.YEAR));
+        String monthspack = Integer.toString(cal.get(Calendar.MONTH));
+        String daypack = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
+        String hourpack = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
+        String minutespack  = Integer.toString(cal.get(Calendar.MINUTE));
+		
+		String context = "Achievement ::"+token+" ,FileID ::"+fileuploadid+" ,User ::"+userid;
+		
+		FileUnionTimeFrame fileuntimeframe = new FileUnionTimeFrame();
+		fileuntimeframe.setContext(context);
+		fileuntimeframe.setDate(localdate);
+		fileuntimeframe.setDay(daypack);
+		fileuntimeframe.setFileid(fileuploadid);
+		fileuntimeframe.setHour(hourpack);
+		fileuntimeframe.setMonth(monthspack);
+		fileuntimeframe.setTempid(token);
+		fileuntimeframe.setUserid(userid);
+		
+		MongoConnection mongoconsearch = new MongoConnection();
+		SearchPreview searchprev = new SearchPreview();
+		BasicDBObject basicreqobjsearch =  assignprev.formDBObject(fileuntimeframe);
+		
+		mongoconsearch.saveObject(basicreqobjsearch, "FileUnionTimeFrame");
+		
+		
+	}
+
+
+	public void saveGuidanceAchievementInfo(String achievementdesc, String achievementname, String token,
+			String userid, String guidanceid) {
+		// TODO Auto-generated method stub
+		String fileid = "";
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("tempid", token, "FileUnionTimeFrame");
+		while(resultcursor.hasNext() ){
+			
+			DBObject dbj = resultcursor.next();
+			
+			String userids = (String)dbj.get("userid");
+			if(userids.equalsIgnoreCase(userid)){
+				
+				fileid = (String)dbj.get("fileid");
+			}
+			
+		}
+		
+		JSONObject jsonobj = new JSONObject();
+		jsonobj.put("achievement", achievementname);
+		jsonobj.put("achievementdescription", achievementdesc);
+		jsonobj.put("achievementfile", fileid);
+		
+		String jsonstr = jsonobj.toJSONString();
+		System.out.println("jsonstr >>"+jsonstr);
+		
+		//mongocon.updateObject(new BasicDBObject("guidanceinfoid", guidanceid),new BasicDBObject("$push", new BasicDBObject("guidanceachievements", jsonstr)), "GuidanceInfo");
+		
 	}
 	
 	

@@ -224,7 +224,7 @@ public class AssignmentFilePreview {
 		
 	}
 
-	private BasicDBObject formDBObject(FileUnionTimeFrame fileuntimeframe) {
+	public BasicDBObject formDBObject(FileUnionTimeFrame fileuntimeframe) {
 		// TODO Auto-generated method stub
 		
 		BasicDBObject basicdbobj = new BasicDBObject();
