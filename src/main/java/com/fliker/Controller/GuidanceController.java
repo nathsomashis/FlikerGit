@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.concurrent.TimeoutException;
 
 import javax.servlet.ServletContext;
@@ -384,6 +385,8 @@ public class GuidanceController {
 		GuidancePreview guideprev = new GuidancePreview();
 		resourcesSearch = guideprev.getGuidanceData(guidanceid);
 		
+		Set currencyset = guideprev.getAllCurrencies();
+		
 		//String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
 		/*Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
 		//model.addAttribute("TimeTable", timetable);
@@ -418,9 +421,33 @@ public class GuidanceController {
 		mv.addObject("GuidBlog", blogs);*/
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("guidanceid", guidanceid);
+		mv.addObject("currencyset", currencyset);
 		
 		//mv.addObject("postlist", postlist);
 		return mv;
+	}
+	
+	
+	@RequestMapping("/saveguidanceinfo")
+	public String saveGuidanceInfo(
+			@RequestParam(value = "guidancedesc", required = false) String guidancedesc,ModelMap model,
+			@RequestParam(value = "guidanceexperience", required = false) String guidanceexperience,
+			@RequestParam(value = "guidancecost", required = false) String guidancecost,
+			@RequestParam(value = "guidancecostcurrency", required = false) String guidancecostcurrency,
+			@RequestParam(value = "guidancecostper", required = false) String guidancecostper,
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,
+			HttpServletRequest request) {
+			try{
+				System.out.println("in dashboard social controller");
+				
+				GuidancePreview guideprev = new GuidancePreview();
+				guideprev.saveGuidanceInfo(guidancedesc,guidanceexperience,guidancecost,guidancecostcurrency,guidancecostper,guidanceid);
+		
+			}catch(Exception ex){
+				return "false";
+			}
+		
+		return "true";
 	}
 	
 	
@@ -439,6 +466,7 @@ public class GuidanceController {
 		
 		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
 		
+		
 		UserPreview userprev = new UserPreview();
 		String gender = userprev.getGender(userid);
 		ServletContext context = request.getSession().getServletContext();
@@ -455,6 +483,7 @@ public class GuidanceController {
 		mv.addObject("FullName", profile.getName());
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("guidanceid", guidanceid);
+		
 		
 		//mv.addObject("postlist", postlist);
 		return mv;

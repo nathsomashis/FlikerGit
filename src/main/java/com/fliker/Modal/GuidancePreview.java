@@ -12,10 +12,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Currency;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -1932,12 +1935,49 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		JSONObject jsonobj = new JSONObject();
 		jsonobj.put("achievement", achievementname);
 		jsonobj.put("achievementdescription", achievementdesc);
+		jsonobj.put("achievementtoken", token);
 		jsonobj.put("achievementfile", fileid);
 		
 		String jsonstr = jsonobj.toJSONString();
 		System.out.println("jsonstr >>"+jsonstr);
 		
-		//mongocon.updateObject(new BasicDBObject("guidanceinfoid", guidanceid),new BasicDBObject("$push", new BasicDBObject("guidanceachievements", jsonstr)), "GuidanceInfo");
+		mongocon.updateObject(new BasicDBObject("guidanceinfoid", guidanceid),new BasicDBObject("$push", new BasicDBObject("guidanceachievements", jsonstr)), "GuidanceInfo");
+		
+	}
+	
+	
+	 public Set<Currency> getAllCurrencies()
+	    {
+	        Set<Currency> toret = new HashSet<Currency>();
+	        Locale[] locs = Locale.getAvailableLocales();
+
+	        for(Locale loc : locs) {
+	            try {
+	                Currency currency = Currency.getInstance( loc );
+
+	                if ( currency != null ) {
+	                	System.out.println(currency.getCurrencyCode());
+	                    toret.add( currency );
+	                }
+	            } catch(Exception exc)
+	            {
+	                // Locale not found
+	            }
+	        }
+
+	        return toret;
+	    }
+
+
+	public void saveGuidanceInfo(String guidancedesc, String guidanceexperience, String guidancecost,
+			String guidancecostcurrency, String guidancecostper, String guidanceid) {
+		// TODO Auto-generated method stub
+		String guidprice = guidancecost+" "+guidancecostcurrency;
+		MongoConnection mongocon = new MongoConnection();
+		mongocon.updateObject(new BasicDBObject("guidanceinfoid", guidanceid),new BasicDBObject("$set", new BasicDBObject("guidancedescription", guidancedesc)), "GuidanceInfo");
+		mongocon.updateObject(new BasicDBObject("guidanceinfoid", guidanceid),new BasicDBObject("$set", new BasicDBObject("guidanceprice", guidprice)), "GuidanceInfo");
+		mongocon.updateObject(new BasicDBObject("guidanceinfoid", guidanceid),new BasicDBObject("$set", new BasicDBObject("guidancesubjectexperience", guidanceexperience)), "GuidanceInfo");
+		
 		
 	}
 	

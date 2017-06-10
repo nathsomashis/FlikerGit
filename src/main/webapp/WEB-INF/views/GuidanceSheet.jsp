@@ -8,7 +8,7 @@
 		<meta charset="utf-8">
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-		<title> Guidance Dash </title>
+		<title> Guidance Info </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -446,7 +446,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>DashBoard</li>
+					<li>Guidance Info</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -468,6 +468,7 @@
 			<div id="content">
 
 				<%
+					
 					HashMap resourcesSearch = (HashMap)request.getAttribute("resourcesSearch");
 					Set resourceset = resourcesSearch.entrySet();
 					Iterator resourseit = resourceset.iterator();
@@ -475,6 +476,8 @@
 					String guidanceprice = "";
 					String guidancesubjectexperience = "";
 					String companies = "";
+					String guidanceachievements="";
+					String guidancecostcurrancy = "";
 					while(resourseit.hasNext()){
 						
 						StringBuffer companylst = new StringBuffer();
@@ -485,7 +488,10 @@
 						if (keyvalue.equalsIgnoreCase("guidancedescription")) {
 							guidancedescription = (String)resourceme.getValue();
 						}else if (keyvalue.equalsIgnoreCase("guidanceprice")) {
-							guidanceprice = (String)resourceme.getValue();
+							String guidancepr = (String)resourceme.getValue();
+							String[] guidanceperstrarr = guidancepr.split(" ");
+							guidanceprice = guidanceperstrarr[0];
+							guidancecostcurrancy = guidanceperstrarr[1];
 						}else if (keyvalue.equalsIgnoreCase("guidancesubjectexperience")) {
 							guidancesubjectexperience = (String)resourceme.getValue();
 						}else if (keyvalue.equalsIgnoreCase("guidanceendorebylist")) {
@@ -507,13 +513,61 @@
 							
 						}else if (keyvalue.equalsIgnoreCase("guidanceachevements")) {
 							guidanceachevements = (LinkedList)resourceme.getValue();
+							StringBuffer achievementbuff = new StringBuffer();
 							
 							for(int s=0;s<guidanceachevements.size();s++){
+								
+								String achievementname = "";
+								String achievementdescr = "";
+								String achievefile = "";
+								String achievetoken="";
+								
 								String achievementdata = (String)guidanceachevements.get(s);
+								//achievementdata = achievementdata.replaceAll("{", "");
+								//achievementdata = achievementdata.replaceAll("}", "");
+								System.out.println(achievementdata);
+								
+								String[] achievementd = achievementdata.split(",");
+								for(int d=0;d<achievementd.length;d++){
+									String[] achieveset = achievementd[d].split(":");
+									String achievefirst = achieveset[0].replaceAll("\"", "");
+									String newachieve = achievefirst.replaceAll("\\{", "");
+									System.out.println(newachieve);
+									if(newachieve.equalsIgnoreCase("achievement")){
+										achievementname = achieveset[1].replaceAll("\"", "");
+									}else if(newachieve.equalsIgnoreCase("achievementdescription")){
+										achievementdescr = achieveset[1].replaceAll("\"", "");
+									}else if(newachieve.equalsIgnoreCase("achievementfile")){
+										achievefile = achieveset[1].replaceAll("\"", "");
+									}else if(newachieve.equalsIgnoreCase("achievementtoken")){
+										achievetoken = achieveset[1].replaceAll("\"", "");
+										achievetoken = achievetoken.replaceAll("\\}", "");
+									}
+									
+									
+								}
+								System.out.println(achievementname+" ::"+achievementdescr+" ::"+achievefile+" ::"+achievetoken);
+								String achievementelement = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse'"+ 
+										"data-parent='#accordion-2' href='#"+achievetoken+"'> <i class='fa fa-fw fa-plus-circle txt-color-green'></i> <i class='fa fa-fw fa-minus-circle"+ 
+										"txt-color-red'></i>"+achievementname+"</a></h4></div><div id="+achievetoken+" class='panel-collapse collapse'>"+
+										"<div class='panel-body'>"+achievementdescr+"</div></div></div>";
+										
+								achievementbuff.append(achievementelement);		
 							}
 							
+							guidanceachievements = achievementbuff.toString();
 						}
 						companies = companylst.toString();
+					}
+					Set<Currency> currencyset = (Set<Currency>)request.getAttribute("currencyset");
+					StringBuffer currencylist = new StringBuffer();
+					for (Currency s : currencyset) {
+						if(s.getCurrencyCode().equalsIgnoreCase(guidancecostcurrancy)){
+							currencylist.append("<option id="+s.getCurrencyCode()+" selected='true'>"+s.getCurrencyCode()+"</option>"); 
+						}else{
+							currencylist.append("<option id="+s.getCurrencyCode()+">"+s.getCurrencyCode()+"</option>"); 
+						}
+					    System.out.println(s.getCurrencyCode());
 					}
 					
 				%>
@@ -523,12 +577,6 @@
 						<!-- NEW WIDGET START -->
 						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				
-							<div class="alert alert-danger alert-block">
-								<a class="close" data-dismiss="alert" href="#">×</a>
-								<h4 class="alert-heading">CKEditor Warning!</h4>
-								If you plan to use CKEditor in your project for this theme, please be sure to read full documentation of its use on their website. It is important to note that CKEditor may conflict with other editors and textareas. You must destroy the CKeditor instance before pulling it into another object.
-				
-							</div>
 							
 							<!-- Widget ID (each widget will need unique ID)-->
 							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
@@ -553,22 +601,22 @@
 				
 								<!-- widget div-->
 								<div>
-									
+									<textarea class="form-control" id="guidancedescriptioninfo" name="review" rows="8"><%=guidancedescription%></textarea>
 									<!-- widget edit box -->
-									<div class="jarviswidget-editbox">
-										<!-- This area used as dropdown edit box -->
+									<!-- <div class="jarviswidget-editbox">
+										This area used as dropdown edit box
 										
 									</div>
-									<!-- end widget edit box -->
+									end widget edit box
 									
-									<!-- widget content -->
+									widget content
 									<div class="widget-body no-padding">
 										
 											<textarea name="guidanceprojecteditor">
-												<%=guidancedescription%>
+												
 				                			</textarea>						
 										
-									</div>
+									</div> -->
 									<!-- end widget content -->
 									
 								</div>
@@ -588,21 +636,43 @@
 								<div class="input-group">
 									<span class="input-group-addon">Total Experience</span> <input
 										class="form-control input-lg"
-										placeholder="Total Investment" type="text" name="course" value="<%=guidancesubjectexperience%>"
-										id="projectname">
-	
+										placeholder="Total Experience" type="text" name="course" value="<%=guidancesubjectexperience%>"
+										id="guidanceexperienceinfo">
+										<span class="input-group-addon">Years</span>
 								</div>
 							</div>
 	
 						</div>
-						<div class="col-sm-6">
+						
+						<div class="col-sm-2">
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">Guidance Cost</span> <input
 										class="form-control input-lg"
 										placeholder="Minimum investment amount or multiple of it.." type="text" name="course" value="<%=guidanceprice%>"
-										id="projectname"><span class="input-group-addon">$</span>
+										id="guidancecost">
+								</div>
+							</div>
 	
+						</div>
+						<div class="col-sm-2">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon"><select class="form-control" id="costcurrency" >
+												<%=currencylist.toString()%>
+									</select></span>
+								</div>
+							</div>
+	
+						</div>
+						<div class="col-sm-2">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon"><select class="form-control" id="guidancecostduration">
+										<option>Month</option>
+										<option>Day</option>
+									</select>
+								</span>
 								</div>
 							</div>
 	
@@ -660,36 +730,8 @@
 									<div class="widget-body no-padding">
 				
 										<div class="panel-group smart-accordion-default" id="accordion-2">
-											<div class="panel panel-default">
-												<div class="panel-heading">
-													<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-1"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>
-												</div>
-												<div id="collapseOne-1" class="panel-collapse collapse in">
-													<div class="panel-body">
-														Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-													</div>
-												</div>
-											</div>
-											<div class="panel panel-default">
-												<div class="panel-heading">
-													<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseTwo-1" class="collapsed"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #2 </a></h4>
-												</div>
-												<div id="collapseTwo-1" class="panel-collapse collapse">
-													<div class="panel-body">
-														Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-													</div>
-												</div>
-											</div>
-											<div class="panel panel-default">
-												<div class="panel-heading">
-													<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseThree-1" class="collapsed"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #3 </a></h4>
-												</div>
-												<div id="collapseThree-1" class="panel-collapse collapse">
-													<div class="panel-body">
-														Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-													</div>
-												</div>
-											</div>
+											
+											<%=guidanceachievements%>
 										</div>
 				
 									</div>
@@ -702,6 +744,19 @@
 							<!-- end widget -->
 				
 						</article>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-md-12 col-lg-12">
+							<div class="col-md-2">
+								<a  href="#" onclick="resetGuidanceInfo()"  class="btn btn-labeled btn-primary"> <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Reset Changes</a>
+							</div>
+							<div class="col-md-8">
+							</div>
+							<div class="col-md-2">
+								<a  href="#" onclick="saveGuidanceInfo()" class="btn btn-labeled btn-success"> <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Save Changes</a>
+							</div>
+						</div>
+						
 					</div>
 
 			</div>
@@ -744,7 +799,9 @@
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Cancel
 								</button>
-								<a href="#" id="addnewachievement" class="btn btn-primary"> <i class="fa fa-warning"></i>Add</a>
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addachieve()">
+									Add
+								</button>
 							</div>
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
@@ -756,7 +813,7 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> ÃÂ© 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin 1.8.2 </span>
 				</div>
 
 				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
@@ -982,42 +1039,10 @@
 				 $('.superbox').SuperBox();
 				 
 				 $('#addnewachievement').click(function() {
-					 
-					 var achievementname = $('#guidanceachievement').val();
-					 var achevedesc = $('#achievementdescribe').val();
-					 var token = $('#acheivetoken').val();
-					 var guidanceid = '<%=guidanceid%>';
-					 
-					 //var guidanceprice = $('#guidanceprice').val();
-					 /* var coordinate = "";
-					 
-					 var geocoder =  new google.maps.Geocoder();
-					 geocoder.geocode( { 'address': location}, function(results, status) {
-					 if (status == google.maps.GeocoderStatus.OK) {
-						 coordinate = results[0].geometry.location.lat() + "," +results[0].geometry.location.lng(); 
-					     alert(coordinate);
-					     alert("result ::"+results[0].geometry.location.lat() + "," +results[0].geometry.location.lng())
-					 }
-					 }); */
+					 alert("new");
 					 
 					 
-					 
-					 $.ajax({
-							url : "saveguidanceinfoachievement?guidanceachievement="+guidancesubject+"&achievementdescribe="+guidancereason+"&acheivetoken="+location+"&guidanceid="+published,
-							method : 'GET',
-							success : function(data){
-								alert(data);
-								//if(data.success == true){ // if true (1)
-								     /*  setTimeout(function(){// wait for 5 secs(2)
-								           location.reload(); // then reload the page.(3)
-								      }, 5000);  */
-								  // }
-								
-							}
-						
-				        }); 
-					 
-				 });
+				 }); 
 				 
 				 
 				
@@ -1088,6 +1113,73 @@
 					
 				 
 			 }
+					
+			function addachieve(){
+				alert("new ");	
+				
+				var achievementname = $('#guidanceachievement').val();
+				 var achevedesc = $('#achievementdescribe').val();
+				 var token = $('#acheivetoken').val();
+				 var guidanceid = '<%=guidanceid%>';
+				 alert(guidanceid);
+				 
+				 $.ajax({
+						url : "saveguidanceinfoachievement?guidanceachievement="+achievementname+"&achievementdescribe="+achevedesc+"&acheivetoken="+token+"&guidanceid="+guidanceid,
+						method : 'POST',
+						success : function(data){
+							alert(data);
+							//if(data.success == true){ // if true (1)
+							     /*  setTimeout(function(){// wait for 5 secs(2)
+							           location.reload(); // then reload the page.(3)
+							      }, 5000);  */
+							  // }
+							
+						}
+					
+			        }); 
+				  var elementcolapse = 'collapse'+token;	
+				  var element = '<div id='+token+' class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#'+elementcolapse+'"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>'+
+								'</div><div id="'+elementcolapse+'" class="panel-collapse collapse in"><div class="panel-body"></div></div></div>';
+				 $('accordion-2').prepend($(element));
+				 
+			}
+			
+			
+			function saveGuidanceInfo(){
+				var guidancedesc = $('#guidancedescriptioninfo').val();
+				var guidanceexperience=	$('#guidanceexperienceinfo').val();
+				var guidancecost = $('#guidancecost').val();
+				var guidancecostcurrency = $('#costcurrency :selected').text();
+				var guidancecostper = $('#guidancecostduration :selected').text();
+				var guidanceid = '<%=guidanceid%>';
+				
+				
+				$.ajax({
+					url : "saveguidanceinfo?guidancedesc="+guidancedesc+"&guidanceexperience="+guidanceexperience+"&guidancecost="+guidancecost+"&guidancecostcurrency="+guidancecostcurrency+"&guidancecostper="+guidancecostper+"&guidanceid="+guidanceid,
+					method : 'POST',
+					success : function(data){
+						alert(data);
+						//if(data.success == true){ // if true (1)
+						     /*  setTimeout(function(){// wait for 5 secs(2)
+						           location.reload(); // then reload the page.(3)
+						      }, 5000);  */
+						  // }
+						
+					}
+				
+		        }); 
+			
+			 }
+			
+			function resetGuidanceInfo(){
+				$('#guidancedescriptioninfo').val('<%=guidancedescription%>');
+				$('#guidanceexperienceinfo').val('<%=guidancesubjectexperience%>');
+				$('#guidancecost').val('<%=guidanceprice%>');
+				$('#costcurrency :selected').text('<%=guidancecostcurrancy%>');
+				$('#guidancecostduration :selected').text();
+				
+			
+			}
 
 		</script>
 
