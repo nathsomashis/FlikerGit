@@ -8,7 +8,45 @@ public class Location {
 
 	@Id
 	private String locationid;
+	private String lotitude;
+	private String longitude;
+	private String city;
+	private String place;
+	private String country;
 	private String locationcontent;
+	
+	
+	
+	public String getLotitude() {
+		return lotitude;
+	}
+	public void setLotitude(String lotitude) {
+		this.lotitude = lotitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getPlace() {
+		return place;
+	}
+	public void setPlace(String place) {
+		this.place = place;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
 	public String getLocationid() {
 		return locationid;
 	}

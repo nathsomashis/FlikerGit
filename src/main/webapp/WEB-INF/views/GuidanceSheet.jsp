@@ -408,7 +408,9 @@
 
 				<ul>
 		<li class="active"><a href="gotoguidance?guidanceid="<%=guidanceid%>><i	class="fa fa-lg fa-fw fa-puzzle-piece txt-color-blue"></i> <span
-				class="menu-item-parent">Guidance Dash</span> </a></li>
+				class="menu-item-parent">Guidance Info</span> </a></li>
+		<li ><a href="gotoguidancedash?guidanceid="<%=guidanceid%>><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
+				class="menu-item-parent">Guidance Dashboard</span> </a></li>		
 		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
 				class="menu-item-parent">Guidance Share</span> </a></li>
 

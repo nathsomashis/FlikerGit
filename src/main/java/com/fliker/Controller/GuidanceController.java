@@ -489,6 +489,40 @@ public class GuidanceController {
 		return mv;
 	}
 	
+	@RequestMapping("/gotoguidancedash")
+	public ModelAndView viewGuidanceDash(
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,ModelMap model,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		ArrayList resourcesSearch = new ArrayList();
+		
+		
+		GuidancePreview guideprev = new GuidancePreview();
+		
+		
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(userid);
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceContentDash");
+		
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", profile.getName());
+		mv.addObject("guidanceid", guidanceid);
+		
+		
+		//mv.addObject("postlist", postlist);
+		return mv;
+	}
+	
 	
 	@RequestMapping("/gotoguidanceshare")
 	public ModelAndView goToGuidanceShare(
