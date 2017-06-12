@@ -40,6 +40,7 @@ import com.fliker.Repository.Profile;
 import com.fliker.Repository.Share;
 import com.fliker.Repository.Timetable;
 import com.fliker.Repository.User;
+import com.mongodb.BasicDBList;
 import com.mongodb.gridfs.GridFSDBFile;
 
 @Controller
@@ -462,7 +463,8 @@ public class GuidanceController {
 	
 	@RequestMapping("/guidancefile")
 	public void guidancesharefileupload(MultipartHttpServletRequest request, HttpServletResponse response,HttpServletRequest requests,
-			@RequestParam("file") MultipartFile file1, HttpSession session) {
+			@RequestParam("file") MultipartFile file1, HttpSession session,
+			@RequestParam("token") String tokenui) {
 		System.out.println("in file controller");
 
 		GuidancePreview guidprev = new GuidancePreview();
@@ -476,7 +478,7 @@ public class GuidanceController {
 		
 		String token = (String)context.getAttribute("guidanceid");
 		
-		String fileid = guidprev.saveFile(request.getFileMap(),userid, "GuidanceContentShare",token);
+		String fileid = guidprev.saveFile(request.getFileMap(),userid, "GuidanceContentShare",token,tokenui);
 
 		guidprev.saveToShareDash(fileid,token);
 		/*ServletContext context = request.getSession().getServletContext();
@@ -484,10 +486,9 @@ public class GuidanceController {
 
 	}
 	
-	@RequestMapping("/fileUploadAchieve")
-	public void singlefile(MultipartHttpServletRequest request, HttpServletResponse response,
-			@RequestParam("file") MultipartFile file1, HttpSession session,
-			@RequestParam(value = "userids", required = false) String userids) {
+	@RequestMapping("/guidanceShareContent")
+	public void guidanceShareContent(@RequestParam(value = "token", required = false) String tokenui, HttpSession session,
+			@RequestParam(value = "userids", required = false) String userids,HttpServletRequest request) {
 		System.out.println("in file controller");
 
 		GuidancePreview guidprev = new GuidancePreview();
@@ -497,10 +498,11 @@ public class GuidanceController {
 		String userid = userinf.getUserid();
 		
 		String token = (String)context.getAttribute("guidanceid");
+		String xfileid = guidprev.getFileInfoId(tokenui,userid);
 		
-		String fileid = guidprev.saveFile(request.getFileMap(),userid, "GuidanceContentShare",token);
+		//String fileid = guidprev.getFileID(xfileid,userid,token,"");
 		
-		guidprev.saveFileToStudentsShare(userids,fileid);
+		guidprev.saveFileToStudentsShare(userids,xfileid,token);
 
 		/*ServletContext context = request.getSession().getServletContext();
 		context.setAttribute("weekfourth", weekfourth);*/
@@ -520,12 +522,13 @@ public class GuidanceController {
 		GuidancePreview guideprev = new GuidancePreview();
 		resourcesSearch = guideprev.getGuidanceViewData(guidanceid);
 		
-		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
-		
-		
-		UserPreview userprev = new UserPreview();
-		String gender = userprev.getGender(userid);
+		//String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
 		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String gender = userinf.getGender();
+		
+		
 		
 		ProfilePreview profprev = new ProfilePreview();
 		
@@ -586,31 +589,21 @@ public class GuidanceController {
 			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
  
-		ArrayList resourcesSearch = new ArrayList();
-		
-		
+		ArrayList consumerlist = new ArrayList();
 		GuidancePreview guideprev = new GuidancePreview();
 		//resourcesSearch = guideprev.getGuidanceData(guidanceid);
 		
-		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
+		ArrayList existingfilelist = (ArrayList)guideprev.getAllGuidanceFiles(guidanceid);
 		
-		UserPreview userprev = new UserPreview();
-		String gender = userprev.getGender(userid);
-		
-		Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
-		//model.addAttribute("TimeTable", timetable);
-		
-		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
-		//model.addAttribute("GuidShared", guidshareditem);
-		
-		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
-		//model.addAttribute("GuidDashBoard", guiddashdata);
-		
-		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
-		//model.addAttribute("GuidBlog", blogs);
+		BasicDBList useridlist = guideprev.getGuidanceCosumeruserid(guidanceid);
+		for(int s=0;s<useridlist.size();s++){
+			consumerlist.add(useridlist.get(s));
+		}
 		
 		ServletContext context = request.getSession().getServletContext();
-		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String gender = userinf.getGender();
 		
 		ProfilePreview profprev = new ProfilePreview();
 		
@@ -622,11 +615,8 @@ public class GuidanceController {
 		mv.addObject("ProfileImage", profile.getProfileImageid());
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", profile.getName());
-		mv.addObject("TimeTable", timetable);
-		mv.addObject("GuidShared", guidshareditem);
-		mv.addObject("GuidDashBoard", guiddashdata);
-		mv.addObject("GuidBlog", blogs);
-		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("consumerlist", consumerlist);
+		mv.addObject("existingfilelist", existingfilelist);
 		mv.addObject("guidanceid", guidanceid);
 		
 		//mv.addObject("postlist", postlist);
@@ -734,26 +724,12 @@ public class GuidanceController {
 		
 		
 		GuidancePreview guideprev = new GuidancePreview();
-		//resourcesSearch = guideprev.getGuidanceData(guidanceid);
 		
-		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
-		
-		UserPreview userprev = new UserPreview();
-		String gender = userprev.getGender(userid);
-		
-		Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
-		//model.addAttribute("TimeTable", timetable);
-		
-		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
-		//model.addAttribute("GuidShared", guidshareditem);
-		
-		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
-		//model.addAttribute("GuidDashBoard", guiddashdata);
-		
-		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
-		//model.addAttribute("GuidBlog", blogs);
 		
 		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String gender = userinf.getGender();
 		
 		
 		ProfilePreview profprev = new ProfilePreview();
@@ -766,10 +742,6 @@ public class GuidanceController {
 		mv.addObject("ProfileImage", profile.getProfileImageid());
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", profile.getName());
-		mv.addObject("TimeTable", timetable);
-		mv.addObject("GuidShared", guidshareditem);
-		mv.addObject("GuidDashBoard", guiddashdata);
-		mv.addObject("GuidBlog", blogs);
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("guidanceid", guidanceid);
 		
@@ -823,10 +795,10 @@ public class GuidanceController {
 		GuidancePreview guideprev = new GuidancePreview();
 		
 		
-		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
-		
-		UserPreview userprev = new UserPreview();
-		String gender = userprev.getGender(userid);
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String gender = userinf.getGender();
 		
 		assignmentlist = guideprev.formAssignmentList(guidanceid,userid,contenttype);
 		//questionlist = guideprev.formQuestionList(guidanceid,userid,contenttype);
@@ -842,8 +814,6 @@ public class GuidanceController {
 		
 		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);*/
 		//model.addAttribute("GuidBlog", blogs);
-		
-		ServletContext context = request.getSession().getServletContext();
 		
 		
 		ProfilePreview profprev = new ProfilePreview();
@@ -886,10 +856,10 @@ public class GuidanceController {
 		GuidancePreview guideprev = new GuidancePreview();
 		
 		
-		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
-		
-		UserPreview userprev = new UserPreview();
-		String gender = userprev.getGender(userid);
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String gender = userinf.getGender();
 		
 		//assignmentlist = guideprev.formAssignmentList(guidanceid,userid,contenttype);
 		questionlist = guideprev.formQuestionList(guidanceid,userid,contenttype);
@@ -905,9 +875,6 @@ public class GuidanceController {
 		
 		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);*/
 		//model.addAttribute("GuidBlog", blogs);
-		
-		ServletContext context = request.getSession().getServletContext();
-		
 		
 		ProfilePreview profprev = new ProfilePreview();
 		
@@ -950,24 +917,10 @@ public class GuidanceController {
 		GuidancePreview guideprev = new GuidancePreview();
 		resourcesSearch = guideprev.getGuidanceProjectData(guidanceid);
 		
-		String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
-		
-		UserPreview userprev = new UserPreview();
-		String gender = userprev.getGender(userid);
-		
-		Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
-		//model.addAttribute("TimeTable", timetable);
-		
-		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
-		//model.addAttribute("GuidShared", guidshareditem);
-		
-		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
-		//model.addAttribute("GuidDashBoard", guiddashdata);
-		
-		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
-		//model.addAttribute("GuidBlog", blogs);
-		
 		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String gender = userinf.getGender();
 		
 		
 		ProfilePreview profprev = new ProfilePreview();
@@ -980,10 +933,6 @@ public class GuidanceController {
 		mv.addObject("ProfileImage", profile.getProfileImageid());
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", profile.getName());
-		mv.addObject("TimeTable", timetable);
-		mv.addObject("GuidShared", guidshareditem);
-		mv.addObject("GuidDashBoard", guiddashdata);
-		mv.addObject("GuidBlog", blogs);
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("guidanceid", guidanceid);
 		

@@ -8,6 +8,7 @@ public class GuidanceEntry {
 
 	@Id
 	private String guidanceid;
+	private String consumeguidanceid;
 	private String userid;
 	private String sharetokenid;
 	private String dashboardid;
@@ -21,6 +22,12 @@ public class GuidanceEntry {
 	
 	
 	
+	public String getConsumeguidanceid() {
+		return consumeguidanceid;
+	}
+	public void setConsumeguidanceid(String consumeguidanceid) {
+		this.consumeguidanceid = consumeguidanceid;
+	}
 	public String getGuidanceid() {
 		return guidanceid;
 	}
