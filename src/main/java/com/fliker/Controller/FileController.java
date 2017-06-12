@@ -704,7 +704,7 @@ public class FileController {
 
 			// Save the file to local disk
 			try {
-				saveFileToLocalDisk(multipartFile);
+				//saveFileToLocalDisk(multipartFile);
 
 				FileUpload fileInfo = getUploadedFileInfo(multipartFile);
 
