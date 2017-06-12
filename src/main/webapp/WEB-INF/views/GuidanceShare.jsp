@@ -74,7 +74,14 @@
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
 		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
-
+		<style type="text/css">
+			.check
+				{
+				    opacity:0.5;
+					color:#996;
+					
+				}
+		</style>
 	</head>
 	
 	<!--
@@ -561,7 +568,34 @@
 				<!-- end row -->
 			</div>
 			<!-- END MAIN CONTENT -->
-
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Article Post</h4>
+							</div>
+							<div class="modal-body">
+									<div class="form-group">	
+									<div class="col-md-3"><label class="btn btn-primary"><img src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Running.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+									<div class="col-md-3"><label class="btn btn-primary"><img src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Basketball.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk2" id="item4" value="val2" class="hidden" autocomplete="off"></label></div>
+									<div class="col-md-3"><label class="btn btn-primary"><img src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Football.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk3" id="item4" value="val3" class="hidden" autocomplete="off"></label></div>
+									<div class="col-md-3"><label class="btn btn-primary"><img src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Soccer.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk4" id="item4" value="val4" class="hidden" autocomplete="off"></label></div>
+									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" onclick="uploadSharedData()" class="btn btn-primary">
+									Share
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -776,6 +810,8 @@
 		<!-- <script src="js/plugin/typeahead/typeahead.min.js"></script> -->
 		<script src="<c:url value='/resources/js/plugin/typeahead/typeaheadjs.min.js' />"></script>
 		<!-- <script src="js/plugin/typeahead/typeaheadjs.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/superbox/superbox.min.js' />"></script>
+		<!-- <script src="js/plugin/superbox/superbox.min.js"></script> -->
 		
 		<!-- PAGE RELATED PLUGIN(S) -->
 		<script src="<c:url value='/resources/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js' />"></script>
@@ -786,6 +822,8 @@
 
 				// DO NOT REMOVE : GLOBAL FUNCTIONS!
 				pageSetUp();
+			
+				$('.superbox').SuperBox();
 
 				/*
 				 * PAGE RELATED SCRIPTS
@@ -822,12 +860,26 @@
 				
 				Dropzone.autoDiscover = false;
 				$("#mydropzone").dropzone({
-					url: "guidanceprojectshared?",
+					url: "guidancefile?",
 					paramName: "file",		
 					addRemoveLinks : true,
 					maxFilesize: 500,
 					dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
-					dictResponseError: 'Error uploading file!'
+					dictResponseError: 'Error uploading file!',
+					init: function () {
+						this.on("addedfile", function(file) {
+							alert(file.name);
+							$('#myModal').modal('show');
+							
+				        }),
+				        this.on("success", function(file, response) {
+				            console.log(response);
+				        })
+					}
+				});
+				
+				$(".img-check").click(function(){
+					$(this).toggleClass("check");
 				});
 		
 				//Bootstrap Wizard Validations
@@ -851,6 +903,31 @@
 				s.parentNode.insertBefore(ga, s);
 			})();
 
+		</script>
+		<script>
+		function uploadSharedData(){
+			   // $('#result').html('');
+			 
+			   var file2 = $('#file2');
+			   var token = $('#acheivetoken').val();
+			   
+			  var oMyForm = new FormData();
+			  oMyForm.append("file", file2[0].files[0]);
+			  oMyForm.append("token", token);
+			 
+			  $.ajax({
+			    url: 'fileUploadAchieve?',
+			    data: oMyForm,
+			    dataType: 'text',
+			    processData: false,
+			    contentType: false,
+			    type: 'POST',
+			    success: function(data){
+			      alert(data);
+			    }
+			  });
+			  
+		 }
 		</script>
 
 	</body>
