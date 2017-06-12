@@ -1,14 +1,19 @@
 package com.fliker.Controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeoutException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,14 +21,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fliker.Modal.AssignmentFilePreview;
 import com.fliker.Modal.CoursePreview;
+import com.fliker.Modal.FilePreview;
 import com.fliker.Modal.GuidancePreview;
 import com.fliker.Modal.ProfilePreview;
 import com.fliker.Modal.UserPreview;
 import com.fliker.Repository.Blog;
 import com.fliker.Repository.DashBoardData;
+import com.fliker.Repository.FileUpload;
 import com.fliker.Repository.GuidanceContentDashboard;
 import com.fliker.Repository.GuidanceContentShared;
 import com.fliker.Repository.Profile;
@@ -450,7 +460,53 @@ public class GuidanceController {
 		return "true";
 	}
 	
+	@RequestMapping("/guidancefile")
+	public void guidancesharefileupload(MultipartHttpServletRequest request, HttpServletResponse response,HttpServletRequest requests,
+			@RequestParam("file") MultipartFile file1, HttpSession session) {
+		System.out.println("in file controller");
+
+		GuidancePreview guidprev = new GuidancePreview();
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		String token = (String)context.getAttribute("guidanceid");
+		
+		String fileid = guidprev.saveFile(request.getFileMap(),userid, "GuidanceContentShare",token);
+
+		guidprev.saveToShareDash(fileid,token);
+		/*ServletContext context = request.getSession().getServletContext();
+		context.setAttribute("weekfourth", weekfourth);*/
+
+	}
 	
+	@RequestMapping("/fileUploadAchieve")
+	public void singlefile(MultipartHttpServletRequest request, HttpServletResponse response,
+			@RequestParam("file") MultipartFile file1, HttpSession session,
+			@RequestParam(value = "userids", required = false) String userids) {
+		System.out.println("in file controller");
+
+		GuidancePreview guidprev = new GuidancePreview();
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		
+		String token = (String)context.getAttribute("guidanceid");
+		
+		String fileid = guidprev.saveFile(request.getFileMap(),userid, "GuidanceContentShare",token);
+		
+		guidprev.saveFileToStudentsShare(userids,fileid);
+
+		/*ServletContext context = request.getSession().getServletContext();
+		context.setAttribute("weekfourth", weekfourth);*/
+		
+		
+	}
 	
 	@RequestMapping("/guidanceview")
 	public ModelAndView viewGuidance(
