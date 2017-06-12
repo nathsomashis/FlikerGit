@@ -745,6 +745,8 @@
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
 		
+		<script src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
+		
 		<!--  PAGE RELATED PLUGIN(S) --> 
 		<script src="<c:url value='/resources/js/plugin/maxlength/bootstrap-maxlength.min.js' />"></script>
 		<!-- <script src="js/plugin/maxlength/bootstrap-maxlength.min.js"></script> -->

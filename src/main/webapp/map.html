@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="map" style="width: 600px; height: 400px"></div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<!-- <script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js' />"></script> -->
+		<script src="http://jvectormap.com/js/jquery-jvectormap-1.2.2.min.js"></script>
+		<!-- <script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js' />"></script> -->
+		<script src="http://jvectormap.com/js/jquery-jvectormap-world-mill-en.js"></script>
+		<script type="text/javascript" src="http://jvectormap.com/js/jquery-jvectormap-in-mill.js"></script>
+<script type="text/javascript">
+    $(function () {
+        new jvm.MultiMap({
+            container: $('#map'),
+            maxLevel: 1,
+            main: {
+                map: 'us_lcc_en'
+            },
+            mapUrlByCode: function (code, multiMap) {
+                return 'js/counties/jquery-jvectormap-data-' +
+                   code.toLowerCase() + '-' +
+                   multiMap.defaultProjection + '-en.js';
+            }
+        });
+
+
+     onRegionClick:function(event, code) {                        
+        var name = (code);                        
+        alert(name);                    
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -539,7 +539,7 @@
 															</thead>
 															<tbody>
 																<tr>
-																	<td><a href="javascript:void(0);">USA</a></td>
+																	<td id="usa"><a href="#" onclick="loadUSMap(event)">USA</a></td>
 																	<td>4,977</td>
 																	<td class="text-align-center">
 																	<div class="sparkline txt-color-blue text-align-center" data-sparkline-height="22px" data-sparkline-width="90px" data-sparkline-barwidth="2">
@@ -746,7 +746,7 @@
 														<!-- end content -->
 				
 													</div>
-				
+													<div id="india-map" class="vector-map"></div>
 												</div>
 												<!-- end widget div -->
 											</div>
@@ -760,6 +760,8 @@
 									<!-- end row -->
 				
 								</section>
+								
+								
 							</div>
 							<div class="tab-pane fade" id="s2">
 								<section id="widget-grid" class="">
@@ -811,7 +813,7 @@
 												<div class="panel-group smart-accordion-default" id="accordion-2">
 													<div class="panel panel-default">
 														<div class="panel-heading">
-															<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-1"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>
+															<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-1"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i>Profile Name</a></h4>
 														</div>
 														<div id="collapseOne-1" class="panel-collapse collapse in">
 															<div class="panel-body">
@@ -900,9 +902,6 @@
 																				</blockquote>
 																			</div>
 																		</div>
-																		<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
-																		<a class="btn btn-warning" href="javascript:void(0);"> Edit </a>
-																		<a class="btn btn-success" href="javascript:void(0);"> Publish </a>
 																	</div>
 																</div>
 															</div>
@@ -1189,6 +1188,9 @@
 					"CA" : 134,
 					"BD" : 100
 				};
+				
+				
+				
 
 				$('#vector-map').vectorMap({
 					map : 'world_mill_en',
@@ -1223,14 +1225,54 @@
 					},
 				});
 				
+				$('#india-map').vectorMap({
+					map : 'in_mill',
+					backgroundColor : '#000',
+					/* regionStyle : {
+						initial : {
+							fill : '#c4c4c4'
+						},
+						hover : {
+							"fill-opacity" : 1
+						}
+					},
+					series : {
+						regions : [{
+							scale : ['#85a8b6', '#4d7686'],
+							normalizeFunction : 'polynomial'
+						}]
+					} *//* ,
+					onRegionLabelShow : function(e, el, code) {
+						if ( typeof data_array[code] == 'undefined') {
+							e.preventDefault();
+						} else {
+							var countrylbl = data_array[code];
+							var countrymap = 'in_mill_en';
+							el.html(el.html() + ': ' + countrylbl + ' visits'+ ':' + '<a href="#" onclick="callCountry()">click</a>');
+						}
+					},
+					onRegionClick: function (event, code) {
+					    var countrymap = code+'_mill_en';
+					    switchMap(countrymap);
+					}, */
+				});
+				
 				$('table.highchart').highchartTable();
 				
 				
+				
+				/* $('#usa').click(function(e) {
+					alert("new default");
+				    e.preventDefault();
+				    //var content = $(this).html();
+				    $('#vector-map').replaceWith('<div id="india-map" class="vector-map"></div>');
+				  }); */
 				
 
 			});
 
 		</script>
+		
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->
 		<script type="text/javascript">
@@ -1247,6 +1289,12 @@
 				s.parentNode.insertBefore(ga, s);
 			})();
 			
+			function loadUSMap(event){
+				alert("new default");
+				event.preventDefault();
+			    //var content = $(this).html();
+			    $('#vector-map').replaceWith('<div id="india-map" class="vector-map"></div>');
+			}
 			
 			function switchMap(code) {
 				$('#vector-map').vectorMap({
@@ -1277,6 +1325,28 @@
 			    }); */ 
 			}
 
+		</script>
+		<script type="text/javascript">
+		    $(function () {
+		        new jvm.MultiMap({
+		            container: $('#map'),
+		            maxLevel: 1,
+		            main: {
+		                map: 'us_lcc_en'
+		            },
+		            mapUrlByCode: function (code, multiMap) {
+		                return 'js/counties/jquery-jvectormap-data-' +
+		                   code.toLowerCase() + '-' +
+		                   multiMap.defaultProjection + '-en.js';
+		            }
+		        });
+		
+		
+		     onRegionClick:function(event, code) {                        
+		        var name = (code);                        
+		        alert(name);                    
+		        }
+		    });
 		</script>
 
 	</body>
