@@ -1,5 +1,6 @@
+<%@page import="com.mongodb.BasicDBList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*,com.fliker.Repository.*" %>
+<%@ page import="java.util.*,com.fliker.Repository.*,com.fliker.Modal.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -134,16 +135,10 @@
 			String profileimage = (String)request.getAttribute("ProfileImage");
 			String gender = (String)request.getAttribute("Gender");
 			String profilename = (String)request.getAttribute("FullName");
-			Timetable timeline = (Timetable)request.getAttribute("TimeTable");
-			GuidanceContentShared guidanceshare = (GuidanceContentShared)request.getAttribute("GuidShared");
-			GuidanceContentDashboard guiddash = (GuidanceContentDashboard)request.getAttribute("GuidDashBoard");
-			Blog blogs = (Blog)request.getAttribute("GuidBlog");
 			String logo = "";
 			String guidanceid = (String)request.getAttribute("guidanceid");
-			String timetableid = timeline.getTimeableid();
-			String guideshareid = guidanceshare.getGuidancesharedid();
-			String guidedash = guiddash.getGuidancecontentDashid();
-			
+			ArrayList consumerlist = (ArrayList)request.getAttribute("consumerlist");
+			ProfilePreview profprev = new ProfilePreview();
 		
 		%>
 
@@ -578,12 +573,21 @@
 								<h4 class="modal-title" id="myModalLabel">Article Post</h4>
 							</div>
 							<div class="modal-body">
-									<div class="form-group">	
-									<div class="col-md-3"><label class="btn btn-primary"><img src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Running.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
-									<div class="col-md-3"><label class="btn btn-primary"><img src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Basketball.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk2" id="item4" value="val2" class="hidden" autocomplete="off"></label></div>
-									<div class="col-md-3"><label class="btn btn-primary"><img src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Football.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk3" id="item4" value="val3" class="hidden" autocomplete="off"></label></div>
-									<div class="col-md-3"><label class="btn btn-primary"><img src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Soccer.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk4" id="item4" value="val4" class="hidden" autocomplete="off"></label></div>
+									<input type="hidden" value="" id="fileitem"/>
+									<div class="form-group">
+									<%
+										if((!consumerlist.isEmpty()) || (consumerlist!= null) || (consumerlist.size()>0)){
+										for(int m=0;m<consumerlist.size();m++){
+											
+											Profile consumerprof = (Profile)profprev.getProfileData((String)consumerlist.get(m));
+												%>
+													<div class="col-md-3"><label class="btn btn-primary"><img src="/Fliker/imageFromUserid/<%=consumerprof.getUserid()%>" alt="<%=consumerprof.getName()%>" class="img-thumbnail img-check"><input type="checkbox" name="<%=consumerprof.getName()%>" id="<%=consumerprof.getUserid()%>" value="<%=consumerprof.getProfileid()%>" class="hidden" autocomplete="off"></label></div>
+												<% 
+											}
+										}
+									%>	
 									</div>
+									<input type="hidden" value="" id="useridarr"/>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -869,17 +873,43 @@
 					init: function () {
 						this.on("addedfile", function(file) {
 							alert(file.name);
+							//$('#fileitem').val(file);
+							//generateToken();
 							$('#myModal').modal('show');
 							
 				        }),
+				        this.on('sending', function(file, xhr, formData){
+				        	var generatedtoken = generateToken();
+				        	alert(generatedtoken);
+				        	formData.append('token', generatedtoken);
+				        }),
 				        this.on("success", function(file, response) {
 				            console.log(response);
-				        })
+				        }),
+				        thisDropzone = this;
+				        $.getJSON('guidanceShareFiles?', function(data) {
+				        	 console.log(data);
+				        	  $.each(data, function(index, val) {
+				        	    var mockFile = { name: val.name, size: val.size };
+				        	    thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+				        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "uploads/" + val.name);
+				        	  });
+				        	});
 					}
 				});
 				
 				$(".img-check").click(function(){
 					$(this).toggleClass("check");
+					var userid = $(this).attr('id');
+					var existingusers = $("#useridarr").val();
+					if(existingusers == ""){
+						var newuserset = userid;
+						$("#useridarr").val(newuserset);
+					}else{
+						var newuserset = existingusers+","+userid;
+						$("#useridarr").val(newuserset);
+					}
+					
 				});
 		
 				//Bootstrap Wizard Validations
@@ -905,27 +935,51 @@
 
 		</script>
 		<script>
+		
+		function  generateToken(){
+			 
+			 var stringLength = 15;
+
+				// list containing characters for the random string
+				var stringArray = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','!','?'];
+
+				//$("#providachieve").click(function (){
+
+					var rndString = "";
+				
+					// build a string with random characters
+					for (var i = 1; i < stringLength; i++) { 
+						var rndNum = Math.ceil(Math.random() * stringArray.length) - 1;
+						rndString = rndString + stringArray[rndNum];
+					};
+					
+					$('#fileitem').val(rndString);
+
+				
+			 
+		 }
+		
 		function uploadSharedData(){
 			   // $('#result').html('');
 			 
-			   var file2 = $('#file2');
-			   var token = $('#acheivetoken').val();
+			   var fileitem = $('#fileitem').val();
+			   var userids = $("#useridarr").val();
 			   
-			  var oMyForm = new FormData();
-			  oMyForm.append("file", file2[0].files[0]);
-			  oMyForm.append("token", token);
 			 
-			  $.ajax({
-			    url: 'fileUploadAchieve?',
-			    data: oMyForm,
-			    dataType: 'text',
-			    processData: false,
-			    contentType: false,
-			    type: 'POST',
-			    success: function(data){
-			      alert(data);
-			    }
-			  });
+			   $.ajax({
+					url : "guidanceShareContent?token="+fileitem+"&userids="+userids,
+					method : 'POST',
+					success : function(data){
+						alert(data);
+						//if(data.success == true){ // if true (1)
+						     /*  setTimeout(function(){// wait for 5 secs(2)
+						           location.reload(); // then reload the page.(3)
+						      }, 5000);  */
+						  // }
+						
+					}
+				
+		        }); 
 			  
 		 }
 		</script>
