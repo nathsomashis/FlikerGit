@@ -1370,20 +1370,20 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 
-	public String getGuidanceCosumeruserid(String guidanceid) {
+	public BasicDBList getGuidanceCosumeruserid(String guidanceid) {
 		// TODO Auto-generated method stub
 		
-		String userid = "";
+		BasicDBList useridlist = new BasicDBList();
 		MongoConnection mongocon = new MongoConnection();
 		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
 		if(resultcursor.hasNext()){
 			DBObject theObj = resultcursor.next();
 			
-			userid = (String)theObj.get("consumeruserid");
+			useridlist = (BasicDBList)theObj.get("consumeruserid");
 		}
 		
 		
-		return userid;
+		return useridlist;
 	}
 	
 	
@@ -2027,12 +2027,14 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		fileInfo.setType(multipartFile.getContentType());
 		fileInfo.setLocation(getDestinationLocation());
 		fileInfo.setFileblob(multipartFile.getBytes());
+		
+		
 
 		return fileInfo;
 	}
 	
 	
-	public String saveFile(Map<String, MultipartFile> fileMap, String userid, String guidancedata,String token){
+	public String saveFile(Map<String, MultipartFile> fileMap, String userid, String guidancedata,String token, String tokenui){
 		String fileids = "";
 		String filenames = "";
 		
@@ -2190,26 +2192,123 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 
-	public void saveFileToStudentsShare(String userids, String fileid) {
+	public void saveFileToStudentsShare(String userids, String fileid, String guidanceid) {
 		// TODO Auto-generated method stub
+		
+		GuidancePreview guidprev = new GuidancePreview();
 		
 		String[] useridrow =  userids.split(",");
 		
 		for(int i=0;i<useridrow.length;i++){
 			MongoConnection mongocon = new MongoConnection();
-			DBCursor resultcursor = mongocon.getDBObject("tempid", useridrow[i], "FileUnionTimeFrame");
-			while(resultcursor.hasNext() ){
+			
+			DBCursor profilecursor = mongocon.getDBObject("userid", useridrow[i], "Profile");
+			while(profilecursor.hasNext()){
+				DBObject basicdbj = profilecursor.next();
 				
-				DBObject dbj = resultcursor.next();
+				BasicDBList guidancelist = (BasicDBList)basicdbj.get("guidanceids");
+				for(int g=0;g<guidancelist.size();g++){
+					
+						DBCursor resultcursor = mongocon.getDBObject("guidanceid", (String)guidancelist.get(g), "GuidanceEntry");
+						while(resultcursor.hasNext() ){
+							DBObject dbj = resultcursor.next();
+							
+							String consumeguidanceid = (String)dbj.get("consumeguidanceid");
+							if(consumeguidanceid.equalsIgnoreCase(guidanceid)){
+								
+								String sharetokenid = (String)dbj.get("sharetokenid");
+								mongocon.updateObject(new BasicDBObject("guidanceshareid", sharetokenid),new BasicDBObject("$push", new BasicDBObject("guidancefileids", fileid)), "GuidanceEntryShare");
+							}
+							
+							
+						}
+						
+					
+				}
 			}
 		}
 		
 		
 	}
+
+
+	public String getFileInfoId(String tokenui, String userid) {
+		// TODO Auto-generated method stub
+		String fileid = "";
+		MongoConnection mongocon = new MongoConnection();
+		
+		DBCursor filecursor = mongocon.getDBObject("tempid", tokenui, "FileUnionTimeFrame");
+		while(filecursor.hasNext()){
+			DBObject basicdbj = filecursor.next();
+			String user = (String)basicdbj.get("userid");
+			if(user.equalsIgnoreCase(fileid)){
+				
+				String context = (String)basicdbj.get("context");
+				if(context.contains("GuidanceID ::"+tokenui)){
+					fileid = (String)basicdbj.get("fileid");
+				}
+				
+			}
+			
+		}
 	
 	
-	
+	 return fileid;
 	}
+
+
+	public ArrayList getAllGuidanceFiles(String guidanceid) {
+		// TODO Auto-generated method stub
+		ArrayList existingfiles = new ArrayList();
+		MongoConnection mongocon = new MongoConnection();
+		
+		DBCursor filecursor = mongocon.getDBObject("guidancesharedid", guidanceid, "GuidanceContentShare");
+		while(filecursor.hasNext()){
+			DBObject basicdbj = filecursor.next();
+			BasicDBList filelist = (BasicDBList)basicdbj.get("guidancefilelistid");
+			for(int t=0;t<filelist.size();t++){
+				existingfiles.add((String)filelist.get(t));
+			}
+		}
+		return existingfiles;
+	}
+
+
+	public FileUpload fileExisting(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		ArrayList filelst = new ArrayList();
+		FileUpload fileupload = new FileUpload();
+		MongoConnection mongocon = new MongoConnection();
+		
+		/*DBCursor filecursor = mongocon.getDBObject("guidancesharedid", guidanceid, "GuidanceContentShare");
+		while(filecursor.hasNext()){
+			DBObject basicdbj = filecursor.next();
+			
+			BasicDBList filelist = (BasicDBList)basicdbj.get("guidancefilelistid");
+			for(int t=0;t<filelist.size();t++){*/
+				
+				DBCursor fileitemcursor = mongocon.getDBObject("id", "11e086955efb43e1adfe1cff21a6c0cc3487e5e01468147646291", "fileupload");
+				while(fileitemcursor.hasNext()){
+					
+					DBObject filedbj = fileitemcursor.next();
+					
+					fileupload.setFileid((String)filedbj.get("id"));
+					fileupload.setName((String)filedbj.get("name"));
+					fileupload.setType((String)filedbj.get("type"));
+					
+					filelst.add(fileupload);
+				}
+				
+			/*}
+			
+		}*/
+		
+		return fileupload;
+		
+	}
+	
+}
 
 
 

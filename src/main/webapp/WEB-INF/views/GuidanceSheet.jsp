@@ -407,20 +407,20 @@
 				-->
 
 				<ul>
-		<li class="active"><a href="gotoguidance?guidanceid="<%=guidanceid%>><i	class="fa fa-lg fa-fw fa-puzzle-piece txt-color-blue"></i> <span
+		<li class="active"><a href="gotoguidance?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-puzzle-piece txt-color-blue"></i> <span
 				class="menu-item-parent">Guidance Info</span> </a></li>
-		<li ><a href="gotoguidancedash?guidanceid="<%=guidanceid%>><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
+		<li ><a href="gotoguidancedash?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
 				class="menu-item-parent">Guidance Dashboard</span> </a></li>		
-		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
+		<li ><a href="gotoguidanceshare?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
 				class="menu-item-parent">Guidance Share</span> </a></li>
 
-		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-calendar"></i>
+		<li><a href="gotoguidancecalendar?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-calendar"></i>
 				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
 		</li>
-		<li><a href="gotoguidanceexcersize?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-qrcode"></i>
+		<li><a href="gotoguidanceexcersize?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-qrcode"></i>
 				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
 		</li>
-		<li><a href="gotoguidanceproject?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-sitemap"></i>
+		<li><a href="gotoguidanceproject?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-sitemap"></i>
 				<span class="menu-item-parent">Guidance Project</span> </a></li>
 		</li>
 	</ul>
