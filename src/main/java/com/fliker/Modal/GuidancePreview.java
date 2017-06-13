@@ -2288,7 +2288,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 			BasicDBList filelist = (BasicDBList)basicdbj.get("guidancefilelistid");
 			for(int t=0;t<filelist.size();t++){*/
 				
-				DBCursor fileitemcursor = mongocon.getDBObject("id", "11e086955efb43e1adfe1cff21a6c0cc3487e5e01468147646291", "fileupload");
+				DBCursor fileitemcursor = mongocon.getDBObject("id", "42573d7391a7bc9dcdef39375562aa088c386c851468147764813", "fileupload");
 				while(fileitemcursor.hasNext()){
 					
 					DBObject filedbj = fileitemcursor.next();
@@ -2296,6 +2296,8 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 					fileupload.setFileid((String)filedbj.get("id"));
 					fileupload.setName((String)filedbj.get("name"));
 					fileupload.setType((String)filedbj.get("type"));
+					fileupload.setSize((Long)filedbj.get("size"));
+					
 					
 					filelst.add(fileupload);
 				}

@@ -866,18 +866,33 @@
 				$("#mydropzone").dropzone({
 					url: "guidancefile?",
 					paramName: "file",		
-					addRemoveLinks : true,
+					addRemoveLinks : false,
 					maxFilesize: 500,
 					dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
 					dictResponseError: 'Error uploading file!',
 					init: function () {
 						this.on("addedfile", function(file) {
 							alert(file.name);
+							var removeButton = Dropzone.createElement("<button>Remove file</button>");
 							//$('#fileitem').val(file);
 							//generateToken();
 							$('#myModal').modal('show');
 							
+							 removeButton.addEventListener("click", function (e,file) {
+								 	alert("click on remove");
+								 	alert(file.id);
+			                        // Make sure the button click doesn't submit the form:
+			                        e.preventDefault();
+			                        e.stopPropagation();
+			                        // Remove the file preview.
+			                        _this.removeFile(file);
+			                        // If you want to the delete the file on the server as well,
+			                        // you can do the AJAX request here.
+			                    });
+							
+							 file.previewElement.appendChild(removeButton);
 				        }),
+				        
 				        this.on('sending', function(file, xhr, formData){
 				        	var generatedtoken = generateToken();
 				        	alert(generatedtoken);
@@ -889,11 +904,24 @@
 				        thisDropzone = this;
 				        $.getJSON('guidanceShareFiles?', function(data) {
 				        	 console.log(data);
-				        	  $.each(data, function(index, val) {
-				        	    var mockFile = { name: val.name, size: val.size };
-				        	    thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-				        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "uploads/" + val.name);
-				        	  });
+				        	 	
+				        	  //$.each(data, function(index, val) {
+				        	    var mockFile = { name: data.name, size: data.size, fileid: data.fileid };
+				        	    console.log('val variable '+data.fileid);
+				        	    thisDropzone.emit("addedfile", mockFile);
+				        	    //thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+				        	    thisDropzone.on("addedfile", function(mockFile) {
+				                  mockFile.previewElement.addEventListener("click", function() {
+				                    alert("click");
+				                  });
+				                });
+				        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "imageController/" + data.fileid);
+				        	    thisDropzone.emit("complete", mockFile);
+				        	    /* var sharebutton = thisDropzone.option.createElement("<button>Share file</button>");
+				        	    thisDropzone.options.previewElement.appendChild(sharebutton); */
+				        	    
+				        	    
+				        	 // });
 				        	});
 					}
 				});
