@@ -44,6 +44,7 @@ import com.fliker.Repository.GuidanceContentDashboard;
 import com.fliker.Repository.GuidanceContentFiles;
 import com.fliker.Repository.GuidanceContentShared;
 import com.fliker.Repository.GuidanceEntry;
+import com.fliker.Repository.GuidanceFileShare;
 import com.fliker.Repository.GuidanceInfo;
 import com.fliker.Repository.GuidanceProject;
 import com.fliker.Repository.Post;
@@ -2308,6 +2309,80 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		
 		return fileupload;
 		
+	}
+
+
+	public void shareToConsumers(String fileid, String userids, String guidanceid) {
+		// TODO Auto-generated method stub
+		GuidancePreview guideprev = new GuidancePreview();
+		String[] consumers = userids.split(",");
+		
+		GuidanceFileShare guidefileshare = new GuidanceFileShare();
+		guidefileshare.setGuidancefileid(fileid);
+		guidefileshare.setGuidanceid(guidanceid);
+		guidefileshare.setConsumerids(consumers);
+		
+		MongoConnection mongoconsearch = new MongoConnection();
+		BasicDBObject basicreqobjsearch =  guideprev.formShareGuidanceDBObject(guidefileshare);
+		
+		mongoconsearch.saveObject(basicreqobjsearch, "GuidanceDashFileShare");
+		
+	}
+
+
+	private BasicDBObject formShareGuidanceDBObject(GuidanceFileShare guidefileshare) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("consumerids", guidefileshare.getConsumerids());
+		basicdbobj.put("guidancefileid", guidefileshare.getGuidancefileid());
+		basicdbobj.put("guidanceid", guidefileshare.getGuidanceid());
+		
+		return basicdbobj;
+	}
+
+
+	public ArrayList getUnSharedConsumers(String fileid, String guidanceid) {
+		// TODO Auto-generated method stub
+		ArrayList consumerlist = new ArrayList();
+		ArrayList totaluserlst = new ArrayList();
+		ArrayList shareduserlst = new ArrayList();
+		MongoConnection mongocon = new MongoConnection();
+		
+		
+		DBCursor filecursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		while(filecursor.hasNext()){
+			DBObject basicdbj = filecursor.next();
+			BasicDBList consumerlst = (BasicDBList)basicdbj.get("consumeruserid");
+			for(int m=0;m<consumerlst.size();m++){
+				totaluserlst.add((String)consumerlst.get(m));
+			}
+		}
+		
+		DBCursor usercursor = mongocon.getDBObject("guidancefileid", fileid, "GuidanceDashFileShare");
+		while(usercursor.hasNext()){
+			DBObject userdbj = usercursor.next();
+			BasicDBList sharedconsumerlst = (BasicDBList)userdbj.get("consumerids");
+			for(int n=0;n<sharedconsumerlst.size();n++){
+				shareduserlst.add((String)sharedconsumerlst.get(n));
+			}
+		}
+		
+		for(int t=0;t<totaluserlst.size();t++){
+			boolean isnotexist = false;
+			String consumer = (String)totaluserlst.get(t);
+			for(int i=0;i<shareduserlst.size();i++){
+				String sharedconsumer = (String)shareduserlst.get(i);
+				if(consumer.equalsIgnoreCase(sharedconsumer)){
+					isnotexist = true;
+				}
+				
+			}
+			shareduserlst.add(consumer);
+			
+		}
+		
+		
+		return shareduserlst;
 	}
 	
 }

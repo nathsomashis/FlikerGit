@@ -529,6 +529,38 @@ public class GuidanceController {
 		return filelist;
 	}
 	
+	
+	@RequestMapping("/guidanceShareNewConsumers")
+	public @ResponseBody ArrayList guidanceShareConsumer( HttpSession session,HttpServletRequest request,
+			@RequestParam(value = "fileid", required = false) String fileid,
+			@RequestParam(value = "guidanceid", required = false) String guidanceid) {
+		System.out.println("in file controller");
+
+		GuidancePreview guidprev = new GuidancePreview();
+		
+		ArrayList consumerlist = guidprev.getUnSharedConsumers(fileid,guidanceid);
+		
+		
+		return consumerlist;
+	}
+	
+	
+	@RequestMapping("/guidanceShareConsumers")
+	public void guidanceDashShare( HttpSession session,HttpServletRequest request,
+			@RequestParam(value = "fileid", required = false) String fileid,
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,
+			@RequestParam(value = "userids", required = false) String userids) {
+		System.out.println("in file controller");
+
+		GuidancePreview guidprev = new GuidancePreview();
+		
+		guidprev.shareToConsumers(fileid,userids,guidanceid);
+		
+	}
+	
+	
+	
+	
 	@RequestMapping("/guidanceview")
 	public ModelAndView viewGuidance(
 			@RequestParam(value = "guidanceid", required = false) String guidanceid,ModelMap model,
