@@ -885,7 +885,16 @@
 				        }),
 				        this.on("success", function(file, response) {
 				            console.log(response);
-				        })
+				        }),
+				        thisDropzone = this;
+				        $.getJSON('guidanceShareFiles?', function(data) {
+				        	 console.log(data);
+				        	  $.each(data, function(index, val) {
+				        	    var mockFile = { name: val.name, size: val.size };
+				        	    thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+				        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "uploads/" + val.name);
+				        	  });
+				        	});
 					}
 				});
 				

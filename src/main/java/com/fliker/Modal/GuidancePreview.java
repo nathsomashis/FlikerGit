@@ -2027,6 +2027,8 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		fileInfo.setType(multipartFile.getContentType());
 		fileInfo.setLocation(getDestinationLocation());
 		fileInfo.setFileblob(multipartFile.getBytes());
+		
+		
 
 		return fileInfo;
 	}
@@ -2269,6 +2271,41 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 			}
 		}
 		return existingfiles;
+	}
+
+
+	public FileUpload fileExisting(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		ArrayList filelst = new ArrayList();
+		FileUpload fileupload = new FileUpload();
+		MongoConnection mongocon = new MongoConnection();
+		
+		/*DBCursor filecursor = mongocon.getDBObject("guidancesharedid", guidanceid, "GuidanceContentShare");
+		while(filecursor.hasNext()){
+			DBObject basicdbj = filecursor.next();
+			
+			BasicDBList filelist = (BasicDBList)basicdbj.get("guidancefilelistid");
+			for(int t=0;t<filelist.size();t++){*/
+				
+				DBCursor fileitemcursor = mongocon.getDBObject("id", "11e086955efb43e1adfe1cff21a6c0cc3487e5e01468147646291", "fileupload");
+				while(fileitemcursor.hasNext()){
+					
+					DBObject filedbj = fileitemcursor.next();
+					
+					fileupload.setFileid((String)filedbj.get("id"));
+					fileupload.setName((String)filedbj.get("name"));
+					fileupload.setType((String)filedbj.get("type"));
+					
+					filelst.add(fileupload);
+				}
+				
+			/*}
+			
+		}*/
+		
+		return fileupload;
+		
 	}
 	
 }

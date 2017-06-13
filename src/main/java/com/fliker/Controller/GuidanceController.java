@@ -479,6 +479,7 @@ public class GuidanceController {
 		String token = (String)context.getAttribute("guidanceid");
 		
 		String fileid = guidprev.saveFile(request.getFileMap(),userid, "GuidanceContentShare",token,tokenui);
+		System.out.println(fileid);
 
 		guidprev.saveToShareDash(fileid,token);
 		/*ServletContext context = request.getSession().getServletContext();
@@ -508,6 +509,24 @@ public class GuidanceController {
 		context.setAttribute("weekfourth", weekfourth);*/
 		
 		
+	}
+	
+	
+	@RequestMapping("/guidanceShareFiles")
+	public @ResponseBody FileUpload guidanceShareFiles( HttpSession session,HttpServletRequest request) {
+		System.out.println("in file controller");
+
+		GuidancePreview guidprev = new GuidancePreview();
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		
+		String token = (String)context.getAttribute("guidanceid");
+		FileUpload filelist = guidprev.fileExisting(token);
+		
+		
+		return filelist;
 	}
 	
 	@RequestMapping("/guidanceview")
