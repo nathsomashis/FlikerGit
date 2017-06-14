@@ -513,7 +513,8 @@ public class GuidanceController {
 	
 	
 	@RequestMapping("/guidanceShareFiles")
-	public @ResponseBody FileUpload guidanceShareFiles( HttpSession session,HttpServletRequest request) {
+	public @ResponseBody ArrayList guidanceShareFiles( HttpSession session,HttpServletRequest request,
+			@RequestParam(value = "guidanceid", required = false) String guidanceid) {
 		System.out.println("in file controller");
 
 		GuidancePreview guidprev = new GuidancePreview();
@@ -523,7 +524,7 @@ public class GuidanceController {
 		String userid = userinf.getUserid();
 		
 		String token = (String)context.getAttribute("guidanceid");
-		FileUpload filelist = guidprev.fileExisting(token);
+		ArrayList filelist = guidprev.fileExisting(guidanceid);
 		
 		
 		return filelist;

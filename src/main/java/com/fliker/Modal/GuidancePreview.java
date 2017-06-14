@@ -2275,21 +2275,21 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 
-	public FileUpload fileExisting(String guidanceid) {
+	public ArrayList fileExisting(String guidanceid) {
 		// TODO Auto-generated method stub
 		
 		ArrayList filelst = new ArrayList();
 		FileUpload fileupload = new FileUpload();
 		MongoConnection mongocon = new MongoConnection();
 		
-		/*DBCursor filecursor = mongocon.getDBObject("guidancesharedid", guidanceid, "GuidanceContentShare");
+		DBCursor filecursor = mongocon.getDBObject("guidancesharedid", guidanceid, "GuidanceContentShare");
 		while(filecursor.hasNext()){
 			DBObject basicdbj = filecursor.next();
 			
 			BasicDBList filelist = (BasicDBList)basicdbj.get("guidancefilelistid");
-			for(int t=0;t<filelist.size();t++){*/
+			for(int t=0;t<filelist.size();t++){
 				
-				DBCursor fileitemcursor = mongocon.getDBObject("id", "42573d7391a7bc9dcdef39375562aa088c386c851468147764813", "fileupload");
+				DBCursor fileitemcursor = mongocon.getDBObject("id", (String)filelist.get(t), "fileupload");
 				while(fileitemcursor.hasNext()){
 					
 					DBObject filedbj = fileitemcursor.next();
@@ -2303,11 +2303,11 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 					filelst.add(fileupload);
 				}
 				
-			/*}
+			}
 			
-		}*/
+		}
 		
-		return fileupload;
+		return filelst;
 		
 	}
 

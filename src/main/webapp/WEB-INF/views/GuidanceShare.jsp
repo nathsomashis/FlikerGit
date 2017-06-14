@@ -138,6 +138,7 @@
 			String logo = "";
 			String guidanceid = (String)request.getAttribute("guidanceid");
 			ArrayList consumerlist = (ArrayList)request.getAttribute("consumerlist");
+			ArrayList existingfilelist = (ArrayList)request.getAttribute("existingfilelist");
 			ProfilePreview profprev = new ProfilePreview();
 		
 		%>
@@ -669,6 +670,7 @@
 										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
 										<div class="progress progress-micro no-margin">
 											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
+											<a rel=""></a>
 										</div>
 									</div>
 								</li>
@@ -900,9 +902,10 @@
 					dictResponseError: 'Error uploading file!',
 					init: function () {
 						this.on("addedfile", function(file) {
-							alert(file.name);
-							var removeButton = Dropzone.createElement("<a href='#' id='"+file.fileid+"' onclick='uploadShareExist()' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-trash'></i></a>");
-							var sharebutton = Dropzone.createElement("<a href='javascript:void(0);' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-list'></i></a>");
+							alert(file.fileid);
+							var fileid = file.fileid;
+							var sharebutton = Dropzone.createElement("<a href='#' id='' rel='"+fileid+"' onclick='uploadShareExist(param)' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-trash'></i></a>");
+							var removeButton = Dropzone.createElement("<a href='javascript:void(0);' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-list'></i></a>");
 							//$('#fileitem').val(file);
 							//generateToken();
 							//$('#myModal').modal('show');
@@ -943,26 +946,42 @@
 				            console.log(response);
 				        }),
 				        thisDropzone = this;
-				        $.getJSON('guidanceShareFiles?', function(data) {
-				        	 console.log(data);
+						var guidanceid = '<%=guidanceid%>';
+						//var elements = document.getElementsByName('name');
+						
+						/* for(var i = 0; i < elements.length; i++)
+						{
+						  data.push(elements[i].value);
+						} */
+						//alert(guidanceid)
+				        $.getJSON('guidanceShareFiles?guidanceid='+guidanceid, function(dataset) {
+				        	 console.log(dataset);
+				        	 for(var i = 0; i < dataset.length; i++){
+				        		 var datavar = dataset[i];
+				        		 var fileid = datavar.fileid;
+				        		 var filename = datavar.name;
+				        		 var filesize = datavar.size;
+				        		 var mockFile = { name: filename, size: filesize, fileid: fileid };
+				        		 
+				        		 alert('val variable '+fileid+' var filename '+filename+'file size ::'+filesize);
+					        	    thisDropzone.emit("addedfile", datavar);
+					        	    //thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+					        	    /* thisDropzone.on("addedfile", function(mockFile) {
+					                  mockFile.previewElement.addEventListener("click", function() {
+					                    alert("click");
+					                  });
+					                }); */
+					                
+					        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "imageController/" + fileid);
+							    	thisDropzone.createThumbnailFromUrl(mockFile, "imageController/" + fileid);	
+					        	    thisDropzone.emit("complete", mockFile);
+					        	    /* var sharebutton = thisDropzone.option.createElement("<button>Share file</button>");
+					        	    thisDropzone.options.previewElement.appendChild(sharebutton); */
+				        		 
+				        		 
+				        	 }
 				        	 	
-				        	  //$.each(data, function(index, val) {
-				        	    var mockFile = { name: data.name, size: data.size, fileid: data.fileid };
-				        	    console.log('val variable '+data.fileid);
-				        	    thisDropzone.emit("addedfile", data);
-				        	    //thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-				        	    /* thisDropzone.on("addedfile", function(mockFile) {
-				                  mockFile.previewElement.addEventListener("click", function() {
-				                    alert("click");
-				                  });
-				                }); */
-				        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "imageController/" + data.fileid);
-				        	    thisDropzone.emit("complete", mockFile);
-				        	    /* var sharebutton = thisDropzone.option.createElement("<button>Share file</button>");
-				        	    thisDropzone.options.previewElement.appendChild(sharebutton); */
-				        	    
-				        	    
-				        	 // });
+				        	  
 				        	});
 					}
 				});
@@ -1028,8 +1047,8 @@
 			 
 		 }
 				
-		function uploadShareExist(){
-			
+		function uploadShareExist(param){
+			alert(param);
 			var guidanceid = '<%=guidanceid%>';
 			$('#shareModal').modal('show');
 			//var html = $(this).next('#unsharedUsers').html();
