@@ -904,27 +904,53 @@
 						this.on("addedfile", function(file) {
 							alert(file.fileid);
 							var fileid = file.fileid;
-							var sharebutton = Dropzone.createElement("<a href='#' id='' rel='"+fileid+"' onclick='uploadShareExist(param)' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-trash'></i></a>");
-							var removeButton = Dropzone.createElement("<a href='javascript:void(0);' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-list'></i></a>");
+							var sharebutton = Dropzone.createElement("<a href='#' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-trash'></i></a>");
+							var removeButton = Dropzone.createElement("<a href='#' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-list'></i></a>");
+							var downloadButton = Dropzone.createElement("<a href='imageDownload/"+fileid+"' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-download-alt'></i></a>");
 							//$('#fileitem').val(file);
 							//generateToken();
 							//$('#myModal').modal('show');
 							
-							/* sharebutton.addEventListener("click", function (e) {
-							 	alert("click on remove");
-							 	alert(file.id);
+							var existringfiles = '<%=existingfilelist%>';
+							for(var x=0;x<existringfiles.length;x++){
+								
+								console.log(existringfiles[x]);
+								
+							}
+							
+							 sharebutton.addEventListener("click", function (e) {
+							 	//alert("click on share");
+							 	alert(fileid);
+							 	var guidanceid = '<%=guidanceid%>';
+								$('#shareModal').modal('show');
+								$('#unsharedUsers').html("");
 		                        // Make sure the button click doesn't submit the form:
 		                        e.preventDefault();
 		                        e.stopPropagation();
+		                        
+		                        $.ajax({
+		        					url : "guidanceShareConsumers?fileid="+fileid+"&guidanceid="+guidanceid,
+		        					method : 'POST',
+		        					success : function(data){
+		        						alert(data);
+		        						//if(data.success == true){ // if true (1)
+		        						     /*  setTimeout(function(){// wait for 5 secs(2)
+		        						           location.reload(); // then reload the page.(3)
+		        						      }, 5000);  */
+		        						  // }
+		        						
+		        					}
+		        				
+		        		        }); 
 		                        // Remove the file preview.
-		                        this.removeFile(file);
+		                        //this.removeFile(file);
 		                        // If you want to the delete the file on the server as well,
 		                        // you can do the AJAX request here.
-		                    }); */
+		                    }); 
 							file.previewElement.appendChild(sharebutton);
-							 /* removeButton.addEventListener("click", function (e) {
-								 	alert("click on remove");
-								 	alert(file.id);
+							  removeButton.addEventListener("click", function (e) {
+								 	//alert("click on remove");
+								 	alert(fileid);
 			                        // Make sure the button click doesn't submit the form:
 			                        e.preventDefault();
 			                        e.stopPropagation();
@@ -932,9 +958,11 @@
 			                        this.removeFile(file);
 			                        // If you want to the delete the file on the server as well,
 			                        // you can do the AJAX request here.
-			                    }); */
+			                    }); 
 							
 							 file.previewElement.appendChild(removeButton);
+							 
+							 file.previewElement.appendChild(downloadButton);
 				        }),
 				        
 				        this.on('sending', function(file, xhr, formData){
@@ -999,6 +1027,8 @@
 					}
 					
 				});
+				
+				
 		
 				//Bootstrap Wizard Validations
 
