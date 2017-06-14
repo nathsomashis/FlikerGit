@@ -513,7 +513,8 @@ public class GuidanceController {
 	
 	
 	@RequestMapping("/guidanceShareFiles")
-	public @ResponseBody FileUpload guidanceShareFiles( HttpSession session,HttpServletRequest request) {
+	public @ResponseBody ArrayList guidanceShareFiles( HttpSession session,HttpServletRequest request,
+			@RequestParam(value = "guidanceid", required = false) String guidanceid) {
 		System.out.println("in file controller");
 
 		GuidancePreview guidprev = new GuidancePreview();
@@ -523,11 +524,43 @@ public class GuidanceController {
 		String userid = userinf.getUserid();
 		
 		String token = (String)context.getAttribute("guidanceid");
-		FileUpload filelist = guidprev.fileExisting(token);
+		ArrayList filelist = guidprev.fileExisting(guidanceid);
 		
 		
 		return filelist;
 	}
+	
+	
+	@RequestMapping("/guidanceShareNewConsumers")
+	public @ResponseBody ArrayList guidanceShareConsumer( HttpSession session,HttpServletRequest request,
+			@RequestParam(value = "fileid", required = false) String fileid,
+			@RequestParam(value = "guidanceid", required = false) String guidanceid) {
+		System.out.println("in file controller");
+
+		GuidancePreview guidprev = new GuidancePreview();
+		
+		ArrayList consumerlist = guidprev.getUnSharedConsumers(fileid,guidanceid);
+		
+		
+		return consumerlist;
+	}
+	
+	
+	@RequestMapping("/guidanceShareConsumers")
+	public void guidanceDashShare( HttpSession session,HttpServletRequest request,
+			@RequestParam(value = "fileid", required = false) String fileid,
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,
+			@RequestParam(value = "userids", required = false) String userids) {
+		System.out.println("in file controller");
+
+		GuidancePreview guidprev = new GuidancePreview();
+		
+		guidprev.shareToConsumers(fileid,userids,guidanceid);
+		
+	}
+	
+	
+	
 	
 	@RequestMapping("/guidanceview")
 	public ModelAndView viewGuidance(

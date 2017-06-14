@@ -138,6 +138,7 @@
 			String logo = "";
 			String guidanceid = (String)request.getAttribute("guidanceid");
 			ArrayList consumerlist = (ArrayList)request.getAttribute("consumerlist");
+			ArrayList existingfilelist = (ArrayList)request.getAttribute("existingfilelist");
 			ProfilePreview profprev = new ProfilePreview();
 		
 		%>
@@ -600,6 +601,34 @@
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
 				</div><!-- /.modal -->
+				
+				<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="shareModalLabel">Share</h4>
+							</div>
+							<div class="modal-body">
+									<input type="hidden" value="" id="fileexistitem"/>
+									<div class="form-group" id="unsharedUsers">
+									
+									</div>
+									<input type="hidden" value="" id="useridarr"/>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" onclick="uploadSharedData()" class="btn btn-primary">
+									Share
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -641,6 +670,7 @@
 										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
 										<div class="progress progress-micro no-margin">
 											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
+											<a rel=""></a>
 										</div>
 									</div>
 								</li>
@@ -872,23 +902,37 @@
 					dictResponseError: 'Error uploading file!',
 					init: function () {
 						this.on("addedfile", function(file) {
-							alert(file.name);
-							var removeButton = Dropzone.createElement("<button>Remove file</button>");
+							alert(file.fileid);
+							var fileid = file.fileid;
+							var sharebutton = Dropzone.createElement("<a href='#' id='' rel='"+fileid+"' onclick='uploadShareExist(param)' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-trash'></i></a>");
+							var removeButton = Dropzone.createElement("<a href='javascript:void(0);' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-list'></i></a>");
 							//$('#fileitem').val(file);
 							//generateToken();
-							$('#myModal').modal('show');
+							//$('#myModal').modal('show');
 							
-							 removeButton.addEventListener("click", function (e,file) {
+							/* sharebutton.addEventListener("click", function (e) {
+							 	alert("click on remove");
+							 	alert(file.id);
+		                        // Make sure the button click doesn't submit the form:
+		                        e.preventDefault();
+		                        e.stopPropagation();
+		                        // Remove the file preview.
+		                        this.removeFile(file);
+		                        // If you want to the delete the file on the server as well,
+		                        // you can do the AJAX request here.
+		                    }); */
+							file.previewElement.appendChild(sharebutton);
+							 /* removeButton.addEventListener("click", function (e) {
 								 	alert("click on remove");
 								 	alert(file.id);
 			                        // Make sure the button click doesn't submit the form:
 			                        e.preventDefault();
 			                        e.stopPropagation();
 			                        // Remove the file preview.
-			                        _this.removeFile(file);
+			                        this.removeFile(file);
 			                        // If you want to the delete the file on the server as well,
 			                        // you can do the AJAX request here.
-			                    });
+			                    }); */
 							
 							 file.previewElement.appendChild(removeButton);
 				        }),
@@ -902,26 +946,42 @@
 				            console.log(response);
 				        }),
 				        thisDropzone = this;
-				        $.getJSON('guidanceShareFiles?', function(data) {
-				        	 console.log(data);
+						var guidanceid = '<%=guidanceid%>';
+						//var elements = document.getElementsByName('name');
+						
+						/* for(var i = 0; i < elements.length; i++)
+						{
+						  data.push(elements[i].value);
+						} */
+						//alert(guidanceid)
+				        $.getJSON('guidanceShareFiles?guidanceid='+guidanceid, function(dataset) {
+				        	 console.log(dataset);
+				        	 for(var i = 0; i < dataset.length; i++){
+				        		 var datavar = dataset[i];
+				        		 var fileid = datavar.fileid;
+				        		 var filename = datavar.name;
+				        		 var filesize = datavar.size;
+				        		 var mockFile = { name: filename, size: filesize, fileid: fileid };
+				        		 
+				        		 alert('val variable '+fileid+' var filename '+filename+'file size ::'+filesize);
+					        	    thisDropzone.emit("addedfile", datavar);
+					        	    //thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+					        	    /* thisDropzone.on("addedfile", function(mockFile) {
+					                  mockFile.previewElement.addEventListener("click", function() {
+					                    alert("click");
+					                  });
+					                }); */
+					                
+					        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "imageController/" + fileid);
+							    	thisDropzone.createThumbnailFromUrl(mockFile, "imageController/" + fileid);	
+					        	    thisDropzone.emit("complete", mockFile);
+					        	    /* var sharebutton = thisDropzone.option.createElement("<button>Share file</button>");
+					        	    thisDropzone.options.previewElement.appendChild(sharebutton); */
+				        		 
+				        		 
+				        	 }
 				        	 	
-				        	  //$.each(data, function(index, val) {
-				        	    var mockFile = { name: data.name, size: data.size, fileid: data.fileid };
-				        	    console.log('val variable '+data.fileid);
-				        	    thisDropzone.emit("addedfile", mockFile);
-				        	    //thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-				        	    thisDropzone.on("addedfile", function(mockFile) {
-				                  mockFile.previewElement.addEventListener("click", function() {
-				                    alert("click");
-				                  });
-				                });
-				        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "imageController/" + data.fileid);
-				        	    thisDropzone.emit("complete", mockFile);
-				        	    /* var sharebutton = thisDropzone.option.createElement("<button>Share file</button>");
-				        	    thisDropzone.options.previewElement.appendChild(sharebutton); */
-				        	    
-				        	    
-				        	 // });
+				        	  
 				        	});
 					}
 				});
@@ -986,6 +1046,31 @@
 				
 			 
 		 }
+				
+		function uploadShareExist(param){
+			alert(param);
+			var guidanceid = '<%=guidanceid%>';
+			$('#shareModal').modal('show');
+			//var html = $(this).next('#unsharedUsers').html();
+			$('#unsharedUsers').html("");
+			//<div class='col-md-3'><label class='btn btn-primary'><img src='/Fliker/imageFromUserid/' alt='' class='img-thumbnail img-check'><input type='checkbox' name='' id='' value='' class='hidden' autocomplete='off'></label></div>
+		
+			 $.ajax({
+					url : "guidanceShareConsumers?fileid="+fileid+"&guidanceid="+guidanceid,
+					method : 'POST',
+					success : function(data){
+						alert(data);
+						//if(data.success == true){ // if true (1)
+						     /*  setTimeout(function(){// wait for 5 secs(2)
+						           location.reload(); // then reload the page.(3)
+						      }, 5000);  */
+						  // }
+						
+					}
+				
+		        }); 
+				
+		}
 		
 		function uploadSharedData(){
 			   // $('#result').html('');
