@@ -768,7 +768,7 @@ public class GuidanceController {
 	
 	@RequestMapping("/gotoguidancecalendar")
 	public ModelAndView goToGuidanceTimetable(
-			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,ModelMap model,
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,ModelMap model,
 			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
  
@@ -776,6 +776,7 @@ public class GuidanceController {
 		
 		
 		GuidancePreview guideprev = new GuidancePreview();
+		ArrayList eventlist = guideprev.getAllEvent(guidanceid);
 		
 		
 		ServletContext context = request.getSession().getServletContext();
@@ -794,7 +795,7 @@ public class GuidanceController {
 		mv.addObject("ProfileImage", profile.getProfileImageid());
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", profile.getName());
-		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("eventlist", eventlist);
 		mv.addObject("guidanceid", guidanceid);
 		
 		//mv.addObject("postlist", postlist);
