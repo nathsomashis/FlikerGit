@@ -36,6 +36,7 @@ import com.fliker.Repository.Assignment;
 import com.fliker.Repository.Blog;
 import com.fliker.Repository.DashBoardData;
 import com.fliker.Repository.Dashboard;
+import com.fliker.Repository.Events;
 import com.fliker.Repository.FileUnionTimeFrame;
 import com.fliker.Repository.FileUpload;
 import com.fliker.Repository.Guidance;
@@ -2389,6 +2390,54 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		
 		
 		return shareduserlst;
+	}
+
+
+	public ArrayList getAllEvent(String guidanceid) {
+		// TODO Auto-generated method stub
+		ArrayList alleventlist = new ArrayList();
+		MongoConnection mongocon = new MongoConnection();
+		
+		DBCursor filecursor = mongocon.getDBObject("guidancecalendarid", guidanceid, "GuidanceContentCalendar");
+		while(filecursor.hasNext()){
+			DBObject basicdbj = filecursor.next();
+			BasicDBList eventobj = (BasicDBList)basicdbj.get("guidancecalendareventid");
+			for(int i=0;i<eventobj.size();i++){
+				
+				DBCursor eventcursor = mongocon.getDBObject("eventid", (String)eventobj.get(i), "Event");
+				while(eventcursor.hasNext()){
+					DBObject eventdbj = eventcursor.next();
+					Events events = new Events();
+					events.setEvensharedbyuserid((String)eventdbj.get("evensharedbyuserid"));
+					events.setEventDescription((String)eventdbj.get("eventDescription"));
+					events.setEventendtime((String)eventdbj.get("eventendtime"));
+					events.setEvententryid((String)eventdbj.get("evententryid"));
+					events.setEventid((String)eventdbj.get("eventid"));
+					events.setEventMonth((String)eventdbj.get("eventMonth"));
+					events.setEventoccurance((String)eventdbj.get("eventoccurance"));
+					events.setEventpriority((String)eventdbj.get("eventpriority"));
+					BasicDBList eventsharedtouserids = (BasicDBList)eventdbj.get("eventsharedtouserids");
+					ArrayList eventlist = new ArrayList();
+					for(int m=0;m<eventsharedtouserids.size();m++){
+						eventlist.add((String)eventsharedtouserids.get(m));
+					}
+					
+					
+					events.setEventsharedtouserids((String[])eventlist.toArray(new String[eventlist.size()]));
+					events.setEventstarttime((String)eventdbj.get("eventstarttime"));
+					events.setEventtitle((String)eventdbj.get("eventtitle"));
+					events.setEventWeekDay((String)eventdbj.get("eventWeekDay"));
+					events.setEventYear((String)eventdbj.get("eventYear"));
+					alleventlist.add(events);
+					
+				}
+				
+			}
+			
+			
+		}
+		
+		return alleventlist;
 	}
 	
 }

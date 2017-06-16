@@ -127,15 +127,9 @@
 			String profileimage = (String)request.getAttribute("ProfileImage");
 			String gender = (String)request.getAttribute("Gender");
 			String profilename = (String)request.getAttribute("FullName");
-			Timetable timeline = (Timetable)request.getAttribute("TimeTable");
-			GuidanceContentShared guidanceshare = (GuidanceContentShared)request.getAttribute("GuidShared");
-			GuidanceContentDashboard guiddash = (GuidanceContentDashboard)request.getAttribute("GuidDashBoard");
-			Blog blogs = (Blog)request.getAttribute("GuidBlog");
 			String logo = "";
 			String guidanceid = (String)request.getAttribute("guidanceid");
-			String timetableid = timeline.getTimeableid();
-			String guideshareid = guidanceshare.getGuidancesharedid();
-			String guidedash = guiddash.getGuidancecontentDashid();
+			ArrayList eventlist = (ArrayList)request.getAttribute("eventlist");
 			
 		
 		%>
@@ -402,20 +396,20 @@
 				-->
 
 	<ul>
-		<li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span
-				class="menu-item-parent">Guidance Dash</span> </a></li>
-		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-share-square-o "></i> <span
+		<li class="active"><a href="gotoguidance?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-puzzle-piece txt-color-blue"></i> <span
+				class="menu-item-parent">Guidance Info</span> </a></li>
+		<li ><a href="gotoguidancedash?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
+				class="menu-item-parent">Guidance Dashboard</span> </a></li>		
+		<li ><a href="gotoguidanceshare?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
 				class="menu-item-parent">Guidance Share</span> </a></li>
 
-		<li class="active"><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-calendar txt-color-blue"></i>
+		<li><a href="gotoguidancecalendar?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-calendar"></i>
 				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
 		</li>
-		<li><a href="gotoguidanceexcersize?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-qrcode"></i>
+		<li><a href="gotoguidanceexcersize?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-qrcode"></i>
 				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
 		</li>
-		<li><a href="gotoguidanceproject?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-sitemap"></i>
+		<li><a href="gotoguidanceproject?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-sitemap"></i>
 				<span class="menu-item-parent">Guidance Project</span> </a></li>
 		</li>
 	</ul>
@@ -567,15 +561,7 @@
 										Draggable Events
 									</legend>
 									<ul id='external-events' class="list-unstyled">
-										<li>
-											<span class="bg-color-darken txt-color-white" data-description="Currently busy" data-icon="fa-time">Office Meeting</span>
-										</li>
-										<li>
-											<span class="bg-color-blue txt-color-white" data-description="No Description" data-icon="fa-pie">Lunch Break</span>
-										</li>
-										<li>
-											<span class="bg-color-red txt-color-white" data-description="Urgent Tasks" data-icon="fa-alert">URGENT</span>
-										</li>
+										
 									</ul>
 									<div class="checkbox">
 										<label>
@@ -914,7 +900,7 @@
 			            revertDuration: 0 //  original position after the drag
 			        });
 			    };
-			
+			dte 
 			    var addEvent = function (title, priority, description, icon) {
 			        title = title.length === 0 ? "Untitled Event" : title;
 			        description = description.length === 0 ? "No Description" : description;

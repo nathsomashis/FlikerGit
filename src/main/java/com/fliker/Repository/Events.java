@@ -20,8 +20,7 @@ public class Events {
 	private String eventYear;
 	private String eventMonth;
 	private String eventWeekDay;
-	private String eventStartTime;
-	private String eventEndTime;
+	
 	
 	
 	public String getEventYear() {
@@ -42,18 +41,7 @@ public class Events {
 	public void setEventWeekDay(String eventWeekDay) {
 		this.eventWeekDay = eventWeekDay;
 	}
-	public String getEventStartTime() {
-		return eventStartTime;
-	}
-	public void setEventStartTime(String eventStartTime) {
-		this.eventStartTime = eventStartTime;
-	}
-	public String getEventEndTime() {
-		return eventEndTime;
-	}
-	public void setEventEndTime(String eventEndTime) {
-		this.eventEndTime = eventEndTime;
-	}
+	
 	public String getEventid() {
 		return eventid;
 	}
