@@ -649,7 +649,97 @@
 
 			</div>
 			<!-- END MAIN CONTENT -->
-
+			<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="eventModalLabel">Preview</h4>
+							</div>
+							<div class="modal-body">
+									<div class="row" id="event-template">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="hidden" value="" id="eventid"/>
+													<input type="text" contenteditable="false" class="form-control" value="" required id="eventtitle" />
+												</div>
+												<div class="form-group">
+													<textarea id="eventdescription" contenteditable="false" class="form-control" value="" rows="5" required></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="text" contenteditable="false" class="form-control" value="" required id="eventtitle" />
+												</div>
+												<div class="form-group">
+													<textarea id="eventdescription" contenteditable="false" class="form-control" value="" rows="5" required></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+				
+												<div class="form-group">
+													<div class="input-group">
+														<input class="form-control" id="eventstartdate" type="text" value="">
+														<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+													</div>
+												</div>
+		
+											</div>
+											<div class="col-sm-6">
+		
+												<div class="input-group">
+													<input class="form-control" id="eventtimerange" type="text" value="" data-autoclose="true">
+													<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+												</div>
+		
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+				
+												<div class="checkbox">
+													<label>
+														<input type="checkbox" disabled="disabled" name="reoccurance" id="reoccurance">
+														ReOccurance</label>
+												</div>
+		
+											</div>
+											<div class="col-sm-6">
+		
+												<div class="form-group">
+													<label class="control-label col-md-2">Priority</label>
+													<div class="col-md-12">
+														<select class="form-control input-sm" disabled="disabled">
+															<option>Amsterdam</option>
+															<option>Atlanta</option>
+															<option>Baltimore</option>
+														</select>
+													</div>
+												</div>
+		
+											</div>
+										</div>
+										
+									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" onclick="UpdateEvent()" class="btn btn-primary">
+									Edit
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -900,7 +990,7 @@
 			            revertDuration: 0 //  original position after the drag
 			        });
 			    };
-			dte 
+			 
 			    var addEvent = function (title, priority, description, icon) {
 			        title = title.length === 0 ? "Untitled Event" : title;
 			        description = description.length === 0 ? "No Description" : description;
@@ -1038,6 +1128,11 @@
 			                    " '></i>");
 			            }
 			        },
+			        eventClick: function(event, element) {
+
+			            $('#eventModal').modal('show');
+
+			        },
 			
 			        windowResize: function (event, ui) {
 			            $('#calendar').fullCalendar('render');
@@ -1094,6 +1189,14 @@
 				s.parentNode.insertBefore(ga, s);
 			})();
 
+		</script>
+		<script type="text/javascript">
+			function UpdateEvent(){
+				
+				
+				
+			}
+		
 		</script>
 
 	</body>
