@@ -139,6 +139,7 @@
 			String guidanceid = (String)request.getAttribute("guidanceid");
 			ArrayList consumerlist = (ArrayList)request.getAttribute("consumerlist");
 			ArrayList existingfilelist = (ArrayList)request.getAttribute("existingfilelist");
+			System.out.println("existingfilelist >>"+existingfilelist);
 			ProfilePreview profprev = new ProfilePreview();
 		
 		%>
@@ -537,6 +538,7 @@
 															<form action="upload.php" class="dropzone" id="mydropzone"></form>
 									
 														</div>
+														
 														<!-- end widget content -->
 									
 													</div>
@@ -624,6 +626,59 @@
 								</button>
 								<button type="button" onclick="uploadSharedData()" class="btn btn-primary">
 									Share
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				<div class="modal fade" id="duplicateModal" tabindex="-1" role="dialog" aria-labelledby="duplicateModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="duplicateModalLabel">Share</h4>
+							</div>
+							<div class="modal-body">
+									<input type="hidden" value="" id="fileduplicate"/>
+									<div class="form-group" id="unsharedUsers">
+									
+									</div>
+									<input type="hidden" value="" id="useridarr"/>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" onclick="overwrite()" class="btn btn-primary">
+									Overwrite
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="previewModalLabel">Preview</h4>
+							</div>
+							<div class="modal-body">
+									<div class="row" id="preview-template">
+									
+									
+									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" onclick="uploadSharedData()" class="btn btn-primary">
+									Overwrite
 								</button>
 							</div>
 						</div><!-- /.modal-content -->
@@ -857,6 +912,8 @@
 				// DO NOT REMOVE : GLOBAL FUNCTIONS!
 				pageSetUp();
 			
+				var filelistmaintain = new Array();
+			
 				$('.superbox').SuperBox();
 
 				/*
@@ -898,12 +955,79 @@
 					paramName: "file",		
 					addRemoveLinks : false,
 					maxFilesize: 500,
+					//maxFiles: 1,
+					uploadMultiple: true,
+			        parallelUploads: 100,
 					dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
 					dictResponseError: 'Error uploading file!',
+					dictDuplicate:'<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Duplicate Files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
+					//clickable: '#preview-template',
 					init: function () {
 						this.on("addedfile", function(file) {
-							alert(file.fileid);
+							
+							this.accept = function(file, done) {
+								if (this.files.length) {
+									var isDuplicate = false;
+									var ref = this.files.slice();
+									for (var i = 0, len = this.files.length-1; i <= len; i++) {
+										isDuplicate = true;
+			                            console.log("duplikat: "+file.name);
+			                            if (ref[i].name === file.name){
+			                            	this.removeFile(ref[i]);
+			                            	break;
+			                            }
+									}
+									
+								}
+								
+								
+								/* if ( isDuplicate === true ) {
+				   // output my error string for duplicates
+				                    return done(this.removeFile(this.files[0]));
+				                } else {
+				                    return this.options.accept.call(this, file, done);
+				                } */
+								
+							}
+							
+							/* for(var key in filelistmaintain){
+								console.log(" inside log >>"+filelistmaintain[key]);
+								if(filelistmaintain[key] == file.name){
+									
+									$('#duplicateModal').modal('show');
+									//this.removeFile(file);
+									alert("same file");
+								}
+								
+							} */
+							
+							
+							//myDropzone.accept = function(file, done) {
+
+					      // custom duplicate check
+					                
+
+					     // default dropzone checks
+					               /*  if (file.size > this.options.maxFilesize * 1024 * 1024) {
+					                    return done(this.options.dictFileTooBig.replace("{[{filesize}]}", Math.round(file.size / 1024 / 10.24) / 100).replace("{[{maxFilesize}]}", this.options.maxFilesize));
+					                } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
+					                    return done(this.options.dictInvalidFileType);
+					                } else if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
+					                    done(this.options.dictMaxFilesExceeded.replace("{[{maxFiles}]}", this.options.maxFiles));
+					                    return this.emit("maxfilesexceeded", file);
+					                } else if ( isDuplicate === true ) {
+					   // output my error string for duplicates
+					                    return done(this.options.dictDuplicate);
+					                } else {
+					                    return this.options.accept.call(this, file, done);
+					                } */
+					           // }
+							
+							//alert(file.fileid);
 							var fileid = file.fileid;
+							var filenam = file.name;
+							var filsize = file.size;
+							var filetype = file.type;
 							var sharebutton = Dropzone.createElement("<a href='#' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-trash'></i></a>");
 							var removeButton = Dropzone.createElement("<a href='#' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-list'></i></a>");
 							var downloadButton = Dropzone.createElement("<a href='imageDownload/"+fileid+"' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-download-alt'></i></a>");
@@ -911,16 +1035,41 @@
 							//generateToken();
 							//$('#myModal').modal('show');
 							
-							var existringfiles = '<%=existingfilelist%>';
-							for(var x=0;x<existringfiles.length;x++){
-								
-								console.log(existringfiles[x]);
-								
-							}
+							<%-- var existringfiles = '<%=existingfilelist%>';
+							console.log("existing files ??"+existringfiles );
+							var filedataset=new Array();
+							<%
+								for(int g=0;g<existingfilelist.size();g++){
+									String[] fileinfo = (String[])existingfilelist.get(g);
+									String fileid = fileinfo[0];
+									String filename = fileinfo[1];
+									String filesize = fileinfo[2];
+									String filetype = fileinfo[3];
+									
+									%>
+									filedataset.push('"<%=(String)existingfilelist.get(g)%>"');
+									if(filenam == <%=filename%>){
+										if(filetype == <%=filetype%>){
+											
+										}
+									}
+									<%
+									
+								}
+							
+							%>
+							console.log("filedataset >>"+filedataset); --%>
+							
+							
+							filelistmaintain.push(file.name);
+							this.files.push(file);
+							
+							console.log("file history ??"+filelistmaintain);
+							
 							
 							 sharebutton.addEventListener("click", function (e) {
 							 	//alert("click on share");
-							 	alert(fileid);
+							 	//alert(fileid);
 							 	var guidanceid = '<%=guidanceid%>';
 								$('#shareModal').modal('show');
 								$('#unsharedUsers').html("");
@@ -950,7 +1099,7 @@
 							file.previewElement.appendChild(sharebutton);
 							  removeButton.addEventListener("click", function (e) {
 								 	//alert("click on remove");
-								 	alert(fileid);
+								 	//alert(fileid);
 			                        // Make sure the button click doesn't submit the form:
 			                        e.preventDefault();
 			                        e.stopPropagation();
@@ -973,6 +1122,7 @@
 				        this.on("success", function(file, response) {
 				            console.log(response);
 				        }),
+				        //this.createThumbnailFromUrl(file, "imageController/" + file.fileid);
 				        thisDropzone = this;
 						var guidanceid = '<%=guidanceid%>';
 						//var elements = document.getElementsByName('name');
@@ -989,9 +1139,18 @@
 				        		 var fileid = datavar.fileid;
 				        		 var filename = datavar.name;
 				        		 var filesize = datavar.size;
+				        		 var filetoadd = "";
 				        		 var mockFile = { name: filename, size: filesize, fileid: fileid };
-				        		 
-				        		 alert('val variable '+fileid+' var filename '+filename+'file size ::'+filesize);
+				        		 for(var key in filelistmaintain){
+										console.log(" inside log >>"+filelistmaintain[key]);
+										if(filelistmaintain[key] == filename){
+											//this.removeFile(file);
+											filetoadd = "true";
+										}
+										
+									}
+				        		  if(filetoadd != "true"){	
+				        		// alert('val variable '+fileid+' var filename '+filename+'file size ::'+filesize);
 					        	    thisDropzone.emit("addedfile", datavar);
 					        	    //thisDropzone.options.addedfile.call(thisDropzone, mockFile);
 					        	    /* thisDropzone.on("addedfile", function(mockFile) {
@@ -1003,10 +1162,12 @@
 					        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "imageController/" + fileid);
 							    	thisDropzone.createThumbnailFromUrl(mockFile, "imageController/" + fileid);	
 					        	    thisDropzone.emit("complete", mockFile);
+					        	    //thisDropzone.files.push(mockFile);
 					        	    /* var sharebutton = thisDropzone.option.createElement("<button>Share file</button>");
 					        	    thisDropzone.options.previewElement.appendChild(sharebutton); */
 				        		 
 				        		 
+				        	 	}
 				        	 }
 				        	 	
 				        	  
@@ -1100,6 +1261,10 @@
 				
 		        }); 
 				
+		}
+		
+		function overwrite(){
+			alert(" in the overwrite");
 		}
 		
 		function uploadSharedData(){

@@ -2268,7 +2268,13 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 			DBObject basicdbj = filecursor.next();
 			BasicDBList filelist = (BasicDBList)basicdbj.get("guidancefilelistid");
 			for(int t=0;t<filelist.size();t++){
-				existingfiles.add((String)filelist.get(t));
+				String filename = "";
+				String filesize="";
+				DBCursor filenamecursor = mongocon.getDBObject("fileid", (String)filelist.get(t), "fileupload");
+				if(filenamecursor.hasNext()){
+					DBObject filedbj = filenamecursor.next();
+					existingfiles.add((String)filelist.get(t)+":"+(String)filedbj.get("name")+":"+(String)filedbj.get("size")+":"+(String)filedbj.get("type"));
+				}
 			}
 		}
 		return existingfiles;
