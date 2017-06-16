@@ -968,10 +968,14 @@
 							this.accept = function(file, done) {
 								if (this.files.length) {
 									var isDuplicate = false;
+									var ref = this.files.slice();
 									for (var i = 0, len = this.files.length-1; i <= len; i++) {
 										isDuplicate = true;
 			                            console.log("duplikat: "+file.name);
-			                            this.removeFile(this.files[0]);
+			                            if (ref[i].name === file.name){
+			                            	this.removeFile(ref[i]);
+			                            	break;
+			                            }
 									}
 									
 								}
@@ -1058,6 +1062,7 @@
 							
 							
 							filelistmaintain.push(file.name);
+							this.files.push(file);
 							
 							console.log("file history ??"+filelistmaintain);
 							
@@ -1157,6 +1162,7 @@
 					        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "imageController/" + fileid);
 							    	thisDropzone.createThumbnailFromUrl(mockFile, "imageController/" + fileid);	
 					        	    thisDropzone.emit("complete", mockFile);
+					        	    //thisDropzone.files.push(mockFile);
 					        	    /* var sharebutton = thisDropzone.option.createElement("<button>Share file</button>");
 					        	    thisDropzone.options.previewElement.appendChild(sharebutton); */
 				        		 
