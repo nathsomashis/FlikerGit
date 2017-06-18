@@ -41,6 +41,7 @@ import com.fliker.Repository.FileUnionTimeFrame;
 import com.fliker.Repository.FileUpload;
 import com.fliker.Repository.Guidance;
 import com.fliker.Repository.GuidanceContent;
+import com.fliker.Repository.GuidanceContentCalendar;
 import com.fliker.Repository.GuidanceContentDashboard;
 import com.fliker.Repository.GuidanceContentFiles;
 import com.fliker.Repository.GuidanceContentShared;
@@ -54,6 +55,7 @@ import com.fliker.Repository.SearchContent;
 import com.fliker.Repository.Share;
 import com.fliker.Repository.TempFileHistory;
 import com.fliker.Repository.Timetable;
+import com.fliker.Repository.Vote;
 import com.fliker.Utility.DateFunctionality;
 import com.fliker.Utility.ServicesUtil;
 import com.mongodb.BasicDBList;
@@ -2438,6 +2440,73 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		}
 		
 		return alleventlist;
+	}
+
+
+	public void saveNewEvent(String guidanceid, String title, String description, String eventpriority,
+			String prioritytype, String entryid, String userid) {
+		// TODO Auto-generated method stub
+		
+		GuidanceContentCalendar guidcontcal = new GuidanceContentCalendar();
+		guidcontcal.setGuidancecalendarid(guidanceid);
+		
+		Events event = new Events();
+		event.setEventDescription(description);
+		event.setEventendtime("");
+		event.setEvententryid(entryid);
+		event.setEventMonth("");
+		event.setEventoccurance(eventpriority);
+		event.setEventpriority(eventpriority);
+		event.setEvensharedbyuserid(userid);
+		event.setEventstarttime("");
+		event.setEventtitle(title);
+		event.setEventid(guidanceid);
+		String[] eventtimesets = new String[0];
+		event.setEventtimesets(eventtimesets);
+		event.setEventWeekDay("");
+		event.setEventYear("");
+		
+		Vote vote = new Vote();
+		vote.setVoteid(guidanceid);
+		//vote.setVoteOptions(voteOptions);
+		
+		
+		
+		event.setEventvoteid(eventvoteid);
+		
+		
+		Events events = new Events();
+		
+		
+	}
+
+
+	public HashMap getAvailableTime(String guidanceid, String entrydatetime, String entryendtime) {
+		// TODO Auto-generated method stub
+		
+		HashMap profileavailable = new HashMap();
+		MongoConnection mongocon = new MongoConnection();
+		
+		DBCursor guidecursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		while(guidecursor.hasNext()){
+			DBObject guidedbj = guidecursor.next();
+			
+			BasicDBList consumerlist = (BasicDBList)guidedbj.get("consumeruserid");
+			for(int m=0;m<consumerlist.size();m++){
+				
+				ProfilePreview profprev = new ProfilePreview();
+				String eventAvail = profprev.getProfileEventList((String)consumerlist.get(m),entrydatetime,entryendtime);
+				if(eventAvail.equalsIgnoreCase("true")){
+					Profile profileinfo = profprev.getProfileData((String)consumerlist.get(m));
+					profileavailable.put("true", profileinfo);
+				}else{
+					Profile profileinfo = profprev.getProfileData((String)consumerlist.get(m));
+					profileavailable.put("false", profileinfo);
+				}
+				
+			}
+		}
+		return profileavailable;
 	}
 	
 }

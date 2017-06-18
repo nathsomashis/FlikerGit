@@ -20,9 +20,24 @@ public class Events {
 	private String eventYear;
 	private String eventMonth;
 	private String eventWeekDay;
+	private String eventvoteid;
+	private String[] eventtimesets;
 	
 	
 	
+	
+	public String[] getEventtimesets() {
+		return eventtimesets;
+	}
+	public void setEventtimesets(String[] eventtimesets) {
+		this.eventtimesets = eventtimesets;
+	}
+	public String getEventvoteid() {
+		return eventvoteid;
+	}
+	public void setEventvoteid(String eventvoteid) {
+		this.eventvoteid = eventvoteid;
+	}
 	public String getEventYear() {
 		return eventYear;
 	}

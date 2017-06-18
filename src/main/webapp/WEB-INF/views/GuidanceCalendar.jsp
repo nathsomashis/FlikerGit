@@ -477,25 +477,25 @@
 										<fieldset>
 				
 											<div class="form-group">
-												<label>Select Event Icon</label>
+												<label>Event Priority</label>
 												<div class="btn-group btn-group-sm btn-group-justified" data-toggle="buttons">
 													<label class="btn btn-default active">
-														<input type="radio" name="iconselect" id="icon-1" value="fa-info" checked>
+														<input type="radio" name="iconselect" id="regular" value="regular" title="Regular" checked>
 														<i class="fa fa-info text-muted"></i> </label>
 													<label class="btn btn-default">
-														<input type="radio" name="iconselect" id="icon-2" value="fa-warning">
+														<input type="radio" name="iconselect" id="tentative" title="Tentative" value="tentative">
 														<i class="fa fa-warning text-muted"></i> </label>
 													<label class="btn btn-default">
-														<input type="radio" name="iconselect" id="icon-3" value="fa-check">
+														<input type="radio" name="iconselect" id="voting" title="Voting" value="voting">
 														<i class="fa fa-check text-muted"></i> </label>
 													<label class="btn btn-default">
-														<input type="radio" name="iconselect" id="icon-4" value="fa-user">
+														<input type="radio" name="iconselect" id="shareuser" title="Share User" value="shareuser">
 														<i class="fa fa-user text-muted"></i> </label>
 													<label class="btn btn-default">
-														<input type="radio" name="iconselect" id="icon-5" value="fa-lock">
+														<input type="radio" name="iconselect" id="private" title="Private" value="private">
 														<i class="fa fa-lock text-muted"></i> </label>
 													<label class="btn btn-default">
-														<input type="radio" name="iconselect" id="icon-6" value="fa-clock-o">
+														<input type="radio" name="iconselect" id="reoccurance" title="Reoccurances" value="reoccurance">
 														<i class="fa fa-clock-o text-muted"></i> </label>
 												</div>
 											</div>
@@ -509,27 +509,26 @@
 												<textarea class="form-control" placeholder="Please be brief" rows="3" maxlength="40" id="description"></textarea>
 												<p class="note">Maxlength is set to 40 characters</p>
 											</div>
-				
+											<div class="form-group">
+												<label class="radio radio-inline no-margin">
+												<input type="radio" name="rating" value="terrible" class="radiobox style-2" />
+												<span><input type="text" class="form-control" name="vote1" /></span> </label>
+												<label class="radio radio-inline no-margin">
+												<input type="radio" name="rating" value="terrible" class="radiobox style-2" />
+												<span><input type="text" class="form-control" name="vote2" /></span> </label>
+											</div>
+											
 											<div class="form-group">
 												<label>Select Event Color</label>
 												<div class="btn-group btn-group-justified btn-select-tick" data-toggle="buttons">
 													<label class="btn bg-color-darken active">
-														<input type="radio" name="priority" id="option1" value="bg-color-darken txt-color-white" checked>
+														<input type="radio" name="priority" id="High" value="bg-color-darken txt-color-white" checked>
 														<i class="fa fa-check txt-color-white"></i> </label>
 													<label class="btn bg-color-blue">
-														<input type="radio" name="priority" id="option2" value="bg-color-blue txt-color-white">
+														<input type="radio" name="priority" id="Ondemand" value="bg-color-blue txt-color-white">
 														<i class="fa fa-check txt-color-white"></i> </label>
 													<label class="btn bg-color-orange">
-														<input type="radio" name="priority" id="option3" value="bg-color-orange txt-color-white">
-														<i class="fa fa-check txt-color-white"></i> </label>
-													<label class="btn bg-color-greenLight">
-														<input type="radio" name="priority" id="option4" value="bg-color-greenLight txt-color-white">
-														<i class="fa fa-check txt-color-white"></i> </label>
-													<label class="btn bg-color-blueLight">
-														<input type="radio" name="priority" id="option5" value="bg-color-blueLight txt-color-white">
-														<i class="fa fa-check txt-color-white"></i> </label>
-													<label class="btn bg-color-red">
-														<input type="radio" name="priority" id="option6" value="bg-color-red txt-color-white">
+														<input type="radio" name="priority" id="Optional" value="bg-color-orange txt-color-white">
 														<i class="fa fa-check txt-color-white"></i> </label>
 												</div>
 											</div>
@@ -566,7 +565,7 @@
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" id="drop-remove" class="checkbox style-0" checked="checked">
-											<span>remove after drop</span> </label>
+											<span >remove after drop</span> </label>
 					
 									</div>
 								</fieldset>
@@ -656,7 +655,7 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									&times;
 								</button>
-								<h4 class="modal-title" id="eventModalLabel">Preview</h4>
+								<h4 class="modal-title" id="eventModalLabel">Event</h4>
 							</div>
 							<div class="modal-body">
 									<div class="row" id="event-template">
@@ -684,26 +683,6 @@
 										<div class="row">
 											<div class="col-sm-6">
 				
-												<div class="form-group">
-													<div class="input-group">
-														<input class="form-control" id="eventstartdate" type="text" value="">
-														<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-													</div>
-												</div>
-		
-											</div>
-											<div class="col-sm-6">
-		
-												<div class="input-group">
-													<input class="form-control" id="eventtimerange" type="text" value="" data-autoclose="true">
-													<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-												</div>
-		
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-6">
-				
 												<div class="checkbox">
 													<label>
 														<input type="checkbox" disabled="disabled" name="reoccurance" id="reoccurance">
@@ -717,9 +696,9 @@
 													<label class="control-label col-md-2">Priority</label>
 													<div class="col-md-12">
 														<select class="form-control input-sm" disabled="disabled">
-															<option>Amsterdam</option>
-															<option>Atlanta</option>
-															<option>Baltimore</option>
+															<option>High</option>
+															<option>OnDemand</option>
+															<option>Optional</option>
 														</select>
 													</div>
 												</div>
@@ -735,6 +714,34 @@
 								</button>
 								<button type="button" onclick="UpdateEvent()" class="btn btn-primary">
 									Edit
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				
+				<div class="modal fade" id="userShareModal" tabindex="-1" role="dialog" aria-labelledby="userShareModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="previewModalLabel">Share</h4>
+							</div>
+							<div class="modal-body">
+									<div class="row" id="usershare-template">
+										
+									
+										<input type="hidden" value="" id="useridarr"/>
+									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" onclick="uploadSharedAllData()" class="btn btn-default" data-dismiss="modal">
+									Share All
+								</button>
+								<button type="button" onclick="uploadSharedData()" class="btn btn-primary">
+									Share Selected
 								</button>
 							</div>
 						</div><!-- /.modal-content -->
@@ -973,13 +980,38 @@
 			    var initDrag = function (e) {
 			        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
 			        // it doesn't need to have a start or end
+			        
+			        var stringLength = 15;
+
+					// list containing characters for the random string
+					var stringArray = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','!','?'];
+	
+					//$("#providachieve").click(function (){
+
+					var rndString = "";
+				
+					// build a string with random characters
+					for (var i = 1; i < stringLength; i++) { 
+						var rndNum = Math.ceil(Math.random() * stringArray.length) - 1;
+						rndString = rndString + stringArray[rndNum];
+					};
 			
 			        var eventObject = {
 			            title: $.trim(e.children().text()), // use the element's text as the event title
 			            description: $.trim(e.children('span').attr('data-description')),
 			            icon: $.trim(e.children('span').attr('data-icon')),
-			            className: $.trim(e.children('span').attr('class')) // use the element's children as the event class
+			            className: $.trim(e.children('span').attr('class')), // use the element's children as the event class
+			            eventpriority: $.trim(e.children('span').attr('lang')),
+			            prioritytype: $.trim(e.children('span').attr('accesskey')),
+			            id:rndString
 			        };
+			        
+			        /* */
+			        
+			        alert("title");
+			        
+			        var guidanceid = "<%=guidanceid%>";
+			        
 			        // store the Event Object in the DOM element so we can get to it later
 			        e.data('eventObject', eventObject);
 			
@@ -991,13 +1023,15 @@
 			        });
 			    };
 			 
-			    var addEvent = function (title, priority, description, icon) {
+			    var addEvent = function (title, priority, description, icon,eventpriority,prioritytype) {
 			        title = title.length === 0 ? "Untitled Event" : title;
 			        description = description.length === 0 ? "No Description" : description;
 			        icon = icon.length === 0 ? " " : icon;
 			        priority = priority.length === 0 ? "label label-default" : priority;
-			
-			        var html = $('<li><span class="' + priority + '" data-description="' + description + '" data-icon="' +
+					eventpriority = eventpriority.length === 0 ? "Regular" :  eventpriority;
+					prioritytype = prioritytype.length === 0 ? "Optional" : prioritytype;
+					
+			        var html = $('<li><span lang="'+eventpriority+'" accesskey="'+prioritytype+'" class="' + priority + '" data-description="' + description + '" data-icon="' +
 			            icon + '">' + title + '</span></li>').prependTo('ul#external-events').hide().fadeIn();
 			
 			        $("#event-container").effect("highlight", 800);
@@ -1016,9 +1050,11 @@
 			        var title = $('#title').val(),
 			            priority = $('input:radio[name=priority]:checked').val(),
 			            description = $('#description').val(),
-			            icon = $('input:radio[name=iconselect]:checked').val();
-			
-			        addEvent(title, priority, description, icon);
+			            icon = $('input:radio[name=iconselect]:checked').val(),
+			        	eventpriority = $('input:radio[name=iconselect]:checked').attr('id'),
+			        	prioritytype = $('input:radio[name=priority]:checked').attr('id');
+			        	
+			        addEvent(title, priority, description, icon,eventpriority,prioritytype);
 			    });
 			
 			    /* initialize the calendar
@@ -1034,6 +1070,26 @@
 			
 			            // retrieve the dropped element's stored Event Object
 			            var originalEventObject = $(this).data('eventObject');
+			        	alert("in the drop");
+			        	
+			        	var guidanceid = "<%=guidanceid%>";
+			        	var title = originalEventObject.title;
+			        	var description = originalEventObject.description;
+			        	var eventpriority = originalEventObject.eventpriority;
+			        	var prioritytype = 	originalEventObject.prioritytype;
+			        	var id = originalEventObject.id;
+			        	//var entrydatetime = date._d;
+			        	
+			        	
+			        	
+			        	$.ajax({
+							url : "guidanceCalendarEvent?guidanceid="+guidanceid+"title="+title+"&description="+description+"&eventpriority="+eventpriority+"&prioritytype="+prioritytype+"&entryid="+id,
+							method : 'POST',
+							success : function(data){
+								
+							}
+						
+				        });
 			
 			            // we need to copy it, so that multiple events don't have a reference to the same object
 			            var copiedEventObject = $.extend({}, originalEventObject);
@@ -1049,6 +1105,13 @@
 			            // is the "remove after drop" checkbox checked?
 			            if ($('#drop-remove').is(':checked')) {
 			                // if so, remove the element from the "Draggable Events" list
+			                
+			                $.ajax({
+							url : "guidanceCalendarEventClear?guidanceid="+guidanceid+"&entryid="+id,
+							method : 'POST',
+						
+				        });
+			                
 			                $(this).remove();
 			            }
 			
@@ -1067,6 +1130,7 @@
 			            }
 			            calendar.fullCalendar('unselect');
 			        },
+			        
 			
 			        events: [{
 			            title: 'All Day Event',
@@ -1133,6 +1197,52 @@
 			            $('#eventModal').modal('show');
 
 			        },
+			        eventDragStart: function (event, jsEvent, ui, view) {
+		                console.log(event);
+		                console.log(jsEvent);
+		                console.log(ui);
+		                console.log(view);
+		                //var dragged = [ui.helper[0], event];
+		            },
+		            eventResize: function(event,dayDelta,minuteDelta,revertFunc) {
+
+		                /* alert(
+		                    "The end date of " + event.title + "has been moved " +
+		                    dayDelta + " days and " +
+		                    minuteDelta + " minutes."+event.end.format()+" start"+event.start.format()
+		                ); */
+						var starttime = event.start.format();
+						var endtime = event.end.format();
+						
+						
+		                if (!confirm("is this okay?")) {
+		                	
+		                	var userset = "";
+		                	
+		                	$.getJSON('availableTime?guidanceid='+guidanceid+'&entrystarttime='+starttime+'&entryendtime='+endtime, function(dataset) {
+		                		console.log(dataset);
+		                		var output = [], item;
+		                		
+		                		for(var type in dataset){
+		                			item = {};
+		                		    item.type = type;
+		                		    item.name = dataset[type];
+		                		    
+		                		    var peruser = '<div class="col-md-3"><label class="btn btn-primary">'
+		                		    			'<img src="/Fliker/imageFromUserid/'+item.name.userid+' alt='+item.name.name+' class="img-thumbnail img-check">'
+		                		    			'<input type="checkbox" name='+item.name.name+' id='+item.name.userid+' value='+item.name.emailid+' class="hidden" autocomplete="off"></label></div>';
+		                		    userset = userset + peruser;
+		                		    output.push(item);
+		                		}
+		                		
+		                		$('#usershare-template').append(userset);
+		                	});
+					        
+		                }else{
+		                	$('#userShareModal').modal('show');
+		                }
+
+		            },
 			
 			        windowResize: function (event, ui) {
 			            $('#calendar').fullCalendar('render');
@@ -1168,7 +1278,21 @@
 				
 				$('#td').click(function () {
 				    $('#calendar').fullCalendar('changeView', 'agendaDay');
-				});			
+				});		
+				
+				$(".img-check").click(function(){
+					$(this).toggleClass("check");
+					var userid = $(this).attr('id');
+					var existingusers = $("#useridarr").val();
+					if(existingusers == ""){
+						var newuserset = userid;
+						$("#useridarr").val(newuserset);
+					}else{
+						var newuserset = existingusers+","+userid;
+						$("#useridarr").val(newuserset);
+					}
+					
+				});
 
 			});
 
@@ -1194,6 +1318,13 @@
 			function UpdateEvent(){
 				
 				
+				
+			}
+			
+			function uploadSharedData(){
+				
+			}
+			function uploadSharedAllData(){
 				
 			}
 		
