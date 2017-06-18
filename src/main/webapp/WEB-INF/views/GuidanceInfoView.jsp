@@ -2,11 +2,11 @@
 <%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
 		<meta charset="utf-8">
-		<title> Search Unit </title>
+		<title> My Courses </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -29,7 +29,7 @@
 
 		<!-- SmartAdmin RTL Support -->
 		<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> --> 
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">  -->
 
 		<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
@@ -51,9 +51,9 @@
 		<!-- #APP SCREEN / ICONS -->
 		<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-			 <link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">
+		<link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">	 
 		<!-- <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon" sizes="76x76">
+		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon">
 		<!-- <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png"> -->
 		<link href='<c:url value="/resources/img/splash/touch-icon-iphone-retina.png" />' rel="apple-touch-icon" sizes="120x120">
 		<!-- <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png"> -->
@@ -65,12 +65,12 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<!-- Startup image for web apps -->
+<!-- 		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-landscape.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
-		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
-		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
+		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
+		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
 
 	</head>
 
@@ -124,7 +124,7 @@
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
+				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -172,27 +172,28 @@
 			</div>
 
 			<!-- projects dropdown -->
-	<div class="project-context hidden-xs">
+			<div class="project-context hidden-xs" >
 
-		<span class="label">Projects:</span> <span
-			class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
-			projects <i class="fa fa-angle-down"></i>
-		</span>
+				<span class="label">Projects:</span>
+				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
 
-		<!-- Suggestion: populate this list with fetch and push technique -->
-		<ul class="dropdown-menu" style="border: 1px solid black">
-			<h5>Daily Note</h5>
-			<li><textarea id="notemessage" class="form-control"
-					name="notemessage" rows="3" style="width: 400px"></textarea></li>
+				<!-- Suggestion: populate this list with fetch and push technique -->
+				<ul class="dropdown-menu" style="border: 1px solid black">
+					<h5>Daily Note</h5>
+					<li>
+						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
+					</li>
+					
+					<li class="divider"></li>
+					<li>
+						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
+					</li>
+				</ul>
+				<!-- end dropdown-menu-->
 
-			<li class="divider"></li>
-			<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
-					Note Down</a></li>
-		</ul>
-		<!-- end dropdown-menu-->
-
-	</div>
-	<!-- end projects dropdown -->
+			</div>
+			
+			<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
 			<div class="pull-right">
@@ -236,7 +237,7 @@
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+					<span> <a href="logout?" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
 				<!-- end logout button -->
 
@@ -245,6 +246,38 @@
 					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
 				</div>
 				<!-- end search mobile button -->
+
+				<!-- input: search field -->
+				<form action="searchresults?" class="header-search pull-right">
+					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
+					"ActionScript",
+					"AppleScript",
+					"Asp",
+					"BASIC",
+					"C",
+					"C++",
+					"Clojure",
+					"COBOL",
+					"ColdFusion",
+					"Erlang",
+					"Fortran",
+					"Groovy",
+					"Haskell",
+					"Java",
+					"JavaScript",
+					"Lisp",
+					"Perl",
+					"PHP",
+					"Python",
+					"Ruby",
+					"Scala",
+					"Scheme"]'>
+					<button type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+				</form>
+				<!-- end input: search field -->
 
 				<!-- fullscreen button -->
 				<div id="fullscreen" class="btn-header transparent pull-right">
@@ -325,6 +358,7 @@
 		<aside id="left-panel">
 
 			<!-- User info -->
+			<!-- User info -->
 			<%
 		
 			String fullname = (String)request.getAttribute("FullName");
@@ -370,8 +404,7 @@
 
 			</span>
 		</div>
-		<!-- end user info -->
-			
+			<!-- end user info -->
 
 			<nav>
 				<!-- 
@@ -381,14 +414,14 @@
 				-->
 
 				<ul>
-		<li class="active"><a href="search?"><i
-				class="fa fa-lg fa-fw fa-search-plus txt-color-blue"></i> <span
+		<li><a href="searchresults?"><i
+				class="fa fa-lg fa-fw fa-search-plus"></i> <span
 				class="menu-item-parent">Search</span> </a></li>
 		<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
 		<li ><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet "></i> <span
+				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
 				class="menu-item-parent">Wall</span> <span
 				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
@@ -401,16 +434,16 @@
 		<li><a href="createpost?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
-		<li><a href="classroom?" title="NewPost"><i
+		<!-- <li><a href="classroom?" title="NewPost"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-		</li>
-		<li><a href="#" title="Dashboard"><i
+		</li> -->
+		<li class="active"><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
 			<ul>
-				<li class=""><a href="courseEdu?" title="NewPost"><i
+				<li class="active"><a href="courseEdu?" title="NewPost"><i
 						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
-				<li class=""><a href="otherprofile?" title="ClassRoom"><i
+				<li class=""><a href="classroom?" title="ClassRoom"><i
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
 			</ul></li>
@@ -438,10 +471,6 @@
 				<li class=""><a href="osmprojectinfo?" title="NewJob"><i
 						class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
 				</li>
-				<li class=""><a href="osmprojectsubscription?" title="NewJob"><i
-						class="fa fa-suitcase"></i><span class="menu-item-parent">Project Resource</span></a>
-				</li>
-				
 				
 			</ul></li>
 		<!-- <li class=""><a href="organizations?" title="Organizations"><i
@@ -457,26 +486,12 @@
 		<li class=""><a href="#" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
 				<ul>
-				<li class=""><a href="standardguidance?" title="Academic"><i
+				<li class=""><a href="createjob?" title="NewJob"><i
 						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
 				</li>
-				<li class=""><a href="professionalguidance?" title="Profesional"><i
+				<li class=""><a href="companies?" title="Companies"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
 				</li>
-				<li class=""><a href="gotoguidance?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">GuidanceSheet Test</span></a>
-				</li>
-				<li class=""><a href="assignmentAnswer?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Assignment Answer Test</span></a>
-				</li>
-				<li class=""><a href="projectstructure?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Project Directory</span></a>
-				</li>
-				<li class=""><a href="projectviewdetail?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Project View</span></a>
-				</li>
-				
-				
 			</ul></li>		
 
 		<li class="chat-users top-menu-invisible"><a href="#"><i
@@ -608,7 +623,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Search Page</li>
+					<li><a href="hello?name=Eric?">Home</li><li>Course</li><li>My Course</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -625,174 +640,93 @@
 
 			</div>
 			<!-- END RIBBON -->
+			
+			
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
 
 				<!-- row -->
-				
 				<div class="row">
-				
-					<div class="col-sm-12">
-				
-						<ul id="myTab1" class="nav nav-tabs bordered">
-							<li class="active">
-								<a href="#s1" data-toggle="tab">Search</a>
-							</li>
-							<li>
-								<a href="#s2" data-toggle="tab">Content Search</a>
-							</li>
-							<li>
-								<a href="#s3" data-toggle="tab">Search History</a>
-							</li>
-							<li class="pull-right hidden-mobile">
-								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
+
+					<!-- col -->
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+						<h1 class="page-title txt-color-blueDark">
+							<!-- PAGE HEADER -->
+							<i class="fa-fw fa fa-home"></i> App Views <span>>
+								Blog </span>
+						</h1>
+					</div>
+					<!-- end col -->
+
+					<!-- right side of the page with the sparkline graphs -->
+					<!-- col -->
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+						<!-- sparks -->
+						<ul id="sparks">
+							<li class="sparks-info">
+								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
+								<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+									1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+								</div>
 							</li>
 						</ul>
-						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
-							<div class="tab-pane fade in active" id="s1">
-							
-							<!-- <div class="tab-pane fade in active" id="s1"> -->
-								<!-- <form action="#" id="search-form"> -->
-									<h1> Search <span class="semi-bold">Everything</span></h1>
-									<br>
-									<div class="input-group input-group-lg hidden-mobile">
-										<input class="form-control input-lg" type="text" placeholder="Search again..." id="searchparam">
-										<div class="input-group-btn">
-											<button type="button" class="btn btn-default" id="searchresult">
-												&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
-											</button>
-										</div>
-									</div>
-								<!-- </form> -->
-								<h1 class="font-md"> Search Results for <small class="text-danger" id="searchcount"> &nbsp;&nbsp;</small></h1>
-								<div class="row" id="searchcontent">
-								
-								</div>
-								<div class="text-center">
-									<hr>
-									<ul class="pagination no-margin" id="searchpagenumbers">
-										<li class="prev disabled">
-											<a href="javascript:void(0);">Previous</a>
-										</li>
-										<li class="active">
-											<a href="javascript:void(0);">1</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">2</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">3</a>
-										</li>
-										<li class="next">
-											<a href="javascript:void(0);">Next</a>
-										</li>
-									</ul>
-									<br>
-									<br>
-									<br>
-								</div>
-				
-							</div>
-							<div class="tab-pane fade" id="s2">
-								<h1> Search <span class="semi-bold">Users/Groups/Courses/Job Interviews/Organization/Institutions/Etc..</span></h1>
-								<br>
-								<div class="input-group input-group-lg">
-									<div class="input-group-btn">
-										<button id="searchparamset" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-											User <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li class="active">
-												<a href="javascript:void(0)"></i> Users</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Groups</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Organization</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Institutes</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Courses</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Job Interviews</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Specializations</a>
-											</li>
-										</ul>
-									</div>
-									<input class="form-control input-lg" type="text" placeholder="Mention the type(eg: for Groups --> #Group groupname)..." id="searchcontentspecific">
-									<div class="input-group-btn">
-										<button type="submit" class="btn btn-default">
-											<i class="fa fa-fw fa-search fa-lg"></i>
-										</button>
-									</div>
-								</div>
-								<h1 class="font-md"> Search Results for <span class="semi-bold">Users</span><small class="text-danger"> &nbsp;&nbsp;(181 results)</small></h1>
-								<br>
-								<div class="row" id="searchcontentspecificresult">
-								
-								</div>
-								
-								<div class="text-center">
-									<hr>
-									<ul class="pagination no-margin">
-										<li class="prev disabled">
-											<a href="javascript:void(0);">Previous</a>
-										</li>
-										<li class="active">
-											<a href="javascript:void(0);">1</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">2</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">3</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">4</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">5</a>
-										</li>
-										<li class="next">
-											<a href="javascript:void(0);">Next</a>
-										</li>
-									</ul>
-									<br>
-									<br>
-									<br>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="s3">
-								<h1> Search <span class="semi-bold">history</span></h1>
-								<p class="alert alert-info">
-									Your search history is turned off.
-				
-								</p>
-				
-								<span class="onoffswitch-title">Auto save Search History</span>
-								<span class="onoffswitch">
-									<input type="checkbox" name="save_history" class="onoffswitch-checkbox" id="save_history" checked="checked">
-									<label class="onoffswitch-label" for="save_history"> <span class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></span> <span class="onoffswitch-switch"></span> </label> </span>
-				
-							</div>
-						</div>
-				
+						<!-- end sparks -->
 					</div>
-				
+					<!-- end col -->
+
 				</div>
-				
 				<!-- end row -->
+				
+				<div class="row">
+					
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-12">
+						
+						<p></p>
+						
+						
+						<div class="col-sm-6"><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#subscribe">Subscribe</button></div>
+						<div class="col-sm-6"></div>
+					</div>
+
+				</div>
 
 			</div>
 			<!-- END MAIN CONTENT -->
-
+			<div class="modal fade" id="subscribe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Subscribe</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="subscriptiontype"> As</label>
+											<select class="form-control" id="subscriptiontype">
+												<option>Investor</option>
+												<option>Buyer</option>
+												<option>Resource</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<a href="osmprojectsubscription?" id="subscribe" class="btn btn-primary"> <i class="fa fa-warning"></i> Subscribe </a>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -800,7 +734,7 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin </span>
+					<span class="txt-color-white">SmartAdmin 1.8.2 </span>
 				</div>
 
 				
@@ -990,101 +924,6 @@
 				 * 
 				 * loadScript(".../plugin.js", run_after_loaded);
 				 */
-				 
-				 
-				 $("#searchresult").click(function(){
-					    //alert("form has been submitted.");
-					    var searchparam = $('#searchparam').val();
-					    var pageno = $('#')
-					    alert(searchparam);
-					    if(searchparam!=null && searchparam!=""){
-					    	
-						    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+, function(dataset) {
-		                		console.log(dataset);
-		                		var searchcontent = "";
-		                		for(var item in dataset){
-		                			var contentdesc = (dataset[item].contentDescription).split(",");
-		                			var guidancesubject = "";
-		                			var profileimage = "";
-		                			var currentstatus = "";
-		                			var experience = "";
-		                			var contact = "";
-		                			var profileemail = "";
-		                			var profilename = "";
-		                			var contenttype = dataset[item].contentType;
-		                			var guidanceid = dataset[item].searchid;
-		                			
-		                			
-		                			for(var type in contentdesc){
-		                				var contentstate = contentdesc[type].split("::");
-		                				if(contentstate[0] == "Guidance Subject "){
-		                					guidancesubject = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Image "){
-		                					profileimage = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Name "){
-		                					profilename = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Email "){
-		                					profileemail = contentstate[1];
-		                				}else if(contentstate[0] == "Profile CurrenStatus "){
-		                					currentstatus = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Experience "){
-		                					experience = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Contact "){
-		                					contact = contentstate[1];
-		                				}
-		                				
-			                		}
-		                			
-		                			var searchset = '<div class="search-results clearfix smart-form"><h4><i class="fa fa-plus-square txt-color-blue">'+
-            						'</i>&nbsp;<a href="javascript:void(0);">Guidance on'+guidancesubject+' provided by '+profilename+'</a></h4>'+
-            						'<div><br><div class="url text-success">'+profilename+'<i class="fa fa-caret-down"></i><h3 class="margin-top-0"><br>'+
-            						'<small class="font-xs"><i>Currently working as '+currentstatus+' with experience of '+experience+'<i>'+
-            						'Contact: '+contact+','+profileemail+'</i></i></small></h3></div><p><a href="guidanceInfoView?guidanceid='+guidanceid+'" class="btn btn-default btn-xs">Go to Guidance</a></p></div></div>';
-		                			searchcontent = searchcontent + searchset;
-		                		}
-		                		$('#searchcontent').append(searchcontent)
-		                	});
-					    }else return false;
-					    
-					});
-				 
-				// $('#searchresult').click(function() {
-					 
-					
-					 /* var guidancereason = $('#guidancereason').val();
-					 var duration = $('#duration').val()+$('#durationtypeid').val();
-					 var location = $('#location').val();
-					 var published = $('#published').val();
-					 var guidancetype = $('#guidancetypeid').val(); */
-					 /* var coordinate = "";
-					 
-					 var geocoder =  new google.maps.Geocoder();
-					 geocoder.geocode( { 'address': location}, function(results, status) {
-					 if (status == google.maps.GeocoderStatus.OK) {
-						 coordinate = results[0].geometry.location.lat() + "," +results[0].geometry.location.lng(); 
-					     alert(coordinate);
-					     alert("result ::"+results[0].geometry.location.lat() + "," +results[0].geometry.location.lng())
-					 }
-					 }); */
-					 
-					 
-					 
-					 /* $.ajax({
-							url : "searchresults?searchparam="+searchparam,
-							method : 'POST',
-							success : function(data){
-								//if(data.success == true){ // if true (1)
-								      setTimeout(function(){// wait for 5 secs(2)
-								           location.reload(); // then reload the page.(3)
-								      }, 5000); 
-								  // }
-								
-							}
-						
-				        });  */
-					 
-				// }); 
-				 
 				
 			})
 		

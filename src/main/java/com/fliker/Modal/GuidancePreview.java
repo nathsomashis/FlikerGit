@@ -2472,7 +2472,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		
 		
 		
-		event.setEventvoteid(eventvoteid);
+		//event.setEventvoteid(eventvoteid);
 		
 		
 		Events events = new Events();

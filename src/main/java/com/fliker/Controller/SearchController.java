@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fliker.Modal.ProfilePreview;
@@ -66,7 +67,38 @@ public class SearchController {
 		return mv;
 		
 	}
+
 	
+	@RequestMapping("/searchContentResult")
+	public @ResponseBody ArrayList searchContentresult(@RequestParam(value = "searchparam", required = false) String searchparam,
+			@RequestParam(value = "pageno", required = false) String pageno,
+			HttpServletRequest request){
+		
+		//String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		
+		SearchPreview searchprev = new SearchPreview();
+		ArrayList searchresult = new ArrayList();
+		System.out.println(" Search >>"+searchparam);
+		ModelAndView mv = new ModelAndView("/Search");
+		
+		try{
+			if(searchparam!= null){
+				searchresult = searchprev.getSearchResult(searchparam,pageno);
+				mv.addObject("searchResult", searchresult);
+			}
+			
+			
+		}catch (NullPointerException exc){
+			exc.getLocalizedMessage();
+			searchresult.add("");
+			
+		}
+		
+		System.out.println(" Search Result ::>>"+searchresult);
+		
+		return searchresult;
+		
+	}
 	
 	@RequestMapping("/searchfirst")
 	public ModelAndView searchfirst( HttpServletRequest request){

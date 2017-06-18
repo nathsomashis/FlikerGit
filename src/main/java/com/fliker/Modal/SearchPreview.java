@@ -24,7 +24,7 @@ import com.mongodb.DBObject;
 
 public class SearchPreview {
 
-	public ArrayList getSearchResult(String searchparam) throws NullPointerException{
+	public ArrayList getSearchResult(String searchparam, String pageno) throws NullPointerException{
 		
 		ArrayList serchres = new ArrayList();
 		//db.users.find({"name": /.*m.*/})
@@ -37,7 +37,12 @@ public class SearchPreview {
 		DBCollection collection = mongocon.getDBConnection("SearchContent");//db.getCollection("students");
 		BasicDBObject searchQuery = new BasicDBObject();
 		searchQuery.put("contentDescription", java.util.regex.Pattern.compile(newSearchparam));
-		DBCursor resultcursor = collection.find(searchQuery);
+		DBCursor resultcursor;
+		if(pageno.isEmpty()){
+			resultcursor = collection.find(searchQuery).limit(20).sort(new BasicDBObject("searchid",-1));
+		}else{
+			resultcursor = collection.find(searchQuery).limit(20).skip(20*Integer.parseInt(pageno)).sort(new BasicDBObject("searchid",-1));
+		}
 		//DBCursor resultcursor = mongocon.getDBObject("Content_Description", newSearchparam, "SearchContent");
 		String uniqueid = "";
 		
