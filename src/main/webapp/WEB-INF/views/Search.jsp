@@ -671,23 +671,11 @@
 								</div>
 								<div class="text-center">
 									<hr>
+									<input type="hidden" value="" id="currentpageno">
 									<ul class="pagination no-margin" id="searchpagenumbers">
-										<li class="prev disabled">
-											<a href="javascript:void(0);">Previous</a>
-										</li>
-										<li class="active">
-											<a href="javascript:void(0);">1</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">2</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">3</a>
-										</li>
-										<li class="next">
-											<a href="javascript:void(0);">Next</a>
-										</li>
+										
 									</ul>
+									<input type="hidden" value="" id="lastpageno">
 									<br>
 									<br>
 									<br>
@@ -995,11 +983,64 @@
 				 $("#searchresult").click(function(){
 					    //alert("form has been submitted.");
 					    var searchparam = $('#searchparam').val();
-					    var pageno = $('#')
+					    
+					    $.getJSON('searchContentCount?searchparam='+searchparam, function(dataset) {
+					    	
+					    	
+					    	
+					    	console.log(dataset);
+					    	
+					    	var nopages = Math.floor(dataset/10);
+					    	var noofsetremain = dataset%10;
+					    	
+					    	if(noofsetremain === 0){
+					    		nopages = nopages;
+					    	}else{
+					    		nopages = nopages + 1;
+					    	}
+					    	console.log(nopages);
+					    	
+					    	for(var i=0;i<nopages;i++){
+					    		var pagecount = "";
+					    		if(i===0){
+					    			pagecount = '<li class="prev disabled"><a href="getPreviousCallSearch()">Previous</a></li>'+
+					    			'<li class="active"><a href="#" onclick="getPageCallSearch()" id='+1+'>1</a></li>';
+					    		}else if(i === (nopages-1)){ 
+					    			var nextpage = '<li><a href="#" onclick="getPageCallSearch()" id='+(i+1)+'>'+(i+1)+'</a></li>'+
+					    			'<li class="next"><a href="#" onclick="getNextCallSearch()">Next</a></li>';
+					    			pagecount = pagecount +nextpage;
+					    			
+					    		}else{
+					    			var nextpage = '<li><a href="#" onclick="getPageCallSearch()" id='+(i+1)+'>'+(i+1)+'</a></li>';
+					    			pagecount = pagecount +nextpage;
+					    		}
+					    		//pagecount = pagecount + '<li class="next"><a href="#" onclick="getNextCallSearch()">Next</a></li>'
+					    		
+					    		$('#searchpagenumbers').append(pagecount);
+					    	}
+					    	
+					    	$('#currentpageno').val(1);
+					    	$('#lastpageno').val(nopages);
+					    	
+					    	/* <li class="active"><a href="javascript:void(0);">1</a>
+							</li>
+							<li>
+								<a href="javascript:void(0);">2</a>
+							</li>
+							<li>
+								<a href="javascript:void(0);">3</a>
+							</li>
+							<li class="next">
+								<a href="javascript:void(0);">Next</a>
+							</li> */
+					    	
+					    	
+					    });
+					    //var pageno = $('#')
 					    alert(searchparam);
 					    if(searchparam!=null && searchparam!=""){
 					    	
-						    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+, function(dataset) {
+						    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+'', function(dataset) {
 		                		console.log(dataset);
 		                		var searchcontent = "";
 		                		for(var item in dataset){
@@ -1048,44 +1089,8 @@
 					    
 					});
 				 
-				// $('#searchresult').click(function() {
-					 
-					
-					 /* var guidancereason = $('#guidancereason').val();
-					 var duration = $('#duration').val()+$('#durationtypeid').val();
-					 var location = $('#location').val();
-					 var published = $('#published').val();
-					 var guidancetype = $('#guidancetypeid').val(); */
-					 /* var coordinate = "";
-					 
-					 var geocoder =  new google.maps.Geocoder();
-					 geocoder.geocode( { 'address': location}, function(results, status) {
-					 if (status == google.maps.GeocoderStatus.OK) {
-						 coordinate = results[0].geometry.location.lat() + "," +results[0].geometry.location.lng(); 
-					     alert(coordinate);
-					     alert("result ::"+results[0].geometry.location.lat() + "," +results[0].geometry.location.lng())
-					 }
-					 }); */
-					 
-					 
-					 
-					 /* $.ajax({
-							url : "searchresults?searchparam="+searchparam,
-							method : 'POST',
-							success : function(data){
-								//if(data.success == true){ // if true (1)
-								      setTimeout(function(){// wait for 5 secs(2)
-								           location.reload(); // then reload the page.(3)
-								      }, 5000); 
-								  // }
-								
-							}
-						
-				        });  */
-					 
-				// }); 
-				 
 				
+				 
 			})
 		
 		</script>
@@ -1105,6 +1110,180 @@
 				s.parentNode.insertBefore(ga, s);
 			})();
 
+		</script>
+		<script type="text/javascript">
+			function getPreviousCallSearch(){
+				var searchparam = $('#searchparam').val();
+				
+				var pageno = $('#currentpageno').val();
+				alert(pageno);
+				if(searchparam!=null && searchparam!="" && pageno !== 1){
+					pageno = pageno-1;
+				    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+(pageno-1), function(dataset) {
+                		console.log(dataset);
+                		var searchcontent = "";
+                		for(var item in dataset){
+                			var contentdesc = (dataset[item].contentDescription).split(",");
+                			var guidancesubject = "";
+                			var profileimage = "";
+                			var currentstatus = "";
+                			var experience = "";
+                			var contact = "";
+                			var profileemail = "";
+                			var profilename = "";
+                			var contenttype = dataset[item].contentType;
+                			var guidanceid = dataset[item].searchid;
+                			
+                			
+                			for(var type in contentdesc){
+                				var contentstate = contentdesc[type].split("::");
+                				if(contentstate[0] == "Guidance Subject "){
+                					guidancesubject = contentstate[1];
+                				}else if(contentstate[0] == "Profile Image "){
+                					profileimage = contentstate[1];
+                				}else if(contentstate[0] == "Profile Name "){
+                					profilename = contentstate[1];
+                				}else if(contentstate[0] == "Profile Email "){
+                					profileemail = contentstate[1];
+                				}else if(contentstate[0] == "Profile CurrenStatus "){
+                					currentstatus = contentstate[1];
+                				}else if(contentstate[0] == "Profile Experience "){
+                					experience = contentstate[1];
+                				}else if(contentstate[0] == "Profile Contact "){
+                					contact = contentstate[1];
+                				}
+                				
+	                		}
+                			
+                			var searchset = '<div class="search-results clearfix smart-form"><h4><i class="fa fa-plus-square txt-color-blue">'+
+    						'</i>&nbsp;<a href="javascript:void(0);">Guidance on'+guidancesubject+' provided by '+profilename+'</a></h4>'+
+    						'<div><br><div class="url text-success">'+profilename+'<i class="fa fa-caret-down"></i><h3 class="margin-top-0"><br>'+
+    						'<small class="font-xs"><i>Currently working as '+currentstatus+' with experience of '+experience+'<i>'+
+    						'Contact: '+contact+','+profileemail+'</i></i></small></h3></div><p><a href="guidanceInfoView?guidanceid='+guidanceid+'" class="btn btn-default btn-xs">Go to Guidance</a></p></div></div>';
+                			searchcontent = searchcontent + searchset;
+                		}
+                		$('#searchcontent').append(searchcontent);
+                		$('#currentpageno').val(pageno-1);
+                	});
+			    }else return false;
+				
+			}
+			
+			function getNextCallSearch(){
+				
+				var searchparam = $('#searchparam').val();
+				var currpageno = $('#currentpageno').val();
+				var pageno = $('#lastpageno').val();
+				alert(pageno);
+				if(searchparam!=null && searchparam!="" && pageno !== currpageno){
+					pageno = pageno-1;
+				    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+(currpageno+1), function(dataset) {
+                		console.log(dataset);
+                		var searchcontent = "";
+                		for(var item in dataset){
+                			var contentdesc = (dataset[item].contentDescription).split(",");
+                			var guidancesubject = "";
+                			var profileimage = "";
+                			var currentstatus = "";
+                			var experience = "";
+                			var contact = "";
+                			var profileemail = "";
+                			var profilename = "";
+                			var contenttype = dataset[item].contentType;
+                			var guidanceid = dataset[item].searchid;
+                			
+                			
+                			for(var type in contentdesc){
+                				var contentstate = contentdesc[type].split("::");
+                				if(contentstate[0] == "Guidance Subject "){
+                					guidancesubject = contentstate[1];
+                				}else if(contentstate[0] == "Profile Image "){
+                					profileimage = contentstate[1];
+                				}else if(contentstate[0] == "Profile Name "){
+                					profilename = contentstate[1];
+                				}else if(contentstate[0] == "Profile Email "){
+                					profileemail = contentstate[1];
+                				}else if(contentstate[0] == "Profile CurrenStatus "){
+                					currentstatus = contentstate[1];
+                				}else if(contentstate[0] == "Profile Experience "){
+                					experience = contentstate[1];
+                				}else if(contentstate[0] == "Profile Contact "){
+                					contact = contentstate[1];
+                				}
+                				
+	                		}
+                			
+                			var searchset = '<div class="search-results clearfix smart-form"><h4><i class="fa fa-plus-square txt-color-blue">'+
+    						'</i>&nbsp;<a href="javascript:void(0);">Guidance on'+guidancesubject+' provided by '+profilename+'</a></h4>'+
+    						'<div><br><div class="url text-success">'+profilename+'<i class="fa fa-caret-down"></i><h3 class="margin-top-0"><br>'+
+    						'<small class="font-xs"><i>Currently working as '+currentstatus+' with experience of '+experience+'<i>'+
+    						'Contact: '+contact+','+profileemail+'</i></i></small></h3></div><p><a href="guidanceInfoView?guidanceid='+guidanceid+'" class="btn btn-default btn-xs">Go to Guidance</a></p></div></div>';
+                			searchcontent = searchcontent + searchset;
+                		}
+                		$('#searchcontent').append(searchcontent);
+                		$('#currentpageno').val(pageno+1);
+                	});
+			    }else return false;
+				
+				
+			}
+			
+			function getPageCallSearch(){
+				
+				var searchparam = $('#searchparam').val();
+				var currpage = this.id;
+				alert(currpage);
+				if(searchparam!=null && searchparam!=""){
+					pageno = pageno-1;
+				    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+currpage, function(dataset) {
+                		console.log(dataset);
+                		var searchcontent = "";
+                		for(var item in dataset){
+                			var contentdesc = (dataset[item].contentDescription).split(",");
+                			var guidancesubject = "";
+                			var profileimage = "";
+                			var currentstatus = "";
+                			var experience = "";
+                			var contact = "";
+                			var profileemail = "";
+                			var profilename = "";
+                			var contenttype = dataset[item].contentType;
+                			var guidanceid = dataset[item].searchid;
+                			
+                			
+                			for(var type in contentdesc){
+                				var contentstate = contentdesc[type].split("::");
+                				if(contentstate[0] == "Guidance Subject "){
+                					guidancesubject = contentstate[1];
+                				}else if(contentstate[0] == "Profile Image "){
+                					profileimage = contentstate[1];
+                				}else if(contentstate[0] == "Profile Name "){
+                					profilename = contentstate[1];
+                				}else if(contentstate[0] == "Profile Email "){
+                					profileemail = contentstate[1];
+                				}else if(contentstate[0] == "Profile CurrenStatus "){
+                					currentstatus = contentstate[1];
+                				}else if(contentstate[0] == "Profile Experience "){
+                					experience = contentstate[1];
+                				}else if(contentstate[0] == "Profile Contact "){
+                					contact = contentstate[1];
+                				}
+                				
+	                		}
+                			
+                			var searchset = '<div class="search-results clearfix smart-form"><h4><i class="fa fa-plus-square txt-color-blue">'+
+    						'</i>&nbsp;<a href="javascript:void(0);">Guidance on'+guidancesubject+' provided by '+profilename+'</a></h4>'+
+    						'<div><br><div class="url text-success">'+profilename+'<i class="fa fa-caret-down"></i><h3 class="margin-top-0"><br>'+
+    						'<small class="font-xs"><i>Currently working as '+currentstatus+' with experience of '+experience+'<i>'+
+    						'Contact: '+contact+','+profileemail+'</i></i></small></h3></div><p><a href="guidanceInfoView?guidanceid='+guidanceid+'" class="btn btn-default btn-xs">Go to Guidance</a></p></div></div>';
+                			searchcontent = searchcontent + searchset;
+                		}
+                		$('#searchcontent').append(searchcontent);
+                		$('#currentpageno').val(currpage);
+                	});
+			    }else return false;
+			}
+		
 		</script>
 
 	</body>

@@ -39,9 +39,9 @@ public class SearchPreview {
 		searchQuery.put("contentDescription", java.util.regex.Pattern.compile(newSearchparam));
 		DBCursor resultcursor;
 		if(pageno.isEmpty()){
-			resultcursor = collection.find(searchQuery).limit(20).sort(new BasicDBObject("searchid",-1));
+			resultcursor = collection.find(searchQuery).limit(10).sort(new BasicDBObject("searchid",-1));
 		}else{
-			resultcursor = collection.find(searchQuery).limit(20).skip(20*Integer.parseInt(pageno)).sort(new BasicDBObject("searchid",-1));
+			resultcursor = collection.find(searchQuery).limit(10).skip(10*(Integer.parseInt(pageno)-1)).sort(new BasicDBObject("searchid",-1));
 		}
 		//DBCursor resultcursor = mongocon.getDBObject("Content_Description", newSearchparam, "SearchContent");
 		String uniqueid = "";
@@ -298,6 +298,22 @@ public class SearchPreview {
 		
 		return basicdbobj;
 		
+	}
+
+
+
+	public int getSearchCount(String searchparam) {
+		// TODO Auto-generated method stub
+		
+		String newSearchparam = ".*"+searchparam+".*";
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCollection collection = mongocon.getDBConnection("SearchContent");//db.getCollection("students");
+		BasicDBObject searchQuery = new BasicDBObject();
+		searchQuery.put("contentDescription", java.util.regex.Pattern.compile(newSearchparam));
+		int resultcount = collection.find(searchQuery).count();
+		
+		return resultcount;
 	}
 
 

@@ -32,7 +32,7 @@ public class SearchController {
 		
 		try{
 			if(searchparam!= null){
-				searchresult = searchprev.getSearchResult(searchparam);
+				//searchresult = searchprev.getSearchResult(searchparam);
 				mv.addObject("searchResult", searchresult);
 			}
 			
@@ -97,6 +97,37 @@ public class SearchController {
 		System.out.println(" Search Result ::>>"+searchresult);
 		
 		return searchresult;
+		
+	}
+	
+	
+	@RequestMapping("/searchContentCount")
+	public @ResponseBody String searchContentresult(@RequestParam(value = "searchparam", required = false) String searchparam,
+			HttpServletRequest request){
+		
+		//String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		
+		SearchPreview searchprev = new SearchPreview();
+		int searchcount = 0;
+		System.out.println(" Search >>"+searchparam);
+		ModelAndView mv = new ModelAndView("/Search");
+		
+		try{
+			if(searchparam!= null){
+				searchcount = searchprev.getSearchCount(searchparam);
+				//mv.addObject("se", searchresult);
+			}
+			
+			
+		}catch (NullPointerException exc){
+			exc.getLocalizedMessage();
+			//searchresult.add("");
+			
+		}
+		
+		System.out.println(" Search Result ::>>"+searchcount);
+		
+		return Integer.toString(searchcount);
 		
 	}
 	
