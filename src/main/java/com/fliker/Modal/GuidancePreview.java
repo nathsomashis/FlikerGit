@@ -2508,6 +2508,86 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		}
 		return profileavailable;
 	}
+
+
+	public HashMap getGuidanceInfo(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		HashMap guidaninfomap = new HashMap();
+		MongoConnection mongocon = new MongoConnection();
+		
+		DBCursor guidecursor = mongocon.getDBObject("guidanceinfoid", guidanceid, "GuidanceInfo");
+		while(guidecursor.hasNext()){
+			DBObject guidedbj = guidecursor.next();
+			
+			guidaninfomap.put("Description", (String)guidedbj.get("guidancedescription"));
+			guidaninfomap.put("Price", (String)guidedbj.get("guidanceprice"));
+			guidaninfomap.put("Experience", (String)guidedbj.get("guidancesubjectexperience"));
+			
+			ArrayList endorsementlist = new ArrayList();
+			
+			BasicDBList endorsebylist = (BasicDBList)guidedbj.get("guidanceendorseby");
+			for(int m=0;m<endorsebylist.size();m++){
+				
+				DBCursor endorsecursor = mongocon.getDBObject("companyid",(String)endorsebylist.get(m), "Company");
+				while(endorsecursor.hasNext()){
+					DBObject companydbj = endorsecursor.next();
+					
+					endorsementlist.add((String)companydbj.get("companylogoid"));
+				}
+			}
+			
+			guidaninfomap.put("Endorsement", endorsementlist);
+			
+			BasicDBList achievementlist = (BasicDBList)guidedbj.get("guidanceachievements");
+			guidaninfomap.put("Achievement", achievementlist);
+			
+			DBCursor dashcursor = mongocon.getDBObject("guidancecontentDashid",guidanceid, "GuidanceContentDash");
+			if(dashcursor.hasNext()){
+				DBObject dashdbj = dashcursor.next();
+				
+				BasicDBList dashdatalist = (BasicDBList)guidedbj.get("guidancedashdataid");
+				int totaldash = dashdatalist.size();
+				int dashcount = 0;
+				for(int j=0;j<dashdatalist.size();j++){
+					DBCursor dashdatacursor = mongocon.getDBObject("guidancedashdataid",guidanceid, "GuidanceContentDashData");
+					while(dashdatacursor.hasNext()){
+						DBObject dashdatadbj = dashdatacursor.next();
+						String levelrem = (String)dashdatadbj.get("guidancedashlevelremark");
+						String helpremark = (String)dashdatadbj.get("guidancedashhelpremark");
+						
+						dashcount = dashcount + (Integer.parseInt(levelrem)+ Integer.parseInt(helpremark))/2;
+				}
+				
+			  }
+				int remarkavg = 0;
+				if(totaldash > 0 && dashcount > 0 ){
+					remarkavg = dashcount/totaldash;
+				}
+				guidaninfomap.put("Remarks", remarkavg);
+				BasicDBList locationlist = (BasicDBList)guidedbj.get("guidancelocationids");
+				guidaninfomap.put("Locations", locationlist);
+				
+				
+			}
+			
+			DBCursor guidrstcursor = mongocon.getDBObject("guidanceid",guidanceid, "GuidanceSelection");
+			while(guidrstcursor.hasNext()){
+				DBObject guiderstdbj = guidrstcursor.next();
+				
+				guidaninfomap.put("Subject", (String)guiderstdbj.get("guidanceSubject"));
+				guidaninfomap.put("GuidanceType", (String)guiderstdbj.get("guidencetype"));
+				guidaninfomap.put("GuidanceDuration", (String)guiderstdbj.get("guidanceduration"));
+				BasicDBList guidinterlist = (BasicDBList)guidedbj.get("guidanceinterest");
+				
+				guidaninfomap.put("GuidanceInterest", guidinterlist);
+				
+					
+			}
+	}
+		return guidaninfomap;
+		
+	}
 	
 }
 
