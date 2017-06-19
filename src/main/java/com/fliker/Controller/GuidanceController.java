@@ -170,6 +170,42 @@ public class GuidanceController {
 		return mv;
 	}
 	
+	@RequestMapping("/guidanceInfoView")
+	public ModelAndView guidanceinfoview(
+			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		ArrayList resourcesSearch = new ArrayList();
+		ArrayList ongoingResources = new ArrayList();
+		ArrayList progressData = new ArrayList();
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceInfoView");
+		
+		
+		
+		//mv.addObject("postlist", postlist);
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		
+		return mv;
+	}
+	
+	
 	@RequestMapping("/professionalNextguidance")
 	public ModelAndView proffNextGuidance(
 			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject,
@@ -800,6 +836,56 @@ public class GuidanceController {
 		
 		//mv.addObject("postlist", postlist);
 		return mv;
+	}
+	
+	
+	@RequestMapping("/guidanceCalendarEvent")
+	public void createGuidanceCalendarEvent(
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,ModelMap model,
+			@RequestParam(value = "title", required = false) String title,
+			@RequestParam(value = "description", required = false) String description,
+			@RequestParam(value = "eventpriority", required = false) String eventpriority,
+			@RequestParam(value = "prioritytype", required = false) String prioritytype,
+			@RequestParam(value = "entryid", required = false) String entryid,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+		
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+ 
+		GuidancePreview guideprev = new GuidancePreview();
+		guideprev.saveNewEvent(guidanceid,title,description,eventpriority,prioritytype,entryid,userid);
+		
+		
+	}
+	
+	
+	@RequestMapping("/guidanceCalendarEventClear")
+	public void clearGuidanceCalendarEvent(
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,ModelMap model,
+			@RequestParam(value = "entryid", required = false) String entryid,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		GuidancePreview guideprev = new GuidancePreview();
+		//guideprev.saveNewEvent(guidanceid,title,description,eventpriority,prioritytype,entryid,entrydatetime);
+		
+		
+	}
+	
+	@RequestMapping("/availableTime")
+	public HashMap checkAvailableTime(
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,ModelMap model,
+			@RequestParam(value = "entrystarttime", required = false) String entrystarttime,
+			@RequestParam(value = "entryendtime", required = false) String entryendtime,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		GuidancePreview guideprev = new GuidancePreview();
+		HashMap timemap = guideprev.getAvailableTime(guidanceid,entrystarttime,entryendtime);
+		
+		return timemap;
 	}
 	
 	

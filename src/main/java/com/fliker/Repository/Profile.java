@@ -28,9 +28,16 @@ public class Profile {
 	private String[] projects;
 	private String[] courseids;
 	private String[] guidanceids;
+	private String[] eventids;
 	
 	
 	
+	public String[] getEventids() {
+		return eventids;
+	}
+	public void setEventids(String[] eventids) {
+		this.eventids = eventids;
+	}
 	public String[] getGuidanceids() {
 		return guidanceids;
 	}

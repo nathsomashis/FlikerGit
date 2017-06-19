@@ -2,7 +2,11 @@ package com.fliker.Modal;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -121,6 +125,10 @@ public class ProfilePreview {
 				}
 			}
 			
+			followmap.put("followers", followerslist);
+			profileArr.add(followmap);
+			
+			HashMap guidancemap = new HashMap();
 			ArrayList guidancelist = new ArrayList();
 			BasicDBList guidancearr = (BasicDBList)theObj.get("guidanceids");
 			if(!guidancearr.isEmpty()){
@@ -129,6 +137,9 @@ public class ProfilePreview {
 				}
 			}
 			
+			guidancemap.put("guidance", guidancelist);
+			profileArr.add(guidancemap);
+			
 			/*String[] followerarr = (String[])theObj.get("follwerids");
 			if(followerarr != null){
 				
@@ -136,8 +147,19 @@ public class ProfilePreview {
 					followerslist.add(profprev.getFollowerslist(followerarr[k]));
 				}
 			}*/
-			followmap.put("followers", followerslist);
-			profileArr.add(followmap);
+			
+			HashMap eventmap = new HashMap();
+			ArrayList eventlist = new ArrayList();
+			BasicDBList eventarr = (BasicDBList)theObj.get("guidanceids");
+			if(!eventarr.isEmpty()){
+				for(int m=0;m<eventarr.size();m++){
+					eventlist.add(profprev.getFollowerslist((String)eventarr.get(m)));
+				}
+			}
+			
+			eventmap.put("events", eventlist);
+			profileArr.add(eventmap);
+			
 			
 		}
 		
@@ -196,35 +218,87 @@ public class ProfilePreview {
 			//articleids
 			HashMap articlemap = new HashMap();
 			ArrayList articles = new ArrayList();
-			String[] articlelist = (String[])theObj.get("articleids");
-			if(articlelist != null){
-				articles.add(articlelist.length);
+			BasicDBList articlelist = (BasicDBList)theObj.get("articleids");
+			if(!articlelist.isEmpty()){
+				for(int m=0;m<articlelist.size();m++){
+					articles.add(profprev.getArticlelist((String)articlelist.get(m)));
+				}
 			}
+			/*String[] articlelist = (String[])theObj.get("articleids");
+			if(articlelist != null){
+				for(int i=0;i<articlelist.length;i++){
+					articles.add(profprev.getArticlelist(articlelist[i]));
+				}
+			}*/
 			articlemap.put("articles", articles);
 			profileArr.add(articlemap);
 			
 			//connectionids
 			HashMap connectionmap = new HashMap();
 			ArrayList connections = new ArrayList();
-			String[] connectionlist = (String[])theObj.get("connectids");
+			BasicDBList connectionlist = (BasicDBList)theObj.get("connectids");
+			if(!connectionlist.isEmpty()){
+				for(int m=0;m<connectionlist.size();m++){
+					connections.add(profprev.getProfileInfo((String)connectionlist.get(m)));
+				}
+			}
+			
+			/*String[] connectionlist = (String[])theObj.get("connectids");
 			if(connectionlist != null){
 				
-				connections.add(connectionlist.length);
+				for(int j=0;j<connectionlist.length;j++){
+					connections.add(profprev.getProfileInfo(connectionlist[j]));
+				}
 				
-			}
+			}*/
 			connectionmap.put("connections",connections);
 			profileArr.add(connectionmap);
 			
 			//followerids
 			HashMap followmap = new HashMap();
 			ArrayList followerslist = new ArrayList();
-			String[] followerarr = (String[])theObj.get("follwerids");
-			if(followerarr != null){
-				
-				followerslist.add(followerarr.length);
+			BasicDBList followerarr = (BasicDBList)theObj.get("follwerids");
+			if(!followerarr.isEmpty()){
+				for(int m=0;m<followerarr.size();m++){
+					followerslist.add(profprev.getFollowerslist((String)followerarr.get(m)));
+				}
 			}
+			
 			followmap.put("followers", followerslist);
 			profileArr.add(followmap);
+			
+			HashMap guidancemap = new HashMap();
+			ArrayList guidancelist = new ArrayList();
+			BasicDBList guidancearr = (BasicDBList)theObj.get("guidanceids");
+			if(!guidancearr.isEmpty()){
+				for(int m=0;m<guidancearr.size();m++){
+					guidancelist.add(profprev.getFollowerslist((String)guidancearr.get(m)));
+				}
+			}
+			
+			guidancemap.put("guidance", guidancelist);
+			profileArr.add(guidancemap);
+			
+			/*String[] followerarr = (String[])theObj.get("follwerids");
+			if(followerarr != null){
+				
+				for(int k=0;k<followerarr.length;k++){
+					followerslist.add(profprev.getFollowerslist(followerarr[k]));
+				}
+			}*/
+			
+			HashMap eventmap = new HashMap();
+			ArrayList eventlist = new ArrayList();
+			BasicDBList eventarr = (BasicDBList)theObj.get("eventids");
+			if(!eventarr.isEmpty()){
+				for(int m=0;m<eventarr.size();m++){
+					eventlist.add(profprev.getFollowerslist((String)eventarr.get(m)));
+				}
+			}
+			
+			eventmap.put("events", eventlist);
+			profileArr.add(eventmap);
+			
 			
 		}
 		
@@ -570,8 +644,62 @@ public class ProfilePreview {
 		basicdbobj.put("skypeid", profile.getSkypeid());
 		basicdbobj.put("tellmeaboutme", profile.getTellmeaboutme());
 		basicdbobj.put("userid", profile.getUserid());
+		basicdbobj.put("eventids", profile.getEventids());
 		
 		return basicdbobj;
+	}
+
+
+	public String getProfileEventList(String userid, String entrydatetime, String entryendtime) {
+		// TODO Auto-generated method stub
+		
+		String eventlst = "";
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("userid", userid, "Profile");
+		
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			
+			BasicDBList eventlist = (BasicDBList)theObj.get("eventids");
+			if(!eventlist.isEmpty()){
+				for(int m=0;m<eventlist.size();m++){
+					DBCursor eventcursor = mongocon.getDBObject("eventid", (String)eventlist.get(m), "Event");
+					
+					if(eventcursor.hasNext()){
+						DBObject eventObj = eventcursor.next();
+						
+						String starttime = (String)eventObj.get("eventstarttime");
+						String endtime = (String)eventObj.get("eventendtime");
+						SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-DD'T'HH:mm:ss");
+				        try
+				        {
+				            Date startdate = simpleDateFormat.parse(starttime);
+				            Date givenstartdate = simpleDateFormat.parse(entrydatetime);
+				            Date givenendtime = simpleDateFormat.parse(entryendtime);
+				            Date enddate = simpleDateFormat.parse(endtime);
+
+				            if(givenstartdate.after(startdate) || givenendtime.before(enddate)|| givenendtime.after(startdate)|| givenstartdate.before(enddate)){
+				            	
+				            	eventlst = "true";
+				            	
+				            }
+				            
+				        }
+				        catch (ParseException ex)
+				        {
+				            System.out.println("Exception "+ex);
+				        }
+						
+					}
+					
+					
+				}
+			}
+			
+		}
+		
+		
+		return eventlst;
 	}
 
 
