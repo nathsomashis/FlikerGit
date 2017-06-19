@@ -1004,9 +1004,9 @@
 					    		var pagecount = "";
 					    		if(i===0){
 					    			pagecount = '<li class="prev disabled"><a href="getPreviousCallSearch()">Previous</a></li>'+
-					    			'<li class="active"><a href="#" onclick="getPageCallSearch()" id='+1+'>1</a></li>';
+					    			'<li class="active"><a href="#" onclick="getPageCallSearch('+1+')" id='+1+'>1</a></li>';
 					    		}else if(i === (nopages-1)){ 
-					    			var nextpage = '<li><a href="#" onclick="getPageCallSearch()" id='+(i+1)+'>'+(i+1)+'</a></li>'+
+					    			var nextpage = '<li><a href="#" onclick="getPageCallSearch('+(i+1)+')" id='+(i+1)+'>'+(i+1)+'</a></li>'+
 					    			'<li class="next"><a href="#" onclick="getNextCallSearch()">Next</a></li>';
 					    			pagecount = pagecount +nextpage;
 					    			
@@ -1174,10 +1174,12 @@
 				var searchparam = $('#searchparam').val();
 				var currpageno = $('#currentpageno').val();
 				var pageno = $('#lastpageno').val();
-				alert(pageno);
+				var pagemath = parseInt(currpageno,10) + 1;
+				alert(pagemath);
 				if(searchparam!=null && searchparam!="" && pageno !== currpageno){
 					pageno = pageno-1;
-				    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+(currpageno+1), function(dataset) {
+				    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+pagemath, function(dataset) {
+				    	$('#searchcontent').html('');
                 		console.log(dataset);
                 		var searchcontent = "";
                 		for(var item in dataset){
@@ -1228,14 +1230,15 @@
 				
 			}
 			
-			function getPageCallSearch(){
+			function getPageCallSearch(pagenos){
 				
 				var searchparam = $('#searchparam').val();
-				var currpage = this.id;
-				alert(currpage);
+				//var currpage = this.id;
+				alert(pagenos);
 				if(searchparam!=null && searchparam!=""){
-					pageno = pageno-1;
-				    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+currpage, function(dataset) {
+					//pageno = pageno-1;
+				    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+pagenos, function(dataset) {
+				    	$('#searchcontent').html('');
                 		console.log(dataset);
                 		var searchcontent = "";
                 		for(var item in dataset){
@@ -1279,7 +1282,15 @@
                 			searchcontent = searchcontent + searchset;
                 		}
                 		$('#searchcontent').append(searchcontent);
-                		$('#currentpageno').val(currpage);
+                		$('#currentpageno').val(pagenos);
+                		
+                		$('#searchpagenumbers li').each(function(i){
+                			var currentlink = $(this).attr('a');
+                			var currentthread =  (this.innerText).replace("\n","");
+                			var currenthtml = (this.innerHTML)
+                			
+                			
+                		});
                 	});
 			    }else return false;
 			}

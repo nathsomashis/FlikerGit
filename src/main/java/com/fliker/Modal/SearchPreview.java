@@ -39,9 +39,9 @@ public class SearchPreview {
 		searchQuery.put("contentDescription", java.util.regex.Pattern.compile(newSearchparam));
 		DBCursor resultcursor;
 		if(pageno.isEmpty()){
-			resultcursor = collection.find(searchQuery).limit(10).sort(new BasicDBObject("searchid",-1));
+			resultcursor = collection.find(searchQuery).limit(10).sort(new BasicDBObject("_id",-1));
 		}else{
-			resultcursor = collection.find(searchQuery).limit(10).skip(10*(Integer.parseInt(pageno)-1)).sort(new BasicDBObject("searchid",-1));
+			resultcursor = collection.find(searchQuery).limit(10).skip(10*(Integer.parseInt(pageno)-1)).sort(new BasicDBObject("_id",-1));
 		}
 		//DBCursor resultcursor = mongocon.getDBObject("Content_Description", newSearchparam, "SearchContent");
 		String uniqueid = "";
