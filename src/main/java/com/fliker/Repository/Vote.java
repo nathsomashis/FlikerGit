@@ -11,7 +11,7 @@ public class Vote {
 	@Id
 	private String voteid;
 	private String[] voteOptions;
-	private HashMap<User,String> voteRepliedby;
+	private String[] voteRepliedby;
 	public String getVoteid() {
 		return voteid;
 	}
@@ -24,12 +24,13 @@ public class Vote {
 	public void setVoteOptions(String[] voteOptions) {
 		this.voteOptions = voteOptions;
 	}
-	public HashMap<User, String> getVoteRepliedby() {
+	public String[] getVoteRepliedby() {
 		return voteRepliedby;
 	}
-	public void setVoteRepliedby(HashMap<User, String> voteRepliedby) {
+	public void setVoteRepliedby(String[] voteRepliedby) {
 		this.voteRepliedby = voteRepliedby;
 	}
+	
 	
 	
 	

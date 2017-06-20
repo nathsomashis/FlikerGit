@@ -3,7 +3,7 @@ package com.fliker.Repository;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="EnentEntry")
+@Document(collection="EventEntry")
 public class EventEntry {
 
 	@Id
