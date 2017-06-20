@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Company {
 
 	@Id
+	private String userid;
 	private String companyid;
 	private String companyname;
 	private String companyImageid;
@@ -25,6 +26,16 @@ public class Company {
 	private String communityvideoid;
 	private String[] Communityids;
 	private String differencefileid;
+
+	
+	
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 
 	public String getCompanyid() {
 		return companyid;

@@ -172,13 +172,14 @@ public class GuidanceController {
 	
 	@RequestMapping("/guidanceInfoView")
 	public ModelAndView guidanceinfoview(
-			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,
 			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
  
-		ArrayList resourcesSearch = new ArrayList();
-		ArrayList ongoingResources = new ArrayList();
-		ArrayList progressData = new ArrayList();
+		HashMap guidanceinfolist = new HashMap();
+		
+		GuidancePreview guidprev = new GuidancePreview();
+		guidanceinfolist = guidprev.getGuidanceInfo(guidanceid);
 		
 		ServletContext context = request.getSession().getServletContext();
 		
