@@ -14,7 +14,7 @@ public class GuidanceContentDashData {
 	private String guidancedashspectworemark;
 	private String guidancedashspecthreeremark;
 	private String guidancedashspecfourremark;
-	private String guidancedashspecficeremark;
+	private String guidancedashspecfiveremark;
 	public String getGuidancedashdataid() {
 		return guidancedashdataid;
 	}
@@ -57,12 +57,13 @@ public class GuidanceContentDashData {
 	public void setGuidancedashspecfourremark(String guidancedashspecfourremark) {
 		this.guidancedashspecfourremark = guidancedashspecfourremark;
 	}
-	public String getGuidancedashspecficeremark() {
-		return guidancedashspecficeremark;
+	public String getGuidancedashspecfiveremark() {
+		return guidancedashspecfiveremark;
 	}
-	public void setGuidancedashspecficeremark(String guidancedashspecficeremark) {
-		this.guidancedashspecficeremark = guidancedashspecficeremark;
+	public void setGuidancedashspecfiveremark(String guidancedashspecfiveremark) {
+		this.guidancedashspecfiveremark = guidancedashspecfiveremark;
 	}
+	
 	
 	
 }
