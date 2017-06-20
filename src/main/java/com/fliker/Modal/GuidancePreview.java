@@ -2547,22 +2547,25 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 				DBObject dashdbj = dashcursor.next();
 				
 				BasicDBList dashdatalist = (BasicDBList)guidedbj.get("guidancedashdataid");
-				int totaldash = dashdatalist.size();
-				int dashcount = 0;
-				for(int j=0;j<dashdatalist.size();j++){
-					DBCursor dashdatacursor = mongocon.getDBObject("guidancedashdataid",guidanceid, "GuidanceContentDashData");
-					while(dashdatacursor.hasNext()){
-						DBObject dashdatadbj = dashdatacursor.next();
-						String levelrem = (String)dashdatadbj.get("guidancedashlevelremark");
-						String helpremark = (String)dashdatadbj.get("guidancedashhelpremark");
-						
-						dashcount = dashcount + (Integer.parseInt(levelrem)+ Integer.parseInt(helpremark))/2;
-				}
-				
-			  }
 				int remarkavg = 0;
-				if(totaldash > 0 && dashcount > 0 ){
-					remarkavg = dashcount/totaldash;
+				if(dashdatalist!=null){
+					int totaldash = dashdatalist.size();
+					int dashcount = 0;
+					for(int j=0;j<dashdatalist.size();j++){
+						DBCursor dashdatacursor = mongocon.getDBObject("guidancedashdataid",guidanceid, "GuidanceContentDashData");
+						while(dashdatacursor.hasNext()){
+							DBObject dashdatadbj = dashdatacursor.next();
+							String levelrem = (String)dashdatadbj.get("guidancedashlevelremark");
+							String helpremark = (String)dashdatadbj.get("guidancedashhelpremark");
+							
+							dashcount = dashcount + (Integer.parseInt(levelrem)+ Integer.parseInt(helpremark))/2;
+					}
+					
+				  }
+					
+					if(totaldash > 0 && dashcount > 0 ){
+						remarkavg = dashcount/totaldash;
+					}
 				}
 				guidaninfomap.put("Remarks", remarkavg);
 				BasicDBList locationlist = (BasicDBList)guidedbj.get("guidancelocationids");
@@ -2581,9 +2584,13 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 				BasicDBList guidinterlist = (BasicDBList)guidedbj.get("guidanceinterest");
 				
 				guidaninfomap.put("GuidanceInterest", guidinterlist);
+				guidaninfomap.put("Userid", (String)guiderstdbj.get("userid"));
 				
 					
 			}
+			
+			
+			
 	}
 		return guidaninfomap;
 		
