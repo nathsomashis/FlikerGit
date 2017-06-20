@@ -1,3 +1,5 @@
+<%@page import="com.fliker.Modal.ProfilePreview"%>
+<%@page import="com.mongodb.BasicDBList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -641,7 +643,59 @@
 			</div>
 			<!-- END RIBBON -->
 			
+			<%
+				HashMap guidanceinfo = (HashMap)request.getAttribute("guidanceinfolist");
+				Set guidanceset = guidanceinfo.entrySet();
+				Iterator guiditer = guidanceset.iterator();
+				String Description = "";
+				String Price = "";
+				String Experience = "";
+				ArrayList Endorsement = new ArrayList();
+				BasicDBList Achievements = new BasicDBList();
+				int remarks = 0;
+				BasicDBList locationlist = new BasicDBList();
+				String Subject = "";
+				String guidancetype = "";
+				String guidanceduration = "";
+				String guidanuser = "";
+				Profile profileinfo = new Profile();
+				
+				BasicDBList guidanceinterestedlist = new BasicDBList();
+				while(guiditer.hasNext()){
+					Map.Entry guidme = (Map.Entry)guiditer.next();
+					
+					if(((String)guidme.getKey()).equalsIgnoreCase("Description")){
+						Description = (String)guidme.getValue();
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("Price")){
+						Price = (String)guidme.getValue();
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("Experience")){
+						Experience = (String)guidme.getValue();
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("Endorsement")){
+						Endorsement = (ArrayList)guidme.getValue();
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("Achievement")){
+						Achievements = (BasicDBList)guidme.getValue();
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("Remarks")){
+						remarks = Integer.parseInt((String)guidme.getValue());
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("Locations")){
+						locationlist = (BasicDBList)guidme.getValue();
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("Subject")){
+						Subject = (String)guidme.getValue();
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("GuidanceType")){
+						guidancetype = (String)guidme.getValue();
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("GuidanceDuration")){
+						guidanceduration = (String)guidme.getValue();
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("GuidanceInterest")){
+						guidanceinterestedlist = (BasicDBList)guidme.getValue();
+					}else if(((String)guidme.getKey()).equalsIgnoreCase("Userid")){
+						guidanuser = (String)guidme.getValue();
+						ProfilePreview profprev = new ProfilePreview();
+						profileinfo = profprev.getProfileData(guidanuser);
+					}
+					
+				}
+				
 			
+			%>
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
@@ -667,13 +721,39 @@
 										<div class="col-md-7 col-sm-12 col-xs-12">
 									
 										<h2 class="name">
-											Product Name Title Here 
-											<small>Product by <a href="javascript:void(0);">Adeline</a></small>
-											<i class="fa fa-star fa-2x text-primary"></i>
-											<i class="fa fa-star fa-2x text-primary"></i>
-											<i class="fa fa-star fa-2x text-primary"></i>
-											<i class="fa fa-star fa-2x text-primary"></i>
-											<i class="fa fa-star fa-2x text-muted"></i>
+											<%=Subject%>
+											<small>Guidance by <a href="javascript:void(0);"><%=profileinfo.getName()%></a></small>
+											<% 
+											if(remarks == 0){
+												%>
+													<i class="fa fa-star fa-2x text-muted"></i>
+													<i class="fa fa-star fa-2x text-muted"></i>
+													<i class="fa fa-star fa-2x text-muted"></i>
+													<i class="fa fa-star fa-2x text-muted"></i>
+													<i class="fa fa-star fa-2x text-muted"></i>
+												<%
+											}else if(remarks == 5){
+												%>
+													<i class="fa fa-star fa-2x text-primary"></i>
+													<i class="fa fa-star fa-2x text-primary"></i>
+													<i class="fa fa-star fa-2x text-primary"></i>
+													<i class="fa fa-star fa-2x text-primary"></i>
+													<i class="fa fa-star fa-2x text-primary"></i>
+												<%
+											}else{
+												int v = 0;
+												for(;v<remarks;v++){
+													%>
+														<i class="fa fa-star fa-2x text-primary"></i>
+													<%
+												}
+												for(int m=5;m>v;m--){
+													%>
+														<i class="fa fa-star fa-2x text-muted"></i>
+													<%
+												}
+											}
+											%>
 											<span class="fa fa-2x"><h5>(109) Votes</h5></span>	
 											
 											<a href="javascript:void(0);">109 customer reviews</a>
