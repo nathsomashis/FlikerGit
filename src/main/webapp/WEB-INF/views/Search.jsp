@@ -1234,6 +1234,7 @@
 				
 				var searchparam = $('#searchparam').val();
 				//var currpage = this.id;
+				var lastpage = $('#lastpageno').val();
 				alert(pagenos);
 				if(searchparam!=null && searchparam!=""){
 					//pageno = pageno-1;
@@ -1285,7 +1286,19 @@
                 		$('#currentpageno').val(pagenos);
                 		
                 		$('#searchpagenumbers li').each(function(i){
-                			var currentlink = $(this).attr('a');
+                			
+                			if(pagenos === "1"){
+                				var currentlink = $(this).attr("class");
+                				if(currentlink.indexOf("prev") > 0){
+                					$(this).attr("class", "prev disabled");
+                				}
+                			}else if(pagenos === lastpage){
+                				if(currentlink.indexOf("prev") > 0){
+                					$(this).attr("class", "prev disabled");
+                				}
+                			}
+                			var currentlink = $(this).attr("class");
+                			if(currentlink === "prev disabled" )
                 			var currentthread =  (this.innerText).replace("\n","");
                 			var currenthtml = (this.innerHTML)
                 			
