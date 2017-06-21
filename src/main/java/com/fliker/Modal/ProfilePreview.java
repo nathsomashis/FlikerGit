@@ -9,13 +9,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.json.simple.JSONObject;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Profile;
+import com.fliker.Repository.SkillAssesment;
+import com.fliker.Repository.SkillSet;
 import com.fliker.Repository.User;
+import com.fliker.Utility.DateFunctionality;
 import com.fliker.Utility.UploadFileService;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
@@ -700,6 +704,68 @@ public class ProfilePreview {
 		
 		
 		return eventlst;
+	}
+
+
+	public void saveSkillToProfileInfo(String skillname, String skilldesc, String skilltoken, String userid, String skilllocation) {
+		// TODO Auto-generated method stub
+		
+		String fileid = "";
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("tempid", skilltoken, "FileUnionTimeFrame");
+		while(resultcursor.hasNext() ){
+			
+			DBObject dbj = resultcursor.next();
+			
+			String userids = (String)dbj.get("userid");
+			if(userids.equalsIgnoreCase(userid)){
+				
+				fileid = (String)dbj.get("fileid");
+			}
+			
+		}
+		UploadFileService uploadser = new UploadFileService();
+		String uniqueid = "";
+		
+		try {
+			uniqueid = uploadser.makeSHA1Hash(skillname+userid+skilltoken);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		SkillAssesment skillasses = new SkillAssesment();
+		skillasses.setSkillassesmentid(uniqueid);
+		skillasses.setSkilldescription(skilldesc);
+		skillasses.setSkillfileid(fileid);
+		
+		String[] skillAssesment = {uniqueid};
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM dd, yyyy HH:mm:ss a");
+        //String dateInString = "Friday, Jun 7, 2013 12:10:56 PM";//example
+        
+		
+		
+        Date datepack = new Date();
+        DateFunctionality datefunc = new DateFunctionality();
+        
+        String localdate = datefunc.getUniformDates(formatter.format(datepack));
+		SkillSet skillset = new SkillSet();
+		skillset.setSkillid(uniqueid);
+		skillset.setSkillAssesment(skillAssesment);
+		skillset.setSkilldatetime(localdate);
+		skillset.setSkilllocation(skilllocation);
+		
+		
+		
+		
+		
+		
+		//mongocon.updateObject(new BasicDBObject("guidanceinfoid", guidanceid),new BasicDBObject("$push", new BasicDBObject("guidanceachievements", jsonstr)), "GuidanceInfo");
+		
 	}
 
 

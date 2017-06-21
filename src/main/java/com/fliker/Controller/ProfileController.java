@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fliker.Modal.GuidancePreview;
 import com.fliker.Modal.ProfilePreview;
 import com.fliker.Modal.TimeLinePreview;
 import com.fliker.Repository.User;
@@ -43,9 +45,9 @@ public class ProfileController {
 		ProfilePreview profprev = new ProfilePreview();
 		
 		String profileimageid = profprev.profileimage(userids);
-		String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		//String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
 		
-		ArrayList profileInfo = profprev.getProfileInfo(userid);
+		ArrayList profileInfo = profprev.getProfileInfo(userids);
 		
 		//ArrayList recommentlist = profprev.getRecommendedList(userid);
 		
@@ -53,6 +55,7 @@ public class ProfileController {
 		mv.addObject("name", name);
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
+		mv.addObject("userid", userids);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
 		return mv;
 	}
@@ -243,6 +246,34 @@ public class ProfileController {
 		
 		//String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
 		return mv;
+	}
+	
+	
+	@RequestMapping("/saveSkillToProfile")
+	public String saveGuidanceInfoAchievement(
+			@RequestParam(value = "skillname", required = false, defaultValue = "World") String skillname,ModelMap model,
+			@RequestParam(value = "skilldesc", required = false, defaultValue = "World") String skilldesc,
+			@RequestParam(value = "skilltoken", required = false, defaultValue = "World") String skilltoken,
+			@RequestParam(value = "userid", required = false, defaultValue = "World") String userid,
+			@RequestParam(value = "location", required = false, defaultValue = "World") String location,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+		String result = "false";
+		try{
+			ArrayList resourcesSearch = new ArrayList();
+			
+			
+			ProfilePreview profprev = new ProfilePreview();
+			//resourcesSearch = guideprev.getGuidanceData(guidanceid);
+			ServletContext context = request.getSession().getServletContext();
+			User userinf = (User) context.getAttribute("UserValues");
+			profprev.saveSkillToProfileInfo(skillname,skilldesc,skilltoken,userid, location);
+			
+			
+		}catch(Exception ex){
+			return result;
+		}
+		return result;
 	}
 	
 }
