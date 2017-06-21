@@ -1308,6 +1308,67 @@
 				
 				</div>
 				
+		<div class="row">
+			<article class="col-sm-12 col-md-12 col-lg-12">
+	
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-10" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-list-alt"></i> </span>
+						<h2>Certification</h2>
+	
+						<div class="widget-toolbar hidden-phone">
+							<div class="smart-form">
+								<label class="checkbox">
+									<button class="btn btn-primary" data-toggle="modal" data-target="#addachievement" onclick="generateToken()">Provide New Achevements</button>
+									</label>
+							</div>
+						</div>
+	
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+	
+						<!-- widget content -->
+						<div class="widget-body no-padding">
+	
+							<div class="panel-group smart-accordion-default" id="accordion-2">
+								
+								<%-- <%=guidanceachievements%> --%>
+							</div>
+	
+						</div>
+						<!-- end widget content -->
+	
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+	
+			</article>
+		</div>
 				
 		<div class="well well-sm well-light">
 			
@@ -1661,7 +1722,51 @@
 
 			</div>
 			<!-- END MAIN CONTENT -->
-
+			<div class="modal fade" id="addachievement"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Provide Achievement</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Guidance Subject" required id="guidanceachievement" />
+										</div>
+										<div class="form-group">
+											<textarea id="achievementdescribe" class="form-control" placeholder="Provide Information about your guidance. Why you are good on the above mentioned guidance.." rows="5" required></textarea>
+										</div>
+										<div class="form-group">
+											<form id="form2" method="post" action="#" enctype="multipart/form-data">
+											<label class="col-md-2 control-label">File input</label>
+											<div class="col-md-10">
+												<input type="file" id="file2" name="file2" class="btn btn-default" id="achievementfile">
+											</div>
+											<button class="col-md-2"  type="button" onclick="uploadFormData()">
+												Upload
+											</button>
+											</form>
+											<input type="hidden" class="form-control" value="" required id="acheivetoken" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addachieve()">
+									Add
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
 		</div>
 		<!-- END MAIN PANEL -->
 
