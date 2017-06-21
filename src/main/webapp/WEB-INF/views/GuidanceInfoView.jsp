@@ -644,6 +644,8 @@
 			<!-- END RIBBON -->
 			
 			<%
+				String guidanceid = (String)request.getAttribute("guidanceid");
+				String userid = (String)request.getAttribute("userid");
 				HashMap guidanceinfo = (HashMap)request.getAttribute("guidanceinfolist");
 				Set guidanceset = guidanceinfo.entrySet();
 				Iterator guiditer = guidanceset.iterator();
@@ -675,7 +677,7 @@
 					}else if(((String)guidme.getKey()).equalsIgnoreCase("Achievement")){
 						Achievements = (BasicDBList)guidme.getValue();
 					}else if(((String)guidme.getKey()).equalsIgnoreCase("Remarks")){
-						remarks = Integer.parseInt((String)guidme.getValue());
+						remarks = (Integer)guidme.getValue();
 					}else if(((String)guidme.getKey()).equalsIgnoreCase("Locations")){
 						locationlist = (BasicDBList)guidme.getValue();
 					}else if(((String)guidme.getKey()).equalsIgnoreCase("Subject")){
@@ -722,7 +724,7 @@
 									
 										<h2 class="name">
 											<%=Subject%>
-											<small>Guidance by <a href="javascript:void(0);"><%=profileinfo.getName()%></a></small>
+											<small>Guidance by <a href="#" onclick="openProfile('<%=guidanuser%>')" rel="popover-hover" data-placement="right" data-original-title="<img src='<c:url value='/resources/img/avatars/male.png' />'	alt='me' class='online'<h3><%=profileinfo.getName()%> <b><%=profileinfo.getCurrentStatus()%></b> <em><%=profileinfo.getEmailid()%></em> </h3>" data-content="Current Status: <%=profileinfo.getCurrentStatus()%><br> Email ID: <%=profileinfo.getEmailid()%> <br>"  data-html="true"><%=profileinfo.getName()%></a></small>
 											<% 
 											if(remarks == 0){
 												%>
@@ -1163,6 +1165,17 @@
 				s.parentNode.insertBefore(ga, s);
 			})();
 
+		</script>
+		<script type="text/javascript">
+			function openProfile(userid){
+				<%-- var ownuser = "<%=userid%>";
+				if(ownuser === userid){ --%>
+					window.open("otherprofile?userid="+userid);
+				/* }else{
+					window.open("profiles?userid="+userid);
+				} */
+			}
+		
 		</script>
 
 	</body>

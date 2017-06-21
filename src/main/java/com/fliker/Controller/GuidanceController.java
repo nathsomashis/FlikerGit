@@ -201,6 +201,8 @@ public class GuidanceController {
 		//mv.addObject("postlist", postlist);
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
+		mv.addObject("userid", userid);
+		mv.addObject("guidanceid", guidanceid);
 		mv.addObject("guidanceinfolist", guidanceinfolist);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
 		

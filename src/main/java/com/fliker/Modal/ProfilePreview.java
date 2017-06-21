@@ -150,7 +150,7 @@ public class ProfilePreview {
 			
 			HashMap eventmap = new HashMap();
 			ArrayList eventlist = new ArrayList();
-			BasicDBList eventarr = (BasicDBList)theObj.get("guidanceids");
+			BasicDBList eventarr = (BasicDBList)theObj.get("eventids");
 			if(!eventarr.isEmpty()){
 				for(int m=0;m<eventarr.size();m++){
 					eventlist.add(profprev.getFollowerslist((String)eventarr.get(m)));
