@@ -724,7 +724,7 @@
 									
 										<h2 class="name">
 											<%=Subject%>
-											<small>Guidance by <a href="#" onclick="openProfile('<%=guidanuser%>')" rel="popover-hover" data-placement="right" data-original-title="<h3><%=profileinfo.getName()%> <b><%=profileinfo.getCurrentStatus()%></b> <em><%=profileinfo.getEmailid()%></em> </h3>" data-content="Current Status: <%=profileinfo.getCurrentStatus()%><br> Email ID: <%=profileinfo.getEmailid()%> <br>"  data-html="true"><%=profileinfo.getName()%></a></small>
+											<small>Guidance by <a href="#" onclick="openProfile('<%=guidanuser%>')" rel="popover-hover" data-placement="right" data-original-title="<img src='<c:url value='/resources/img/avatars/male.png' />'	alt='me' class='online'<h3><%=profileinfo.getName()%> <b><%=profileinfo.getCurrentStatus()%></b> <em><%=profileinfo.getEmailid()%></em> </h3>" data-content="Current Status: <%=profileinfo.getCurrentStatus()%><br> Email ID: <%=profileinfo.getEmailid()%> <br>"  data-html="true"><%=profileinfo.getName()%></a></small>
 											<% 
 											if(remarks == 0){
 												%>
