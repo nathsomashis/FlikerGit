@@ -359,6 +359,7 @@
 		
 			String fullname = (String)request.getAttribute("FullName");
 			String gender = (String)request.getAttribute("Gender");
+			String userid = (String)request.getAttribute("userid");
 			String imagid = (String)request.getAttribute("ProfileImage");
 			String logo = "";
 			
@@ -1312,7 +1313,7 @@
 			<article class="col-sm-12 col-md-12 col-lg-12">
 	
 				<!-- Widget ID (each widget will need unique ID)-->
-				<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-10" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+				<div class="jarviswidget jarviswidget-color-blueLight" id="skilltag" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
 					<!-- widget options:
 					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 	
@@ -1328,12 +1329,12 @@
 					-->
 					<header>
 						<span class="widget-icon"> <i class="fa fa-list-alt"></i> </span>
-						<h2>Certification</h2>
+						<h2>Skills</h2>
 	
 						<div class="widget-toolbar hidden-phone">
 							<div class="smart-form">
 								<label class="checkbox">
-									<button class="btn btn-primary" data-toggle="modal" data-target="#addachievement" onclick="generateToken()">Provide New Achevements</button>
+									<button class="btn btn-primary" data-toggle="modal" data-target="#skillsetimprove" onclick="generateToken('skill')">Add New Skill</button>
 									</label>
 							</div>
 						</div>
@@ -1353,7 +1354,129 @@
 						<!-- widget content -->
 						<div class="widget-body no-padding">
 	
-							<div class="panel-group smart-accordion-default" id="accordion-2">
+							<div class="panel-group smart-accordion-default" id="skillset">
+								
+								<%-- <%=guidanceachievements%> --%>
+							</div>
+	
+						</div>
+						<!-- end widget content -->
+	
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+	
+			</article>
+		</div>
+		<div class="row">
+			<article class="col-sm-12 col-md-12 col-lg-12">
+	
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget jarviswidget-color-blueLight" id="projecttag" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-list-alt"></i> </span>
+						<h2>Projects</h2>
+	
+						<div class="widget-toolbar hidden-phone">
+							<div class="smart-form">
+								<label class="checkbox">
+									<button class="btn btn-primary" data-toggle="modal" data-target="#projectsetimprove" onclick="generateToken('project')">Add new Project Info</button>
+									</label>
+							</div>
+						</div>
+	
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+	
+						<!-- widget content -->
+						<div class="widget-body no-padding">
+	
+							<div class="panel-group smart-accordion-default" id="projectset">
+								
+								<%-- <%=guidanceachievements%> --%>
+							</div>
+	
+						</div>
+						<!-- end widget content -->
+	
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+	
+			</article>
+		</div>
+		<div class="row">
+			<article class="col-sm-12 col-md-12 col-lg-12">
+	
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget jarviswidget-color-blueLight" id="articletag" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-list-alt"></i> </span>
+						<h2>Articles</h2>
+	
+						<div class="widget-toolbar hidden-phone">
+							<div class="smart-form">
+								<label class="checkbox">
+									<button class="btn btn-primary"  onclick="createNewArticle()">Provide New Achevements</button>
+									</label>
+							</div>
+						</div>
+	
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+	
+						<!-- widget content -->
+						<div class="widget-body no-padding">
+	
+							<div class="panel-group smart-accordion-default" id="articleset">
 								
 								<%-- <%=guidanceachievements%> --%>
 							</div>
@@ -1370,200 +1493,95 @@
 			</article>
 		</div>
 				
-		<div class="well well-sm well-light">
-			
-
-			<hr class="simple">
-			<h3>Skills Tab
-			<br>
-			<small>Click button to add another skill</small></h3>
-
-			<p>
-				<button id="add_tab" class="btn btn-primary">
-					Add Skill
-				</button>
-			</p>
-
-			<div id="tabs2">
-				<ul>
-					<li>
-						<a href="#tabs-1">Nunc tincidunt</a>
-					</li>
-				</ul>
-				<div id="tabs-3">
-					<p>
-						Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.
-					</p>
-				</div>
-			</div>
-
-			<!-- Demo -->
-			<div id="addtab" title="<div class='widget-header'><h4><i class='fa fa-plus'></i> Add another tab</h4></div>">
-
-				<form>
-
-					<fieldset>
-						<input name="authenticity_token" type="hidden">
-						<div class="form-group">
-							<label>Tab Title</label>
-							<input class="form-control" id="tab_title" value="" placeholder="Text field" type="text">
-						</div>
-
-						<div class="form-group">
-							<label>Content</label>
-							<textarea class="form-control" name="tab_content" id="tab_content" placeholder="Tab Content" rows="3"></textarea>
-						</div>
-
-					</fieldset>
-
-				</form>
-
-			</div>
-
-		</div>
-		
-		<div class="well well-sm well-light">
-			
-
-			<hr class="simple">
-			<h3>Dynamic Tabs
-			<br>
-			<small>Click button to add another tab</small></h3>
-
-			<p>
-				<button id="add_cab" class="btn btn-primary">
-					Add Tab
-				</button>
-			</p>
-
-			<div id="cabs2">
-				<ul>
-					<li>
-						<a href="#cabs-1">Nunc tincidunt</a>
-					</li>
-				</ul>
-				<div id="cabs-1">
-					<p>
-						Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.
-					</p>
-				</div>
-			</div>
-
-			Demo
-			<div id="addcab" title="<div class='widget-header'><h4><i class='fa fa-plus'></i> Add another tab</h4></div>">
-
-				<form>
-
-					<fieldset>
-						<input name="authenticity_token" type="hidden">
-						<div class="form-group">
-							<label>Tab Title</label>
-							<input class="form-control" id="cab_title" value="" placeholder="Text field" type="text">
-						</div>
-
-						<div class="form-group">
-							<label>Content</label>
-							<textarea class="form-control" name="cab_content" id="cab_content" placeholder="Cab Content" rows="3"></textarea>
-						</div>
-
-					</fieldset>
-
-				</form>
-
-			</div>
-
-		</div>
-		
-		
 		<section id="widget-grid" class="">
 
 	<fieldset>
-												<legend>
-													Salary & Experience 
-												</legend>
-												<div class="row">
-													<!-- <div class="col-sm-6">
-				
-														<div class="form-group">
-															<input id="range-slider-1" type="text" name="range_1" value="">
-														</div>
-													</div> -->
-													<div class="col-sm-6">
-				
-														<div class="form-group">
-															<input id="range-slider-2" type="text" name="range_2">
-														</div>
-													</div>
-												</div>
-				
-												<!-- <div class="row">
-													<div class="col-sm-6">
-				
-														<div class="form-group">
-															<input id="range-slider-3" type="text" name="range_2a" value="">
-														</div>
-													</div>
-													<div class="col-sm-6">
-				
-														<div class="form-group">
-															<input id="range-slider-4" type="text" name="range_4" value="">
-														</div>
-													</div>
-												</div> -->
-				
-												<div class="row">
-													<div class="col-sm-12">
-				
-														<div class="form-group">
-															<input id="range-slider-5" type="text" name="range_5a" value="">
-														</div>
-													</div>
-													
-												</div>
-				
-											</fieldset>
-				
-											<fieldset style="display:none">
-												<legend>
-													noScale Slider
-												</legend>
-												<div class="row" >
-													<div class="col-sm-6">
-				
-														<div class="form-group">
-															<label>Default</label>
-															<div id="nouislider-1" class="noUiSlider"></div>
-														</div>
-													</div>
-													<div class="col-sm-6">
-				
-														<div class="form-group">
-															<label>Range slider (<span class="nouislider-value">20 - 60</span>)</label>
-															<div id="nouislider-3" class="noUiSlider"></div>
-														</div>
-				
-													</div>
-												</div>
-				
-				
-												<div class="row">
-													<div class="col-sm-6">
-				
-														<div class="form-group">
-															<label>Default Slider (disabled)</label>
-															<div id="nouislider-4" class="noUiSlider"></div>
-														</div>
-													</div>
-													<div class="col-sm-6">
-				
-														<div class="form-group">
-															<label>Skips a beat</label>
-															<div id="nouislider-2" class="noUiSlider"></div>
-														</div>
-				
-													</div>
-												</div>
-											</fieldset>
+		<legend>
+			Salary & Experience 
+		</legend>
+		<div class="row">
+			<!-- <div class="col-sm-6">
+
+				<div class="form-group">
+					<input id="range-slider-1" type="text" name="range_1" value="">
+				</div>
+			</div> -->
+			<div class="col-sm-6">
+
+				<div class="form-group">
+					<input id="range-slider-2" type="text" name="range_2">
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="row">
+			<div class="col-sm-6">
+
+				<div class="form-group">
+					<input id="range-slider-3" type="text" name="range_2a" value="">
+				</div>
+			</div>
+			<div class="col-sm-6">
+
+				<div class="form-group">
+					<input id="range-slider-4" type="text" name="range_4" value="">
+				</div>
+			</div>
+		</div> -->
+
+		<div class="row">
+			<div class="col-sm-12">
+
+				<div class="form-group">
+					<input id="range-slider-5" type="text" name="range_5a" value="">
+				</div>
+			</div>
+			
+		</div>
+
+	</fieldset>
+
+	<fieldset style="display:none">
+		<legend>
+			noScale Slider
+		</legend>
+		<div class="row" >
+			<div class="col-sm-6">
+
+				<div class="form-group">
+					<label>Default</label>
+					<div id="nouislider-1" class="noUiSlider"></div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+
+				<div class="form-group">
+					<label>Range slider (<span class="nouislider-value">20 - 60</span>)</label>
+					<div id="nouislider-3" class="noUiSlider"></div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-sm-6">
+
+				<div class="form-group">
+					<label>Default Slider (disabled)</label>
+					<div id="nouislider-4" class="noUiSlider"></div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+
+				<div class="form-group">
+					<label>Skips a beat</label>
+					<div id="nouislider-2" class="noUiSlider"></div>
+				</div>
+
+			</div>
+		</div>
+	</fieldset>
 
 	<!-- row -->
 	<div class="row">
@@ -1722,36 +1740,36 @@
 
 			</div>
 			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="addachievement"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="skillsetimprove"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									&times;
 								</button>
-								<h4 class="modal-title" id="myModalLabel">Provide Achievement</h4>
+								<h4 class="modal-title" id="myModalLabel">Provide Skills</h4>
 							</div>
 							<div class="modal-body">
 				
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Guidance Subject" required id="guidanceachievement" />
+											<input type="text" class="form-control" placeholder="Skill Set" required id="skill" />
 										</div>
 										<div class="form-group">
-											<textarea id="achievementdescribe" class="form-control" placeholder="Provide Information about your guidance. Why you are good on the above mentioned guidance.." rows="5" required></textarea>
+											<textarea id="skilldata" class="form-control" placeholder="Provide info on the above skill set. Can add extra info later" rows="5" required></textarea>
 										</div>
 										<div class="form-group">
 											<form id="form2" method="post" action="#" enctype="multipart/form-data">
-											<label class="col-md-2 control-label">File input</label>
+											<label class="col-md-2 control-label">Any Attachment(Certification)</label>
 											<div class="col-md-10">
-												<input type="file" id="file2" name="file2" class="btn btn-default" id="achievementfile">
+												<input type="file" id="fileskill" name="fileskill" class="btn btn-default" id="achievementfile">
 											</div>
 											<button class="col-md-2"  type="button" onclick="uploadFormData()">
 												Upload
 											</button>
 											</form>
-											<input type="hidden" class="form-control" value="" required id="acheivetoken" />
+											<input type="hidden" class="form-control" value="" required id="skilltoken" />
 										</div>
 									</div>
 								</div>
@@ -1761,7 +1779,7 @@
 									Cancel
 								</button>
 								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addachieve()">
-									Add
+									Add Skill
 								</button>
 							</div>
 						</div><!-- /.modal-content -->
@@ -2673,130 +2691,7 @@
 			 */
 			$('.ui-dialog :button').blur();
 		
-			/*
-			 * Just Tabs
-			 */
-		
-			$('#tabs').tabs();
-		
-			/*
-			 *  Simple tabs adding and removing
-			 */
-		
-			$('#tabs2').tabs();
-			$('#cabs2').tabs();
-		
-			// Dynamic tabs
-			var tabTitle = $("#tab_title"), tabContent = $("#tab_content"), tabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href=''>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a></li>", tabCounter = 2;
-			var cabTitle = $("#cab_title"), cabContent = $("#cab_content"), cabTemplate = "<li style='position:relative;'> <span class='air air-top-left delete-tab' style='top:7px; left:7px;'><button class='btn btn-xs font-xs btn-default hover-transparent'><i class='fa fa-times'></i></button></span></span><a href=''>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a></li>", cabCounter = 2;
-		
-			var tabs = $("#tabs2").tabs();
-			var cabs = $("#cabs2").tabs();
-		
-			// modal dialog init: custom buttons and a "close" callback reseting the form inside
-			var dialog = $("#addtab").dialog({
-				autoOpen : false,
-				width : 600,
-				resizable : false,
-				modal : true,
-				buttons : [{
-					html : "<i class='fa fa-times'></i>&nbsp; Cancel",
-					"class" : "btn btn-default",
-					click : function() {
-						$(this).dialog("close");
-		
-					}
-				}, {
-		
-					html : "<i class='fa fa-plus'></i>&nbsp; Add",
-					"class" : "btn btn-danger",
-					click : function() {
-						addTab();
-						$(this).dialog("close");
-					}
-				}]
-			});
 			
-			var dialog = $("#addcab").dialog({
-				autoOpen : false,
-				width : 600,
-				resizable : false,
-				modal : true,
-				buttons : [{
-					html : "<i class='fa fa-times'></i>&nbsp; Cancel",
-					"class" : "btn btn-default",
-					click : function() {
-						$(this).dialog("close");
-		
-					}
-				}, {
-		
-					html : "<i class='fa fa-plus'></i>&nbsp; Add",
-					"class" : "btn btn-danger",
-					click : function() {
-						addCab();
-						$(this).dialog("close");
-					}
-				}]
-			});
-		
-			// addTab form: calls addTab function on submit and closes the dialog
-			var form = dialog.find("form").submit(function(event) {
-				addTab();
-				dialog.dialog("close");
-				event.preventDefault();
-			});
-			
-			var form = dialog.find("form").submit(function(event) {
-				addCab();
-				dialog.dialog("close");
-				event.preventDefault();
-			});
-		
-			// actual addTab function: adds new tab using the input from the form above
-			function addTab() {
-				
-				var label = tabTitle.val() || "Tab " + tabCounter, id = "tabs-" + tabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), tabContentHtml = tabContent.val() || "Tab " + tabCounter + " content.";
-		
-				tabs.find(".ui-tabs-nav").append(li);
-				tabs.append("<div id='" + id + "'><p>" + tabContentHtml + "</p></div>");
-				tabs.tabs("refresh");
-				tabCounter++;
-		
-				// clear fields
-				$("#tab_title").val("");
-				$("#tab_content").val("");
-			}
-			
-			function addCab() {
-				var label = cabTitle.val() || "Cab " + cabCounter, id = "cabs-" + cabCounter, li = $(tabTemplate.replace(/#\{href\}/g, "#" + id).replace(/#\{label\}/g, label)), cabContentHtml = cabContent.val() || "Cab " + cabCounter + " content.";
-		
-				cabs.find(".ui-tabs-nav").append(li);
-				cabs.append("<div id='" + id + "'><p>" + cabContentHtml + "</p></div>");
-				cabs.tabs("refresh");
-				cabCounter++;
-		
-				// clear fields
-				$("#cab_title").val("");
-				$("#cab_content").val("");
-			}
-		
-			// addTab button: just opens the dialog
-			$("#add_tab").button().click(function() {
-				dialog.dialog("open");
-			});
-			
-			$("#add_cab").button().click(function() {
-				dialog.dialog("open");
-			});
-		
-			// close icon: removing the tab on click
-			$("#tabs2").on("click", 'span.delete-tab', function() {
-		
-				var panelId = $(this).closest("li").remove().attr("aria-controls");
-				$("#" + panelId).remove();
-				tabs.tabs("refresh");
-			});
 		
 			/*
 			* ACCORDION
@@ -2829,21 +2724,228 @@
 			
 			Dropzone.autoDiscover = false;
 			$("#mydropzone").dropzone({
-				url: "profileUpload?",
-				addRemoveLinks : true,
-				maxFilesize: 0.5,
-				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
-				dictResponseError: 'Error uploading file!'
-			});
-			
-			Dropzone.autoDiscover = false;
-			$("#Imagedropzone").dropzone({
-				url: "imageProfile?",
+				url: "guidancefile?",
 				paramName: "file",		
-				addRemoveLinks : true,
+				addRemoveLinks : false,
 				maxFilesize: 500,
+				//maxFiles: 1,
+				uploadMultiple: true,
+		        parallelUploads: 100,
 				dictDefaultMessage: '<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
-				dictResponseError: 'Error uploading file!'
+				dictResponseError: 'Error uploading file!',
+				dictDuplicate:'<span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i class="fa fa-caret-right text-danger"></i> Duplicate Files <span class="font-xs">to upload</span></span><span>&nbsp&nbsp<h4 class="display-inline"> (Or Click)</h4></span>',
+				//clickable: '#preview-template',
+				init: function () {
+					this.on("addedfile", function(file) {
+						
+						this.accept = function(file, done) {
+							if (this.files.length) {
+								var isDuplicate = false;
+								var ref = this.files.slice();
+								for (var i = 0, len = this.files.length-1; i <= len; i++) {
+									isDuplicate = true;
+		                            console.log("duplikat: "+file.name);
+		                            if (ref[i].name === file.name){
+		                            	this.removeFile(ref[i]);
+		                            	break;
+		                            }
+								}
+								
+							}
+							
+							
+							/* if ( isDuplicate === true ) {
+			   // output my error string for duplicates
+			                    return done(this.removeFile(this.files[0]));
+			                } else {
+			                    return this.options.accept.call(this, file, done);
+			                } */
+							
+						}
+						
+						/* for(var key in filelistmaintain){
+							console.log(" inside log >>"+filelistmaintain[key]);
+							if(filelistmaintain[key] == file.name){
+								
+								$('#duplicateModal').modal('show');
+								//this.removeFile(file);
+								alert("same file");
+							}
+							
+						} */
+						
+						
+						//myDropzone.accept = function(file, done) {
+
+				      // custom duplicate check
+				                
+
+				     // default dropzone checks
+				               /*  if (file.size > this.options.maxFilesize * 1024 * 1024) {
+				                    return done(this.options.dictFileTooBig.replace("{[{filesize}]}", Math.round(file.size / 1024 / 10.24) / 100).replace("{[{maxFilesize}]}", this.options.maxFilesize));
+				                } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
+				                    return done(this.options.dictInvalidFileType);
+				                } else if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
+				                    done(this.options.dictMaxFilesExceeded.replace("{[{maxFiles}]}", this.options.maxFiles));
+				                    return this.emit("maxfilesexceeded", file);
+				                } else if ( isDuplicate === true ) {
+				   // output my error string for duplicates
+				                    return done(this.options.dictDuplicate);
+				                } else {
+				                    return this.options.accept.call(this, file, done);
+				                } */
+				           // }
+						
+						//alert(file.fileid);
+						var fileid = file.fileid;
+						var filenam = file.name;
+						var filsize = file.size;
+						var filetype = file.type;
+						var sharebutton = Dropzone.createElement("<a href='#' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-trash'></i></a>");
+						var removeButton = Dropzone.createElement("<a href='#' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-list'></i></a>");
+						var downloadButton = Dropzone.createElement("<a href='imageDownload/"+fileid+"' class='btn btn-primary btn-circle'><i class='glyphicon glyphicon-download-alt'></i></a>");
+						//$('#fileitem').val(file);
+						//generateToken();
+						//$('#myModal').modal('show');
+						
+						<%-- var existringfiles = '<%=existingfilelist%>';
+						console.log("existing files ??"+existringfiles );
+						var filedataset=new Array();
+						<%
+							for(int g=0;g<existingfilelist.size();g++){
+								String[] fileinfo = (String[])existingfilelist.get(g);
+								String fileid = fileinfo[0];
+								String filename = fileinfo[1];
+								String filesize = fileinfo[2];
+								String filetype = fileinfo[3];
+								
+								%>
+								filedataset.push('"<%=(String)existingfilelist.get(g)%>"');
+								if(filenam == <%=filename%>){
+									if(filetype == <%=filetype%>){
+										
+									}
+								}
+								<%
+								
+							}
+						
+						%>
+						console.log("filedataset >>"+filedataset); --%>
+						
+						
+						filelistmaintain.push(file.name);
+						this.files.push(file);
+						
+						console.log("file history ??"+filelistmaintain);
+						
+						
+						 sharebutton.addEventListener("click", function (e) {
+						 	//alert("click on share");
+						 	//alert(fileid);
+						 	
+							$('#shareModal').modal('show');
+							$('#unsharedUsers').html("");
+	                        // Make sure the button click doesn't submit the form:
+	                        e.preventDefault();
+	                        e.stopPropagation();
+	                        
+	                        $.ajax({
+	        					url : "guidanceShareConsumers?fileid="+fileid+"&guidanceid="+guidanceid,
+	        					method : 'POST',
+	        					success : function(data){
+	        						alert(data);
+	        						//if(data.success == true){ // if true (1)
+	        						     /*  setTimeout(function(){// wait for 5 secs(2)
+	        						           location.reload(); // then reload the page.(3)
+	        						      }, 5000);  */
+	        						  // }
+	        						
+	        					}
+	        				
+	        		        }); 
+	                        // Remove the file preview.
+	                        //this.removeFile(file);
+	                        // If you want to the delete the file on the server as well,
+	                        // you can do the AJAX request here.
+	                    }); 
+						file.previewElement.appendChild(sharebutton);
+						  removeButton.addEventListener("click", function (e) {
+							 	//alert("click on remove");
+							 	//alert(fileid);
+		                        // Make sure the button click doesn't submit the form:
+		                        e.preventDefault();
+		                        e.stopPropagation();
+		                        // Remove the file preview.
+		                        this.removeFile(file);
+		                        // If you want to the delete the file on the server as well,
+		                        // you can do the AJAX request here.
+		                    }); 
+						
+						 file.previewElement.appendChild(removeButton);
+						 
+						 file.previewElement.appendChild(downloadButton);
+			        }),
+			        
+			        this.on('sending', function(file, xhr, formData){
+			        	var generatedtoken = generateToken();
+			        	alert(generatedtoken);
+			        	formData.append('token', generatedtoken);
+			        }),
+			        this.on("success", function(file, response) {
+			            console.log(response);
+			        }),
+			        //this.createThumbnailFromUrl(file, "imageController/" + file.fileid);
+			        thisDropzone = this;
+					
+					//var elements = document.getElementsByName('name');
+					
+					/* for(var i = 0; i < elements.length; i++)
+					{
+					  data.push(elements[i].value);
+					} */
+					//alert(guidanceid)
+			        $.getJSON('guidanceShareFiles?guidanceid='+guidanceid, function(dataset) {
+			        	 console.log(dataset);
+			        	 for(var i = 0; i < dataset.length; i++){
+			        		 var datavar = dataset[i];
+			        		 var fileid = datavar.fileid;
+			        		 var filename = datavar.name;
+			        		 var filesize = datavar.size;
+			        		 var filetoadd = "";
+			        		 var mockFile = { name: filename, size: filesize, fileid: fileid };
+			        		 for(var key in filelistmaintain){
+									console.log(" inside log >>"+filelistmaintain[key]);
+									if(filelistmaintain[key] == filename){
+										//this.removeFile(file);
+										filetoadd = "true";
+									}
+									
+								}
+			        		  if(filetoadd != "true"){	
+			        		// alert('val variable '+fileid+' var filename '+filename+'file size ::'+filesize);
+				        	    thisDropzone.emit("addedfile", datavar);
+				        	    //thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+				        	    /* thisDropzone.on("addedfile", function(mockFile) {
+				                  mockFile.previewElement.addEventListener("click", function() {
+				                    alert("click");
+				                  });
+				                }); */
+				                
+				        	    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "imageController/" + fileid);
+						    	thisDropzone.createThumbnailFromUrl(mockFile, "imageController/" + fileid);	
+				        	    thisDropzone.emit("complete", mockFile);
+				        	    //thisDropzone.files.push(mockFile);
+				        	    /* var sharebutton = thisDropzone.option.createElement("<button>Share file</button>");
+				        	    thisDropzone.options.previewElement.appendChild(sharebutton); */
+			        		 
+			        		 
+			        	 	}
+			        	 }
+			        	 	
+			        	  
+			        	});
+				}
 			});
 			
 			noUiSlider.create(slider3, {
@@ -2898,7 +3000,133 @@
 				var s = document.getElementsByTagName('script')[0];
 				s.parentNode.insertBefore(ga, s);
 			})();
+			
+			var latitude  = position.coords.latitude;
+			 var longitude = position.coords.longitude;
+			 var location = latitude + "," + longitude;
+			
+			var geocoder = new google.maps.Geocoder();
+		    geocoder.geocode({'latLng': location}, function(results, status) {
+		            if (status == google.maps.GeocoderStatus.OK) {
+		                if (results[0]) {
+		                    var loc = getCountry(results);
+		                    alert(loc)
+		                }
+		            }
+		        });
 
+		    function getCountry(results)
+		    {
+		        for (var i = 0; i < results[0].address_components.length; i++)
+		        {
+		        var shortname = results[0].address_components[i].short_name;
+		        var longname = results[0].address_components[i].long_name;
+		        var type = results[0].address_components[i].types;
+		        if (type.indexOf("country") != -1)
+		        {
+		            if (!isNullOrWhitespace(shortname))
+		            {
+		                return shortname;
+		            }
+		            else
+		            {
+		                return longname;
+		            }
+		        }
+		    }
+
+		}
+
+		function isNullOrWhitespace(text) {
+		    if (text == null) {
+		        return true;
+		    }
+		    return text.replace(/\s/gi, '').length < 1;
+		}
+
+		</script>
+		<script type="text/javascript">
+		 function  generateToken(param){
+			 
+			 var stringLength = 15;
+
+				// list containing characters for the random string
+				var stringArray = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','!','?'];
+
+				//$("#providachieve").click(function (){
+
+					var rndString = "";
+				
+					// build a string with random characters
+					for (var i = 1; i < stringLength; i++) { 
+						var rndNum = Math.ceil(Math.random() * stringArray.length) - 1;
+						rndString = rndString + stringArray[rndNum];
+					};
+					
+					$('#acheivetoken').val(rndString);
+
+				
+			 
+		 }
+				
+		 function addachieve(){
+				alert("new ");	
+				
+				var skillname = $('#skill').val();
+				 var skilldesc = $('#skilldata').val();
+				 var token = $('#skilltoken').val();
+				 var userid = '<%=userid%>';
+				 var latitude  = position.coords.latitude;
+				 var longitude = position.coords.longitude;
+				 var location = latitude + "," + longitude;
+				 //alert(guidanceid);
+				 
+				 $.ajax({
+						url : "saveSkillToProfile?skillname="+skillname+"&skilldesc="+skilldesc+"&skilltoken="+token+"&userid="+userid+"&location="+location,
+						method : 'POST',
+						success : function(data){
+							alert(data);
+							//if(data.success == true){ // if true (1)
+							     /*  setTimeout(function(){// wait for 5 secs(2)
+							           location.reload(); // then reload the page.(3)
+							      }, 5000);  */
+							  // }
+							
+						}
+					
+			        }); 
+				  var elementcolapse = 'collapse'+token;	
+				  var element = '<div id='+token+' class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#'+elementcolapse+'"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>'+
+								'<button class="btn btn-primary" data-toggle="modal" data-target="#addAchievements" onclick="generateToken('skill')">Add New Skill</button></div><div id="'+elementcolapse+'" class="panel-collapse collapse in"><div class="panel-body"></div></div></div>';
+				 $('skillset').prepend($(element));
+				 
+			}	
+		 
+		 function uploadFormData(){
+			   // $('#result').html('');
+			 
+			   var file2 = $('#fileskill');
+			   var token = $('#skilltoken').val();
+			   
+			  var oMyForm = new FormData();
+			  oMyForm.append("file", file2[0].files[0]);
+			  oMyForm.append("token", token);
+			 
+			  $.ajax({
+			    url: 'fileUploadSKills?',
+			    data: oMyForm,
+			    dataType: 'text',
+			    processData: false,
+			    contentType: false,
+			    type: 'POST',
+			    success: function(data){
+			      alert(data);
+			    }
+			  });
+			  
+		 }
+		
+		
 		</script>
 
 	</body>
