@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Profile;
+import com.fliker.Repository.ProfileProjects;
 import com.fliker.Repository.SkillAssesment;
 import com.fliker.Repository.SkillSet;
 import com.fliker.Repository.User;
@@ -137,7 +138,7 @@ public class ProfilePreview {
 			BasicDBList guidancearr = (BasicDBList)theObj.get("guidanceids");
 			if(!guidancearr.isEmpty()){
 				for(int m=0;m<guidancearr.size();m++){
-					guidancelist.add(profprev.getFollowerslist((String)guidancearr.get(m)));
+					guidancelist.add((String)guidancearr.get(m));
 				}
 			}
 			
@@ -157,12 +158,49 @@ public class ProfilePreview {
 			BasicDBList eventarr = (BasicDBList)theObj.get("eventids");
 			if(!eventarr.isEmpty()){
 				for(int m=0;m<eventarr.size();m++){
-					eventlist.add(profprev.getFollowerslist((String)eventarr.get(m)));
+					eventlist.add((String)eventarr.get(m));
 				}
 			}
 			
 			eventmap.put("events", eventlist);
 			profileArr.add(eventmap);
+			
+			
+			HashMap skillmap = new HashMap();
+			ArrayList skilllist = new ArrayList();
+			BasicDBList skillarr = (BasicDBList)theObj.get("skilliset");
+			if(!skillarr.isEmpty()){
+				for(int m=0;m<skillarr.size();m++){
+					skilllist.add(profprev.getSkilllist((String)skillarr.get(m)));
+				}
+			}
+			
+			skillmap.put("skills", skilllist);
+			profileArr.add(skillmap);
+			
+			HashMap projectmap = new HashMap();
+			ArrayList projectlist = new ArrayList();
+			BasicDBList projectarr = (BasicDBList)theObj.get("projects");
+			if(!projectarr.isEmpty()){
+				for(int m=0;m<projectarr.size();m++){
+					projectlist.add((String)projectarr.get(m));
+				}
+			}
+			
+			projectmap.put("projects", projectlist);
+			profileArr.add(projectmap);
+			
+			HashMap coursemap = new HashMap();
+			ArrayList courselist = new ArrayList();
+			BasicDBList coursearr = (BasicDBList)theObj.get("courseids");
+			if(!coursearr.isEmpty()){
+				for(int m=0;m<coursearr.size();m++){
+					courselist.add((String)coursearr.get(m));
+				}
+			}
+			
+			coursemap.put("courses", courselist);
+			profileArr.add(coursemap);
 			
 			
 		}
@@ -271,17 +309,7 @@ public class ProfilePreview {
 			followmap.put("followers", followerslist);
 			profileArr.add(followmap);
 			
-			HashMap guidancemap = new HashMap();
-			ArrayList guidancelist = new ArrayList();
-			BasicDBList guidancearr = (BasicDBList)theObj.get("guidanceids");
-			if(!guidancearr.isEmpty()){
-				for(int m=0;m<guidancearr.size();m++){
-					guidancelist.add(profprev.getFollowerslist((String)guidancearr.get(m)));
-				}
-			}
 			
-			guidancemap.put("guidance", guidancelist);
-			profileArr.add(guidancemap);
 			
 			/*String[] followerarr = (String[])theObj.get("follwerids");
 			if(followerarr != null){
@@ -304,12 +332,88 @@ public class ProfilePreview {
 			profileArr.add(eventmap);
 			
 			
+			HashMap guidancemap = new HashMap();
+			ArrayList guidancelist = new ArrayList();
+			BasicDBList guidancearr = (BasicDBList)theObj.get("guidanceids");
+			if(!guidancearr.isEmpty()){
+				for(int m=0;m<guidancearr.size();m++){
+					guidancelist.add((String)guidancearr.get(m));
+				}
+			}
+			
+			guidancemap.put("guidance", guidancelist);
+			profileArr.add(guidancemap);
+			
+			/*String[] followerarr = (String[])theObj.get("follwerids");
+			if(followerarr != null){
+				
+				for(int k=0;k<followerarr.length;k++){
+					followerslist.add(profprev.getFollowerslist(followerarr[k]));
+				}
+			}*/
+			
+			HashMap skillmap = new HashMap();
+			ArrayList skilllist = new ArrayList();
+			BasicDBList skillarr = (BasicDBList)theObj.get("skilliset");
+			if(!skillarr.isEmpty()){
+				for(int m=0;m<skillarr.size();m++){
+					skilllist.add((String)skillarr.get(m));
+				}
+			}
+			
+			skillmap.put("skills", skilllist);
+			profileArr.add(skillmap);
+			
+			HashMap projectmap = new HashMap();
+			ArrayList projectlist = new ArrayList();
+			BasicDBList projectarr = (BasicDBList)theObj.get("projects");
+			if(!projectarr.isEmpty()){
+				for(int m=0;m<projectarr.size();m++){
+					projectlist.add((String)projectarr.get(m));
+				}
+			}
+			
+			projectmap.put("projects", projectlist);
+			profileArr.add(projectmap);
+			
+			HashMap coursemap = new HashMap();
+			ArrayList courselist = new ArrayList();
+			BasicDBList coursearr = (BasicDBList)theObj.get("courseids");
+			if(!coursearr.isEmpty()){
+				for(int m=0;m<coursearr.size();m++){
+					courselist.add((String)coursearr.get(m));
+				}
+			}
+			
+			coursemap.put("courses", courselist);
+			profileArr.add(coursemap);
 		}
 		
 		
 		return profileArr;
 	}
 	
+	private HashMap getSkilllist(String skillid) {
+		// TODO Auto-generated method stub
+		HashMap skillmap = new HashMap();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("skillid", skillid, "SkillSet");
+		if(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			skillmap.put("skillname", (String)theObj.get("skillname"));
+			DBCursor skillcursor = mongocon.getDBObject("skillassesmentid", skillid, "SkillAssesment");
+			ArrayList skillasseslist = new ArrayList();
+			while(skillcursor.hasNext()){
+				DBObject skillObj = skillcursor.next();
+				skillasseslist.add((String)skillObj.get("skilldescription")+":"+(String)skillObj.get("skillfileid"));
+			}
+			skillmap.put("skillasses", skillasseslist);
+			skillmap.put("skillid", skillid);
+			
+		}
+		
+		return skillmap;
+	}
 	
 	public String getArticlelist(String articleid){
 		
@@ -709,6 +813,7 @@ public class ProfilePreview {
 
 	public void saveSkillToProfileInfo(String skillname, String skilldesc, String skilltoken, String userid, String skilllocation) {
 		// TODO Auto-generated method stub
+		ProfilePreview profprev = new ProfilePreview();
 		
 		String fileid = "";
 		MongoConnection mongocon = new MongoConnection();
@@ -744,28 +849,104 @@ public class ProfilePreview {
 		
 		String[] skillAssesment = {uniqueid};
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM dd, yyyy HH:mm:ss a");
-        //String dateInString = "Friday, Jun 7, 2013 12:10:56 PM";//example
-        
 		
+		DateFunctionality datefunc = new DateFunctionality();
+		//datefunc.getDateSystems();
 		
-        Date datepack = new Date();
-        DateFunctionality datefunc = new DateFunctionality();
-        
-        String localdate = datefunc.getUniformDates(formatter.format(datepack));
 		SkillSet skillset = new SkillSet();
 		skillset.setSkillid(uniqueid);
 		skillset.setSkillAssesment(skillAssesment);
-		skillset.setSkilldatetime(localdate);
+		skillset.setSkilldatetime(datefunc.getDateSystems());
 		skillset.setSkilllocation(skilllocation);
+		skillset.setSkillname(skillname);
 		
 		
+		BasicDBObject basicsksetskobj =  profprev.formProfileSkillDBObject(skillset);
+		mongocon.saveObject(basicsksetskobj, "SkillSet");
 		
+		BasicDBObject basicskassobj =  profprev.formProfileSkillAssesDBObject(skillasses);
+		mongocon.saveObject(basicskassobj, "SkillAssesment");
 		
+		mongocon.updateObject(new BasicDBObject("userid", userid),new BasicDBObject("$push", new BasicDBObject("skilliset", uniqueid)), "Profile");
 		
+	}
+
+
+	private BasicDBObject formProfileSkillAssesDBObject(SkillAssesment skillasses) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("skillassesmentid", skillasses.getSkillassesmentid());
+		basicdbobj.put("skilldescription", skillasses.getSkilldescription());
+		basicdbobj.put("skillfileid", skillasses.getSkillfileid());
+				
+		return basicdbobj;
+	}
+
+
+	private BasicDBObject formProfileSkillDBObject(SkillSet skillset) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("skillAssesment", skillset.getSkillAssesment());
+		basicdbobj.put("skilldatetime", skillset.getSkilldatetime());
+		basicdbobj.put("skillid", skillset.getSkillid());
+		basicdbobj.put("skilllocation", skillset.getSkilllocation());
+		basicdbobj.put("skillname", skillset.getSkillname());
 		
-		//mongocon.updateObject(new BasicDBObject("guidanceinfoid", guidanceid),new BasicDBObject("$push", new BasicDBObject("guidanceachievements", jsonstr)), "GuidanceInfo");
+		return basicdbobj;
+	}
+
+
+	public void saveProjectToProfileInfo(String projectname, String projectskill, String projectrole,
+			String projectdata, String location, String userid) {
+		// TODO Auto-generated method stub
+		ProfilePreview profprev = new ProfilePreview();
+		//String[] projectskills = projectskill.split(",");
 		
+		UploadFileService uploadser = new UploadFileService();
+		String uniqueid = "";
+		
+		try {
+			uniqueid = uploadser.makeSHA1Hash(projectname+projectrole);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		DateFunctionality datefunc = new DateFunctionality();
+		
+		ProfileProjects profproj = new ProfileProjects();
+		profproj.setProjectid(uniqueid);
+		profproj.setProjectdescription(projectdata);
+		profproj.setProjectlocation(location);
+		profproj.setProjectname(projectname);
+		profproj.setProjectrole(projectrole);
+		profproj.setProjectdate(datefunc.getDateSystems());
+		profproj.setProjectskill(projectskill.split(","));
+		
+		MongoConnection mongocon = new MongoConnection();
+		BasicDBObject basicprojkobj =  profprev.formProfileProjDBObject(profproj);
+		mongocon.saveObject(basicprojkobj, "ProfileProject");
+		
+		mongocon.updateObject(new BasicDBObject("userid", userid),new BasicDBObject("$push", new BasicDBObject("projects", uniqueid)), "Profile");
+		
+	}
+
+
+	private BasicDBObject formProfileProjDBObject(ProfileProjects profproj) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("projectdate", profproj.getProjectdate());
+		basicdbobj.put("projectdescription", profproj.getProjectdescription());
+		basicdbobj.put("projectid", profproj.getProjectid());
+		basicdbobj.put("projectlocation", profproj.getProjectlocation());
+		basicdbobj.put("projectname", profproj.getProjectname());
+		basicdbobj.put("projectrole", profproj.getProjectrole());
+		basicdbobj.put("projectskill", profproj.getProjectskill());
+		
+		return basicdbobj;
 	}
 
 

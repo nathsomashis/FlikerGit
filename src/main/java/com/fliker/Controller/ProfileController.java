@@ -250,7 +250,7 @@ public class ProfileController {
 	
 	
 	@RequestMapping("/saveSkillToProfile")
-	public String saveGuidanceInfoAchievement(
+	public String saveSkillInfo(
 			@RequestParam(value = "skillname", required = false, defaultValue = "World") String skillname,ModelMap model,
 			@RequestParam(value = "skilldesc", required = false, defaultValue = "World") String skilldesc,
 			@RequestParam(value = "skilltoken", required = false, defaultValue = "World") String skilltoken,
@@ -268,6 +268,35 @@ public class ProfileController {
 			ServletContext context = request.getSession().getServletContext();
 			User userinf = (User) context.getAttribute("UserValues");
 			profprev.saveSkillToProfileInfo(skillname,skilldesc,skilltoken,userid, location);
+			
+			
+		}catch(Exception ex){
+			return result;
+		}
+		return result;
+	}
+	
+	
+	@RequestMapping("/saveProjectToProfile")
+	public String saveProjectInfo(
+			@RequestParam(value = "projectname", required = false) String projectname,ModelMap model,
+			@RequestParam(value = "projectskill", required = false) String projectskill,
+			@RequestParam(value = "projectrole", required = false) String projectrole,
+			@RequestParam(value = "projectdata", required = false) String projectdata,
+			@RequestParam(value = "location", required = false) String location,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+		String result = "false";
+		try{
+			ArrayList resourcesSearch = new ArrayList();
+			
+			
+			ProfilePreview profprev = new ProfilePreview();
+			//resourcesSearch = guideprev.getGuidanceData(guidanceid);
+			ServletContext context = request.getSession().getServletContext();
+			User userinf = (User) context.getAttribute("UserValues");
+			String userids = userinf.getUserid();
+			profprev.saveProjectToProfileInfo(projectname,projectskill,projectrole,projectdata, location,userids);
 			
 			
 		}catch(Exception ex){
