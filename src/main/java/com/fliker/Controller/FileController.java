@@ -1044,6 +1044,28 @@ public class FileController {
 		return imageblob;
 	}
 
+	@RequestMapping(value = "/imageFromFileSet/{fileid}")
+	@ResponseBody
+	public byte[] imageFromFileId(@PathVariable String fileid) {
+
+		CoursePreview courseprev = new CoursePreview();
+
+		//Profile profinf = courseprev.profileInfo(userid);
+
+		GridFSDBFile imagecontent = courseprev.getFiles(fileid);
+		System.out.println("imagecontent ++" + imagecontent.getInputStream());
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			imagecontent.writeTo(baos);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		byte[] imageblob = baos.toByteArray();
+
+		return imageblob;
+	}
+	
 	public String makeSHA1Hash(String input) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		MessageDigest md = MessageDigest.getInstance("SHA1");
 		md.reset();
