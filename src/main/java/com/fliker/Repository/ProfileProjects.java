@@ -14,6 +14,9 @@ public class ProfileProjects {
 	private String projectdescription;
 	private String projectdate;
 	private String projectlocation;
+	private String[] projectfile;
+	
+	
 	public String getProjectid() {
 		return projectid;
 	}

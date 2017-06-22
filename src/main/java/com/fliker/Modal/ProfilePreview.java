@@ -398,16 +398,44 @@ public class ProfilePreview {
 		HashMap skillmap = new HashMap();
 		MongoConnection mongocon = new MongoConnection();
 		DBCursor resultcursor = mongocon.getDBObject("skillid", skillid, "SkillSet");
-		if(resultcursor.hasNext()){
+		while(resultcursor.hasNext()){
 			DBObject theObj = resultcursor.next();
 			skillmap.put("skillname", (String)theObj.get("skillname"));
-			DBCursor skillcursor = mongocon.getDBObject("skillassesmentid", skillid, "SkillAssesment");
-			ArrayList skillasseslist = new ArrayList();
-			while(skillcursor.hasNext()){
-				DBObject skillObj = skillcursor.next();
-				skillasseslist.add((String)skillObj.get("skilldescription")+":"+(String)skillObj.get("skillfileid"));
+			ArrayList skillassesreslist = new ArrayList();
+			BasicDBList skillasseslist = (BasicDBList)theObj.get("skillAssesment");
+			for(int x=0;x<skillasseslist.size();x++){
+				DBCursor skillcursor = mongocon.getDBObject("skillassesmentid", (String)skillasseslist.get(x), "SkillAssesment");
+				if(skillcursor.hasNext()){
+					DBObject skillObj = skillcursor.next();
+					skillassesreslist.add((String)skillObj.get("skilldescription")+":"+(String)skillObj.get("skillfileid"));
+				}
 			}
-			skillmap.put("skillasses", skillasseslist);
+			skillmap.put("skillasses", skillassesreslist);
+			skillmap.put("skillid", skillid);
+			
+		}
+		
+		return skillmap;
+	}
+	
+	private HashMap getProjectlist(String projectid) {
+		// TODO Auto-generated method stub
+		HashMap skillmap = new HashMap();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("projectid", projectid, "ProfileProject");
+		while(resultcursor.hasNext()){
+			DBObject theObj = resultcursor.next();
+			skillmap.put("projectdescription", (String)theObj.get("projectdescription"));
+			ArrayList skillassesreslist = new ArrayList();
+			BasicDBList skillasseslist = (BasicDBList)theObj.get("skillAssesment");
+			for(int x=0;x<skillasseslist.size();x++){
+				DBCursor skillcursor = mongocon.getDBObject("skillassesmentid", (String)skillasseslist.get(x), "SkillAssesment");
+				if(skillcursor.hasNext()){
+					DBObject skillObj = skillcursor.next();
+					skillassesreslist.add((String)skillObj.get("skilldescription")+":"+(String)skillObj.get("skillfileid"));
+				}
+			}
+			skillmap.put("skillasses", skillassesreslist);
 			skillmap.put("skillid", skillid);
 			
 		}
@@ -868,6 +896,54 @@ public class ProfilePreview {
 		mongocon.saveObject(basicskassobj, "SkillAssesment");
 		
 		mongocon.updateObject(new BasicDBObject("userid", userid),new BasicDBObject("$push", new BasicDBObject("skilliset", uniqueid)), "Profile");
+		
+	}
+	
+	
+	public void saveAchievToSkill(String skilldata,String token,String userids,String skillid) {
+		// TODO Auto-generated method stub
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String fileid = "";
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("tempid", token, "FileUnionTimeFrame");
+		while(resultcursor.hasNext() ){
+			
+			DBObject dbj = resultcursor.next();
+			
+			String userid = (String)dbj.get("userid");
+			if(userids.equalsIgnoreCase(userid)){
+				
+				fileid = (String)dbj.get("fileid");
+			}
+			
+		}
+		UploadFileService uploadser = new UploadFileService();
+		String uniqueid = "";
+		
+		try {
+			uniqueid = uploadser.makeSHA1Hash(skilldata+token);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		SkillAssesment skillasses = new SkillAssesment();
+		skillasses.setSkillassesmentid(uniqueid);
+		skillasses.setSkilldescription(skilldata);
+		skillasses.setSkillfileid(fileid);
+		
+		DateFunctionality datefunc = new DateFunctionality();
+		//datefunc.getDateSystems();
+		
+				
+		BasicDBObject basicskassobj =  profprev.formProfileSkillAssesDBObject(skillasses);
+		mongocon.saveObject(basicskassobj, "SkillAssesment");
+		
+		mongocon.updateObject(new BasicDBObject("skillid", skillid),new BasicDBObject("$push", new BasicDBObject("skillAssesment", uniqueid)), "SkillSet");
 		
 	}
 

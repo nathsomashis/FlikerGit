@@ -286,7 +286,7 @@
 							data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i>
 								Full <u>S</u>creen</a></li>
 						<li class="divider"></li>
-						<li><a href="login.html"
+						<li><a href="logout?"
 							class="padding-10 padding-top-5 padding-bottom-5"
 							data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i>
 								<strong><u>L</u>ogout</strong></a></li>
@@ -825,12 +825,13 @@
 												StringBuffer skillassesbuff = new StringBuffer();
 												for(int n=0;n<skillasseslist.size();n++){
 													String skillasses = (String)skillasseslist.get(n);
+													
 													String[] assementset = skillasses.split(":");
-													if(assementset[1].isEmpty()){
-														String assesstr = "<div class='panel-body'><div class='row'><div class='col-xs-6'>"+assementset[0]+"</div><div class='col-xs-6'></div></div></div>";
+													if(assementset.length<2){
+														String assesstr = "<div class='panel-body'><div class='row'><div class='col-xs-6'><p>"+assementset[0]+"</p></div><div class='col-xs-6'></div></div></div>";
 														skillassesbuff.append(assesstr);
 													}else{
-														String assesstr = "<div class='panel-body'><div class='row'><div class='col-xs-6'>"+assementset[0]+"</div><div class='col-xs-6'><img src='/Fliker/imageFromFileSet/"+assementset[1]+"'/></div></div></div>";
+														String assesstr = "<div class='panel-body'><div class='row'><div class='col-xs-6'><p>"+assementset[0]+"</p></div><div class='col-xs-6'><img class='superbox-img' src='/Fliker/imageFromFileSet/"+assementset[1]+"'/></div></div></div>";
 														skillassesbuff.append(assesstr);
 													}
 												}
@@ -846,7 +847,7 @@
 										perskillline = "<div class='panel panel-default'>"+"<div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse'"+ 
 												"data-parent='#skillset' href='#"+skillid+"'> <i class='fa fa-fw fa-plus-circle txt-color-green'></i> <i class='fa fa-fw fa-minus-circle"+ 
 												"txt-color-red'></i>"+skillnm+"</a></h4></div>"+"<div id="+skillid+" class='panel-collapse collapse'>"+
-														skillas+"</div></div>";
+														skillas+"<br><a href='#' rel='tooltip' title='' id='"+skillid+"' data-placement='top' onclick=(AddNewAchievement('"+skillid+"')) data-original-title='Add New Acheivement to Skill'>Add Achievement</a></div></div>";
 										
 										preskilltop.append(perskillline);
 										
@@ -1988,6 +1989,57 @@
 			<!-- /.modal-dialog -->
 		</div>
 		<!-- /.modal -->
+		
+		<div class="modal fade" id="skillnewset" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Provide Skills</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<textarea id="skillnewdata" class="form-control"
+										placeholder="Provide info on the above skill set. Can add extra info later"
+										rows="5" required></textarea>
+								</div>
+								<div class="form-group">
+									<form id="form2" method="post" action="#"
+										enctype="multipart/form-data">
+										<label class="col-md-2 control-label">Any
+											Attachment(Certification)</label>
+										<div class="col-md-10">
+											<input type="file" id="filenewskill" name="filenewskill"
+												class="btn btn-default" id="skillnewfile">
+										</div>
+										<button class="col-md-2" type="button"
+											onclick="uploadSkillNewData()">Upload</button>
+									</form>
+									<input type="hidden" class="form-control" value="" required
+										id="skillnewtoken" />
+									<input type="hidden" class="form-control" value="" required
+										id="skillexistingid" />	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Cancel</button>
+						<button type="button" class="btn btn-primary"
+							id="addnewachievement" onclick="addOnExistSkillachieve()">Add Skill
+						</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
 
 		<div class="modal fade" id="projectsetimprove" tabindex="-1"
 			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -2021,7 +2073,21 @@
 									<input type="hidden" class="form-control" value="" required
 										id="projecttoken" />	
 								</div>
-								
+								<div class="form-group">
+									<form id="form2" method="post" action="#"
+										enctype="multipart/form-data">
+										<label class="col-md-2 control-label">Any
+											Attachment(Certification)</label>
+										<div class="col-md-10">
+											<input type="file" id="filenewproject" name="filenewproject"
+												class="btn btn-default" id="projectfile">
+										</div>
+										<button class="col-md-2" type="button"
+											onclick="uploadProjectData()">Upload</button>
+									</form>
+									<input type="hidden" class="form-control" value="" required
+										id="projecttoken" />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -2030,6 +2096,67 @@
 							Cancel</button>
 						<button type="button" class="btn btn-primary"
 							id="addnewproject" onclick="addproject()">Add
+							Projects</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<div class="modal fade" id="projectnewsetimprove" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Provide Projects</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" class="form-control"
+										placeholder="Project New Skill Added" id="projectskilladd" />
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control"
+										placeholder="Project New Role" required id="projectnewrole" />
+								</div>
+								<div class="form-group">
+									<textarea id="projectnewdata" class="form-control"
+										placeholder="Provide info on the above skill set. Can add extra info later"
+										rows="5" required></textarea>
+									<input type="hidden" class="form-control" value="" required
+										id="projectnewtoken" />	
+								</div>
+								<div class="form-group">
+									<form id="form2" method="post" action="#"
+										enctype="multipart/form-data">
+										<label class="col-md-2 control-label">Any
+											Attachment(Certification)</label>
+										<div class="col-md-10">
+											<input type="file" id="filenewprojectdat" name="filenewprojectdat"
+												class="btn btn-default" id="projectfile">
+										</div>
+										<button class="col-md-2" type="button"
+											onclick="uploadProjectNewData()">Upload</button>
+									</form>
+									<input type="hidden" class="form-control" value="" required
+										id="projectnewtoken" />
+									<input type="hidden" class="form-control" value="" required
+										id="projectexistingid" />	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Cancel</button>
+						<button type="button" class="btn btn-primary"
+							id="addnewprojectdata" onclick="addDataproject()">Add
 							Projects</button>
 					</div>
 				</div>
@@ -3429,11 +3556,117 @@
 				 
 			}	
 		 
+		 
+		 function addproject(){
+				
+				
+				var projectname = $('#projectname').val();
+				 var projectskill = $('#projectskill').val();
+				 var projectrole = $('#projectrole').val();
+				 var projectdata = $('#projectdata').val();
+				 var projecttoken = $('#projecttoken').val();
+				 var location = $('#locationspec').val();
+				 //alert(guidanceid);
+				 
+				 $.ajax({
+						url : "saveProjectToProfile?projectname="+projectname+"&projectskill="+projectskill+"&projectrole="+projectrole+"&projectdata="+projectdata+"&location="+location,
+						method : 'POST',
+						success : function(data){
+							alert(data);
+							//if(data.success == true){ // if true (1)
+							     /*  setTimeout(function(){// wait for 5 secs(2)
+							           location.reload(); // then reload the page.(3)
+							      }, 5000);  */
+							  // }
+							
+						}
+					
+			        }); 
+				  var elementcolapse = 'collapse'+projecttoken;	
+				  var element = '<div id='+token+' class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#projectset" href="#'+elementcolapse+'"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>'+
+								'<button class="btn btn-primary" data-toggle="modal" data-target="#addAchievements" onclick="generateToken(skill)">Add New Skill</button></div><div id="'+elementcolapse+'" class="panel-collapse collapse in"><div class="panel-body"></div></div></div>';
+				 $('projectset').prepend($(element));
+				 
+			}
+		 
 		 function uploadFormData(){
 			   // $('#result').html('');
 			 
 			   var file2 = $('#fileskill');
 			   var token = $('#skilltoken').val();
+			   
+			  var oMyForm = new FormData();
+			  oMyForm.append("file", file2[0].files[0]);
+			  oMyForm.append("token", token);
+			 
+			  $.ajax({
+			    url: 'fileUploadSKills?',
+			    data: oMyForm,
+			    dataType: 'text',
+			    processData: false,
+			    contentType: false,
+			    type: 'POST',
+			    success: function(data){
+			      alert(data);
+			    }
+			  });
+			  
+		 }
+		 
+		 
+		 function uploadProjectData(){
+			   // $('#result').html('');
+			 
+			   var file2 = $('#filenewproject');
+			   var token = $('#projecttoken').val();
+			   
+			  var oMyForm = new FormData();
+			  oMyForm.append("file", file2[0].files[0]);
+			  oMyForm.append("token", token);
+			 
+			  $.ajax({
+			    url: 'fileUploadSKills?',
+			    data: oMyForm,
+			    dataType: 'text',
+			    processData: false,
+			    contentType: false,
+			    type: 'POST',
+			    success: function(data){
+			      alert(data);
+			    }
+			  });
+			  
+		 }
+		 
+		 function uploadProjectNewData(){
+			   // $('#result').html('');
+			 
+			   var file2 = $('#filenewprojectdat');
+			   var token = $('#projectnewtoken').val();
+			   
+			  var oMyForm = new FormData();
+			  oMyForm.append("file", file2[0].files[0]);
+			  oMyForm.append("token", token);
+			 
+			  $.ajax({
+			    url: 'fileUploadSKills?',
+			    data: oMyForm,
+			    dataType: 'text',
+			    processData: false,
+			    contentType: false,
+			    type: 'POST',
+			    success: function(data){
+			      alert(data);
+			    }
+			  });
+			  
+		 }
+		 
+		 function uploadSkillNewData(){
+			   // $('#result').html('');
+			 
+			   var file2 = $('#filenewskill');
+			   var token = $('#skillnewtoken').val();
 			   
 			  var oMyForm = new FormData();
 			  oMyForm.append("file", file2[0].files[0]);
@@ -3525,6 +3758,53 @@
 		        return true;
 		    }
 		    return text.replace(/\s/gi, '').length < 1;
+		}
+		
+		
+		function AddNewAchievement(param){
+			$('#skillexistingid').val(param);
+			
+			var stringLength = 15;
+
+			// list containing characters for the random string
+			var stringArray = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','!','?'];
+
+			//$("#providachieve").click(function (){
+
+				var rndString = "";
+			
+				// build a string with random characters
+				for (var i = 1; i < stringLength; i++) { 
+					var rndNum = Math.ceil(Math.random() * stringArray.length) - 1;
+					rndString = rndString + stringArray[rndNum];
+				};
+				
+			$('#skillnewtoken').val(rndString);
+			
+			$('#skillnewset').modal('show');
+		
+			//console.log( $(this).attr('id'));
+		}
+			
+		function addOnExistSkillachieve(){
+				var skilldata = $('#skillnewdata').val();
+				var token = $('#skillnewtoken').val();
+				var skillid = $('#skillexistingid').val();
+				
+				$.ajax({
+					url : "saveNewAchievementToSkill?skilldata="+skilldata+"&token="+token+"&skillid="+skillid,
+					method : 'POST',
+					success : function(data){
+						alert(data);
+						//if(data.success == true){ // if true (1)
+						     /*  setTimeout(function(){// wait for 5 secs(2)
+						           location.reload(); // then reload the page.(3)
+						      }, 5000);  */
+						  // }
+						
+					}
+				
+		        }); 
 		}
 		
 		</script>
