@@ -305,4 +305,31 @@ public class ProfileController {
 		return result;
 	}
 	
+	
+	@RequestMapping("/saveNewAchievementToSkill")
+	public String saveAchievmentToSkill(
+			@RequestParam(value = "skilldata", required = false) String skilldata,ModelMap model,
+			@RequestParam(value = "token", required = false) String token,
+			@RequestParam(value = "skillid", required = false) String skillid,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+		String result = "false";
+		try{
+			ArrayList resourcesSearch = new ArrayList();
+			
+			
+			ProfilePreview profprev = new ProfilePreview();
+			//resourcesSearch = guideprev.getGuidanceData(guidanceid);
+			ServletContext context = request.getSession().getServletContext();
+			User userinf = (User) context.getAttribute("UserValues");
+			String userids = userinf.getUserid();
+			profprev.saveAchievToSkill(skilldata,token,userids,skillid);
+			
+			
+		}catch(Exception ex){
+			return result;
+		}
+		return result;
+	}
+	
 }
