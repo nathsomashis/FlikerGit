@@ -1,98 +1,125 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*,com.fliker.Repository.*" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*,com.fliker.Repository.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en-us">
-	<head>
-		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+<head>
+<meta charset="utf-8">
+<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-		<title> Profile </title>
-		<meta name="description" content="">
-		<meta name="author" content="">
-			
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Profile</title>
+<meta name="description" content="">
+<meta name="author" content="">
 
-		<!-- #CSS Links -->
-		<!-- Basic Styles -->
-		<link href='<c:url value="/resources/css/bootstrap.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css"> -->
-		<link href='<c:url value="/resources/css/font-awesome.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css"> -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
-		<link href='<c:url value="/resources/css/smartadmin-production-plugins.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production-plugins.min.css"> -->
-		<link href='<c:url value="/resources/css/smartadmin-production.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.min.css"> -->
-		<link href='<c:url value="/resources/css/smartadmin-skins.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.min.css"> -->
+<!-- #CSS Links -->
+<!-- Basic Styles -->
+<link href='<c:url value="/resources/css/bootstrap.min.css" />'
+	rel="stylesheet">
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css"> -->
+<link href='<c:url value="/resources/css/font-awesome.min.css" />'
+	rel="stylesheet">
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css"> -->
 
-		<!-- SmartAdmin RTL Support -->
-		<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> --> 
+<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+<link
+	href='<c:url value="/resources/css/smartadmin-production-plugins.min.css" />'
+	rel="stylesheet">
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production-plugins.min.css"> -->
+<link
+	href='<c:url value="/resources/css/smartadmin-production.min.css" />'
+	rel="stylesheet">
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.min.css"> -->
+<link href='<c:url value="/resources/css/smartadmin-skins.min.css" />'
+	rel="stylesheet">
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.min.css"> -->
 
-		<!-- We recommend you use "your_style.css" to override SmartAdmin
+<!-- SmartAdmin RTL Support -->
+<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />'
+	rel="stylesheet">
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> -->
+
+<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
 		     
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
-		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
-		<link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet">
+<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
+<link href='<c:url value="/resources/css/demo.min.css" />'
+	rel="stylesheet">
 
-		<!-- #FAVICONS -->
-		<link href='<c:url value="/resources/img/favicon/favicon.ico" />' rel="shortcut icon" type="image/x-icon">
-		<!-- <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon"> -->
-		<link href='<c:url value="/resources/img/favicon/favicon.ico" />' rel="icon" type="image/x-icon">
-		<!-- <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon"> -->
+<!-- #FAVICONS -->
+<link href='<c:url value="/resources/img/favicon/favicon.ico" />'
+	rel="shortcut icon" type="image/x-icon">
+<!-- <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon"> -->
+<link href='<c:url value="/resources/img/favicon/favicon.ico" />'
+	rel="icon" type="image/x-icon">
+<!-- <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon"> -->
 
-		<!-- #GOOGLE FONT -->
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+<!-- #GOOGLE FONT -->
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
-		<!-- #APP SCREEN / ICONS -->
-		<!-- Specifying a Webpage Icon for Web Clip 
+<!-- #APP SCREEN / ICONS -->
+<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-			 <link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">
-		<!-- <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon" sizes="76x76">
-		<!-- <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-iphone-retina.png" />' rel="apple-touch-icon" sizes="120x120">
-		<!-- <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-ipad-retina.png" />' rel="apple-touch-icon" sizes="152x152">
-		<!-- <link rel="apple-touch-icon" sizes="152x152" href="img/splash/touch-icon-ipad-retina.png"> -->
-		
-		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		
-		<!-- Startup image for web apps -->
-		<link href='<c:url value="/resources/img/splash/ipad-landscape.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
-		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
-		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
+<link
+	href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />'
+	rel="apple-touch-icon">
+<!-- <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png"> -->
+<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />'
+	rel="apple-touch-icon" sizes="76x76">
+<!-- <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png"> -->
+<link
+	href='<c:url value="/resources/img/splash/touch-icon-iphone-retina.png" />'
+	rel="apple-touch-icon" sizes="120x120">
+<!-- <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png"> -->
+<link
+	href='<c:url value="/resources/img/splash/touch-icon-ipad-retina.png" />'
+	rel="apple-touch-icon" sizes="152x152">
+<!-- <link rel="apple-touch-icon" sizes="152x152" href="img/splash/touch-icon-ipad-retina.png"> -->
 
-		<style>
-			.s2 {
-				color: #D14;
-			}
+<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-			.c1 {
-				color: #998;
-				font-style: italic;
-			}
+<!-- Startup image for web apps -->
+<link href='<c:url value="/resources/img/splash/ipad-landscape.png" />'
+	rel="apple-touch-startup-image"
+	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
+<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />'
+	rel="apple-touch-startup-image"
+	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
+<link href='<c:url value="/resources/img/splash/iphone.png" />'
+	rel="apple-touch-startup-image"
+	media="screen and (max-device-width: 320px)">
+<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
 
-			.mi {
-				color: #099;
-			}
-		</style>
+<style>
+.s2 {
+	color: #D14;
+}
+
+.c1 {
+	color: #998;
+	font-style: italic;
+}
+
+.mi {
+	color: #099;
+}
+</style>
 
 
-	</head>
-	
-	<!--
+</head>
+
+<!--
 
 	TABLE OF CONTENTS.
 	
@@ -121,9 +148,9 @@
 	===================================================================
 	
 	-->
-	
-	<!-- #BODY -->
-	<!-- Possible Classes
+
+<!-- #BODY -->
+<!-- Possible Classes
 
 		* 'smart-style-{SKIN#}'
 		* 'smart-rtl'         - Switch theme mode to RTL
@@ -136,174 +163,209 @@
 		* 'fixed-page-footer' - Fixes footer
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
-	<body class="">
+<body class="" onload="geoFindMe()">
+	
+	<!-- HEADER -->
+	<header id="header">
+		<div id="logo-group">
 
-		<!-- HEADER -->
-		<header id="header">
-			<div id="logo-group">
-
-				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
-				<!-- END LOGO PLACEHOLDER -->
-
-				<!-- Note: The activity badge color changes when clicked and resets the number to 0
+			<!-- PLACE YOUR LOGO HERE -->
+			<span id="logo"> <img src="img/logo.png" alt="Fliker">
+			</span>
+			<!-- END LOGO PLACEHOLDER -->
+			<input type="hidden" class="form-control" value="" required	id="locationspec" />
+			<!-- Note: The activity badge color changes when clicked and resets the number to 0
 				Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-				<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
+			<span id="activity" class="activity-dropdown"> <i
+				class="fa fa-user"></i> <b class="badge"> 21 </b>
+			</span>
 
-				<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
-				<div class="ajax-dropdown">
+			<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
+			<div class="ajax-dropdown">
 
-					<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
-					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						<label class="btn btn-default">
-							<input type="radio" name="activity" id="offlinechatmessages?">
-							Msgs (14) </label>
-						<label class="btn btn-default">
-							<input type="radio" name="activity" id="notifications?">
-							notify (3) </label>
-						<label class="btn btn-default">
-							<input type="radio" name="activity" id="tasklists?">
-							Tasks (4) </label>
+				<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
+				<div class="btn-group btn-group-justified" data-toggle="buttons">
+					<label class="btn btn-default"> <input type="radio"
+						name="activity" id="offlinechatmessages?"> Msgs (14)
+					</label> <label class="btn btn-default"> <input type="radio"
+						name="activity" id="notifications?"> notify (3)
+					</label> <label class="btn btn-default"> <input type="radio"
+						name="activity" id="tasklists?"> Tasks (4)
+					</label>
+				</div>
+
+				<!-- notification content -->
+				<div class="ajax-notifications custom-scroll">
+
+					<div class="alert alert-transparent">
+						<h4>Click a button to show messages here</h4>
+						This blank page message helps protect your privacy, or you can
+						show the first message here automatically.
 					</div>
 
-					<!-- notification content -->
-					<div class="ajax-notifications custom-scroll">
-
-						<div class="alert alert-transparent">
-							<h4>Click a button to show messages here</h4>
-							This blank page message helps protect your privacy, or you can show the first message here automatically.
-						</div>
-
-						<i class="fa fa-lock fa-4x fa-border"></i>
-
-					</div>
-					<!-- end notification content -->
-
-					<!-- footer: refresh area -->
-					<span> Last updated on: 12/12/2013 9:43AM
-						<button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..." class="btn btn-xs btn-default pull-right">
-							<i class="fa fa-refresh"></i>
-						</button> </span>
-					<!-- end footer -->
+					<i class="fa fa-lock fa-4x fa-border"></i>
 
 				</div>
-				<!-- END AJAX-DROPDOWN -->
-			</div>
+				<!-- end notification content -->
 
-			<!-- projects dropdown -->
-			<div class="project-context hidden-xs" >
-
-				<span class="label">Projects:</span>
-				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
-
-				<!-- Suggestion: populate this list with fetch and push technique -->
-				<ul class="dropdown-menu" style="border: 1px solid black">
-					<h5>Daily Note</h5>
-					<li>
-						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
-					</li>
-					
-					<li class="divider"></li>
-					<li>
-						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
-					</li>
-				</ul>
-				<!-- end dropdown-menu-->
-
-			</div>
-			
-			<!-- end projects dropdown -->
-
-			<!-- pulled right: nav area -->
-			<div class="pull-right">
-				
-				<!-- collapse menu button -->
-				<div id="hide-menu" class="btn-header pull-right">
-					<span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
-				</div>
-				<!-- end collapse menu -->
-				
-				<!-- #MOBILE -->
-				<!-- Top menu profile link : this shows only when top menu is active -->
-				<ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
-					<li class="">
-						<a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown"> 
-							<img src="img/avatars/sunny.png" alt="John Doe" class="online" />  
-						</a>
-						<ul class="dropdown-menu pull-right">
-							<li>
-								<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="profile.html" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> <u>P</u>rofile</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full <u>S</u>creen</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="login.html" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-
-				<!-- logout button -->
-				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="logout?" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
-				</div>
-				<!-- end logout button -->
-
-				<!-- search mobile button (this is hidden till mobile view port) -->
-				<div id="search-mobile" class="btn-header transparent pull-right">
-					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
-				</div>
-				<!-- end search mobile button -->
-
-				<!-- input: search field -->
-				<form action="searchresults?" class="header-search pull-right">
-					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" >
-					<button type="submit">
-						<i class="fa fa-search"></i>
+				<!-- footer: refresh area -->
+				<span> Last updated on: 12/12/2013 9:43AM
+					<button type="button"
+						data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
+						class="btn btn-xs btn-default pull-right">
+						<i class="fa fa-refresh"></i>
 					</button>
-					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-				</form>
-				<!-- end input: search field -->
+				</span>
+				<!-- end footer -->
 
-				<!-- fullscreen button -->
-				<div id="fullscreen" class="btn-header transparent pull-right">
-					<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
-				</div>
-				<!-- end fullscreen button -->
-				
-				<!-- #Voice Command: Start Speech -->
-				<div id="speech-btn" class="btn-header transparent pull-right hidden-sm hidden-xs">
-					<div> 
-						<a href="javascript:void(0)" title="Voice Command" data-action="voiceCommand"><i class="fa fa-microphone"></i></a> 
-						<div class="popover bottom"><div class="arrow"></div>
-							<div class="popover-content">
-								<h4 class="vc-title">Voice command activated <br><small>Please speak clearly into the mic</small></h4>
-								<h4 class="vc-title-error text-center">
-									<i class="fa fa-microphone-slash"></i> Voice command failed
-									<br><small class="txt-color-red">Must <strong>"Allow"</strong> Microphone</small>
-									<br><small class="txt-color-red">Must have <strong>Internet Connection</strong></small>
-								</h4>
-								<a href="javascript:void(0);" class="btn btn-success" onclick="commands.help()">See Commands</a> 
-								<a href="javascript:void(0);" class="btn bg-color-purple txt-color-white" onclick="$('#speech-btn .popover').fadeOut(50);">Close Popup</a> 
-							</div>
+			</div>
+			<!-- END AJAX-DROPDOWN -->
+		</div>
+
+		<!-- projects dropdown -->
+		<div class="project-context hidden-xs">
+
+			<span class="label">Projects:</span> <span
+				class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
+				projects <i class="fa fa-angle-down"></i>
+			</span>
+
+			<!-- Suggestion: populate this list with fetch and push technique -->
+			<ul class="dropdown-menu" style="border: 1px solid black">
+				<h5>Daily Note</h5>
+				<li><textarea id="notemessage" class="form-control"
+						name="notemessage" rows="3" style="width: 400px"></textarea></li>
+
+				<li class="divider"></li>
+				<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
+						Note Down</a></li>
+			</ul>
+			<!-- end dropdown-menu-->
+
+		</div>
+
+		<!-- end projects dropdown -->
+
+		<!-- pulled right: nav area -->
+		<div class="pull-right">
+
+			<!-- collapse menu button -->
+			<div id="hide-menu" class="btn-header pull-right">
+				<span> <a href="javascript:void(0);" data-action="toggleMenu"
+					title="Collapse Menu"><i class="fa fa-reorder"></i></a>
+				</span>
+			</div>
+			<!-- end collapse menu -->
+
+			<!-- #MOBILE -->
+			<!-- Top menu profile link : this shows only when top menu is active -->
+			<ul id="mobile-profile-img"
+				class="header-dropdown-list hidden-xs padding-5">
+				<li class=""><a href="#"
+					class="dropdown-toggle no-margin userdropdown"
+					data-toggle="dropdown"> <img src="img/avatars/sunny.png"
+						alt="John Doe" class="online" />
+				</a>
+					<ul class="dropdown-menu pull-right">
+						<li><a href="javascript:void(0);"
+							class="padding-10 padding-top-0 padding-bottom-0"><i
+								class="fa fa-cog"></i> Setting</a></li>
+						<li class="divider"></li>
+						<li><a href="profile.html"
+							class="padding-10 padding-top-0 padding-bottom-0"> <i
+								class="fa fa-user"></i> <u>P</u>rofile
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="javascript:void(0);"
+							class="padding-10 padding-top-0 padding-bottom-0"
+							data-action="toggleShortcut"><i class="fa fa-arrow-down"></i>
+								<u>S</u>hortcut</a></li>
+						<li class="divider"></li>
+						<li><a href="javascript:void(0);"
+							class="padding-10 padding-top-0 padding-bottom-0"
+							data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i>
+								Full <u>S</u>creen</a></li>
+						<li class="divider"></li>
+						<li><a href="login.html"
+							class="padding-10 padding-top-5 padding-bottom-5"
+							data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i>
+								<strong><u>L</u>ogout</strong></a></li>
+					</ul></li>
+			</ul>
+
+			<!-- logout button -->
+			<div id="logout" class="btn-header transparent pull-right">
+				<span> <a href="logout?" title="Sign Out"
+					data-action="userLogout"
+					data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i
+						class="fa fa-sign-out"></i></a>
+				</span>
+			</div>
+			<!-- end logout button -->
+
+			<!-- search mobile button (this is hidden till mobile view port) -->
+			<div id="search-mobile" class="btn-header transparent pull-right">
+				<span> <a href="javascript:void(0)" title="Search"><i
+						class="fa fa-search"></i></a>
+				</span>
+			</div>
+			<!-- end search mobile button -->
+
+			<!-- input: search field -->
+			<form action="searchresults?" class="header-search pull-right">
+				<input id="search-fld" type="text" name="param"
+					placeholder="Find reports and more">
+				<button type="submit">
+					<i class="fa fa-search"></i>
+				</button>
+				<a href="javascript:void(0);" id="cancel-search-js"
+					title="Cancel Search"><i class="fa fa-times"></i></a>
+			</form>
+			<!-- end input: search field -->
+
+			<!-- fullscreen button -->
+			<div id="fullscreen" class="btn-header transparent pull-right">
+				<span> <a href="javascript:void(0);"
+					data-action="launchFullscreen" title="Full Screen"><i
+						class="fa fa-arrows-alt"></i></a>
+				</span>
+			</div>
+			<!-- end fullscreen button -->
+
+			<!-- #Voice Command: Start Speech -->
+			<div id="speech-btn"
+				class="btn-header transparent pull-right hidden-sm hidden-xs">
+				<div>
+					<a href="javascript:void(0)" title="Voice Command"
+						data-action="voiceCommand"><i class="fa fa-microphone"></i></a>
+					<div class="popover bottom">
+						<div class="arrow"></div>
+						<div class="popover-content">
+							<h4 class="vc-title">
+								Voice command activated <br>
+								<small>Please speak clearly into the mic</small>
+							</h4>
+							<h4 class="vc-title-error text-center">
+								<i class="fa fa-microphone-slash"></i> Voice command failed <br>
+								<small class="txt-color-red">Must <strong>"Allow"</strong>
+									Microphone
+								</small> <br>
+								<small class="txt-color-red">Must have <strong>Internet
+										Connection</strong></small>
+							</h4>
+							<a href="javascript:void(0);" class="btn btn-success"
+								onclick="commands.help()">See Commands</a> <a
+								href="javascript:void(0);"
+								class="btn bg-color-purple txt-color-white"
+								onclick="$('#speech-btn .popover').fadeOut(50);">Close Popup</a>
 						</div>
 					</div>
 				</div>
-				<!-- end voice command -->
+			</div>
+			<!-- end voice command -->
 
-				<!-- multiple lang dropdown : find all flags in the flags page -->
-				<!-- <ul class="header-dropdown-list hidden-xs">
+			<!-- multiple lang dropdown : find all flags in the flags page -->
+			<!-- <ul class="header-dropdown-list hidden-xs">
 					<li>
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/blank.gif" class="flag flag-us" alt="United States"> <span> English (US) </span> <i class="fa fa-angle-down"></i> </a>
 						<ul class="dropdown-menu pull-right">
@@ -341,21 +403,21 @@
 						</ul>
 					</li>
 				</ul> -->
-				<!-- end multiple lang -->
+			<!-- end multiple lang -->
 
-			</div>
-			<!-- end pulled right: nav area -->
+		</div>
+		<!-- end pulled right: nav area -->
 
-		</header>
-		<!-- END HEADER -->
+	</header>
+	<!-- END HEADER -->
 
-		<!-- #NAVIGATION -->
-		<!-- Left panel : Navigation area -->
-		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
-		<aside id="left-panel">
+	<!-- #NAVIGATION -->
+	<!-- Left panel : Navigation area -->
+	<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+	<aside id="left-panel">
 
-			<!-- User info -->
-			<%
+		<!-- User info -->
+		<%
 		
 			String fullname = (String)request.getAttribute("FullName");
 			String gender = (String)request.getAttribute("Gender");
@@ -403,48 +465,48 @@
 		</div>
 		<!-- end user info -->
 
-			<nav>
-				<!-- 
+		<nav>
+			<!-- 
 				NOTE: Notice the gaps after each icon usage <i></i>..
 				Please note that these links work a bit different than
 				traditional href="" links. See documentation for details.
 				-->
 
-				<ul>
-		<li><a href="search?"><i
-				class="fa fa-lg fa-fw fa-search-plus"></i> <span
-				class="menu-item-parent">Search</span> </a></li>
-		<!-- <li><a href="dashboardanalysis?"><i
+			<ul>
+				<li><a href="search?"><i
+						class="fa fa-lg fa-fw fa-search-plus"></i> <span
+						class="menu-item-parent">Search</span> </a></li>
+				<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
-		<li ><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
-				class="menu-item-parent">Wall</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<li><a href="dashboardsocial?"><i
+						class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+						class="menu-item-parent">Wall</span> <span
+						class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
-		<li class="active"><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
-				<span class="menu-item-parent">Profile</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
-				<span class="menu-item-parent">Timeline</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		<li><a href="createpost?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
-		</li>
-		<li><a href="classroom?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-		</li>
-		<li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
-			<ul>
-				<li class=""><a href="courseEdu?" title="NewPost"><i
-						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
+				<li class="active"><a href="profile?"><i
+						class="fa fa-lg fa-fw fa-info"></i> <span class="menu-item-parent">Profile</span>
+						<span class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+						<span class="menu-item-parent">Timeline</span> <span
+						class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<li><a href="createpost?" title="NewPost"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post
+							Your Activity</span></a></li>
+				<li><a href="classroom?" title="NewPost"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
-				<li class=""><a href="classroom?" title="ClassRoom"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-				</li>
-			</ul></li>
-		 <!-- <li><a href="#" title="Dashboard"><i
+				<li><a href="#" title="Dashboard"><i
+						class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
+					<ul>
+						<li class=""><a href="courseEdu?" title="NewPost"><i
+								class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
+						</li>
+						<li class=""><a href="classroom?" title="ClassRoom"><i
+								class="fa fa-lg fa-fw fa-inbox"></i><span
+								class="menu-item-parent">ClassRoom</span></a></li>
+					</ul></li>
+				<!-- <li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
 			<ul>		
 				<li class="active"><a href="#" title="NewCourse"><i
@@ -458,19 +520,19 @@
 											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>
 			</ul>
 		</li> -->
-		<li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-briefcase"></i> <span
-				class="menu-item-parent">Work</span></a>
-			<ul>
-				<li class=""><a href="ideatoimplement?" title="NewPost"><i
-						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
-				</li>
-				<li class=""><a href="jobanalysis?" title="NewJob"><i
-						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional Way</span></a>
-				</li>
-				
-			</ul></li>
-		<!-- <li class=""><a href="organizations?" title="Organizations"><i
+				<li><a href="#" title="Dashboard"><i
+						class="fa fa-lg fa-fw fa-briefcase"></i> <span
+						class="menu-item-parent">Work</span></a>
+					<ul>
+						<li class=""><a href="ideatoimplement?" title="NewPost"><i
+								class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+						</li>
+						<li class=""><a href="jobanalysis?" title="NewJob"><i
+								class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional
+									Way</span></a></li>
+
+					</ul></li>
+				<!-- <li class=""><a href="organizations?" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
 				<ul>
 				<li class=""><a href="createjob?" title="NewJob"><i
@@ -480,34 +542,34 @@
 						class="fa fa-group"></i><span class="menu-item-parent">Start New Company</span></a>
 				</li>
 			</ul></li> -->
-		<li class=""><a href="#" title="Organizations"><i
+				<li class=""><a href="#" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
-				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
-						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
-				</li>
-				<li class=""><a href="companies?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
-				</li>
-			</ul></li>		
+					<ul>
+						<li class=""><a href="createjob?" title="NewJob"><i
+								class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
+						</li>
+						<li class=""><a href="companies?" title="Companies"><i
+								class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
+						</li>
+					</ul></li>
 
-		<li class="chat-users top-menu-invisible"><a href="#"><i
-				class="fa fa-lg fa-fw fa-comment-o"><em
-					class="bg-color-pink flash animated">!</em></i> <span
-				class="menu-item-parent">Smart Chat API <sup>beta</sup></span></a>
-			<ul>
-				<li>
-					<!-- DISPLAY USERS -->
-					<div class="display-users">
+				<li class="chat-users top-menu-invisible"><a href="#"><i
+						class="fa fa-lg fa-fw fa-comment-o"><em
+							class="bg-color-pink flash animated">!</em></i> <span
+						class="menu-item-parent">Smart Chat API <sup>beta</sup></span></a>
+					<ul>
+						<li>
+							<!-- DISPLAY USERS -->
+							<div class="display-users">
 
-						<input class="form-control chat-user-filter" placeholder="Filter"
-							type="text"> <a href="#" class="usr" data-chat-id="cha1"
-							data-chat-fname="Sadi" data-chat-lname="Orlaf"
-							data-chat-status="busy"
-							data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
-							data-chat-alertshow="true" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+								<input class="form-control chat-user-filter"
+									placeholder="Filter" type="text"> <a href="#"
+									class="usr" data-chat-id="cha1" data-chat-fname="Sadi"
+									data-chat-lname="Orlaf" data-chat-status="busy"
+									data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
+									data-chat-alertshow="true" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/5.png' alt='Sadi Orlaf'>
 												<div class='usr-card-content'>
@@ -516,13 +578,13 @@
 												</div>
 											</div>
 										">
-							<i></i>Sadi Orlaf
-						</a> <a href="#" class="usr" data-chat-id="cha2"
-							data-chat-fname="Jessica" data-chat-lname="Dolof"
-							data-chat-status="online" data-chat-alertmsg=""
-							data-chat-alertshow="false" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Sadi Orlaf
+								</a> <a href="#" class="usr" data-chat-id="cha2"
+									data-chat-fname="Jessica" data-chat-lname="Dolof"
+									data-chat-status="online" data-chat-alertmsg=""
+									data-chat-alertshow="false" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/1.png' alt='Jessica Dolof'>
 												<div class='usr-card-content'>
@@ -531,12 +593,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Jessica Dolof
-						</a> <a href="#" class="usr" data-chat-id="cha3"
-							data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
-							data-chat-status="online" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Jessica Dolof
+								</a> <a href="#" class="usr" data-chat-id="cha3"
+									data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
+									data-chat-status="online" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/3.png' alt='Zekarburg Almandalie'>
 												<div class='usr-card-content'>
@@ -545,12 +607,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Zekarburg Almandalie
-						</a> <a href="#" class="usr" data-chat-id="cha4"
-							data-chat-fname="Barley" data-chat-lname="Krazurkth"
-							data-chat-status="away" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Zekarburg Almandalie
+								</a> <a href="#" class="usr" data-chat-id="cha4"
+									data-chat-fname="Barley" data-chat-lname="Krazurkth"
+									data-chat-status="away" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/4.png' alt='Barley Krazurkth'>
 												<div class='usr-card-content'>
@@ -559,12 +621,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Barley Krazurkth
-						</a> <a href="#" class="usr offline" data-chat-id="cha5"
-							data-chat-fname="Farhana" data-chat-lname="Amrin"
-							data-chat-status="incognito" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Barley Krazurkth
+								</a> <a href="#" class="usr offline" data-chat-id="cha5"
+									data-chat-fname="Farhana" data-chat-lname="Amrin"
+									data-chat-status="incognito" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/female.png' alt='Farhana Amrin'>
 												<div class='usr-card-content'>
@@ -573,12 +635,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Farhana Amrin (offline)
-						</a> <a href="#" class="usr offline" data-chat-id="cha6"
-							data-chat-fname="Lezley" data-chat-lname="Jacob"
-							data-chat-status="incognito" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Farhana Amrin (offline)
+								</a> <a href="#" class="usr offline" data-chat-id="cha6"
+									data-chat-fname="Lezley" data-chat-lname="Jacob"
+									data-chat-status="incognito" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/male.png' alt='Lezley Jacob'>
 												<div class='usr-card-content'>
@@ -587,44 +649,46 @@
 												</div>
 											</div>
 										">
-							<i></i>Lezley Jacob (offline)
-						</a> <a href="ajax/chat.html"
-							class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
-							the API</a>
+									<i></i>Lezley Jacob (offline)
+								</a> <a href="ajax/chat.html"
+									class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
+									the API</a>
 
-					</div> <!-- END DISPLAY USERS -->
-				</li>
-			</ul></li>
-	</ul>
-			</nav>
-			
+							</div> <!-- END DISPLAY USERS -->
+						</li>
+					</ul></li>
+			</ul>
+		</nav>
 
-			<span class="minifyme" data-action="minifyMenu"> 
-				<i class="fa fa-arrow-circle-left hit"></i> 
+
+		<span class="minifyme" data-action="minifyMenu"> <i
+			class="fa fa-arrow-circle-left hit"></i>
+		</span>
+
+	</aside>
+	<!-- END NAVIGATION -->
+
+	<!-- MAIN PANEL -->
+	<div id="main" role="main">
+
+		<!-- RIBBON -->
+		<div id="ribbon">
+
+			<span class="ribbon-button-alignment"> <span id="refresh"
+				class="btn btn-ribbon" data-action="resetWidgets"
+				data-title="refresh" rel="tooltip" data-placement="bottom"
+				data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
+				data-html="true"> <i class="fa fa-refresh"></i>
+			</span>
 			</span>
 
-		</aside>
-		<!-- END NAVIGATION -->
+			<!-- breadcrumb -->
+			<ol class="breadcrumb">
+				<li>Profile</li>
+			</ol>
+			<!-- end breadcrumb -->
 
-		<!-- MAIN PANEL -->
-		<div id="main" role="main">
-
-			<!-- RIBBON -->
-			<div id="ribbon">
-
-				<span class="ribbon-button-alignment"> 
-					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
-						<i class="fa fa-refresh"></i>
-					</span> 
-				</span>
-
-				<!-- breadcrumb -->
-				<ol class="breadcrumb">
-					<li>Profile</li>
-				</ol>
-				<!-- end breadcrumb -->
-
-				<!-- You can also add more buttons to the
+			<!-- You can also add more buttons to the
 				ribbon for further usability
 
 				Example below:
@@ -635,10 +699,10 @@
 				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
 				</span> -->
 
-			</div>
-			<!-- END RIBBON -->
-			
-			<%
+		</div>
+		<!-- END RIBBON -->
+
+		<%
 			
 				String imageid = "";
 				String profileid = "";
@@ -654,9 +718,21 @@
 				int articlecount = 0;
 				int connectioncount = 0;
 				int followercount = 0;
+				int skillcount = 0;
+				int eventcount = 0;
+				int guidancecount = 0;
+				int projectcount = 0;
+				int coursecount = 0;
+				
+				String skillString = "";
 				ArrayList articlelist = new ArrayList();
 				ArrayList connectionlist = new ArrayList();
 				ArrayList followerlist = new ArrayList();
+				ArrayList skilllist = new ArrayList();
+				ArrayList eventlist = new ArrayList();
+				ArrayList guidancelist = new ArrayList();
+				ArrayList projectlist = new ArrayList();
+				ArrayList courselist = new ArrayList();
 				ArrayList profilelist = (ArrayList)request.getAttribute("postlist");
 				System.out.println(profilelist);
 				for(int m=0;m<profilelist.size();m++){
@@ -707,13 +783,88 @@
 							}else if(collectionresul.equalsIgnoreCase("connections")){
 								connectionlist = (ArrayList)mecoll.getValue();
 								if(connectionlist!= null){
-									articlecount = connectionlist.size();
+									connectioncount = connectionlist.size();
 								}
 								
 							}else if(collectionresul.equalsIgnoreCase("followers")){
 								followerlist = (ArrayList)mecoll.getValue();
 								if(followerlist!= null){
-									articlecount = followerlist.size();
+									followercount = followerlist.size();
+								}
+							}else if(collectionresul.equalsIgnoreCase("eventids")){
+								eventlist = (ArrayList)mecoll.getValue();
+								if(eventlist!= null){
+									eventcount = eventlist.size();
+								}
+							}else if(collectionresul.equalsIgnoreCase("guidance")){
+								guidancelist = (ArrayList)mecoll.getValue();
+								if(guidancelist!= null){
+									guidancecount = guidancelist.size();
+								}
+							}else if(collectionresul.equalsIgnoreCase("skills")){
+								skilllist = (ArrayList)mecoll.getValue();
+								if(skilllist!= null){
+									StringBuffer preskilltop = new StringBuffer();
+									
+									for(int i=0;i<skilllist.size();i++){
+										System.out.println("Size >>"+skilllist.size());
+										String skillsetstr = "";
+										HashMap skillmap = (HashMap)skilllist.get(i);
+										Set skillset = skillmap.entrySet();
+										Iterator skillit = skillset.iterator();
+										String perskillline = "";
+										
+										String skillid = "";
+										String skillnm = "";
+										String skillas = "";
+										while(skillit.hasNext()){
+											
+											Map.Entry skillme = (Map.Entry)skillit.next();
+											if(((String)skillme.getKey()).equalsIgnoreCase("skillasses")){
+												ArrayList skillasseslist = (ArrayList)skillme.getValue();
+												StringBuffer skillassesbuff = new StringBuffer();
+												for(int n=0;n<skillasseslist.size();n++){
+													String skillasses = (String)skillasseslist.get(n);
+													String[] assementset = skillasses.split(":");
+													if(assementset[1].isEmpty()){
+														String assesstr = "<div class='panel-body'><div class='row'><div class='col-xs-6'>"+assementset[0]+"</div><div class='col-xs-6'></div></div></div>";
+														skillassesbuff.append(assesstr);
+													}else{
+														String assesstr = "<div class='panel-body'><div class='row'><div class='col-xs-6'>"+assementset[0]+"</div><div class='col-xs-6'><img src='/Fliker/imageFromFileSet/"+assementset[1]+"'/></div></div></div>";
+														skillassesbuff.append(assesstr);
+													}
+												}
+												skillas = skillassesbuff.toString();
+												System.out.println(skillas);
+											}else if(((String)skillme.getKey()).equalsIgnoreCase("skillname")){
+												skillnm = (String)skillme.getValue();
+											}else if(((String)skillme.getKey()).equalsIgnoreCase("skillid")){
+												skillid = (String)skillme.getValue();
+											}
+											
+										}
+										perskillline = "<div class='panel panel-default'>"+"<div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse'"+ 
+												"data-parent='#skillset' href='#"+skillid+"'> <i class='fa fa-fw fa-plus-circle txt-color-green'></i> <i class='fa fa-fw fa-minus-circle"+ 
+												"txt-color-red'></i>"+skillnm+"</a></h4></div>"+"<div id="+skillid+" class='panel-collapse collapse'>"+
+														skillas+"</div></div>";
+										
+										preskilltop.append(perskillline);
+										
+									}
+									skillString = preskilltop.toString();
+									
+									
+									skillcount = skilllist.size();
+								}
+							}else if(collectionresul.equalsIgnoreCase("projects")){
+								projectlist = (ArrayList)mecoll.getValue();
+								if(projectlist!= null){
+									projectcount = projectlist.size();
+								}
+							}else if(collectionresul.equalsIgnoreCase("courses")){
+								courselist = (ArrayList)mecoll.getValue();
+								if(courselist!= null){
+									coursecount = courselist.size();
 								}
 							}
 							
@@ -726,14 +877,14 @@
 			
 			
 			%>
-			
-			
-			<!-- MAIN CONTENT -->
-			<div id="content">
 
-				<!-- Bread crumb is created dynamically -->
-				<!-- row -->
-				<!-- <div class="row">
+
+		<!-- MAIN CONTENT -->
+		<div id="content">
+
+			<!-- Bread crumb is created dynamically -->
+			<!-- row -->
+			<!-- <div class="row">
 				
 					col
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
@@ -771,125 +922,153 @@
 					end col
 				
 				</div> -->
-				<!-- end row -->
-				
-				<!-- row -->
-				
-				<div class="row">
-				
-					<div class="col-sm-12">
-				
-				
-							<div class="well well-sm">
-				
-								<div class="row">
-				
-									<div class="col-sm-12 col-md-12 col-lg-6">
-										<div class="well well-light well-sm no-margin no-padding">
-				
-											<div class="row">
-				
-												<div class="col-sm-12">
-													<div id="myCarousel" class="carousel fade profile-carousel">
-														<div class="air air-bottom-right padding-10">
-															<a href="javascript:void(0);" class="btn txt-color-white bg-color-teal btn-sm"><i class="fa fa-check"></i> Follow</a>&nbsp; <a href="javascript:void(0);" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-link"></i> Connect</a>
-														</div>
-														<div class="air air-top-left padding-10">
-															<h4 class="txt-color-white font-md">Jan 1, 2014</h4>
-														</div>
-														<ol class="carousel-indicators">
-															<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-															<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-															<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-														</ol>
-														<div class="carousel-inner">
-															<!-- Slide 1 -->
-															<div class="item active">
-																<img src="<c:url value='/resources/img/demo/s1.jpg' />" alt="demo user">
-															</div>
-															<!-- Slide 2 -->
-															<div class="item">
-																<img src="<c:url value='/resources/img/demo/s2.jpg' />" alt="demo user">
-															</div>
-															<!-- Slide 3 -->
-															<div class="item">
-																<img src="<c:url value='/resources/img/demo/m3.jpg' />" alt="demo user">
-															</div>
-														</div>
+			<!-- end row -->
+
+			<!-- row -->
+
+			<div class="row">
+
+				<div class="col-sm-12">
+
+
+					<div class="well well-sm">
+
+						<div class="row">
+
+							<div class="col-sm-12 col-md-12 col-lg-6">
+								<div class="well well-light well-sm no-margin no-padding">
+
+									<div class="row">
+
+										<div class="col-sm-12">
+											<div id="myCarousel" class="carousel fade profile-carousel">
+												<div class="air air-bottom-right padding-10">
+													<a href="javascript:void(0);"
+														class="btn txt-color-white bg-color-teal btn-sm"><i
+														class="fa fa-check"></i> Follow</a>&nbsp; <a
+														href="javascript:void(0);"
+														class="btn txt-color-white bg-color-pinkDark btn-sm"><i
+														class="fa fa-link"></i> Connect</a>
+												</div>
+												<div class="air air-top-left padding-10">
+													<h4 class="txt-color-white font-md">Jan 1, 2014</h4>
+												</div>
+												<ol class="carousel-indicators">
+													<li data-target="#myCarousel" data-slide-to="0"
+														class="active"></li>
+													<li data-target="#myCarousel" data-slide-to="1" class=""></li>
+													<li data-target="#myCarousel" data-slide-to="2" class=""></li>
+												</ol>
+												<div class="carousel-inner">
+													<!-- Slide 1 -->
+													<div class="item active">
+														<img src="<c:url value='/resources/img/demo/s1.jpg' />"
+															alt="demo user">
+													</div>
+													<!-- Slide 2 -->
+													<div class="item">
+														<img src="<c:url value='/resources/img/demo/s2.jpg' />"
+															alt="demo user">
+													</div>
+													<!-- Slide 3 -->
+													<div class="item">
+														<img src="<c:url value='/resources/img/demo/m3.jpg' />"
+															alt="demo user">
 													</div>
 												</div>
-				
-												<div class="col-sm-12">
-				
-													<div class="row">
-				
-														<div class="col-sm-3 profile-pic">
-															<% if(imageid!= null){%>
-															
-																<img  data-toggle="modal" data-target="#myModal" src="<c:url value='/resources/img/avatars/sunny-big.png' />" alt="demo user">
-																
-															<%}else {%>
-														
-															<img data-toggle="modal" data-target="#myModal" src="<c:url value='/resources/img/avatars/male.png' />" alt="demo user">
-															
-															<%} %>
-															<div class="padding-10">
-																<h4 class="font-md"><strong><%=followercount %></strong>
-																<br>
-																<small>Followers</small></h4>
-																<br>
-																<h4 class="font-md"><strong><%=connectioncount%></strong>
-																<br>
-																<small>Connections</small></h4>
-															</div>
-														</div>
-														<div class="col-sm-6">
-															<h1><span class="semi-bold"><%=name%></span>
-															<br>
-															<small id="currectstatus-result"> <%=currentStatus %></small>&nbsp;&nbsp;<i href="#" id="currectstatus-eg5" class="fa fa-edit"></i></h1>
-				
-															<ul class="list-unstyled">
-																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-phone"></i>&nbsp;&nbsp;<span id="contact-result" class="txt-color-darken"><%=contact%></span><i href="#" id="contact-eg6" class="fa fa-edit"></i>
-																	</p>
-																</li>
-																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a id="email-result" href="mailto:<%=emailid%>"><%=emailid%></a>&nbsp;&nbsp;<i href="#" id="email-eg6" class="fa fa-edit"></i>
-																	</p>
-																</li>
-																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-skype"></i>&nbsp;&nbsp;<span id="skype-result" class="txt-color-darken"><%=skypeid%></span><i href="#" id="skype-eg6" class="fa fa-edit"></i>
-																	</p>
-																</li>
-																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-calendar"></i>&nbsp;&nbsp;<span class="txt-color-darken">Free after <a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Create an Appointment">4:30 PM</a></span>
-																	</p>
-																</li>
-															</ul>
-															<br>
-															<p id="tellabout-result" class="font-md">
-																<i>A little about me...</i><i href="#" id="tellabout-eg6" class="fa fa-edit"></i>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+
+											<div class="row">
+
+												<div class="col-sm-3 profile-pic">
+													<% if(imageid!= null){%>
+
+													<img data-toggle="modal" data-target="#myModal"
+														src="<c:url value='/resources/img/avatars/sunny-big.png' />"
+														alt="demo user">
+
+													<%}else {%>
+
+													<img data-toggle="modal" data-target="#myModal"
+														src="<c:url value='/resources/img/avatars/male.png' />"
+														alt="demo user">
+
+													<%} %>
+													<div class="padding-10">
+														<h4 class="font-md">
+															<strong><%=followercount %></strong> <br> <small>Followers</small>
+														</h4>
+														<br>
+														<h4 class="font-md">
+															<strong><%=connectioncount%></strong> <br> <small>Connections</small>
+														</h4>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<h1>
+														<span class="semi-bold"><%=name%></span> <br> <small
+															id="currectstatus-result"> <%=currentStatus %></small>&nbsp;&nbsp;<i
+															href="#" id="currectstatus-eg5" class="fa fa-edit"></i>
+													</h1>
+
+													<ul class="list-unstyled">
+														<li>
+															<p class="text-muted">
+																<i class="fa fa-phone"></i>&nbsp;&nbsp;<span
+																	id="contact-result" class="txt-color-darken"><%=contact%></span><i
+																	href="#" id="contact-eg6" class="fa fa-edit"></i>
 															</p>
-															<p id="tellabout-result">
-				
-																<%=tellaboutme%>
-				
+														</li>
+														<li>
+															<p class="text-muted">
+																<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a
+																	id="email-result" href="mailto:<%=emailid%>"><%=emailid%></a>&nbsp;&nbsp;<i
+																	href="#" id="email-eg6" class="fa fa-edit"></i>
 															</p>
-															<%-- <br>
+														</li>
+														<li>
+															<p class="text-muted">
+																<i class="fa fa-skype"></i>&nbsp;&nbsp;<span
+																	id="skype-result" class="txt-color-darken"><%=skypeid%></span><i
+																	href="#" id="skype-eg6" class="fa fa-edit"></i>
+															</p>
+														</li>
+														<li>
+															<p class="text-muted">
+																<i class="fa fa-calendar"></i>&nbsp;&nbsp;<span
+																	class="txt-color-darken">Free after <a
+																	href="javascript:void(0);" rel="tooltip" title=""
+																	data-placement="top"
+																	data-original-title="Create an Appointment">4:30 PM</a></span>
+															</p>
+														</li>
+													</ul>
+													<br>
+													<p id="tellabout-result" class="font-md">
+														<i>A little about me...</i><i href="#" id="tellabout-eg6"
+															class="fa fa-edit"></i>
+													</p>
+													<p id="tellabout-result">
+
+														<%=tellaboutme%>
+
+													</p>
+													<%-- <br>
 															<a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i><%=hangoverid %></a>
 															<br> --%>
-															<br>
-				
-														</div>
-														<div class="col-sm-3">
-															<h1><small>Connections</small></h1>
-															<%if(connectioncount !=0){ %>
-															<ul class="list-inline friends-list">
-																<%for(int s=0;s<7;s++){ 
+													<br>
+
+												</div>
+												<div class="col-sm-3">
+													<h1>
+														<small>Connections</small>
+													</h1>
+													<%if(connectioncount !=0){ %>
+													<ul class="list-inline friends-list">
+														<%for(int s=0;s<7;s++){ 
 																
 																	Profile profil = (Profile)connectionlist.get(s);
 																	String userids = profil.getUserid();
@@ -897,18 +1076,19 @@
 																	String userimage = profil.getProfileImageid();
 																
 																%>
-																<li><img src="/Fliker/imageFromUserid/<%=userids%>" alt="<%=username%>">
-																</li>
-																<%} %>
-																<li>
-																	<a href="javascript:void(0);"><%=connectionlist.size()-6%>more</a>
-																</li>
-															</ul>
-															<%} %>	
-															<h1><small>Followers</small></h1>
-															<%if(followercount !=0){ %>
-															<ul class="list-inline friends-list">
-																<%for(int t=0;t<7;t++){ 
+														<li><img src="/Fliker/imageFromUserid/<%=userids%>"
+															alt="<%=username%>"></li>
+														<%} %>
+														<li><a href="javascript:void(0);"><%=connectionlist.size()-6%>more</a>
+														</li>
+													</ul>
+													<%} %>
+													<h1>
+														<small>Followers</small>
+													</h1>
+													<%if(followercount !=0){ %>
+													<ul class="list-inline friends-list">
+														<%for(int t=0;t<7;t++){ 
 																
 																	Profile profil = (Profile)followerlist.get(t);
 																	String userids = profil.getUserid();
@@ -916,241 +1096,228 @@
 																	String userimage = profil.getProfileImageid();
 																
 																%>
-																<li><img src="/Fliker/imageFromUserid/<%=userids%>" alt="<%=username%>">
-																</li>
-																<%} %>
-																<li>
-																	<a href="javascript:void(0);"><%=followerlist.size()-6%>more</a>
-																</li>
-															</ul>
-															<%} %>
-														</div>
-				
-													</div>
-				
+														<li><img src="/Fliker/imageFromUserid/<%=userids%>"
+															alt="<%=username%>"></li>
+														<%} %>
+														<li><a href="javascript:void(0);"><%=followerlist.size()-6%>more</a>
+														</li>
+													</ul>
+													<%} %>
 												</div>
-				
+
 											</div>
-				
-											<div class="row">
-				
-												<div class="col-sm-12">
-				
-													<hr>
-				
-													<div class="padding-10">
-				
-														<ul class="nav nav-tabs tabs-pull-right">
-															<li class="active">
-																<a href="#a1" data-toggle="tab">Recent Articles</a>
-															</li>
-															<li>
-																<a href="#a2" data-toggle="tab">New Members</a>
-															</li>
-															<li class="pull-left">
-																<span class="margin-top-10 display-inline"><i class="fa fa-rss text-success"></i> Activity</span>
-															</li>
-														</ul>
-				
-														<div class="tab-content padding-top-10">
-															<div class="tab-pane fade in active" id="a1">
-				
-																<div class="row">
-				
-																	<div class="col-xs-2 col-sm-1">
-																		<time datetime="2014-09-20" class="icon">
-																			<strong>Jan</strong>
-																			<span>10</span>
-																		</time>
-																	</div>
-				
-																	<div class="col-xs-10 col-sm-11">
-																		<h6 class="no-margin"><a href="javascript:void(0);">Allice in Wonderland</a></h6>
-																		<p>
-																			Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi Nam eget dui.
-																			Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero,
-																			sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel.
-																		</p>
-																	</div>
-				
-																	<div class="col-sm-12">
-				
-																		<hr>
-				
-																	</div>
-				
-																	<div class="col-xs-2 col-sm-1">
-																		<time datetime="2014-09-20" class="icon">
-																			<strong>Jan</strong>
-																			<span>10</span>
-																		</time>
-																	</div>
-				
-																	<div class="col-xs-10 col-sm-11">
-																		<h6 class="no-margin"><a href="javascript:void(0);">World Report</a></h6>
-																		<p>
-																			Morning our be dry. Life also third land after first beginning to evening cattle created let subdue you'll winged don't Face firmament.
-																			You winged you're was Fruit divided signs lights i living cattle yielding over light life life sea, so deep.
-																			Abundantly given years bring were after. Greater you're meat beast creeping behold he unto She'd doesn't. Replenish brought kind gathering Meat.
-																		</p>
-																	</div>
-				
-																	<div class="col-sm-12">
-				
-																		<br>
-				
-																	</div>
-				
-																</div>
-				
-															</div>
-															<div class="tab-pane fade" id="a2">
-				
-																<div class="alert alert-info fade in">
-																	
-																	<i class="fa-fw fa fa-info"></i>
-																	<strong>Recommendations</strong>
-																</div>
-																
-																<div class="user" title="email@company.com">
-																	<img src="img/avatars/female.png" alt="demo user"><a href="javascript:void(0);">Jenn Wilson</a>
-																	<div class="email">
-																		travis@company.com
-																	</div>
-																</div>
-																<div class="user" title="email@company.com">
-																	<img src="img/avatars/male.png" alt="demo user"><a href="javascript:void(0);">Marshall Hitt</a>
-																	<div class="email">
-																		marshall@company.com
-																	</div>
-																</div>
-																<div class="user" title="email@company.com">
-																	<img src="img/avatars/male.png" alt="demo user"><a href="javascript:void(0);">Joe Cadena</a>
-																	<div class="email">
-																		joe@company.com
-																	</div>
-																</div>
-																<div class="user" title="email@company.com">
-																	<img src="img/avatars/male.png" alt="demo user"><a href="javascript:void(0);">Mike McBride</a>
-																	<div class="email">
-																		mike@company.com
-																	</div>
-																</div>
-																<div class="user" title="email@company.com">
-																	<img src="img/avatars/male.png" alt="demo user"><a href="javascript:void(0);">Travis Wilson</a>
-																	<div class="email">
-																		travis@company.com
-																	</div>
-																</div>
-																<div class="user" title="email@company.com">
-																	<img src="img/avatars/male.png" alt="demo user"><a href="javascript:void(0);">Marshall Hitt</a>
-																	<div class="email">
-																		marshall@company.com
-																	</div>
-																</div>
-																<div class="user" title="Joe Cadena joe@company.com">
-																	<img src="img/avatars/male.png" alt="demo user"><a href="javascript:void(0);">Joe Cadena</a>
-																	<div class="email">
-																		joe@company.com
-																	</div>
-																</div>
-																<div class="user" title="email@company.com">
-																	<img src="img/avatars/male.png" alt="demo user"><a href="javascript:void(0);">Mike McBride</a>
-																	<div class="email">
-																		mike@company.com
-																	</div>
-																</div>
-																<div class="user" title="email@company.com">
-																	<img src="img/avatars/male.png" alt="demo user"><a href="javascript:void(0);">Marshall Hitt</a>
-																	<div class="email">
-																		marshall@company.com
-																	</div>
-																</div>
-																<div class="user" title="email@company.com">
-																	<img src="img/avatars/male.png" alt="demo user"><a href="javascript:void(0);">Joe Cadena</a>
-																	<div class="email">
-																		joe@company.com
-																	</div>
-																</div>
-																<div class="user" title="email@company.com">
-																	<img src="img/avatars/male.png" alt="demo user"><a href="javascript:void(0);"> Mike McBride</a>
-																	<div class="email">
-																		mike@company.com
-																	</div>
-																</div>
-				
-																<div class="text-center">
-																	<ul class="pagination pagination-sm">
-																		<li class="disabled">
-																			<a href="javascript:void(0);">Prev</a>
-																		</li>
-																		<li class="active">
-																			<a href="javascript:void(0);">1</a>
-																		</li>
-																		<li>
-																			<a href="javascript:void(0);">2</a>
-																		</li>
-																		<li>
-																			<a href="javascript:void(0);">3</a>
-																		</li>
-																		<li>
-																			<a href="javascript:void(0);">...</a>
-																		</li>
-																		<li>
-																			<a href="javascript:void(0);">99</a>
-																		</li>
-																		<li>
-																			<a href="javascript:void(0);">Next</a>
-																		</li>
-																	</ul>
-																</div>
-				
-															</div><!-- end tab -->
-														</div>
-				
-													</div>
-				
-												</div>
-				
-											</div>
-											<!-- end row -->
-				
+
 										</div>
-				
+
 									</div>
-									<div class="col-sm-12 col-md-12 col-lg-6">
-				
-										<form method="post" class="well padding-bottom-10" onsubmit="return false;">
-											<textarea rows="2" class="form-control" placeholder="What are you thinking?"></textarea>
-											<div class="margin-top-10">
-												<button type="submit" class="btn btn-sm btn-primary pull-right">
-													Post
-												</button>
-												<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="Add Location"><i class="fa fa-location-arrow"></i></a>
-												<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="Add Voice"><i class="fa fa-microphone"></i></a>
-												<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="Add Photo"><i class="fa fa-camera"></i></a>
-												<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="Add File"><i class="fa fa-file"></i></a>
-											</div>
-										</form>
-				
-										<div class="timeline-seperator text-center"> <span>10:30PM January 1st, 2013</span>
-											<div class="btn-group pull-right">
-												<a href="javascript:void(0);" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle"><span class="caret single"></span></a>
-												<ul class="dropdown-menu text-left">
-													<li>
-														<a href="javascript:void(0);">Hide this post</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);">Hide future posts from this user</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);">Mark as spam</a>
-													</li>
+
+									<div class="row">
+
+										<div class="col-sm-12">
+
+											<hr>
+
+											<div class="padding-10">
+
+												<ul class="nav nav-tabs tabs-pull-right">
+													<li class="active"><a href="#a1" data-toggle="tab">Recent
+															Articles</a></li>
+													<li><a href="#a2" data-toggle="tab">New Members</a></li>
+													<li class="pull-left"><span
+														class="margin-top-10 display-inline"><i
+															class="fa fa-rss text-success"></i> Activity</span></li>
 												</ul>
-											</div> 
+
+												<div class="tab-content padding-top-10">
+													<div class="tab-pane fade in active" id="a1">
+
+														<div class="row">
+
+															<div class="col-xs-2 col-sm-1">
+																<time datetime="2014-09-20" class="icon">
+																	<strong>Jan</strong> <span>10</span>
+																</time>
+															</div>
+
+															<div class="col-xs-10 col-sm-11">
+																<h6 class="no-margin">
+																	<a href="javascript:void(0);">Allice in Wonderland</a>
+																</h6>
+																<p>Etiam ultricies nisi vel augue. Curabitur
+																	ullamcorper ultricies nisi Nam eget dui. Etiam rhoncus.
+																	Maecenas tempus, tellus eget condimentum rhoncus, sem
+																	quam semper libero, sit amet adipiscing sem neque sed
+																	ipsum. Nam quam nunc, blandit vel.</p>
+															</div>
+
+															<div class="col-sm-12">
+
+																<hr>
+
+															</div>
+
+															<div class="col-xs-2 col-sm-1">
+																<time datetime="2014-09-20" class="icon">
+																	<strong>Jan</strong> <span>10</span>
+																</time>
+															</div>
+
+															<div class="col-xs-10 col-sm-11">
+																<h6 class="no-margin">
+																	<a href="javascript:void(0);">World Report</a>
+																</h6>
+																<p>Morning our be dry. Life also third land after
+																	first beginning to evening cattle created let subdue
+																	you'll winged don't Face firmament. You winged you're
+																	was Fruit divided signs lights i living cattle yielding
+																	over light life life sea, so deep. Abundantly given
+																	years bring were after. Greater you're meat beast
+																	creeping behold he unto She'd doesn't. Replenish
+																	brought kind gathering Meat.</p>
+															</div>
+
+															<div class="col-sm-12">
+
+																<br>
+
+															</div>
+
+														</div>
+
+													</div>
+													<div class="tab-pane fade" id="a2">
+
+														<div class="alert alert-info fade in">
+
+															<i class="fa-fw fa fa-info"></i> <strong>Recommendations</strong>
+														</div>
+
+														<div class="user" title="email@company.com">
+															<img src="img/avatars/female.png" alt="demo user"><a
+																href="javascript:void(0);">Jenn Wilson</a>
+															<div class="email">travis@company.com</div>
+														</div>
+														<div class="user" title="email@company.com">
+															<img src="img/avatars/male.png" alt="demo user"><a
+																href="javascript:void(0);">Marshall Hitt</a>
+															<div class="email">marshall@company.com</div>
+														</div>
+														<div class="user" title="email@company.com">
+															<img src="img/avatars/male.png" alt="demo user"><a
+																href="javascript:void(0);">Joe Cadena</a>
+															<div class="email">joe@company.com</div>
+														</div>
+														<div class="user" title="email@company.com">
+															<img src="img/avatars/male.png" alt="demo user"><a
+																href="javascript:void(0);">Mike McBride</a>
+															<div class="email">mike@company.com</div>
+														</div>
+														<div class="user" title="email@company.com">
+															<img src="img/avatars/male.png" alt="demo user"><a
+																href="javascript:void(0);">Travis Wilson</a>
+															<div class="email">travis@company.com</div>
+														</div>
+														<div class="user" title="email@company.com">
+															<img src="img/avatars/male.png" alt="demo user"><a
+																href="javascript:void(0);">Marshall Hitt</a>
+															<div class="email">marshall@company.com</div>
+														</div>
+														<div class="user" title="Joe Cadena joe@company.com">
+															<img src="img/avatars/male.png" alt="demo user"><a
+																href="javascript:void(0);">Joe Cadena</a>
+															<div class="email">joe@company.com</div>
+														</div>
+														<div class="user" title="email@company.com">
+															<img src="img/avatars/male.png" alt="demo user"><a
+																href="javascript:void(0);">Mike McBride</a>
+															<div class="email">mike@company.com</div>
+														</div>
+														<div class="user" title="email@company.com">
+															<img src="img/avatars/male.png" alt="demo user"><a
+																href="javascript:void(0);">Marshall Hitt</a>
+															<div class="email">marshall@company.com</div>
+														</div>
+														<div class="user" title="email@company.com">
+															<img src="img/avatars/male.png" alt="demo user"><a
+																href="javascript:void(0);">Joe Cadena</a>
+															<div class="email">joe@company.com</div>
+														</div>
+														<div class="user" title="email@company.com">
+															<img src="img/avatars/male.png" alt="demo user"><a
+																href="javascript:void(0);"> Mike McBride</a>
+															<div class="email">mike@company.com</div>
+														</div>
+
+														<div class="text-center">
+															<ul class="pagination pagination-sm">
+																<li class="disabled"><a href="javascript:void(0);">Prev</a>
+																</li>
+																<li class="active"><a href="javascript:void(0);">1</a>
+																</li>
+																<li><a href="javascript:void(0);">2</a></li>
+																<li><a href="javascript:void(0);">3</a></li>
+																<li><a href="javascript:void(0);">...</a></li>
+																<li><a href="javascript:void(0);">99</a></li>
+																<li><a href="javascript:void(0);">Next</a></li>
+															</ul>
+														</div>
+
+													</div>
+													<!-- end tab -->
+												</div>
+
+											</div>
+
 										</div>
-										<div class="chat-body no-padding profile-message">
-											<!-- <ul>
+
+									</div>
+									<!-- end row -->
+
+								</div>
+
+							</div>
+							<div class="col-sm-12 col-md-12 col-lg-6">
+
+								<form method="post" class="well padding-bottom-10"
+									onsubmit="return false;">
+									<textarea rows="2" class="form-control"
+										placeholder="What are you thinking?"></textarea>
+									<div class="margin-top-10">
+										<button type="submit"
+											class="btn btn-sm btn-primary pull-right">Post</button>
+										<a href="javascript:void(0);"
+											class="btn btn-link profile-link-btn" rel="tooltip"
+											data-placement="bottom" title="Add Location"><i
+											class="fa fa-location-arrow"></i></a> <a
+											href="javascript:void(0);"
+											class="btn btn-link profile-link-btn" rel="tooltip"
+											data-placement="bottom" title="Add Voice"><i
+											class="fa fa-microphone"></i></a> <a href="javascript:void(0);"
+											class="btn btn-link profile-link-btn" rel="tooltip"
+											data-placement="bottom" title="Add Photo"><i
+											class="fa fa-camera"></i></a> <a href="javascript:void(0);"
+											class="btn btn-link profile-link-btn" rel="tooltip"
+											data-placement="bottom" title="Add File"><i
+											class="fa fa-file"></i></a>
+									</div>
+								</form>
+
+								<div class="timeline-seperator text-center">
+									<span>10:30PM January 1st, 2013</span>
+									<div class="btn-group pull-right">
+										<a href="javascript:void(0);" data-toggle="dropdown"
+											class="btn btn-default btn-xs dropdown-toggle"><span
+											class="caret single"></span></a>
+										<ul class="dropdown-menu text-left">
+											<li><a href="javascript:void(0);">Hide this post</a></li>
+											<li><a href="javascript:void(0);">Hide future posts
+													from this user</a></li>
+											<li><a href="javascript:void(0);">Mark as spam</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="chat-body no-padding profile-message">
+									<!-- <ul>
 												<li class="message">
 													<img src="img/avatars/sunny.png" class="online" alt="sunny">
 													<span class="message-text"> <a href="javascript:void(0);" class="username">John Doe <small class="text-muted pull-right ultra-light"> 2 Minutes ago </small></a> Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very
@@ -1202,27 +1369,25 @@
 													<input class="form-control input-xs" placeholder="Type and enter" type="text">
 												</li>
 											</ul> -->
-											Add
-										</div>
-				
-										<div class="timeline-seperator text-center"> <span>11:30PM November 27th, 2013</span>
-											<div class="btn-group pull-right">
-												<a href="javascript:void(0);" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle"><span class="caret single"></span></a>
-												<ul class="dropdown-menu text-left">
-													<li>
-														<a href="javascript:void(0);">Hide this post</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);">Hide future posts from this user</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);">Mark as spam</a>
-													</li>
-												</ul>
-											</div> 
-										</div>
-										<div class="chat-body no-padding profile-message">
-											<!-- <ul>
+									Add
+								</div>
+
+								<div class="timeline-seperator text-center">
+									<span>11:30PM November 27th, 2013</span>
+									<div class="btn-group pull-right">
+										<a href="javascript:void(0);" data-toggle="dropdown"
+											class="btn btn-default btn-xs dropdown-toggle"><span
+											class="caret single"></span></a>
+										<ul class="dropdown-menu text-left">
+											<li><a href="javascript:void(0);">Hide this post</a></li>
+											<li><a href="javascript:void(0);">Hide future posts
+													from this user</a></li>
+											<li><a href="javascript:void(0);">Mark as spam</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="chat-body no-padding profile-message">
+									<!-- <ul>
 												<li class="message">
 													<img src="img/avatars/1.png" class="online" alt="user">
 													<span class="message-text"> <a href="javascript:void(0);" class="username">John Doe <small class="text-muted pull-right ultra-light"> 2 Minutes ago </small></a> Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very image let unto fowl isn't in blessed fill life yielding above all moved </span>
@@ -1293,228 +1458,250 @@
 													</div>
 												</li>
 											</ul> -->
-											
-											Add
-				
-										</div>
-				
-				
-									</div>
-								</div>
-				
-							</div>
-				
-				
-					</div>
-				
-				</div>
-				
-		<div class="row">
-			<article class="col-sm-12 col-md-12 col-lg-12">
-	
-				<!-- Widget ID (each widget will need unique ID)-->
-				<div class="jarviswidget jarviswidget-color-blueLight" id="skilltag" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
-					<!-- widget options:
-					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-	
-					data-widget-colorbutton="false"
-					data-widget-editbutton="false"
-					data-widget-togglebutton="false"
-					data-widget-deletebutton="false"
-					data-widget-fullscreenbutton="false"
-					data-widget-custombutton="false"
-					data-widget-collapsed="true"
-					data-widget-sortable="false"
-	
-					-->
-					<header>
-						<span class="widget-icon"> <i class="fa fa-list-alt"></i> </span>
-						<h2>Skills</h2>
-	
-						<div class="widget-toolbar hidden-phone">
-							<div class="smart-form">
-								<label class="checkbox">
-									<button class="btn btn-primary" data-toggle="modal" data-target="#skillsetimprove" onclick="generateToken('skill')">Add New Skill</button>
-									</label>
-							</div>
-						</div>
-	
-					</header>
-	
-					<!-- widget div-->
-					<div>
-	
-						<!-- widget edit box -->
-						<div class="jarviswidget-editbox">
-							<!-- This area used as dropdown edit box -->
-	
-						</div>
-						<!-- end widget edit box -->
-	
-						<!-- widget content -->
-						<div class="widget-body no-padding">
-	
-							<div class="panel-group smart-accordion-default" id="skillset">
-								
-								<%-- <%=guidanceachievements%> --%>
-							</div>
-	
-						</div>
-						<!-- end widget content -->
-	
-					</div>
-					<!-- end widget div -->
-	
-				</div>
-				<!-- end widget -->
-	
-			</article>
-		</div>
-		<div class="row">
-			<article class="col-sm-12 col-md-12 col-lg-12">
-	
-				<!-- Widget ID (each widget will need unique ID)-->
-				<div class="jarviswidget jarviswidget-color-blueLight" id="projecttag" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
-					<!-- widget options:
-					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-	
-					data-widget-colorbutton="false"
-					data-widget-editbutton="false"
-					data-widget-togglebutton="false"
-					data-widget-deletebutton="false"
-					data-widget-fullscreenbutton="false"
-					data-widget-custombutton="false"
-					data-widget-collapsed="true"
-					data-widget-sortable="false"
-	
-					-->
-					<header>
-						<span class="widget-icon"> <i class="fa fa-list-alt"></i> </span>
-						<h2>Projects</h2>
-	
-						<div class="widget-toolbar hidden-phone">
-							<div class="smart-form">
-								<label class="checkbox">
-									<button class="btn btn-primary" data-toggle="modal" data-target="#projectsetimprove" onclick="generateToken('project')">Add new Project Info</button>
-									</label>
-							</div>
-						</div>
-	
-					</header>
-	
-					<!-- widget div-->
-					<div>
-	
-						<!-- widget edit box -->
-						<div class="jarviswidget-editbox">
-							<!-- This area used as dropdown edit box -->
-	
-						</div>
-						<!-- end widget edit box -->
-	
-						<!-- widget content -->
-						<div class="widget-body no-padding">
-	
-							<div class="panel-group smart-accordion-default" id="projectset">
-								
-								<%-- <%=guidanceachievements%> --%>
-							</div>
-	
-						</div>
-						<!-- end widget content -->
-	
-					</div>
-					<!-- end widget div -->
-	
-				</div>
-				<!-- end widget -->
-	
-			</article>
-		</div>
-		<div class="row">
-			<article class="col-sm-12 col-md-12 col-lg-12">
-	
-				<!-- Widget ID (each widget will need unique ID)-->
-				<div class="jarviswidget jarviswidget-color-blueLight" id="articletag" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
-					<!-- widget options:
-					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-	
-					data-widget-colorbutton="false"
-					data-widget-editbutton="false"
-					data-widget-togglebutton="false"
-					data-widget-deletebutton="false"
-					data-widget-fullscreenbutton="false"
-					data-widget-custombutton="false"
-					data-widget-collapsed="true"
-					data-widget-sortable="false"
-	
-					-->
-					<header>
-						<span class="widget-icon"> <i class="fa fa-list-alt"></i> </span>
-						<h2>Articles</h2>
-	
-						<div class="widget-toolbar hidden-phone">
-							<div class="smart-form">
-								<label class="checkbox">
-									<button class="btn btn-primary"  onclick="createNewArticle()">Provide New Achevements</button>
-									</label>
-							</div>
-						</div>
-	
-					</header>
-	
-					<!-- widget div-->
-					<div>
-	
-						<!-- widget edit box -->
-						<div class="jarviswidget-editbox">
-							<!-- This area used as dropdown edit box -->
-	
-						</div>
-						<!-- end widget edit box -->
-	
-						<!-- widget content -->
-						<div class="widget-body no-padding">
-	
-							<div class="panel-group smart-accordion-default" id="articleset">
-								
-								<%-- <%=guidanceachievements%> --%>
-							</div>
-	
-						</div>
-						<!-- end widget content -->
-	
-					</div>
-					<!-- end widget div -->
-	
-				</div>
-				<!-- end widget -->
-	
-			</article>
-		</div>
-				
-		<section id="widget-grid" class="">
 
-	<fieldset>
-		<legend>
-			Salary & Experience 
-		</legend>
-		<div class="row">
-			<!-- <div class="col-sm-6">
+									Add
+
+								</div>
+
+
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+			<div class="row">
+				<article class="col-sm-12 col-md-12 col-lg-12">
+
+					<!-- Widget ID (each widget will need unique ID)-->
+					<div class="jarviswidget jarviswidget-color-blueLight"
+						id="skilltag" data-widget-colorbutton="false"
+						data-widget-editbutton="false" data-widget-togglebutton="false"
+						data-widget-deletebutton="false"
+						data-widget-fullscreenbutton="false"
+						data-widget-custombutton="false" data-widget-sortable="false">
+						<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+						<header>
+							<span class="widget-icon"> <i class="fa fa-list-alt"></i>
+							</span>
+							<h2>Skills</h2>
+
+							<div class="widget-toolbar hidden-phone">
+								<div class="smart-form">
+									<label class="checkbox">
+										<button class="btn btn-primary" data-toggle="modal"
+											data-target="#skillsetimprove"
+											onclick="generateToken('skill')">Add New Skill</button>
+									</label>
+								</div>
+							</div>
+
+						</header>
+
+						<!-- widget div-->
+						<div>
+
+							<!-- widget edit box -->
+							<div class="jarviswidget-editbox">
+								<!-- This area used as dropdown edit box -->
+
+							</div>
+							<!-- end widget edit box -->
+
+							<!-- widget content -->
+							<div class="widget-body no-padding">
+
+								<div class="panel-group smart-accordion-default" id="skillset">
+									<%=skillString%>
+									
+								</div>
+
+							</div>
+							<!-- end widget content -->
+
+						</div>
+						<!-- end widget div -->
+
+					</div>
+					<!-- end widget -->
+
+				</article>
+			</div>
+			<div class="row">
+				<article class="col-sm-12 col-md-12 col-lg-12">
+
+					<!-- Widget ID (each widget will need unique ID)-->
+					<div class="jarviswidget jarviswidget-color-blueLight"
+						id="projecttag" data-widget-colorbutton="false"
+						data-widget-editbutton="false" data-widget-togglebutton="false"
+						data-widget-deletebutton="false"
+						data-widget-fullscreenbutton="false"
+						data-widget-custombutton="false" data-widget-sortable="false">
+						<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+						<header>
+							<span class="widget-icon"> <i class="fa fa-list-alt"></i>
+							</span>
+							<h2>Projects</h2>
+
+							<div class="widget-toolbar hidden-phone">
+								<div class="smart-form">
+									<label class="checkbox">
+										<button class="btn btn-primary" data-toggle="modal"
+											data-target="#projectsetimprove"
+											onclick="generateToken('project')">Add New Project
+											Info</button>
+									</label>
+								</div>
+							</div>
+
+						</header>
+
+						<!-- widget div-->
+						<div>
+
+							<!-- widget edit box -->
+							<div class="jarviswidget-editbox">
+								<!-- This area used as dropdown edit box -->
+
+							</div>
+							<!-- end widget edit box -->
+
+							<!-- widget content -->
+							<div class="widget-body no-padding">
+
+								<div class="panel-group smart-accordion-default" id="projectset">
+
+									<%-- <%=guidanceachievements%> --%>
+								</div>
+
+							</div>
+							<!-- end widget content -->
+
+						</div>
+						<!-- end widget div -->
+
+					</div>
+					<!-- end widget -->
+
+				</article>
+			</div>
+			<div class="row">
+				<article class="col-sm-12 col-md-12 col-lg-12">
+
+					<!-- Widget ID (each widget will need unique ID)-->
+					<div class="jarviswidget jarviswidget-color-blueLight"
+						id="articletag" data-widget-colorbutton="false"
+						data-widget-editbutton="false" data-widget-togglebutton="false"
+						data-widget-deletebutton="false"
+						data-widget-fullscreenbutton="false"
+						data-widget-custombutton="false" data-widget-sortable="false">
+						<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+						<header>
+							<span class="widget-icon"> <i class="fa fa-list-alt"></i>
+							</span>
+							<h2>Articles</h2>
+
+							<div class="widget-toolbar hidden-phone">
+								<div class="smart-form">
+									<label class="checkbox">
+										<button class="btn btn-primary" onclick="createNewArticle()">Provide
+											New Achevements</button>
+									</label>
+								</div>
+							</div>
+
+						</header>
+
+						<!-- widget div-->
+						<div>
+
+							<!-- widget edit box -->
+							<div class="jarviswidget-editbox">
+								<!-- This area used as dropdown edit box -->
+
+							</div>
+							<!-- end widget edit box -->
+
+							<!-- widget content -->
+							<div class="widget-body no-padding">
+
+								<div class="panel-group smart-accordion-default" id="articleset">
+
+									<%-- <%=guidanceachievements%> --%>
+								</div>
+
+							</div>
+							<!-- end widget content -->
+
+						</div>
+						<!-- end widget div -->
+
+					</div>
+					<!-- end widget -->
+
+				</article>
+			</div>
+
+			<section id="widget-grid" class="">
+
+				<fieldset>
+					<legend> Salary & Experience </legend>
+					<div class="row">
+						<!-- <div class="col-sm-6">
 
 				<div class="form-group">
 					<input id="range-slider-1" type="text" name="range_1" value="">
 				</div>
 			</div> -->
-			<div class="col-sm-6">
+						<div class="col-sm-6">
 
-				<div class="form-group">
-					<input id="range-slider-2" type="text" name="range_2">
-				</div>
-			</div>
-		</div>
+							<div class="form-group">
+								<input id="range-slider-2" type="text" name="range_2">
+							</div>
+						</div>
+					</div>
 
-		<!-- <div class="row">
+					<!-- <div class="row">
 			<div class="col-sm-6">
 
 				<div class="form-group">
@@ -1529,482 +1716,614 @@
 			</div>
 		</div> -->
 
-		<div class="row">
-			<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-12">
 
-				<div class="form-group">
-					<input id="range-slider-5" type="text" name="range_5a" value="">
-				</div>
-			</div>
-			
-		</div>
-
-	</fieldset>
-
-	<fieldset style="display:none">
-		<legend>
-			noScale Slider
-		</legend>
-		<div class="row" >
-			<div class="col-sm-6">
-
-				<div class="form-group">
-					<label>Default</label>
-					<div id="nouislider-1" class="noUiSlider"></div>
-				</div>
-			</div>
-			<div class="col-sm-6">
-
-				<div class="form-group">
-					<label>Range slider (<span class="nouislider-value">20 - 60</span>)</label>
-					<div id="nouislider-3" class="noUiSlider"></div>
-				</div>
-
-			</div>
-		</div>
-
-
-		<div class="row">
-			<div class="col-sm-6">
-
-				<div class="form-group">
-					<label>Default Slider (disabled)</label>
-					<div id="nouislider-4" class="noUiSlider"></div>
-				</div>
-			</div>
-			<div class="col-sm-6">
-
-				<div class="form-group">
-					<label>Skips a beat</label>
-					<div id="nouislider-2" class="noUiSlider"></div>
-				</div>
-
-			</div>
-		</div>
-	</fieldset>
-
-	<!-- row -->
-	<div class="row">
-
-		<!-- NEW WIDGET START -->
-		<div class="widget-body">
-										<div class="row">
-
-											<!-- NEW WIDGET START -->
-											<article class="col-sm-12">
-									
-												
-												
-												<!-- Widget ID (each widget will need unique ID)-->
-												<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-0" data-widget-editbutton="false">
-													<!-- widget options:
-													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-									
-													data-widget-colorbutton="false"
-													data-widget-editbutton="false"
-													data-widget-togglebutton="false"
-													data-widget-deletebutton="false"
-													data-widget-fullscreenbutton="false"
-													data-widget-custombutton="false"
-													data-widget-collapsed="true"
-													data-widget-sortable="false"
-									
-													-->
-													<header>
-														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-														<h2>Document Set</h2>
-									
-													</header>
-									
-													<!-- widget div-->
-													<div>
-									
-														<!-- widget edit box -->
-														<div class="jarviswidget-editbox">
-															<!-- This area used as dropdown edit box -->
-									
-														</div>
-														<!-- end widget edit box -->
-									
-														<!-- widget content -->
-														<div class="widget-body">
-									
-															<form action="upload.php" class="dropzone" id="mydropzone"></form>
-									
-														</div>
-														<!-- end widget content -->
-									
-													</div>
-													<!-- end widget div -->
-									
-												</div>
-												<!-- end widget -->
-									
-											</article>
-											<!-- WIDGET END -->
-									
-										</div>
-				
-									</div>
-		<!-- WIDGET END -->
-
-	</div>
-
-	
-	<!-- end row -->
-
-	<!-- row -->
-
-
-	<!-- end row -->
-
-</section>
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							
-							<div class="modal-body">
-				
-								<div class="row">
-
-											<!-- NEW WIDGET START -->
-											<div class="widget-body">
-										<div class="row">
-
-											<!-- NEW WIDGET START -->
-											<article class="col-sm-12">
-									
-												
-												
-												<!-- Widget ID (each widget will need unique ID)-->
-												<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-1" data-widget-editbutton="false">
-													<!-- widget options:
-													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-									
-													data-widget-colorbutton="false"
-													data-widget-editbutton="false"
-													data-widget-togglebutton="false"
-													data-widget-deletebutton="false"
-													data-widget-fullscreenbutton="false"
-													data-widget-custombutton="false"
-													data-widget-collapsed="true"
-													data-widget-sortable="false"
-									
-													-->
-													<header>
-														<span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-														<h2>New Profile Image</h2>
-									
-													</header>
-									
-													<!-- widget div-->
-													<div>
-									
-														<!-- widget edit box -->
-														<div class="jarviswidget-editbox">
-															<!-- This area used as dropdown edit box -->
-									
-														</div>
-														<!-- end widget edit box -->
-									
-														<!-- widget content -->
-														<div class="widget-body">
-									
-															<form action="upload.php" class="dropzone" id="Imagedropzone"></form>
-									
-														</div>
-														<!-- end widget content -->
-									
-													</div>
-													<!-- end widget div -->
-									
-												</div>
-												<!-- end widget -->
-									
-											</article>
-											<!-- WIDGET END -->
-									
-										</div>
-										
-				
-									</div>
-											<!-- WIDGET END -->
-									
-										</div>
-								
+							<div class="form-group">
+								<input id="range-slider-5" type="text" name="range_5a" value="">
 							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
+						</div>
+
+					</div>
+
+				</fieldset>
+
+				<fieldset style="display: none">
+					<legend> noScale Slider </legend>
+					<div class="row">
+						<div class="col-sm-6">
+
+							<div class="form-group">
+								<label>Default</label>
+								<div id="nouislider-1" class="noUiSlider"></div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+
+							<div class="form-group">
+								<label>Range slider (<span class="nouislider-value">20
+										- 60</span>)
+								</label>
+								<div id="nouislider-3" class="noUiSlider"></div>
+							</div>
+
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-sm-6">
+
+							<div class="form-group">
+								<label>Default Slider (disabled)</label>
+								<div id="nouislider-4" class="noUiSlider"></div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+
+							<div class="form-group">
+								<label>Skips a beat</label>
+								<div id="nouislider-2" class="noUiSlider"></div>
+							</div>
+
+						</div>
+					</div>
+				</fieldset>
+
+				<!-- row -->
+				<div class="row">
+
+					<!-- NEW WIDGET START -->
+					<div class="widget-body">
+						<div class="row">
+
+							<!-- NEW WIDGET START -->
+							<article class="col-sm-12">
+
+
+
+								<!-- Widget ID (each widget will need unique ID)-->
+								<div class="jarviswidget jarviswidget-color-blueLight"
+									id="wid-id-0" data-widget-editbutton="false">
+									<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+													data-widget-colorbutton="false"
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true"
+													data-widget-sortable="false"
+									
+													-->
+									<header>
+										<span class="widget-icon"> <i class="fa fa-cloud"></i>
+										</span>
+										<h2>Document Set</h2>
+
+									</header>
+
+									<!-- widget div-->
+									<div>
+
+										<!-- widget edit box -->
+										<div class="jarviswidget-editbox">
+											<!-- This area used as dropdown edit box -->
+
+										</div>
+										<!-- end widget edit box -->
+
+										<!-- widget content -->
+										<div class="widget-body">
+
+											<form action="upload.php" class="dropzone" id="mydropzone"></form>
+
+										</div>
+										<!-- end widget content -->
+
+									</div>
+									<!-- end widget div -->
+
+								</div>
+								<!-- end widget -->
+
+							</article>
+							<!-- WIDGET END -->
+
+						</div>
+
+					</div>
+					<!-- WIDGET END -->
+
 				</div>
+
+
 				<!-- end row -->
 
-			</div>
-			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="skillsetimprove"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Provide Skills</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Skill Set" required id="skill" />
-										</div>
-										<div class="form-group">
-											<textarea id="skilldata" class="form-control" placeholder="Provide info on the above skill set. Can add extra info later" rows="5" required></textarea>
-										</div>
-										<div class="form-group">
-											<form id="form2" method="post" action="#" enctype="multipart/form-data">
-											<label class="col-md-2 control-label">Any Attachment(Certification)</label>
-											<div class="col-md-10">
-												<input type="file" id="fileskill" name="fileskill" class="btn btn-default" id="achievementfile">
+				<!-- row -->
+
+
+				<!-- end row -->
+
+			</section>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<div class="modal-body">
+
+							<div class="row">
+
+								<!-- NEW WIDGET START -->
+								<div class="widget-body">
+									<div class="row">
+
+										<!-- NEW WIDGET START -->
+										<article class="col-sm-12">
+
+
+
+											<!-- Widget ID (each widget will need unique ID)-->
+											<div class="jarviswidget jarviswidget-color-blueLight"
+												id="wid-id-1" data-widget-editbutton="false">
+												<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+													data-widget-colorbutton="false"
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true"
+													data-widget-sortable="false"
+									
+													-->
+												<header>
+													<span class="widget-icon"> <i class="fa fa-cloud"></i>
+													</span>
+													<h2>New Profile Image</h2>
+
+												</header>
+
+												<!-- widget div-->
+												<div>
+
+													<!-- widget edit box -->
+													<div class="jarviswidget-editbox">
+														<!-- This area used as dropdown edit box -->
+
+													</div>
+													<!-- end widget edit box -->
+
+													<!-- widget content -->
+													<div class="widget-body">
+
+														<form action="upload.php" class="dropzone"
+															id="Imagedropzone"></form>
+
+													</div>
+													<!-- end widget content -->
+
+												</div>
+												<!-- end widget div -->
+
 											</div>
-											<button class="col-md-2"  type="button" onclick="uploadFormData()">
-												Upload
-											</button>
-											</form>
-											<input type="hidden" class="form-control" value="" required id="skilltoken" />
-										</div>
+											<!-- end widget -->
+
+										</article>
+										<!-- WIDGET END -->
+
 									</div>
+
+
+								</div>
+								<!-- WIDGET END -->
+
+							</div>
+
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- end row -->
+
+		</div>
+		<!-- END MAIN CONTENT -->
+		<div class="modal fade" id="skillsetimprove" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Provide Skills</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Skill Set"
+										required id="skill" />
+								</div>
+								<div class="form-group">
+									<textarea id="skilldata" class="form-control"
+										placeholder="Provide info on the above skill set. Can add extra info later"
+										rows="5" required></textarea>
+								</div>
+								<div class="form-group">
+									<form id="form2" method="post" action="#"
+										enctype="multipart/form-data">
+										<label class="col-md-2 control-label">Any
+											Attachment(Certification)</label>
+										<div class="col-md-10">
+											<input type="file" id="fileskill" name="fileskill"
+												class="btn btn-default" id="skillfile">
+										</div>
+										<button class="col-md-2" type="button"
+											onclick="uploadFormData()">Upload</button>
+									</form>
+									<input type="hidden" class="form-control" value="" required
+										id="skilltoken" />
 								</div>
 							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addachieve()">
-									Add Skill
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
-		</div>
-		<!-- END MAIN PANEL -->
-
-		<!-- PAGE FOOTER -->
-		<div class="page-footer">
-			<div class="row">
-				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> Â© 2014-2015</span>
-				</div>
-
-				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
-					<div class="txt-color-white inline-block">
-						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
-						<div class="btn-group dropup">
-							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
-								<i class="fa fa-link"></i> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu pull-right text-left">
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Server Load</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<button class="btn btn-block btn-default">refresh</button>
-									</div>
-								</li>
-							</ul>
 						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Cancel</button>
+						<button type="button" class="btn btn-primary"
+							id="addnewachievement" onclick="addachieve()">Add Skill
+						</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+
+		<div class="modal fade" id="projectsetimprove" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Provide Projects</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" class="form-control"
+										placeholder="Project Name" required id="projectname" />
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control"
+										placeholder="Project Skill" required id="projectskill" />
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control"
+										placeholder="Project Role" required id="projectrole" />
+								</div>
+								<div class="form-group">
+									<textarea id="projectdata" class="form-control"
+										placeholder="Provide info on the above skill set. Can add extra info later"
+										rows="5" required></textarea>
+									<input type="hidden" class="form-control" value="" required
+										id="projecttoken" />	
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Cancel</button>
+						<button type="button" class="btn btn-primary"
+							id="addnewproject" onclick="addproject()">Add
+							Projects</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!-- END MAIN PANEL -->
+
+	<!-- PAGE FOOTER -->
+	<div class="page-footer">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<span class="txt-color-white">SmartAdmin 1.8.2 <span
+					class="hidden-xs"> - Web Application Framework</span> Â© 2014-2015
+				</span>
+			</div>
+
+			<div class="col-xs-6 col-sm-6 text-right hidden-xs">
+				<div class="txt-color-white inline-block">
+					<i class="txt-color-blueLight hidden-mobile">Last account
+						activity <i class="fa fa-clock-o"></i> <strong>52 mins
+							ago &nbsp;</strong>
+					</i>
+					<div class="btn-group dropup">
+						<button
+							class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white"
+							data-toggle="dropdown">
+							<i class="fa fa-link"></i> <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu pull-right text-left">
+							<li>
+								<div class="padding-5">
+									<p class="txt-color-darken font-sm no-margin">Download
+										Progress</p>
+									<div class="progress progress-micro no-margin">
+										<div class="progress-bar progress-bar-success"
+											style="width: 50%;"></div>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="padding-5">
+									<p class="txt-color-darken font-sm no-margin">Server Load</p>
+									<div class="progress progress-micro no-margin">
+										<div class="progress-bar progress-bar-success"
+											style="width: 20%;"></div>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="padding-5">
+									<p class="txt-color-darken font-sm no-margin">
+										Memory Load <span class="text-danger">*critical*</span>
+									</p>
+									<div class="progress progress-micro no-margin">
+										<div class="progress-bar progress-bar-danger"
+											style="width: 70%;"></div>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="padding-5">
+									<button class="btn btn-block btn-default">refresh</button>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- END PAGE FOOTER -->
+	</div>
+	<!-- END PAGE FOOTER -->
 
-		<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
 		Note: These tiles are completely responsive,
 		you can add as many as you like
 		-->
-		<div id="shortcut">
-			<ul>
-				<li>
-					<a href="inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
-				</li>
-				<li>
-					<a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
-				</li>
-				<li>
-					<a href="gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
-				</li>
-				<li>
-					<a href="invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
-				</li>
-				<li>
-					<a href="gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
-				</li>
-				<li>
-					<a href="profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
-				</li>
-			</ul>
-		</div>
-		<!-- END SHORTCUT AREA -->
+	<div id="shortcut">
+		<ul>
+			<li><a href="inbox.html"
+				class="jarvismetro-tile big-cubes bg-color-blue"> <span
+					class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail
+							<span class="label pull-right bg-color-darken">14</span>
+					</span>
+				</span>
+			</a></li>
+			<li><a href="calendar.html"
+				class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span
+					class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span>
+				</span>
+			</a></li>
+			<li><a href="gmap-xml.html"
+				class="jarvismetro-tile big-cubes bg-color-purple"> <span
+					class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span>
+				</span>
+			</a></li>
+			<li><a href="invoice.html"
+				class="jarvismetro-tile big-cubes bg-color-blueDark"> <span
+					class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice
+							<span class="label pull-right bg-color-darken">99</span>
+					</span>
+				</span>
+			</a></li>
+			<li><a href="gallery.html"
+				class="jarvismetro-tile big-cubes bg-color-greenLight"> <span
+					class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery
+					</span>
+				</span>
+			</a></li>
+			<li><a href="profile.html"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My
+							Profile </span>
+				</span>
+			</a></li>
+		</ul>
+	</div>
+	<!-- END SHORTCUT AREA -->
 
-		<!--================================================== -->
+	<!--================================================== -->
 
-		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
+	<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+	<script data-pace-options='{ "restartOnRequestAfter": true }'
+		src="js/plugin/pace/pace.min.js"></script>
 
-		<script src="js/plugin/dropzone/dropzone.min.js"></script>
+	<script src="js/plugin/dropzone/dropzone.min.js"></script>
 
-		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script>
+	<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script>
 			if (!window.jQuery) {
 				document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
 			}
 		</script>
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script>
 			if (!window.jQuery.ui) {
 				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
 			}
 		</script>
 
-		<!-- IMPORTANT: APP CONFIG -->
-		<script src="<c:url value='/resources/js/app.config.js' />"></script>
-		<!-- <script src="js/app.config.js"></script> -->
+	<!-- IMPORTANT: APP CONFIG -->
+	<script src="<c:url value='/resources/js/app.config.js' />"></script>
+	<!-- <script src="js/app.config.js"></script> -->
 
-		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
-		<script src="<c:url value='/resources/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js' />"></script>
-		<!-- <script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>  -->
+	<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+	<script
+		src="<c:url value='/resources/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js' />"></script>
+	<!-- <script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>  -->
 
-		<!-- BOOTSTRAP JS -->
-		<script src="<c:url value='/resources/js/bootstrap/bootstrap.min.js' />"></script>
-		<!-- <script src="js/bootstrap/bootstrap.min.js"></script> -->
+	<!-- BOOTSTRAP JS -->
+	<script
+		src="<c:url value='/resources/js/bootstrap/bootstrap.min.js' />"></script>
+	<!-- <script src="js/bootstrap/bootstrap.min.js"></script> -->
 
-		<!-- CUSTOM NOTIFICATION -->
-		<script src="<c:url value='/resources/js/notification/SmartNotification.min.js' />"></script>
-		<!-- <script src="js/notification/SmartNotification.min.js"></script> -->
+	<!-- CUSTOM NOTIFICATION -->
+	<script
+		src="<c:url value='/resources/js/notification/SmartNotification.min.js' />"></script>
+	<!-- <script src="js/notification/SmartNotification.min.js"></script> -->
 
-		<!-- JARVIS WIDGETS -->
-		<script src="<c:url value='/resources/js/smartwidgets/jarvis.widget.min.js' />"></script>
-		<!-- <script src="js/smartwidgets/jarvis.widget.min.js"></script> -->
+	<!-- JARVIS WIDGETS -->
+	<script
+		src="<c:url value='/resources/js/smartwidgets/jarvis.widget.min.js' />"></script>
+	<!-- <script src="js/smartwidgets/jarvis.widget.min.js"></script> -->
 
-		<!-- EASY PIE CHARTS -->
-		<script src="<c:url value='/resources/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js' />"></script>
-		<!-- <script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script> -->
+	<!-- EASY PIE CHARTS -->
+	<script
+		src="<c:url value='/resources/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js' />"></script>
+	<!-- <script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script> -->
 
-		<!-- SPARKLINES -->
-		<script src="<c:url value='/resources/js/plugin/sparkline/jquery.sparkline.min.js' />"></script>
-		<!-- <script src="js/plugin/sparkline/jquery.sparkline.min.js"></script> -->
+	<!-- SPARKLINES -->
+	<script
+		src="<c:url value='/resources/js/plugin/sparkline/jquery.sparkline.min.js' />"></script>
+	<!-- <script src="js/plugin/sparkline/jquery.sparkline.min.js"></script> -->
 
-		<!-- JQUERY VALIDATE -->
-		<script src="<c:url value='/resources/js/plugin/jquery-validate/jquery.validate.min.js' />"></script>
-		<!-- <script src="js/plugin/jquery-validate/jquery.validate.min.js"></script> -->
+	<!-- JQUERY VALIDATE -->
+	<script
+		src="<c:url value='/resources/js/plugin/jquery-validate/jquery.validate.min.js' />"></script>
+	<!-- <script src="js/plugin/jquery-validate/jquery.validate.min.js"></script> -->
 
-		<!-- JQUERY MASKED INPUT -->
-		<script src="<c:url value='/resources/js/plugin/masked-input/jquery.maskedinput.min.js' />"></script>
-		<!-- <script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script> -->
+	<!-- JQUERY MASKED INPUT -->
+	<script
+		src="<c:url value='/resources/js/plugin/masked-input/jquery.maskedinput.min.js' />"></script>
+	<!-- <script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script> -->
 
-		<!-- JQUERY SELECT2 INPUT -->
-		<script src="<c:url value='/resources/js/plugin/select2/select2.min.js' />"></script>
-		<!-- <script src="js/plugin/select2/select2.min.js"></script> -->
+	<!-- JQUERY SELECT2 INPUT -->
+	<script
+		src="<c:url value='/resources/js/plugin/select2/select2.min.js' />"></script>
+	<!-- <script src="js/plugin/select2/select2.min.js"></script> -->
 
-		<!-- JQUERY UI + Bootstrap Slider -->
-		<script src="<c:url value='/resources/js/plugin/bootstrap-slider/bootstrap-slider.min.js' />"></script>
-		<!-- <script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script> -->
+	<!-- JQUERY UI + Bootstrap Slider -->
+	<script
+		src="<c:url value='/resources/js/plugin/bootstrap-slider/bootstrap-slider.min.js' />"></script>
+	<!-- <script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script> -->
 
-		<!-- browser msie issue fix -->
-		<script src="<c:url value='/resources/js/plugin/msie-fix/jquery.mb.browser.min.js' />"></script>
-		<!-- <script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script> -->
+	<!-- browser msie issue fix -->
+	<script
+		src="<c:url value='/resources/js/plugin/msie-fix/jquery.mb.browser.min.js' />"></script>
+	<!-- <script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script> -->
 
-		<!-- FastClick: For mobile devices -->
-		<script src="<c:url value='/resources/js/plugin/fastclick/fastclick.min.js' />"></script>
-		<!-- <script src="js/plugin/fastclick/fastclick.min.js"></script> -->
+	<!-- FastClick: For mobile devices -->
+	<script
+		src="<c:url value='/resources/js/plugin/fastclick/fastclick.min.js' />"></script>
+	<!-- <script src="js/plugin/fastclick/fastclick.min.js"></script> -->
 
-		<!--[if IE 8]>
+	<!--[if IE 8]>
 
 		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
 
 		<![endif]-->
 
-		<!-- Demo purpose only -->
-		<%-- <script src="<c:url value='/resources/js/app.config.js' />"></script> --%>
-		<!-- <script src="js/demo.min.js"></script> -->
-		<script src="<c:url value='/resources/js/demo.min.js' />"></script>
+	<!-- Demo purpose only -->
+	<%-- <script src="<c:url value='/resources/js/app.config.js' />"></script> --%>
+	<!-- <script src="js/demo.min.js"></script> -->
+	<script src="<c:url value='/resources/js/demo.min.js' />"></script>
 
-		<!-- MAIN APP JS FILE -->
-		<script src="<c:url value='/resources/js/app.min.js' />"></script>
-		<!-- <script src="js/app.min.js"></script> -->
+	<!-- MAIN APP JS FILE -->
+	<script src="<c:url value='/resources/js/app.min.js' />"></script>
+	<!-- <script src="js/app.min.js"></script> -->
 
-		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
-		<!-- Voice command : plugin -->
-		<script src="<c:url value='/resources/js/speech/voicecommand.min.js' />"></script>
-		<!-- <script src="js/speech/voicecommand.min.js"></script> -->
-		
-		<script src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
+	<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+	<!-- Voice command : plugin -->
+	<script
+		src="<c:url value='/resources/js/speech/voicecommand.min.js' />"></script>
+	<!-- <script src="js/speech/voicecommand.min.js"></script> -->
 
-		<!-- SmartChat UI : plugin -->
-		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.ui.min.js' />"></script>
-		<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
-		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
-		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
 
-		<!--  PAGE RELATED PLUGIN(S) --> 
-		<script src="<c:url value='/resources/js/plugin/maxlength/bootstrap-maxlength.min.js' />"></script>
-		<!-- <script src="js/plugin/maxlength/bootstrap-maxlength.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js' />"></script>
-		<!-- <script src="js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/clockpicker/clockpicker.min.js' />"></script>
-		<!-- <script src="js/plugin/clockpicker/clockpicker.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js' />"></script>
-		<!-- <script src="js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/noUiSlider/jquery.nouislider.min.js' />"></script>
-		<!-- <script src="js/plugin/noUiSlider/jquery.nouislider.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/ion-slider/ion.rangeSlider.min.js' />"></script>
-		<!-- <script src="js/plugin/ion-slider/ion.rangeSlider.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js' />"></script>
-		<!-- <script src="js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>	 -->
-		<script src="<c:url value='/resources/js/plugin/colorpicker/bootstrap-colorpicker.min.js' />"></script>	
-		<!-- <script src="js/plugin/colorpicker/bootstrap-colorpicker.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/knob/jquery.knob.min.js' />"></script>
-		<!-- <script src="js/plugin/knob/jquery.knob.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/x-editable/moment.min.js' />"></script>
-		<!-- <script src="js/plugin/x-editable/moment.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/x-editable/jquery.mockjax.min.js' />"></script>
-		<!-- <script src="js/plugin/x-editable/jquery.mockjax.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/x-editable/x-editable.min.js' />"></script>
-		<!-- <script src="js/plugin/x-editable/x-editable.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/typeahead/typeahead.min.js' />"></script>
-		<!-- <script src="js/plugin/typeahead/typeahead.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/typeahead/typeaheadjs.min.js' />"></script>
-		<!-- <script src="js/plugin/typeahead/typeaheadjs.min.js"></script> -->
+	<!-- SmartChat UI : plugin -->
+	<script
+		src="<c:url value='/resources/js/smart-chat-ui/smart.chat.ui.min.js' />"></script>
+	<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
+	<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
+
+	<!--  PAGE RELATED PLUGIN(S) -->
+	<script
+		src="<c:url value='/resources/js/plugin/maxlength/bootstrap-maxlength.min.js' />"></script>
+	<!-- <script src="js/plugin/maxlength/bootstrap-maxlength.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js' />"></script>
+	<!-- <script src="js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/clockpicker/clockpicker.min.js' />"></script>
+	<!-- <script src="js/plugin/clockpicker/clockpicker.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js' />"></script>
+	<!-- <script src="js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/noUiSlider/jquery.nouislider.min.js' />"></script>
+	<!-- <script src="js/plugin/noUiSlider/jquery.nouislider.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/ion-slider/ion.rangeSlider.min.js' />"></script>
+	<!-- <script src="js/plugin/ion-slider/ion.rangeSlider.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js' />"></script>
+	<!-- <script src="js/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>	 -->
+	<script
+		src="<c:url value='/resources/js/plugin/colorpicker/bootstrap-colorpicker.min.js' />"></script>
+	<!-- <script src="js/plugin/colorpicker/bootstrap-colorpicker.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/knob/jquery.knob.min.js' />"></script>
+	<!-- <script src="js/plugin/knob/jquery.knob.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/x-editable/moment.min.js' />"></script>
+	<!-- <script src="js/plugin/x-editable/moment.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/x-editable/jquery.mockjax.min.js' />"></script>
+	<!-- <script src="js/plugin/x-editable/jquery.mockjax.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/x-editable/x-editable.min.js' />"></script>
+	<!-- <script src="js/plugin/x-editable/x-editable.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/typeahead/typeahead.min.js' />"></script>
+	<!-- <script src="js/plugin/typeahead/typeahead.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/typeahead/typeaheadjs.min.js' />"></script>
+	<!-- <script src="js/plugin/typeahead/typeaheadjs.min.js"></script> -->
+	<script type="text/javascript"
+		src="http://maps.googleapis.com/maps/api/js?key='AIzaSyDuATgAn9J88smIpYM1SD_3RFAiA-PF4q4'&v=3&sensor=true"></script>
 
 
-		<!-- <script type="text/javascript">
+	<!-- <script type="text/javascript">
 		
 		// DO NOT REMOVE : GLOBAL FUNCTIONS!
 		
@@ -2017,7 +2336,7 @@
 		})
 
 		</script> -->
-		<script type="text/javascript">
+	<script type="text/javascript">
 		
 		
 		
@@ -2905,7 +3224,7 @@
 					  data.push(elements[i].value);
 					} */
 					//alert(guidanceid)
-			        $.getJSON('guidanceShareFiles?guidanceid='+guidanceid, function(dataset) {
+			        $.getJSON('guidanceShareFiles?', function(dataset) {
 			        	 console.log(dataset);
 			        	 for(var i = 0; i < dataset.length; i++){
 			        		 var datavar = dataset[i];
@@ -2986,8 +3305,8 @@
 		})
 
 		</script>
-		<!-- Your GOOGLE ANALYTICS CODE Below -->
-		<script type="text/javascript">
+	<!-- Your GOOGLE ANALYTICS CODE Below -->
+	<script type="text/javascript">
 			var _gaq = _gaq || [];
 				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
 				_gaq.push(['_trackPageview']);
@@ -3001,7 +3320,7 @@
 				s.parentNode.insertBefore(ga, s);
 			})();
 			
-			var latitude  = position.coords.latitude;
+			/* var latitude  = position.coords.latitude;
 			 var longitude = position.coords.longitude;
 			 var location = latitude + "," + longitude;
 			
@@ -3013,39 +3332,12 @@
 		                    alert(loc)
 		                }
 		            }
-		        });
+		        }); */
 
-		    function getCountry(results)
-		    {
-		        for (var i = 0; i < results[0].address_components.length; i++)
-		        {
-		        var shortname = results[0].address_components[i].short_name;
-		        var longname = results[0].address_components[i].long_name;
-		        var type = results[0].address_components[i].types;
-		        if (type.indexOf("country") != -1)
-		        {
-		            if (!isNullOrWhitespace(shortname))
-		            {
-		                return shortname;
-		            }
-		            else
-		            {
-		                return longname;
-		            }
-		        }
-		    }
-
-		}
-
-		function isNullOrWhitespace(text) {
-		    if (text == null) {
-		        return true;
-		    }
-		    return text.replace(/\s/gi, '').length < 1;
-		}
+		    
 
 		</script>
-		<script type="text/javascript">
+	<script type="text/javascript">
 		 function  generateToken(param){
 			 
 			 var stringLength = 15;
@@ -3063,7 +3355,12 @@
 						rndString = rndString + stringArray[rndNum];
 					};
 					
-					$('#acheivetoken').val(rndString);
+					if(param === "skill"){
+						$('#skilltoken').val(rndString);
+					}else if(param === "project"){
+						$('#projecttoken').val(rndString);
+					}
+					
 
 				
 			 
@@ -3076,9 +3373,7 @@
 				 var skilldesc = $('#skilldata').val();
 				 var token = $('#skilltoken').val();
 				 var userid = '<%=userid%>';
-				 var latitude  = position.coords.latitude;
-				 var longitude = position.coords.longitude;
-				 var location = latitude + "," + longitude;
+				 var location = $('#locationspec').val();
 				 //alert(guidanceid);
 				 
 				 $.ajax({
@@ -3096,9 +3391,41 @@
 					
 			        }); 
 				  var elementcolapse = 'collapse'+token;	
-				  var element = '<div id='+token+' class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#'+elementcolapse+'"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>'+
-								'<button class="btn btn-primary" data-toggle="modal" data-target="#addAchievements" onclick="generateToken('skill')">Add New Skill</button></div><div id="'+elementcolapse+'" class="panel-collapse collapse in"><div class="panel-body"></div></div></div>';
+				  var element = '<div id='+token+' class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#skillset" href="#'+elementcolapse+'"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>'+
+								'<button class="btn btn-primary" data-toggle="modal" data-target="#addAchievements" onclick="generateToken(skill)">Add New Skill</button></div><div id="'+elementcolapse+'" class="panel-collapse collapse in"><div class="panel-body"></div></div></div>';
 				 $('skillset').prepend($(element));
+				 
+			}	
+		 
+		 function addproject(){
+				
+				
+				var projectname = $('#projectname').val();
+				 var projectskill = $('#projectskill').val();
+				 var projectrole = $('#projectrole').val();
+				 var projectdata = $('#projectdata').val();
+				 var projecttoken = $('#projecttoken').val();
+				 var location = $('#locationspec').val();
+				 //alert(guidanceid);
+				 
+				 $.ajax({
+						url : "saveProjectToProfile?projectname="+projectname+"&projectskill="+projectskill+"&projectrole="+projectrole+"&projectdata="+projectdata+"&location="+location,
+						method : 'POST',
+						success : function(data){
+							alert(data);
+							//if(data.success == true){ // if true (1)
+							     /*  setTimeout(function(){// wait for 5 secs(2)
+							           location.reload(); // then reload the page.(3)
+							      }, 5000);  */
+							  // }
+							
+						}
+					
+			        }); 
+				  var elementcolapse = 'collapse'+projecttoken;	
+				  var element = '<div id='+token+' class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#projectset" href="#'+elementcolapse+'"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>'+
+								'<button class="btn btn-primary" data-toggle="modal" data-target="#addAchievements" onclick="generateToken(skill)">Add New Skill</button></div><div id="'+elementcolapse+'" class="panel-collapse collapse in"><div class="panel-body"></div></div></div>';
+				 $('projectset').prepend($(element));
 				 
 			}	
 		 
@@ -3126,9 +3453,82 @@
 			  
 		 }
 		
+		 function geoFindMe() {
+			  //var output = document.getElementById("out");
+
+			  /* if (!navigator.geolocation){
+			    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+			    return;
+			  } */
+
+			  function success(position) {
+			    var latitude  = position.coords.latitude;
+			    var longitude = position.coords.longitude;
+			    //alert(longitude);
+			    
+			    //var location = document.getElementById("location");
+			    var location = latitude+","+longitude;
+			    $('#locationspec').val(location);
+			    //alert(location.value);
+			    console.log(location);
+			    /* var geocoder = new google.maps.Geocoder();
+			    geocoder.geocode({'latLng': location}, function(results, status) {
+			            if (status == google.maps.GeocoderStatus.OK) {
+			                if (results[0]) {
+			                    var loc = getCountry(results);
+			                    alert(loc)
+			                }
+			            }
+			        }); */
+
+			    //output.innerHTML = '<p>Latitude is ' + latitude + 'Â° <br>Longitude is ' + longitude + 'Â°</p>';
+
+			    var img = new Image();
+			    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+			    //output.appendChild(img);
+			  };
+
+			  function error() {
+			    //output.innerHTML = "Unable to retrieve your location";
+			  };
+
+			 // output.innerHTML = "<p>Locatingâ¦</p>";
+
+			  navigator.geolocation.getCurrentPosition(success, error);
+			}
+		 
+		 function getCountry(results)
+		    {
+		        for (var i = 0; i < results[0].address_components.length; i++)
+		        {
+		        var shortname = results[0].address_components[i].short_name;
+		        var longname = results[0].address_components[i].long_name;
+		        var type = results[0].address_components[i].types;
+		        if (type.indexOf("country") != -1)
+		        {
+		            if (!isNullOrWhitespace(shortname))
+		            {
+		                return shortname;
+		            }
+		            else
+		            {
+		                return longname;
+		            }
+		        }
+		    }
+
+		}
+
+		function isNullOrWhitespace(text) {
+		    if (text == null) {
+		        return true;
+		    }
+		    return text.replace(/\s/gi, '').length < 1;
+		}
 		
 		</script>
 
-	</body>
+</body>
 
 </html>
