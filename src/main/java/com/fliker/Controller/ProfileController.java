@@ -284,6 +284,7 @@ public class ProfileController {
 			@RequestParam(value = "projectrole", required = false) String projectrole,
 			@RequestParam(value = "projectdata", required = false) String projectdata,
 			@RequestParam(value = "location", required = false) String location,
+			@RequestParam(value = "projtoken", required = false) String projtoken,
 			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
 		String result = "false";
@@ -296,7 +297,36 @@ public class ProfileController {
 			ServletContext context = request.getSession().getServletContext();
 			User userinf = (User) context.getAttribute("UserValues");
 			String userids = userinf.getUserid();
-			profprev.saveProjectToProfileInfo(projectname,projectskill,projectrole,projectdata, location,userids);
+			profprev.saveProjectToProfileInfo(projectname,projectskill,projectrole,projectdata, location,userids,projtoken);
+			
+			
+		}catch(Exception ex){
+			return result;
+		}
+		return result;
+	}
+	
+	
+	@RequestMapping("/saveProjectDataToProfile")
+	public String saveProjectDataInfo(
+			@RequestParam(value = "projectskill", required = false) String projectskill,ModelMap model,
+			@RequestParam(value = "projectrole", required = false) String projectrole,
+			@RequestParam(value = "projectdata", required = false) String projectdata,
+			@RequestParam(value = "projecttoken", required = false) String projecttoken,
+			@RequestParam(value = "projectexist", required = false) String projectexist,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+		String result = "false";
+		try{
+			ArrayList resourcesSearch = new ArrayList();
+			
+			
+			ProfilePreview profprev = new ProfilePreview();
+			//resourcesSearch = guideprev.getGuidanceData(guidanceid);
+			ServletContext context = request.getSession().getServletContext();
+			User userinf = (User) context.getAttribute("UserValues");
+			String userids = userinf.getUserid();
+			profprev.saveProjectDataToProjectInfo(projectskill,projectrole,projectdata, projecttoken,projectexist,userids);
 			
 			
 		}catch(Exception ex){
