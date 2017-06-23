@@ -249,6 +249,34 @@ public class ProfileController {
 	}
 	
 	
+	
+	@RequestMapping("/createNewArticle")
+	public ModelAndView createNewArticle(
+			 HttpSession session,HttpServletRequest request) {
+		System.out.println("in profile controller");
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userids = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		String profileimageid = profprev.profileimage(userids);
+		
+		ModelAndView mv = new ModelAndView("/Article");
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		
+		//String userid = (String) session.getAttribute("userid");// (String) mv.getModel().get("userid");
+		return mv;
+	}
+	
+	
 	@RequestMapping("/saveSkillToProfile")
 	public String saveSkillInfo(
 			@RequestParam(value = "skillname", required = false, defaultValue = "World") String skillname,ModelMap model,

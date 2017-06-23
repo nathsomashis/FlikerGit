@@ -905,7 +905,7 @@
 										perprojectline = "<div class='panel panel-default'>"+"<div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse'"+ 
 												"data-parent='#skillset' href='#"+projectid+"'> <i class='fa fa-fw fa-plus-circle txt-color-green'></i> <i class='fa fa-fw fa-minus-circle"+ 
 												"txt-color-red'></i>"+projectnm+"</a></h4></div>"+"<div id="+projectid+" class='panel-collapse collapse'>"+
-														projectas+"<br><a href='#' rel='tooltip' title='' id='"+projectid+"' data-placement='top' onclick=(AddNewProjectAchievement('"+projectid+"')) data-original-title='Add New Acheivement to Skill'>Add Achievement</a></div></div>";
+														projectas+"<br><a href='#' rel='tooltip' title='' id='"+projectid+"' data-placement='top' onclick=(AddNewProjectAchievement('"+projectid+"')) data-original-title='Add New Acheivement to Project'>Add Achievement</a></div></div>";
 										
 										preprojecttop.append(perprojectline);
 										
@@ -1665,7 +1665,7 @@
 
 				</article>
 			</div>
-			<div class="row">
+			<%-- <div class="row">
 				<article class="col-sm-12 col-md-12 col-lg-12">
 
 					<!-- Widget ID (each widget will need unique ID)-->
@@ -1696,8 +1696,7 @@
 							<div class="widget-toolbar hidden-phone">
 								<div class="smart-form">
 									<label class="checkbox">
-										<button class="btn btn-primary" onclick="createNewArticle()">Provide
-											New Achevements</button>
+										<a class="btn btn-primary btn-xs" href="createNewArticle?">Create New Article</a>
 									</label>
 								</div>
 							</div>
@@ -1719,7 +1718,7 @@
 
 								<div class="panel-group smart-accordion-default" id="articleset">
 
-									<%-- <%=guidanceachievements%> --%>
+									<%=guidanceachievements%>
 								</div>
 
 							</div>
@@ -1732,7 +1731,7 @@
 					<!-- end widget -->
 
 				</article>
-			</div>
+			</div> --%>
 
 			<section id="widget-grid" class="">
 
@@ -1912,62 +1911,43 @@
 								<!-- NEW WIDGET START -->
 								<div class="widget-body">
 									<div class="row">
-
-										<!-- NEW WIDGET START -->
-										<article class="col-sm-12">
-
-
-
-											<!-- Widget ID (each widget will need unique ID)-->
-											<div class="jarviswidget jarviswidget-color-blueLight"
-												id="wid-id-1" data-widget-editbutton="false">
-												<!-- widget options:
-													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-									
-													data-widget-colorbutton="false"
-													data-widget-editbutton="false"
-													data-widget-togglebutton="false"
-													data-widget-deletebutton="false"
-													data-widget-fullscreenbutton="false"
-													data-widget-custombutton="false"
-													data-widget-collapsed="true"
-													data-widget-sortable="false"
-									
-													-->
-												<header>
-													<span class="widget-icon"> <i class="fa fa-cloud"></i>
-													</span>
-													<h2>New Profile Image</h2>
-
-												</header>
-
-												<!-- widget div-->
-												<div>
-
-													<!-- widget edit box -->
-													<div class="jarviswidget-editbox">
-														<!-- This area used as dropdown edit box -->
-
+										<fieldset>
+												<legend>File inputs</legend>
+											
+												<div class="form-group">
+													<label class="col-md-2 control-label">File input</label>
+													<div class="col-md-8">
+														<input type="file" class="btn btn-default" id="exampleInputFile1">
+														<p class="help-block">
+															some help text here.
+														</p>
 													</div>
-													<!-- end widget edit box -->
-
-													<!-- widget content -->
-													<div class="widget-body">
-
-														<form action="upload.php" class="dropzone"
-															id="Imagedropzone"></form>
-
-													</div>
-													<!-- end widget content -->
-
+													<span class="col-md-2"><a class="btn btn-primary" href="#">Upload</a></span>
 												</div>
-												<!-- end widget div -->
+												
+											</fieldset>
+											<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<div class="jarviswidget jarviswidget-sortable" id="wid-id-0" data-widget-togglebutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" role="widget" style="">
+													<div role="content">
+														<div class="widget-body">
+															<div class="tab-pane clearfix fade">
 
-											</div>
-											<!-- end widget -->
-
-										</article>
-										<!-- WIDGET END -->
+																<h4 class="margin-bottom-10">Default Behaviour</h4>
+				
+																<div class="alert alert-info">
+																	<b>This example demonstrates the default behavior of Jcrop.</b>
+																	<br />
+																	Since no event handlers have been attached it only performs
+																	the cropping behavior.
+																</div>
+				
+																<img src="img/superbox/superbox-full-11.jpg" id="target" alt="[Jcrop Example]" />
+				
+															</div>
+														</div>
+													</div>
+												</div>
+											</article>
 
 									</div>
 
@@ -2492,6 +2472,10 @@
 	<script
 		src="<c:url value='/resources/js/plugin/typeahead/typeahead.min.js' />"></script>
 	<!-- <script src="js/plugin/typeahead/typeahead.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/jcrop/jquery.Jcrop.min.js' />"></script>
+	<!-- <script src="js/plugin/jcrop/jquery.Jcrop.min.js"></script> -->
+	
 	<script
 		src="<c:url value='/resources/js/plugin/typeahead/typeaheadjs.min.js' />"></script>
 	<!-- <script src="js/plugin/typeahead/typeaheadjs.min.js"></script> -->
@@ -3186,7 +3170,9 @@
 			 */
 			$('.ui-dialog :button').blur();
 		
-			
+			var default_handler = function(){
+				$('#target').Jcrop();
+			}
 		
 			/*
 			* ACCORDION
@@ -3912,6 +3898,10 @@
 					}
 				
 		        }); 
+		}
+		
+		function createNewArticle(){
+			window.open("createNewArticle?);
 		}
 		
 		</script>
