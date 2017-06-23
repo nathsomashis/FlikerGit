@@ -2616,11 +2616,28 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 			e.printStackTrace();
 		}
 		
+		SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM dd, yyyy HH:mm:ss a");
+        //String dateInString = "Friday, Jun 7, 2013 12:10:56 PM";//example
+        
+		
+		
+        Date datepack = new Date();
+        DateFunctionality datefunc = new DateFunctionality();
+        
+        String localdate = datefunc.getUniformDates(formatter.format(datepack));
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(datepack);
+        
+        String datecurrent = formatter.format(datepack);
+		
 		Invoice invoice = new Invoice();
 		invoice.setInvoicebuyer(userid);
 		invoice.setInvoiceid(uniqueid);
 		invoice.setInvoiceitem(guidanceid);
 		invoice.setInvoiceprice(price);
+		invoice.setInvoicedate(datecurrent);
+		invoice.setInvoicelocaldate(localdate);
 		
 		MongoConnection mongoconsearch = new MongoConnection();
 		BasicDBObject basicreqobjsearch =  guidprev.formInvoiceDBObject(invoice);
@@ -2637,6 +2654,8 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		bill.setPaytoid(payableto);
 		bill.setPlanid(guidanceid);
 		bill.setTotalamount(price);
+		bill.setBilllocaldate(localdate);
+		bill.setBilldate(datecurrent);
 		
 		BasicDBObject billsaveobj =  guidprev.formBillDBObject(bill);
 		mongoconsearch.saveObject(billsaveobj, "Bill");
@@ -2658,6 +2677,8 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		basicdbobj.put("totalamount", bill.getTotalamount());
 		basicdbobj.put("item", bill.getItem());
 		basicdbobj.put("paymentmethods", bill.getPaymentmethods());
+		basicdbobj.put("billdate", bill.getBilldate());
+		basicdbobj.put("billlocaldate", bill.getBilllocaldate());
 		
 		return basicdbobj;
 	}
@@ -2670,8 +2691,37 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		basicdbobj.put("invoiceitem", invoice.getInvoiceitem());
 		basicdbobj.put("invoiceprice", invoice.getInvoiceprice());
 		basicdbobj.put("invoicebuyer", invoice.getInvoicebuyer());
+		basicdbobj.put("invoicedate", invoice.getInvoicedate());
+		basicdbobj.put("invoicelocaldate", invoice.getInvoicelocaldate());
 		
 		return basicdbobj;
+	}
+
+
+	public HashMap getBillDetail(String billid) {
+		// TODO Auto-generated method stub
+		HashMap billmap = new HashMap();
+		MongoConnection mongocon = new MongoConnection();
+		
+		DBCursor guidecursor = mongocon.getDBObject("billid", billid, "Bill");
+		if(guidecursor.hasNext()){
+			DBObject guidedbj = guidecursor.next();
+			
+			billmap.put("billid", (String)guidedbj.get("billid"));
+			billmap.put("contractid", (String)guidedbj.get("contractid"));
+			billmap.put("planid", (String)guidedbj.get("planid"));
+			billmap.put("licenseid", (String)guidedbj.get("licenseid"));
+			billmap.put("invoiceid", (String)guidedbj.get("invoiceid"));
+			billmap.put("payfromid", (String)guidedbj.get("payfromid"));
+			billmap.put("paytoid", (String)guidedbj.get("paytoid"));
+			billmap.put("totalamount", (String)guidedbj.get("totalamount"));
+			billmap.put("item", (String)guidedbj.get("item"));
+			billmap.put("paymentmethods", (String)guidedbj.get("paymentmethods"));
+			billmap.put("billdate", (String)guidedbj.get("billdate"));
+			billmap.put("billlocaldate", (String)guidedbj.get("billlocaldate"));
+		}
+		
+		return billmap;
 	}
 	
 }

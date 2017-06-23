@@ -235,6 +235,8 @@ public class GuidanceController {
 		GuidancePreview guidprev = new GuidancePreview();
 		billid = guidprev.generateInvoice(userid,guidanceid,guidanceitem,price,payableto);
 		
+		HashMap billdetails = guidprev.getBillDetail(billid);
+		
 		ModelAndView mv;
 		mv = new ModelAndView("/GuidanceBuy");
 		
@@ -245,6 +247,7 @@ public class GuidanceController {
 		mv.addObject("Gender", gender);
 		mv.addObject("userid", userid);
 		mv.addObject("bill", billid);
+		mv.addObject("billdetails", billdetails);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
 		
 		return mv;

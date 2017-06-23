@@ -15,6 +15,22 @@ public class Bill {
 	private String totalamount;
 	private String item;
 	private String paymentmethods;
+	private String billdate;
+	private String billlocaldate;
+	
+	
+	public String getBilldate() {
+		return billdate;
+	}
+	public void setBilldate(String billdate) {
+		this.billdate = billdate;
+	}
+	public String getBilllocaldate() {
+		return billlocaldate;
+	}
+	public void setBilllocaldate(String billlocaldate) {
+		this.billlocaldate = billlocaldate;
+	}
 	public String getBillid() {
 		return billid;
 	}

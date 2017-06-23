@@ -645,7 +645,66 @@
 			
 			<%
 				
+				HashMap billdetails = (HashMap)request.getAttribute("billdetails");
+				Set billset = billdetails.entrySet();
+				Iterator billit = billset.iterator();
+				String billid = "";
+				String contactid = "";
+				String planid = "";
+				String licenseid = "";
+				String invoiceid = "";
+				String payfromid = "";
+				String paytoid = "";
+				String totalamount = "";
+				String item = "";
+				String paymethod = "";
+				int count = 0;
+				String buyer = "";
+				String seller = "";
+				String billdate = "";
+				String priceamount = "";
+				String priceCurr = "";
 				
+				
+				while(billit.hasNext()){
+					count++;
+					Map.Entry billme = (Map.Entry)billit.next();
+					if(((String)billme.getKey()).equalsIgnoreCase("billid")){
+						billid = (String)billme.getValue();
+					}else if(((String)billme.getKey()).equalsIgnoreCase("contractid")){
+						contactid = (String)billme.getValue();
+					}else if(((String)billme.getKey()).equalsIgnoreCase("planid")){
+						planid = (String)billme.getValue();
+					}else if(((String)billme.getKey()).equalsIgnoreCase("licenseid")){
+						licenseid = (String)billme.getValue();
+					}else if(((String)billme.getKey()).equalsIgnoreCase("invoiceid")){
+						invoiceid = (String)billme.getValue();
+					}else if(((String)billme.getKey()).equalsIgnoreCase("payfromid")){
+						payfromid = (String)billme.getValue();
+						ProfilePreview profprev = new ProfilePreview();
+						Profile profileinfo = profprev.getProfileData(payfromid);
+						buyer = profileinfo.getName();
+						
+					}else if(((String)billme.getKey()).equalsIgnoreCase("paytoid")){
+						paytoid = (String)billme.getValue();
+						ProfilePreview profprev = new ProfilePreview();
+						Profile profileinfo = profprev.getProfileData(paytoid);
+						seller = profileinfo.getName();
+						
+					}else if(((String)billme.getKey()).equalsIgnoreCase("totalamount")){
+						totalamount = (String)billme.getValue();
+						String[] amountver = totalamount.split(" ");
+						priceamount = amountver[0];
+						priceCurr = amountver[1];
+						
+					}else if(((String)billme.getKey()).equalsIgnoreCase("item")){
+						item = (String)billme.getValue();
+					}else if(((String)billme.getKey()).equalsIgnoreCase("paymentmethods")){
+						paymethod = (String)billme.getValue();
+					}else if(((String)billme.getKey()).equalsIgnoreCase("billdate")){
+						billdate = (String)billme.getValue();
+					}
+				}
 			
 			%>
 
@@ -679,7 +738,7 @@
 								-->
 								<header>
 									<span class="widget-icon"> <i class="fa fa-barcode"></i> </span>
-									<h2>Item #44761 </h2>
+									<h2>Item <%=billid%> </h2>
 				
 								</header>
 				
@@ -696,54 +755,8 @@
 									<!-- widget content -->
 									<div class="widget-body no-padding">
 				
-										<div class="widget-body-toolbar">
-				
-											<div class="row">
-				
-												<div class="col-sm-4">
-				
-													<div class="input-group">
-														<input class="form-control" type="text" placeholder="Type invoice number or date...">
-														<div class="input-group-btn">
-															<button class="btn btn-default" type="button">
-																<i class="fa fa-search"></i> Search
-															</button>
-														</div>
-													</div>
-												</div>
-				
-												<div class="col-sm-8 text-align-right">
-				
-													<div class="btn-group">
-														<a href="javascript:void(0)" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> Edit </a>
-													</div>
-				
-													<div class="btn-group">
-														<a href="javascript:void(0)" class="btn btn-sm btn-success"> <i class="fa fa-plus"></i> Create New </a>
-													</div>
-				
-												</div>
-				
-											</div>
-				
-										</div>
-				
 										<div class="padding-10">
 											<br>
-											<div class="pull-left">
-												<img src="img/logo-blacknwhite.png" width="150" height="32" alt="invoice icon">
-				
-												<address>
-													<br>
-													<strong>SmartAdmin, Inc.</strong>
-													<br>
-													231 Ajax Rd,
-													<br>
-													Detroit MI - 48212, USA
-													<br>
-													<abbr title="Phone">P:</abbr> (123) 456-7890
-												</address>
-											</div>
 											<div class="pull-right">
 												<h1 class="font-400">invoice</h1>
 											</div>
@@ -752,29 +765,19 @@
 											<br>
 											<div class="row">
 												<div class="col-sm-9">
-													<h4 class="semi-bold">Rogers, Inc.</h4>
-													<address>
-														<strong>Mr. Simon Hedger</strong>
-														<br>
-														342 Mirlington Road,
-														<br>
-														Calfornia, CA 431464
-														<br>
-														<abbr title="Phone">P:</abbr> (467) 143-4317
-													</address>
 												</div>
 												<div class="col-sm-3">
 													<div>
 														<div>
 															<strong>INVOICE NO :</strong>
-															<span class="pull-right"> #AA-454-4113-00 </span>
+															<span class="pull-right"><%=billid%> </span>
 														</div>
 				
 													</div>
 													<div>
 														<div class="font-md">
 															<strong>INVOICE DATE :</strong>
-															<span class="pull-right"> <i class="fa fa-calendar"></i> 15/02/13 </span>
+															<span class="pull-right"> <i class="fa fa-calendar"></i><%=billdate%></span>
 														</div>
 				
 													</div>
@@ -782,7 +785,7 @@
 													<div class="well well-sm  bg-color-darken txt-color-white no-border">
 														<div class="fa-lg">
 															Total Due :
-															<span class="pull-right"> 4,972 USD** </span>
+															<span class="pull-right"> <%=totalamount%></span>
 														</div>
 				
 													</div>
@@ -796,40 +799,15 @@
 														<th class="text-center">QTY</th>
 														<th>ITEM</th>
 														<th>DESCRIPTION</th>
-														<th>PRICE</th>
 														<th>SUBTOTAL</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td class="text-center"><strong>1</strong></td>
-														<td><a href="javascript:void(0);">Print and Web Logo Design</a></td>
-														<td>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam xplicabo.</td>
-														<td>$1,300.00</td>
-				
-														<td>$1,300.00</td>
-													</tr>
-													<tr>
-														<td class="text-center"><strong>1</strong></td>
-														<td><a href="javascript:void(0);">SEO Management</a></td>
-														<td>Sit voluptatem accusantium doloremque laudantium inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</td>
-														<td>$1,400.00</td>
-														<td>$1,400.00</td>
-													</tr>
-													<tr>
-														<td class="text-center"><strong>1</strong></td>
-														<td><a href="javascript:void(0);">Backend Support and Upgrade</a></td>
-														<td>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</td>
-														<td>$1,700.00</td>
-														<td>$1,700.00</td>
-													</tr>
-													<tr>
-														<td colspan="4">Total</td>
-														<td><strong>$4,400.00</strong></td>
-													</tr>
-													<tr>
-														<td colspan="4">HST/GST</td>
-														<td><strong>13%</strong></td>
+														<td><%=item%></td>
+														<td> Payment from <%=seller%> to <%=buyer%></td>
+														<td><%=totalamount%></td>
 													</tr>
 												</tbody>
 											</table>
@@ -841,26 +819,22 @@
 													<div class="col-sm-7">
 														<div class="payment-methods">
 															<h5>Payment Methods</h5>
-															<img src="img/invoice/paypal.png" width="64" height="64" alt="paypal">
-															<img src="img/invoice/americanexpress.png" width="64" height="64" alt="american express">
-															<img src="img/invoice/mastercard.png" width="64" height="64" alt="mastercard">
-															<img src="img/invoice/visa.png" width="64" height="64" alt="visa">
+															<ul>
+																<li id="paypal-button-container"></li>
+																<img src="img/invoice/americanexpress.png" width="64" height="64" alt="american express">
+																<img src="img/invoice/mastercard.png" width="64" height="64" alt="mastercard">
+																<img src="img/invoice/visa.png" width="64" height="64" alt="visa">
+															</ul>
 														</div>
 													</div>
 													<div class="col-sm-5">
 														<div class="invoice-sum-total pull-right">
-															<h3><strong>Total: <span class="text-success">$4,972 USD</span></strong></h3>
+															<h3><strong>Total: <span class="text-success"><%=totalamount%></span></strong></h3>
 														</div>
 													</div>
 				
 												</div>
 												
-												<div class="row">
-													<div class="col-sm-12">
-														<p class="note">**To avoid any excess penalty charges, please make payments within 30 days of the due date. There will be a 2% interest charge per month on all late invoices.</p>
-													</div>
-												</div>
-				
 											</div>
 										</div>
 				
@@ -1025,6 +999,7 @@
 		<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
+		<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
@@ -1115,6 +1090,49 @@
 			}
 		
 		</script>
+		<script>
+		// Render the PayPal button
+
+			
+		
+		    paypal.Button.render({
+	
+		        // Set your environment
+	
+		        env: 'sandbox', // sandbox | production
+	
+		        // Specify the style of the button
+	
+		        style: {
+		            label: 'checkout', // checkout | credit | pay
+		            size:  'small',    // small | medium | responsive
+		            shape: 'pill',     // pill | rect
+		            color: 'blue'      // gold | blue | silver
+		        },
+	
+		        client: {
+		            sandbox:    '<%=%>',
+		            production: '<insert production client id>'
+		        },
+	
+		        payment: function(data, actions) {
+		            return actions.payment.create({
+		                transactions: [
+		                    {
+		                        amount: { total: '<%=priceamount%>', currency: '<%=priceCurr%>' }
+		                    }
+		                ]
+		            });
+		        },
+	
+		        onAuthorize: function(data, actions) {
+		            return actions.payment.execute().then(function() {
+		                window.alert('Payment Complete!');
+		            });
+		        }
+	
+		    }, '#paypal-button-container');
+	    </script>
 
 	</body>
 

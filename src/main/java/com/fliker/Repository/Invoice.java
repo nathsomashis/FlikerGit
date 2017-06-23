@@ -11,6 +11,23 @@ public class Invoice {
 	private String invoiceitem;
 	private String invoiceprice;
 	private String invoicebuyer;
+	private String invoicedate;
+	private String invoicelocaldate;
+	
+	
+	
+	public String getInvoicedate() {
+		return invoicedate;
+	}
+	public void setInvoicedate(String invoicedate) {
+		this.invoicedate = invoicedate;
+	}
+	public String getInvoicelocaldate() {
+		return invoicelocaldate;
+	}
+	public void setInvoicelocaldate(String invoicelocaldate) {
+		this.invoicelocaldate = invoicelocaldate;
+	}
 	public String getInvoiceid() {
 		return invoiceid;
 	}
