@@ -212,10 +212,13 @@ public class GuidanceController {
 	@RequestMapping("/guidancepayment")
 	public ModelAndView guidancepayment(
 			@RequestParam(value = "guidanceid", required = false) String guidanceid,
+			@RequestParam(value = "guidanceitem", required = false) String guidanceitem,
+			@RequestParam(value = "price", required = false) String price,
+			@RequestParam(value = "payableto", required = false) String payableto,
 			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
  
-		HashMap guidanceinfolist = new HashMap();
+		String billid = "";
 		
 		ServletContext context = request.getSession().getServletContext();
 		
@@ -230,10 +233,10 @@ public class GuidanceController {
 		String profileimageid = profprev.profileimage(userid);
 		
 		GuidancePreview guidprev = new GuidancePreview();
-		guidanceinfolist = guidprev.generateInvoice(userid,guidanceid);
+		billid = guidprev.generateInvoice(userid,guidanceid,guidanceitem,price,payableto);
 		
 		ModelAndView mv;
-		mv = new ModelAndView("/GuidanceInfoView");
+		mv = new ModelAndView("/GuidanceBuy");
 		
 		
 		
@@ -241,7 +244,7 @@ public class GuidanceController {
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
 		mv.addObject("userid", userid);
-		mv.addObject("guidanceid", guidanceid);
+		mv.addObject("bill", billid);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
 		
 		return mv;
