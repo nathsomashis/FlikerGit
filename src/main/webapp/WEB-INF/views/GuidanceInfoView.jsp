@@ -763,15 +763,86 @@
 										</h2>
 										<hr>
 										<h3 class="price-container">
-											$129.54
+											<%=Price%>
 											<small>*includes tax</small>
 										</h3>
 									
 										<div class="certified">
-											<ul>
-												<li><a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a></li>
-												<li><a href="javascript:void(0);">Certified<span>Quality Assured</span></a></li>
+											<% 
+												if(Achievements.size() > 0){
+													%>
+														<ul>
+													<%
+													if(Achievements.size() < 3){
+													for(int k=0;k<Achievements.size();k++){
+														
+														String achievementname = "";
+														String acievementdesc = "";
+														String achievmentfile = "";
+														
+														String resultachieve = (((String)Achievements.get(k)).replaceAll("\\{", "")).replaceAll("\\}", "");
+														System.out.println(resultachieve);
+														
+														String[] achievetoken = resultachieve.split(",");
+														for(int x=0;x<achievetoken.length;x++){
+															String perachtoken = achievetoken[x];
+															String escapepretoken = perachtoken.replaceAll("\"", "");
+															String[] tokenarra = escapepretoken.split(":");
+															if(tokenarra[0].equalsIgnoreCase("achievement")){
+																achievementname = tokenarra[1];
+															}/* else if(tokenarra[0].equalsIgnoreCase("achievementdescription")){
+																acievementdesc = tokenarra[1];
+															}else if(tokenarra[0].equalsIgnoreCase("achievementfile")){
+																achievmentfile = tokenarra[1];
+															} */
+															
+														}
+														%>
+															<li><%=achievementname %></li>
+														<%
+													}
+												}else{
+													int totalccount = Achievements.size() - 3;
+													for(int k=0;k<4;k++){
+														
+														String achievementname = "";
+														String acievementdesc = "";
+														String achievmentfile = "";
+														
+														String resultachieve = (((String)Achievements.get(k)).replaceAll("\\{", "")).replaceAll("\\}", "");
+														System.out.println(resultachieve);
+														
+														String[] achievetoken = resultachieve.split(",");
+														for(int x=0;x<achievetoken.length;x++){
+															String perachtoken = achievetoken[x];
+															String escapepretoken = perachtoken.replaceAll("\"", "");
+															String[] tokenarra = escapepretoken.split(":");
+															if(tokenarra[0].equalsIgnoreCase("achievement")){
+																achievementname = tokenarra[1];
+															}/* else if(tokenarra[0].equalsIgnoreCase("achievementdescription")){
+																acievementdesc = tokenarra[1];
+															}else if(tokenarra[0].equalsIgnoreCase("achievementfile")){
+																achievmentfile = tokenarra[1];
+															} */
+															
+														}
+														%>
+															<li><%=achievementname %></li>
+														<%
+													}
+													
+													%>
+														<li>
+															<a href="#"><%=totalccount%> more</a>
+														</li>
+													<%
+												}
+												
+											%>
 											</ul>
+											<%
+												}
+											%>
 										</div>
 										<hr>
 										<div class="description description-tabs">
@@ -786,7 +857,45 @@
 												<div class="tab-pane fade active in" id="more-information">
 													<br>
 													<strong>Description Title</strong>
-													<p>Integer egestas, orci id condimentum eleifend, nibh nisi pulvinar eros, vitae ornare massa neque ut orci. Nam aliquet lectus sed odio eleifend, at iaculis dolor egestas. Nunc elementum pellentesque augue sodales porta. Etiam aliquet rutrum turpis, feugiat sodales ipsum consectetur nec. </p>
+													<p><%=Description%></p>
+													</br>
+													<blockquote>
+													  <p><%=guidancetype%></p>
+													  <small><%=guidanceduration%></small>
+													</blockquote>
+													<div class="col-sm-6">
+															<%if(Endorsement.size() > 0) {%>
+															<h1><small>Endorsement</small></h1>
+															<ul class="list-inline friends-list">
+																<%
+																if(Endorsement.size() < 15){
+																for(int y=0;y<Endorsement.size();y++){
+																	%>
+																		<li><img src="/Fliker/imageFromUserid/<%=Endorsement.get(y)%>" alt="friend-6">
+																		</li>
+																	<%
+																	}
+																}else {
+																	int counttoshow = Endorsement.size()-15;
+																	for(int y=0;y<15;y++){
+																		%>
+																			<li><img src="/Fliker/imageFromUserid/<%=Endorsement.get(y)%>" alt="friend-6">
+																			</li>
+																		<%
+																		}
+																	%>
+																		<li>
+																			<a href="#"><%=counttoshow%> more</a>
+																		</li>
+																	<%
+																}
+																%>
+																
+															</ul>
+															<%} %>
+														</div>
+													
+													
 												</div>
 												<div class="tab-pane fade" id="specifications">
 													<br>
@@ -887,13 +996,18 @@
 										<div class="row">
 											<div class="col-sm-12 col-md-6 col-lg-6">
 												
-													<a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
+													<a href="guidancepayment?" class="btn btn-success btn-lg">Go for Payment ($<%=Price%>)</a>
 												
 											</div>
 											<div class="col-sm-12 col-md-6 col-lg-6">
 												<div class="btn-group pull-right">
+													<%if(guidanceinterestedlist.size() > 0 || guidanceinterestedlist!=null){ 
+														int totalinterest = guidanceinterestedlist.size();
+													%>
+						                            <button class="btn btn-white btn-default"><i class="fa fa-star"><%=totalinterest%></i> Add to wishlist </button>
+						                            <%}else{ %>
 						                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist </button>
-						                            <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
+						                            <%} %>
 						                        </div>
 											</div>
 										</div>
@@ -914,40 +1028,6 @@
 
 			</div>
 			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="subscribe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Subscribe</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<label for="subscriptiontype"> As</label>
-											<select class="form-control" id="subscriptiontype">
-												<option>Investor</option>
-												<option>Buyer</option>
-												<option>Resource</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<a href="osmprojectsubscription?" id="subscribe" class="btn btn-primary"> <i class="fa fa-warning"></i> Subscribe </a>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
 		</div>
 		<!-- END MAIN PANEL -->
 
