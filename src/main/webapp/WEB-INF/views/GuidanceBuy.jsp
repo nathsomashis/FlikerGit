@@ -644,59 +644,7 @@
 			<!-- END RIBBON -->
 			
 			<%
-				String guidanceid = (String)request.getAttribute("guidanceid");
-				String userid = (String)request.getAttribute("userid");
-				HashMap guidanceinfo = (HashMap)request.getAttribute("guidanceinfolist");
-				Set guidanceset = guidanceinfo.entrySet();
-				Iterator guiditer = guidanceset.iterator();
-				String Description = "";
-				String Price = "";
-				String Experience = "";
-				ArrayList Endorsement = new ArrayList();
-				BasicDBList Achievements = new BasicDBList();
-				int remarks = 0;
-				BasicDBList locationlist = new BasicDBList();
-				String Subject = "";
-				String guidancetype = "";
-				String guidanceduration = "";
-				String guidanuser = "";
-				String guidanceprovider = "";
-				Profile profileinfo = new Profile();
 				
-				BasicDBList guidanceinterestedlist = new BasicDBList();
-				while(guiditer.hasNext()){
-					Map.Entry guidme = (Map.Entry)guiditer.next();
-					
-					if(((String)guidme.getKey()).equalsIgnoreCase("Description")){
-						Description = (String)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("Price")){
-						Price = (String)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("Experience")){
-						Experience = (String)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("Endorsement")){
-						Endorsement = (ArrayList)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("Achievement")){
-						Achievements = (BasicDBList)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("Remarks")){
-						remarks = (Integer)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("Locations")){
-						locationlist = (BasicDBList)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("Subject")){
-						Subject = (String)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("GuidanceType")){
-						guidancetype = (String)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("GuidanceDuration")){
-						guidanceduration = (String)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("GuidanceInterest")){
-						guidanceinterestedlist = (BasicDBList)guidme.getValue();
-					}else if(((String)guidme.getKey()).equalsIgnoreCase("Userid")){
-						guidanuser = (String)guidme.getValue();
-						ProfilePreview profprev = new ProfilePreview();
-						profileinfo = profprev.getProfileData(guidanuser);
-						guidanceprovider = profileinfo.getName();
-					}
-					
-				}
 				
 			
 			%>
@@ -706,325 +654,233 @@
 				
 				<div class="row">
 					
-					<!-- widget grid -->
-				<section id="widget-grid" class="">
-
+					<section id="widget-grid" class="">
+				
 					<!-- row -->
-
 					<div class="row">
-
-						<div class="col-sm-12 col-md-12 col-lg-12">
-							<!-- product -->
-							<div class="product-content product-wrap clearfix product-deatil">
-								<div class="row">
-										<div class="col-md-5 col-sm-12 col-xs-12 ">
-											<div class="product-image"> 
-												<img src="http://www.planwallpaper.com/static/images/4440133-hd-wallpapers.jpg" alt="">
-											</div>
-										</div>
-										<div class="col-md-7 col-sm-12 col-xs-12">
-									
-										<h2 class="name">
-											<%=Subject%>
-											<small>Guidance by <a href="#" onclick="openProfile('<%=guidanuser%>')" rel="popover-hover" data-placement="right" data-original-title="<img src='<c:url value='/resources/img/avatars/male.png' />'	alt='me' class='online'<h3><%=profileinfo.getName()%> <b><%=profileinfo.getCurrentStatus()%></b> <em><%=profileinfo.getEmailid()%></em> </h3>" data-content="Current Status: <%=profileinfo.getCurrentStatus()%><br> Email ID: <%=profileinfo.getEmailid()%> <br>"  data-html="true"><%=profileinfo.getName()%></a></small>
-											<% 
-											if(remarks == 0){
-												%>
-													<i class="fa fa-star fa-2x text-muted"></i>
-													<i class="fa fa-star fa-2x text-muted"></i>
-													<i class="fa fa-star fa-2x text-muted"></i>
-													<i class="fa fa-star fa-2x text-muted"></i>
-													<i class="fa fa-star fa-2x text-muted"></i>
-												<%
-											}else if(remarks == 5){
-												%>
-													<i class="fa fa-star fa-2x text-primary"></i>
-													<i class="fa fa-star fa-2x text-primary"></i>
-													<i class="fa fa-star fa-2x text-primary"></i>
-													<i class="fa fa-star fa-2x text-primary"></i>
-													<i class="fa fa-star fa-2x text-primary"></i>
-												<%
-											}else{
-												int v = 0;
-												for(;v<remarks;v++){
-													%>
-														<i class="fa fa-star fa-2x text-primary"></i>
-													<%
-												}
-												for(int m=5;m>v;m--){
-													%>
-														<i class="fa fa-star fa-2x text-muted"></i>
-													<%
-												}
-											}
-											%>
-											<span class="fa fa-2x"><h5>(109) Votes</h5></span>	
-											
-											<a href="javascript:void(0);">109 customer reviews</a>
-				 
-										</h2>
-										<hr>
-										<h3 class="price-container">
-											<%=Price%>
-											<small>*includes tax</small>
-										</h3>
-									
-										<div class="certified">
-											<% 
-												if(Achievements.size() > 0){
-													%>
-														<ul>
-													<%
-													if(Achievements.size() < 3){
-													for(int k=0;k<Achievements.size();k++){
-														
-														String achievementname = "";
-														String acievementdesc = "";
-														String achievmentfile = "";
-														
-														String resultachieve = (((String)Achievements.get(k)).replaceAll("\\{", "")).replaceAll("\\}", "");
-														System.out.println(resultachieve);
-														
-														String[] achievetoken = resultachieve.split(",");
-														for(int x=0;x<achievetoken.length;x++){
-															String perachtoken = achievetoken[x];
-															String escapepretoken = perachtoken.replaceAll("\"", "");
-															String[] tokenarra = escapepretoken.split(":");
-															if(tokenarra[0].equalsIgnoreCase("achievement")){
-																achievementname = tokenarra[1];
-															}/* else if(tokenarra[0].equalsIgnoreCase("achievementdescription")){
-																acievementdesc = tokenarra[1];
-															}else if(tokenarra[0].equalsIgnoreCase("achievementfile")){
-																achievmentfile = tokenarra[1];
-															} */
-															
-														}
-														%>
-															<li><%=achievementname %></li>
-														<%
-													}
-												}else{
-													int totalccount = Achievements.size() - 3;
-													for(int k=0;k<4;k++){
-														
-														String achievementname = "";
-														String acievementdesc = "";
-														String achievmentfile = "";
-														
-														String resultachieve = (((String)Achievements.get(k)).replaceAll("\\{", "")).replaceAll("\\}", "");
-														System.out.println(resultachieve);
-														
-														String[] achievetoken = resultachieve.split(",");
-														for(int x=0;x<achievetoken.length;x++){
-															String perachtoken = achievetoken[x];
-															String escapepretoken = perachtoken.replaceAll("\"", "");
-															String[] tokenarra = escapepretoken.split(":");
-															if(tokenarra[0].equalsIgnoreCase("achievement")){
-																achievementname = tokenarra[1];
-															}/* else if(tokenarra[0].equalsIgnoreCase("achievementdescription")){
-																acievementdesc = tokenarra[1];
-															}else if(tokenarra[0].equalsIgnoreCase("achievementfile")){
-																achievmentfile = tokenarra[1];
-															} */
-															
-														}
-														%>
-															<li><%=achievementname %></li>
-														<%
-													}
-													
-													%>
-														<li>
-															<a href="#"><%=totalccount%> more</a>
-														</li>
-													<%
-												}
-												
-											%>
-											</ul>
-											<%
-												}
-											%>
-										</div>
-										<hr>
-										<div class="description description-tabs">
-
-
-											<ul id="myTab" class="nav nav-pills">
-												<li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product Description </a></li>
-												<li class=""><a href="#specifications" data-toggle="tab">Specifications</a></li>
-												<li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
-											</ul>
-											<div id="myTabContent" class="tab-content">
-												<div class="tab-pane fade active in" id="more-information">
-													<br>
-													<strong>Description Title</strong>
-													<p><%=Description%></p>
-													</br>
-													<blockquote>
-													  <p><%=guidancetype%></p>
-													  <small><%=guidanceduration%></small>
-													</blockquote>
-													<div class="col-sm-6">
-															<%if(Endorsement.size() > 0) {%>
-															<h1><small>Endorsement</small></h1>
-															<ul class="list-inline friends-list">
-																<%
-																if(Endorsement.size() < 15){
-																for(int y=0;y<Endorsement.size();y++){
-																	%>
-																		<li><img src="/Fliker/imageFromUserid/<%=Endorsement.get(y)%>" alt="friend-6">
-																		</li>
-																	<%
-																	}
-																}else {
-																	int counttoshow = Endorsement.size()-15;
-																	for(int y=0;y<15;y++){
-																		%>
-																			<li><img src="/Fliker/imageFromUserid/<%=Endorsement.get(y)%>" alt="friend-6">
-																			</li>
-																		<%
-																		}
-																	%>
-																		<li>
-																			<a href="#"><%=counttoshow%> more</a>
-																		</li>
-																	<%
-																}
-																%>
-																
-															</ul>
-															<%} %>
-														</div>
-													
-													
-												</div>
-												<div class="tab-pane fade" id="specifications">
-													<br>
-													<dl class="">
-															<dt>Gravina</dt>
-					                                        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-					                                        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-					                                        <dd>Eget lacinia odio sem nec elit.</dd>
-					                                        <br>
-
-					                                        <dt>Test lists</dt>
-					                                        <dd>A description list is perfect for defining terms.</dd>
-					                                        <br>	
-
-					                                        <dt>Altra porta</dt>
-					                                        <dd>Vestibulum id ligula porta felis euismod semper</dd>
-					                                    </dl>
-												</div>
-												<div class="tab-pane fade" id="reviews">
-													<br>
-													<form method="post" class="well padding-bottom-10" onsubmit="return false;">
-														<textarea rows="2" class="form-control" placeholder="Write a review"></textarea>
-														<div class="margin-top-10">
-															<button type="submit" class="btn btn-sm btn-primary pull-right">
-																Submit Review
+				
+						<!-- NEW WIDGET START -->
+						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget well jarviswidget-color-darken" id="wid-id-0" data-widget-sortable="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-colorbutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-barcode"></i> </span>
+									<h2>Item #44761 </h2>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body no-padding">
+				
+										<div class="widget-body-toolbar">
+				
+											<div class="row">
+				
+												<div class="col-sm-4">
+				
+													<div class="input-group">
+														<input class="form-control" type="text" placeholder="Type invoice number or date...">
+														<div class="input-group-btn">
+															<button class="btn btn-default" type="button">
+																<i class="fa fa-search"></i> Search
 															</button>
-															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Location"><i class="fa fa-location-arrow"></i></a>
-															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Voice"><i class="fa fa-microphone"></i></a>
-															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Photo"><i class="fa fa-camera"></i></a>
-															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add File"><i class="fa fa-file"></i></a>
 														</div>
-													</form>
-
-													<div class="chat-body no-padding profile-message">
-														<ul>
-															<li class="message">
-																<img src="img/avatars/1.png" class="online">
-																<span class="message-text"> 
-																	<a href="javascript:void(0);" class="username">
-																		Alisha Molly 
-																		<span class="badge">Purchase Verified</span> 
-																		<span class="pull-right">
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-muted"></i>
-																		</span>
-																	</a> 
-																	
-																	
-																	Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very image let unto fowl isn't in blessed fill life yielding above all moved 
-																</span>
-																<ul class="list-inline font-xs">
-																	<li>
-																		<a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
-																	</li>
-																	<li class="pull-right">
-																		<small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
-																	</li>
-																</ul>
-															</li>
-															<li class="message">
-																<img src="img/avatars/2.png" class="online">
-																<span class="message-text"> 
-																	<a href="javascript:void(0);" class="username">
-																		Aragon Zarko 
-																		<span class="badge">Purchase Verified</span> 
-																		<span class="pull-right">
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																		</span>
-																	</a> 
-																	
-																	
-																	Excellent product, love it!
-																</span>
-																<ul class="list-inline font-xs">
-																	<li>
-																		<a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
-																	</li>
-																	<li class="pull-right">
-																		<small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
-																	</li>
-																</ul>
-															</li>
-														</ul>
 													</div>
 												</div>
+				
+												<div class="col-sm-8 text-align-right">
+				
+													<div class="btn-group">
+														<a href="javascript:void(0)" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> Edit </a>
+													</div>
+				
+													<div class="btn-group">
+														<a href="javascript:void(0)" class="btn btn-sm btn-success"> <i class="fa fa-plus"></i> Create New </a>
+													</div>
+				
+												</div>
+				
 											</div>
-									
-
+				
 										</div>
-										<hr>
-										<div class="row">
-											<div class="col-sm-12 col-md-6 col-lg-6">
-													<%String guidanceitem = Subject+" provided by "+guidanceprovider+" for "+guidanceduration; %>
-													<a href="guidancepayment?guidanceitem=<%=guidanceitem%>&price=<%=Price%>&guidanceid=<%=guidanceid%>&payableto=<%=guidanuser%>" class="btn btn-success btn-lg">Go for Payment ($<%=Price%>)</a>
+				
+										<div class="padding-10">
+											<br>
+											<div class="pull-left">
+												<img src="img/logo-blacknwhite.png" width="150" height="32" alt="invoice icon">
+				
+												<address>
+													<br>
+													<strong>SmartAdmin, Inc.</strong>
+													<br>
+													231 Ajax Rd,
+													<br>
+													Detroit MI - 48212, USA
+													<br>
+													<abbr title="Phone">P:</abbr> (123) 456-7890
+												</address>
+											</div>
+											<div class="pull-right">
+												<h1 class="font-400">invoice</h1>
+											</div>
+											<div class="clearfix"></div>
+											<br>
+											<br>
+											<div class="row">
+												<div class="col-sm-9">
+													<h4 class="semi-bold">Rogers, Inc.</h4>
+													<address>
+														<strong>Mr. Simon Hedger</strong>
+														<br>
+														342 Mirlington Road,
+														<br>
+														Calfornia, CA 431464
+														<br>
+														<abbr title="Phone">P:</abbr> (467) 143-4317
+													</address>
+												</div>
+												<div class="col-sm-3">
+													<div>
+														<div>
+															<strong>INVOICE NO :</strong>
+															<span class="pull-right"> #AA-454-4113-00 </span>
+														</div>
+				
+													</div>
+													<div>
+														<div class="font-md">
+															<strong>INVOICE DATE :</strong>
+															<span class="pull-right"> <i class="fa fa-calendar"></i> 15/02/13 </span>
+														</div>
+				
+													</div>
+													<br>
+													<div class="well well-sm  bg-color-darken txt-color-white no-border">
+														<div class="fa-lg">
+															Total Due :
+															<span class="pull-right"> 4,972 USD** </span>
+														</div>
+				
+													</div>
+													<br>
+													<br>
+												</div>
+											</div>
+											<table class="table table-hover">
+												<thead>
+													<tr>
+														<th class="text-center">QTY</th>
+														<th>ITEM</th>
+														<th>DESCRIPTION</th>
+														<th>PRICE</th>
+														<th>SUBTOTAL</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="text-center"><strong>1</strong></td>
+														<td><a href="javascript:void(0);">Print and Web Logo Design</a></td>
+														<td>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam xplicabo.</td>
+														<td>$1,300.00</td>
+				
+														<td>$1,300.00</td>
+													</tr>
+													<tr>
+														<td class="text-center"><strong>1</strong></td>
+														<td><a href="javascript:void(0);">SEO Management</a></td>
+														<td>Sit voluptatem accusantium doloremque laudantium inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</td>
+														<td>$1,400.00</td>
+														<td>$1,400.00</td>
+													</tr>
+													<tr>
+														<td class="text-center"><strong>1</strong></td>
+														<td><a href="javascript:void(0);">Backend Support and Upgrade</a></td>
+														<td>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</td>
+														<td>$1,700.00</td>
+														<td>$1,700.00</td>
+													</tr>
+													<tr>
+														<td colspan="4">Total</td>
+														<td><strong>$4,400.00</strong></td>
+													</tr>
+													<tr>
+														<td colspan="4">HST/GST</td>
+														<td><strong>13%</strong></td>
+													</tr>
+												</tbody>
+											</table>
+				
+											<div class="invoice-footer">
+				
+												<div class="row">
+				
+													<div class="col-sm-7">
+														<div class="payment-methods">
+															<h5>Payment Methods</h5>
+															<img src="img/invoice/paypal.png" width="64" height="64" alt="paypal">
+															<img src="img/invoice/americanexpress.png" width="64" height="64" alt="american express">
+															<img src="img/invoice/mastercard.png" width="64" height="64" alt="mastercard">
+															<img src="img/invoice/visa.png" width="64" height="64" alt="visa">
+														</div>
+													</div>
+													<div class="col-sm-5">
+														<div class="invoice-sum-total pull-right">
+															<h3><strong>Total: <span class="text-success">$4,972 USD</span></strong></h3>
+														</div>
+													</div>
+				
+												</div>
 												
-											</div>
-											<div class="col-sm-12 col-md-6 col-lg-6">
-												<div class="btn-group pull-right">
-													<%if(guidanceinterestedlist.size() > 0 || guidanceinterestedlist!=null){ 
-														int totalinterest = guidanceinterestedlist.size();
-													%>
-						                            <button class="btn btn-white btn-default"><i class="fa fa-star"><%=totalinterest%></i> Add to wishlist </button>
-						                            <%}else{ %>
-						                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist </button>
-						                            <%} %>
-						                        </div>
+												<div class="row">
+													<div class="col-sm-12">
+														<p class="note">**To avoid any excess penalty charges, please make payments within 30 days of the due date. There will be a 2% interest charge per month on all late invoices.</p>
+													</div>
+												</div>
+				
 											</div>
 										</div>
-										
+				
 									</div>
+									<!-- end widget content -->
+				
 								</div>
+								<!-- end widget div -->
+				
 							</div>
-							<!-- end product -->
-						</div>	
+							<!-- end widget -->
+				
+						</article>
+						<!-- WIDGET END -->
+				
 					</div>
-
+				
 					<!-- end row -->
-
+				
 				</section>
-				<!-- end widget grid -->
 
 				</div>
 
