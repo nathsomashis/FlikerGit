@@ -16,7 +16,6 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Profile;
-import com.fliker.Repository.ProfileProjectAssesment;
 import com.fliker.Repository.ProfileProjects;
 import com.fliker.Repository.SkillAssesment;
 import com.fliker.Repository.SkillSet;
@@ -184,7 +183,7 @@ public class ProfilePreview {
 			BasicDBList projectarr = (BasicDBList)theObj.get("projects");
 			if(!projectarr.isEmpty()){
 				for(int m=0;m<projectarr.size();m++){
-					projectlist.add(profprev.getProjectlist((String)projectarr.get(m)));
+					projectlist.add((String)projectarr.get(m));
 				}
 			}
 			
@@ -370,7 +369,7 @@ public class ProfilePreview {
 			BasicDBList projectarr = (BasicDBList)theObj.get("projects");
 			if(!projectarr.isEmpty()){
 				for(int m=0;m<projectarr.size();m++){
-					projectlist.add(profprev.getProjectlist((String)projectarr.get(m)));
+					projectlist.add((String)projectarr.get(m));
 				}
 			}
 			
@@ -973,25 +972,10 @@ public class ProfilePreview {
 
 
 	public void saveProjectToProfileInfo(String projectname, String projectskill, String projectrole,
-			String projectdata, String location, String userid, String projtoken) {
+			String projectdata, String location, String userid) {
 		// TODO Auto-generated method stub
 		ProfilePreview profprev = new ProfilePreview();
 		//String[] projectskills = projectskill.split(",");
-		
-		String fileid = "";
-		MongoConnection mongocon = new MongoConnection();
-		DBCursor resultcursor = mongocon.getDBObject("tempid", projtoken, "FileUnionTimeFrame");
-		while(resultcursor.hasNext() ){
-			
-			DBObject dbj = resultcursor.next();
-			
-			String userids = (String)dbj.get("userid");
-			if(userids.equalsIgnoreCase(userid)){
-				
-				fileid = (String)dbj.get("fileid");
-			}
-			
-		}
 		
 		UploadFileService uploadser = new UploadFileService();
 		String uniqueid = "";
@@ -1008,56 +992,21 @@ public class ProfilePreview {
 		
 		DateFunctionality datefunc = new DateFunctionality();
 		
-		String uniqueidstr = "";
-		
-		try {
-			uniqueidstr = uploadser.makeSHA1Hash(projectname+projectdata);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String[] projectassesments = {uniqueidstr};
-		
 		ProfileProjects profproj = new ProfileProjects();
 		profproj.setProjectid(uniqueid);
-		profproj.setProjectassesments(projectassesments);
+		profproj.setProjectdescription(projectdata);
 		profproj.setProjectlocation(location);
 		profproj.setProjectname(projectname);
+		profproj.setProjectrole(projectrole);
 		profproj.setProjectdate(datefunc.getDateSystems());
+		profproj.setProjectskill(projectskill.split(","));
 		
-		//MongoConnection mongocon = new MongoConnection();
+		MongoConnection mongocon = new MongoConnection();
 		BasicDBObject basicprojkobj =  profprev.formProfileProjDBObject(profproj);
 		mongocon.saveObject(basicprojkobj, "ProfileProject");
 		
-		ProfileProjectAssesment profileprojasses = new ProfileProjectAssesment();
-		profileprojasses.setProfileproject(uniqueid);
-		profileprojasses.setProjectassesmentid(uniqueidstr);
-		profileprojasses.setProjectdescription(projectdata);
-		profileprojasses.setProjectfiles(fileid);
-		profileprojasses.setProjectrole(projectrole);
-		
-		BasicDBObject projassesobj =  profprev.formProfileProjAssesDBObject(profileprojasses);
-		mongocon.saveObject(projassesobj, "ProfileProjectAssesment");
-		
-		//mongocon.updateObject(new BasicDBObject("projectid", uniqueid),new BasicDBObject("$push", new BasicDBObject("projects", uniqueid)), "Profile");
 		mongocon.updateObject(new BasicDBObject("userid", userid),new BasicDBObject("$push", new BasicDBObject("projects", uniqueid)), "Profile");
 		
-	}
-
-
-	private BasicDBObject formProfileProjAssesDBObject(ProfileProjectAssesment profileprojasses) {
-		// TODO Auto-generated method stub
-		BasicDBObject basicdbobj = new BasicDBObject();
-		basicdbobj.put("profileproject", profileprojasses.getProfileproject());
-		basicdbobj.put("projectassesmentid", profileprojasses.getProjectassesmentid());
-		basicdbobj.put("projectdescription", profileprojasses.getProjectdescription());
-		basicdbobj.put("projectfiles", profileprojasses.getProjectfiles());
-		basicdbobj.put("projectrole", profileprojasses.getProjectrole());
-		
-		return basicdbobj;
 	}
 
 
@@ -1065,60 +1014,14 @@ public class ProfilePreview {
 		// TODO Auto-generated method stub
 		BasicDBObject basicdbobj = new BasicDBObject();
 		basicdbobj.put("projectdate", profproj.getProjectdate());
+		basicdbobj.put("projectdescription", profproj.getProjectdescription());
 		basicdbobj.put("projectid", profproj.getProjectid());
 		basicdbobj.put("projectlocation", profproj.getProjectlocation());
 		basicdbobj.put("projectname", profproj.getProjectname());
-		basicdbobj.put("projectassesments", profproj.getProjectassesments());
+		basicdbobj.put("projectrole", profproj.getProjectrole());
+		basicdbobj.put("projectskill", profproj.getProjectskill());
 		
 		return basicdbobj;
-	}
-
-
-	public void saveProjectDataToProjectInfo(String projectskill, String projectrole, String projectdata,
-			String projecttoken, String projectexist, String userids) {
-		// TODO Auto-generated method stub
-		ProfilePreview profprev = new ProfilePreview();
-		
-		String fileid = "";
-		MongoConnection mongocon = new MongoConnection();
-		DBCursor resultcursor = mongocon.getDBObject("tempid", projecttoken, "FileUnionTimeFrame");
-		while(resultcursor.hasNext() ){
-			
-			DBObject dbj = resultcursor.next();
-			
-			String userid = (String)dbj.get("userid");
-			if(userids.equalsIgnoreCase(userid)){
-				
-				fileid = (String)dbj.get("fileid");
-			}
-			
-		}
-		
-		UploadFileService uploadser = new UploadFileService();
-		String uniqueidstr = "";
-		
-		try {
-			uniqueidstr = uploadser.makeSHA1Hash(projectskill+projectdata+projectrole);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		ProfileProjectAssesment profileprojasses = new ProfileProjectAssesment();
-		profileprojasses.setProfileproject(projectexist);
-		profileprojasses.setProjectassesmentid(uniqueidstr);
-		profileprojasses.setProjectdescription(projectdata);
-		profileprojasses.setProjectfiles(fileid);
-		profileprojasses.setProjectrole(projectrole);
-		
-		BasicDBObject projassesobj =  profprev.formProfileProjAssesDBObject(profileprojasses);
-		mongocon.saveObject(projassesobj, "ProfileProjectAssesment");
-		
-		mongocon.updateObject(new BasicDBObject("projectid", projectexist),new BasicDBObject("$push", new BasicDBObject("projectassesments", uniqueidstr)), "ProfileProject");
-		
 	}
 
 

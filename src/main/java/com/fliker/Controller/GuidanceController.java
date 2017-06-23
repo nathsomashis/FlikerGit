@@ -209,6 +209,44 @@ public class GuidanceController {
 		return mv;
 	}
 	
+	@RequestMapping("/guidancepayment")
+	public ModelAndView guidancepayment(
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		HashMap guidanceinfolist = new HashMap();
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		
+		GuidancePreview guidprev = new GuidancePreview();
+		guidanceinfolist = guidprev.generateInvoice(userid,guidanceid);
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceInfoView");
+		
+		
+		
+		//mv.addObject("postlist", postlist);
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("userid", userid);
+		mv.addObject("guidanceid", guidanceid);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		
+		return mv;
+	}
+	
 	
 	@RequestMapping("/professionalNextguidance")
 	public ModelAndView proffNextGuidance(

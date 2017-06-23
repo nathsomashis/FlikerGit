@@ -9,17 +9,14 @@ public class ProfileProjects {
 	@Id
 	private String projectid;
 	private String projectname;
-	private String[] projectassesments;
+	private String[] projectskill;
+	private String projectrole;
+	private String projectdescription;
 	private String projectdate;
 	private String projectlocation;
+	private String[] projectfile;
 	
 	
-	public String[] getProjectassesments() {
-		return projectassesments;
-	}
-	public void setProjectassesments(String[] projectassesments) {
-		this.projectassesments = projectassesments;
-	}
 	public String getProjectid() {
 		return projectid;
 	}
@@ -32,7 +29,24 @@ public class ProfileProjects {
 	public void setProjectname(String projectname) {
 		this.projectname = projectname;
 	}
-	
+	public String[] getProjectskill() {
+		return projectskill;
+	}
+	public void setProjectskill(String[] projectskill) {
+		this.projectskill = projectskill;
+	}
+	public String getProjectrole() {
+		return projectrole;
+	}
+	public void setProjectrole(String projectrole) {
+		this.projectrole = projectrole;
+	}
+	public String getProjectdescription() {
+		return projectdescription;
+	}
+	public void setProjectdescription(String projectdescription) {
+		this.projectdescription = projectdescription;
+	}
 	public String getProjectdate() {
 		return projectdate;
 	}
