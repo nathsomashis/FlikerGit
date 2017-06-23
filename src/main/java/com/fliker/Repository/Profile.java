@@ -29,9 +29,16 @@ public class Profile {
 	private String[] courseids;
 	private String[] guidanceids;
 	private String[] eventids;
+	private String acountid;
 	
 	
 	
+	public String getAcountid() {
+		return acountid;
+	}
+	public void setAcountid(String acountid) {
+		this.acountid = acountid;
+	}
 	public String[] getEventids() {
 		return eventids;
 	}
