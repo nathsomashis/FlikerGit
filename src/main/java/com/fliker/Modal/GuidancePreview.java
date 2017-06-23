@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Assignment;
+import com.fliker.Repository.Bill;
 import com.fliker.Repository.Blog;
 import com.fliker.Repository.DashBoardData;
 import com.fliker.Repository.Dashboard;
@@ -49,6 +50,7 @@ import com.fliker.Repository.GuidanceEntry;
 import com.fliker.Repository.GuidanceFileShare;
 import com.fliker.Repository.GuidanceInfo;
 import com.fliker.Repository.GuidanceProject;
+import com.fliker.Repository.Invoice;
 import com.fliker.Repository.Post;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.SearchContent;
@@ -2594,6 +2596,82 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 		return guidaninfomap;
 		
+	}
+
+
+	public String generateInvoice(String userid, String guidanceid, String guidanceitem, String price, String payableto) {
+		// TODO Auto-generated method stub
+		
+		GuidancePreview guidprev = new GuidancePreview();
+		
+		String uniqueid = "";
+		
+		try {
+			uniqueid = guidprev.makeSHA1Hash(guidanceitem+userid);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Invoice invoice = new Invoice();
+		invoice.setInvoicebuyer(userid);
+		invoice.setInvoiceid(uniqueid);
+		invoice.setInvoiceitem(guidanceid);
+		invoice.setInvoiceprice(price);
+		
+		MongoConnection mongoconsearch = new MongoConnection();
+		BasicDBObject basicreqobjsearch =  guidprev.formInvoiceDBObject(invoice);
+		mongoconsearch.saveObject(basicreqobjsearch, "Invoice");
+		
+		Bill bill = new Bill();
+		bill.setBillid(uniqueid);
+		bill.setContractid("");
+		bill.setInvoiceid(uniqueid);
+		bill.setItem(guidanceitem);
+		bill.setLicenseid("");
+		bill.setPayfromid(userid);
+		bill.setPaymentmethods("");
+		bill.setPaytoid(payableto);
+		bill.setPlanid(guidanceid);
+		bill.setTotalamount(price);
+		
+		BasicDBObject billsaveobj =  guidprev.formBillDBObject(bill);
+		mongoconsearch.saveObject(billsaveobj, "Bill");
+		
+		return uniqueid;
+	}
+
+
+	private BasicDBObject formBillDBObject(Bill bill) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("billid", bill.getBillid());
+		basicdbobj.put("contractid", bill.getContractid());
+		basicdbobj.put("planid", bill.getPlanid());
+		basicdbobj.put("licenseid", bill.getLicenseid());
+		basicdbobj.put("invoiceid", bill.getInvoiceid());
+		basicdbobj.put("payfromid", bill.getPayfromid());
+		basicdbobj.put("paytoid", bill.getPaytoid());
+		basicdbobj.put("totalamount", bill.getTotalamount());
+		basicdbobj.put("item", bill.getItem());
+		basicdbobj.put("paymentmethods", bill.getPaymentmethods());
+		
+		return basicdbobj;
+	}
+
+
+	private BasicDBObject formInvoiceDBObject(Invoice invoice) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("invoiceid", invoice.getInvoiceid());
+		basicdbobj.put("invoiceitem", invoice.getInvoiceitem());
+		basicdbobj.put("invoiceprice", invoice.getInvoiceprice());
+		basicdbobj.put("invoicebuyer", invoice.getInvoicebuyer());
+		
+		return basicdbobj;
 	}
 	
 }
