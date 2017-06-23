@@ -725,6 +725,7 @@
 				int coursecount = 0;
 				
 				String skillString = "";
+				String projectString = "";
 				ArrayList articlelist = new ArrayList();
 				ArrayList connectionlist = new ArrayList();
 				ArrayList followerlist = new ArrayList();
@@ -860,6 +861,56 @@
 							}else if(collectionresul.equalsIgnoreCase("projects")){
 								projectlist = (ArrayList)mecoll.getValue();
 								if(projectlist!= null){
+									
+									StringBuffer preprojecttop = new StringBuffer();
+									
+									for(int i=0;i<projectlist.size();i++){
+										System.out.println("Size >>"+projectlist.size());
+										String projsetstr = "";
+										HashMap projectmap = (HashMap)projectlist.get(i);
+										Set projectset = projectmap.entrySet();
+										Iterator projectit = projectset.iterator();
+										String perprojectline = "";
+										
+										String projectid = "";
+										String projectnm = "";
+										String projectas = "";
+										while(projectit.hasNext()){
+											
+											Map.Entry projectme = (Map.Entry)projectit.next();
+											if(((String)projectme.getKey()).equalsIgnoreCase("projectasses")){
+												ArrayList projectasseslist = (ArrayList)projectme.getValue();
+												StringBuffer projectassesbuff = new StringBuffer();
+												for(int n=0;n<projectasseslist.size();n++){
+													String projectasses = (String)projectasseslist.get(n);
+													
+													String[] assementset = projectasses.split(":");
+													if(assementset.length<3){
+														String assesstr = "<div class='panel-body'><div class='row'><div class='col-xs-6'><h3>As "+assementset[0]+"</h3></br><p>"+assementset[1]+"</p></div><div class='col-xs-6'></div></div></div>";
+														projectassesbuff.append(assesstr);
+													}else{
+														String assesstr = "<div class='panel-body'><div class='row'><div class='col-xs-6'><h3>As "+assementset[0]+"</h3></br><p>"+assementset[1]+"</p></div><div class='col-xs-6'><img class='superbox-img' src='/Fliker/imageFromFileSet/"+assementset[2]+"'/></div></div></div>";
+														projectassesbuff.append(assesstr);
+													}
+												}
+												projectas = projectassesbuff.toString();
+												System.out.println(projectas);
+											}else if(((String)projectme.getKey()).equalsIgnoreCase("projectname")){
+												projectnm = (String)projectme.getValue();
+											}else if(((String)projectme.getKey()).equalsIgnoreCase("projectid")){
+												projectid = (String)projectme.getValue();
+											}
+											
+										}
+										perprojectline = "<div class='panel panel-default'>"+"<div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse'"+ 
+												"data-parent='#skillset' href='#"+projectid+"'> <i class='fa fa-fw fa-plus-circle txt-color-green'></i> <i class='fa fa-fw fa-minus-circle"+ 
+												"txt-color-red'></i>"+projectnm+"</a></h4></div>"+"<div id="+projectid+" class='panel-collapse collapse'>"+
+														projectas+"<br><a href='#' rel='tooltip' title='' id='"+projectid+"' data-placement='top' onclick=(AddNewProjectAchievement('"+projectid+"')) data-original-title='Add New Acheivement to Project'>Add Achievement</a></div></div>";
+										
+										preprojecttop.append(perprojectline);
+										
+									}
+									projectString = preprojecttop.toString();
 									projectcount = projectlist.size();
 								}
 							}else if(collectionresul.equalsIgnoreCase("courses")){
@@ -1599,8 +1650,8 @@
 							<div class="widget-body no-padding">
 
 								<div class="panel-group smart-accordion-default" id="projectset">
-
-									<%-- <%=guidanceachievements%> --%>
+									<%=projectString%>
+									
 								</div>
 
 							</div>
@@ -1614,7 +1665,7 @@
 
 				</article>
 			</div>
-			<div class="row">
+			<%-- <div class="row">
 				<article class="col-sm-12 col-md-12 col-lg-12">
 
 					<!-- Widget ID (each widget will need unique ID)-->
@@ -1645,8 +1696,7 @@
 							<div class="widget-toolbar hidden-phone">
 								<div class="smart-form">
 									<label class="checkbox">
-										<button class="btn btn-primary" onclick="createNewArticle()">Provide
-											New Achevements</button>
+										<a class="btn btn-primary btn-xs" href="createNewArticle?">Create New Article</a>
 									</label>
 								</div>
 							</div>
@@ -1668,7 +1718,7 @@
 
 								<div class="panel-group smart-accordion-default" id="articleset">
 
-									<%-- <%=guidanceachievements%> --%>
+									<%=guidanceachievements%>
 								</div>
 
 							</div>
@@ -1681,7 +1731,7 @@
 					<!-- end widget -->
 
 				</article>
-			</div>
+			</div> --%>
 
 			<section id="widget-grid" class="">
 
@@ -1861,62 +1911,43 @@
 								<!-- NEW WIDGET START -->
 								<div class="widget-body">
 									<div class="row">
-
-										<!-- NEW WIDGET START -->
-										<article class="col-sm-12">
-
-
-
-											<!-- Widget ID (each widget will need unique ID)-->
-											<div class="jarviswidget jarviswidget-color-blueLight"
-												id="wid-id-1" data-widget-editbutton="false">
-												<!-- widget options:
-													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-									
-													data-widget-colorbutton="false"
-													data-widget-editbutton="false"
-													data-widget-togglebutton="false"
-													data-widget-deletebutton="false"
-													data-widget-fullscreenbutton="false"
-													data-widget-custombutton="false"
-													data-widget-collapsed="true"
-													data-widget-sortable="false"
-									
-													-->
-												<header>
-													<span class="widget-icon"> <i class="fa fa-cloud"></i>
-													</span>
-													<h2>New Profile Image</h2>
-
-												</header>
-
-												<!-- widget div-->
-												<div>
-
-													<!-- widget edit box -->
-													<div class="jarviswidget-editbox">
-														<!-- This area used as dropdown edit box -->
-
+										<fieldset>
+												<legend>File inputs</legend>
+											
+												<div class="form-group">
+													<label class="col-md-2 control-label">File input</label>
+													<div class="col-md-8">
+														<input type="file" class="btn btn-default" id="exampleInputFile1">
+														<p class="help-block">
+															some help text here.
+														</p>
 													</div>
-													<!-- end widget edit box -->
-
-													<!-- widget content -->
-													<div class="widget-body">
-
-														<form action="upload.php" class="dropzone"
-															id="Imagedropzone"></form>
-
-													</div>
-													<!-- end widget content -->
-
+													<span class="col-md-2"><a class="btn btn-primary" href="#">Upload</a></span>
 												</div>
-												<!-- end widget div -->
+												
+											</fieldset>
+											<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<div class="jarviswidget jarviswidget-sortable" id="wid-id-0" data-widget-togglebutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" role="widget" style="">
+													<div role="content">
+														<div class="widget-body">
+															<div class="tab-pane clearfix fade">
 
-											</div>
-											<!-- end widget -->
-
-										</article>
-										<!-- WIDGET END -->
+																<h4 class="margin-bottom-10">Default Behaviour</h4>
+				
+																<div class="alert alert-info">
+																	<b>This example demonstrates the default behavior of Jcrop.</b>
+																	<br />
+																	Since no event handlers have been attached it only performs
+																	the cropping behavior.
+																</div>
+				
+																<img src="img/superbox/superbox-full-11.jpg" id="target" alt="[Jcrop Example]" />
+				
+															</div>
+														</div>
+													</div>
+												</div>
+											</article>
 
 									</div>
 
@@ -2144,8 +2175,6 @@
 										<button class="col-md-2" type="button"
 											onclick="uploadProjectNewData()">Upload</button>
 									</form>
-									<input type="hidden" class="form-control" value="" required
-										id="projectnewtoken" />
 									<input type="hidden" class="form-control" value="" required
 										id="projectexistingid" />	
 								</div>
@@ -2443,6 +2472,10 @@
 	<script
 		src="<c:url value='/resources/js/plugin/typeahead/typeahead.min.js' />"></script>
 	<!-- <script src="js/plugin/typeahead/typeahead.min.js"></script> -->
+	<script
+		src="<c:url value='/resources/js/plugin/jcrop/jquery.Jcrop.min.js' />"></script>
+	<!-- <script src="js/plugin/jcrop/jquery.Jcrop.min.js"></script> -->
+	
 	<script
 		src="<c:url value='/resources/js/plugin/typeahead/typeaheadjs.min.js' />"></script>
 	<!-- <script src="js/plugin/typeahead/typeaheadjs.min.js"></script> -->
@@ -3137,7 +3170,9 @@
 			 */
 			$('.ui-dialog :button').blur();
 		
-			
+			var default_handler = function(){
+				$('#target').Jcrop();
+			}
 		
 			/*
 			* ACCORDION
@@ -3524,7 +3559,7 @@
 				 
 			}	
 		 
-		 function addproject(){
+		 /* function addproject(){
 				
 				
 				var projectname = $('#projectname').val();
@@ -3543,7 +3578,7 @@
 							//if(data.success == true){ // if true (1)
 							     /*  setTimeout(function(){// wait for 5 secs(2)
 							           location.reload(); // then reload the page.(3)
-							      }, 5000);  */
+							      }, 5000);  
 							  // }
 							
 						}
@@ -3554,7 +3589,7 @@
 								'<button class="btn btn-primary" data-toggle="modal" data-target="#addAchievements" onclick="generateToken(skill)">Add New Skill</button></div><div id="'+elementcolapse+'" class="panel-collapse collapse in"><div class="panel-body"></div></div></div>';
 				 $('projectset').prepend($(element));
 				 
-			}	
+			}	 */
 		 
 		 
 		 function addproject(){
@@ -3569,7 +3604,39 @@
 				 //alert(guidanceid);
 				 
 				 $.ajax({
-						url : "saveProjectToProfile?projectname="+projectname+"&projectskill="+projectskill+"&projectrole="+projectrole+"&projectdata="+projectdata+"&location="+location,
+						url : "saveProjectToProfile?projectname="+projectname+"&projectskill="+projectskill+"&projectrole="+projectrole+"&projectdata="+projectdata+"&location="+location+"&projtoken="+projecttoken,
+						method : 'POST',
+						success : function(data){
+							alert(data);
+							//if(data.success == true){ // if true (1)
+							     /*  setTimeout(function(){// wait for 5 secs(2)
+							           location.reload(); // then reload the page.(3)
+							      }, 5000);  */
+							  // }
+							
+						}
+					
+			        }); 
+				  var elementcolapse = 'collapse'+projecttoken;	
+				  var element = '<div id='+token+' class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#projectset" href="#'+elementcolapse+'"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>'+
+								'<button class="btn btn-primary" data-toggle="modal" data-target="#addAchievements" onclick="generateToken(skill)">Add New Skill</button></div><div id="'+elementcolapse+'" class="panel-collapse collapse in"><div class="panel-body"></div></div></div>';
+				 $('projectset').prepend($(element));
+				 
+			}
+			
+			
+		 function addDataproject(){
+				
+				
+				 var projectskill = $('#projectskilladd').val();
+				 var projectrole = $('#projectnewrole').val();
+				 var projectdata = $('#projectnewdata').val();
+				 var projecttoken = $('#projectnewtoken').val();
+				 var projectexist = $('#projectexistingid').val();
+				 //alert(guidanceid);
+				 
+				 $.ajax({
+						url : "saveProjectDataToProfile?projectskill="+projectskill+"&projectrole="+projectdata+"&projectdata="+projectrole+"&projecttoken="+projecttoken+"&projectexist="+projectexist,
 						method : 'POST',
 						success : function(data){
 							alert(data);
@@ -3786,6 +3853,32 @@
 			//console.log( $(this).attr('id'));
 		}
 			
+			
+		function AddNewProjectAchievement(param){
+			$('#projectexistingid').val(param);
+			
+			var stringLength = 15;
+
+			// list containing characters for the random string
+			var stringArray = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','!','?'];
+
+			//$("#providachieve").click(function (){
+
+				var rndString = "";
+			
+				// build a string with random characters
+				for (var i = 1; i < stringLength; i++) { 
+					var rndNum = Math.ceil(Math.random() * stringArray.length) - 1;
+					rndString = rndString + stringArray[rndNum];
+				};
+				
+			$('#projectnewtoken').val(rndString);
+			
+			$('#projectnewsetimprove').modal('show');
+		
+			//console.log( $(this).attr('id'));
+		}	
+			
 		function addOnExistSkillachieve(){
 				var skilldata = $('#skillnewdata').val();
 				var token = $('#skillnewtoken').val();
@@ -3805,6 +3898,10 @@
 					}
 				
 		        }); 
+		}
+		
+		function createNewArticle(){
+			window.open("createNewArticle?);
 		}
 		
 		</script>
