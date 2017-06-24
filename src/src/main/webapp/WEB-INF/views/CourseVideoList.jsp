@@ -457,7 +457,7 @@
 								<a href="invoice.html">Invoice</a>
 							</li>
 							<li>
-								<a href="login.html" target="_top">Login</a>
+								<a href="logout?"  target="_top">Login</a>
 							</li>
 							<li>
 								<a href="register.html" target="_top">Register</a>

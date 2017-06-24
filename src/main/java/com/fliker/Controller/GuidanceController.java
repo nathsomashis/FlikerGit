@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +50,8 @@ public class GuidanceController {
 	//standardguidance
 	@RequestMapping("/standardguidance")
 	public ModelAndView showFirstGuidance(
-			@RequestParam(value = "guidanceSubject", required = false, defaultValue = "World") String guidanceSubject,
-			@RequestParam(value = "guidanceType", required = false, defaultValue = "World") String guidanceType,
+			@RequestParam(value = "guidanceSubject", required = false) String guidanceSubject,
+			@RequestParam(value = "guidanceType", required = false) String guidanceType,
 			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
  
@@ -70,33 +71,37 @@ public class GuidanceController {
 		String profileimageid = profprev.profileimage(userid);
 		
 		GuidancePreview guideprev = new GuidancePreview();
-		//resourcesSearch = guideprev.getGuidanceUnPublishDetails(userid);
 		
-		
+		Set<Currency> currencyset = guideprev.getAllCurrencies();
 		
 		HashMap guidanceprovidingsubjectmap = new HashMap();
-		guidanceprovidingsubjectmap = guideprev.getAllGuidanceProvidingSubjectList(userid);// get all profiles for the subject i am providing guidance
+		//guidanceprovidingsubjectmap = guideprev.getAllGuidanceProvidingSubjectList(userid);// get all profiles for the subject i am providing guidance
 		
-		HashMap guidanceconsumesubjectmap = new HashMap();
-		guidanceconsumesubjectmap = guideprev.getAllGuidanceConsumingSubjectList(userid);// get all profiles for the subject i need guidance means provider
-		
+		ArrayList guidanceconsumesubjectmap = new ArrayList();
+		//guidanceconsumesubjectmap = guideprev.getAllGuidanceConsumingSubjectList(userid);// get all profiles for the subject i need guidance means provider
+		guidanceconsumesubjectmap = guideprev.getAllGuidanceConsuming(userid);// get all profiles for the subject i need guidance means provider
+		if(guidanceconsumesubjectmap == null){
+			guidanceconsumesubjectmap.add("");
+		}
 		
 		//ongoingResources = guideprev.onGoingResources(userid);
 		ongoingResources = guideprev.getGuidanceUnPublishDetails(userid);
+		if(ongoingResources == null){
+			ongoingResources.add("");
+		}
 		
 		
 		ModelAndView mv;
 		mv = new ModelAndView("/GuidanceStandard");
 		
-		
-		
-		//mv.addObject("postlist", postlist);
 		mv.addObject("ProfileImage", profileimageid);
 		mv.addObject("Gender", gender);
+		mv.addObject("userid", userid);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("ongoingResources", ongoingResources);
-		mv.addObject("guidanceprovidingsubjectmap", guidanceprovidingsubjectmap);
+		mv.addObject("currencyset", currencyset);
+		//mv.addObject("guidanceprovidingsubjectmap", guidanceprovidingsubjectmap);
 		mv.addObject("guidanceconsumesubjectmap", guidanceconsumesubjectmap);
 		return mv;
 	}
@@ -348,6 +353,7 @@ public class GuidanceController {
 			@RequestParam(value = "location", required = false) String location,
 			@RequestParam(value = "published", required = false) String published,
 			@RequestParam(value = "duration", required = false, defaultValue = "") String duration,
+			@RequestParam(value = "currency", required = false) String currency,
 			HttpServletRequest request) {
 		
 		
@@ -356,6 +362,8 @@ public class GuidanceController {
 		 
 				//String[]  guidancesubjects = guidanceSubject.split(",");
 				String guidanceflag = "provide";
+				
+				guidanceprice = guidanceprice + " "+ currency;
 				
 				GuidancePreview guidanceprev = new GuidancePreview();
 				ServletContext context = request.getSession().getServletContext();
@@ -368,36 +376,6 @@ public class GuidanceController {
 				
 				guidanceprev.createGuidanceContentData(guidanceid,guidanceprice,guidancereason);
 				
-				
-				//both returning same data
-				/*ArrayList resourcesSearch = new ArrayList();
-				resourcesSearch = guidanceprev.getGuidanceUnPublishDetails(userids);// No resources yet added 
-				
-				ArrayList ongoingResources = new ArrayList();
-				ongoingResources = guidanceprev.onGoingResources(userids);// Ongoing guidance going on
-				
-				
-				HashMap guidanceprovidingsubjectmap = new HashMap();
-				guidanceprovidingsubjectmap = guidanceprev.getAllGuidanceProvidingSubjectList(userids);*/// get all profiles for the subject i am providing guidance
-				
-				/*String userfirstname = userinf.getFirstname();
-				String userlastname = userinf.getLastname();
-				String gender = userinf.getGender();
-				
-				ProfilePreview profprev = new ProfilePreview();
-				
-				String profileimageid = profprev.profileimage(userids);*/
-				/*ModelAndView mv;
-				mv = new ModelAndView("/GuidanceStandard");
-				
-				
-				
-				//mv.addObject("postlist", postlist);
-				mv.addObject("ProfileImage", profileimageid);
-				mv.addObject("Gender", gender);
-				mv.addObject("FullName", userfirstname+" "+userlastname);*/
-				//mv.addObject("resourcesSearch", resourcesSearch);
-				//mv.addObject("ongoingResources", ongoingResources);
 				
 		}catch(Exception ex){
 			return "false";
@@ -483,19 +461,7 @@ public class GuidanceController {
 		
 		Set currencyset = guideprev.getAllCurrencies();
 		
-		//String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
-		/*Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
-		//model.addAttribute("TimeTable", timetable);
 		
-		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
-		//model.addAttribute("GuidShared", guidshareditem);
-		
-		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
-		//model.addAttribute("GuidDashBoard", guiddashdata);
-		
-		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
-		//model.addAttribute("GuidBlog", blogs);
-*/		
 		ServletContext context = request.getSession().getServletContext();
 		User userinf = (User) context.getAttribute("UserValues");
 		String userid = userinf.getUserid();
@@ -511,15 +477,10 @@ public class GuidanceController {
 		mv.addObject("ProfileImage", profile.getProfileImageid());
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", profile.getName());
-		/*mv.addObject("TimeTable", timetable);
-		mv.addObject("GuidShared", guidshareditem);
-		mv.addObject("GuidDashBoard", guiddashdata);
-		mv.addObject("GuidBlog", blogs);*/
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("guidanceid", guidanceid);
 		mv.addObject("currencyset", currencyset);
 		
-		//mv.addObject("postlist", postlist);
 		return mv;
 	}
 	
@@ -552,16 +513,29 @@ public class GuidanceController {
 		
 		Set currencyset = guideprev.getAllCurrencies();
 		
+		ArrayList guidanceconsumesubjectmap = new ArrayList();
+		//guidanceconsumesubjectmap = guideprev.getAllGuidanceConsumingSubjectList(userid);// get all profiles for the subject i need guidance means provider
+		guidanceconsumesubjectmap = guideprev.getAllGuidanceConsuming(userid);// get all profiles for the subject i need guidance means provider
+		if(guidanceconsumesubjectmap == null){
+			guidanceconsumesubjectmap.add("");
+		}
+		ArrayList ongoingResources = new ArrayList();
+		//ongoingResources = guideprev.onGoingResources(userid);
+		ongoingResources = guideprev.getGuidanceUnPublishDetails(userid);
+		if(ongoingResources == null){
+			ongoingResources.add("");
+		}
+		
+		
 		ModelAndView mv;
-		mv = new ModelAndView("/GuidanceSheet");
+		mv = new ModelAndView("/GuidanceStandard");
 		
 		mv.addObject("ProfileImage", profile.getProfileImageid());
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", profile.getName());
-		/*mv.addObject("TimeTable", timetable);
-		mv.addObject("GuidShared", guidshareditem);
-		mv.addObject("GuidDashBoard", guiddashdata);
-		mv.addObject("GuidBlog", blogs);*/
+		mv.addObject("ongoingResources", ongoingResources);
+		//mv.addObject("guidanceprovidingsubjectmap", guidanceprovidingsubjectmap);
+		mv.addObject("guidanceconsumesubjectmap", guidanceconsumesubjectmap);
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("guidanceid", guidanceid);
 		mv.addObject("currencyset", currencyset);

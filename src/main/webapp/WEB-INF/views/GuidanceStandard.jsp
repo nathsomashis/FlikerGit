@@ -1,5 +1,6 @@
+<%@page import="com.fliker.Modal.ProfilePreview"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*,com.fliker.Repository.*" %>
+<%@ page import="java.util.*,com.fliker.Repository.*,com.mongodb.BasicDBList" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -263,7 +264,7 @@
 						data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i>
 							Full <u>S</u>creen</a></li>
 					<li class="divider"></li>
-					<li><a href="login.html"
+					<li><a href="logout?" 
 						class="padding-10 padding-top-5 padding-bottom-5"
 						data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i>
 							<strong><u>L</u>ogout</strong></a></li>
@@ -272,7 +273,7 @@
 
 		<!-- logout button -->
 		<div id="logout" class="btn-header transparent pull-right">
-			<span> <a href="login.html" title="Sign Out"
+			<span> <a href="logout?"  title="Sign Out"
 				data-action="userLogout"
 				data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i
 					class="fa fa-sign-out"></i></a>
@@ -339,46 +340,7 @@
 		</div>
 		<!-- end voice command -->
 
-		<!-- multiple lang dropdown : find all flags in the flags page -->
-		<!-- <ul class="header-dropdown-list hidden-xs">
-					<li>
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/blank.gif" class="flag flag-us" alt="United States"> <span> English (US) </span> <i class="fa fa-angle-down"></i> </a>
-						<ul class="dropdown-menu pull-right">
-							<li class="active">
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
-							</li>	
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
-							</li>	
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
-							</li>						
-							
-						</ul>
-					</li>
-				</ul> -->
-		<!-- end multiple lang -->
+		
 
 	</div>
 	<!-- end pulled right: nav area --> </header>
@@ -476,20 +438,7 @@
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 				</li>
 			</ul></li>
-		 <!-- <li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
-			<ul>		
-				<li class="active"><a href="#" title="NewCourse"><i
-								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
-								</li>
-				<li class=""><a href="createcourse?" title="NewCourse"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Course</span></a></li>	
-				<li class=""><a href="newspecialization?" title="NewSpecialization"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Specialization</span></a></li>
-				<li class=""><a href="neworganizations?" title="NewInstitution"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>
-			</ul>
-		</li> -->
+		 
 		<li><a href="#" title="Dashboard"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Work</span></a>
@@ -502,16 +451,7 @@
 				</li>
 				
 			</ul></li>
-		<!-- <li class=""><a href="organizations?" title="Organizations"><i
-						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
-				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
-						class="fa fa-plus-square"></i><span class="menu-item-parent">New Opportunity</span></a>
-				</li>
-				<li class=""><a href="companies?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Start New Company</span></a>
-				</li>
-			</ul></li> -->
+		
 		<li class="active"><a href="#" title="Organizations"><i
 						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
 				<ul>
@@ -651,18 +591,6 @@
 			<ol class="breadcrumb">
 				<li>Guidance</li>
 			</ol>
-			<!-- end breadcrumb -->
-
-			<!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right">
-				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-				</span> -->
 
 		</div>
 		<!-- END RIBBON -->
@@ -685,225 +613,18 @@
 
 				<div class="col-sm-12">
 
-					<!-- <ul id="myTab1" class="nav nav-tabs bordered">
-						<li class="active"><a href="#s1" data-toggle="tab">Resource
-								Search<i class="fa fa-caret-down"></i>
-						</a></li>
-						<li><a href="#s2" data-toggle="tab">OnGoing Guidance</a></li>
-						<li><a href="#s3" data-toggle="tab">Progress</a></li>
-						<li class="pull-right hidden-mobile">
-								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
-							</li>
-					</ul> -->
-
-						<%-- <div class="tab-pane fade in active" id="s1">
-							<h1>
-								Search 
-							</h1>
-							<br>
-							<div class="input-group input-group-lg hidden-mobile">
-								<input class="form-control input-lg" type="text"
-									placeholder="Search again..." id="search-project">
-								<div class="input-group-btn">
-									<button type="submit" class="btn btn-default">
-										&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
-									</button>
-								</div>
-							</div>
-
-							<h1 class="font-md">
-								Search Results for <!-- <small class="text-danger">
-									&nbsp;&nbsp;(2,281 results)</small> -->
-							</h1>
-
-							<!-- <div class="search-results clearfix smart-form">
-
-								<h4>
-									<i class="fa fa-plus-square txt-color-blue"></i>&nbsp;<a
-										href="javascript:void(0);">SmartAdmin - Responsive
-										Dashboard Template</a>
-								</h4>
-
-								<div>
-									<div class="rating display-inline">
-										<input type="radio" name="stars-rating" id="stars-rating-5">
-										<label for="stars-rating-5"><i class="fa fa-star"></i></label>
-										<input type="radio" name="stars-rating" id="stars-rating-4">
-										<label for="stars-rating-4"><i class="fa fa-star"></i></label>
-										<input type="radio" name="stars-rating" id="stars-rating-3">
-										<label for="stars-rating-3"><i class="fa fa-star"></i></label>
-										<input type="radio" name="stars-rating" id="stars-rating-2">
-										<label for="stars-rating-2"><i class="fa fa-star"></i></label>
-										<input type="radio" name="stars-rating" id="stars-rating-1">
-										<label for="stars-rating-1"><i class="fa fa-star"></i></label>
-									</div>
-									<br>
-									<div class="url text-success">
-										http://www.wrapbootstrap.com <i class="fa fa-caret-down"></i>
-									</div>
-									<p class="description">Lorem Ipsum is simply dummy text of
-										the printing and typesetting industry. Lorem Ipsum has been
-										the industry's standard dummy text ever since the 1500s, when
-										an unknown printer took a galley of type and scrambled it to
-										make a type specimen book</p>
-								</div>
-
-							</div> -->
-								<div class="superbox col-sm-12">
-								
-											<%
-												ArrayList guidancelist = (ArrayList)request.getAttribute("resourcesSearch");
-												for(int m=0;m<guidancelist.size();m++){
-													
-													String guidanceid = "";
-													String guidanceSubject = "";
-													String guidanceFlag="";
-													String profileid = "";
-													String profileimage = "";
-													String profilename = "";
-													
-													HashMap guidancemap = (HashMap)guidancelist.get(m);
-													Set perset = guidancemap.entrySet();
-													Iterator perit = perset.iterator();
-													while (perit.hasNext()) {
-														Map.Entry perme = (Map.Entry) perit.next();
-														String keyvalue = (String) perme.getKey();
-														if (keyvalue.equalsIgnoreCase("guidanceSubject")) {
-															guidanceSubject = (String)perme.getValue();
-														}else if (keyvalue.equalsIgnoreCase("guidanceflag")) {
-															guidanceFlag = (String)perme.getValue();
-														}else if (keyvalue.equalsIgnoreCase("profileid")) {
-															profileid = (String)perme.getValue();
-														}else if (keyvalue.equalsIgnoreCase("profileImage")) {
-															profileimage = (String)perme.getValue();
-														}else if (keyvalue.equalsIgnoreCase("profileName")) {
-															profilename = (String)perme.getValue();
-														}else if (keyvalue.equalsIgnoreCase("guidanceid")) {
-															guidanceid = (String)perme.getValue();
-														}
-												}
-													
-												%>	
-													<div class="superbox-list">
-														<img id="<%=guidanceid%>" src="/Fliker/imageController/<%=profileimage%>" data-src="/Fliker/imageController/<%=profileimage%>" name="<%=profileid%>" alt="<%=guidanceSubject%>" title="<%=profilename%> for <%=guidanceSubject%>" class="superbox-img">
-													</div>
-												<%	
-											}
-											
-											%>
-											<!-- <div class="superbox-list">
-												<img id="" src="img/superbox/superbox-thumb-1.jpg" data-img="img/superbox/superbox-full-1.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
-											</div>
-											<div class="superbox-list">
-												<img src="img/superbox/superbox-thumb-2.jpg" data-img="img/superbox/superbox-full-2.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Bridge of Edgen" class="superbox-img">
-											</div> -->
-											<div class="superbox-float"></div>
-								</div>
-								<!-- /SuperBox -->
-								
-								<div class="superbox-show" style="height:300px; display: none"></div>
-
-							<div class="text-center">
-								<hr>
-								<ul class="pagination no-margin">
-									<li class="prev disabled"><a href="javascript:void(0);">Previous</a>
-									</li>
-									<li class="active"><a href="javascript:void(0);">1</a></li>
-									<li><a href="javascript:void(0);">2</a></li>
-									<li><a href="javascript:void(0);">3</a></li>
-									<li class="next"><a href="javascript:void(0);">Next</a></li>
-								</ul>
-								<br> <br> <br>
-							</div>
-
-						</div> --%>
-
-						<!-- <div class="tab-pane fade" id="s2"> -->
-							<%-- <div class="row">
-
-								<div class="col-sm-12">
-
-									<div class="well padding-10">
-										<%
-										ArrayList resourcelist = (ArrayList)request.getAttribute("resourcesSearch");
-										int listsize = resourcelist.size();
-										System.out.println(resourcelist);
-										for(int m=0;m<resourcelist.size();m++){
-											
-											String guidanceid="";
-											String guidancesubject="";
-											String profileimage="";
-											String profilename="";
-											String guidancelocation="";
-											String guidanceduration= "";
-											String profileid = "";
-											String guidancereason="";
-											
-											HashMap guidancemap = (HashMap)resourcelist.get(m);
-											Set perset = guidancemap.entrySet();
-											Iterator perit = perset.iterator();
-											while (perit.hasNext()) {
-												Map.Entry perme = (Map.Entry) perit.next();
-												String keyvalue = (String) perme.getKey();
-												if (keyvalue.equalsIgnoreCase("guidanceid")) {
-													guidanceid = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("guidanceSubject")) {
-													guidancesubject = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("guidancelocation")) {
-													guidancelocation = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("guidanceduration")) {
-													guidanceduration = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("profileid")) {
-													profileid = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("profileImage")) {
-													profileimage = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("profileName")) {
-													profilename = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("guidancereason")) {
-													guidancereason = (String)perme.getValue();
-												}
-												
-												System.out.println("guidanceid >>"+guidanceid+" guidancesubject >>"+guidancesubject+" guidancelocation >>"+guidancelocation+" profileid >>"+profileid+" profilename >>"+profilename);
-											}
-											
-											%>
-											
-												<div class="row">
-													<div class="col-md-4">
-														<img src="https://maps.googleapis.com/maps/api/staticmap?center=Berkeley,CA&zoom=14&size=400x400&key=YOUR_API_KEY"
-															class="img-responsive" alt="<%=profilename%>">
-													</div>
-													<div class="col-md-8 padding-left-0">
-														<h3 class="margin-top-0"><a href="#"><%=guidancereason%></a><br><small class="font-xs"><i>Guidance Subject :<a href="#"><%=guidancesubject%></a></i></small></h3>
-														<small class="font-xs"><i>Guidance Duration :<a href="#"><%=guidanceduration%></a></i></small>
-														<a class="btn btn-primary" href="#" onclick="gotoguidance(<%=guidanceid%>)"> Go To Guide </a> <a class="btn btn-warning"
-															href="#" onclick="apply(<%=guidanceid%>)"> Publish Guide </a> <!-- <a
-															class="btn btn-success" href="javascript:void(0);">
-															Publish </a> -->
-													</div>
-												</div>
-												<hr>
-											<%
-										}
-										
-										
-										%>
-									</div>
-
-								</div>
-
-
-
-							</div> --%>
+					
 							<div class="row">
 
 								<div class="col-sm-12">
 
 									<div class="well padding-10">
 										<%
+										Set<Currency> currencies = (Set<Currency>)request.getAttribute("currencyset");
 										ArrayList ongoingResources = (ArrayList)request.getAttribute("ongoingResources");
 										int ongoingResourcessize = ongoingResources.size();
 										System.out.println(ongoingResourcessize);
+										if(ongoingResources!=null){
 										for(int m=0;m<ongoingResources.size();m++){
 											
 											String guidanceid="";
@@ -928,7 +649,7 @@
 											System.out.println("fghdfdf");
 											StringBuffer consumerlisset = new StringBuffer();
 											
-											LinkedList consumerlist = new LinkedList();
+											BasicDBList consumerlist = new BasicDBList();
 											
 											
 											HashMap guidancemap = (HashMap)ongoingResources.get(m);
@@ -948,55 +669,25 @@
 													guidancesubject = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("guidancetype")) {
 													guidancetype = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("nextmeeting")) {
-													nextmeeting = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("topiccount")) {
-													topiccount = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("consumerids")) {
-													consumerlist = (LinkedList)perme.getValue();
+													consumerlist = (BasicDBList)perme.getValue();
 													consumernumber = Integer.toString(consumerlist.size());
 													
 													for(int t=0;t<consumerlist.size();t++){
 														
-														String consumerprofile = "";
-														String consumerprofileimage="";
-														String consumername="";
-														String consumeruserid="";
+														ProfilePreview profprev = new ProfilePreview();
+														Profile profileinfo = profprev.getProfileData((String)consumerlist.get(t));
+														String consumerprofile = profileinfo.getProfileid();
+														String consumerprofileimage=profileinfo.getProfileImageid();
+														String consumername=profileinfo.getName();
+														String consumeruserid=profileinfo.getUserid();
 														
-														
-														HashMap consumermap = (HashMap)consumerlist.get(t);
-														Set cosumeset = consumermap.entrySet();
-														Iterator consumeit = cosumeset.iterator();
-														while (consumeit.hasNext()) {
-															Map.Entry consumeme = (Map.Entry) consumeit.next();
-															String consumekey = (String) consumeme.getKey();
-															if (consumekey.equalsIgnoreCase("profileid")) {
-																consumerprofile = (String)consumeme.getValue();
-															}else if (consumekey.equalsIgnoreCase("profileImage")) {
-																consumerprofileimage = (String)consumeme.getValue();
-															}else if (consumekey.equalsIgnoreCase("profileName")) {
-																consumername = (String)consumeme.getValue();
-															}else if (consumekey.equalsIgnoreCase("userid")) {
-																consumeruserid = (String)consumeme.getValue();
-															}
-															
-															
-															
-														}
 														
 														String composeconsumer = "<li><a href='#'><img src='/Fliker/imageFromUserid/"+consumeruserid+"' alt='"+consumername+"'></a></li>";
 														consumerlisset.append(composeconsumer);
 													}
 													
 												}else if (keyvalue.equalsIgnoreCase("guidanceid")) {
-													guidanceid = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("timetableid")) {
-													timetableid = (String)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("likeid")) {
-													//likeid = (Integer)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("shareid")) {
-													//shareid = (Integer)perme.getValue();
-												}else if (keyvalue.equalsIgnoreCase("consumerids")) {
 													guidanceid = (String)perme.getValue();
 												}else if (keyvalue.equalsIgnoreCase("providerprofileid")) {
 													providerprofileid = (String)perme.getValue();
@@ -1007,8 +698,6 @@
 												}else if (keyvalue.equalsIgnoreCase("provideruserid")) {
 													provideruserid = (String)perme.getValue();
 												}
-												
-												
 												
 											}
 											
@@ -1027,17 +716,11 @@
 															<div class="col-xs-12 col-sm-5 col-md-5 col-lg-10">
 																<!-- sparks -->
 																<ul id="sparks">
-																	<li class="sparks-info">
-																		<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;<%=likeid%></span></h5>
-																	</li>
-																	<li class="sparks-info">
-																		<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;<%=shareid%></span></h5>
+																	<li class="sparks-info" >
+																		<h5> Duration <span class="txt-color-greenDark">&nbsp;<%=guidanceduration%></span></h5>
 																	</li>
 																	<li class="sparks-info" >
-																		<h5> Duration <span class="txt-color-greenDark"><i class="fa fa-money" id='investors' ></i>&nbsp;<%=guidanceduration%></span></h5>
-																	</li>
-																	<li class="sparks-info" >
-																		<h5> Location <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;<img src="https://maps.googleapis.com/maps/api/staticmap?center="<%=guidancelocation%>"&zoom=14&size=100x100&key=YOUR_API_KEY" alt="<%=guidancelocation%>"></span></h5>
+																		<h5> Location <span class="txt-color-greenDark">&nbsp;<img src="https://maps.googleapis.com/maps/api/staticmap?center="<%=guidancelocation%>"&zoom=14&size=100x100&key='AIzaSyDuATgAn9J88smIpYM1SD_3RFAiA-PF4q4'" alt="<%=guidancelocation%>"></span></h5>
 																	</li>
 																	<li class="sparks-info" >
 																		<h5> Resources <span class="txt-color-greenDark"><i class="fa fa-group" id='investors' ></i>&nbsp;<%=consumernumber%></span></h5>
@@ -1070,6 +753,8 @@
 											<%
 										}
 										
+										}
+										
 										
 										%>
 									</div>
@@ -1085,14 +770,11 @@
 
 									<div class="well padding-10">
 										<%
-										HashMap guidanceconsumesubjectmap = (HashMap)request.getAttribute("guidanceconsumesubjectmap");
-										Set guidanceconsumeset = guidanceconsumesubjectmap.entrySet();
-										Iterator guidanceconsumeit = guidanceconsumeset.iterator();
-										while(guidanceconsumeit.hasNext()){
-											Map.Entry guidancecosumeme = (Map.Entry)guidanceconsumeit.next();
+										ArrayList guidanceconsumesubjectmap = (ArrayList)request.getAttribute("guidanceconsumesubjectmap");
+										if(guidanceconsumesubjectmap!= null){
+										for(int m=0;m<guidanceconsumesubjectmap.size();m++){
 											
-											String guidanceid = (String)guidancecosumeme.getKey();
-											HashMap guidacedata = (HashMap)guidancecosumeme.getValue();
+											HashMap guidacedata = (HashMap)guidanceconsumesubjectmap.get(m);
 											String guidanceconsumereason = "";
 											String guidanceconsumelocation = "";
 											String guidanceconsumeduration="";
@@ -1100,6 +782,7 @@
 											String guidanceprovideruserid = "";
 											String guidanceconsumesubject = "";
 											String guidanceproviderprofilename="";
+											String guidanceid = "";
 											
 											Set guidacedataset = guidacedata.entrySet();
 											Iterator guidacedatasetit = guidacedataset.iterator();
@@ -1110,6 +793,8 @@
 													guidanceconsumereason = (String)guidedatame.getValue();
 												}else if (guiddatavalue.equalsIgnoreCase("guidancelocation")) {
 													guidanceconsumelocation = (String)guidedatame.getValue();
+												}else if (guiddatavalue.equalsIgnoreCase("guidanceid")) {
+													guidanceid = (String)guidedatame.getValue();
 												}else if (guiddatavalue.equalsIgnoreCase("guidanceduration")) {
 													guidanceconsumeduration = (String)guidedatame.getValue();
 												}else if (guiddatavalue.equalsIgnoreCase("guidanceuserid")) {
@@ -1151,6 +836,8 @@
 										<% 	
 											
 										}
+										
+									}
 										%>
 									</div>
 
@@ -1159,7 +846,7 @@
 
 
 							</div>
-							<div class="row">
+							<%-- <div class="row">
 
 								<div class="col-sm-12">
 
@@ -1248,7 +935,7 @@
 
 
 
-							</div>
+							</div> --%>
 						<!-- </div> -->
 
 						<!-- <div class="tab-pane fade" id="s3">
@@ -1286,7 +973,20 @@
 											<textarea id="guidancereason" class="form-control" placeholder="Provide Information about your guidance. Why you are good on the above mentioned guidance.." rows="5" required></textarea>
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Guidance Price" required id="guidanceprice" />
+											<div class="col-md-9">
+												<input type="text" class="form-control" placeholder="Guidance Price" required id="guidanceprice" />
+											</div>
+											<div class="col-md-3">
+												<select class="form-control" id="guidancepricecurr">
+													<%
+														for (Currency s : currencies) {
+														    %>
+														    	<option><%=s.getCurrencyCode()%></option>
+															<%
+														}
+													%>
+												</select>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -1806,6 +1506,7 @@
 				 var published = $('#published').val();
 				 var guidancetype = $('#guidancetypeid').val();
 				 var guidanceprice = $('#guidanceprice').val();
+				 var currencyprice = $('#guidancepricecurr option:selected').text();
 				 /* var coordinate = "";
 				 
 				 var geocoder =  new google.maps.Geocoder();
@@ -1820,7 +1521,7 @@
 				 
 				 
 				 $.ajax({
-						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype+"&guidanceprice="+guidanceprice,
+						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype+"&guidanceprice="+guidanceprice+"&currency="+currencyprice,
 						method : 'POST',
 						success : function(data){
 							if(data.success == "true"){ 
