@@ -43,10 +43,13 @@ import com.fliker.Repository.FileUpload;
 import com.fliker.Repository.Guidance;
 import com.fliker.Repository.GuidanceContent;
 import com.fliker.Repository.GuidanceContentCalendar;
+import com.fliker.Repository.GuidanceContentDashBoardSet;
 import com.fliker.Repository.GuidanceContentDashboard;
 import com.fliker.Repository.GuidanceContentFiles;
 import com.fliker.Repository.GuidanceContentShared;
 import com.fliker.Repository.GuidanceEntry;
+import com.fliker.Repository.GuidanceEntryCalendar;
+import com.fliker.Repository.GuidanceEntryShare;
 import com.fliker.Repository.GuidanceFileShare;
 import com.fliker.Repository.GuidanceInfo;
 import com.fliker.Repository.GuidanceProject;
@@ -2202,7 +2205,44 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		// TODO Auto-generated method stub
 		
 		GuidancePreview guidprev = new GuidancePreview();
-		
+		if(userids.equalsIgnoreCase("All")){
+			MongoConnection mongocon = new MongoConnection();
+			
+			DBCursor profilecursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+			while(profilecursor.hasNext()){
+				DBObject basicdbj = profilecursor.next();
+				
+				BasicDBList userlist = (BasicDBList)basicdbj.get("consumeruserid");
+				for(int k=0;k<userlist.size();k++){
+
+					DBCursor profileusercursor = mongocon.getDBObject("userid", (String)userlist.get(k), "Profile");
+					while(profileusercursor.hasNext()){
+						DBObject basicprofdbj = profileusercursor.next();
+						
+						BasicDBList guidancelist = (BasicDBList)basicprofdbj.get("guidanceids");
+						for(int g=0;g<guidancelist.size();g++){
+							
+								DBCursor resultcursor = mongocon.getDBObject("guidanceid", (String)guidancelist.get(g), "GuidanceEntry");
+								while(resultcursor.hasNext() ){
+									DBObject dbj = resultcursor.next();
+									
+									String consumeguidanceid = (String)dbj.get("consumeguidanceid");
+									if(consumeguidanceid.equalsIgnoreCase(guidanceid)){
+										
+										String sharetokenid = (String)dbj.get("sharetokenid");
+										mongocon.updateObject(new BasicDBObject("guidanceshareid", sharetokenid),new BasicDBObject("$push", new BasicDBObject("guidancefileids", fileid)), "GuidanceEntryShare");
+									}
+									
+									
+								}
+								
+							
+						}
+					}
+				
+				}
+			}
+		}else{
 		String[] useridrow =  userids.split(",");
 		
 		for(int i=0;i<useridrow.length;i++){
@@ -2234,7 +2274,35 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 			}
 		}
 		
+		}
 		
+		GuidanceFileShare guidfileshare = new GuidanceFileShare();
+		if(userids.equalsIgnoreCase("All")){
+			String[] AllUser = {"All"};
+			guidfileshare.setConsumerids(AllUser);
+		}else{
+			String[] useridnew =  userids.split(",");
+			guidfileshare.setConsumerids(useridnew);
+		}
+		guidfileshare.setGuidancefileid(fileid);
+		guidfileshare.setGuidanceid(guidanceid);
+		
+		MongoConnection mongocon = new MongoConnection();
+		BasicDBObject basicreqobjsearch =  guidprev.formGuidShareDBObject(guidfileshare);
+		mongocon.saveObject(basicreqobjsearch, "GuidanceDashFileShare");
+		
+		
+	}
+
+
+	private BasicDBObject formGuidShareDBObject(GuidanceFileShare guidfileshare) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("consumerids", guidfileshare.getConsumerids());
+		basicdbobj.put("guidancefileid", guidfileshare.getGuidancefileid());
+		basicdbobj.put("guidanceid", guidfileshare.getGuidanceid());
+		
+		return basicdbobj;
 	}
 
 
@@ -2722,6 +2790,142 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		}
 		
 		return billmap;
+	}
+
+
+	public void saveInterest(String guidanceid, String userid) {
+		// TODO Auto-generated method stub
+		MongoConnection mongocon = new MongoConnection();
+		boolean userpresent = false; 
+		DBCursor guidrstcursor = mongocon.getDBObject("guidanceid",guidanceid, "GuidanceSelection");
+		while(guidrstcursor.hasNext()){
+			DBObject guiderstdbj = guidrstcursor.next();
+			BasicDBList interestuserlist = (BasicDBList)guiderstdbj.get("guidanceinterest");
+			for(int m=0;m<interestuserlist.size();m++){
+				if(userid.equalsIgnoreCase((String)interestuserlist.get(m))){
+					userpresent = true;
+				}
+			}
+			
+		}
+		if(!userpresent){
+			mongocon.updateObject(new BasicDBObject("guidanceid", guidanceid),new BasicDBObject("$push", new BasicDBObject("guidanceinterest", userid)), "GuidanceEntryShare");
+		}
+		
+	}
+
+
+	public void createGuidanceEntry(String guidanceid, String userid) {
+		// TODO Auto-generated method stub
+		String[] assignmentids = null;
+		String[] quizids = null;
+		String sharedid = "";
+		String dashboardid = "";
+		String calendarid = "";
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor guidrstcursor = mongocon.getDBObject("guidanceid",guidanceid, "GuidanceContent");
+		while(guidrstcursor.hasNext()){
+			DBObject guiderstdbj = guidrstcursor.next();
+			BasicDBList assignlist = (BasicDBList)guiderstdbj.get("assignmentids");
+			if(assignlist != null){
+				assignmentids = assignlist.toArray(new String[assignlist.size()]);
+			}else{
+				assignmentids = new String[0];
+			}
+			
+			BasicDBList quizlist = (BasicDBList)guiderstdbj.get("quizids");
+			if(quizlist !=null){
+				quizids = quizlist.toArray(new String[quizlist.size()]);
+			}else{
+				quizids = new String[0];
+			}
+			sharedid = (String)guiderstdbj.get("sharetokenid");
+			dashboardid = (String)guiderstdbj.get("dashboardid");
+			calendarid = (String)guiderstdbj.get("timetableid");
+		}
+		List filelisttoadd = new ArrayList();
+		DBCursor guidsharecursor = mongocon.getDBObject("guidancesharedid",sharedid, "GuidanceContentShare");
+		while(guidsharecursor.hasNext()){
+			DBObject guidesharedbj = guidsharecursor.next();
+			BasicDBList sharedfilelist = (BasicDBList)guidesharedbj.get("guidancefilelistid");
+			
+			for(int x=0;x<sharedfilelist.size();x++){
+				DBCursor guidfilesharecursor = mongocon.getDBObject("guidancefileid",(String)sharedfilelist.get(x), "GuidanceDashFileShare");
+				while(guidfilesharecursor.hasNext()){
+					DBObject guidefilesharedbj = guidfilesharecursor.next();
+					BasicDBList userlist = (BasicDBList)guidefilesharedbj.get("consumerids");
+					for(int s=0;s<userlist.size();s++){
+						if(((String)userlist.get(s)).equalsIgnoreCase("All")){
+							filelisttoadd.add((String)sharedfilelist.get(x));
+						}
+					}
+				}
+			}
+		}
+		
+		List eventToAdd = new ArrayList();
+		DBCursor guidcallcursor = mongocon.getDBObject("guidancecalendarid",calendarid, "GuidanceContentCalendar");
+		while(guidcallcursor.hasNext()){
+			DBObject guidecaldbj = guidcallcursor.next();
+			BasicDBList calendarlist = (BasicDBList)guidecaldbj.get("guidancecalendareventid");
+			
+			for(int x=0;x<calendarlist.size();x++){
+				DBCursor guidtimetablecursor = mongocon.getDBObject("guidancefileid",(String)calendarlist.get(x), "GuidanceDashFileShare");
+				while(guidtimetablecursor.hasNext()){
+					DBObject guideeventharedbj = guidtimetablecursor.next();
+					BasicDBList userlist = (BasicDBList)guideeventharedbj.get("consumerids");
+					for(int s=0;s<userlist.size();s++){
+						if(((String)userlist.get(s)).equalsIgnoreCase("All")){
+							filelisttoadd.add((String)sharedfilelist.get(x));
+						}
+					}
+				}
+			}
+		}
+		
+		
+		
+		GuidancePreview guidprev = new GuidancePreview();
+		
+		String uniqueid = "";
+		
+		try {
+			uniqueid = guidprev.makeSHA1Hash(guidanceid+userid);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		GuidanceEntryShare guidentrshare = new GuidanceEntryShare();
+		guidentrshare.setGuidancecontentshareid(sharedid);
+		String[] sharedfileto = (String[]) filelisttoadd.toArray(new String[filelisttoadd.size()]);
+		guidentrshare.setFileids(sharedfileto);
+		guidentrshare.setGuidanceshareid(uniqueid);
+		
+		GuidanceContentDashBoardSet guiddasborset = new GuidanceContentDashBoardSet();
+		guiddasborset.setGuidancedashboardid(dashboardid);
+		String[] guidancedashdataid = new String[0];
+		guiddasborset.setGuidancedashdataid(guidancedashdataid);
+		guiddasborset.setGuidanceentrydashid(uniqueid);
+		guiddasborset.setGuidanceuserid(userid);
+		
+		GuidanceEntryCalendar guidentrycal = new GuidanceEntryCalendar();
+		guidentrycal.setGuidancecalendarid(uniqueid);
+		
+		GuidanceEntry guideentry = new GuidanceEntry();
+		guideentry.setAssignmentids(assignmentids);
+		guideentry.setQuizids(quizids);
+		guideentry.setAverageVelocity("");
+		guideentry.setConsumeguidanceid(guidanceid);
+		guideentry.setDashboardid(uniqueid);
+		guideentry.setProjectid("");
+		guideentry.setSharetokenid(uniqueid);
+		String[] topicid = new String[0];
+		guideentry.setTopicid(topicid);
+		guideentry.setTimetableid(uniqueid);
+		
 	}
 	
 }

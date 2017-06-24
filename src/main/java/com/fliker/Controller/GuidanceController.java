@@ -248,6 +248,7 @@ public class GuidanceController {
 		mv.addObject("userid", userid);
 		mv.addObject("bill", billid);
 		mv.addObject("billdetails", billdetails);
+		mv.addObject("guidanceid", guidanceid);
 		mv.addObject("FullName", userfirstname+" "+userlastname);
 		
 		return mv;
@@ -503,6 +504,53 @@ public class GuidanceController {
 		ProfilePreview profprev = new ProfilePreview();
 		
 		Profile profile = profprev.getProfileData(userid);
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceSheet");
+		
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", profile.getName());
+		/*mv.addObject("TimeTable", timetable);
+		mv.addObject("GuidShared", guidshareditem);
+		mv.addObject("GuidDashBoard", guiddashdata);
+		mv.addObject("GuidBlog", blogs);*/
+		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("guidanceid", guidanceid);
+		mv.addObject("currencyset", currencyset);
+		
+		//mv.addObject("postlist", postlist);
+		return mv;
+	}
+	
+	
+	@RequestMapping("/createGuidanceEntry")
+	public ModelAndView createGuidanceEntry(
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,ModelMap model,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+ 
+		HashMap resourcesSearch = new HashMap();
+		
+		
+
+	
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(userid);
+		
+		GuidancePreview guideprev = new GuidancePreview();
+		guideprev.createGuidanceEntry(guidanceid,userid);
+		
+		
+		resourcesSearch = guideprev.getGuidanceData(guidanceid);
+		
+		Set currencyset = guideprev.getAllCurrencies();
 		
 		ModelAndView mv;
 		mv = new ModelAndView("/GuidanceSheet");
@@ -1131,6 +1179,14 @@ public class GuidanceController {
 		}
 	}
 	
-	
+	@RequestMapping("/addToInterest")
+	public void interestAdd(@RequestParam(value = "guidanceid", required = false) String guidanceid,
+			@RequestParam(value = "userid", required = false) String userid)  {
+	  
+		GuidancePreview guidprev = new GuidancePreview();
+		guidprev.saveInterest(guidanceid,userid);
+		
+		
+	}
 	
 }

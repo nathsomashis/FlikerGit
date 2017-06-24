@@ -8,19 +8,29 @@ public class GuidanceEntryShare {
 
 	@Id
 	private String guidanceshareid;
-	private String[] guidancefileids;
+	private String guidancecontentshareid;
+	private String[] fileids;
+	
+	
+	public String getGuidancecontentshareid() {
+		return guidancecontentshareid;
+	}
+	public void setGuidancecontentshareid(String guidancecontentshareid) {
+		this.guidancecontentshareid = guidancecontentshareid;
+	}
 	public String getGuidanceshareid() {
 		return guidanceshareid;
 	}
 	public void setGuidanceshareid(String guidanceshareid) {
 		this.guidanceshareid = guidanceshareid;
 	}
-	public String[] getGuidancefileids() {
-		return guidancefileids;
+	public String[] getFileids() {
+		return fileids;
 	}
-	public void setGuidancefileids(String[] guidancefileids) {
-		this.guidancefileids = guidancefileids;
+	public void setFileids(String[] fileids) {
+		this.fileids = fileids;
 	}
+	
 	
 	
 }

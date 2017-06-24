@@ -644,7 +644,7 @@
 			<!-- END RIBBON -->
 			
 			<%
-				
+				String guidanceid = (String)request.getAttribute("guidanceid");
 				HashMap billdetails = (HashMap)request.getAttribute("billdetails");
 				Set billset = billdetails.entrySet();
 				Iterator billit = billset.iterator();
@@ -1096,7 +1096,8 @@
 			
 		
 		    paypal.Button.render({
-	
+		    	var guidanceids = '<%=guidanceid%>'
+		    	window.location.href = "createGuidanceEntry?guidanceid="+guidanceids;
 		        // Set your environment
 	
 		        env: 'sandbox', // sandbox | production
@@ -1130,7 +1131,7 @@
 		                window.alert('Payment Complete!');
 		            });
 		        }
-	
+				
 		    }, '#paypal-button-container');
 	    </script>
 

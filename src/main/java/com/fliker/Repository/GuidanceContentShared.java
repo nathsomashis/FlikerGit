@@ -8,7 +8,7 @@ public class GuidanceContentShared {
 
 	@Id
 	private String guidancesharedid;
-	private String[] guidancefilelistid;
+	private String[] guidancefilelistid;//GuidanceFileShare ids
 	public String getGuidancesharedid() {
 		return guidancesharedid;
 	}

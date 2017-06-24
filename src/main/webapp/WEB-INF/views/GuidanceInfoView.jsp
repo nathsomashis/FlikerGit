@@ -1006,9 +1006,9 @@
 													<%if(guidanceinterestedlist.size() > 0 || guidanceinterestedlist!=null){ 
 														int totalinterest = guidanceinterestedlist.size();
 													%>
-						                            <button class="btn btn-white btn-default"><i class="fa fa-star"><%=totalinterest%></i> Add to wishlist </button>
+						                            <button class="btn btn-white btn-default" onclick="saveInterest()"><i class="fa fa-star"><%=totalinterest%></i> Add to wishlist </button>
 						                            <%}else{ %>
-						                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist </button>
+						                            <button class="btn btn-white btn-default" onclick="saveInterest()"><i class="fa fa-star"></i> Add to wishlist </button>
 						                            <%} %>
 						                        </div>
 											</div>
@@ -1256,6 +1256,22 @@
 				/* }else{
 					window.open("profiles?userid="+userid);
 				} */
+			}
+			
+			function saveInterest(){
+				var guidanceid = '<%=guidanceid%>';
+				var userid = '<%=userid%>';
+				
+				$.ajax({
+					url : "addToInterest?guidanceid="+guidanceid+"&userid="+userid,
+					method : 'POST',
+					success : function(){
+						
+						
+					}
+				
+		        }); 
+				
 			}
 		
 		</script>
