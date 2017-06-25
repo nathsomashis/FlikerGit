@@ -416,20 +416,39 @@ public class GuidanceController {
 		
 	}
 	
-	//paging guidance to student
 	@RequestMapping("/pagingguidance")
-	public void pagingForGuidance(
-			@RequestParam(value = "guidanceid", required = false, defaultValue = "World") String guidanceid,
-			HttpServletRequest request) {
+	public ModelAndView getGuidanceInfoConsumer(
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
+ 
+		ArrayList resourcesSearch = new ArrayList();
+		ArrayList ongoingResources = new ArrayList();
+		ArrayList progressData = new ArrayList();
 		
 		ServletContext context = request.getSession().getServletContext();
 		User userinf = (User) context.getAttribute("UserValues");
 		String userid = userinf.getUserid();
- 
-		GuidancePreview guidanceprev = new GuidancePreview();
-		guidanceprev.pagingGuide(guidanceid,userid);
+		String gender = userinf.getGender();
 		
+		GuidancePreview guideprev = new GuidancePreview();
+		resourcesSearch = guideprev.getGuidanceEntryData(guidanceid,userid);
+		
+		ongoingResources = guideprev.getGuidanceAssignmentDetail(guidanceid);
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(userid);
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceSheet");
+		
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("FullName", profile.getName());
+		
+		//mv.addObject("postlist", postlist);
+		return mv;
 	}
 	
 	//student accepting paging from provider

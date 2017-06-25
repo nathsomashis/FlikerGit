@@ -18,10 +18,31 @@ public class GuidanceEntry {
 	private String projectid;
 	private String[] assignmentids;
 	private String[] quizids;
+	private String[] specificationset;
+	private String[] levelremark;
+	private String[] helpremark;
 	
 	
 	
 	
+	public String[] getLevelremark() {
+		return levelremark;
+	}
+	public void setLevelremark(String[] levelremark) {
+		this.levelremark = levelremark;
+	}
+	public String[] getHelpremark() {
+		return helpremark;
+	}
+	public void setHelpremark(String[] helpremark) {
+		this.helpremark = helpremark;
+	}
+	public String[] getSpecificationset() {
+		return specificationset;
+	}
+	public void setSpecificationset(String[] specificationset) {
+		this.specificationset = specificationset;
+	}
 	public String getConsumeguidanceid() {
 		return consumeguidanceid;
 	}

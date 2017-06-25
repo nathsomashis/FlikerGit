@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -49,6 +50,7 @@ import com.fliker.Repository.GuidanceContentFiles;
 import com.fliker.Repository.GuidanceContentShared;
 import com.fliker.Repository.GuidanceEntry;
 import com.fliker.Repository.GuidanceEntryCalendar;
+import com.fliker.Repository.GuidanceEntryDashboard;
 import com.fliker.Repository.GuidanceEntryShare;
 import com.fliker.Repository.GuidanceFileShare;
 import com.fliker.Repository.GuidanceInfo;
@@ -2912,6 +2914,14 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		guiddasborset.setGuidanceentrydashid(uniqueid);
 		guiddasborset.setGuidanceuserid(userid);
 		
+		GuidanceEntryDashboard guideentrydash = new GuidanceEntryDashboard();
+		guideentrydash.setGuidanceentrydashid(uniqueid);
+		guideentrydash.setGuidanceentrydashdataid(guidancedashdataid);
+		
+		BasicDBObject guidashentryobj =  guidprev.formDashBoardEntryDBObject(guideentrydash);
+		mongoconsearch.saveObject(guidashentryobj, "GuidanceEntryDashboard");
+		
+		
 		BasicDBObject basicguidashsetobj =  guidprev.formDashBoardSetDBObject(guiddasborset);
 		mongoconsearch.saveObject(basicguidashsetobj, "GuidanceContentDashBoardSet");
 		
@@ -2944,6 +2954,18 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		mongocon.updateObject(new BasicDBObject("guidanceid", guidanceid),new BasicDBObject("$push", new BasicDBObject("consumeruserid", userid)), "GuidanceContent");
 		mongocon.updateObject(new BasicDBObject("userid", userid),
 				new BasicDBObject("$push", new BasicDBObject("guidanceids", guidanceid)), "Profile");
+	}
+
+
+	private BasicDBObject formDashBoardEntryDBObject(GuidanceEntryDashboard guideentrydash) {
+		// TODO Auto-generated method stub
+		
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("guidanceentrydashid", guideentrydash.getGuidanceentrydashid());
+		basicdbobj.put("guidanceentrydashdataid", guideentrydash.getGuidanceentrydashdataid());
+		
+		return basicdbobj;
+		
 	}
 
 
@@ -3047,6 +3069,60 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		}
 		
 		return guidancelist;
+	}
+
+
+	public ArrayList getGuidanceEntryData(String guidanceid, String userid) {
+		// TODO Auto-generated method stub
+		ArrayList dashdatalist = new ArrayList();
+		GuidancePreview guidprev = new GuidancePreview();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceEntryDashboard");
+		while(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			HashMap specificationmap = new HashMap();
+			BasicDBList guidancedashdata = (BasicDBList)dbj.get("specificationset");
+			if(guidancedashdata!=null){
+				for(int x=0;x<guidancedashdata.size();x++){
+					DBCursor dashdatacursor = mongocon.getDBObject("guidancespecificationid", (String)guidancedashdata.get(x), "GuidanceEntrySpecification");
+					while(dashdatacursor.hasNext()){
+						DBObject dashdatadbj = dashdatacursor.next();
+						if(guidanceid.equalsIgnoreCase((String)dashdatadbj.get("guidanceid"))){
+							if(userid.equalsIgnoreCase((String)dashdatadbj.get("userid"))){
+								BasicDBList specificationlist = (BasicDBList)dashdatadbj.get("specifications");
+								for(int i=0;i<specificationlist.size();i++){
+									DBCursor specdatacursor = mongocon.getDBObject("specificationid", (String)specificationlist.get(i), "GuidanceSpecificationData");
+									while(specdatacursor.hasNext()){
+										DBObject specdatadbj = specdatacursor.next();
+										specificationmap.put((String)specdatadbj.get("specificationname")+":"+(String)specdatadbj.get("specificationdetails"), (BasicDBList)specdatadbj.get("specificationremarks"));
+									}
+								}
+							}
+						}
+				}
+				
+			}
+			
+		}
+			
+		BasicDBList helpremarks = (BasicDBList)dbj.get("helpremark");
+		BasicDBList levelremark = (BasicDBList)dbj.get("levelremark");
+		specificationmap.put("helpremark", helpremarks);
+		specificationmap.put("levelremark", levelremark);
+		
+		dashdatalist.add(specificationmap);
+		}
+		
+		return dashdatalist;
+	}
+
+
+	public ArrayList getGuidanceAssignmentDetail(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		return null;
 	}
 	
 }

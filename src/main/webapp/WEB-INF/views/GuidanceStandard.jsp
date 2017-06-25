@@ -685,6 +685,7 @@
 														
 														String composeconsumer = "<li><a href='#'><img src='/Fliker/imageFromUserid/"+consumeruserid+"' alt='"+consumername+"'></a></li>";
 														consumerlisset.append(composeconsumer);
+														System.out.println(consumerlisset.toString());
 													}
 													
 												}else if (keyvalue.equalsIgnoreCase("guidanceid")) {

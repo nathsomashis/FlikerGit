@@ -9,6 +9,9 @@ public class GuidanceAssignment {
 	@Id
 	private String guidanceid;
 	private String[] assignmentids;
+	
+	
+	
 	public String getGuidanceid() {
 		return guidanceid;
 	}
