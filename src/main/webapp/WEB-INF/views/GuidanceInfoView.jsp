@@ -231,7 +231,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="login.html" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+								<a href="logout?"  class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
 							</li>
 						</ul>
 					</li>
@@ -1006,9 +1006,9 @@
 													<%if(guidanceinterestedlist.size() > 0 || guidanceinterestedlist!=null){ 
 														int totalinterest = guidanceinterestedlist.size();
 													%>
-						                            <button class="btn btn-white btn-default"><i class="fa fa-star"><%=totalinterest%></i> Add to wishlist </button>
+						                            <button class="btn btn-white btn-default" onclick="saveInterest()"><i class="fa fa-star"><%=totalinterest%></i> Add to wishlist </button>
 						                            <%}else{ %>
-						                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist </button>
+						                            <button class="btn btn-white btn-default" onclick="saveInterest()"><i class="fa fa-star"></i> Add to wishlist </button>
 						                            <%} %>
 						                        </div>
 											</div>
@@ -1256,6 +1256,22 @@
 				/* }else{
 					window.open("profiles?userid="+userid);
 				} */
+			}
+			
+			function saveInterest(){
+				var guidanceid = '<%=guidanceid%>';
+				var userid = '<%=userid%>';
+				
+				$.ajax({
+					url : "addToInterest?guidanceid="+guidanceid+"&userid="+userid,
+					method : 'POST',
+					success : function(){
+						
+						
+					}
+				
+		        }); 
+				
 			}
 		
 		</script>

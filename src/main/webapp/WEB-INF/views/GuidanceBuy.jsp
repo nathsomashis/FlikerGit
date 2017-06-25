@@ -231,7 +231,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="login.html" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+								<a href="logout?"  class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
 							</li>
 						</ul>
 					</li>
@@ -644,7 +644,7 @@
 			<!-- END RIBBON -->
 			
 			<%
-				
+				String guidanceid = (String)request.getAttribute("guidanceid");
 				HashMap billdetails = (HashMap)request.getAttribute("billdetails");
 				Set billset = billdetails.entrySet();
 				Iterator billit = billset.iterator();
@@ -821,7 +821,7 @@
 															<h5>Payment Methods</h5>
 															<ul>
 																<li id="paypal-button-container"></li>
-																<img src="img/invoice/americanexpress.png" width="64" height="64" alt="american express">
+																<img src="http://icons.iconarchive.com/icons/designbolts/credit-card-payment/256/Paypal-icon.png"  onclick="reRoute()" width="64" height="64" alt="american express">
 																<img src="img/invoice/mastercard.png" width="64" height="64" alt="mastercard">
 																<img src="img/invoice/visa.png" width="64" height="64" alt="visa">
 															</ul>
@@ -1096,7 +1096,7 @@
 			
 		
 		    paypal.Button.render({
-	
+		    	
 		        // Set your environment
 	
 		        env: 'sandbox', // sandbox | production
@@ -1111,7 +1111,7 @@
 		        },
 	
 		        client: {
-		            sandbox:    '<%=%>',
+		            sandbox:    '6e55edtrd4dtr',
 		            production: '<insert production client id>'
 		        },
 	
@@ -1130,9 +1130,17 @@
 		                window.alert('Payment Complete!');
 		            });
 		        }
-	
+				
 		    }, '#paypal-button-container');
 	    </script>
+
+		<script type="text/javascript">
+			function reRoute(){
+				var guidanceids = '<%=guidanceid%>';
+				window.location.href = "createGuidanceEntry?guidanceid="+guidanceids;
+			}
+		
+		</script>
 
 	</body>
 
