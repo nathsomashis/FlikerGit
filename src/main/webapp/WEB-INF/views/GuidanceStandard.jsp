@@ -974,6 +974,31 @@
 											<textarea id="guidancereason" class="form-control" placeholder="Provide Information about your guidance. Why you are good on the above mentioned guidance.." rows="5" required></textarea>
 										</div>
 										<div class="form-group">
+											<ul class="smart-timeline-list">
+												<li>
+													<div class="col-md-3"><input type="text" class="form-control" placeholder="Guidance Specification" required id="specificationone" /></div>
+													<div class="col-md-9"><input type="text" class="form-control" placeholder="Guidance Specification Explain" required id="specificationoneDesc" /></div>
+												</li>
+												<li>
+													<div class="col-md-3"><input type="text" class="form-control" placeholder="Guidance Specification" required id="specificationtwo" /></div>
+													<div class="col-md-9"><input type="text" class="form-control" placeholder="Guidance Specification Explain" required id="specificationtwoDesc" /></div>
+												</li>
+												<li>
+													<div class="col-md-3"><input type="text" class="form-control" placeholder="Guidance Specification" required id="specificationthree" /></div>
+													<div class="col-md-9"><input type="text" class="form-control" placeholder="Guidance Specification Explain" required id="specificationthreeDesc" /></div>
+												</li>
+												<li>
+													<div class="col-md-3"><input type="text" class="form-control" placeholder="Guidance Specification" id="specificationfour" /></div>
+													<div class="col-md-9"><input type="text" class="form-control" placeholder="Guidance Specification Explain"  id="specificationfourDesc" /></div>
+												</li>
+												<li>
+													<div class="col-md-3"><input type="text" class="form-control" placeholder="Guidance Specification"  id="specificationfive" /></div>
+													<div class="col-md-9"><input type="text" class="form-control" placeholder="Guidance Specification Explain"  id="specificationfiveDesc" /></div>
+												</li>
+											
+											</ul>
+										</div>
+										<div class="form-group">
 											<div class="col-md-9">
 												<input type="text" class="form-control" placeholder="Guidance Price" required id="guidanceprice" />
 											</div>
@@ -1508,6 +1533,30 @@
 				 var guidancetype = $('#guidancetypeid').val();
 				 var guidanceprice = $('#guidanceprice').val();
 				 var currencyprice = $('#guidancepricecurr option:selected').text();
+				 var specificationOne = $('#specificationone').val();
+				 var specificationTwo = $('#specificationtwo').val();
+				 var specificationThree = $('#specificationthree').val();
+				 var specificationFour = $('#specificationfour').val();
+				 var specificationFive = $('#specificationfive').val();
+				 var specificationOneDesc = $('#specificationoneDesc').val();
+				 var specificationTwoDesc = $('#specificationtwoDesc').val();
+				 var specificationThreeDesc = $('#specificationthreeDesc').val();
+				 var specificationFourDesc = $('#specificationfourDesc').val();
+				 var specificationFiveDesc = $('#specificationfiveDesc').val();
+				 
+				 var specifications = specificationOne+","+specificationTwo+","+specificationThree;
+				 var specificationdesc = specificationOneDesc+","+specificationTwoDesc+","+specificationThreeDesc;
+				 if(specificationFour != ""){
+					 specifications = specifications + ","+specificationFour;
+					 specificationdesc = specificationdesc+","+specificationFourDesc;
+				 }
+				 if(specificationFive != ""){
+					 specifications = specifications + ","+specificationFive;
+					 specificationdesc = specificationdesc+","+specificationFiveDesc;
+				 }
+				 
+				 
+				 
 				 /* var coordinate = "";
 				 
 				 var geocoder =  new google.maps.Geocoder();
@@ -1522,7 +1571,7 @@
 				 
 				 
 				 $.ajax({
-						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype+"&guidanceprice="+guidanceprice+"&currency="+currencyprice,
+						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype+"&guidanceprice="+guidanceprice+"&currency="+currencyprice+"&specifications="+specifications+"&specificationdesc="+specificationdesc,
 						method : 'POST',
 						success : function(data){
 							if(data.success == "true"){ 

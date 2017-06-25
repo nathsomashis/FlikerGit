@@ -354,6 +354,8 @@ public class GuidanceController {
 			@RequestParam(value = "published", required = false) String published,
 			@RequestParam(value = "duration", required = false, defaultValue = "") String duration,
 			@RequestParam(value = "currency", required = false) String currency,
+			@RequestParam(value = "specifications", required = false) String specifications,
+			@RequestParam(value = "specificationdesc", required = false) String specificationdesc,
 			HttpServletRequest request) {
 		
 		
@@ -370,9 +372,12 @@ public class GuidanceController {
 				User userinf = (User) context.getAttribute("UserValues");
 				String userids = userinf.getUserid();
 				
+				String[] specificationarr = specifications.split(",");
+				String[] specificationexpl = specificationdesc.split(",");
+				
 				String guidanceid = guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,guidencetype,location,published,duration);// New Guidance to provide
 				
-				guidanceprev.applyForGuidance(guidanceSubject,"",guidencetype,userids,guidanceid,guidanceprice);
+				guidanceprev.applyForGuidance(guidanceSubject,"",guidencetype,userids,guidanceid,guidanceprice,specificationarr,specificationexpl);
 				
 				guidanceprev.createGuidanceContentData(guidanceid,guidanceprice,guidancereason);
 				
@@ -735,7 +740,7 @@ public class GuidanceController {
 		
 		
 		GuidancePreview guideprev = new GuidancePreview();
-		
+		ArrayList specificationlist = (ArrayList)guideprev.getSpecificationData(guidanceid);
 		
 		ServletContext context = request.getSession().getServletContext();
 		User userinf = (User) context.getAttribute("UserValues");
@@ -835,11 +840,13 @@ public class GuidanceController {
 			HttpServletRequest request) {
 		System.out.println("in dashboard social controller");
  
-		ArrayList resourcesSearch = new ArrayList();
+		ArrayList asignmentlist = new ArrayList();
+		ArrayList quizlist = new ArrayList();
 		
 		
 		GuidancePreview guideprev = new GuidancePreview();
-		//resourcesSearch = guideprev.getGuidanceData(guidanceid);
+		asignmentlist = guideprev.getGuidanceAssignmentData(guidanceid);
+		quizlist = guideprev.getGuidanceQuizData(guidanceid);
 		
 		//String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
 		ServletContext context = request.getSession().getServletContext();
@@ -850,38 +857,18 @@ public class GuidanceController {
 		UserPreview userprev = new UserPreview();
 		String gender = userprev.getGender(accessuserid);
 		
-		Timetable timetable = guideprev.getTimeTableInfo(guidanceid);
-		//model.addAttribute("TimeTable", timetable);
-		
-		GuidanceContentShared guidshareditem = guideprev.getSharedInfo(guidanceid);
-		//model.addAttribute("GuidShared", guidshareditem);
-		
-		GuidanceContentDashboard guiddashdata = guideprev.getDashBoardGuidance(guidanceid);
-		//model.addAttribute("GuidDashBoard", guiddashdata);
-		
-		Blog blogs = guideprev.getGuidanceBlogs(guidanceid);
-		//model.addAttribute("GuidBlog", blogs);
 		
 		ProfilePreview profprev = new ProfilePreview();
 		
 		Profile profile = profprev.getProfileData(accessuserid);
 		
 		ModelAndView mv = new ModelAndView();
-		if(contenttype.equalsIgnoreCase("provider")){
-			mv = new ModelAndView("/GuidanceProviderExcersize");
-		}else if(contenttype.equalsIgnoreCase("consumer")){
-			mv = new ModelAndView("/GuidanceConsumerExcersize");
-		}else{
-			mv = new ModelAndView("/GuidanceConsumerExcersize");
-		}
+		mv = new ModelAndView("/GuidanceProviderExcersize");
+		
 
 		mv.addObject("ProfileImage", profile.getProfileImageid());
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", profile.getName());
-		mv.addObject("TimeTable", timetable);
-		mv.addObject("GuidShared", guidshareditem);
-		mv.addObject("GuidDashBoard", guiddashdata);
-		mv.addObject("GuidBlog", blogs);
 		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("guidanceid", guidanceid);
 		mv.addObject("contenttype",contenttype);

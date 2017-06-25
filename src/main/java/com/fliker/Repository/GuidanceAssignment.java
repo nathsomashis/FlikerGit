@@ -8,7 +8,7 @@ public class GuidanceAssignment {
 
 	@Id
 	private String guidanceid;
-	private String[] assignmentids;
+	private String[] guideassignmentidslink;
 	
 	
 	
@@ -18,11 +18,11 @@ public class GuidanceAssignment {
 	public void setGuidanceid(String guidanceid) {
 		this.guidanceid = guidanceid;
 	}
-	public String[] getAssignmentids() {
-		return assignmentids;
+	public String[] getGuideassignmentidslink() {
+		return guideassignmentidslink;
 	}
-	public void setAssignmentids(String[] assignmentids) {
-		this.assignmentids = assignmentids;
+	public void setGuideassignmentidslink(String[] guideassignmentidslink) {
+		this.guideassignmentidslink = guideassignmentidslink;
 	}
 	
 	

@@ -52,9 +52,11 @@ import com.fliker.Repository.GuidanceEntry;
 import com.fliker.Repository.GuidanceEntryCalendar;
 import com.fliker.Repository.GuidanceEntryDashboard;
 import com.fliker.Repository.GuidanceEntryShare;
+import com.fliker.Repository.GuidanceEntrySpecification;
 import com.fliker.Repository.GuidanceFileShare;
 import com.fliker.Repository.GuidanceInfo;
 import com.fliker.Repository.GuidanceProject;
+import com.fliker.Repository.GuidanceSpecificationData;
 import com.fliker.Repository.Invoice;
 import com.fliker.Repository.Post;
 import com.fliker.Repository.Profile;
@@ -633,7 +635,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 
-  public void applyForGuidance(String guidanceSubject, String userid, String guidencetype, String guidanceuserid, String guidanceid, String guidanceprice) {
+  public void applyForGuidance(String guidanceSubject, String userid, String guidencetype, String guidanceuserid, String guidanceid, String guidanceprice, String[] specificationarr, String[] specificationexpl) {
 	// TODO Auto-generated method stub
 	  
 	  String[] consumers = new String[0];
@@ -650,6 +652,40 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	  GuidanceContentShared guidanceshare = new GuidanceContentShared();
 	  //GuidanceContentFiles guidancecontfile = new GuidanceContentFiles();
 	  
+	  ArrayList specificationlist = new ArrayList();
+	  
+	  for(int m=0;m<specificationarr.length;m++){
+		  
+		  String uniqueid = "";
+			
+			try {
+				uniqueid = guidanceprev.makeSHA1Hash(specificationarr[m]);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		  specificationlist.add(uniqueid);
+		  GuidanceSpecificationData guidspecdata = new GuidanceSpecificationData();
+		  guidspecdata.setSpecificationid(uniqueid);
+		  guidspecdata.setSpecificationdetails(specificationexpl[m]);
+		  guidspecdata.setSpecificationname(specificationarr[m]);
+		  guidspecdata.setSpecificationpercentage("");
+		  String[] specificationremarks = new String[0];
+		  guidspecdata.setSpecificationremarks(specificationremarks);
+		  
+		  MongoConnection mongocon = new MongoConnection();
+			
+		  BasicDBObject basicreqobj =  guidanceprev.formGuidanceContentSpeificationDBObject(guidspecdata);
+		  mongocon.saveObject(basicreqobj, "GuidanceContent");
+		  
+	  }
+	  
+	  
+	  
+	  
 		guidancecontent.setConsumeruserid(consumers);
 		guidancecontent.setDashboardid(guidanceid);
 		guidancecontent.setGuidanceid(guidanceid);
@@ -665,6 +701,8 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		guidancecontent.setQuizids(quizids);
 		guidancecontent.setInfoid(guidanceid);
 		guidancecontent.setProjectid(guidanceid);
+		guidancecontent.setSpecification((String[])specificationlist.toArray(new String[specificationlist.size()]));
+		
 		
 		GuidanceContentCalendar guidcontcal = new GuidanceContentCalendar();
 		guidcontcal.setGuidancecalendarid(guidanceid);
@@ -701,6 +739,21 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		mongocon.saveObject(guidcalobj, "GuidanceContentCalendar");
 		
   }
+
+
+	private BasicDBObject formGuidanceContentSpeificationDBObject(GuidanceSpecificationData guidspecdata) {
+	// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("specificationid", guidspecdata.getSpecificationid());
+		basicdbobj.put("specificationname", guidspecdata.getSpecificationname());
+		basicdbobj.put("specificationdetails", guidspecdata.getSpecificationdetails());
+		basicdbobj.put("specificationpercentage", guidspecdata.getSpecificationpercentage());
+		basicdbobj.put("specificationremarks", guidspecdata.getSpecificationremarks());
+		
+		return basicdbobj;
+		
+		
+}
 
 
 	private BasicDBObject formGuidanceCalendarDBObject(GuidanceContentCalendar guidcontcal) {
@@ -1572,6 +1625,14 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 			totalSet.put("guidanceduration", (String)dbj.get("guidanceduration"));
 			totalSet.put("guidancereason", (String)dbj.get("guidancereason"));
 			
+			DBCursor guidcontentcursor = mongocon.getDBObject("guidanceid", (String)dbj.get("guidanceid"), "GuidanceContent");
+			while(guidcontentcursor.hasNext()){
+				DBObject guidcontdbj = guidcontentcursor.next();
+				
+				BasicDBList cosumerlist = (BasicDBList)guidcontdbj.get("consumeruserid");
+				totalSet.put("consumerids", cosumerlist);
+				
+			}
 			
 			ProfilePreview profprev = new ProfilePreview();
 			ArrayList profileinfo = profprev.getProfileInfo((String)dbj.get("userid"));
@@ -3120,6 +3181,73 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	public ArrayList getGuidanceAssignmentDetail(String guidanceid) {
 		// TODO Auto-generated method stub
 		
+		
+		
+		return null;
+	}
+
+
+	public ArrayList getSpecificationData(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			HashMap specificationdata = new HashMap();
+			BasicDBList specificids = (BasicDBList)dbj.get("specification");
+			for(int k=0;k<specificids.size();k++){
+				
+				DBCursor specifcursor = mongocon.getDBObject("specificationid", (String)specificids.get(k), "GuidanceSpecificationData");
+				while(specifcursor.hasNext()){
+					DBObject specificdbj = specifcursor.next();
+					
+					
+					
+					
+					
+				}
+				
+			}
+			
+		}
+		
+		
+		return null;
+	}
+
+
+	public ArrayList getGuidanceAssignmentData(String guidanceid) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			BasicDBList assignmentids = (BasicDBList)dbj.get("assignmentids");
+			for(int k=0;k<assignmentids.size();k++){
+				HashMap assignmap = new HashMap();
+				
+				DBCursor assigncursor = mongocon.getDBObject("assignmentid", (String)assignmentids.get(k), "GuidanceEntryAssignment");
+				while(assigncursor.hasNext()){
+					DBObject assigndbj = assigncursor.next();
+					
+					assignmap.put("entryassignmentid", (String)assigndbj.get("guidanceentryassignid"));
+					assignmap.put("userid", (String)assigndbj.get("userid"));
+					assignmap.put("feedbackid", (String)assigndbj.get("feedbackid"));
+					assignmap.put("remarkid", (String)assigndbj.get("remarkid"));
+					
+					DBCursor feedbackcursor = mongocon.getDBObject("assignmentid", (String)assigndbj.get("feedbackid"), "GuidanceFeedback");
+					while(feedbackcursor.hasNext()){
+						DBObject feedbackdbj = feedbackcursor.next();
+						
+						
+						
+					}
+					
+				}
+			}
+		}
 		
 		
 		return null;

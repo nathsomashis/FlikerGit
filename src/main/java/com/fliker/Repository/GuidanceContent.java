@@ -22,9 +22,19 @@ public class GuidanceContent {
 	private String infoid;
 	private String[] quizids;
 	private String[] assignmentids;
+	private String[] specification;
 	
 	
 	
+	
+	public String[] getSpecification() {
+		return specification;
+	}
+
+	public void setSpecification(String[] specification) {
+		this.specification = specification;
+	}
+
 	public String[] getQuizids() {
 		return quizids;
 	}
