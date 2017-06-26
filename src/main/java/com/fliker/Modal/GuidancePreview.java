@@ -3219,7 +3219,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 
 	public ArrayList getGuidanceAssignmentData(String guidanceid) {
 		// TODO Auto-generated method stub
-		
+		ArrayList guidanceassignlist = new ArrayList();
 		MongoConnection mongocon = new MongoConnection();
 		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
 		if(resultcursor.hasNext()){
@@ -3236,22 +3236,137 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 					assignmap.put("userid", (String)assigndbj.get("userid"));
 					assignmap.put("feedbackid", (String)assigndbj.get("feedbackid"));
 					assignmap.put("remarkid", (String)assigndbj.get("remarkid"));
-					
-					DBCursor feedbackcursor = mongocon.getDBObject("assignmentid", (String)assigndbj.get("feedbackid"), "GuidanceFeedback");
+					ArrayList feedbacklist = new ArrayList();
+					DBCursor feedbackcursor = mongocon.getDBObject("feedbackid", (String)assigndbj.get("feedbackid"), "GuidanceFeedback");
 					while(feedbackcursor.hasNext()){
 						DBObject feedbackdbj = feedbackcursor.next();
 						
-						
+						feedbacklist.add(feedbackdbj.get("feedback"));
 						
 					}
+					assignmap.put("feedback", feedbacklist);
+					ArrayList remarklist = new ArrayList();
+					DBCursor remarkcursor = mongocon.getDBObject("remarkid", (String)assigndbj.get("remarkid"), "GuidanceRemarks");
+					while(remarkcursor.hasNext()){
+						DBObject remarkdbj = remarkcursor.next();
+						
+						remarklist.add((BasicDBList)remarkdbj.get("remarks"));
+					}
+					assignmap.put("remarks", remarklist);
 					
 				}
+				
+				guidanceassignlist.add(assignmap);
 			}
 		}
 		
 		
-		return null;
+		return guidanceassignlist;
 	}
+
+
+	public ArrayList getGuidanceQuizData(String guidanceid) {
+		// TODO Auto-generated method stub
+		ArrayList guidancequizlist = new ArrayList();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		if(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			
+			BasicDBList quizlist = (BasicDBList)dbj.get("quizids");
+			for(int k=0;k<quizlist.size();k++){
+				
+				HashMap quizmap = new HashMap();
+				DBCursor quizlinkcursor = mongocon.getDBObject("quizid", guidanceid, "GuidanceEntryQuiz");
+				while(quizlinkcursor.hasNext()){
+					DBObject quizdbj = quizlinkcursor.next();
+					
+					quizmap.put("entryquizid", quizdbj.get("guidanceentryquizid"));
+					quizmap.put("userid", quizdbj.get("userid"));
+					quizmap.put("feedbackid", quizdbj.get("feedbackid"));
+					quizmap.put("remarkid", quizdbj.get("remarkid"));
+					
+					ArrayList feedbacklist = new ArrayList();
+					DBCursor feedbackcursor = mongocon.getDBObject("feedbackid", (String)quizdbj.get("feedbackid"), "GuidanceFeedback");
+					while(feedbackcursor.hasNext()){
+						DBObject feedbackdbj = feedbackcursor.next();
+						
+						feedbacklist.add(feedbackdbj.get("feedback"));
+						
+					}
+					quizmap.put("feedback", feedbacklist);
+					ArrayList remarklist = new ArrayList();
+					DBCursor remarkcursor = mongocon.getDBObject("remarkid", (String)quizdbj.get("remarkid"), "GuidanceRemarks");
+					while(remarkcursor.hasNext()){
+						DBObject remarkdbj = remarkcursor.next();
+						
+						remarklist.add((BasicDBList)remarkdbj.get("remarks"));
+					}
+					quizmap.put("remarks", remarklist);
+					
+					
+				}
+				
+				guidancequizlist.add(quizmap);
+			}
+		}
+		
+		
+		return guidancequizlist;
+	}
+
+
+	public ArrayList getTempSaveAssignments(String guidanceid, String accessuserid) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceTempContentAssignment");
+		ArrayList tempsaveassignlist = new ArrayList();
+		
+		while(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			HashMap tempassignmap = new HashMap();
+			if(((String)dbj.get("userid")).equalsIgnoreCase(accessuserid)){
+			
+			tempassignmap.put("tempassignmentid", (String)dbj.get("tempcontentassignmentid"));
+			tempassignmap.put("assignquestionset", (BasicDBList)dbj.get("assingmentquestionset"));
+			tempassignmap.put("savedatetime", (String)dbj.get("savedatetime"));
+			tempassignmap.put("createdatetime", (String)dbj.get("creationdate"));
+			
+			tempsaveassignlist.add(tempassignmap);
+			}
+		}
+		
+		return tempsaveassignlist;
+	}
+
+
+	public ArrayList getTempSaveQuiz(String guidanceid, String accessuserid) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceEntryTempQuiz");
+		ArrayList tempsavequizlist = new ArrayList();
+		
+		while(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			if(((String)dbj.get("tempquizid")).equalsIgnoreCase(accessuserid)){
+			HashMap tempquizmap = new HashMap();
+			
+			tempquizmap.put("tempquizid", (String)dbj.get("tempquizid"));
+			tempquizmap.put("quizid", (String)dbj.get("quizid"));
+			tempquizmap.put("questionset", (BasicDBList)dbj.get("questionset"));
+			
+			tempsavequizlist.add(tempquizmap);
+			}
+		}
+		
+		
+		return tempsavequizlist;
+	}
+	
+	
+	
 	
 }
 

@@ -842,16 +842,21 @@ public class GuidanceController {
  
 		ArrayList asignmentlist = new ArrayList();
 		ArrayList quizlist = new ArrayList();
-		
+		ArrayList tempassignmentlist = new ArrayList();
+		ArrayList tempquizlist = new ArrayList();
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String accessuserid = userinf.getUserid();
 		
 		GuidancePreview guideprev = new GuidancePreview();
 		asignmentlist = guideprev.getGuidanceAssignmentData(guidanceid);
 		quizlist = guideprev.getGuidanceQuizData(guidanceid);
 		
+		tempassignmentlist = guideprev.getTempSaveAssignments(guidanceid,accessuserid);
+		tempquizlist = guideprev.getTempSaveQuiz(guidanceid,accessuserid);
+		
 		//String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
-		ServletContext context = request.getSession().getServletContext();
-		User userinf = (User) context.getAttribute("UserValues");
-		String accessuserid = userinf.getUserid();
+		
 		String contenttype = guideprev.getGuidanceType(guidanceid,accessuserid);
 		
 		UserPreview userprev = new UserPreview();
@@ -868,8 +873,11 @@ public class GuidanceController {
 
 		mv.addObject("ProfileImage", profile.getProfileImageid());
 		mv.addObject("Gender", gender);
+		mv.addObject("asignmentlist", asignmentlist);
+		mv.addObject("quizlist", quizlist);
+		mv.addObject("tempassignmentlist", tempassignmentlist);
+		mv.addObject("tempquizlist", tempquizlist);
 		mv.addObject("FullName", profile.getName());
-		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("guidanceid", guidanceid);
 		mv.addObject("contenttype",contenttype);
 		
