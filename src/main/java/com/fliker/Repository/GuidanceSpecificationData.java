@@ -8,12 +8,28 @@ public class GuidanceSpecificationData {
 
 	@Id
 	private String specificationid;
+	private String guidanceid;
+	private String userid;
 	private String specificationname;
 	private String specificationdetails;
 	private String specificationpercentage;
 	private String[] specificationremarks;
 	
 	
+	
+	
+	public String getGuidanceid() {
+		return guidanceid;
+	}
+	public void setGuidanceid(String guidanceid) {
+		this.guidanceid = guidanceid;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	public String getSpecificationpercentage() {
 		return specificationpercentage;
 	}
