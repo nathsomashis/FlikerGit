@@ -48,6 +48,7 @@ import com.fliker.Repository.GuidanceContentDashBoardSet;
 import com.fliker.Repository.GuidanceContentDashboard;
 import com.fliker.Repository.GuidanceContentFiles;
 import com.fliker.Repository.GuidanceContentShared;
+import com.fliker.Repository.GuidanceContentTempQuiz;
 import com.fliker.Repository.GuidanceEntry;
 import com.fliker.Repository.GuidanceEntryCalendar;
 import com.fliker.Repository.GuidanceEntryDashboard;
@@ -3276,40 +3277,57 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		// TODO Auto-generated method stub
 		ArrayList guidancequizlist = new ArrayList();
 		MongoConnection mongocon = new MongoConnection();
+		HashMap quizlistmap = new HashMap();
 		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
 		if(resultcursor.hasNext()){
 			DBObject dbj = resultcursor.next();
-			HashMap quizlistmap = new HashMap();
+			
 			BasicDBList quizlist = (BasicDBList)dbj.get("quizids");
 			for(int k=0;k<quizlist.size();k++){
 				
 				HashMap quizmap = new HashMap();
-				DBCursor quizlinkcursor = mongocon.getDBObject("quizid", (String)quizlist.get(k), "GuidanceEntryQuiz");
+				DBCursor quizlinkcursor = mongocon.getDBObject("quizid", (String)quizlist.get(k), "GuidanceQuizLink");
 				while(quizlinkcursor.hasNext()){
 					DBObject quizdbj = quizlinkcursor.next();
 					
-					quizmap.put("entryquizid", quizdbj.get("guidanceentryquizid"));
-					quizmap.put("userid", quizdbj.get("userid"));
-					quizmap.put("feedbackid", quizdbj.get("feedbackid"));
-					quizmap.put("remarkid", quizdbj.get("remarkid"));
+					quizmap.put("quizid", quizdbj.get("quizid"));
+					DBCursor quizdatcursor = mongocon.getDBObject("quizid", (String)quizdbj.get("quizid"), "GuidanceContentQuiz");
+					if(quizdatcursor.hasNext()){
+						DBObject quizdatdbj = quizdatcursor.next();
+						
+						quizmap.put("quizname", quizdbj.get("quizname"));
+						quizmap.put("quizdescription", quizdbj.get("quizdescription"));
+						quizmap.put("quizdatetime", quizdbj.get("quizdatetime"));
+					}
 					
-					ArrayList feedbacklist = new ArrayList();
-					DBCursor feedbackcursor = mongocon.getDBObject("feedbackid", (String)quizdbj.get("feedbackid"), "GuidanceFeedback");
-					while(feedbackcursor.hasNext()){
-						DBObject feedbackdbj = feedbackcursor.next();
+					quizmap.put("shareduserids", (BasicDBList)quizdbj.get("shareduserids"));
+					
+					/*ArrayList feedbacklist = new ArrayList();
+					BasicDBList feedbcklist = (BasicDBList)quizdbj.get("guidancefeedbackid");
+					for(int x=0;x<feedbcklist.size();x++){
 						
-						feedbacklist.add(feedbackdbj.get("feedback"));
-						
+						DBCursor feedbackcursor = mongocon.getDBObject("feedbackid", (String)feedbcklist.get(x), "GuidanceFeedback");
+						while(feedbackcursor.hasNext()){
+							DBObject feedbackdbj = feedbackcursor.next();
+							
+							feedbacklist.add(feedbackdbj.get("feedback"));
+							
+						}
 					}
 					quizmap.put("feedback", feedbacklist);
 					ArrayList remarklist = new ArrayList();
-					DBCursor remarkcursor = mongocon.getDBObject("remarkid", (String)quizdbj.get("remarkid"), "GuidanceRemarks");
-					while(remarkcursor.hasNext()){
-						DBObject remarkdbj = remarkcursor.next();
-						
-						remarklist.add((BasicDBList)remarkdbj.get("remarks"));
+					BasicDBList remrklst = (BasicDBList)quizdbj.get("guidanceremarkid");
+					for(int h=0;h<remrklst.size();h++){
+						DBCursor remarkcursor = mongocon.getDBObject("remarkid", (String)remrklst.get(h), "GuidanceRemarks");
+						while(remarkcursor.hasNext()){
+							DBObject remarkdbj = remarkcursor.next();
+							
+							remarklist.add((BasicDBList)remarkdbj.get("remarks"));
+						}
 					}
-					quizmap.put("remarks", remarklist);
+					quizmap.put("remarks", remarklist);*/
+					
+					
 					
 					
 				}
@@ -3372,6 +3390,102 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		}
 		
 		return tempsavequizlist;
+	}
+
+
+	public String createTempQuizContent(String quizname, String quizdesc, String quiztoken, String guidanceid, String userid) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("tempquizid", quiztoken, "GuidanceContentTempQuiz");
+		ArrayList tempsavequizlist = new ArrayList();
+		
+		if(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			
+			String quizid = (String)dbj.get("quizid");
+			return quizid;
+		}
+		else{
+			GuidanceContentTempQuiz guidconttempquiz = new GuidanceContentTempQuiz();
+			guidconttempquiz.setGuidanceid(guidanceid);
+			guidconttempquiz.setQuizdescription(quizdesc);
+			guidconttempquiz.setQuizname(quizname);
+			guidconttempquiz.setTempquizid(quiztoken);
+			guidconttempquiz.setUserid(userid);
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM dd, yyyy HH:mm:ss a");
+	        //String dateInString = "Friday, Jun 7, 2013 12:10:56 PM";//example
+	        
+			
+			
+	        Date datepack = new Date();
+	        DateFunctionality datefunc = new DateFunctionality();
+	        
+	        String savedatetime = formatter.format(datepack);
+			
+			guidconttempquiz.setSavedatetime(savedatetime);
+			
+			String[] questionset = new String[0];
+			guidconttempquiz.setQuestionset(questionset);
+			
+			GuidancePreview guidprev = new GuidancePreview();
+			
+			String uniqueid = "";
+			
+			try {
+				uniqueid = guidprev.makeSHA1Hash(quizname+quizdesc);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			guidconttempquiz.setQuizid(uniqueid);
+			
+			MongoConnection mongoconsearch = new MongoConnection();
+			BasicDBObject basicguishareobj =  guidprev.formGuidTempContQuizDBObject(guidconttempquiz);
+			mongoconsearch.saveObject(basicguishareobj, "GuidanceContentTempQuiz");
+			
+			return uniqueid;
+			
+		}
+		
+	}
+
+
+	private BasicDBObject formGuidTempContQuizDBObject(GuidanceContentTempQuiz guidconttempquiz) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("guidanceid", guidconttempquiz.getGuidanceid());
+		basicdbobj.put("questionset", guidconttempquiz.getQuestionset());
+		basicdbobj.put("quizdescription", guidconttempquiz.getQuizdescription());
+		basicdbobj.put("quizid", guidconttempquiz.getQuizid());
+		basicdbobj.put("quizname", guidconttempquiz.getQuizname());
+		basicdbobj.put("savedatetime", guidconttempquiz.getSavedatetime());
+		basicdbobj.put("tempquizid", guidconttempquiz.getTempquizid());
+		basicdbobj.put("userid", guidconttempquiz.getUserid());
+		
+		return basicdbobj;
+	}
+
+
+	public BasicDBList getAllSpecifications(String guidanceid, String userid) {
+		// TODO Auto-generated method stub
+		
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
+		BasicDBList specificationlist = new BasicDBList();
+		if(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			
+			specificationlist = (BasicDBList)dbj.get("specification");
+			
+			
+		}
+		
+		return specificationlist;
 	}
 	
 	

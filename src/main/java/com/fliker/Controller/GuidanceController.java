@@ -1167,6 +1167,56 @@ public class GuidanceController {
 		}
 	}
 	
+	
+	@RequestMapping("/createNewTempQuiz")
+	public ModelAndView createNewTempQuiz(
+			@RequestParam(value = "quizname", required = false) String quizname,ModelMap model,
+			@RequestParam(value = "quizdesc", required = false) String quizdesc,
+			@RequestParam(value = "quiztoken", required = false) String quiztoken,
+			@RequestParam(value = "guidanceid", required = false) String guidanceid,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+		
+		try{
+ 
+		ArrayList resourcesSearch = new ArrayList();
+		
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String gender = userinf.getGender();
+		
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		Profile profile = profprev.getProfileData(userid);
+		
+		
+		GuidancePreview guideprev = new GuidancePreview();
+		String quizid = guideprev.createTempQuizContent(quizname,quizdesc,quiztoken,guidanceid,userid);
+		
+		BasicDBList specificationlist = guideprev.getAllSpecifications(guidanceid,userid);
+		
+		ModelAndView mv;
+		mv = new ModelAndView("/GuidanceContentQuiz");
+		
+		mv.addObject("ProfileImage", profile.getProfileImageid());
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", profile.getName());
+		mv.addObject("guidanceid", guidanceid);
+		mv.addObject("quizid", quizid);
+		mv.addObject("specificationlist", specificationlist);
+		
+		
+		//mv.addObject("postlist", postlist);
+		return mv;
+		}catch (Exception timewex){
+			ModelAndView mv = new ModelAndView("/ErrorTimeOut");
+			return mv;
+		}
+	}
+	
+	
 	@RequestMapping("/addToInterest")
 	public void interestAdd(@RequestParam(value = "guidanceid", required = false) String guidanceid,
 			@RequestParam(value = "userid", required = false) String userid)  {
