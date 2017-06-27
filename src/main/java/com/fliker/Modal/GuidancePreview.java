@@ -3228,6 +3228,13 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 			for(int k=0;k<assignmentids.size();k++){
 				HashMap assignmap = new HashMap();
 				
+				DBCursor assigndatacursor = mongocon.getDBObject("assignmentid", (String)assignmentids.get(k), "GuidanceAssignmentSet");
+				while(assigndatacursor.hasNext()){
+					DBObject assigndatadbj = assigndatacursor.next();
+					assignmap.put("assignmentname", (String)assigndatadbj.get("assignmentname"));
+				}
+				
+				
 				DBCursor assigncursor = mongocon.getDBObject("assignmentid", (String)assignmentids.get(k), "GuidanceEntryAssignment");
 				while(assigncursor.hasNext()){
 					DBObject assigndbj = assigncursor.next();
@@ -3265,19 +3272,19 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 
-	public ArrayList getGuidanceQuizData(String guidanceid) {
+	public HashMap getGuidanceQuizData(String guidanceid) {
 		// TODO Auto-generated method stub
 		ArrayList guidancequizlist = new ArrayList();
 		MongoConnection mongocon = new MongoConnection();
 		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
 		if(resultcursor.hasNext()){
 			DBObject dbj = resultcursor.next();
-			
+			HashMap quizlistmap = new HashMap();
 			BasicDBList quizlist = (BasicDBList)dbj.get("quizids");
 			for(int k=0;k<quizlist.size();k++){
 				
 				HashMap quizmap = new HashMap();
-				DBCursor quizlinkcursor = mongocon.getDBObject("quizid", guidanceid, "GuidanceEntryQuiz");
+				DBCursor quizlinkcursor = mongocon.getDBObject("quizid", (String)quizlist.get(k), "GuidanceEntryQuiz");
 				while(quizlinkcursor.hasNext()){
 					DBObject quizdbj = quizlinkcursor.next();
 					
@@ -3307,12 +3314,13 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 					
 				}
 				
-				guidancequizlist.add(quizmap);
+				quizlistmap.put((String)quizlist.get(k), quizmap);
+				
 			}
 		}
 		
 		
-		return guidancequizlist;
+		return quizlistmap;
 	}
 
 
@@ -3345,22 +3353,23 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		// TODO Auto-generated method stub
 		
 		MongoConnection mongocon = new MongoConnection();
-		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceEntryTempQuiz");
+		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContentTempQuiz");
 		ArrayList tempsavequizlist = new ArrayList();
 		
 		while(resultcursor.hasNext()){
 			DBObject dbj = resultcursor.next();
-			if(((String)dbj.get("tempquizid")).equalsIgnoreCase(accessuserid)){
+			if(((String)dbj.get("userid")).equalsIgnoreCase(accessuserid)){
 			HashMap tempquizmap = new HashMap();
-			
+			tempquizmap.put("quizname", (String)dbj.get("quizname"));
+			tempquizmap.put("quizdescription", (String)dbj.get("quizdescription"));
 			tempquizmap.put("tempquizid", (String)dbj.get("tempquizid"));
-			tempquizmap.put("quizid", (String)dbj.get("quizid"));
-			tempquizmap.put("questionset", (BasicDBList)dbj.get("questionset"));
+			tempquizmap.put("quizid", (String)dbj.get("quizid"));//savedatetime
+			tempquizmap.put("savetime", (String)dbj.get("savedatetime"));
+			//tempquizmap.put("questionset", (BasicDBList)dbj.get("questionset"));
 			
 			tempsavequizlist.add(tempquizmap);
 			}
 		}
-		
 		
 		return tempsavequizlist;
 	}

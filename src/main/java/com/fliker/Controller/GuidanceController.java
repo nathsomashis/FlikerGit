@@ -841,7 +841,7 @@ public class GuidanceController {
 		System.out.println("in dashboard social controller");
  
 		ArrayList asignmentlist = new ArrayList();
-		ArrayList quizlist = new ArrayList();
+		HashMap quizlist = new HashMap();
 		ArrayList tempassignmentlist = new ArrayList();
 		ArrayList tempquizlist = new ArrayList();
 		ServletContext context = request.getSession().getServletContext();
@@ -857,7 +857,7 @@ public class GuidanceController {
 		
 		//String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
 		
-		String contenttype = guideprev.getGuidanceType(guidanceid,accessuserid);
+		//String contenttype = guideprev.getGuidanceType(guidanceid,accessuserid);
 		
 		UserPreview userprev = new UserPreview();
 		String gender = userprev.getGender(accessuserid);
@@ -879,7 +879,7 @@ public class GuidanceController {
 		mv.addObject("tempquizlist", tempquizlist);
 		mv.addObject("FullName", profile.getName());
 		mv.addObject("guidanceid", guidanceid);
-		mv.addObject("contenttype",contenttype);
+		//mv.addObject("contenttype",contenttype);
 		
 		//mv.addObject("postlist", postlist);
 		return mv;

@@ -8,11 +8,28 @@ public class GuidanceContentTempQuiz {
 
 	@Id
 	private String tempquizid;
+	private String quizname;
+	private String quizdescription;
 	private String quizid;
 	private String guidanceid;
 	private String userid;
 	private String[] questionset;
 	private String savedatetime;
+	
+	
+	
+	public String getQuizname() {
+		return quizname;
+	}
+	public void setQuizname(String quizname) {
+		this.quizname = quizname;
+	}
+	public String getQuizdescription() {
+		return quizdescription;
+	}
+	public void setQuizdescription(String quizdescription) {
+		this.quizdescription = quizdescription;
+	}
 	public String getTempquizid() {
 		return tempquizid;
 	}
