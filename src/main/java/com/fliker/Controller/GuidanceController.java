@@ -841,18 +841,23 @@ public class GuidanceController {
 		System.out.println("in dashboard social controller");
  
 		ArrayList asignmentlist = new ArrayList();
-		ArrayList quizlist = new ArrayList();
-		
+		HashMap quizlist = new HashMap();
+		ArrayList tempassignmentlist = new ArrayList();
+		ArrayList tempquizlist = new ArrayList();
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String accessuserid = userinf.getUserid();
 		
 		GuidancePreview guideprev = new GuidancePreview();
 		asignmentlist = guideprev.getGuidanceAssignmentData(guidanceid);
 		quizlist = guideprev.getGuidanceQuizData(guidanceid);
 		
+		tempassignmentlist = guideprev.getTempSaveAssignments(guidanceid,accessuserid);
+		tempquizlist = guideprev.getTempSaveQuiz(guidanceid,accessuserid);
+		
 		//String userid = guideprev.getGuidanceCosumeruserid(guidanceid);
-		ServletContext context = request.getSession().getServletContext();
-		User userinf = (User) context.getAttribute("UserValues");
-		String accessuserid = userinf.getUserid();
-		String contenttype = guideprev.getGuidanceType(guidanceid,accessuserid);
+		
+		//String contenttype = guideprev.getGuidanceType(guidanceid,accessuserid);
 		
 		UserPreview userprev = new UserPreview();
 		String gender = userprev.getGender(accessuserid);
@@ -868,10 +873,13 @@ public class GuidanceController {
 
 		mv.addObject("ProfileImage", profile.getProfileImageid());
 		mv.addObject("Gender", gender);
+		mv.addObject("asignmentlist", asignmentlist);
+		mv.addObject("quizlist", quizlist);
+		mv.addObject("tempassignmentlist", tempassignmentlist);
+		mv.addObject("tempquizlist", tempquizlist);
 		mv.addObject("FullName", profile.getName());
-		mv.addObject("resourcesSearch", resourcesSearch);
 		mv.addObject("guidanceid", guidanceid);
-		mv.addObject("contenttype",contenttype);
+		//mv.addObject("contenttype",contenttype);
 		
 		//mv.addObject("postlist", postlist);
 		return mv;

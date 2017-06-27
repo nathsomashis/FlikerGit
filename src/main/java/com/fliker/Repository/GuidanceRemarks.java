@@ -1,11 +1,13 @@
 package com.fliker.Repository;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="GuidanceRemarks")
 public class GuidanceRemarks {
 
-	
+	@Id
+	private String remarkid;
 	private String guidanceid;
 	private String assignmentid;
 	private String quizid;
@@ -13,6 +15,14 @@ public class GuidanceRemarks {
 	private String userid;
 	private String[] specificationid;
 	private String[] remarks;
+	
+	
+	public String getRemarkid() {
+		return remarkid;
+	}
+	public void setRemarkid(String remarkid) {
+		this.remarkid = remarkid;
+	}
 	public String getGuidanceid() {
 		return guidanceid;
 	}

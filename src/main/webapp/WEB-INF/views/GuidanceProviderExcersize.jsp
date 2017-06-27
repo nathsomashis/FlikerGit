@@ -127,15 +127,12 @@
 			String profileimage = (String)request.getAttribute("ProfileImage");
 			String gender = (String)request.getAttribute("Gender");
 			String profilename = (String)request.getAttribute("FullName");
-			Timetable timeline = (Timetable)request.getAttribute("TimeTable");
-			GuidanceContentShared guidanceshare = (GuidanceContentShared)request.getAttribute("GuidShared");
-			GuidanceContentDashboard guiddash = (GuidanceContentDashboard)request.getAttribute("GuidDashBoard");
-			Blog blogs = (Blog)request.getAttribute("GuidBlog");
 			String logo = "";
 			String guidanceid = (String)request.getAttribute("guidanceid");
-			String timetableid = timeline.getTimeableid();
-			String guideshareid = guidanceshare.getGuidancesharedid();
-			String guidedash = guiddash.getGuidancecontentDashid();
+			ArrayList asignmentlist = (ArrayList)request.getAttribute("asignmentlist");
+			HashMap quizmap = (HashMap)request.getAttribute("quizlist");
+			ArrayList tempassignmentlist = (ArrayList)request.getAttribute("tempassignmentlist");
+			ArrayList tempquizlist = (ArrayList)request.getAttribute("tempquizlist");
 			
 		
 		%>
@@ -407,20 +404,20 @@
 				-->
 
 				<ul>
-		<li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span
-				class="menu-item-parent">Guidance Dash</span> </a></li>
-		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-share-square-o"></i> <span
+		<li class="active"><a href="gotoguidance?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-puzzle-piece txt-color-blue"></i> <span
+				class="menu-item-parent">Guidance Info</span> </a></li>
+		<li ><a href="gotoguidancedash?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
+				class="menu-item-parent">Guidance Dashboard</span> </a></li>		
+		<li ><a href="gotoguidanceshare?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
 				class="menu-item-parent">Guidance Share</span> </a></li>
 
-		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-calendar"></i>
+		<li><a href="gotoguidancecalendar?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-calendar"></i>
 				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
 		</li>
-		<li><a href="gotoguidanceexcersize?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-qrcode txt-color-blue"></i>
+		<li><a href="gotoguidanceexcersize?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-qrcode"></i>
 				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
 		</li>
-		<li><a href="gotoguidanceproject?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-sitemap"></i>
+		<li><a href="gotoguidanceproject?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-sitemap"></i>
 				<span class="menu-item-parent">Guidance Project</span> </a></li>
 		</li>
 	</ul>
@@ -483,7 +480,7 @@
 								<a href="#s2" id="assignmentcreate" data-toggle="tab">Assignment</a>
 							</li>
 							<li>
-								<a href="#s3" id="history" data-toggle="tab">History</a>
+								<a href="#s3" id="history" data-toggle="tab">Cross Assignment History</a>
 							</li>
 							<!-- <li class="pull-right hidden-mobile">
 								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
@@ -492,1148 +489,294 @@
 				
 						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
 							<div class="tab-pane fade in active" id="s1">
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="well well-sm">
-											<div class="row">
-												<div class="col-sm-12">
-													<div class="form-group">
-														<div class="input-group">
-															<span class="input-group-addon">Course</span> <input
-																class="form-control input-lg" placeholder="Course Name"
-																type="text" name="course" id="course">
-					
-														</div>
-													</div>
-					
-												</div>
-					
-												<div class="col-sm-12">
-													<div class="form-group">
-														<div class="input-group">
-															<span class="input-group-addon">CourseDescription</span> <input
-																class="form-control input-lg"
-																placeholder="Course Description" type="text"
-																name="coursedescription" id="coursedescription">
-					
-														</div>
-													</div>
-					
-												</div>
-												<div class="col-sm-12">
-													<div class="form-group">
-														<div class="input-group">
-															<span class="input-group-addon">Course Fee</span> <input
-																class="form-control input-lg" placeholder="First Name"
-																type="text" name="coursefee" id="coursefee">
-					
-														</div>
-													</div>
-												</div>
-					
-					
-											</div>
-										</div>
-									</div>
-					
+								<div class="col-xs-12 col-sm-5 col-md-5 col-lg-12">
+									<div class="col-sm-10"></div>
+									<div class="col-sm-2"><a class="btn btn-primary btn-sm" href="createQuiz()">Create New Quiz</a></div>
 								</div>
-								<!-- end of above set -->
-								
-								<!-- start of next set -->
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="well well-sm"
-											style="background-color: transparent; border: 0">
-					
-											<div class="row">
-												<div class="well well-sm well-light">
-					
-													<div class="jarviswidget" id="wid-id-5"
-														data-widget-colorbutton="false" data-widget-editbutton="false"
-														data-widget-fullscreenbutton="false"
-														data-widget-custombutton="false" data-widget-sortable="false">
-														<header>
-															<h2>Course Material</h2>
-															<div class="widget-toolbar hidden-phone">
-																<div class="smart-form"></div>
-															</div>
-														</header>
-					
-														<div>
-					
-															<!-- widget edit box -->
-															<div class="jarviswidget-editbox">
-																<!-- This area used as dropdown edit box -->
-					
-															</div>
-															<!-- end widget edit box -->
-					
-															<!-- widget content -->
-															<div class="widget-body">
-					
-																<div class="tabs-left">
-																	<ul class="nav nav-tabs tabs-left" id="demo-pill-nav">
-																		<li class="active"><a href="#tab-r1" data-toggle="tab">
-																				Question 1 </a></li>
-																		<li><a href="#tab-r2" data-toggle="tab">
-																				Question 2</a></li>
-																		<li><a href="#tab-r3" data-toggle="tab">
-																				Question 3</a></li>
-																		<li><a href="#tab-r4" data-toggle="tab">
-																				Question 4</a></li>
-																		<li><a href="#tab-r5" data-toggle="tab">
-																				Question 5</a></li>
-																		<li><a href="#tab-r6" data-toggle="tab">
-																				Question 6</a></li>
-																		<li><a href="#tab-r7" data-toggle="tab">
-																				Question 7</a></li>
-																		<li><a href="#tab-r8" data-toggle="tab">
-																				Question 8</a></li>
-																		<li><a href="#tab-r9" data-toggle="tab">
-																				Question 9</a></li>
-																		<li><a href="#tab-r10" data-toggle="tab">
-																				Question 10</a></li>
-																		<li><a href="#tab-r11" data-toggle="tab">
-																				Question 11</a></li>
-																		<li><a href="#tab-r12" data-toggle="tab">
-																				Question 12</a></li>
-																		<li><a href="#tab-r13" data-toggle="tab">
-																				Question 13</a></li>
-																		<li><a href="#tab-r14" data-toggle="tab">
-																				Question 14</a></li>
-																		<li><a href="#tab-r15" data-toggle="tab">
-																				Question 15</a></li>																						
-																	</ul>
-																	<div class="tab-content">
-																		<div class="tab-pane active" id="tab-r1">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -50%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-0" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone1"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																			<div class="well well-sm well-light">
-																					<div class="jarviswidget jarviswidget-color-blue" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
-																					<!-- widget options:
-																					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-																	
-																					data-widget-colorbutton="false"
-																					data-widget-editbutton="false"
-																					data-widget-togglebutton="false"
-																					data-widget-deletebutton="false"
-																					data-widget-fullscreenbutton="false"
-																					data-widget-custombutton="false"
-																					data-widget-collapsed="true"
-																					data-widget-sortable="false"
-																	
-																					-->
-																					<header>
-																						<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
-																						<h2>Assignment(<span style="font-size: xx-small;">Please follow the proper format shown below for proper submission</span> )</h2>
-																						
-																					</header>
-																						
-																					<!-- widget div-->
-																					<div>
-																	
-																						<!-- widget edit box -->
-																						<div class="jarviswidget-editbox">
-																							<!-- This area used as dropdown edit box -->
-																	
-																						</div>
-																						<!-- end widget edit box -->
-																	
-																						<!-- widget content -->
-																						<div class="widget-body no-padding">
-																	
-																							<div class="summernote" id="summerassignweek1">
-																									<p>	  Question :: Write your question ?</p>
-																									<p>	  Option :: a)Option a. b)Option b. c)Option c. d)Option d.</p>
-																									<p>	  Content :: Any image or pdf or helping doc for supporting question.</p>
-																									<p>	  Answer :: b.</p>
-																							</div>
-																							
-																							<div class="widget-footer smart-form">
-																	
-																							<div class="btn-group">
-																								
-																								<button class="btn btn-sm btn-primary" type="button" >
-																									<i class="fa fa-times"></i> Cancel
-																								</button>	
-																											
-																							</div>
-																							<div class="btn-group">
-																								
-																								<button class="btn btn-sm btn-success" type="button" id="saveweekone">
-																									<i class="fa fa-check"></i> Save
-																								</button>	
-																								
-																							</div>
-																	
-																								<label class="checkbox pull-left">
-																									<input type="checkbox" checked="checked" name="autosave" id="autosave">
-																									<i></i>Auto Save 
-																								</label> 
-																	
-																							</div>
-																							
-																						</div>
-																						<!-- end widget content -->
-																	
-																					</div>
-																					<!-- end widget div -->
-																	
+								<%
+									for(int k=0;k<tempquizlist.size();k++){
+								%>
+									<div class="row" id="yettopublishQuiz">
+										<div class="widget-body no-padding">
+												<div class="panel-group smart-accordion-default" id="tempquizaccordian">
+										<%
+											String quizname = "";
+											String quizdescription = "";
+											String tempquizid = "";
+											String savetime = "";
+											String quizid = "";
+											
+											HashMap quizlisttemp = (HashMap)tempquizlist.get(k);
+											Set quizset = quizlisttemp.entrySet();
+											Iterator quiziter = quizset.iterator();
+											while(quiziter.hasNext()){
+												Map.Entry quizme = (Map.Entry)quiziter.next();
+												if(((String)quizme.getKey()).equalsIgnoreCase("quizname")){
+													quizname = (String)quizme.getValue();
+												}else if(((String)quizme.getKey()).equalsIgnoreCase("quizdescription")){
+													quizdescription = (String)quizme.getValue();
+												}else if(((String)quizme.getKey()).equalsIgnoreCase("tempquizid")){
+													tempquizid = (String)quizme.getValue();
+												}else if(((String)quizme.getKey()).equalsIgnoreCase("quizid")){
+													quizid = (String)quizme.getValue();
+												}else if(((String)quizme.getKey()).equalsIgnoreCase("savetime")){
+													savetime = (String)quizme.getValue();
+												}
+											}
+										
+										%>
+										<div class="panel panel-default">
+														<div class="panel-heading">
+															<h4 class="panel-title"><a data-toggle="collapse" data-parent="#tempquizaccordian" href="#<%=tempquizid%>"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i><%=quizname%></a></h4>
+														</div>
+														<div id="<%=tempquizid%>" class="panel-collapse collapse in">
+															<div class="panel-body">
+																<div class="row">
+																	<div class="col-md-8">
+																			<p><%=quizdescription%></p>
+																			<%-- <div class="col-sm-12 well"> 
+																				<div class="col-sm-6">
+																					<table class="highchart table table-hover table-bordered" data-graph-container=".. .. .highchart-container" data-graph-type="line">
+																		              <caption>Line example</caption>
+																		              <thead>
+																		                <tr>
+																		                  <th>Month</th>
+																		                  <th>Sales</th>
+																		                  <th>Benefits</th>
+																		                  <th>Incentives</th>
+																		                </tr>
+																		              </thead>
+																		              <tbody>
+																		                <tr>
+																		                  <td>January</td>
+																		                  <td>8000</td>
+																		                  <td>2000</td>
+																		                  <td>1000</td>
+																		                </tr>
+																		                <tr>
+																		                  <td>February</td>
+																		                  <td>12000</td>
+																		                  <td>3000</td>
+																		                  <td>2000</td>
+																		                </tr>
+																		                <tr>
+																		                  <td>March</td>
+																		                  <td>18000</td>
+																		                  <td>4000</td>
+																		                  <td>3000</td>
+																		                </tr>
+																		                <tr>
+																		                  <td>April</td>
+																		                  <td>2000</td>
+																		                  <td>-1000</td>
+																		                  <td>1000</td>
+																		                </tr>
+																		                <tr>
+																		                  <td>May</td>
+																		                  <td>500</td>
+																		                  <td>-2500</td>
+																		                  <td>1000</td>
+																		                </tr>
+																		              </tbody>
+																		            </table>
 																				</div>
-																				<!-- end widget -->
-					
-																				
+																				<div class="col-sm-6">
+																					<div class="highchart-container"></div>
 																				</div>
-																				
-																				<div class="well well-sm well-light">
-																					<div class="jarviswidget jarviswidget-color-blue" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
-																					<!-- widget options:
-																					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-																	
-																					data-widget-colorbutton="false"
-																					data-widget-editbutton="false"
-																					data-widget-togglebutton="false"
-																					data-widget-deletebutton="false"
-																					data-widget-fullscreenbutton="false"
-																					data-widget-custombutton="false"
-																					data-widget-collapsed="true"
-																					data-widget-sortable="false"
-																	
-																					-->
-																					<header>
-																						<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
-																						<h2>Exercise (<span style="font-size: xx-small;">Please follow the proper format shown below for proper submission</span> )</h2>
-																	
-																					</header>
-																	
-																					<!-- widget div-->
-																					<div>
-																	
-																						<!-- widget edit box -->
-																						<div class="jarviswidget-editbox">
-																							<!-- This area used as dropdown edit box -->
-																	
-																						</div>
-																						<!-- end widget edit box -->
-																	
-																						<!-- widget content -->
-																						<div class="widget-body no-padding">
-																	
-																							<div class="summernote">
-																									<p>	  Question :: Write your question ?</p>
-																									<p>	  Content :: Any image or pdf or helping doc for supporting question.</p>
-																									<p>	  Output :: Write down output.</p>
-																							</div>
-																							
-																							<div class="widget-footer smart-form">
-																	
-																							<div class="btn-group">
-																								
-																								<button class="btn btn-sm btn-primary" type="button">
-																									<i class="fa fa-times"></i> Cancel
-																								</button>	
-																											
-																							</div>
-																							<div class="btn-group">
-																								
-																								<button class="btn btn-sm btn-success" type="button">
-																									<i class="fa fa-check"></i> Save
-																								</button>	
-																								
-																							</div>
-																	
-																								<label class="checkbox pull-left">
-																									<input type="checkbox" checked="checked" name="autosave" id="autosave">
-																									<i></i>Auto Save 
-																								</label> 
-																	
-																							</div>
-																							
-																						</div>
-																						<!-- end widget content -->
-																	
-																					</div>
-																					<!-- end widget div -->
-																	
-																				</div>
-																				<!-- end widget -->
-					
-																				
-																				</div>
-																			
-																		</div>
-																		<div class="tab-pane" id="tab-r2">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-1" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone2"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r3">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-3" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone3"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r4">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone4"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r5">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone5"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r6">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone6"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r7">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone7"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r8">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone8"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r9">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone9"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r10">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone10"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r11">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone11"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r12">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone12"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r13">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone13"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r14">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone14"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
-																		<div class="tab-pane" id="tab-r15">
-																			<div class="row">
-																				<article class="col-sm-12"
-																					style="height: 100%; margin-top: -60%">
-																					<div class="jarviswidget jarviswidget-color-blueLight"
-																						id="wid-id-4" data-widget-editbutton="false">
-																						<header>
-																							<span class="widget-icon"> <i
-																								class="fa fa-cloud"></i>
-																							</span>
-																							<h2>Document Set</h2>
-					
-																						</header>
-																						<div style="display: none">
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-																						<div>
-					
-																							<!-- widget edit box -->
-																							<div class="jarviswidget-editbox">
-																								<!-- This area used as dropdown edit box -->
-					
-																							</div>
-																							<!-- end widget edit box -->
-					
-																							<!-- widget content -->
-																							<div class="widget-body">
-					
-																								<form action="upload.php" class="dropzone"
-																									id="mydropzone15"></form>
-					
-																							</div>
-																							<!-- end widget content -->
-					
-																						</div>
-					
-																					</div>
-					
-																				</article>
-					
-																			</div>
-																		</div>
+																			</div> --%>
+																		<!-- </div> -->
+																		<ul class="list-inline padding-10">
+																			<li>
+																				<i class="fa fa-calendar"></i>
+																				<a href="javascript:void(0);"><%=savetime%></a>
+																			</li>
+																			<!-- <li>
+																				<i class="fa fa-comments"></i>
+																				<a href="javascript:void(0);"> 38 Comments </a>
+																			</li> -->
+																		</ul>
 																	</div>
+																	<%-- <div class="col-md-4 padding-left-0">
+																		<ul id="myTab" class="nav nav-pills">
+																			<li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Submission</a></li>
+																			<li class=""><a href="#specifications" data-toggle="tab">Specification</a></li>
+																		</ul>
+																		<div id="myTabContent" class="tab-content">
+																			<div class="tab-pane fade active in" id="more-information">
+																				<br>
+																				<strong>Assignment or Quiz or Project Name</strong><a href="javascript:void(0);" class="btn btn-primary btn-sm">Verify</a>
+																				
+																			</div>
+																			<div class="tab-pane fade" id="specifications">
+																				<br>
+																				<blockquote>
+																				  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+																				  <small>Someone famous in <cite title="Source Title"><a href="">Change</a></cite></small>
+																				</blockquote>
+																			</div>
+																		</div>
+																	</div> --%>
 																</div>
-					
 															</div>
-															<!-- end widget content -->
-					
 														</div>
-														<!-- end widget div -->
-					
-					
 													</div>
 												</div>
 											</div>
-										</div>
 									</div>
+								<%
+									}
+								%>	
+								
+								<%
+								
+									Set publishquizset = quizmap.entrySet();
+									Iterator publishquiziter = publishquizset.iterator();
+									while(publishquiziter.hasNext()){
+										Map.Entry publishquizme = (Map.Entry)publishquiziter.next();
+										String quizid = (String)publishquizme.getKey();
+									
+								%>
+								<div class="row" id="publishedQuiz">
+									<div class="row" id="publishedQuiz">
+										<div class="widget-body no-padding">
+												<div class="panel-group smart-accordion-default" id="<%=quizid%>">
+													<%
+														
+													%>	
+														<div class="panel panel-default">
+														<div class="panel-heading">
+															<h4 class="panel-title"><a data-toggle="collapse" data-parent="#<%=quizid%>" href="#<%=tempquizid%>"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i><%=quizname%></a></h4>
+														</div>
+														<div id="<%=tempquizid%>" class="panel-collapse collapse in">
+															<div class="panel-body">
+																<div class="row">
+																	<div class="col-md-8">
+																			<p><%=quizdescription%></p>
+																			<%-- <div class="col-sm-12 well"> 
+																				<div class="col-sm-6">
+																					<table class="highchart table table-hover table-bordered" data-graph-container=".. .. .highchart-container" data-graph-type="line">
+																		              <caption>Line example</caption>
+																		              <thead>
+																		                <tr>
+																		                  <th>Month</th>
+																		                  <th>Sales</th>
+																		                  <th>Benefits</th>
+																		                  <th>Incentives</th>
+																		                </tr>
+																		              </thead>
+																		              <tbody>
+																		                <tr>
+																		                  <td>January</td>
+																		                  <td>8000</td>
+																		                  <td>2000</td>
+																		                  <td>1000</td>
+																		                </tr>
+																		                <tr>
+																		                  <td>February</td>
+																		                  <td>12000</td>
+																		                  <td>3000</td>
+																		                  <td>2000</td>
+																		                </tr>
+																		                <tr>
+																		                  <td>March</td>
+																		                  <td>18000</td>
+																		                  <td>4000</td>
+																		                  <td>3000</td>
+																		                </tr>
+																		                <tr>
+																		                  <td>April</td>
+																		                  <td>2000</td>
+																		                  <td>-1000</td>
+																		                  <td>1000</td>
+																		                </tr>
+																		                <tr>
+																		                  <td>May</td>
+																		                  <td>500</td>
+																		                  <td>-2500</td>
+																		                  <td>1000</td>
+																		                </tr>
+																		              </tbody>
+																		            </table>
+																				</div>
+																				<div class="col-sm-6">
+																					<div class="highchart-container"></div>
+																				</div>
+																			</div> --%>
+																		<!-- </div> -->
+																		<ul class="list-inline padding-10">
+																			<li>
+																				<i class="fa fa-calendar"></i>
+																				<a href="javascript:void(0);"><%=savetime%></a>
+																			</li>
+																			<!-- <li>
+																				<i class="fa fa-comments"></i>
+																				<a href="javascript:void(0);"> 38 Comments </a>
+																			</li> -->
+																		</ul>
+																	</div>
+																	<%-- <div class="col-md-4 padding-left-0">
+																		<ul id="myTab" class="nav nav-pills">
+																			<li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Submission</a></li>
+																			<li class=""><a href="#specifications" data-toggle="tab">Specification</a></li>
+																		</ul>
+																		<div id="myTabContent" class="tab-content">
+																			<div class="tab-pane fade active in" id="more-information">
+																				<br>
+																				<strong>Assignment or Quiz or Project Name</strong><a href="javascript:void(0);" class="btn btn-primary btn-sm">Verify</a>
+																				
+																			</div>
+																			<div class="tab-pane fade" id="specifications">
+																				<br>
+																				<blockquote>
+																				  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+																				  <small>Someone famous in <cite title="Source Title"><a href="">Change</a></cite></small>
+																				</blockquote>
+																			</div>
+																		</div>
+																	</div> --%>
+																</div>
+															</div>
+														</div>
+													</div>
+													<%
+													
+													%>
+												
+												</div>
+										</div>
+									</div>			
 								</div>
-				
+								<%
+									}
+								%>
 							</div>
 				
 							<div class="tab-pane fade" id="s2">
+								<div class="col-xs-12 col-sm-5 col-md-5 col-lg-12">
+									<div class="col-sm-10"></div>
+									<div class="col-sm-2"><a class="btn btn-primary btn-sm" href="createAssignment()">Create New Assignment</a></div>
+								</div>
+							
+								<%
+									for(int y=0;y<tempassignmentlist.size();y++){
+								%>
+									<div class="row" id="yettopublishAssign">
+										
+									</div>
 								
+								<%
+									}
+								%>
+								<%
+									for(int f=0;f<asignmentlist.size();f++){
+								%>
+									<div class="row" id="publishedAssign">
+										
+									</div>
+								
+								<%
+									}
+								%>
 							</div>
 				
 							<div class="tab-pane fade" id="s3">

@@ -7,6 +7,7 @@ public class GuidanceEntryAssignment {
 
 	private String guidanceentryassignid;
 	private String assignmentid;
+	private String[] assignmentquestions;
 	private String[] assignmentanswersheet;
 	private String guidanceentryid;
 	private String userid;
@@ -14,6 +15,14 @@ public class GuidanceEntryAssignment {
 	private String feedbackid;
 	private String remarkid;
 	
+	
+	
+	public String[] getAssignmentquestions() {
+		return assignmentquestions;
+	}
+	public void setAssignmentquestions(String[] assignmentquestions) {
+		this.assignmentquestions = assignmentquestions;
+	}
 	public String getGuidanceentryassignid() {
 		return guidanceentryassignid;
 	}
