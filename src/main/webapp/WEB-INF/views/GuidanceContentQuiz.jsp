@@ -1,20 +1,19 @@
 <%@page import="com.fliker.Modal.ProfilePreview"%>
+<%@page import="com.mongodb.BasicDBList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*,com.fliker.Repository.*,com.mongodb.BasicDBList" %>
+<%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
 		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
-		<title> Guidance Dash </title>
+		<title> Guidance Quiz </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+		
 		<!-- #CSS Links -->
 		<!-- Basic Styles -->
 		<link href='<c:url value="/resources/css/bootstrap.min.css" />' rel="stylesheet">
@@ -32,7 +31,7 @@
 
 		<!-- SmartAdmin RTL Support -->
 		<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />' rel="stylesheet">
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> --> 
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">  -->
 
 		<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
@@ -41,7 +40,6 @@
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
 		<link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet">
-
 
 		<!-- #FAVICONS -->
 		<link href='<c:url value="/resources/img/favicon/favicon.ico" />' rel="shortcut icon" type="image/x-icon">
@@ -55,9 +53,9 @@
 		<!-- #APP SCREEN / ICONS -->
 		<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-			 <link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">
+		<link href='<c:url value="/resources/img/splash/sptouch-icon-iphone.png" />' rel="apple-touch-icon">	 
 		<!-- <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png"> -->
-		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon" sizes="76x76">
+		<link href='<c:url value="/resources/img/splash/touch-icon-ipad.png" />' rel="apple-touch-icon">
 		<!-- <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png"> -->
 		<link href='<c:url value="/resources/img/splash/touch-icon-iphone-retina.png" />' rel="apple-touch-icon" sizes="120x120">
 		<!-- <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png"> -->
@@ -69,15 +67,15 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<!-- Startup image for web apps -->
+<!-- 		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
 		<link href='<c:url value="/resources/img/splash/ipad-landscape.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
-		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"> -->
-		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
+		<link href='<c:url value="/resources/img/splash/ipad-portrait.png" />' rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
+		<link href='<c:url value="/resources/img/splash/iphone.png" />' rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)">
 
 	</head>
-	
+
 	<!--
 
 	TABLE OF CONTENTS.
@@ -97,12 +95,11 @@
 	|  09. #MOBILE                   |  mobile view dropdown          |
 	|  10. #SEARCH                   |  search field                  |
 	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #RIGHT PANEL              |  right panel userlist          |
-	|  13. #MAIN PANEL               |  main panel                    |
-	|  14. #MAIN CONTENT             |  content holder                |
-	|  15. #PAGE FOOTER              |  page footer                   |
-	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  17. #PLUGINS                  |  all scripts and plugins       |
+	|  12. #MAIN PANEL               |  main panel                    |
+	|  13. #MAIN CONTENT             |  content holder                |
+	|  14. #PAGE FOOTER              |  page footer                   |
+	|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  16. #PLUGINS                  |  all scripts and plugins       |
 	
 	===================================================================
 	
@@ -123,23 +120,8 @@
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
 	<body class="">
-	
-		<%
-			String profileimage = (String)request.getAttribute("ProfileImage");
-			String gender = (String)request.getAttribute("Gender");
-			String profilename = (String)request.getAttribute("FullName");
-			String logo = "";
-			String guidanceid = (String)request.getAttribute("guidanceid");
-			ArrayList asignmentlist = (ArrayList)request.getAttribute("asignmentlist");
-			HashMap quizmap = (HashMap)request.getAttribute("quizlist");
-			ArrayList tempassignmentlist = (ArrayList)request.getAttribute("tempassignmentlist");
-			ArrayList tempquizlist = (ArrayList)request.getAttribute("tempquizlist");
-			ProfilePreview proprev = new ProfilePreview();
-			
-		
-		%>
 
-		<!-- HEADER -->
+		<!-- #HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
@@ -378,11 +360,40 @@
 		<aside id="left-panel">
 
 			<!-- User info -->
-			<div class="login-info">
+			<!-- User info -->
+			<%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String gender = (String)request.getAttribute("Gender");
+			String imageid = (String)request.getAttribute("ProfileImage");
+			String logo = "";
+			ArrayList specificationlist = (ArrayList)request.getAttribute("specificationlist");
+			String quizid = (String)request.getAttribute("quizid");
+			
+		
+		%>
+
+
+		<!-- User info -->
+
+		<%
+		/* if(imageid == ""){
+			if(gender.equalsIgnoreCase("female")){
+				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
+			}else{
+				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
+			}
+		}else{
+			
+		} */
+		
+		
+		%>
+		<div class="login-info">
 			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 
 				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <%if(profileimage == ""){
+				data-action="toggleShortcut"> <%if(imageid == ""){
 					if(gender.equalsIgnoreCase("female")){
 						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
 					alt="me" class="online" /> <%
@@ -390,7 +401,7 @@
 						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
 					alt="me" class="online" /> <% 
 					}
-				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=profilename%>
+				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
 				</span> <i class="fa fa-angle-down"></i>
 			</a>
 
@@ -406,22 +417,190 @@
 				-->
 
 				<ul>
-		<li class="active"><a href="gotoguidance?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-puzzle-piece txt-color-blue"></i> <span
-				class="menu-item-parent">Guidance Info</span> </a></li>
-		<li ><a href="gotoguidancedash?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
-				class="menu-item-parent">Guidance Dashboard</span> </a></li>		
-		<li ><a href="gotoguidanceshare?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
-				class="menu-item-parent">Guidance Share</span> </a></li>
+		<li><a href="searchresults?"><i
+				class="fa fa-lg fa-fw fa-search-plus"></i> <span
+				class="menu-item-parent">Search</span> </a></li>
+		<!-- <li><a href="dashboardanalysis?"><i
+				class="fa fa-lg fa-fw fa-briefcase"></i> <span
+				class="menu-item-parent">Dashboard</span> </a></li> -->
+		<li ><a href="dashboardsocial?"><i
+				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
+				class="menu-item-parent">Wall</span> <span
+				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
 
-		<li><a href="gotoguidancecalendar?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-calendar"></i>
-				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
+		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
+				<span class="menu-item-parent">Profile</span> <span
+				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+				<span class="menu-item-parent">Timeline</span> <span
+				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+		<li><a href="createpost?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
 		</li>
-		<li><a href="gotoguidanceexcersize?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-qrcode"></i>
-				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
-		</li>
-		<li><a href="gotoguidanceproject?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-sitemap"></i>
-				<span class="menu-item-parent">Guidance Project</span> </a></li>
-		</li>
+		<!-- <li><a href="classroom?" title="NewPost"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+		</li> -->
+		<li class="active"><a href="#" title="Dashboard"><i
+				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
+			<ul>
+				<li class="active"><a href="courseEdu?" title="NewPost"><i
+						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
+				</li>
+				<li class=""><a href="classroom?" title="ClassRoom"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+				</li>
+			</ul></li>
+		 <!-- <li><a href="#" title="Dashboard"><i
+				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
+			<ul>		
+				<li class="active"><a href="#" title="NewCourse"><i
+								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
+								</li>
+				<li class=""><a href="createcourse?" title="NewCourse"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">Your Course</span></a></li>	
+				<li class=""><a href="newspecialization?" title="NewSpecialization"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">Your Specialization</span></a></li>
+				<li class=""><a href="neworganizations?" title="NewInstitution"><i
+											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>
+			</ul>
+		</li> -->
+		<li><a href="#" title="Dashboard"><i
+				class="fa fa-lg fa-fw fa-briefcase"></i> <span
+				class="menu-item-parent">OSM</span></a>
+			<ul>
+				<li class=""><a href="ideatoimplement?" title="NewPost"><i
+						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+				</li>
+				<li class=""><a href="osmprojectinfo?" title="NewJob"><i
+						class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
+				</li>
+				
+			</ul></li>
+		<!-- <li class=""><a href="organizations?" title="Organizations"><i
+						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
+				<ul>
+				<li class=""><a href="createjob?" title="NewJob"><i
+						class="fa fa-plus-square"></i><span class="menu-item-parent">New Opportunity</span></a>
+				</li>
+				<li class=""><a href="companies?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Start New Company</span></a>
+				</li>
+			</ul></li> -->
+		<li class=""><a href="#" title="Organizations"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
+				<ul>
+				<li class=""><a href="createjob?" title="NewJob"><i
+						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
+				</li>
+				<li class=""><a href="companies?" title="Companies"><i
+						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
+				</li>
+			</ul></li>		
+
+		<li class="chat-users top-menu-invisible"><a href="#"><i
+				class="fa fa-lg fa-fw fa-comment-o"><em
+					class="bg-color-pink flash animated">!</em></i> <span
+				class="menu-item-parent">Smart Chat API <sup>beta</sup></span></a>
+			<ul>
+				<li>
+					<!-- DISPLAY USERS -->
+					<div class="display-users">
+
+						<input class="form-control chat-user-filter" placeholder="Filter"
+							type="text"> <a href="#" class="usr" data-chat-id="cha1"
+							data-chat-fname="Sadi" data-chat-lname="Orlaf"
+							data-chat-status="busy"
+							data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
+							data-chat-alertshow="true" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/5.png' alt='Sadi Orlaf'>
+												<div class='usr-card-content'>
+													<h3>Sadi Orlaf</h3>
+													<p>Marketing Executive</p>
+												</div>
+											</div>
+										">
+							<i></i>Sadi Orlaf
+						</a> <a href="#" class="usr" data-chat-id="cha2"
+							data-chat-fname="Jessica" data-chat-lname="Dolof"
+							data-chat-status="online" data-chat-alertmsg=""
+							data-chat-alertshow="false" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/1.png' alt='Jessica Dolof'>
+												<div class='usr-card-content'>
+													<h3>Jessica Dolof</h3>
+													<p>Sales Administrator</p>
+												</div>
+											</div>
+										">
+							<i></i>Jessica Dolof
+						</a> <a href="#" class="usr" data-chat-id="cha3"
+							data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
+							data-chat-status="online" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/3.png' alt='Zekarburg Almandalie'>
+												<div class='usr-card-content'>
+													<h3>Zekarburg Almandalie</h3>
+													<p>Sales Admin</p>
+												</div>
+											</div>
+										">
+							<i></i>Zekarburg Almandalie
+						</a> <a href="#" class="usr" data-chat-id="cha4"
+							data-chat-fname="Barley" data-chat-lname="Krazurkth"
+							data-chat-status="away" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/4.png' alt='Barley Krazurkth'>
+												<div class='usr-card-content'>
+													<h3>Barley Krazurkth</h3>
+													<p>Sales Director</p>
+												</div>
+											</div>
+										">
+							<i></i>Barley Krazurkth
+						</a> <a href="#" class="usr offline" data-chat-id="cha5"
+							data-chat-fname="Farhana" data-chat-lname="Amrin"
+							data-chat-status="incognito" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/female.png' alt='Farhana Amrin'>
+												<div class='usr-card-content'>
+													<h3>Farhana Amrin</h3>
+													<p>Support Admin <small><i class='fa fa-music'></i> Playing Beethoven Classics</small></p>
+												</div>
+											</div>
+										">
+							<i></i>Farhana Amrin (offline)
+						</a> <a href="#" class="usr offline" data-chat-id="cha6"
+							data-chat-fname="Lezley" data-chat-lname="Jacob"
+							data-chat-status="incognito" data-rel="popover-hover"
+							data-placement="right" data-html="true"
+							data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/male.png' alt='Lezley Jacob'>
+												<div class='usr-card-content'>
+													<h3>Lezley Jacob</h3>
+													<p>Sales Director</p>
+												</div>
+											</div>
+										">
+							<i></i>Lezley Jacob (offline)
+						</a> <a href="ajax/chat.html"
+							class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
+							the API</a>
+
+					</div> <!-- END DISPLAY USERS -->
+				</li>
+			</ul></li>
 	</ul>
 			</nav>
 			
@@ -447,7 +626,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Share within </li>
+					<li>Guidance Info</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -464,280 +643,32 @@
 
 			</div>
 			<!-- END RIBBON -->
+			
+			<%
+				
+			
+			%>
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
-
-				<!-- row -->
 				
 				<div class="row">
-				
-					<div class="col-sm-12">
-				
-						<ul id="myTab1" class="nav nav-tabs bordered">
-							<li class="active">
-								<a href="#s1" id="quizcreate" data-toggle="tab">Quiz</a>
-							</li>
-							<li>
-								<a href="#s2" id="assignmentcreate" data-toggle="tab">Assignment</a>
-							</li>
-							<li>
-								<a href="#s3" id="history" data-toggle="tab">Cross Assignment History</a>
-							</li>
-							<!-- <li class="pull-right hidden-mobile">
-								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
-							</li> -->
-						</ul>
-				
-						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
-							<div class="tab-pane fade in active" id="s1">
-								<div class="col-xs-12 col-sm-5 col-md-5 col-lg-12">
-									<div class="col-sm-10"></div>
-									<div class="col-sm-2"><a class="btn btn-primary btn-sm" href="#" onclick="createQuiz()">Create New Quiz</a></div>
-								</div>
-								<%
-									for(int k=0;k<tempquizlist.size();k++){
-								%>
-									<div class="row" id="yettopublishQuiz">
-										<div class="widget-body no-padding">
-												<div class="panel-group smart-accordion-default" id="tempquizaccordian">
-										<%
-											String quizname = "";
-											String quizdescription = "";
-											String tempquizid = "";
-											String savetime = "";
-											String quizid = "";
-											
-											HashMap quizlisttemp = (HashMap)tempquizlist.get(k);
-											Set quizset = quizlisttemp.entrySet();
-											Iterator quiziter = quizset.iterator();
-											while(quiziter.hasNext()){
-												Map.Entry quizme = (Map.Entry)quiziter.next();
-												if(((String)quizme.getKey()).equalsIgnoreCase("quizname")){
-													quizname = (String)quizme.getValue();
-												}else if(((String)quizme.getKey()).equalsIgnoreCase("quizdescription")){
-													quizdescription = (String)quizme.getValue();
-												}else if(((String)quizme.getKey()).equalsIgnoreCase("tempquizid")){
-													tempquizid = (String)quizme.getValue();
-												}else if(((String)quizme.getKey()).equalsIgnoreCase("quizid")){
-													quizid = (String)quizme.getValue();
-												}else if(((String)quizme.getKey()).equalsIgnoreCase("savetime")){
-													savetime = (String)quizme.getValue();
-												}
-											}
-										
-										%>
-										<div class="panel panel-default">
-														<div class="panel-heading">
-															<h4 class="panel-title"><a data-toggle="collapse" data-parent="#tempquizaccordian" href="#<%=tempquizid%>"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i><%=quizname%></a></h4>
-														</div>
-														<div id="<%=tempquizid%>" class="panel-collapse collapse in">
-															<div class="panel-body">
-																<div class="row">
-																	<div class="col-md-8">
-																			<p><%=quizdescription%></p>
-																			
-																		<ul class="list-inline padding-10">
-																			<li>
-																				<i class="fa fa-calendar"></i>
-																				<a href="javascript:void(0);"><%=savetime%></a>
-																			</li>
-																			<!-- <li>
-																				<i class="fa fa-comments"></i>
-																				<a href="javascript:void(0);"> 38 Comments </a>
-																			</li> -->
-																		</ul>
-																	</div>
-																	
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-									</div>
-								<%
-									}
-								%>	
-								
-								<%
-								
-									Set publishquizset = quizmap.entrySet();
-									Iterator publishquiziter = publishquizset.iterator();
-									%>
-										<div class="row">
-											<input type="hidden" id="quiztotal" value="<%quizmap.size();%>">
-											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-												<div class="well well-sm">
-													<!-- Timeline Content -->
-													<div class="smart-timeline">
-														<ul class="smart-timeline-list">
-									
-								<%	
-									while(publishquiziter.hasNext()){
-										
-										String quizids = "";
-										String quizname = "";
-										String quizdesc = "";
-										String publisheddate = "";
-										BasicDBList sharedusers = new BasicDBList();
-										
-										Map.Entry publishquizme = (Map.Entry)publishquiziter.next();
-										
-										if(((String)publishquizme.getKey()).equalsIgnoreCase("quizid")){
-											quizids = (String)publishquizme.getValue();
-										}else if(((String)publishquizme.getKey()).equalsIgnoreCase("quizname")){
-											quizname = (String)publishquizme.getValue();
-										}else if(((String)publishquizme.getKey()).equalsIgnoreCase("quizdescription")){
-											quizdesc = (String)publishquizme.getValue();
-										}else if(((String)publishquizme.getKey()).equalsIgnoreCase("quizdatetime")){
-											publisheddate = (String)publishquizme.getValue();
-										}else if(((String)publishquizme.getKey()).equalsIgnoreCase("shareduserids")){
-											sharedusers = (BasicDBList)publishquizme.getValue();
-										}
-										
-									
-								%>
-									
-													
-													<li>
-														<div class="smart-timeline-icon">
-															<i class="fa fa-user"></i>
-														</div>
-														<div class="smart-timeline-time">
-															<small><%=publisheddate%></small>
-														</div>
-														<div class="smart-timeline-content">
-															<p>
-																<a href="javascript:void(0);"><strong><%=quizname%></strong></a>
-															</p>
-															<p>
-																<%=quizdesc%>
-															</p>
-															
-															<%
-																if(!sharedusers.isEmpty() || sharedusers!= null){
-																	 	for(int j=0;j<sharedusers.size();j++){
-																			String userid = (String)sharedusers.get(j);
-																	 		if(j%20 == 0 || j == 0){
-																	 			
-																	 			%>
-																	 			<ul class="list-inline">
-																	 				<li>
-																						<img src="/Fliker/imageFromUserid/<%=userid%>" alt="img" width="50" onclick="openUserDetails('<%=userid%>','<%=quizids%>')">
-																					</li>
-																	 			<%
-																	 		}else if(j%19 == 0 || j == sharedusers.size()-1){
-																	 			
-																	 			%>
-																		 			<li>
-																						<img src="/Fliker/imageFromUserid/<%=userid%>" alt="img" width="50" onclick="openUserDetails('<%=userid%>','<%=quizids%>')">
-																					</li>
-																	 			</ul>
-																	 			<%
-																	 		}else{
-																	 			%>
-																	 				<li>
-																						<img src="/Fliker/imageFromUserid/<%=userid%>" alt="img" width="50" onclick="openUserDetails('<%=userid%>','<%=quizids%>')">
-																					</li>
-																	 			<%
-																	 		}
-																	 	}
-																	 	
-																}
-															%>
-														</div>
-													</li>
-													
-												<%} %>
-												<li class="text-center">
-													<a href="#" class="btn btn-sm btn-default" onclick="loadmoredata()"><i class="fa fa-arrow-down text-muted"></i> LOAD MORE</a>
-												</li>	
-												</ul>
-											</div>
-										</div>
-									</div>
-									</div>	
-								<%
-									
-								%>
-							</div>
-				
-							<div class="tab-pane fade" id="s2">
-								<div class="col-xs-12 col-sm-5 col-md-5 col-lg-12">
-									<div class="col-sm-10"></div>
-									<div class="col-sm-2"><a class="btn btn-primary btn-sm" href="createAssignment()">Create New Assignment</a></div>
-								</div>
-							
-								<%
-									for(int y=0;y<tempassignmentlist.size();y++){
-								%>
-									<div class="row" id="yettopublishAssign">
-										
-									</div>
-								
-								<%
-									}
-								%>
-								<%
-									for(int f=0;f<asignmentlist.size();f++){
-								%>
-									<div class="row" id="publishedAssign">
-										
-									</div>
-								
-								<%
-									}
-								%>
-							</div>
-				
-							<div class="tab-pane fade" id="s3">
-								
-				
-							</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-2 control-label">Specification</label><div class="col-md-4 inputGroupContainer"><input type="text" class="slider slider-primary" id="g1" value="" 
+							data-slider-max="10" 
+							data-slider-value="5" 
+							data-slider-selection = "before" 
+							data-slider-handle="round"></div>
 						</div>
-				
 					</div>
+				</div>
+				<div class="row">
+					
 				
 				</div>
-				
-				<!-- end row -->
-
 			</div>
 			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="quizmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">New Quiz</h4>
-							</div>
-							<div class="modal-body">
-									<input type="hidden" value="" id="quiztoken"/>
-									<div class="row">
-										<div class="col-md-12">
-											<div class="form-group">
-												<input type="text" class="form-control" id="newquizname" placeholder="Quiz Name" required />
-											</div>
-											<div class="form-group">
-												<textarea class="form-control" id="newquizdesc" placeholder="Quiz Description" rows="5" required></textarea>
-											</div>
-										</div>
-									</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" onclick="createNewQuiz()" class="btn btn-primary">
-									Create
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -745,53 +676,10 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> ÃÂ© 2014-2015</span>
+					<span class="txt-color-white">SmartAdmin 1.8.2 </span>
 				</div>
 
-				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
-					<div class="txt-color-white inline-block">
-						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
-						<div class="btn-group dropup">
-							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
-								<i class="fa fa-link"></i> <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu pull-right text-left">
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Server Load</p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
-										<div class="progress progress-micro no-margin">
-											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="padding-5">
-										<button class="btn btn-block btn-default">refresh</button>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 		<!-- END PAGE FOOTER -->
@@ -920,60 +808,75 @@
 		<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
-		
-		<script
-		src="<c:url value='/resources/js/plugin/dropzone/dropzone.min.js' />"></script>
-		
-		
-		<!-- PAGE RELATED PLUGIN(S) -->
-		
-		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.cust.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.cust.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.resize.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.resize.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.time.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.time.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.tooltip.min.js' />"></script>
-		<!-- <script src="js/plugin/flot/jquery.flot.tooltip.min.js"></script> -->
-		
-		<!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
-		<script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js' />"></script>
-		<!-- <script src="js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js' />"></script>
-		<!-- <script src="js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script> -->
-		
-		<!-- Full Calendar -->
-		<script src="<c:url value='/resources/js/plugin/moment/moment.min.js' />"></script>
-		<!-- <script src="js/plugin/moment/moment.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/fullcalendar/jquery.fullcalendar.min.js' />"></script>
-		<!-- <script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
 
-		<script>
+		<!-- PAGE RELATED PLUGIN(S) 
+		<script src="..."></script>-->
+
+		<script type="text/javascript">
+
 			$(document).ready(function() {
-
-				// DO NOT REMOVE : GLOBAL FUNCTIONS!
-				pageSetUp();
-
-				/*
-				 * PAGE RELATED SCRIPTS
+			 	
+				/* DO NOT REMOVE : GLOBAL FUNCTIONS!
+				 *
+				 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+				 *
+				 * // activate tooltips
+				 * $("[rel=tooltip]").tooltip();
+				 *
+				 * // activate popovers
+				 * $("[rel=popover]").popover();
+				 *
+				 * // activate popovers with hover states
+				 * $("[rel=popover-hover]").popover({ trigger: "hover" });
+				 *
+				 * // activate inline charts
+				 * runAllCharts();
+				 *
+				 * // setup widgets
+				 * setup_widgets_desktop();
+				 *
+				 * // run form elements
+				 * runAllForms();
+				 *
+				 ********************************
+				 *
+				 * pageSetUp() is needed whenever you load a page.
+				 * It initializes and checks for all basic elements of the page
+				 * and makes rendering easier.
+				 *
 				 */
 				
-				
+				 pageSetUp();
 				 
+				/*
+				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
+				 * eg alert("my home function");
+				 * 
+				 * var pagefunction = function() {
+				 *   ...
+				 * }
+				 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
+				 * 
+				 * TO LOAD A SCRIPT:
+				 * var pagefunction = function (){ 
+				 *  loadScript(".../plugin.js", run_after_loaded);	
+				 * }
+				 * 
+				 * OR
+				 * 
+				 * loadScript(".../plugin.js", run_after_loaded);
+				 */
 				
-
-			});
-			
-			
+			})
+		
 		</script>
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-			_gaq.push(['_trackPageview']);
-
+				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+				_gaq.push(['_trackPageview']);
+			
 			(function() {
 				var ga = document.createElement('script');
 				ga.type = 'text/javascript';
@@ -985,58 +888,26 @@
 
 		</script>
 		<script type="text/javascript">
-			function openUserDetails(userid,quizid){
-				
-				$.getJSON('guidanceUserRemarkFeedback?quizid='+quizid+'&userid'+userid, function(dataset) {
-					
-				});
-				
-				
+			function openProfile(userid){
+				<%-- var ownuser = "<%=userid%>";
+				if(ownuser === userid){ --%>
+					window.open("otherprofile?userid="+userid);
+				/* }else{
+					window.open("profiles?userid="+userid);
+				} */
 			}
 			
-			function loadmoredata(){
-				
-				var existingloadeddata = $('#quiztotal').val();
-				
-				$.getJSON('loadMoreQuizData?loadeddata='+existingloadeddata, function(dataset) {
-					
-				});
-				
-			}
-			
-			
-			function createQuiz(){
-				
-				 var stringLength = 15;
+				window.onbeforeunload = function (e) {
+				    e = e || window.event;
 
-					// list containing characters for the random string
-					var stringArray = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','!','?'];
+				    // For IE and Firefox prior to version 4
+				    if (e) {
+				        e.returnValue = 'Any string';
+				    }
 
-				//$("#providachieve").click(function (){
-
-					var rndString = "";
-				
-					// build a string with random characters
-					for (var i = 1; i < stringLength; i++) { 
-						var rndNum = Math.ceil(Math.random() * stringArray.length) - 1;
-						rndString = rndString + stringArray[rndNum];
-					};
-					
-					$('#quiztoken').val(rndString);
-				
-				 $('#quizmodal').modal('show');
-				
-			}
-				
-			function createNewQuiz(){
-					
-				var quizname = $('#newquizname').val();
-				var quizdesc = $('#newquizdesc').val();
-				var quiztoken = $('#quiztoken').val();
-				var guidanceid = '<%=guidanceid%>';
-				
-				window.open("createNewTempQuiz?quizname="+quizname+"&quizdesc="+quizdesc+"&quiztoken="+quiztoken+"&guidanceid="+guidanceid);
-			}
+				    // For Safari
+				    return 'Any string';
+				};
 		
 		</script>
 
