@@ -974,29 +974,54 @@
 											<textarea id="guidancereason" class="form-control" placeholder="Provide Information about your guidance. Why you are good on the above mentioned guidance.." rows="5" required></textarea>
 										</div>
 										<div class="form-group">
-											<ul class="smart-timeline-list">
-												<li>
-													<div class="col-md-3"><input type="text" class="form-control" placeholder="Guidance Specification" required id="specificationone" /></div>
-													<div class="col-md-9"><input type="text" class="form-control" placeholder="Guidance Specification Explain" required id="specificationoneDesc" /></div>
-												</li>
-												<li>
-													<div class="col-md-3"><input type="text" class="form-control" placeholder="Guidance Specification" required id="specificationtwo" /></div>
-													<div class="col-md-9"><input type="text" class="form-control" placeholder="Guidance Specification Explain" required id="specificationtwoDesc" /></div>
-												</li>
-												<li>
-													<div class="col-md-3"><input type="text" class="form-control" placeholder="Guidance Specification" required id="specificationthree" /></div>
-													<div class="col-md-9"><input type="text" class="form-control" placeholder="Guidance Specification Explain" required id="specificationthreeDesc" /></div>
-												</li>
-												<li>
-													<div class="col-md-3"><input type="text" class="form-control" placeholder="Guidance Specification" id="specificationfour" /></div>
-													<div class="col-md-9"><input type="text" class="form-control" placeholder="Guidance Specification Explain"  id="specificationfourDesc" /></div>
-												</li>
-												<li>
-													<div class="col-md-3"><input type="text" class="form-control" placeholder="Guidance Specification"  id="specificationfive" /></div>
-													<div class="col-md-9"><input type="text" class="form-control" placeholder="Guidance Specification Explain"  id="specificationfiveDesc" /></div>
-												</li>
+											<article class="col-sm-12 col-md-12">
+				
+											<!-- Widget ID (each widget will need unique ID)-->
+											<div class="jarviswidget" id="wid-id-12" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+												<header>
+													<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+													<h2>Focus Area</h2>
+								
+												</header>
+												<div>
+				
+													<!-- widget edit box -->
+													<div class="jarviswidget-editbox">
+														<!-- This area used as dropdown edit box -->
+								
+													</div>
+													<!-- end widget edit box -->
+								
+													<!-- widget content -->
+													<div class="widget-body">
+														
+														<div class="form-group">
+															<label for="specificationOneType">First Focus Area</label>
+															<div ><input type="text" class="form-control" placeholder="Guidance Specification" required id="specificationone" /></div>
+														</div>
+														<div class="form-group">
+															<label for="specificationTwoType">Second Focus Area</label>
+															<div ><input type="text" class="form-control" placeholder="Guidance Specification" required id="specificationtwo" /></div>
+														</div>
+														<div class="form-group">
+															<label for="specificationThirdType">Third Focus Area</label>
+															<div ><input type="text" class="form-control" placeholder="Guidance Specification" required id="specificationthree" /></div>
+														</div>
+														<div class="form-group">
+															<label for="specificationFourType">Fourth Focus Area</label>
+															<div ><input type="text" class="form-control" placeholder="Guidance Specification" id="specificationfour" /></div>
+														</div>
+														<div class="form-group">
+															<label for="specificationFiveType">Fifth Focus Area</label>
+															<div ><input type="text" class="form-control" placeholder="Guidance Specification"  id="specificationfive" /></div>
+														</div>
+														
+														
+													</div>	
+										         </div>
+											</div>
 											
-											</ul>
+											</article>
 										</div>
 										<div class="form-group">
 											<div class="col-md-9">
@@ -1538,14 +1563,14 @@
 				 var specificationThree = $('#specificationthree').val();
 				 var specificationFour = $('#specificationfour').val();
 				 var specificationFive = $('#specificationfive').val();
-				 var specificationOneDesc = $('#specificationoneDesc').val();
-				 var specificationTwoDesc = $('#specificationtwoDesc').val();
-				 var specificationThreeDesc = $('#specificationthreeDesc').val();
-				 var specificationFourDesc = $('#specificationfourDesc').val();
-				 var specificationFiveDesc = $('#specificationfiveDesc').val();
+				 //var specificationOneDesc = $('#specificationoneDesc').val();
+				 //var specificationTwoDesc = $('#specificationtwoDesc').val();
+				 //var specificationThreeDesc = $('#specificationthreeDesc').val();
+				 //var specificationFourDesc = $('#specificationfourDesc').val();
+				 //var specificationFiveDesc = $('#specificationfiveDesc').val();
 				 
-				 var specifications = specificationOne+","+specificationTwo+","+specificationThree;
-				 var specificationdesc = specificationOneDesc+","+specificationTwoDesc+","+specificationThreeDesc;
+				 var specifications = specificationOne+","+specificationTwo+","+specificationThree+","+specificationFour+","+specificationFive;
+				 /* var specificationdesc = specificationOneDesc+","+specificationTwoDesc+","+specificationThreeDesc;
 				 if(specificationFour != ""){
 					 specifications = specifications + ","+specificationFour;
 					 specificationdesc = specificationdesc+","+specificationFourDesc;
@@ -1553,7 +1578,7 @@
 				 if(specificationFive != ""){
 					 specifications = specifications + ","+specificationFive;
 					 specificationdesc = specificationdesc+","+specificationFiveDesc;
-				 }
+				 } */
 				 
 				 
 				 
@@ -1571,7 +1596,7 @@
 				 
 				 
 				 $.ajax({
-						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype+"&guidanceprice="+guidanceprice+"&currency="+currencyprice+"&specifications="+specifications+"&specificationdesc="+specificationdesc,
+						url : "provideguidance?guidanceSubject="+guidancesubject+"&guidancereason="+guidancereason+"&location="+location+"&published="+published+"&duration="+duration+"&guidencetype="+guidancetype+"&guidanceprice="+guidanceprice+"&currency="+currencyprice+"&specifications="+specifications,
 						method : 'POST',
 						success : function(data){
 							if(data.success == "true"){ 
