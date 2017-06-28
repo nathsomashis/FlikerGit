@@ -355,7 +355,6 @@ public class GuidanceController {
 			@RequestParam(value = "duration", required = false, defaultValue = "") String duration,
 			@RequestParam(value = "currency", required = false) String currency,
 			@RequestParam(value = "specifications", required = false) String specifications,
-			@RequestParam(value = "specificationdesc", required = false) String specificationdesc,
 			HttpServletRequest request) {
 		
 		
@@ -373,11 +372,10 @@ public class GuidanceController {
 				String userids = userinf.getUserid();
 				
 				String[] specificationarr = specifications.split(",");
-				String[] specificationexpl = specificationdesc.split(",");
 				
 				String guidanceid = guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,guidencetype,location,published,duration);// New Guidance to provide
 				
-				guidanceprev.applyForGuidance(guidanceSubject,"",guidencetype,userids,guidanceid,guidanceprice,specificationarr,specificationexpl);
+				guidanceprev.applyForGuidance(guidanceSubject,"",guidencetype,userids,guidanceid,guidanceprice,specificationarr);
 				
 				guidanceprev.createGuidanceContentData(guidanceid,guidanceprice,guidancereason);
 				
@@ -478,7 +476,7 @@ public class GuidanceController {
 		System.out.println("in dashboard social controller");
  
 		HashMap resourcesSearch = new HashMap();
-		
+		ArrayList specificationlist = new ArrayList();
 		
 		GuidancePreview guideprev = new GuidancePreview();
 		resourcesSearch = guideprev.getGuidanceData(guidanceid);
@@ -491,6 +489,8 @@ public class GuidanceController {
 		String userid = userinf.getUserid();
 		String gender = userinf.getGender();
 		
+		specificationlist = guideprev.getAllSpecifications(guidanceid, userid);
+		
 		ProfilePreview profprev = new ProfilePreview();
 		
 		Profile profile = profprev.getProfileData(userid);
@@ -502,6 +502,7 @@ public class GuidanceController {
 		mv.addObject("Gender", gender);
 		mv.addObject("FullName", profile.getName());
 		mv.addObject("resourcesSearch", resourcesSearch);
+		mv.addObject("specificationlist", specificationlist);
 		mv.addObject("guidanceid", guidanceid);
 		mv.addObject("currencyset", currencyset);
 		
@@ -1195,7 +1196,7 @@ public class GuidanceController {
 		GuidancePreview guideprev = new GuidancePreview();
 		String quizid = guideprev.createTempQuizContent(quizname,quizdesc,quiztoken,guidanceid,userid);
 		
-		BasicDBList specificationlist = guideprev.getAllSpecifications(guidanceid,userid);
+		ArrayList specificationlist = guideprev.getAllSpecifications(guidanceid,userid);
 		
 		ModelAndView mv;
 		mv = new ModelAndView("/GuidanceContentQuiz");
