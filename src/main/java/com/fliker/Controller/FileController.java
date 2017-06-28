@@ -1031,7 +1031,7 @@ public class FileController {
 		Profile profinf = courseprev.profileInfo(userid);
 
 		GridFSDBFile imagecontent = courseprev.getFiles(profinf.getProfileImageid());
-		System.out.println("imagecontent ++" + imagecontent.getInputStream());
+		//System.out.println("imagecontent ++" + imagecontent.getInputStream());
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
 			imagecontent.writeTo(baos);

@@ -636,7 +636,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 
-  public void applyForGuidance(String guidanceSubject, String userid, String guidencetype, String guidanceuserid, String guidanceid, String guidanceprice, String[] specificationarr, String[] specificationexpl) {
+  public void applyForGuidance(String guidanceSubject, String userid, String guidencetype, String guidanceuserid, String guidanceid, String guidanceprice, String[] specificationarr) {
 	// TODO Auto-generated method stub
 	  
 	  String[] consumers = new String[0];
@@ -671,16 +671,16 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		  specificationlist.add(uniqueid);
 		  GuidanceSpecificationData guidspecdata = new GuidanceSpecificationData();
 		  guidspecdata.setSpecificationid(uniqueid);
-		  guidspecdata.setSpecificationdetails(specificationexpl[m]);
+		  guidspecdata.setSpecificationdetails(specificationarr[m]);
 		  guidspecdata.setSpecificationname(specificationarr[m]);
-		  guidspecdata.setSpecificationpercentage("");
+		  guidspecdata.setSpecificationpercentage("5");
 		  String[] specificationremarks = new String[0];
 		  guidspecdata.setSpecificationremarks(specificationremarks);
 		  
 		  MongoConnection mongocon = new MongoConnection();
 			
 		  BasicDBObject basicreqobj =  guidanceprev.formGuidanceContentSpeificationDBObject(guidspecdata);
-		  mongocon.saveObject(basicreqobj, "GuidanceContent");
+		  mongocon.saveObject(basicreqobj, "GuidanceSpecificationData");
 		  
 	  }
 	  
@@ -3471,21 +3471,36 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 
-	public BasicDBList getAllSpecifications(String guidanceid, String userid) {
+	public ArrayList getAllSpecifications(String guidanceid, String userid) {
 		// TODO Auto-generated method stub
 		
 		MongoConnection mongocon = new MongoConnection();
 		DBCursor resultcursor = mongocon.getDBObject("guidanceid", guidanceid, "GuidanceContent");
-		BasicDBList specificationlist = new BasicDBList();
+		ArrayList specificlist = new ArrayList();
 		if(resultcursor.hasNext()){
 			DBObject dbj = resultcursor.next();
 			
-			specificationlist = (BasicDBList)dbj.get("specification");
+			BasicDBList specificationlist = (BasicDBList)dbj.get("specification");
 			
+			for(int j=0;j<specificationlist.size();j++){
+				HashMap specificatiomap = new HashMap();
+				DBCursor specificcursor = mongocon.getDBObject("specificationid", (String)specificationlist.get(j), "GuidanceSpecificationData");
+				while(specificcursor.hasNext()){
+					DBObject specificdbj = specificcursor.next();
+					
+					specificatiomap.put("specificationid", (String)specificdbj.get("specificationid"));
+					specificatiomap.put("specificationname", (String)specificdbj.get("specificationname"));
+					specificatiomap.put("specificationdetails", (String)specificdbj.get("specificationdetails"));
+					specificatiomap.put("specificationpercentage", "5");
+					
+				}
+				specificlist.add(specificatiomap);
+				
+			}
 			
 		}
 		
-		return specificationlist;
+		return specificlist;
 	}
 	
 	
