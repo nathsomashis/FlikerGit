@@ -682,6 +682,8 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		  BasicDBObject basicreqobj =  guidanceprev.formGuidanceContentSpeificationDBObject(guidspecdata);
 		  mongocon.saveObject(basicreqobj, "GuidanceSpecificationData");
 		  
+		  mongocon.updateObject(new BasicDBObject("guidanceid", guidanceid),new BasicDBObject("$push", new BasicDBObject("specification", uniqueid)), "GuidanceContent");
+		  
 	  }
 	  
 	  
