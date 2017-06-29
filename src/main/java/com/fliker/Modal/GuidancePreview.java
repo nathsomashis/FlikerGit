@@ -580,6 +580,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		basicdbobj.put("quizids", guidancecontent.getQuizids());
 		basicdbobj.put("assignmentids", guidancecontent.getAssignmentids());
 		basicdbobj.put("infoid", guidancecontent.getInfoid());
+		basicdbobj.put("specification", guidancecontent.getSpecification());
 		
 		return basicdbobj;
 		
