@@ -643,12 +643,13 @@
 								HashMap specificmap = (HashMap)specificationlist.get(k);
 								Set specifset = specificmap.entrySet();
 								Iterator speciit = specifset.iterator();
+								String specificid = "";
+								String specificname = "";
+								String specificdesc = "";
+								String specificper = "";
 								while(speciit.hasNext()){
 									Map.Entry specificme = (Map.Entry)speciit.next();
-									String specificid = "";
-									String specificname = "";
-									String specificdesc = "";
-									String specificper = "";
+									
 									if(((String)specificme.getKey()).equalsIgnoreCase("specificationid")){
 										specificid = (String)specificme.getValue();
 									}else if(((String)specificme.getKey()).equalsIgnoreCase("specificationname")){
@@ -658,7 +659,8 @@
 									}else if(((String)specificme.getKey()).equalsIgnoreCase("specificationpercentage")){
 										specificper = (String)specificme.getValue();
 									}
-						
+									
+								}
 						%>
 							
 								<div class="panel panel-default">
@@ -666,16 +668,16 @@
 										<h4 class="panel-title"><a data-toggle="collapse" data-parent="#specificationlist" href="#<%=specificid%>"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i><%=specificname%></a></h4>
 									</div>
 									<div id="<%=specificid%>" class="panel-collapse collapse in">
-										<div class="col-md-6 panel-body">
+										<div class="panel-body">
 											<input type="text" class="form-control" required id="<%=specificname%>" />
 											<textarea id="specificOnedesc" class="form-control" placeholder="Please Describe the specification.." rows="5" required><%=specificdesc%></textarea>
 											<div class="col-md-4 inputGroupContainer"><input type="text" class="slider slider-primary" id="g1" value="" data-slider-max="10" data-slider-value="<%=specificper%>"	data-slider-selection = "before" data-slider-handle="round"></div>
-											<a class="btn btn-primary btn-xs" href="#" onclick="saveSpecific('<%specificid%>')">Save</a>
+											<a class="btn btn-primary btn-xs" href="#" onclick="saveSpecific('<%=specificid%>')">Save</a>
 										</div>
 									</div>
 								</div>
 							<%
-								}
+								
 								}
 							}
 							%>
