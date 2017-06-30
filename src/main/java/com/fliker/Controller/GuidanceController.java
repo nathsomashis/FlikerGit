@@ -72,20 +72,34 @@ public class GuidanceController {
 		
 		GuidancePreview guideprev = new GuidancePreview();
 		
+		long startTime = System.nanoTime();
 		Set<Currency> currencyset = guideprev.getAllCurrencies();
+		long endTime = System.nanoTime();
+		long duration = endTime - startTime;
+		System.out.println(" Time >>"+duration);
 		
 		HashMap guidanceprovidingsubjectmap = new HashMap();
 		//guidanceprovidingsubjectmap = guideprev.getAllGuidanceProvidingSubjectList(userid);// get all profiles for the subject i am providing guidance
 		
 		ArrayList guidanceconsumesubjectmap = new ArrayList();
 		//guidanceconsumesubjectmap = guideprev.getAllGuidanceConsumingSubjectList(userid);// get all profiles for the subject i need guidance means provider
+		long startTime1 = System.nanoTime();
 		guidanceconsumesubjectmap = guideprev.getAllGuidanceConsuming(userid);// get all profiles for the subject i need guidance means provider
+		long endTime1 = System.nanoTime();
+		long duration1 = endTime1 - startTime1;
+		System.out.println(" Time1 >>"+duration1);
+		
 		if(guidanceconsumesubjectmap == null){
 			guidanceconsumesubjectmap.add("");
 		}
 		
 		//ongoingResources = guideprev.onGoingResources(userid);
+		long startTime2 = System.nanoTime();
 		ongoingResources = guideprev.getGuidanceUnPublishDetails(userid);
+		long endTime2 = System.nanoTime();
+		long duration2 = endTime2 - startTime2;
+		System.out.println(" Time2 >>"+duration2);
+		
 		if(ongoingResources == null){
 			ongoingResources.add("");
 		}
