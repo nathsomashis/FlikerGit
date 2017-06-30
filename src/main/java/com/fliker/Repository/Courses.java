@@ -24,6 +24,12 @@ public class Courses {
 	private String coursepublishlocation;
 	private String[] courseweekids;
 	private String courselinkid;
+	private String[] coursematerialid;
+	private String[] coursetakingusers;
+	private String coursechangedate;
+	private String courseblogid;
+	private String[] coursereferences;
+	private String coursemateriallinking;
 	
 	
 	
