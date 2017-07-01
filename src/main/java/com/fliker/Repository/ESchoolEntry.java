@@ -10,6 +10,31 @@ public class ESchoolEntry {
 	private String eschoolid;
 	private String timetableid;
 	private String playgroundid;
+	private String[] batchid;
+	private String[] guidanceids;
+	private String[] courseids;
+	
+	
+	
+	
+	public String[] getBatchid() {
+		return batchid;
+	}
+	public void setBatchid(String[] batchid) {
+		this.batchid = batchid;
+	}
+	public String[] getGuidanceids() {
+		return guidanceids;
+	}
+	public void setGuidanceids(String[] guidanceids) {
+		this.guidanceids = guidanceids;
+	}
+	public String[] getCourseids() {
+		return courseids;
+	}
+	public void setCourseids(String[] courseids) {
+		this.courseids = courseids;
+	}
 	public String getEschoolid() {
 		return eschoolid;
 	}

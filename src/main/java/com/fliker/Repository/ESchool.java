@@ -22,9 +22,72 @@ public class ESchool {
 	private String onlycheckcourse;
 	private String accountid;
 	private String[] studentslistinfo;
+	private String eschoolimageid;
+	private String resourcenumber;
+	private String[] specification;
+	private String eschooldescription;
+	private String schoollocation;
+	private String[] resources;
+	private String[] pricevariation;
+	private String playgroundid;
+	private String[] batchesinfo;
 	
 	
 	
+	public String[] getBatchesinfo() {
+		return batchesinfo;
+	}
+	public void setBatchesinfo(String[] batchesinfo) {
+		this.batchesinfo = batchesinfo;
+	}
+	public String getPlaygroundid() {
+		return playgroundid;
+	}
+	public void setPlaygroundid(String playgroundid) {
+		this.playgroundid = playgroundid;
+	}
+	public String[] getPricevariation() {
+		return pricevariation;
+	}
+	public void setPricevariation(String[] pricevariation) {
+		this.pricevariation = pricevariation;
+	}
+	public String[] getResources() {
+		return resources;
+	}
+	public void setResources(String[] resources) {
+		this.resources = resources;
+	}
+	public String getEschoolimageid() {
+		return eschoolimageid;
+	}
+	public void setEschoolimageid(String eschoolimageid) {
+		this.eschoolimageid = eschoolimageid;
+	}
+	public String getResourcenumber() {
+		return resourcenumber;
+	}
+	public void setResourcenumber(String resourcenumber) {
+		this.resourcenumber = resourcenumber;
+	}
+	public String[] getSpecification() {
+		return specification;
+	}
+	public void setSpecification(String[] specification) {
+		this.specification = specification;
+	}
+	public String getEschooldescription() {
+		return eschooldescription;
+	}
+	public void setEschooldescription(String eschooldescription) {
+		this.eschooldescription = eschooldescription;
+	}
+	public String getSchoollocation() {
+		return schoollocation;
+	}
+	public void setSchoollocation(String schoollocation) {
+		this.schoollocation = schoollocation;
+	}
 	public String getDuration() {
 		return duration;
 	}

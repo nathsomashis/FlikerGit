@@ -1629,6 +1629,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 			totalSet.put("guidanceduration", (String)dbj.get("guidanceduration"));
 			totalSet.put("guidancereason", (String)dbj.get("guidancereason"));
 			
+			long startTime2 = System.nanoTime();
 			DBCursor guidcontentcursor = mongocon.getDBObject("guidanceid", (String)dbj.get("guidanceid"), "GuidanceContent");
 			while(guidcontentcursor.hasNext()){
 				DBObject guidcontdbj = guidcontentcursor.next();
@@ -1637,7 +1638,11 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 				totalSet.put("consumerids", cosumerlist);
 				
 			}
+			long endTime2 = System.nanoTime();
+			long duration2 = endTime2 - startTime2;
+			System.out.println(" Time2 >>"+duration2);
 			
+			long startTime1 = System.nanoTime();
 			ProfilePreview profprev = new ProfilePreview();
 			ArrayList profileinfo = profprev.getProfileInfo((String)dbj.get("userid"));
 			for(int m=0;m<profileinfo.size();m++){
@@ -1653,6 +1658,9 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 				
 				
 			}
+			long endTime1 = System.nanoTime();
+			long duration1 = endTime1 - startTime1;
+			System.out.println(" Time1 >>"+duration1);
 			
 			totalSet.put("provideruserid", (String)dbj.get("userid"));
 			

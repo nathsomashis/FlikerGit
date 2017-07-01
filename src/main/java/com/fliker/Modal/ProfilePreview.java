@@ -203,6 +203,32 @@ public class ProfilePreview {
 			profileArr.add(coursemap);
 			
 			
+			HashMap schoolmap = new HashMap();
+			ArrayList schoollist = new ArrayList();
+			BasicDBList schoolarr = (BasicDBList)theObj.get("schoolids");
+			if(!schoolarr.isEmpty()){
+				for(int m=0;m<schoolarr.size();m++){
+					schoollist.add((String)schoolarr.get(m));
+				}
+			}
+			
+			schoolmap.put("schools", schoollist);
+			profileArr.add(schoolmap);
+			
+			
+			HashMap schoolattendmap = new HashMap();
+			ArrayList schoolattendlist = new ArrayList();
+			BasicDBList schoolattendarr = (BasicDBList)theObj.get("schoolattendee");
+			if(!schoolattendarr.isEmpty()){
+				for(int m=0;m<schoolattendarr.size();m++){
+					schoolattendlist.add((String)schoolattendarr.get(m));
+				}
+			}
+			
+			schoolattendmap.put("schoolattendee", schoolattendlist);
+			profileArr.add(schoolattendmap);
+			
+			
 		}
 		
 		
@@ -387,6 +413,31 @@ public class ProfilePreview {
 			
 			coursemap.put("courses", courselist);
 			profileArr.add(coursemap);
+			
+			HashMap schoolmap = new HashMap();
+			ArrayList schoollist = new ArrayList();
+			BasicDBList schoolarr = (BasicDBList)theObj.get("schoolids");
+			if(!schoolarr.isEmpty()){
+				for(int m=0;m<schoolarr.size();m++){
+					schoollist.add((String)schoolarr.get(m));
+				}
+			}
+			
+			schoolmap.put("schools", schoollist);
+			profileArr.add(schoolmap);
+			
+			
+			HashMap schoolattendmap = new HashMap();
+			ArrayList schoolattendlist = new ArrayList();
+			BasicDBList schoolattendarr = (BasicDBList)theObj.get("schoolattendee");
+			if(!schoolattendarr.isEmpty()){
+				for(int m=0;m<schoolattendarr.size();m++){
+					schoolattendlist.add((String)schoolattendarr.get(m));
+				}
+			}
+			
+			schoolattendmap.put("schoolattendee", schoolattendlist);
+			profileArr.add(schoolattendmap);
 		}
 		
 		
@@ -763,6 +814,8 @@ public class ProfilePreview {
 		basicdbobj.put("tellmeaboutme", profile.getTellmeaboutme());
 		basicdbobj.put("userid", profile.getUserid());
 		basicdbobj.put("eventids", profile.getEventids());
+		basicdbobj.put("schoolids", profile.getSchoolids());
+		basicdbobj.put("schoolattendee", profile.getSchoolattendee());
 		
 		return basicdbobj;
 	}

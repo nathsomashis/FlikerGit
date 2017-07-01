@@ -30,9 +30,23 @@ public class Profile {
 	private String[] guidanceids;
 	private String[] eventids;
 	private String acountid;
+	private String[] schoolids;
+	private String[] schoolattendee;
 	
 	
 	
+	public String[] getSchoolattendee() {
+		return schoolattendee;
+	}
+	public void setSchoolattendee(String[] schoolattendee) {
+		this.schoolattendee = schoolattendee;
+	}
+	public String[] getSchoolids() {
+		return schoolids;
+	}
+	public void setSchoolids(String[] schoolids) {
+		this.schoolids = schoolids;
+	}
 	public String getAcountid() {
 		return acountid;
 	}
