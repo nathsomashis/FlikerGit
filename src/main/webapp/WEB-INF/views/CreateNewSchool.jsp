@@ -625,22 +625,137 @@
 									</div>
 			
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-4">
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon">Total Experience</span> <input
+											<span class="input-group-addon">Admission Charges</span> <input
 												class="form-control input-lg"
-												placeholder="Total Experience" type="text" name="course" value=""
-												id="guidanceexperienceinfo">
-												<span class="input-group-addon">Years</span>
+												placeholder="" type="text" name="admissioncharge" value=""
+												id="schooladmission">
 										</div>
 									</div>
 			
 								</div>
+								<div class="col-sm-2">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon"><select class="form-control" id="costcurrency" >
+														<%-- <%=currencylist.toString()%> --%>
+											</select></span>
+										</div>
+									</div>
+			
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">Duration</span> <input
+												class="form-control input-lg"
+												placeholder="" type="text" name="duration" value=""
+												id="schoolbatchduration">
+										</div>
+									</div>
+			
+								</div>
+								<div class="col-sm-2">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon"><select class="form-control" id="guidancecostduration">
+													<option>Month</option>
+													<option>Year</option>
+												</select>
+										</div>
+									</div>
+			
+								</div>
+
+
+
+							</div>
+							<div class="row">
+								<article class="col-sm-12 col-md-12 col-lg-12">
+						
+									<!-- Widget ID (each widget will need unique ID)-->
+									<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-11" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+										<!-- widget options:
+										usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+						
+										data-widget-colorbutton="false"
+										data-widget-editbutton="false"
+										data-widget-togglebutton="false"
+										data-widget-deletebutton="false"
+										data-widget-fullscreenbutton="false"
+										data-widget-custombutton="false"
+										data-widget-collapsed="true"
+										data-widget-sortable="false"
+						
+										-->
+										<header>
+											<span class="widget-icon"></span>
+											<h2>Focus</h2>
+						
+										</header>
+						
+										<!-- widget div-->
+										<div>
+						
+											<!-- widget edit box -->
+											<div class="jarviswidget-editbox">
+												<!-- This area used as dropdown edit box -->
+						
+											</div>
+											<!-- end widget edit box -->
+						
+											<!-- widget content -->
+											<div class="widget-body ">
+						
+												<div class="row">
+													<div></div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<div class="input-group">
+																<span class="input-group-addon">Focus Specification</span> <input
+																	class="form-control input-lg"
+																	placeholder="" type="text" name="admissioncharge" value=""
+																	id="focuspointone">
+															</div>
+														</div>
 								
-
-
-
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<div class="input-group">
+																<span class="input-group-addon">Focus Specification</span> <input
+																	class="form-control input-lg"
+																	placeholder="" type="text" name="admissioncharge" value=""
+																	id="focuspointtwo">
+															</div>
+														</div>
+								
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<div class="input-group">
+																<span class="input-group-addon">Focus Specification</span> <input
+																	class="form-control input-lg"
+																	placeholder="" type="text" name="admissioncharge" value=""
+																	id="focuspointthree">
+															</div>
+														</div>
+								
+													</div>
+												</div>
+						
+											</div>
+											<!-- end widget content -->
+						
+										</div>
+										<!-- end widget div -->
+						
+									</div>
+									<!-- end widget -->
+						
+								</article>
 							</div>
 							<div class="row">
 								<article class="col-sm-12 col-md-12 col-lg-12">
@@ -871,11 +986,45 @@
 											</select>
 										</div>
 									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Price</label>
+											<input
+												class="form-control input-lg"
+												placeholder="" type="text" name="duration" value=""
+												id="schoolbatchduration">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Currency</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
 											<label>Courses</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Price</label>
+											<input
+												class="form-control input-lg"
+												placeholder="" type="text" name="duration" value=""
+												id="schoolbatchduration">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Currency</label>
 											<select style="width:100%" class="select2">
 													<option value="AK">Alaska</option>
 											</select>
