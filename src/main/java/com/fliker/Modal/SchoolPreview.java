@@ -1,10 +1,13 @@
 package com.fliker.Modal;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Assignment;
+import com.fliker.Repository.Institute;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -102,6 +105,40 @@ public class SchoolPreview {
 		}
 		
 		return schoolattendlist;
+	}
+
+	public void addNewInstitute(String institutetype, String institutename, String institutedesc, String instituteadd, String currentstatus, String instituteprice) {
+		// TODO Auto-generated method stub
+		
+		Institute institute = new Institute();
+		institute.setInstituteaddress(instituteadd);
+		institute.setInstitutename(institutename);
+		institute.setInstitutedesc(institutedesc);
+		GuidancePreview guidanceprev = new GuidancePreview();
+		
+		
+		String uniqueid = "";
+		
+		try {
+			uniqueid = guidanceprev.makeSHA1Hash(institutename+institutetype);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		institute.setInstituteid(uniqueid);
+		institute.setCurrentstatus(currentstatus);
+		String[] divisionid = new String[0];
+		institute.setDivisionid(divisionid);
+		institute.setPlaygroundid("");
+		institute.setScheduletimetable("");
+		String[] testtemplateid = new String[0];
+		institute.setTesttemplateid(testtemplateid);
+		institute.setInstituteadmissionprice(instituteprice);
+		
 	}
 	
 	

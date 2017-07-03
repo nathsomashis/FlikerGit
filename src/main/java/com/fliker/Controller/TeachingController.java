@@ -85,5 +85,49 @@ public class TeachingController {
 			mv.addObject("FullName", userfirstname+" "+userlastname);
 			return mv;
 		}
+		
+		
+		@RequestMapping("/createInstitute")
+		public ModelAndView maintainSchool(
+				@RequestParam(value = "institutetype", required = false) String institutetype,
+				@RequestParam(value = "institutename", required = false) String institutename,
+				@RequestParam(value = "institutedesc", required = false) String institutedesc,
+				@RequestParam(value = "instituteadd", required = false) String instituteadd,
+				@RequestParam(value = "currentstatus", required = false) String currentstatus,
+				@RequestParam(value = "instituteprice", required = false) String instituteprice,
+				HttpServletRequest request) {
+			System.out.println("in dashboard social controller");
+			
+			ServletContext context = request.getSession().getServletContext();
+			
+			User userinf = (User) context.getAttribute("UserValues");
+			String userid = userinf.getUserid();
+			String userfirstname = userinf.getFirstname();
+			String userlastname = userinf.getLastname();
+			String gender = userinf.getGender();
+			ProfilePreview profprev = new ProfilePreview();
+			
+			String profileimageid = profprev.profileimage(userid);
+			SchoolPreview schoolprev = new SchoolPreview();
+			schoolprev.addNewInstitute(institutetype,institutename,institutedesc,instituteadd,currentstatus,instituteprice);
+			
+			ModelAndView mv =  null;
+			
+			if(institutetype.equalsIgnoreCase("institute")){
+				mv = new ModelAndView("/CreateInstitute");
+			}else if(institutetype.equalsIgnoreCase("school")){
+				mv = new ModelAndView("/CreateSchool");
+			}else if(institutetype.equalsIgnoreCase("college")){
+				mv = new ModelAndView("/CreateCollege");
+			}
+			
+			mv.addObject("ProfileImage", profileimageid);
+			mv.addObject("Gender", gender);
+			mv.addObject("userid", userid);
+			//mv.addObject("schoollist", schoollist);
+			//mv.addObject("schoolattendlist", schoolattendlist);
+			mv.addObject("FullName", userfirstname+" "+userlastname);
+			return mv;
+		}
 	
 }

@@ -34,6 +34,42 @@ public class Courses {
 	
 	
 	
+	public String[] getCoursematerialid() {
+		return coursematerialid;
+	}
+	public void setCoursematerialid(String[] coursematerialid) {
+		this.coursematerialid = coursematerialid;
+	}
+	public String[] getCoursetakingusers() {
+		return coursetakingusers;
+	}
+	public void setCoursetakingusers(String[] coursetakingusers) {
+		this.coursetakingusers = coursetakingusers;
+	}
+	public String getCoursechangedate() {
+		return coursechangedate;
+	}
+	public void setCoursechangedate(String coursechangedate) {
+		this.coursechangedate = coursechangedate;
+	}
+	public String getCourseblogid() {
+		return courseblogid;
+	}
+	public void setCourseblogid(String courseblogid) {
+		this.courseblogid = courseblogid;
+	}
+	public String[] getCoursereferences() {
+		return coursereferences;
+	}
+	public void setCoursereferences(String[] coursereferences) {
+		this.coursereferences = coursereferences;
+	}
+	public String getCoursemateriallinking() {
+		return coursemateriallinking;
+	}
+	public void setCoursemateriallinking(String coursemateriallinking) {
+		this.coursemateriallinking = coursemateriallinking;
+	}
 	public String getCoursecreatedate() {
 		return coursecreatedate;
 	}

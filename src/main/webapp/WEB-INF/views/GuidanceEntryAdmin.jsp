@@ -651,7 +651,7 @@
 			              			Iterator resourseit = resourceset.iterator();
 			              			while(resourseit.hasNext()){
 			              				Map.Entry resourme = (Map.Entry)resourseit.next();
-			              				if()
+			              				
 			              			}
 			              			
 			              			

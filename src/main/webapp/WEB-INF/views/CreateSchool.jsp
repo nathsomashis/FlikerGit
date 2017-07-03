@@ -99,6 +99,12 @@
 	media="screen and (max-device-width: 320px)">
 <!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
 
+<style type="text/css">
+	.ui-autocomplete {
+    position: absolute;
+	}
+</style>
+
 </head>
 
 <!--
@@ -601,40 +607,209 @@
 			<!-- row -->
 			
 			<div class="row">
-					
-					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-12">
-						
-						<!-- <div class="col-sm-2"><a class="btn btn-primary btn-xs" href="#" onclick="">New E-School</a></div> -->
-						<div class="col-sm-2"><button class="btn btn-primary" data-toggle="modal" data-target="#newinstitute">New Institute</button></div>
-					</div>
-
-				</div>
-			<div class="row">
 
 				<div class="col-sm-12">
-
-					
 							<div class="row">
-
-								
-
-
-
-							</div>
-							<div class="row">
-
 								<div class="col-sm-12">
-
-									<div class="well padding-10">
-										
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">Institute Name</span> <input
+												class="form-control input-lg"
+												placeholder="School/College or Any" type="text" name="course" 
+												id="schoolname">
+										</div>
 									</div>
-
+			
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">Admission Charges</span> <input
+												class="form-control input-lg"
+												placeholder="" type="text" name="admissioncharge" value=""
+												id="schooladmission">
+										</div>
+									</div>
+			
+								</div>
+								<div class="col-sm-2">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon"><select class="form-control" id="costcurrency" >
+														<%-- <%=currencylist.toString()%> --%>
+											</select></span>
+										</div>
+									</div>
+			
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">Duration</span> <input
+												class="form-control input-lg"
+												placeholder="" type="text" name="duration" value=""
+												id="schoolbatchduration">
+										</div>
+									</div>
+			
+								</div>
+								<div class="col-sm-2">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon"><select class="form-control" id="guidancecostduration">
+													<option>Month</option>
+													<option>Year</option>
+												</select>
+										</div>
+									</div>
+			
 								</div>
 
 
 
 							</div>
-							
+							<div class="row">
+								<article class="col-sm-12 col-md-12 col-lg-12">
+						
+									<!-- Widget ID (each widget will need unique ID)-->
+									<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-10" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+										<!-- widget options:
+										usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+						
+										data-widget-colorbutton="false"
+										data-widget-editbutton="false"
+										data-widget-togglebutton="false"
+										data-widget-deletebutton="false"
+										data-widget-fullscreenbutton="false"
+										data-widget-custombutton="false"
+										data-widget-collapsed="true"
+										data-widget-sortable="false"
+						
+										-->
+										<header>
+											<span class="widget-icon"></span>
+											<h2>Teachers</h2>
+						
+											<div class="widget-toolbar hidden-phone">
+												<div class="smart-form">
+													<label class="checkbox">
+														<button class="btn btn-primary" data-toggle="modal" data-target="#addmembers" >Add Teachers</button>
+														</label>
+												</div>
+											</div>
+						
+										</header>
+						
+										<!-- widget div-->
+										<div>
+						
+											<!-- widget edit box -->
+											<div class="jarviswidget-editbox">
+												<!-- This area used as dropdown edit box -->
+						
+											</div>
+											<!-- end widget edit box -->
+						
+											<!-- widget content -->
+											<div class="widget-body no-padding">
+						
+												<div class="row">
+													<div class="superbox col-sm-12">
+														<div class="superbox-list">
+															<img src="https://s-media-cache-ak0.pinimg.com/736x/05/46/63/0546638b58d2d396f97ad69177f104fa.jpg" data-img="https://s-media-cache-ak0.pinimg.com/736x/05/46/63/0546638b58d2d396f97ad69177f104fa.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img" style="height:150px;">
+														</div>
+													</div>
+													<div class="superbox-show" style="height:300px; display: none"></div>
+												</div>
+						
+											</div>
+											<!-- end widget content -->
+						
+										</div>
+										<!-- end widget div -->
+						
+									</div>
+									<!-- end widget -->
+						
+								</article>
+							</div>
+							<div class="row">
+								<article class="col-sm-12 col-md-12 col-lg-12">
+						
+									<!-- Widget ID (each widget will need unique ID)-->
+									<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-9" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+										<!-- widget options:
+										usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+						
+										data-widget-colorbutton="false"
+										data-widget-editbutton="false"
+										data-widget-togglebutton="false"
+										data-widget-deletebutton="false"
+										data-widget-fullscreenbutton="false"
+										data-widget-custombutton="false"
+										data-widget-collapsed="true"
+										data-widget-sortable="false"
+						
+										-->
+										<header>
+											<span class="widget-icon"></span>
+											<h2>Plans</h2>
+						
+											<div class="widget-toolbar hidden-phone">
+												<div class="smart-form">
+													<div class="col-md-2">
+														<button class="btn btn-primary" data-toggle="modal" data-target="#addplans" >Add Plans</button>
+													</div>
+													<div class="col-md-4">
+														<button class="btn btn-primary" data-toggle="modal" data-target="#addclass" >Add Classes</button>
+													</div>
+													<div class="col-md-4">
+														<button class="btn btn-primary" data-toggle="modal" data-target="#addbranch" >Add Branch</button>
+													</div>	
+												</div>
+											</div>
+						
+										</header>
+						
+										<!-- widget div-->
+										<div>
+						
+											<!-- widget edit box -->
+											<div class="jarviswidget-editbox">
+												<!-- This area used as dropdown edit box -->
+						
+											</div>
+											<!-- end widget edit box -->
+						
+											<!-- widget content -->
+											<div class="widget-body no-padding">
+						
+												<div class="row">
+													<div class="panel-group smart-accordion-default" id="planaccordian">
+														<div class="panel panel-default">
+															<div class="panel-heading">
+																<h4 class="panel-title"><a data-toggle="collapse" data-parent="#planaccordian" href="#collapseOne-1"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>
+															</div>
+															<div id="collapseOne-1" class="panel-collapse collapse in">
+																<div class="panel-body">
+																	Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+						
+											</div>
+											<!-- end widget content -->
+						
+										</div>
+										<!-- end widget div -->
+						
+									</div>
+									<!-- end widget -->
+						
+								</article>
+							</div>
 
 				</div>
 
@@ -644,84 +819,56 @@
 
 		</div>
 		<!-- END MAIN CONTENT -->
-		<div class="modal fade" id="newinstitute"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="addmembers"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									&times;
 								</button>
-								<h4 class="modal-title" id="myModalLabel">New Institute</h4>
+								<h4 class="modal-title" id="myModalLabel">New Teacher</h4>
 							</div>
 							<div class="modal-body">
 				
 								<div class="row">
 									<div class="col-md-12">
-										<div class="form-group" id="institutetype">
-											<label>Institute Type</label>
-											<select style="width:100%" class="form-control">
-													<option value="college">College</option>
-													<option value="school">School</option>
-													<option value="institute">Institute</option>
-											</select>
+										<div class="superbox col-sm-12">
+												<div class="superbox-list">
+													<img src="https://s-media-cache-ak0.pinimg.com/originals/58/b9/82/58b982e206f70ef3598c6334b15a4757.png" 
+													data-img="https://s-media-cache-ak0.pinimg.com/originals/58/b9/82/58b982e206f70ef3598c6334b15a4757.png" 
+													alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
+												</div>
+											<div class="superbox-float"></div>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group" id="institutetype">
-											<label>Your Position in Institute</label>
-											<input
-												class="form-control"
-												placeholder="" type="text" name="duration" value=""
-												id="currentstatus">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<label>Name</label>
-											<input
-												class="form-control"
-												placeholder="" type="text" name="duration" value=""
-												id="nameinstitute">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="input-group">
-											<span class="input-group-addon">Tell About Ur Institute</span> <textarea class="form-control" 
-											id="institutedescription" name="reason" rows="5"></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="row">	
-									<br>
-									<div class="col-md-12">
-										<div class="input-group">
-											<span class="input-group-addon">Address</span> <textarea class="form-control" 
-											id="instituteaddress" name="reason" rows="5"></textarea>
-										</div>
+										<div class="superbox-show" style="height:150px; display: none"></div>
 									</div>
 								</div>
 								<div class="row">
-									<br>	
-									<div class="col-sm-8">
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">Admission Charges</span> <input
-													class="form-control "
-													placeholder="Admission Charges" type="text" name="admissioncharge" value=""
-													id="institadmission">
-											</div>
+									<div class="col-md-12">
+										<div class="superbox col-sm-12">
+											<table class="table table-bordered table-condensed">
+												<tbody>
+													<tr>
+														<td>Row 1</td>
+														<td>Row 2</td>
+														<td>Row 3</td>
+														<td>Row 4</td>
+													</tr>
+													<tr>
+														<td>Row 1</td>
+														<td>Row 2</td>
+														<td>Row 3</td>
+														<td>Row 4</td>
+													</tr>
+													<tr>
+														<td>Row 1</td>
+														<td>Row 2</td>
+														<td>Row 3</td>
+														<td>Row 4</td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
-				
-									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon"><select class="form-control" id="costcurrency" >
-															<%-- <%=currencylist.toString()%> --%>
-												</select></span>
-											</div>
-										</div>
-				
 									</div>
 								</div>
 							</div>
@@ -729,13 +876,235 @@
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Cancel
 								</button>
-								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addInstitute()">
-									Create
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addteacher()">
+									Add
 								</button>
 							</div>
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
 				</div><!-- /.modal -->
+		<div class="modal fade" id="addplans"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Plan</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Guidance</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Price</label>
+											<input
+												class="form-control input-lg"
+												placeholder="" type="text" name="duration" value=""
+												id="schoolbatchduration">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Currency</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Courses</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Price</label>
+											<input
+												class="form-control input-lg"
+												placeholder="" type="text" name="duration" value=""
+												id="schoolbatchduration">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Currency</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addplans()">
+									Add
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				<div class="modal fade" id="addbranch"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Branch</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Guidance</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Price</label>
+											<input
+												class="form-control input-lg"
+												placeholder="" type="text" name="duration" value=""
+												id="schoolbatchduration">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Currency</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Courses</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Price</label>
+											<input
+												class="form-control input-lg"
+												placeholder="" type="text" name="duration" value=""
+												id="schoolbatchduration">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Currency</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addplans()">
+									Add
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->	
+			<div class="modal fade" id="addclass"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Branch</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Class</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Section</label>
+											<select style="width:100%" class="select2">
+													<option value="">Select</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Courses</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Price</label>
+											<input
+												class="form-control input-lg"
+												placeholder="" type="text" name="duration" value=""
+												id="schoolbatchduration">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Currency</label>
+											<select style="width:100%" class="select2">
+													<option value="AK">Alaska</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addplans()">
+									Add
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->			
 				
 				
 	</div>
@@ -1119,6 +1488,10 @@
 			 * loadScript(".../plugin.js", run_after_loaded);
 			 */
 			 
+			$('.superbox').SuperBox();
+			 
+			 
+			 
 			 
 		})
 		
@@ -1127,7 +1500,7 @@
 		
 		
 	</script>
-
+	
 	<!-- Your GOOGLE ANALYTICS CODE Below -->
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
@@ -1145,22 +1518,6 @@
 			s.parentNode.insertBefore(ga, s);
 		})();
 		
-	</script>
-	<script type="text/javascript">
-	
-		function addInstitute(){
-			
-			var insttype = $("#institutetype select").val();
-			var nameinstitute = $('#nameinstitute').val();
-			var institutedesc = $('#institutedescription').val();
-			var instituteadd = $('#instituteaddress').val();
-			var currentstatus = $('#currentstatus').val();
-			var instituteprice = $('#institadmission').val();
-			
-			window.location.href = "createInstitute?institutetype="+insttype+"&institutename="+nameinstitute+"&institutedesc="+institutedesc+"&instituteadd="+instituteadd+"&currentstatus="+currentstatus+"&instituteprice="+instituteprice;
-			
-		}
-	
 	</script>
 
 </body>
