@@ -15,6 +15,52 @@ public class EschoolStudentInfo {
 	private String invoiceid;
 	private String optonlycourse;
 	private String optguidanceonly;
+	private String optall;
+	private String[] guidanceselection;
+	private String[] courseselection;
+	private String playgroundid;
+	private String timetableid;
+	private String schoolid;
+	
+	
+	
+	
+	public String getSchoolid() {
+		return schoolid;
+	}
+	public void setSchoolid(String schoolid) {
+		this.schoolid = schoolid;
+	}
+	public String getOptall() {
+		return optall;
+	}
+	public void setOptall(String optall) {
+		this.optall = optall;
+	}
+	public String getPlaygroundid() {
+		return playgroundid;
+	}
+	public void setPlaygroundid(String playgroundid) {
+		this.playgroundid = playgroundid;
+	}
+	public String getTimetableid() {
+		return timetableid;
+	}
+	public void setTimetableid(String timetableid) {
+		this.timetableid = timetableid;
+	}
+	public String[] getGuidanceselection() {
+		return guidanceselection;
+	}
+	public void setGuidanceselection(String[] guidanceselection) {
+		this.guidanceselection = guidanceselection;
+	}
+	public String[] getCourseselection() {
+		return courseselection;
+	}
+	public void setCourseselection(String[] courseselection) {
+		this.courseselection = courseselection;
+	}
 	public String getStudentinfoid() {
 		return studentinfoid;
 	}

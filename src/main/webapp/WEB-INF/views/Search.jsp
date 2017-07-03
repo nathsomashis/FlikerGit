@@ -405,13 +405,16 @@
 				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
 		</li>
 		<li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
+				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">ESchool</span></a>
 			<ul>
-				<li class=""><a href="courseEdu?" title="NewPost"><i
-						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
+				<li class=""><a href="standardteach?" title="NewPost"><i
+						class="fa fa-tags"></i><span class="menu-item-parent">Teaching</span></a>
 				</li>
-				<li class=""><a href="otherprofile?" title="ClassRoom"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+				<li class=""><a href="standardguidance?" title="ClassRoom"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Guidance</span></a>
+				</li>
+				<li class=""><a href="standardcourse?" title="ClassRoom"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Courses</span></a>
 				</li>
 			</ul></li>
 		 <!-- <li><a href="#" title="Dashboard"><i
