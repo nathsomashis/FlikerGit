@@ -28,6 +28,8 @@ public class Profile {
 	private String[] projects;
 	private String[] courseids;
 	private String[] guidanceids;
+	private String[] guideprovide;
+	private String[] courseprovide;
 	private String[] eventids;
 	private String acountid;
 	private String[] schoolids;
@@ -35,6 +37,18 @@ public class Profile {
 	
 	
 	
+	public String[] getGuideprovide() {
+		return guideprovide;
+	}
+	public void setGuideprovide(String[] guideprovide) {
+		this.guideprovide = guideprovide;
+	}
+	public String[] getCourseprovide() {
+		return courseprovide;
+	}
+	public void setCourseprovide(String[] courseprovide) {
+		this.courseprovide = courseprovide;
+	}
 	public String[] getSchoolattendee() {
 		return schoolattendee;
 	}
