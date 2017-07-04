@@ -109,12 +109,22 @@ public class TeachingController {
 			
 			String profileimageid = profprev.profileimage(userid);
 			SchoolPreview schoolprev = new SchoolPreview();
-			schoolprev.addNewInstitute(institutetype,institutename,institutedesc,instituteadd,currentstatus,instituteprice);
+			
+			ArrayList proflist = profprev.getProfileInfo(userid);
 			
 			ModelAndView mv =  null;
 			
 			if(institutetype.equalsIgnoreCase("institute")){
+				String instituteid = schoolprev.addNewInstitute(institutetype,institutename,institutedesc,instituteadd,currentstatus,instituteprice);
+				
+				
 				mv = new ModelAndView("/CreateInstitute");
+				
+				mv.addObject("instituteid", instituteid);
+				mv.addObject("institutename", institutename);
+				mv.addObject("institutedesc", institutedesc);
+				mv.addObject("instituteprice", instituteprice);
+				mv.addObject("instituteadd", instituteadd);
 			}else if(institutetype.equalsIgnoreCase("school")){
 				mv = new ModelAndView("/CreateSchool");
 			}else if(institutetype.equalsIgnoreCase("college")){
@@ -124,7 +134,7 @@ public class TeachingController {
 			mv.addObject("ProfileImage", profileimageid);
 			mv.addObject("Gender", gender);
 			mv.addObject("userid", userid);
-			//mv.addObject("schoollist", schoollist);
+			mv.addObject("proflist", proflist);
 			//mv.addObject("schoolattendlist", schoolattendlist);
 			mv.addObject("FullName", userfirstname+" "+userlastname);
 			return mv;
