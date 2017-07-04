@@ -467,7 +467,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 	
-  public String saveGidance(String userid, String guidancesubjects,String guidancereason, HttpServletRequest request, String guidanceflag, String guidenctype, String location, String published, String duration){
+  public String saveGidance(String userid, String guidancesubjects,String guidancereason, HttpServletRequest request, String guidanceflag, String guidenctype, String location, String published, String duration, String guidanceprice){
 		
 	  ArrayList profileinfo = new ArrayList();
 	  
@@ -485,6 +485,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		guidance.setGuidancereason(guidancereason);
 		guidance.setGuidancepaging(guidancepaging);
 		guidance.setGuidanceinterest(guidanceinterest);
+		guidance.setPrice(guidanceprice);
 		
 		GuidancePreview guidanceprev = new GuidancePreview();
 		
@@ -558,6 +559,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 		basicdbobj.put("guidancereason", guidance.getGuidancereason());
 		basicdbobj.put("guidancepaging", guidance.getGuidancepaging());
 		basicdbobj.put("guidanceinterest", guidance.getGuidanceinterest());
+		basicdbobj.put("price", guidance.getPrice());
 		
 		return basicdbobj;
 		
