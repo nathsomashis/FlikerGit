@@ -10,12 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fliker.Modal.GuidancePreview;
 import com.fliker.Modal.ProfilePreview;
+import com.fliker.Modal.SchoolPreview;
 import com.fliker.Modal.TimeLinePreview;
+import com.fliker.Repository.Profile;
 import com.fliker.Repository.User;
 
 @Controller
@@ -117,6 +120,29 @@ public class ProfileController {
 		/*mv.addObject("postlist", profileInfo);
 		mv.addObject("name", name);*/
 		//return mv;
+	}
+	
+	
+	@RequestMapping("/getProfileInfoBasic")
+	public @ResponseBody Profile getProfileInfoBasic(
+			@RequestParam(value = "user", required = false) String user,
+			HttpServletRequest request) {
+		System.out.println("in dashboard social controller");
+		
+		ServletContext context = request.getSession().getServletContext();
+		
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		
+		Profile prof = profprev.getProfileData(user);
+		
+		return prof;
 	}
 	
 	@RequestMapping("/contactNo")
