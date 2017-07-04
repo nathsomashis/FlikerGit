@@ -9,6 +9,7 @@ import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Assignment;
 import com.fliker.Repository.Institute;
 import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
@@ -107,8 +108,10 @@ public class SchoolPreview {
 		return schoolattendlist;
 	}
 
-	public void addNewInstitute(String institutetype, String institutename, String institutedesc, String instituteadd, String currentstatus, String instituteprice) {
+	public String addNewInstitute(String institutetype, String institutename, String institutedesc, String instituteadd, String currentstatus, String instituteprice) {
 		// TODO Auto-generated method stub
+		
+		SchoolPreview schoolprev = new SchoolPreview();
 		
 		Institute institute = new Institute();
 		institute.setInstituteaddress(instituteadd);
@@ -139,6 +142,32 @@ public class SchoolPreview {
 		institute.setTesttemplateid(testtemplateid);
 		institute.setInstituteadmissionprice(instituteprice);
 		
+		MongoConnection mongoconsearch = new MongoConnection();
+		BasicDBObject basicguishareobj =  schoolprev.formNewInstituteDBObject(institute);
+		mongoconsearch.saveObject(basicguishareobj, "Institute");
+		
+		return uniqueid;
+		
+	}
+
+	private BasicDBObject formNewInstituteDBObject(Institute institute) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("accountid", institute.getAccountid());
+		basicdbobj.put("currentstatus", institute.getCurrentstatus());
+		basicdbobj.put("divisionid", institute.getDivisionid());
+		basicdbobj.put("instituteaddress", institute.getInstituteaddress());
+		basicdbobj.put("instituteadmissionprice", institute.getInstituteadmissionprice());
+		basicdbobj.put("institutedesc", institute.getInstitutedesc());
+		basicdbobj.put("instituteid", institute.getInstituteid());
+		basicdbobj.put("institutename", institute.getInstitutename());
+		basicdbobj.put("planinfoid", institute.getPlaninfoid());
+		basicdbobj.put("playgroundid", institute.getPlaygroundid());
+		basicdbobj.put("scheduletimetable", institute.getScheduletimetable());
+		basicdbobj.put("studentparentportalid", institute.getStudentparentportalid());
+		basicdbobj.put("testtemplateid", institute.getTesttemplateid());
+		
+		return basicdbobj;
 	}
 	
 	

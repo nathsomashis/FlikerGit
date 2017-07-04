@@ -363,7 +363,11 @@
 			String gender = (String)request.getAttribute("Gender");
 			String imagid = (String)request.getAttribute("ProfileImage");
 			String logo = "";
-			
+			String instituteid = (String)request.getAttribute("instituteid");
+			String institutename = (String)request.getAttribute("institutename");
+			String institutedesc = (String)request.getAttribute("institutedesc");
+			String instituteprice = (String)request.getAttribute("instituteprice");
+			String instituteadd = (String)request.getAttribute("instituteadd");
 			
 		
 		%>
@@ -606,7 +610,7 @@
 
 			<!-- row -->
 			
-			<div class="row">
+			<div class="row" id="<%=instituteid%>">
 
 				<div class="col-sm-12">
 							<div class="row">
@@ -616,7 +620,7 @@
 											<span class="input-group-addon">Institute Name</span> <input
 												class="form-control input-lg" disabled="disabled"
 												placeholder="School/College or Any" type="text" name="course" 
-												id="schoolname" value="">
+												id="schoolname" value="<%=institutename%>">
 										</div>
 									</div>
 			
@@ -625,7 +629,7 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon">Institute Address</span> <textarea class="form-control" 
-											id="institutedescription" name="reason" rows="5" disabled="disabled"></textarea>
+											id="institutedescription" name="reason" rows="5" disabled="disabled"><%=instituteadd%></textarea>
 										</div>
 									</div>
 			
@@ -634,7 +638,7 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon">Institute Description</span> <textarea class="form-control" 
-											id="institutedescription" name="reason" rows="5" disabled="disabled"></textarea>
+											id="institutedescription" name="reason" rows="5" disabled="disabled"><%=institutedesc%></textarea>
 										</div>
 									</div>
 			
@@ -646,7 +650,7 @@
 											<span class="input-group-addon">$</span>
 											<input
 												class="form-control input-lg"
-												placeholder="" type="text" name="admissioncharge" value=""
+												placeholder="" type="text" name="admissioncharge" value="<%=instituteprice%>"
 												id="schooladmission">
 											<span class="input-group-addon">.00</span>	
 										</div>
@@ -813,7 +817,260 @@
 								<h4 class="modal-title" id="myModalLabel">New Teacher</h4>
 							</div>
 							<div class="modal-body">
+								<form action="#" class="header-search pull-right">
+									<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" >
+									<button type="button" id="searchSubject">
+										<i class="fa fa-search"></i>
+									</button>
+									<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+								</form>
+								<div class="row">
+									<section id="widget-grid" class="">
 				
+										<!-- row -->
+										<div class="row">
+									
+											<!-- NEW WIDGET START -->
+											<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									
+												<!-- Widget ID (each widget will need unique ID)-->
+												
+												<!-- end widget -->
+									
+												<!-- Widget ID (each widget will need unique ID)-->
+												<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false">
+													<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+													data-widget-colorbutton="false"
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true"
+													data-widget-sortable="false"
+									
+													-->
+													<header>
+														<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+														<h2>Column Filters </h2>
+									
+													</header>
+									
+													<!-- widget div-->
+													<div>
+									
+														<!-- widget edit box -->
+														<div class="jarviswidget-editbox">
+															<!-- This area used as dropdown edit box -->
+									
+														</div>
+														<!-- end widget edit box -->
+									
+														<!-- widget content -->
+														<div class="widget-body no-padding">
+									
+															<table id="datatable_fixed_column" class="table table-striped table-bordered" width="100%">
+										
+														        <thead>
+																	<tr>
+																		<th class="hasinput" style="width:17%">
+																			<input type="text" class="form-control" placeholder="Filter Name" />
+																		</th>
+																		<th class="hasinput" style="width:18%">
+																			<div class="input-group">
+																				<input class="form-control" placeholder="Filter Position" type="text">
+																				<span class="input-group-addon">
+																					<span class="onoffswitch">
+																						<input type="checkbox" name="start_interval" class="onoffswitch-checkbox" id="st3">
+																						<label class="onoffswitch-label" for="st3"> 
+																							<span class="onoffswitch-inner" data-swchon-text="YES" data-swchoff-text="NO"></span> 
+																							<span class="onoffswitch-switch"></span> 
+																						</label> 
+																					</span>
+																				</span>
+																			</div>
+																						
+																					
+																		</th>
+																		<th class="hasinput" style="width:16%">
+																			<input type="text" class="form-control" placeholder="Filter Office" />
+																		</th>
+																		<th class="hasinput" style="width:17%">
+																			<input type="text" class="form-control" placeholder="Filter Age" />
+																		</th>
+																		<th class="hasinput icon-addon">
+																			<input id="dateselect_filter" type="text" placeholder="Filter Date" class="form-control datepicker" data-dateformat="yy/mm/dd">
+																			<label for="dateselect_filter" class="glyphicon glyphicon-calendar no-margin padding-top-15" rel="tooltip" title="" data-original-title="Filter Date"></label>
+																		</th>
+																		<th class="hasinput" style="width:16%">
+																			<input type="text" class="form-control" placeholder="Filter Salary" />
+																		</th>
+																	</tr>
+														            <tr>
+													                    <th data-class="expand">Name</th>
+													                    <th>Position</th>
+													                    <th data-hide="phone">Office</th>
+													                    <th data-hide="phone">Age</th>
+													                    <th data-hide="phone,tablet">Start date</th>
+													                    <th data-hide="phone,tablet">Salary</th>
+														            </tr>
+														        </thead>
+									
+														        <tbody>
+														            <tr>
+														                <td>Tiger Nixon</td>
+														                <td>System Architect</td>
+														                <td>Edinburgh</td>
+														                <td>61</td>
+														                <td>2014/12/12</td>
+														                <td>$320,800</td>
+														            </tr>
+														            <tr>
+														                <td>Garrett Winters</td>
+														                <td>Accountant</td>
+														                <td>Tokyo</td>
+														                <td>63</td>
+														                <td>2011/07/25</td>
+														                <td>$170,750</td>
+														            </tr>
+														            <tr>
+														                <td>Ashton Cox</td>
+														                <td>Junior Technical Author</td>
+														                <td>San Francisco</td>
+														                <td>66</td>
+														                <td>2014/01/12</td>
+														                <td>$86,000</td>
+														            </tr>
+														            <tr>
+														                <td>Cedric Kelly</td>
+														                <td>Senior Javascript Developer</td>
+														                <td>Edinburgh</td>
+														                <td>22</td>
+														                <td>2012/03/29</td>
+														                <td>$433,060</td>
+														            </tr>
+														            <tr>
+														                <td>Airi Satou</td>
+														                <td>Accountant</td>
+														                <td>Tokyo</td>
+														                <td>33</td>
+														                <td>2008/11/28</td>
+														                <td>$162,700</td>
+														            </tr>
+														            <tr>
+														                <td>Brielle Williamson</td>
+														                <td>Integration Specialist</td>
+														                <td>New York</td>
+														                <td>61</td>
+														                <td>2012/12/02</td>
+														                <td>$372,000</td>
+														            </tr>
+														            <tr>
+														                <td>Herrod Chandler</td>
+														                <td>Sales Assistant</td>
+														                <td>San Francisco</td>
+														                <td>59</td>
+														                <td>2012/08/06</td>
+														                <td>$137,500</td>
+														            </tr>
+														            <tr>
+														                <td>Rhona Davidson</td>
+														                <td>Integration Specialist</td>
+														                <td>Tokyo</td>
+														                <td>55</td>
+														                <td>2010/10/14</td>
+														                <td>$327,900</td>
+														            </tr>
+														            <tr>
+														                <td>Colleen Hurst</td>
+														                <td>Javascript Developer</td>
+														                <td>San Francisco</td>
+														                <td>39</td>
+														                <td>2014/09/15</td>
+														                <td>$205,500</td>
+														            </tr>
+														            <tr>
+														                <td>Sonya Frost</td>
+														                <td>Software Engineer</td>
+														                <td>Edinburgh</td>
+														                <td>23</td>
+														                <td>2008/12/13</td>
+														                <td>$103,600</td>
+														            </tr>
+														            <tr>
+														                <td>Jena Gaines</td>
+														                <td>Office Manager</td>
+														                <td>London</td>
+														                <td>30</td>
+														                <td>2008/12/19</td>
+														                <td>$90,560</td>
+														            </tr>
+														            <tr>
+														                <td>Quinn Flynn</td>
+														                <td>Support Lead</td>
+														                <td>Edinburgh</td>
+														                <td>22</td>
+														                <td>2013/03/03</td>
+														                <td>$342,000</td>
+														            </tr>
+														            <tr>
+														                <td>Charde Marshall</td>
+														                <td>Regional Director</td>
+														                <td>San Francisco</td>
+														                <td>36</td>
+														                <td>2008/10/16</td>
+														                <td>$470,600</td>
+														            </tr>
+														            <tr>
+														                <td>Haley Kennedy</td>
+														                <td>Senior Marketing Designer</td>
+														                <td>London</td>
+														                <td>43</td>
+														                <td>2012/12/18</td>
+														                <td>$313,500</td>
+														            </tr>
+														            <tr>
+														                <td>Tatyana Fitzpatrick</td>
+														                <td>Regional Director</td>
+														                <td>London</td>
+														                <td>19</td>
+														                <td>2010/03/17</td>
+														                <td>$385,750</td>
+														            </tr>
+														            <tr>
+														                <td>Michael Silva</td>
+														                <td>Marketing Designer</td>
+														                <td>London</td>
+														                <td>66</td>
+														                <td>2012/11/27</td>
+														                <td>$198,500</td>
+														            </tr>
+														        </tbody>
+														
+															</table>
+									
+														</div>
+														<!-- end widget content -->
+									
+													</div>
+													<!-- end widget div -->
+									
+												</div>
+												<!-- end widget -->
+									
+											</article>
+											<!-- WIDGET END -->
+									
+										</div>
+									
+										<!-- end row -->
+									
+										<!-- end row -->
+									
+									</section>
+								</div>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="superbox col-sm-12">
@@ -1416,6 +1673,17 @@
 		<!-- <script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
 		
 		 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		 
+		 <script src="<c:url value='/resources/js/plugin/datatables/jquery.dataTables.min.js' />"></script>
+		 <!-- <script src="js/plugin/datatables/jquery.dataTables.min.js"></script> -->
+		 <script src="<c:url value='/resources/js/plugin/datatables/dataTables.colVis.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.colVis.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.tableTools.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.tableTools.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.bootstrap.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.bootstrap.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatable-responsive/datatables.responsive.min.js' />"></script>
+		<!-- <script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script> -->
 
 
 	<script type="text/javascript">
@@ -1474,8 +1742,162 @@
 			 
 			$('.superbox').SuperBox();
 			 
+			 $('#searchSubject').click(function(){
+				
+				 $.getJSON('searchOnGuidanceSubject?guidancesubject='+guidancesub, function(dataset) {
+		        	 console.log(dataset);
+		        	 
+				});
+				 
+			 });
 			 
-			 
+			 /* BASIC ;*/
+				var responsiveHelper_dt_basic = undefined;
+				var responsiveHelper_datatable_fixed_column = undefined;
+				var responsiveHelper_datatable_col_reorder = undefined;
+				var responsiveHelper_datatable_tabletools = undefined;
+				
+				var breakpointDefinition = {
+					tablet : 1024,
+					phone : 480
+				};
+	
+				$('#dt_basic').dataTable({
+					"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+					"autoWidth" : true,
+			        "oLanguage": {
+					    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+					},
+					"preDrawCallback" : function() {
+						// Initialize the responsive datatables helper once.
+						if (!responsiveHelper_dt_basic) {
+							responsiveHelper_dt_basic = new ResponsiveDatatablesHelper($('#dt_basic'), breakpointDefinition);
+						}
+					},
+					"rowCallback" : function(nRow) {
+						responsiveHelper_dt_basic.createExpandIcon(nRow);
+					},
+					"drawCallback" : function(oSettings) {
+						responsiveHelper_dt_basic.respond();
+					}
+				});
+	
+			/* END BASIC */
+			
+			/* COLUMN FILTER  */
+		    var otable = $('#datatable_fixed_column').DataTable({
+		    	//"bFilter": false,
+		    	//"bInfo": false,
+		    	//"bLengthChange": false
+		    	//"bAutoWidth": false,
+		    	//"bPaginate": false,
+		    	//"bStateSave": true // saves sort state using localStorage
+				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6 hidden-xs'f><'col-sm-6 col-xs-12 hidden-xs'<'toolbar'>>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+				"autoWidth" : true,
+				"oLanguage": {
+					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+				},
+				"preDrawCallback" : function() {
+					// Initialize the responsive datatables helper once.
+					if (!responsiveHelper_datatable_fixed_column) {
+						responsiveHelper_datatable_fixed_column = new ResponsiveDatatablesHelper($('#datatable_fixed_column'), breakpointDefinition);
+					}
+				},
+				"rowCallback" : function(nRow) {
+					responsiveHelper_datatable_fixed_column.createExpandIcon(nRow);
+				},
+				"drawCallback" : function(oSettings) {
+					responsiveHelper_datatable_fixed_column.respond();
+				}		
+			
+		    });
+		    
+		    // custom toolbar
+		    $("div.toolbar").html('<div class="text-right"><img src="img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
+		    	   
+		    // Apply the filter
+		    $("#datatable_fixed_column thead th input[type=text]").on( 'keyup change', function () {
+		    	
+		        otable
+		            .column( $(this).parent().index()+':visible' )
+		            .search( this.value )
+		            .draw();
+		            
+		    } );
+		    /* END COLUMN FILTER */   
+	    
+			/* COLUMN SHOW - HIDE */
+			$('#datatable_col_reorder').dataTable({
+				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+				"autoWidth" : true,
+				"oLanguage": {
+					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+				},
+				"preDrawCallback" : function() {
+					// Initialize the responsive datatables helper once.
+					if (!responsiveHelper_datatable_col_reorder) {
+						responsiveHelper_datatable_col_reorder = new ResponsiveDatatablesHelper($('#datatable_col_reorder'), breakpointDefinition);
+					}
+				},
+				"rowCallback" : function(nRow) {
+					responsiveHelper_datatable_col_reorder.createExpandIcon(nRow);
+				},
+				"drawCallback" : function(oSettings) {
+					responsiveHelper_datatable_col_reorder.respond();
+				}			
+			});
+			
+			/* END COLUMN SHOW - HIDE */
+	
+			/* TABLETOOLS */
+			$('#datatable_tabletools').dataTable({
+				
+				// Tabletools options: 
+				//   https://datatables.net/extensions/tabletools/button_options
+				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'T>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+				"oLanguage": {
+					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+				},		
+		        "oTableTools": {
+		        	 "aButtons": [
+		             "copy",
+		             "csv",
+		             "xls",
+		                {
+		                    "sExtends": "pdf",
+		                    "sTitle": "SmartAdmin_PDF",
+		                    "sPdfMessage": "SmartAdmin PDF Export",
+		                    "sPdfSize": "letter"
+		                },
+		             	{
+	                    	"sExtends": "print",
+	                    	"sMessage": "Generated by SmartAdmin <i>(press Esc to close)</i>"
+	                	}
+		             ],
+		            "sSwfPath": "js/plugin/datatables/swf/copy_csv_xls_pdf.swf"
+		        },
+				"autoWidth" : true,
+				"preDrawCallback" : function() {
+					// Initialize the responsive datatables helper once.
+					if (!responsiveHelper_datatable_tabletools) {
+						responsiveHelper_datatable_tabletools = new ResponsiveDatatablesHelper($('#datatable_tabletools'), breakpointDefinition);
+					}
+				},
+				"rowCallback" : function(nRow) {
+					responsiveHelper_datatable_tabletools.createExpandIcon(nRow);
+				},
+				"drawCallback" : function(oSettings) {
+					responsiveHelper_datatable_tabletools.respond();
+				}
+			});
 			 
 		})
 		
@@ -1509,7 +1931,7 @@
 			
 			
 			
-			$.getJSON('guidanceShareFiles?guidanceid='+guidanceid, function(dataset) {
+			$.getJSON('guidanceUpdate?userid='+userid, function(dataset) {
 	        	 console.log(dataset);
 	        	 
 			});
