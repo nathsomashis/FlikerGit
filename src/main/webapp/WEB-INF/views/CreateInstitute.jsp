@@ -368,7 +368,31 @@
 			String institutedesc = (String)request.getAttribute("institutedesc");
 			String instituteprice = (String)request.getAttribute("instituteprice");
 			String instituteadd = (String)request.getAttribute("instituteadd");
+			ArrayList connectionlist = new ArrayList();
 			
+			ArrayList proflist = (ArrayList)request.getAttribute("proflist");
+			for(int x=0;x<proflist.size();x++){
+				if((proflist.get(x)) instanceof HashMap){
+					HashMap profilemap = (HashMap)proflist.get(x);					
+					Set profset = profilemap.entrySet();
+					Iterator profiter = profset.iterator();
+					while(profiter.hasNext()){
+						Map.Entry profme = (Map.Entry)profiter.next();
+						if(((String)profme.getKey()).equalsIgnoreCase("connections")){
+							ArrayList connprof = (ArrayList)profme.getValue();
+							for(int y=0;y<connprof.size();y++){
+								if((connprof.get(y)) instanceof Profile){
+									Profile profileconn = (Profile)connprof.get(y);
+									connectionlist.add(profileconn);
+								}
+							}
+						}
+					}
+					
+				}
+				
+				
+			}
 		
 		%>
 
@@ -822,7 +846,7 @@
 									<button type="button" id="searchSubject">
 										<i class="fa fa-search"></i>
 									</button>
-									<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+									
 								</form>
 								<div class="row">
 									<section id="widget-grid" class="">
@@ -838,7 +862,8 @@
 												<!-- end widget -->
 									
 												<!-- Widget ID (each widget will need unique ID)-->
-												<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false">
+												<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" 
+												data-widget-collapsed="false" data-widget-deletebutton="false">
 													<!-- widget options:
 													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 									
@@ -853,8 +878,8 @@
 									
 													-->
 													<header>
-														<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-														<h2>Column Filters </h2>
+														<span class="widget-icon"></span>
+														<h2>New Resource Search</h2>
 									
 													</header>
 									
@@ -881,7 +906,7 @@
 																		<th class="hasinput" style="width:18%">
 																			<div class="input-group">
 																				<input class="form-control" placeholder="Filter Position" type="text">
-																				<span class="input-group-addon">
+																				<!-- <span class="input-group-addon">
 																					<span class="onoffswitch">
 																						<input type="checkbox" name="start_interval" class="onoffswitch-checkbox" id="st3">
 																						<label class="onoffswitch-label" for="st3"> 
@@ -889,7 +914,7 @@
 																							<span class="onoffswitch-switch"></span> 
 																						</label> 
 																					</span>
-																				</span>
+																				</span> -->
 																			</div>
 																						
 																					
@@ -901,8 +926,7 @@
 																			<input type="text" class="form-control" placeholder="Filter Age" />
 																		</th>
 																		<th class="hasinput icon-addon">
-																			<input id="dateselect_filter" type="text" placeholder="Filter Date" class="form-control datepicker" data-dateformat="yy/mm/dd">
-																			<label for="dateselect_filter" class="glyphicon glyphicon-calendar no-margin padding-top-15" rel="tooltip" title="" data-original-title="Filter Date"></label>
+																			<input id="dateselect_filter" type="text" placeholder="Filter Date" class="form-control">
 																		</th>
 																		<th class="hasinput" style="width:16%">
 																			<input type="text" class="form-control" placeholder="Filter Salary" />
@@ -945,23 +969,163 @@
 									</section>
 								</div>
 								<div class="row">
-									<div class="col-md-12">
-										<div class="superbox col-sm-12">
-												<div class="superbox-list">
-													<img src="https://s-media-cache-ak0.pinimg.com/originals/58/b9/82/58b982e206f70ef3598c6334b15a4757.png" 
-													data-img="https://s-media-cache-ak0.pinimg.com/originals/58/b9/82/58b982e206f70ef3598c6334b15a4757.png" 
-													alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
+									<section id="widget-grid" class="">
+				
+										<!-- row -->
+										<div class="row">
+									
+											<!-- NEW WIDGET START -->
+											<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									
+												<!-- Widget ID (each widget will need unique ID)-->
+												
+												<!-- end widget -->
+									
+												<!-- Widget ID (each widget will need unique ID)-->
+												<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2" data-widget-editbutton="false" data-widget-colorbutton="false" 
+												data-widget-collapsed="false" data-widget-deletebutton="false">
+													<!-- widget options:
+													usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+													data-widget-colorbutton="false"
+													data-widget-editbutton="false"
+													data-widget-togglebutton="false"
+													data-widget-deletebutton="false"
+													data-widget-fullscreenbutton="false"
+													data-widget-custombutton="false"
+													data-widget-collapsed="true"
+													data-widget-sortable="false"
+									
+													-->
+													<header>
+														<span class="widget-icon"></span>
+														<h2>Within Connections & Followers</h2>
+									
+													</header>
+									
+													<!-- widget div-->
+													<div>
+									
+														<!-- widget edit box -->
+														<div class="jarviswidget-editbox">
+															<!-- This area used as dropdown edit box -->
+									
+														</div>
+														<!-- end widget edit box -->
+									
+														<!-- widget content -->
+														<div class="widget-body no-padding">
+									
+															<table id="datatable_fixed_column_conn" class="table table-striped table-bordered" width="100%">
+										
+														        <!-- <thead>
+																	<tr>
+																		<th class="hasinput" style="width:17%">
+																			<input type="text" class="form-control" placeholder="Filter Name" />
+																		</th>
+																		<th class="hasinput" style="width:18%">
+																			<div class="input-group">
+																				<input class="form-control" placeholder="Filter Position" type="text">
+																				<span class="input-group-addon">
+																					<span class="onoffswitch">
+																						<input type="checkbox" name="start_interval" class="onoffswitch-checkbox" id="st3">
+																						<label class="onoffswitch-label" for="st3"> 
+																							<span class="onoffswitch-inner" data-swchon-text="YES" data-swchoff-text="NO"></span> 
+																							<span class="onoffswitch-switch"></span> 
+																						</label> 
+																					</span>
+																				</span>
+																			</div>
+																						
+																					
+																		</th>
+																		<th class="hasinput" style="width:16%">
+																			<input type="text" class="form-control" placeholder="Filter Office" />
+																		</th>
+																		<th class="hasinput" style="width:17%">
+																			<input type="text" class="form-control" placeholder="Filter Age" />
+																		</th>
+																		<th class="hasinput icon-addon">
+																			<input id="dateselect_filter" type="text" placeholder="Filter Date" class="form-control">
+																		</th>
+																		<th class="hasinput" style="width:16%">
+																			<input type="text" class="form-control" placeholder="Filter Salary" />
+																		</th>
+																	</tr>
+														            <tr>
+													                    <th data-class="expand">Name</th>
+													                    <th>Position</th>
+													                    <th data-hide="phone">Office</th>
+													                    <th data-hide="phone">People Interested</th>
+													                    <th data-hide="phone,tablet">Duration</th>
+													                    <th data-hide="phone,tablet">Price</th>
+														            </tr>
+														        </thead> -->
+									
+														        <tbody>
+														        	<%
+																		if(!connectionlist.isEmpty()){
+																			for(int r=0;r<connectionlist.size();r++){
+																				if((r==0) || (r%5 == 0)){
+																					%>
+																						<tr>
+																						<td></td>
+																					<%
+																				}else if(r%4 == 0){
+																					%>
+																						<td></td>
+																						</tr>
+																					<%
+																				}else{
+																					%>
+																						<td></td>
+																					<%
+																				}
+																			}
+																			
+																			
+																		}
+																	
+																	%>
+														            
+														        </tbody>
+														
+															</table>
+									
+														</div>
+														<!-- end widget content -->
+									
+													</div>
+													<!-- end widget div -->
+									
 												</div>
-											<div class="superbox-float"></div>
+												<!-- end widget -->
+									
+											</article>
+											<!-- WIDGET END -->
+									
 										</div>
-										<div class="superbox-show" style="height:150px; display: none;width: 150px;"></div>
-									</div>
+									
+										<!-- end row -->
+									
+										<!-- end row -->
+									
+									</section>
 								</div>
-								<div class="row">
+								
+								<%-- <div class="row">
 									<div class="col-md-12">
 										<div class="superbox col-sm-12">
 											<table class="table table-bordered table-condensed">
 												<tbody>
+													<%
+														if(!connectionlist.isEmpty()){
+															for(int )
+															
+															
+														}
+													
+													%>
 													<tr>
 														<td><img style="height: 50px;width: 50px;" src="https://s-media-cache-ak0.pinimg.com/originals/58/b9/82/58b982e206f70ef3598c6334b15a4757.png"/></td>
 														<td>Row 2</td>
@@ -984,7 +1148,7 @@
 											</table>
 										</div>
 									</div>
-								</div>
+								</div> --%>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -1618,12 +1782,15 @@
 			 $('#searchSubject').click(function(){
 				
 				 if(guidancesub != $('#searchparam').val()){
-				 $("#datatable_fixed_column").empty();
+				 //$("#datatable_fixed_column tr").empty();
+				 var datatable = $('#datatable_fixed_column').dataTable().api();
 				 var guidancesub = $('#searchparam').val();
 				 $.getJSON('searchOnGuidanceSubject?guidancesubject='+guidancesub, function(dataset) {
 		        	// console.log(dataset);
-		        	 
-		        	 for(var x=0;x<dataset.length;x++){
+		        	 datatable.clear();
+		        	 datatable.rows.add(dataset);
+		        	 datatable.draw();
+		        	 /* for(var x=0;x<dataset.length;x++){
 		        		 
 		        		 var user = dataset[x].userid;
 		        		 var name;
@@ -1642,7 +1809,7 @@
 		        		 
 		        		 $('#datatable_fixed_column').append('<tr><td>'+name+'</td><td>'+currentstatus+'</td><td>'+location+'</td><td>'+interest+'</td><td>'+duration+'</td><td>'+price+'</td></tr>');
 		        		 
-		        	 }
+		        	 } */
 		        	 
 		        	 
 				});
@@ -1717,7 +1884,7 @@
 		    });
 		    
 		    // custom toolbar
-		    $("div.toolbar").html('<div class="text-right"><img src="img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
+		    //$("div.toolbar").html('<div class="text-right"><img src="img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
 		    	   
 		    // Apply the filter
 		    $("#datatable_fixed_column thead th input[type=text]").on( 'keyup change', function () {
@@ -1728,7 +1895,52 @@
 		            .draw();
 		            
 		    } );
-		    /* END COLUMN FILTER */   
+		    /* END COLUMN FILTER */ 
+		    
+		    
+		    /* COLUMN FILTER  */
+		    var otable = $('#datatable_fixed_column_conn').DataTable({
+		    	//"bFilter": false,
+		    	//"bInfo": false,
+		    	//"bLengthChange": false
+		    	//"bAutoWidth": false,
+		    	//"bPaginate": false,
+		    	//"bStateSave": true // saves sort state using localStorage
+				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6 hidden-xs'f><'col-sm-6 col-xs-12 hidden-xs'<'toolbar'>>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+				"autoWidth" : true,
+				"oLanguage": {
+					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+				},
+				"preDrawCallback" : function() {
+					// Initialize the responsive datatables helper once.
+					if (!responsiveHelper_datatable_fixed_column) {
+						responsiveHelper_datatable_fixed_column = new ResponsiveDatatablesHelper($('#datatable_fixed_column_conn'), breakpointDefinition);
+					}
+				},
+				"rowCallback" : function(nRow) {
+					responsiveHelper_datatable_fixed_column.createExpandIcon(nRow);
+				},
+				"drawCallback" : function(oSettings) {
+					responsiveHelper_datatable_fixed_column.respond();
+				}		
+			
+		    });
+		    
+		    // custom toolbar
+		    //$("div.toolbar").html('<div class="text-right"><img src="img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
+		    	   
+		    // Apply the filter
+		    $("#datatable_fixed_column thead th input[type=text]").on( 'keyup change', function () {
+		    	
+		        otable
+		            .column( $(this).parent().index()+':visible' )
+		            .search( this.value )
+		            .draw();
+		            
+		    } );
+		    /* END COLUMN FILTER */ 
 	    
 			/* COLUMN SHOW - HIDE */
 			$('#datatable_col_reorder').dataTable({
