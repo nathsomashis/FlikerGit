@@ -169,6 +169,31 @@ public class SchoolPreview {
 		
 		return basicdbobj;
 	}
+
+	public ArrayList getSubjectGuidance(String guidancesubject) {
+		// TODO Auto-generated method stub
+		ArrayList guidancelist = new ArrayList();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("guidanceSubject", guidancesubject, "GuidanceSelection");
+		while(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			
+			HashMap newguideset = new HashMap();
+			newguideset.put("guidancelocation", (String)dbj.get("guidancelocation"));
+			newguideset.put("guidanceduration", (String)dbj.get("guidanceduration"));
+			newguideset.put("userid", (String)dbj.get("userid"));
+			newguideset.put("price", (String)dbj.get("price"));
+			
+			BasicDBList interestedmem = (BasicDBList)dbj.get("guidanceinterest");
+			newguideset.put("guidanceinterest", Integer.toString(interestedmem.size()));
+			
+			
+			guidancelist.add(newguideset);
+		}
+		
+		
+		return guidancelist;
+	}
 	
 	
 	

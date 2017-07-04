@@ -17,12 +17,19 @@ public class Guidance {
 	private String guidancereason;
 	private String[] guidancepaging;
 	private String[] guidanceinterest;
+	private String price;
 	
 	
 	
 	
 	
 	
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
 	public String[] getGuidancepaging() {
 		return guidancepaging;
 	}

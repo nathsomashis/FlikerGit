@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fliker.Modal.GuidancePreview;
@@ -84,6 +85,31 @@ public class TeachingController {
 			//mv.addObject("schoolattendlist", schoolattendlist);
 			mv.addObject("FullName", userfirstname+" "+userlastname);
 			return mv;
+		}
+		
+		
+		@RequestMapping("/searchOnGuidanceSubject")
+		public @ResponseBody ArrayList getAllSubjectGuidance(
+				@RequestParam(value = "guidancesubject", required = false) String guidancesubject,
+				HttpServletRequest request) {
+			System.out.println("in dashboard social controller");
+			
+			ServletContext context = request.getSession().getServletContext();
+			
+			User userinf = (User) context.getAttribute("UserValues");
+			String userid = userinf.getUserid();
+			String userfirstname = userinf.getFirstname();
+			String userlastname = userinf.getLastname();
+			String gender = userinf.getGender();
+			ProfilePreview profprev = new ProfilePreview();
+			
+			SchoolPreview schoolprev = new SchoolPreview();
+			
+			String profileimageid = profprev.profileimage(userid);
+			
+			ArrayList getSubjectGuidance = schoolprev.getSubjectGuidance(guidancesubject);
+			
+			return getSubjectGuidance;
 		}
 		
 		

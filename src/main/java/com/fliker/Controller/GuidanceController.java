@@ -314,7 +314,7 @@ public class GuidanceController {
 			String gender = userinf.getGender();
 			
 			GuidancePreview guidanceprev = new GuidancePreview();
-			guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,guidencetype,location,published,duration);// save new guidance needed.
+			//guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,guidencetype,location,published,duration);// save new guidance needed.
 			
 			HashMap guidanceconsumesubjectmap = new HashMap();
 			guidanceconsumesubjectmap = guidanceprev.getAllGuidanceConsumingSubjectList(userid);
@@ -380,7 +380,7 @@ public class GuidanceController {
 				
 				String[] specificationarr = specifications.split(",");
 				
-				String guidanceid = guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,guidencetype,location,published,duration);// New Guidance to provide
+				String guidanceid = guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,guidencetype,location,published,duration,guidanceprice);// New Guidance to provide
 				
 				guidanceprev.applyForGuidance(guidanceSubject,"",guidencetype,userids,guidanceid,guidanceprice,specificationarr);
 				
