@@ -1063,6 +1063,12 @@
 														        </thead> -->
 									
 														        <tbody>
+														        	<tr>
+																		<td><img style="height: 50px;width: 50px;" src="https://s-media-cache-ak0.pinimg.com/originals/58/b9/82/58b982e206f70ef3598c6334b15a4757.png"/></td>
+																		<td>Row 2</td>
+																		<td>Row 3</td>
+																		<td>Row 4</td>
+																	</tr>
 														        	<%
 																		if(!connectionlist.isEmpty()){
 																			for(int r=0;r<connectionlist.size();r++){
@@ -1932,7 +1938,7 @@
 		    //$("div.toolbar").html('<div class="text-right"><img src="img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
 		    	   
 		    // Apply the filter
-		    $("#datatable_fixed_column thead th input[type=text]").on( 'keyup change', function () {
+		    $("#datatable_fixed_column_conn thead th input[type=text]").on( 'keyup change', function () {
 		    	
 		        otable
 		            .column( $(this).parent().index()+':visible' )
