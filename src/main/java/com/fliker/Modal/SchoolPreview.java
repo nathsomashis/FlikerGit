@@ -5,9 +5,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Assignment;
 import com.fliker.Repository.Institute;
+import com.fliker.Repository.Profile;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
@@ -170,29 +174,33 @@ public class SchoolPreview {
 		return basicdbobj;
 	}
 
-	public ArrayList getSubjectGuidance(String guidancesubject) {
+	public JSONArray getSubjectGuidance(String guidancesubject) {
 		// TODO Auto-generated method stub
 		ArrayList guidancelist = new ArrayList();
+		JSONArray jsonlist = new JSONArray();
 		MongoConnection mongocon = new MongoConnection();
 		DBCursor resultcursor = mongocon.getDBObject("guidanceSubject", guidancesubject, "GuidanceSelection");
 		while(resultcursor.hasNext()){
 			DBObject dbj = resultcursor.next();
 			
-			HashMap newguideset = new HashMap();
-			newguideset.put("guidancelocation", (String)dbj.get("guidancelocation"));
-			newguideset.put("guidanceduration", (String)dbj.get("guidanceduration"));
-			newguideset.put("userid", (String)dbj.get("userid"));
-			newguideset.put("price", (String)dbj.get("price"));
+			JSONObject jsonobj = new JSONObject();
 			
+			ProfilePreview profprev = new ProfilePreview();
+			Profile profile = profprev.getProfileData((String)dbj.get("userid"));
+			
+			jsonobj.put("Name", profile.getName());
+			jsonobj.put("Position", profile.getCurrentStatus());
+			jsonobj.put("Office", (String)dbj.get("guidancelocation"));
 			BasicDBList interestedmem = (BasicDBList)dbj.get("guidanceinterest");
-			newguideset.put("guidanceinterest", Integer.toString(interestedmem.size()));
+			jsonobj.put("People Interested", Integer.toString(interestedmem.size()));
+			jsonobj.put("Duration", (String)dbj.get("guidanceduration"));
+			jsonobj.put("Price", (String)dbj.get("price"));
 			
-			
-			guidancelist.add(newguideset);
+			jsonlist.add(jsonobj);
 		}
 		
 		
-		return guidancelist;
+		return jsonlist;
 	}
 	
 	
