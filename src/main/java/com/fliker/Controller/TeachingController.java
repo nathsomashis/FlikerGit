@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -89,7 +90,7 @@ public class TeachingController {
 		
 		
 		@RequestMapping("/searchOnGuidanceSubject")
-		public @ResponseBody ArrayList getAllSubjectGuidance(
+		public @ResponseBody JSONArray getAllSubjectGuidance(
 				@RequestParam(value = "guidancesubject", required = false) String guidancesubject,
 				HttpServletRequest request) {
 			System.out.println("in dashboard social controller");
@@ -107,7 +108,7 @@ public class TeachingController {
 			
 			String profileimageid = profprev.profileimage(userid);
 			
-			ArrayList getSubjectGuidance = schoolprev.getSubjectGuidance(guidancesubject);
+			JSONArray getSubjectGuidance = schoolprev.getSubjectGuidance(guidancesubject);
 			
 			return getSubjectGuidance;
 		}
