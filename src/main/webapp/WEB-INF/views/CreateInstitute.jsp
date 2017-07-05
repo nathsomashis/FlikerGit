@@ -939,11 +939,20 @@
 													                    <th data-hide="phone">People Interested</th>
 													                    <th data-hide="phone,tablet">Duration</th>
 													                    <th data-hide="phone,tablet">Price</th>
+													                    <th></th>
 														            </tr>
 														        </thead>
 									
 														        <tbody>
-														            
+														        <tr>	
+														            <td>Tiger Nixon</td>
+													                <td>System Architect</td>
+													                <td>Edinburgh</td>
+													                <td>61</td>
+													                <td>2011/04/25</td>
+													                <td>$320,800</td>
+													                
+													               </tr> 
 														        </tbody>
 														
 															</table>
@@ -1016,7 +1025,7 @@
 														<!-- widget content -->
 														<div class="widget-body no-padding">
 									
-															<table id="datatable_fixed_column_conn" class="table table-striped table-bordered" width="100%">
+															<%-- <table id="datatable_fixed_column_conn" class="table table-striped table-bordered" width="100%">
 										
 														        <!-- <thead>
 																	<tr>
@@ -1096,7 +1105,7 @@
 														            
 														        </tbody>
 														
-															</table>
+															</table> --%>
 									
 														</div>
 														<!-- end widget content -->
@@ -1119,42 +1128,7 @@
 									</section>
 								</div>
 								
-								<%-- <div class="row">
-									<div class="col-md-12">
-										<div class="superbox col-sm-12">
-											<table class="table table-bordered table-condensed">
-												<tbody>
-													<%
-														if(!connectionlist.isEmpty()){
-															for(int )
-															
-															
-														}
-													
-													%>
-													<tr>
-														<td><img style="height: 50px;width: 50px;" src="https://s-media-cache-ak0.pinimg.com/originals/58/b9/82/58b982e206f70ef3598c6334b15a4757.png"/></td>
-														<td>Row 2</td>
-														<td>Row 3</td>
-														<td>Row 4</td>
-													</tr>
-													<tr>
-														<td>Row 1</td>
-														<td>Row 2</td>
-														<td>Row 3</td>
-														<td>Row 4</td>
-													</tr>
-													<tr>
-														<td>Row 1</td>
-														<td>Row 2</td>
-														<td>Row 3</td>
-														<td>Row 4</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div> --%>
+								
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -1824,6 +1798,9 @@
 				 
 			 });
 			 
+			 
+			 
+			 
 			 /* BASIC ;*/
 				var responsiveHelper_dt_basic = undefined;
 				var responsiveHelper_datatable_fixed_column = undefined;
@@ -1850,6 +1827,7 @@
 						}
 					},
 					"rowCallback" : function(nRow) {
+						
 						responsiveHelper_dt_basic.createExpandIcon(nRow);
 					},
 					"drawCallback" : function(oSettings) {
@@ -1861,13 +1839,18 @@
 			
 			/* COLUMN FILTER  */
 		    var otable = $('#datatable_fixed_column').DataTable({
+		        /* "rowCallback": function( row, data ) {
+		            if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+		                $(row).addClass('selected');
+		            }
+		        }, */
 		    	//"bFilter": false,
 		    	//"bInfo": false,
 		    	//"bLengthChange": false
 		    	//"bAutoWidth": false,
 		    	//"bPaginate": false,
 		    	//"bStateSave": true // saves sort state using localStorage
-				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6 hidden-xs'f><'col-sm-6 col-xs-12 hidden-xs'<'toolbar'>>r>"+
+				/* "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6 hidden-xs'f><'col-sm-6 col-xs-12 hidden-xs'<'toolbar'>>r>"+
 						"t"+
 						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
 				"autoWidth" : true,
@@ -1885,7 +1868,7 @@
 				},
 				"drawCallback" : function(oSettings) {
 					responsiveHelper_datatable_fixed_column.respond();
-				}		
+				}		 */
 			
 		    });
 		    
@@ -1901,11 +1884,18 @@
 		            .draw();
 		            
 		    } );
+		    
+		    
+		    $('#datatable_fixed_column tbody').on( 'click', 'tr', function () {
+		    	
+		        $(this).toggleClass('selected');
+		    } );
+		    
 		    /* END COLUMN FILTER */ 
 		    
 		    
 		    /* COLUMN FILTER  */
-		    var otable = $('#datatable_fixed_column_conn').DataTable({
+		    /* var otable = $('#datatable_fixed_column_conn').DataTable({
 		    	//"bFilter": false,
 		    	//"bInfo": false,
 		    	//"bLengthChange": false
@@ -1945,77 +1935,11 @@
 		            .search( this.value )
 		            .draw();
 		            
-		    } );
+		    } ); */
 		    /* END COLUMN FILTER */ 
 	    
 			/* COLUMN SHOW - HIDE */
-			$('#datatable_col_reorder').dataTable({
-				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
-						"t"+
-						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
-				"autoWidth" : true,
-				"oLanguage": {
-					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-				},
-				"preDrawCallback" : function() {
-					// Initialize the responsive datatables helper once.
-					if (!responsiveHelper_datatable_col_reorder) {
-						responsiveHelper_datatable_col_reorder = new ResponsiveDatatablesHelper($('#datatable_col_reorder'), breakpointDefinition);
-					}
-				},
-				"rowCallback" : function(nRow) {
-					responsiveHelper_datatable_col_reorder.createExpandIcon(nRow);
-				},
-				"drawCallback" : function(oSettings) {
-					responsiveHelper_datatable_col_reorder.respond();
-				}			
-			});
 			
-			/* END COLUMN SHOW - HIDE */
-	
-			/* TABLETOOLS */
-			$('#datatable_tabletools').dataTable({
-				
-				// Tabletools options: 
-				//   https://datatables.net/extensions/tabletools/button_options
-				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'T>r>"+
-						"t"+
-						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
-				"oLanguage": {
-					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-				},		
-		        "oTableTools": {
-		        	 "aButtons": [
-		             "copy",
-		             "csv",
-		             "xls",
-		                {
-		                    "sExtends": "pdf",
-		                    "sTitle": "SmartAdmin_PDF",
-		                    "sPdfMessage": "SmartAdmin PDF Export",
-		                    "sPdfSize": "letter"
-		                },
-		             	{
-	                    	"sExtends": "print",
-	                    	"sMessage": "Generated by SmartAdmin <i>(press Esc to close)</i>"
-	                	}
-		             ],
-		            "sSwfPath": "js/plugin/datatables/swf/copy_csv_xls_pdf.swf"
-		        },
-				"autoWidth" : true,
-				"preDrawCallback" : function() {
-					// Initialize the responsive datatables helper once.
-					if (!responsiveHelper_datatable_tabletools) {
-						responsiveHelper_datatable_tabletools = new ResponsiveDatatablesHelper($('#datatable_tabletools'), breakpointDefinition);
-					}
-				},
-				"rowCallback" : function(nRow) {
-					responsiveHelper_datatable_tabletools.createExpandIcon(nRow);
-				},
-				"drawCallback" : function(oSettings) {
-					responsiveHelper_datatable_tabletools.respond();
-				}
-			});
 			 
 		})
 		
