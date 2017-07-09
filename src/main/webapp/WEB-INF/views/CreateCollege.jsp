@@ -363,7 +363,36 @@
 			String gender = (String)request.getAttribute("Gender");
 			String imagid = (String)request.getAttribute("ProfileImage");
 			String logo = "";
+			String instituteid = (String)request.getAttribute("instituteid");
+			String institutename = (String)request.getAttribute("institutename");
+			String institutedesc = (String)request.getAttribute("institutedesc");
+			String instituteprice = (String)request.getAttribute("instituteprice");
+			String instituteadd = (String)request.getAttribute("instituteadd");
+			ArrayList connectionlist = new ArrayList();
 			
+			ArrayList proflist = (ArrayList)request.getAttribute("proflist");
+			for(int x=0;x<proflist.size();x++){
+				if((proflist.get(x)) instanceof HashMap){
+					HashMap profilemap = (HashMap)proflist.get(x);					
+					Set profset = profilemap.entrySet();
+					Iterator profiter = profset.iterator();
+					while(profiter.hasNext()){
+						Map.Entry profme = (Map.Entry)profiter.next();
+						if(((String)profme.getKey()).equalsIgnoreCase("connections")){
+							ArrayList connprof = (ArrayList)profme.getValue();
+							for(int y=0;y<connprof.size();y++){
+								if((connprof.get(y)) instanceof Profile){
+									Profile profileconn = (Profile)connprof.get(y);
+									connectionlist.add(profileconn);
+								}
+							}
+						}
+					}
+					
+				}
+				
+				
+			}
 			
 		
 		%>
@@ -613,10 +642,28 @@
 								<div class="col-sm-12">
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon">Institute Name</span> <input
-												class="form-control input-lg"
+											<span class="input-group-addon">College Name</span> <input
+												class="form-control input-lg" disabled="disabled"
 												placeholder="School/College or Any" type="text" name="course" 
-												id="schoolname">
+												id="schoolname" value="<%=institutename%>">
+										</div>
+									</div>
+			
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">College Address</span> <textarea class="form-control" 
+											id="institutedescription" name="reason" rows="5" disabled="disabled"><%=instituteadd%></textarea>
+										</div>
+									</div>
+			
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">College Description</span> <textarea class="form-control" 
+											id="institutedescription" name="reason" rows="5" disabled="disabled"><%=institutedesc%></textarea>
 										</div>
 									</div>
 			
@@ -624,47 +671,17 @@
 								<div class="col-sm-4">
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon">Admission Charges</span> <input
+											<span class="input-group-addon">Admission Charges</span> 
+											<span class="input-group-addon">$</span>
+											<input
 												class="form-control input-lg"
-												placeholder="" type="text" name="admissioncharge" value=""
+												placeholder="" type="text" name="admissioncharge" value="<%=instituteprice%>"
 												id="schooladmission">
+											<span class="input-group-addon">.00</span>	
 										</div>
 									</div>
 			
 								</div>
-								<div class="col-sm-2">
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-addon"><select class="form-control" id="costcurrency" >
-														<%-- <%=currencylist.toString()%> --%>
-											</select></span>
-										</div>
-									</div>
-			
-								</div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-addon">Duration</span> <input
-												class="form-control input-lg"
-												placeholder="" type="text" name="duration" value=""
-												id="schoolbatchduration">
-										</div>
-									</div>
-			
-								</div>
-								<div class="col-sm-2">
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-addon"><select class="form-control" id="guidancecostduration">
-													<option>Month</option>
-													<option>Year</option>
-												</select>
-										</div>
-									</div>
-			
-								</div>
-
 
 
 							</div>
@@ -688,12 +705,12 @@
 										-->
 										<header>
 											<span class="widget-icon"></span>
-											<h2>Teachers</h2>
+											<h2>Branch & Division</h2>
 						
 											<div class="widget-toolbar hidden-phone">
 												<div class="smart-form">
 													<label class="checkbox">
-														<button class="btn btn-primary" data-toggle="modal" data-target="#addmembers" >Add Teachers</button>
+														<button class="btn btn-primary" data-toggle="modal" data-target="#createBranch" >Add Branch</button>
 														</label>
 												</div>
 											</div>
@@ -819,55 +836,40 @@
 
 		</div>
 		<!-- END MAIN CONTENT -->
-		<div class="modal fade" id="addmembers"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="createBranch"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									&times;
 								</button>
-								<h4 class="modal-title" id="myModalLabel">New Teacher</h4>
+								<h4 class="modal-title" id="myModalLabel">New Branch</h4>
 							</div>
 							<div class="modal-body">
 				
 								<div class="row">
 									<div class="col-md-12">
-										<div class="superbox col-sm-12">
-												<div class="superbox-list">
-													<img src="https://s-media-cache-ak0.pinimg.com/originals/58/b9/82/58b982e206f70ef3598c6334b15a4757.png" 
-													data-img="https://s-media-cache-ak0.pinimg.com/originals/58/b9/82/58b982e206f70ef3598c6334b15a4757.png" 
-													alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
-												</div>
-											<div class="superbox-float"></div>
+										<div class="form-group">
+											<label class="col-md-2 control-label">Branch Name</label>
+											<div class="col-md-10">
+												<input class="form-control" placeholder="" id="branchid" type="text">
+											</div>
 										</div>
-										<div class="superbox-show" style="height:150px; display: none"></div>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-12">
-										<div class="superbox col-sm-12">
-											<table class="table table-bordered table-condensed">
-												<tbody>
-													<tr>
-														<td>Row 1</td>
-														<td>Row 2</td>
-														<td>Row 3</td>
-														<td>Row 4</td>
-													</tr>
-													<tr>
-														<td>Row 1</td>
-														<td>Row 2</td>
-														<td>Row 3</td>
-														<td>Row 4</td>
-													</tr>
-													<tr>
-														<td>Row 1</td>
-														<td>Row 2</td>
-														<td>Row 3</td>
-														<td>Row 4</td>
-													</tr>
-												</tbody>
-											</table>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label>Sections</label>
+											<input class="form-control tagsinput" value="SectionA" id="sectionlist" data-role="tagsinput">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label>Subjects</label>
+											<input class="form-control tagsinput" value="" id="subjectlist" data-role="tagsinput">
 										</div>
 									</div>
 								</div>
@@ -876,90 +878,14 @@
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Cancel
 								</button>
-								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addteacher()">
-									Add
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addBranchList()">
+									Proceed
 								</button>
 							</div>
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
 				</div><!-- /.modal -->
-		<div class="modal fade" id="addplans"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Plan</h4>
-							</div>
-							<div class="modal-body">
-				
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<label>Guidance</label>
-											<select style="width:100%" class="select2">
-													<option value="AK">Alaska</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Price</label>
-											<input
-												class="form-control input-lg"
-												placeholder="" type="text" name="duration" value=""
-												id="schoolbatchduration">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Currency</label>
-											<select style="width:100%" class="select2">
-													<option value="AK">Alaska</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<label>Courses</label>
-											<select style="width:100%" class="select2">
-													<option value="AK">Alaska</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Price</label>
-											<input
-												class="form-control input-lg"
-												placeholder="" type="text" name="duration" value=""
-												id="schoolbatchduration">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Currency</label>
-											<select style="width:100%" class="select2">
-													<option value="AK">Alaska</option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addplans()">
-									Add
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
+		
 				<div class="modal fade" id="addbranch"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -1115,7 +1041,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<span class="txt-color-white">SmartAdmin 1.8.2 <span
-					class="hidden-xs"> - Web Application Framework</span> Â©
+					class="hidden-xs"> - Web Application Framework</span>
 					2014-2015
 				</span>
 			</div>
@@ -1518,6 +1444,23 @@
 			s.parentNode.insertBefore(ga, s);
 		})();
 		
+	</script>
+
+	<script type="text/javascript">
+		function addBranchList(){
+			var branch = $('#branchid').val();
+			var subjectlist = $('#subjectlist').val();
+			var sectionlist = $('#sectionlist').val();
+			var collegeid = '<%=instituteid%>';
+			
+			$.getJSON('branchCollegeAdd?branch='+branch+"&subjectlist="+subjectlist+"&sectionlist="+sectionlist+"&collegeid="+collegeid, function(dataset) {
+	        	 console.log(dataset);
+	        	 
+	        	 $('#createBranch').modal('hide');
+			});
+			
+		}
+	
 	</script>
 
 </body>

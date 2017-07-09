@@ -14,13 +14,14 @@ public class InstituteDivision {
 	private String[] subjectmatter;
 	private String[] students;
 	private String timetableid;
-	private String historybatchid;
+	private String[] historybatchid;
 	
 	
-	public String getHistorybatchid() {
+	
+	public String[] getHistorybatchid() {
 		return historybatchid;
 	}
-	public void setHistorybatchid(String historybatchid) {
+	public void setHistorybatchid(String[] historybatchid) {
 		this.historybatchid = historybatchid;
 	}
 	public String[] getStudents() {

@@ -113,6 +113,33 @@ public class TeachingController {
 			return getSubjectGuidance;
 		}
 		
+		@RequestMapping("/branchCollegeAdd")
+		public @ResponseBody ArrayList branchCollegeAdd(
+				@RequestParam(value = "branch") String branch,
+				@RequestParam(value = "subjectlist") String subjectlist,
+				@RequestParam(value = "sectionlist") String sectionlist,
+				@RequestParam(value = "collegeid") String collegeid,
+				HttpServletRequest request) {
+			System.out.println("in dashboard social controller");
+			
+			ServletContext context = request.getSession().getServletContext();
+			
+			User userinf = (User) context.getAttribute("UserValues");
+			String userid = userinf.getUserid();
+			String userfirstname = userinf.getFirstname();
+			String userlastname = userinf.getLastname();
+			String gender = userinf.getGender();
+			ProfilePreview profprev = new ProfilePreview();
+			
+			SchoolPreview schoolprev = new SchoolPreview();
+			
+			String profileimageid = profprev.profileimage(userid);
+			
+			ArrayList getBranchDetails = schoolprev.saveNewBranchCollege(branch,subjectlist,sectionlist,collegeid);
+			
+			return getBranchDetails;
+		}
+		
 		
 		@RequestMapping("/createInstitute")
 		public ModelAndView maintainSchool(
@@ -122,6 +149,8 @@ public class TeachingController {
 				@RequestParam(value = "instituteadd", required = false) String instituteadd,
 				@RequestParam(value = "currentstatus", required = false) String currentstatus,
 				@RequestParam(value = "instituteprice", required = false) String instituteprice,
+				@RequestParam(value = "weekdayselect", required = false) String weekdayselect,
+				@RequestParam(value = "timepicker", required = false) String timepicker,
 				HttpServletRequest request) {
 			System.out.println("in dashboard social controller");
 			
@@ -155,7 +184,16 @@ public class TeachingController {
 			}else if(institutetype.equalsIgnoreCase("school")){
 				mv = new ModelAndView("/CreateSchool");
 			}else if(institutetype.equalsIgnoreCase("college")){
+				String collegeid = schoolprev.addNewCollege(institutetype,institutename,institutedesc,instituteadd,currentstatus,instituteprice);
+				
 				mv = new ModelAndView("/CreateCollege");
+				mv.addObject("instituteid", collegeid);
+				mv.addObject("institutename", institutename);
+				mv.addObject("institutedesc", institutedesc);
+				mv.addObject("instituteprice", instituteprice);
+				mv.addObject("instituteadd", instituteadd);
+				
+				
 			}
 			
 			mv.addObject("ProfileImage", profileimageid);
