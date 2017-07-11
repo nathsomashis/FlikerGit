@@ -20,10 +20,18 @@ public class Institute {
 	private String instituteadmissionprice;
 	private String accountid;
 	private String[] planinfoid;
+	private String institutetype;
 	
 	
 	
 	
+	
+	public String getInstitutetype() {
+		return institutetype;
+	}
+	public void setInstitutetype(String institutetype) {
+		this.institutetype = institutetype;
+	}
 	public String[] getPlaninfoid() {
 		return planinfoid;
 	}

@@ -724,6 +724,47 @@
 				
 									</div>
 								</div>
+								<div class="row">
+									<div class="form-group">
+													<label>Select WeekDays </label>
+													<select multiple style="width:100%" class="select2" id="weekdaysselection">
+															<option value="Sun">Sunday</option>
+															<option value="Mon" selected="selected">Monday</option>
+															<option value="Tue" selected="selected">Tuesday</option>
+															<option value="Wed" selected="selected">Wednesday</option>
+															<option value="Thur" selected="selected">Thursday</option>
+															<option value="Fri" selected="selected">Friday</option>
+															<option value="Sat">Saturday</option>
+													</select>
+									</div>						
+								</div>
+								<!-- <div class="row">
+				
+									<div class="col-sm-12">
+										<div class="row">
+											
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>Start Time:</label>
+													<div class="input-group">
+														<input class="form-control" id="startclockpicker" type="text" placeholder="Select time" data-autoclose="true">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>End Time:</label>
+													<div class="input-group">
+														<input class="form-control" id="endclockpicker" type="text" placeholder="Select time" data-autoclose="true">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div> -->
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -1156,8 +1197,12 @@
 			var instituteadd = $('#instituteaddress').val();
 			var currentstatus = $('#currentstatus').val();
 			var instituteprice = $('#institadmission').val();
+			var weekdaysselect = $('#weekdaysselection').val();
+			var timepicker = $('#startclockpicker').val()+","+$('#endclockpicker').val();
 			
-			window.location.href = "createInstitute?institutetype="+insttype+"&institutename="+nameinstitute+"&institutedesc="+institutedesc+"&instituteadd="+instituteadd+"&currentstatus="+currentstatus+"&instituteprice="+instituteprice;
+			window.location.href = "createInstitute?institutetype="+insttype+"&institutename="+nameinstitute+"&institutedesc="+institutedesc
+					+"&instituteadd="+instituteadd+"&currentstatus="+currentstatus+"&instituteprice="+instituteprice+
+					"&weekdayselect="+weekdaysselect+"&timepicker="+timepicker;
 			
 		}
 	

@@ -11,7 +11,9 @@ import org.json.simple.JSONObject;
 import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Assignment;
 import com.fliker.Repository.Institute;
+import com.fliker.Repository.InstituteDivision;
 import com.fliker.Repository.Profile;
+import com.fliker.Repository.Timetable;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
@@ -115,6 +117,9 @@ public class SchoolPreview {
 	public String addNewInstitute(String institutetype, String institutename, String institutedesc, String instituteadd, String currentstatus, String instituteprice) {
 		// TODO Auto-generated method stub
 		
+		
+		
+		
 		SchoolPreview schoolprev = new SchoolPreview();
 		
 		Institute institute = new Institute();
@@ -145,6 +150,7 @@ public class SchoolPreview {
 		String[] testtemplateid = new String[0];
 		institute.setTesttemplateid(testtemplateid);
 		institute.setInstituteadmissionprice(instituteprice);
+		institute.setInstitutetype("Institute");
 		
 		MongoConnection mongoconsearch = new MongoConnection();
 		BasicDBObject basicguishareobj =  schoolprev.formNewInstituteDBObject(institute);
@@ -170,6 +176,7 @@ public class SchoolPreview {
 		basicdbobj.put("scheduletimetable", institute.getScheduletimetable());
 		basicdbobj.put("studentparentportalid", institute.getStudentparentportalid());
 		basicdbobj.put("testtemplateid", institute.getTesttemplateid());
+		basicdbobj.put("institutetype", institute.getInstitutetype());
 		
 		return basicdbobj;
 	}
@@ -201,6 +208,96 @@ public class SchoolPreview {
 		
 		
 		return jsonlist;
+	}
+
+	public ArrayList saveNewBranchCollege(String branch, String subjectlist, String sectionlist, String collegeid) {
+		// TODO Auto-generated method stub
+		
+		String[] subjectar = subjectlist.split(",");
+		String[] subdivisionrr = sectionlist.split(",");
+		
+		InstituteDivision institutedivision = new InstituteDivision();
+		institutedivision.setDivisiontype(branch);
+		String uniqueid = "";
+		GuidancePreview guidanceprev = new GuidancePreview();
+		
+		try {
+			uniqueid = guidanceprev.makeSHA1Hash(branch+collegeid);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		institutedivision.setDivisionid(uniqueid);
+		institutedivision.setBlackboardid(uniqueid);
+		String[] historybatchid = new String[0];
+		institutedivision.setHistorybatchid(historybatchid);
+		String[] students = new String[0];
+		institutedivision.setStudents(students);
+		institutedivision.setSubdivisiontype(subdivisionrr);
+		if(subdivisionrr.length < 1){
+			Timetable timetable = new Timetable();
+			
+			
+			//timetable.setTimeableid();
+			
+			institutedivision.setTimetableid(uniqueid);
+		}
+		
+		
+		
+		
+		
+		
+		MongoConnection mongoconsearch = new MongoConnection();
+		//mongoconsearch.updateObject(new BasicDBObject("instituteid", collegeid),new BasicDBObject("$push", new BasicDBObject("consumeruserid", userid)), "Institute");
+		
+		
+		return null;
+	}
+
+	public String addNewCollege(String institutetype, String institutename, String institutedesc, String instituteadd,
+			String currentstatus, String instituteprice) {
+		// TODO Auto-generated method stub
+		
+		Institute institute = new Institute();
+		institute.setCurrentstatus(currentstatus);
+		institute.setInstituteaddress(instituteadd);
+		institute.setInstituteadmissionprice(instituteprice);
+		institute.setInstitutedesc(institutedesc);
+		institute.setInstitutename(institutename);
+		String uniqueid = "";
+		GuidancePreview guidanceprev = new GuidancePreview();
+		
+		try {
+			uniqueid = guidanceprev.makeSHA1Hash(institutename+institutetype);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		institute.setInstituteid(uniqueid);
+		String[] planinfoid = new String[0];
+		institute.setPlaninfoid(planinfoid);
+		institute.setPlaygroundid("");
+		String[] testtemplateid = new String[0];
+		institute.setTesttemplateid(testtemplateid);
+		String[] studentparentportalid = new String[0];
+		institute.setStudentparentportalid(studentparentportalid);
+		institute.setScheduletimetable("");
+		institute.setInstitutetype("College");
+		SchoolPreview schoolprev = new SchoolPreview();
+		
+		MongoConnection mongoconsearch = new MongoConnection();
+		BasicDBObject basicguishareobj =  schoolprev.formNewInstituteDBObject(institute);
+		mongoconsearch.saveObject(basicguishareobj, "Institute");
+		
+		return uniqueid;
 	}
 	
 	
