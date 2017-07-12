@@ -728,15 +728,84 @@
 											<!-- end widget edit box -->
 						
 											<!-- widget content -->
-											<div class="widget-body no-padding">
+											<div class="widget-body">
 						
-												<div class="row">
-													<div class="superbox col-sm-12">
-														<div class="superbox-list">
-															<img src="https://s-media-cache-ak0.pinimg.com/736x/05/46/63/0546638b58d2d396f97ad69177f104fa.jpg" data-img="https://s-media-cache-ak0.pinimg.com/736x/05/46/63/0546638b58d2d396f97ad69177f104fa.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img" style="height:150px;">
+												<div class="row" id="branchinfo">
+													<div class="widget-body">
+				
+													<div class="panel-group smart-accordion-default" id="accordion-2">
+														<div class="panel panel-default">
+															<div class="panel-heading">
+																<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-1"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>
+															</div>
+															<div id="collapseOne-1" class="panel-collapse collapse in">
+																<div class="panel-body">
+																	<div class="widget-body">
+				
+																		<div class="tabs-left">
+																			<ul class="nav nav-tabs tabs-left" id="demo-pill-nav">
+																				<li class="active">
+																					<a href="#tab-r1" data-toggle="tab"><span class="badge bg-color-blue txt-color-white">12</span> Item 1 </a>
+																				</li>
+																				<li>
+																					<a href="#tab-r2" data-toggle="tab"><span class="badge bg-color-blueDark txt-color-white">3</span> Item 2</a>
+																				</li>
+																				<li>
+																					<a href="#tab-r3" data-toggle="tab"><span class="badge bg-color-greenLight txt-color-white">0</span> Item 3</a>
+																				</li>
+																			</ul>
+																			<div class="tab-content">
+																				<div class="tab-pane active" id="tab-r1">
+																					<div class="widget-body">
+																					
+															
+																					<ul id="myTab3" class="nav nav-tabs tabs-pull-right bordered">
+																						<li class="active">
+																							<a href="#l1" data-toggle="tab">Tab Item 1 <span class="badge bg-color-pinkDark txt-color-white">99</span></a>
+																						</li>
+																						<li class="pull-right">
+																							<a href="#l2" data-toggle="tab">Tab Item 2</a>
+																						</li>
+																					</ul>
+															
+																					<div id="myTabContent3" class="tab-content padding-10">
+																						<div class="tab-pane fade in active" id="l1">
+																							<p>
+																								My therapist told me the way to achieve true inner peace is to finish what I start. So far I’ve finished two bags of M&Ms and a chocolate cake. I feel better already.
+																							</p>
+																						</div>
+																						<div class="tab-pane fade" id="l2">
+																							<p>
+																								Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
+																							</p>
+																						</div>
+																						
+																					</div>
+															
+																				</div>
+																				</div>
+																				<div class="tab-pane" id="tab-r2">
+																					<p>
+																						Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
+																					</p>
+																				</div>
+																				<div class="tab-pane" id="tab-r3">
+																					<p>
+																						Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table.
+																					</p>
+																				</div>
+																			</div>
+																		</div>
+												
+																	</div>
+																</div>
+															</div>
 														</div>
+														
+														
 													</div>
-													<div class="superbox-show" style="height:300px; display: none"></div>
+							
+												</div>
 												</div>
 						
 											</div>
@@ -861,7 +930,7 @@
 									<div class="col-sm-12">
 										<div class="form-group">
 											<label>Sections</label>
-											<input class="form-control tagsinput" value="SectionA" id="sectionlist" data-role="tagsinput">
+											<input class="form-control tagsinput" value="Section A" id="sectionlist" data-role="tagsinput">
 										</div>
 									</div>
 								</div>
@@ -870,6 +939,14 @@
 										<div class="form-group">
 											<label>Subjects</label>
 											<input class="form-control tagsinput" value="" id="subjectlist" data-role="tagsinput">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label>Subject Lab</label>
+											<input class="form-control tagsinput" value="" id="subjectlab" data-role="tagsinput">
 										</div>
 									</div>
 								</div>
@@ -1452,11 +1529,59 @@
 			var subjectlist = $('#subjectlist').val();
 			var sectionlist = $('#sectionlist').val();
 			var collegeid = '<%=instituteid%>';
+			var collegename = '<%=institutename%>';
+			var collegedesc = '<%=institutedesc%>';
+			var collegeadd = '<%=instituteadd%>';
+			var subjectlab = $('#subjectlab').val();
 			
-			$.getJSON('branchCollegeAdd?branch='+branch+"&subjectlist="+subjectlist+"&sectionlist="+sectionlist+"&collegeid="+collegeid, function(dataset) {
+			$.getJSON('branchCollegeAdd?branch='+branch+"&subjectlist="+subjectlist+"&sectionlist="+sectionlist+"&collegeid="+collegeid+"&collegename="+collegename+"&collegedesc="+collegedesc+"&collegeadd="+collegeadd+"&subjectlab="+subjectlab, function(dataset) {
 	        	 console.log(dataset);
 	        	 
 	        	 $('#createBranch').modal('hide');
+	        	 
+	        	 
+	        	 var branchname = dataset.Branch;
+	        	 var subjects = dataset.Subjects;
+	        	 var subjarr = subjects.split(",");
+	        	 
+	        	 var branchterm = "<div class='panel-group smart-accordion-default' id='branchdata'><div class='panel panel-default'><div class='panel-heading'>"+
+        		 "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#branchdata' href='#"+branchname+"'><i class='fa fa-fw fa-plus-circle txt-color-green'></i>"+
+        		 "<i class='fa fa-fw fa-minus-circle txt-color-red'></i> </a></h4></div><div id='"+branchname+"' class='panel-collapse collapse'><div class='panel-body'>";
+        		 
+        		 var subjectstart = "<div class='jarviswidget' id='subject"+branchname+"' data-widget-colorbutton='false' data-widget-editbutton='false' data-widget-fullscreenbutton='false' data-widget-custombutton='false' data-widget-sortable='false'>"+
+        		 "<header><h2>Subjects ::</h2><div class='widget-toolbar hidden-phone'></div></header><div><div class='jarviswidget-editbox'></div><div class='widget-body'><div class='tabs-left'>"+
+        		 "<ul class='nav nav-tabs tabs-left' id='pill-"+branchname+"'></ul><div class='tab-content' id='tab-"+branchname+"'></div>";
+        		 
+        		 
+        		 
+	        	 
+	        	 for(var h=0;h<subjarr.length;h++){
+	        		 
+	        		 var persubjectli = "<li><a href='#"+subjarr[h]+"' data-toggle='tab'>"+subjarr[h]+"</a></li>";
+	        		 $('#pill-'+branchname).append(persubjectli);
+	        		 var persubjectdiv = "<div class='tab-pane' id='"+subjarr[h]+"'><div class='widget-body'><ul id='subjectsectiontab"+subjarr[h]+"' class='nav nav-tabs tabs-pull-right bordered'></ul><div id='subjectsectionteachers"+subjarr[h]+"' class='tab-content padding-10'></div></div></div>";
+	        		 $('#tab-'+branchname).append(persubjectdiv);
+	        		 
+	        		 var sectionlist = dataset.Sections;
+	        		 for(var f=0;f<sectionlist.length;f++){
+	        			 var sectionli = "<li ><a href='#"+sectionlist[f]+"' data-toggle='tab'>"+sectionlist[f]+"</a></li>";
+	        			 $('#subjectsectiontab'+subjarr[h]).append(sectionli);
+	        			 var sectiondiv = "<div class='tab-pane fade' id="+sectionlist[f]+"></div>";
+	        			 $('#subjectsectionteachers'+subjarr[h]).append(sectiondiv);
+	        		 }
+	        		 
+	        		 
+	        	 }
+	        	 var subjectend = "</div></div></div></div>";
+	        	 
+	        	 var subjbranchend = "</div></div></div></div>";
+	        	 
+	        	 
+	        	 var totalsubjecttab = branchterm+subjectstart+subjectend+subjbranchend;
+	        	 console.log(totalsubjecttab);
+	        	 
+	        	 $('#branchinfo').append(totalsubjecttab);
+	        	 
 			});
 			
 		}

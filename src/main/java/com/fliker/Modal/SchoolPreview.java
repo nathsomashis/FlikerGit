@@ -5,6 +5,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -12,6 +14,9 @@ import com.fliker.Connection.MongoConnection;
 import com.fliker.Repository.Assignment;
 import com.fliker.Repository.Institute;
 import com.fliker.Repository.InstituteDivision;
+import com.fliker.Repository.InstituteSubDivision;
+import com.fliker.Repository.InstituteSubjectLab;
+import com.fliker.Repository.InstituteSubjectMatter;
 import com.fliker.Repository.Profile;
 import com.fliker.Repository.Timetable;
 import com.mongodb.BasicDBList;
@@ -210,44 +215,153 @@ public class SchoolPreview {
 		return jsonlist;
 	}
 
-	public ArrayList saveNewBranchCollege(String branch, String subjectlist, String sectionlist, String collegeid) {
+	public void saveNewBranchCollege(String branch, String subjectlist, String sectionlist, String collegeid, String collegename, String collegedesc, String collegeadd, String subjectlab) {
 		// TODO Auto-generated method stub
 		
-		String[] subjectar = subjectlist.split(",");
-		String[] subdivisionrr = sectionlist.split(",");
+		SchoolPreview schoolprev = new SchoolPreview();
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("collegeid", collegeid, "InstituteDivision");
+		while(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			
+		String batchname = 	(String)dbj.get("divisiontype");
+			
+		if(!batchname.equalsIgnoreCase(branch)){
 		
-		InstituteDivision institutedivision = new InstituteDivision();
-		institutedivision.setDivisiontype(branch);
-		String uniqueid = "";
-		GuidancePreview guidanceprev = new GuidancePreview();
+			String[] subjectar = subjectlist.split(",");
+			String[] subdivisionrr = sectionlist.split(",");
+			String[] subjectlablist = subjectlab.split(",");
+			
+			InstituteDivision institutedivision = new InstituteDivision();
+			institutedivision.setDivisiontype(branch);
+			String uniqueid = "";
+			GuidancePreview guidanceprev = new GuidancePreview();
+			
+			try {
+				uniqueid = guidanceprev.makeSHA1Hash(branch+collegeid);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			institutedivision.setDivisionid(uniqueid);
+			institutedivision.setBlackboardid(uniqueid);
+			String[] historybatchid = new String[0];
+			institutedivision.setHistorybatchid(historybatchid);
+			String[] students = new String[0];
+			institutedivision.setStudents(students);
+			institutedivision.setSubdivisiontype(subdivisionrr);
+			if(subdivisionrr.length < 1){
+				
+				for(int m=0;m<subdivisionrr.length;m++){
+					InstituteSubDivision instsubdiv = new InstituteSubDivision();
+					String uniqueidbatch = "";
+					guidanceprev = new GuidancePreview();
+					
+					try {
+						uniqueidbatch = guidanceprev.makeSHA1Hash(subdivisionrr[m]);
+					} catch (NoSuchAlgorithmException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					instsubdiv.setBlackboardid(uniqueidbatch);
+					instsubdiv.setHistorybatchid(uniqueidbatch);
+					String[] studentsarr = new String[0];
+					instsubdiv.setStudents(studentsarr);
+					instsubdiv.setSubdivisionid(uniqueidbatch);
+					instsubdiv.setTimetableid(uniqueidbatch);
+					
+					instsubdiv.setSubjectmatter(subjectar);
+					
+					MongoConnection mongoconsearch = new MongoConnection();
+					BasicDBObject basicguishareobj =  schoolprev.formNewInstituteSubDivDBObject(instsubdiv);
+					mongoconsearch.saveObject(basicguishareobj, "Institute");
+					
+				}
+				
+			}
+			
+			institutedivision.setSubjectmatter(subjectar);
+			for(int n=0;n<subjectar.length;n++){
+				
+				InstituteSubjectMatter instsubmatt = new InstituteSubjectMatter();
+				instsubmatt.setDivisionid(uniqueid);
+				
+				String guidanceidstr = guidanceprev.saveGidance("", branch+" "+subjectar[n],subjectar[n]+" Guidance for "+collegename, "provide","academic",collegeadd,"All","Not Entitled","Not Entitled");// New Guidance to provide
+				
+				String[] specificationarr = new String[0];
+				
+				guidanceprev.applyForGuidance(branch+" "+subjectar[n],"","academic","",guidanceidstr,"Not Entitled",specificationarr);
+				
+				guidanceprev.createGuidanceContentData(guidanceidstr,"Not Entitled",branch+" "+subjectar[n]+" Guidance");
+				
+				
+				instsubmatt.setGuidanceid(guidanceidstr);
+				instsubmatt.setHeadguidanceid("");
+				
+				String subjectlabreq = "";
+				
+				for(int x=0;x<subjectlablist.length;x++){
+					
+					if(subjectlablist[x].equalsIgnoreCase(subjectar[n])){
+						subjectlabreq = "lab";
+					}
+				}
+				String uniqueidlab = "";
+				if(!subjectlabreq.isEmpty()){
+				
+					InstituteSubjectLab subjlab = new InstituteSubjectLab();
+					subjlab.setGuidanceid(guidanceidstr);
+					subjlab.setSubjectformatterid(uniqueid);
+					guidanceprev = new GuidancePreview();
+					
+					try {
+						uniqueidlab = guidanceprev.makeSHA1Hash(subjectar[n]);
+					} catch (NoSuchAlgorithmException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					subjlab.setSubjectlabid(uniqueidlab);
+					
+					String[] teacheruserid = new String[0];
+					subjlab.setTeacheruserid(teacheruserid);
+				
+				}
+				
+				instsubmatt.setSubjectlabid(uniqueidlab);
+				
+				String subjectmatterid = "";
+				guidanceprev = new GuidancePreview();
+				
+				try {
+					subjectmatterid = guidanceprev.makeSHA1Hash(subjectar[n]+branch);
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				instsubmatt.setSubjectmatterid(subjectmatterid);
+				instsubmatt.setSubjectname(subjectar[n]);
+				
+				String[] teacheruseridsub = new String[0];
+				instsubmatt.setTeacheruserid(teacheruseridsub);
+				
+			}
+			
 		
-		try {
-			uniqueid = guidanceprev.makeSHA1Hash(branch+collegeid);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		  }
 		}
-		institutedivision.setDivisionid(uniqueid);
-		institutedivision.setBlackboardid(uniqueid);
-		String[] historybatchid = new String[0];
-		institutedivision.setHistorybatchid(historybatchid);
-		String[] students = new String[0];
-		institutedivision.setStudents(students);
-		institutedivision.setSubdivisiontype(subdivisionrr);
-		if(subdivisionrr.length < 1){
-			Timetable timetable = new Timetable();
-			
-			
-			//timetable.setTimeableid();
-			
-			institutedivision.setTimetableid(uniqueid);
-		}
-		
-		
-		
 		
 		
 		
@@ -255,7 +369,20 @@ public class SchoolPreview {
 		//mongoconsearch.updateObject(new BasicDBObject("instituteid", collegeid),new BasicDBObject("$push", new BasicDBObject("consumeruserid", userid)), "Institute");
 		
 		
-		return null;
+		//return null;
+	}
+
+	private BasicDBObject formNewInstituteSubDivDBObject(InstituteSubDivision instsubdiv) {
+		// TODO Auto-generated method stub
+		BasicDBObject basicdbobj = new BasicDBObject();
+		basicdbobj.put("blackboardid", instsubdiv.getBlackboardid());
+		basicdbobj.put("historybatchid", instsubdiv.getHistorybatchid());
+		basicdbobj.put("students", instsubdiv.getStudents());
+		basicdbobj.put("subdivisionid", instsubdiv.getSubdivisionid());
+		basicdbobj.put("timetableid", instsubdiv.getTimetableid());
+		basicdbobj.put("subjectmatter", instsubdiv.getSubjectmatter());
+		
+		return basicdbobj;
 	}
 
 	public String addNewCollege(String institutetype, String institutename, String institutedesc, String instituteadd,
