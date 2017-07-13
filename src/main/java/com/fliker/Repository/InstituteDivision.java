@@ -15,9 +15,16 @@ public class InstituteDivision {
 	private String[] students;
 	private String timetableid;
 	private String[] historybatchid;
+	private String collegeid;
 	
 	
 	
+	public String getCollegeid() {
+		return collegeid;
+	}
+	public void setCollegeid(String collegeid) {
+		this.collegeid = collegeid;
+	}
 	public String[] getHistorybatchid() {
 		return historybatchid;
 	}
