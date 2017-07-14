@@ -114,11 +114,15 @@ public class TeachingController {
 		}
 		
 		@RequestMapping("/branchCollegeAdd")
-		public @ResponseBody ArrayList branchCollegeAdd(
+		public @ResponseBody HashMap branchCollegeAdd(
 				@RequestParam(value = "branch") String branch,
 				@RequestParam(value = "subjectlist") String subjectlist,
 				@RequestParam(value = "sectionlist") String sectionlist,
 				@RequestParam(value = "collegeid") String collegeid,
+				@RequestParam(value = "collegename") String collegename,
+				@RequestParam(value = "collegedesc") String collegedesc,
+				@RequestParam(value = "collegeadd") String collegeadd,
+				@RequestParam(value = "subjectlab") String subjectlab,
 				HttpServletRequest request) {
 			System.out.println("in dashboard social controller");
 			
@@ -135,9 +139,17 @@ public class TeachingController {
 			
 			String profileimageid = profprev.profileimage(userid);
 			
-			ArrayList getBranchDetails = schoolprev.saveNewBranchCollege(branch,subjectlist,sectionlist,collegeid);
+			String branchid = schoolprev.saveNewBranchCollege(branch,subjectlist,sectionlist,collegeid,collegename,collegedesc,collegeadd, subjectlab);
 			
-			return getBranchDetails;
+			HashMap branchdetails = new HashMap();
+			branchdetails.put("BranchID", branchid);
+			branchdetails.put("Branch", branch);
+			branchdetails.put("Subjects", subjectlist);
+			branchdetails.put("Sections", sectionlist);
+			branchdetails.put("Lab", subjectlab);
+			
+			
+			return branchdetails;
 		}
 		
 		
