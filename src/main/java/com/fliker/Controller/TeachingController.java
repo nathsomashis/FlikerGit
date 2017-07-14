@@ -139,9 +139,10 @@ public class TeachingController {
 			
 			String profileimageid = profprev.profileimage(userid);
 			
-			schoolprev.saveNewBranchCollege(branch,subjectlist,sectionlist,collegeid,collegename,collegedesc,collegeadd, subjectlab);
+			String branchid = schoolprev.saveNewBranchCollege(branch,subjectlist,sectionlist,collegeid,collegename,collegedesc,collegeadd, subjectlab);
 			
 			HashMap branchdetails = new HashMap();
+			branchdetails.put("BranchID", branchid);
 			branchdetails.put("Branch", branch);
 			branchdetails.put("Subjects", subjectlist);
 			branchdetails.put("Sections", sectionlist);
