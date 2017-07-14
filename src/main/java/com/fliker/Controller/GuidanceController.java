@@ -380,7 +380,7 @@ public class GuidanceController {
 				
 				String[] specificationarr = specifications.split(",");
 				
-				String guidanceid = guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, request, guidanceflag,guidencetype,location,published,duration,guidanceprice);// New Guidance to provide
+				String guidanceid = guidanceprev.saveGidance(userids, guidanceSubject,guidancereason, guidanceflag,guidencetype,location,published,duration,guidanceprice);// New Guidance to provide
 				
 				guidanceprev.applyForGuidance(guidanceSubject,"",guidencetype,userids,guidanceid,guidanceprice,specificationarr);
 				

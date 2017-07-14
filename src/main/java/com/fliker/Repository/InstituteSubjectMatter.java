@@ -11,6 +11,29 @@ public class InstituteSubjectMatter {
 	private String subjectname;
 	private String[] teacheruserid;
 	private String guidanceid;
+	private String divisionid;
+	private String headguidanceid;
+	private String subjectlabid;
+	
+	
+	public String getDivisionid() {
+		return divisionid;
+	}
+	public void setDivisionid(String divisionid) {
+		this.divisionid = divisionid;
+	}
+	public String getHeadguidanceid() {
+		return headguidanceid;
+	}
+	public void setHeadguidanceid(String headguidanceid) {
+		this.headguidanceid = headguidanceid;
+	}
+	public String getSubjectlabid() {
+		return subjectlabid;
+	}
+	public void setSubjectlabid(String subjectlabid) {
+		this.subjectlabid = subjectlabid;
+	}
 	public String getSubjectmatterid() {
 		return subjectmatterid;
 	}

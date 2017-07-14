@@ -728,16 +728,124 @@
 											<!-- end widget edit box -->
 						
 											<!-- widget content -->
-											<div class="widget-body no-padding">
-						
-												<div class="row">
-													<div class="superbox col-sm-12">
-														<div class="superbox-list">
-															<img src="https://s-media-cache-ak0.pinimg.com/736x/05/46/63/0546638b58d2d396f97ad69177f104fa.jpg" data-img="https://s-media-cache-ak0.pinimg.com/736x/05/46/63/0546638b58d2d396f97ad69177f104fa.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img" style="height:150px;">
+											<div class="widget-body" id="branchdata">
+												
+													<div class="panel-group smart-accordion-default" >
+														<div class="panel panel-default">
+															<div class="panel-heading">
+																<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> <i class="fa fa-lg fa-angle-down pull-right"></i> <i class="fa fa-lg fa-angle-up pull-right"></i> Collapsible Group Item #1 </a></h4>
+															</div>
+															<div id="collapseOne" class="panel-collapse collapse in">
+																<div class="panel-body">
+																	<div class="row" style="margin-left: 0px;margin-right: 0px;">
+																		<header>
+																			<blockquote>
+																			  <h2>Branch</h2>
+																			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+																			</blockquote>
+														
+																			<div class="widget-toolbar hidden-phone">
+																				<div class="smart-form">
+																					<label class="checkbox">
+																					<button class="btn btn-primary" data-toggle="modal" data-target="#editBranch" >Edit Branch</button>
+																					</label>
+																				</div>
+																			</div>
+														
+																		</header>
+																		<div class="col-md-11 padding-left-0">
+																		<div class="widget-body">
+																				
+																			<div class="panel-group smart-accordion-default" id="accordion-2">
+																				<div class="panel panel-default">
+																					<div class="panel-heading">
+																						<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-1"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>
+																					</div>
+																					<div id="collapseOne-1" class="panel-collapse collapse in">
+																						<div class="panel-body">
+																								<div class="row" style="height: 50%">
+																									<div class="col-md-2">
+																										<img src="http://webneel.com/wallpaper/sites/default/files/images/04-2013/dreamy-beach-wallpaper.preview.jpg" class="img-responsive" alt="img">
+																										<ul class="list-inline padding-10">
+																											<li>
+																												<i class="fa fa-calendar"></i>
+																												<a href="javascript:void(0);"> March 12, 2015 </a>
+																											</li>
+																											<li>
+																												<i class="fa fa-comments"></i>
+																												<a href="javascript:void(0);"> 38 Comments </a>
+																											</li>
+																										</ul>
+																									</div>
+																									<div class="col-md-8 padding-left-0">
+																										<h3 class="margin-top-0"><a href="javascript:void(0);"> Why Should You Make A Separate Mobile Website for your Business? </a><br><small class="font-xs"><i>Published by <a href="javascript:void(0);">John Doe</a></i></small></h3>
+																										<p>
+																											At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. 
+																	
+																											<br><br>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
+																											<br><br>
+																										</p>
+																										<a class="btn btn-primary" href="javascript:void(0);"> Read more </a>
+																										<a class="btn btn-warning" href="javascript:void(0);"> Edit </a>
+																										<a class="btn btn-success" href="javascript:void(0);"> Publish </a>
+																									</div>
+																								</div>
+																								<hr>
+																						
+																						</div>
+																					</div>
+																				</div>
+																				<div class="panel panel-default">
+																					<div class="panel-heading">
+																						<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseTwo-1" class="collapsed"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #2 </a></h4>
+																					</div>
+																					<div id="collapseTwo-1" class="panel-collapse collapse">
+																						<div class="panel-body">
+																							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+																						</div>
+																					</div>
+																				</div>
+																				<div class="panel panel-default">
+																					<div class="panel-heading">
+																						<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseThree-1" class="collapsed"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #3 </a></h4>
+																					</div>
+																					<div id="collapseThree-1" class="panel-collapse collapse">
+																						<div class="panel-body">
+																							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+													
+																		</div>
+																		</div>
+																		
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="panel panel-default">
+															<div class="panel-heading">
+																<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed"> <i class="fa fa-lg fa-angle-down pull-right"></i> <i class="fa fa-lg fa-angle-up pull-right"></i> Collapsible Group Item #2 </a></h4>
+															</div>
+															<div id="collapseTwo" class="panel-collapse collapse">
+																<div class="panel-body">
+																	Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+																</div>
+															</div>
+														</div>
+														<div class="panel panel-default">
+															<div class="panel-heading">
+																<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed"> <i class="fa fa-lg fa-angle-down pull-right"></i> <i class="fa fa-lg fa-angle-up pull-right"></i> Collapsible Group Item #3 </a></h4>
+															</div>
+															<div id="collapseThree" class="panel-collapse collapse">
+																<div class="panel-body">
+																	Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+																</div>
+															</div>
 														</div>
 													</div>
-													<div class="superbox-show" style="height:300px; display: none"></div>
-												</div>
+							
 						
 											</div>
 											<!-- end widget content -->
@@ -836,7 +944,7 @@
 
 		</div>
 		<!-- END MAIN CONTENT -->
-		<div class="modal fade" id="createBranch"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="createBranch"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -860,8 +968,8 @@
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="form-group">
-											<label>Sections</label>
-											<input class="form-control tagsinput" value="SectionA" id="sectionlist" data-role="tagsinput">
+											<label>Semesters</label>
+											<input class="form-control tagsinput" value="Section A" id="sectionlist" data-role="tagsinput">
 										</div>
 									</div>
 								</div>
@@ -870,6 +978,64 @@
 										<div class="form-group">
 											<label>Subjects</label>
 											<input class="form-control tagsinput" value="" id="subjectlist" data-role="tagsinput">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label>Subject Lab</label>
+											<input class="form-control tagsinput" value="" id="subjectlab" data-role="tagsinput">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addBranchList()">
+									Proceed
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				
+				<div class="modal fade" id="addBranchSubject"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">New Branch</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-2 control-label">Branch Name</label>
+											<div class="col-md-10">
+												<input class="form-control" placeholder="" id="branchid" type="text" disabled="disabled">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label>Subjects</label>
+											<input class="form-control tagsinput" value="" id="subjectlist" data-role="tagsinput">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label>Subject Lab</label>
+											<input class="form-control tagsinput" value="" id="subjectlab" data-role="tagsinput">
 										</div>
 									</div>
 								</div>
@@ -1452,11 +1618,81 @@
 			var subjectlist = $('#subjectlist').val();
 			var sectionlist = $('#sectionlist').val();
 			var collegeid = '<%=instituteid%>';
+			var collegename = '<%=institutename%>';
+			var collegedesc = '<%=institutedesc%>';
+			var collegeadd = '<%=instituteadd%>';
+			var subjectlab = $('#subjectlab').val();
 			
-			$.getJSON('branchCollegeAdd?branch='+branch+"&subjectlist="+subjectlist+"&sectionlist="+sectionlist+"&collegeid="+collegeid, function(dataset) {
+			$.getJSON('branchCollegeAdd?branch='+branch+"&subjectlist="+subjectlist+"&sectionlist="+sectionlist+"&collegeid="+collegeid+"&collegename="+collegename+"&collegedesc="+collegedesc+"&collegeadd="+collegeadd+"&subjectlab="+subjectlab, function(dataset) {
 	        	 console.log(dataset);
 	        	 
 	        	 $('#createBranch').modal('hide');
+	        	 
+	        	 
+	        	 var branchname = dataset.Branch;
+	        	 var subjects = dataset.Subjects;
+	        	 var branchid = dataset.BranchID;
+	        	 var subjarr = subjects.split(",");
+	        	 
+	        	 var branchterm = "<div class='panel-group smart-accordion-default' ><div class='panel panel-default'>"+
+	        		 			 "<div class='panel-heading'>"+
+	        	 				 "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#branchdat' href='#"+branchid+"'><i class='fa fa-lg fa-angle-down pull-right'></i><i class='fa fa-lg fa-angle-up pull-right'></i>"+branchname+"</a></h4>"+
+	        	 				"</div>"+
+	        	 				"<div id='"+branchid+"' class='panel-collapse collapse in'>"+
+	        	 				"<div class='panel-body'>"+
+	        	 				"<div class='row' style='margin-left: 0px;margin-right: 0px;'>"+
+	        	 				"<header><blockquote><h2>"+branchname+"</h2><small><a>Head Teacher</a><cite title='Source Title' id='branchowner"+branchid+"'></cite></small></blockquote>"+
+	        	 				"<div class='widget-toolbar hidden-phone'><div class='smart-form'><label class='checkbox'><button class='btn btn-primary' data-toggle='modal' data-target='#editBranch' >Edit Branch</button></label></div></div>"+
+	        	 				"</header>"+
+	        	 				"<div class='col-md-11 padding-left-0'>"+
+	        	 				"<div class='widget-body' id='subjectset"+branchid+"'>"+
+	        	 				"<div class='panel-group smart-accordion-default' id='subjectdat"+branchid+"'>";
+	        	var branchend = "</div></div></div></div></div></div></div></div>";
+	        	 	
+	        	 
+	        	 
+	        	 
+        		 
+        		 var subjectstart = "<div class='jarviswidget' id='subject"+branchname+"' data-widget-colorbutton='false' data-widget-editbutton='false' data-widget-fullscreenbutton='false' data-widget-custombutton='false' data-widget-sortable='false'>"+
+        		 "<header><h2>Subjects ::</h2><div class='widget-toolbar hidden-phone'></div></header><div><div class='jarviswidget-editbox'></div><div class='widget-body'><div class='tabs-left'>"+
+        		 "<ul class='nav nav-tabs tabs-left' id='pill-"+branchname+"'></ul><div class='tab-content' id='tab-"+branchname+"'></div>";
+        		 
+        		 
+        		 var subjecttag = "";
+	        	 
+	        	 for(var h=0;h<subjarr.length;h++){
+	        		 
+	        		 var subjectelement = subjarr[h].replace(/\s/g,'');
+	        		 var persubject = "<div class='panel panel-default'>"+
+	        			 			  "<div class='panel-heading'>"+
+	        		 				  "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#subjectdat"+branchid+"' href='#"+subjectelement+branchid+"'> <i class='fa fa-fw fa-plus-circle txt-color-green'></i> <i class='fa fa-fw fa-minus-circle txt-color-red'></i>"+subjarr[h]+"</a></h4>"+
+	        		 				  "</div>"+
+	        		 				  "<div id='"+subjectelement+branchid+"' class='panel-collapse collapse in'>"+
+	        		 				  "<div class='panel-body' id='subjectTeachers"+subjectelement+branchid+"'>"+
+	        		 				  "<hr></div></div></div>";
+	        		 
+	        		 //var idsec = $("#subjectdat"+branchid).selector;				  
+	        		
+	        		 subjecttag = subjecttag + persubject;
+	        		 
+	        		 /* var sectionlist = dataset.Sections;
+	        		 for(var f=0;f<sectionlist.length;f++){
+	        			 var sectionli = "<li ><a href='#"+sectionlist[f]+"' data-toggle='tab'>"+sectionlist[f]+"</a></li>";
+	        			 $('#subjectsectiontab'+subjarr[h]).append(sectionli);
+	        			 var sectiondiv = "<div class='tab-pane fade' id="+sectionlist[f]+"></div>";
+	        			 $('#subjectsectionteachers'+subjarr[h]).append(sectiondiv);
+	        		 } */
+	        		 
+	        		 
+	        	 }
+	        	 
+	        	
+	        	 
+	        	 var totalsubjecttab = branchterm+subjecttag+branchend;
+	        	 console.log(totalsubjecttab);
+	        	 
+	        	 $('#branchdata').append(totalsubjecttab);
+	        	 
 			});
 			
 		}

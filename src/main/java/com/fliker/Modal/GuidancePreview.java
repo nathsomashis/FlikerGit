@@ -467,7 +467,7 @@ public ArrayList getGuidanceResources( String subject, String guidancetype){
 	}
 
 	
-  public String saveGidance(String userid, String guidancesubjects,String guidancereason, HttpServletRequest request, String guidanceflag, String guidenctype, String location, String published, String duration, String guidanceprice){
+  public String saveGidance(String userid, String guidancesubjects,String guidancereason,String guidanceflag, String guidenctype, String location, String published, String duration, String guidanceprice){
 		
 	  ArrayList profileinfo = new ArrayList();
 	  
