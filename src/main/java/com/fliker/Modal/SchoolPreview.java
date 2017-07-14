@@ -215,18 +215,34 @@ public class SchoolPreview {
 		return jsonlist;
 	}
 
-	public void saveNewBranchCollege(String branch, String subjectlist, String sectionlist, String collegeid, String collegename, String collegedesc, String collegeadd, String subjectlab) {
+	public String saveNewBranchCollege(String branch, String subjectlist, String sectionlist, String collegeid, String collegename, String collegedesc, String collegeadd, String subjectlab) {
 		// TODO Auto-generated method stub
-		
+		String branchid = "";
 		SchoolPreview schoolprev = new SchoolPreview();
 		MongoConnection mongocon = new MongoConnection();
-		DBCursor resultcursor = mongocon.getDBObject("collegeid", collegeid, "InstituteDivision");
+		DBCursor resultcursor = mongocon.getDBObject("instituteid", collegeid, "Institute");
 		while(resultcursor.hasNext()){
 			DBObject dbj = resultcursor.next();
 			
-		String batchname = 	(String)dbj.get("divisiontype");
 			
-		if(!batchname.equalsIgnoreCase(branch)){
+		//String batchname = 	(String)dbj.get("divisiontype");
+		boolean branchnameexist = false;	
+		BasicDBList branchlist = (BasicDBList)dbj.get("divisionid");
+		for(int i=0;i<branchlist.size();i++){
+			
+			DBCursor instcursor = mongocon.getDBObject("divisionid", (String)branchlist.get(i), "InstituteDivision");
+			if(instcursor.hasNext()){
+				DBObject instdbj = instcursor.next();
+				String branchname = (String)instdbj.get("divisiontype");
+				if(branchname.equalsIgnoreCase(branch)){
+					branchnameexist = true;
+				}
+				
+			}
+			
+		}
+		
+		if(!branchnameexist){
 		
 			String[] subjectar = subjectlist.split(",");
 			String[] subdivisionrr = sectionlist.split(",");
@@ -246,6 +262,8 @@ public class SchoolPreview {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			branchid = uniqueid;
 			institutedivision.setDivisionid(uniqueid);
 			institutedivision.setBlackboardid(uniqueid);
 			String[] historybatchid = new String[0];
@@ -367,6 +385,7 @@ public class SchoolPreview {
 		
 		MongoConnection mongoconsearch = new MongoConnection();
 		//mongoconsearch.updateObject(new BasicDBObject("instituteid", collegeid),new BasicDBObject("$push", new BasicDBObject("consumeruserid", userid)), "Institute");
+		return branchid;
 		
 		
 		//return null;
@@ -410,6 +429,8 @@ public class SchoolPreview {
 		
 		institute.setInstituteid(uniqueid);
 		String[] planinfoid = new String[0];
+		String[] divisionid = new String[0];
+		institute.setDivisionid(divisionid);
 		institute.setPlaninfoid(planinfoid);
 		institute.setPlaygroundid("");
 		String[] testtemplateid = new String[0];
