@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class BranchSemester {
 
 	private String semesterid;
-	private String 
 	
 	
 }
