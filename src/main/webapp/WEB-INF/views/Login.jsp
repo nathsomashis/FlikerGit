@@ -259,7 +259,6 @@
 			});
 			
 			$("#login-form").on("submit", function(){
-			    alert("form has been submitted.");
 			    var emailid = $("#emailid").value();
 				var passwordid = $("#passwordid").value();
 			    
