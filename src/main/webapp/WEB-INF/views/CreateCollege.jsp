@@ -733,24 +733,19 @@
 													<div class="panel-group smart-accordion-default" >
 														<div class="panel panel-default">
 															<div class="panel-heading">
-																<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> <i class="fa fa-lg fa-angle-down pull-right"></i> <i class="fa fa-lg fa-angle-up pull-right"></i> Collapsible Group Item #1 </a></h4>
+																<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> 
+																<i class="fa fa-lg fa-angle-down pull-right"></i> <i class="fa fa-lg fa-angle-up pull-right"></i> Branch Name s</a></h4>
 															</div>
 															<div id="collapseOne" class="panel-collapse collapse in">
 																<div class="panel-body">
 																	<div class="row" style="margin-left: 0px;margin-right: 0px;">
+																		<h4 class="panel-title"><button class="btn-xs btn-primary" data-toggle="modal" data-target="#addDivision" > + Semester/Year</button></h4>
+																		<hr>
 																		<header>
 																			<blockquote>
-																			  <h2>Branch</h2>
-																			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+																			  <h2>Semester</h2>
+																			  <small>Someone famous in <a href="#" >Edit Semester</a></small>
 																			</blockquote>
-														
-																			<div class="widget-toolbar hidden-phone">
-																				<div class="smart-form">
-																					<label class="checkbox">
-																					<button class="btn btn-primary" data-toggle="modal" data-target="#editBranch" >Edit Branch</button>
-																					</label>
-																				</div>
-																			</div>
 														
 																		</header>
 																		<div class="col-md-11 padding-left-0">
@@ -759,7 +754,7 @@
 																			<div class="panel-group smart-accordion-default" id="accordion-2">
 																				<div class="panel panel-default">
 																					<div class="panel-heading">
-																						<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-1"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>
+																						<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-1"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Branch Name </a></h4>
 																					</div>
 																					<div id="collapseOne-1" class="panel-collapse collapse in">
 																						<div class="panel-body">
@@ -965,36 +960,13 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Semesters</label>
-											<input class="form-control tagsinput" value="Section A" id="sectionlist" data-role="tagsinput">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Subjects</label>
-											<input class="form-control tagsinput" value="" id="subjectlist" data-role="tagsinput">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Subject Lab</label>
-											<input class="form-control tagsinput" value="" id="subjectlab" data-role="tagsinput">
-										</div>
-									</div>
-								</div>
+								
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Cancel
 								</button>
-								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addBranchList()">
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addBranch()">
 									Proceed
 								</button>
 							</div>
@@ -1009,7 +981,7 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									&times;
 								</button>
-								<h4 class="modal-title" id="myModalLabel">New Branch</h4>
+								<h4 class="modal-title" id="myModalLabel">Subjects</h4>
 							</div>
 							<div class="modal-body">
 				
@@ -1018,12 +990,22 @@
 										<div class="form-group">
 											<label class="col-md-2 control-label">Branch Name</label>
 											<div class="col-md-10">
-												<input class="form-control" placeholder="" id="branchid" type="text" disabled="disabled">
+												<input class="form-control" placeholder="" id="subjectbranchname" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-2 control-label">Semester</label>
+											<div class="col-md-10">
+												<input class="form-control" placeholder="" id="semester" type="text">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row" id="semestersub">
 									<div class="col-sm-12">
 										<div class="form-group">
 											<label>Subjects</label>
@@ -1031,19 +1013,10 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Subject Lab</label>
-											<input class="form-control tagsinput" value="" id="subjectlab" data-role="tagsinput">
-										</div>
-									</div>
-								</div>
+								
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
+								<button class="btn btn-default" data-toggle="modal" data-target="#createBranch" >Previous</button>
 								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addBranchList()">
 									Proceed
 								</button>
@@ -1129,59 +1102,49 @@
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
 				</div><!-- /.modal -->	
-			<div class="modal fade" id="addclass"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="addDivision"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									&times;
 								</button>
-								<h4 class="modal-title" id="myModalLabel">Branch</h4>
+								<h4 class="modal-title" id="myModalLabel">Division</h4>
 							</div>
 							<div class="modal-body">
-				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-2 control-label">Branch Name</label>
+											<div class="col-md-10">
+												<input class="form-control" placeholder="" id="subjectbranchname" type="text" disabled="disabled">
+												<input id="subjectbranchid" type="hidden" disabled="disabled">
+											</div>
+										</div>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Class</label>
-											<select style="width:100%" class="select2">
-													<option value="AK">Alaska</option>
+											<label>Division</label>
+											<select style="width:100%" class="divisionselect">
+													<option value="semester">Semester</option>
+													<option value="year">Year</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Section</label>
-											<select style="width:100%" class="select2">
-													<option value="">Select</option>
-											</select>
+											<label>Name</label>
+											<input class="form-control" placeholder="" id="semester" type="text">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											<label>Courses</label>
-											<select style="width:100%" class="select2">
-													<option value="AK">Alaska</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Price</label>
-											<input
-												class="form-control input-lg"
-												placeholder="" type="text" name="duration" value=""
-												id="schoolbatchduration">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Currency</label>
-											<select style="width:100%" class="select2">
-													<option value="AK">Alaska</option>
-											</select>
+											<label>Subjects</label>
+											<input class="form-control tagsinput" value="" id="subjectlist" data-role="tagsinput">
 										</div>
 									</div>
 								</div>
@@ -1190,7 +1153,7 @@
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Cancel
 								</button>
-								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addplans()">
+								<button type="button" class="btn btn-primary" id="addnewsubjects" onclick="addDivisionSubject()">
 									Add
 								</button>
 							</div>
@@ -1613,9 +1576,82 @@
 	</script>
 
 	<script type="text/javascript">
+		function addBranchSem(){
+			var branch = $('#branchid').val();
+			var semester = $('.semester:checked').val();
+			var semnum = parseInt(semester);
+			
+			var semsubject = "";
+			
+			for(var i=0;i<semnum;i++){
+				
+				var sempersubject = '<div class="col-sm-12"><div class="form-group"><label>Subjects for Semester '+i+'</label>'+
+				'<input class="form-control tagsinput" value="" id="subjectlist'+i+'" data-role="tagsinput"></div></div>';
+				
+				semsubject = semsubject + sempersubject;
+				
+			}
+			
+			
+			$('#semestersub').append(semsubject);
+			$('#subjectbranchid').val(branch);
+			
+			$('#addBranchSubject').modal('show');
+			
+		}
+	
+		function addBranch(){
+			
+			var branch = $('#branchid').val();
+			
+			var collegeid = '<%=instituteid%>';
+			var collegename = '<%=institutename%>';
+			var collegedesc = '<%=institutedesc%>';
+			var collegeadd = '<%=instituteadd%>';
+			
+			$.getJSON('branchToCollegeAdd?branch='+branch+"&collegeid="+collegeid+
+					"&collegename="+collegename+"&collegedesc="+collegedesc+"&collegeadd="+collegeadd, function(dataset) {
+				
+				var branchname = dataset.Branch;
+	        	 var branchid = dataset.BranchID;	
+			
+			
+			var branchterm = "<div class='panel-group smart-accordion-default' ><div class='panel panel-default'>"+
+			 "<div class='panel-heading'>"+
+			 "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#branchdat' href='#"+branchid+"'><i class='fa fa-lg fa-angle-down pull-right'></i><i class='fa fa-lg fa-angle-up pull-right'></i>"+branchname+"</a></h4>"+
+			"</div>"+
+			"<div id='"+branchid+"' class='panel-collapse collapse in'>"+
+			"<div class='panel-body'><h4 class='panel-title'><button class='btn-xs btn-primary' data-toggle='modal' name='"+branchid+"' value='"+branchname+"' id='button"+branchid+"' onclick='' data-target='#addDivision' > + Semester/Year</button></h4>";
+			
+			var branchend = "</div></div></div></div></div>";
+			
+			$('#branchdata').append(branchterm+branchend);
+			
+			$('#createBranch').modal('hide');
+			
+			});
+			
+		}
+		
+		function addDivisionSubject(){
+			
+			var branchname = $('#subjectbranchname').val();
+			var branchid = $('#subjectbranchid').val();
+			
+			
+		}
+		
+		function setBranchName(){
+			
+			$('#subjectbranchname').val(branchname);
+			$('#subjectbranchid').val(branchid);
+			
+		}
+	
 		function addBranchList(){
 			var branch = $('#branchid').val();
-			var subjectlist = $('#subjectlist').val();
+			var semester = $('.semester:checked').val();
+			var semnum = parseInt(semester);
 			var sectionlist = $('#sectionlist').val();
 			var collegeid = '<%=instituteid%>';
 			var collegename = '<%=institutename%>';
@@ -1639,18 +1675,53 @@
 	        	 				 "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#branchdat' href='#"+branchid+"'><i class='fa fa-lg fa-angle-down pull-right'></i><i class='fa fa-lg fa-angle-up pull-right'></i>"+branchname+"</a></h4>"+
 	        	 				"</div>"+
 	        	 				"<div id='"+branchid+"' class='panel-collapse collapse in'>"+
-	        	 				"<div class='panel-body'>"+
-	        	 				"<div class='row' style='margin-left: 0px;margin-right: 0px;'>"+
-	        	 				"<header><blockquote><h2>"+branchname+"</h2><small><a>Head Teacher</a><cite title='Source Title' id='branchowner"+branchid+"'></cite></small></blockquote>"+
-	        	 				"<div class='widget-toolbar hidden-phone'><div class='smart-form'><label class='checkbox'><button class='btn btn-primary' data-toggle='modal' data-target='#editBranch' >Edit Branch</button></label></div></div>"+
-	        	 				"</header>"+
-	        	 				"<div class='col-md-11 padding-left-0'>"+
-	        	 				"<div class='widget-body' id='subjectset"+branchid+"'>"+
-	        	 				"<div class='panel-group smart-accordion-default' id='subjectdat"+branchid+"'>";
-	        	var branchend = "</div></div></div></div></div></div></div></div>";
+	        	 				"<div class='panel-body'>";
+	        	 				
+	        	var branchend = "</div></div></div></div></div>";
 	        	 	
 	        	 
-	        	 
+	        	 for(var i=0;i<semnum;i++){
+	        		 
+	        		 var persemester = "<div class='row' style='margin-left: 0px;margin-right: 0px;'>"+
+ 	 				"<header><blockquote><h2>"+branchname+"</h2><small><a>Head Teacher</a><cite title='Source Title' id='branchowner"+branchid+"'></cite></small></blockquote>"+
+	 				"<div class='widget-toolbar hidden-phone'><div class='smart-form'><label class='checkbox'><button class='btn btn-primary' data-toggle='modal' data-target='#editBranch' >Edit Branch</button></label></div></div>"+
+	 				"</header>"+
+	 				"<div class='col-md-11 padding-left-0'>"+
+	 				"<div class='widget-body' id='subjectset"+branchid+"'>"+
+	 				"<div class='panel-group smart-accordion-default' id='subjectdat"+branchid+"'>";
+	 				
+	 				var subjectlist = $('#subjectlist').val();
+	 				
+	        		 for(var h=0;h<subjarr.length;h++){
+		        		 
+		        		 var subjectelement = subjarr[h].replace(/\s/g,'');
+		        		 var persubject = "<div class='panel panel-default'>"+
+		        			 			  "<div class='panel-heading'>"+
+		        		 				  "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#subjectdat"+branchid+"' href='#"+subjectelement+branchid+"'> <i class='fa fa-fw fa-plus-circle txt-color-green'></i> <i class='fa fa-fw fa-minus-circle txt-color-red'></i>"+subjarr[h]+"</a></h4>"+
+		        		 				  "</div>"+
+		        		 				  "<div id='"+subjectelement+branchid+"' class='panel-collapse collapse in'>"+
+		        		 				  "<div class='panel-body' id='subjectTeachers"+subjectelement+branchid+"'>"+
+		        		 				  "<hr></div></div></div>";
+		        		 
+		        		 //var idsec = $("#subjectdat"+branchid).selector;				  
+		        		
+		        		 subjecttag = subjecttag + persubject;
+		        		 
+		        		 /* var sectionlist = dataset.Sections;
+		        		 for(var f=0;f<sectionlist.length;f++){
+		        			 var sectionli = "<li ><a href='#"+sectionlist[f]+"' data-toggle='tab'>"+sectionlist[f]+"</a></li>";
+		        			 $('#subjectsectiontab'+subjarr[h]).append(sectionli);
+		        			 var sectiondiv = "<div class='tab-pane fade' id="+sectionlist[f]+"></div>";
+		        			 $('#subjectsectionteachers'+subjarr[h]).append(sectiondiv);
+		        		 } */
+		        		 
+		        		 
+		        	 }
+	 				
+	 				
+	        		var persemend = "</div></div></div>"; 
+	        		 
+	        	 }
 	        	 
         		 
         		 var subjectstart = "<div class='jarviswidget' id='subject"+branchname+"' data-widget-colorbutton='false' data-widget-editbutton='false' data-widget-fullscreenbutton='false' data-widget-custombutton='false' data-widget-sortable='false'>"+
@@ -1660,31 +1731,7 @@
         		 
         		 var subjecttag = "";
 	        	 
-	        	 for(var h=0;h<subjarr.length;h++){
-	        		 
-	        		 var subjectelement = subjarr[h].replace(/\s/g,'');
-	        		 var persubject = "<div class='panel panel-default'>"+
-	        			 			  "<div class='panel-heading'>"+
-	        		 				  "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#subjectdat"+branchid+"' href='#"+subjectelement+branchid+"'> <i class='fa fa-fw fa-plus-circle txt-color-green'></i> <i class='fa fa-fw fa-minus-circle txt-color-red'></i>"+subjarr[h]+"</a></h4>"+
-	        		 				  "</div>"+
-	        		 				  "<div id='"+subjectelement+branchid+"' class='panel-collapse collapse in'>"+
-	        		 				  "<div class='panel-body' id='subjectTeachers"+subjectelement+branchid+"'>"+
-	        		 				  "<hr></div></div></div>";
-	        		 
-	        		 //var idsec = $("#subjectdat"+branchid).selector;				  
-	        		
-	        		 subjecttag = subjecttag + persubject;
-	        		 
-	        		 /* var sectionlist = dataset.Sections;
-	        		 for(var f=0;f<sectionlist.length;f++){
-	        			 var sectionli = "<li ><a href='#"+sectionlist[f]+"' data-toggle='tab'>"+sectionlist[f]+"</a></li>";
-	        			 $('#subjectsectiontab'+subjarr[h]).append(sectionli);
-	        			 var sectiondiv = "<div class='tab-pane fade' id="+sectionlist[f]+"></div>";
-	        			 $('#subjectsectionteachers'+subjarr[h]).append(sectiondiv);
-	        		 } */
-	        		 
-	        		 
-	        	 }
+	        	 
 	        	 
 	        	
 	        	 

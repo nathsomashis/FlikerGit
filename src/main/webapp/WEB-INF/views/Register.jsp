@@ -5,7 +5,7 @@
 <html lang="en-us" id="extr-page">
 	<head>
 		<meta charset="utf-8">
-		<title> Register</title>
+		<title>Medha</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -125,7 +125,7 @@
 			<!--<span id="logo"></span>-->
 
 			<div id="logo-group">
-				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
+				<span id="logo"> <img src="img/logo.png" alt="Medha"> </span>
 
 				<!-- END AJAX-DROPDOWN -->
 			</div>
@@ -143,93 +143,14 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 " style="height: 100%">
 						<div class="hero" style="height: 100% ">
 
-							<div class="col-xs-12 col-sm-14 col-md-14 col-lg-7" style="height: 100%; width: 100%">
-				
-									<!-- well -->
-									<div class="well">
-										
-										<div id="myCarousel-2" class="carousel slide">
-											<ol class="carousel-indicators">
-												<li data-target="#myCarousel-2" data-slide-to="0" class="active"></li>
-												<li data-target="#myCarousel-2" data-slide-to="1" class=""></li>
-												<li data-target="#myCarousel-2" data-slide-to="2" class=""></li>
-											</ol>
-											<div class="carousel-inner">
-												<!-- Slide 1 -->
-												<div class="item active">
-													<img src="<c:url value='/resources/img/demo/m3.jpg' />" alt="">
-													<div class="carousel-caption caption-right">
-														<h4>Title 1</h4>
-														<p>
-															Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-														</p>
-														<br>
-														<a href="javascript:void(0);" class="btn btn-info btn-sm">Read more</a>
-													</div>
-												</div>
-												<!-- Slide 2 -->
-												<div class="item">
-													<img src="<c:url value='/resources/img/demo/m1.jpg' />" alt="">
-													<div class="carousel-caption caption-left">
-														<h4>Title 2</h4>
-														<p>
-															Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-														</p>
-														<br>
-														<a href="javascript:void(0);" class="btn btn-danger btn-sm">Read more</a>
-													</div>
-												</div>
-												<!-- Slide 3 -->
-												<div class="item">
-													<img src="<c:url value='/resources/img/demo/m2.jpg' />" alt="">
-													<div class="carousel-caption">
-														<h4>A very long thumbnail title here to fill the space</h4>
-														<br>
-													</div>
-												</div>
-											</div>
-											<a class="left carousel-control" href="#myCarousel-2" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a>
-											<a class="right carousel-control" href="#myCarousel-2" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a>
-										</div>
-				
-									</div>
-									<!-- end well-->
-				
+							<div class="pull-left login-desc-box-l" style="height: 100%; width: 100%">
+								<div class="login-app-icons" style="height: 100%; width: 100%;margin-top: 0px;" >
+									<img src="<c:url value='/resources/img/old-letters-436503_1920.jpg' />" style="height: 100%; width: 100%;" >
 								</div>
+							</div>
 								
 						</div>
-						<div style="margin-top: 20">
-				
-									<div class="col-sm-4">
-				
-										<div class="well well-sm bg-color-darken txt-color-white text-center">
-											<h5><span class="glyphicon glyphicon-briefcase"></span></h5>
-											<code>JOBS</code>
-										</div>
-				
-									</div>
-				
-									<div class="col-sm-4">
-				
-										<div class="well well-sm bg-color-teal txt-color-white text-center">
-											<h5><span class="glyphicon glyphicon-book"></span></h5>
-											<code>
-												COURSES</code>
-										</div>
-				
-									</div>
-				
-									<div class="col-sm-4">
-				
-										<div class="well well-sm bg-color-pinkDark txt-color-white text-center">
-											<h5><span class="glyphicon glyphicon-share"></span></h5>
-											<code>
-												WALL</code>
-										</div>
-				
-									</div>
-				
-								</div>
+						
 						
 
 					</div>
@@ -238,20 +159,19 @@
 
 							<form action="register?" id="smart-form-register" class="smart-form client-form">
 								<header>
-									Registration is FREE*
+									Create Account
 								</header>
 
 								<fieldset>
 									<section>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
 											<input type="text" name="username" placeholder="Username">
-											<b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
+											<b class="tooltip tooltip-bottom-right">Needed to enter the Username</b> </label>
 									</section>
 
 									<section>
 										<label class="input"> <i class="icon-append fa fa-envelope"></i>
 											<input type="email" id="emailaddress" name="email" placeholder="Email address" >
-											<b id="msgdisplay" style="display: block;" class="tooltip tooltip-bottom-right">The email id already taken. Please Login .</b>
 											<b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
 									</section>
 
@@ -304,17 +224,9 @@
 													<option value="3">Prefer not to answer</option>
 												</select> <i></i> </label>
 										</section>
-										<section class="col col-6">
-											<label class="input"> <i class="icon-append fa fa-calendar"></i>
-												<input type="text" name="request" placeholder="Request activation on" class="datepicker" data-dateformat='dd/mm/yy'>
-											</label>
-										</section>
 									</div>
 
 									<section>
-										<label class="checkbox">
-											<input type="checkbox" name="subscription" id="subscription">
-											<i></i>I want to receive news and special offers</label>
 										<label class="checkbox">
 											<input type="checkbox" name="terms" id="terms">
 											<i></i>I agree with the <a href="#" data-toggle="modal" data-target="#myModal"> Terms and Conditions </a></label>
@@ -335,18 +247,6 @@
 							</form>
 
 						</div>
-						<h5 class="text-center">- Or sign in using -</h5>
-						<ul class="list-inline text-center">
-							<li>
-								<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li>
-								<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li>
-								<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
-							</li>
-						</ul>
 					</div>
 				</div>
 			</div>

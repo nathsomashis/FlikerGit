@@ -447,6 +447,73 @@ public class SchoolPreview {
 		
 		return uniqueid;
 	}
+
+	public String saveNewBranchToCollege(String branch, String collegeid, String collegename, String collegedesc,
+			String collegeadd) {
+		// TODO Auto-generated method stub
+		String branchid = "";
+		MongoConnection mongocon = new MongoConnection();
+		DBCursor resultcursor = mongocon.getDBObject("instituteid", collegeid, "Institute");
+		while(resultcursor.hasNext()){
+			DBObject dbj = resultcursor.next();
+			
+			boolean branchnameexist = false;	
+			BasicDBList branchlist = (BasicDBList)dbj.get("divisionid");
+			for(int i=0;i<branchlist.size();i++){
+				
+				DBCursor instcursor = mongocon.getDBObject("divisionid", (String)branchlist.get(i), "InstituteDivision");
+				if(instcursor.hasNext()){
+					DBObject instdbj = instcursor.next();
+					String branchname = (String)instdbj.get("divisiontype");
+					if(branchname.equalsIgnoreCase(branch)){
+						branchnameexist = true;
+					}
+					
+				}
+				
+			}
+			
+			if(!branchnameexist){
+				
+				InstituteDivision instituteDivision = new InstituteDivision();
+				instituteDivision.setBlackboardid("");
+				instituteDivision.setCollegeid(collegeid);
+				
+				String uniqueid = "";
+				GuidancePreview guidanceprev = new GuidancePreview();
+				
+				try {
+					uniqueid = guidanceprev.makeSHA1Hash(branch);
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				branchid = uniqueid;
+				instituteDivision.setDivisionid(uniqueid);
+				instituteDivision.setDivisiontype(branch);
+				
+				String[] historybatchid = new String[0];
+				instituteDivision.setHistorybatchid(historybatchid);
+				String[] students = new String[0];
+				instituteDivision.setStudents(students);
+				String[] subdivisiontype = new String[0];
+				instituteDivision.setSubdivisiontype(subdivisiontype);
+				String[] subjectmatter = new String[0];
+				instituteDivision.setSubjectmatter(subjectmatter);
+				instituteDivision.setTimetableid("");
+				
+				
+				
+			}
+			
+			
+		}
+		
+		return branchid;
+	}
 	
 	
 	

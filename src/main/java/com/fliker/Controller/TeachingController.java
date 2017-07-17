@@ -153,6 +153,39 @@ public class TeachingController {
 		}
 		
 		
+		@RequestMapping("/branchToCollegeAdd")
+		public @ResponseBody HashMap branchToCollegeAdd(
+				@RequestParam(value = "branch") String branch,
+				@RequestParam(value = "collegeid") String collegeid,
+				@RequestParam(value = "collegename") String collegename,
+				@RequestParam(value = "collegedesc") String collegedesc,
+				@RequestParam(value = "collegeadd") String collegeadd,
+				HttpServletRequest request) {
+			System.out.println("in dashboard social controller");
+			
+			ServletContext context = request.getSession().getServletContext();
+			
+			User userinf = (User) context.getAttribute("UserValues");
+			String userid = userinf.getUserid();
+			String userfirstname = userinf.getFirstname();
+			String userlastname = userinf.getLastname();
+			String gender = userinf.getGender();
+			ProfilePreview profprev = new ProfilePreview();
+			
+			SchoolPreview schoolprev = new SchoolPreview();
+			
+			String profileimageid = profprev.profileimage(userid);
+			
+			String branchid = schoolprev.saveNewBranchToCollege(branch,collegeid,collegename,collegedesc,collegeadd);
+			
+			HashMap branchdetails = new HashMap();
+			branchdetails.put("BranchID", branchid);
+			branchdetails.put("Branch", branch);
+			
+			return branchdetails;
+		}
+		
+		
 		@RequestMapping("/createInstitute")
 		public ModelAndView maintainSchool(
 				@RequestParam(value = "institutetype", required = false) String institutetype,
