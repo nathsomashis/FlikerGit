@@ -5,10 +5,22 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
+
+<%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String gender = (String)request.getAttribute("Gender");
+			String userid = (String)request.getAttribute("userid");
+			String imagid = (String)request.getAttribute("ProfileImage");
+			String logo = "";
+			
+			
+		
+		%>
 <meta charset="utf-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-<title>Profile</title>
+<title><%=fullname%></title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -170,7 +182,7 @@
 		<div id="logo-group">
 
 			<!-- PLACE YOUR LOGO HERE -->
-			<span id="logo"> <img src="img/logo.png" alt="Fliker">
+			<span id="logo"> <img src="img/logo.png" alt="Medha">
 			</span>
 			<!-- END LOGO PLACEHOLDER -->
 			<input type="hidden" class="form-control" value="" required	id="locationspec" />
@@ -186,11 +198,11 @@
 				<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
 				<div class="btn-group btn-group-justified" data-toggle="buttons">
 					<label class="btn btn-default"> <input type="radio"
-						name="activity" id="offlinechatmessages?"> Msgs (14)
+						name="activity" id="offlinechatmessages?"> Msgs 
 					</label> <label class="btn btn-default"> <input type="radio"
-						name="activity" id="notifications?"> notify (3)
+						name="activity" id="notifications?"> notify 
 					</label> <label class="btn btn-default"> <input type="radio"
-						name="activity" id="tasklists?"> Tasks (4)
+						name="activity" id="tasklists?"> Tasks 
 					</label>
 				</div>
 
@@ -225,9 +237,8 @@
 		<!-- projects dropdown -->
 		<div class="project-context hidden-xs">
 
-			<span class="label">Projects:</span> <span
-				class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
-				projects <i class="fa fa-angle-down"></i>
+			<span class="label">Say:</span> <span
+				class="project-selector dropdown-toggle" data-toggle="dropdown">Anything<i class="fa fa-angle-down"></i>
 			</span>
 
 			<!-- Suggestion: populate this list with fetch and push technique -->
@@ -305,7 +316,7 @@
 
 			<!-- search mobile button (this is hidden till mobile view port) -->
 			<div id="search-mobile" class="btn-header transparent pull-right">
-				<span> <a href="javascript:void(0)" title="Search"><i
+				<span> <a href="searchresults?" title="Search"><i
 						class="fa fa-search"></i></a>
 				</span>
 			</div>
@@ -325,9 +336,13 @@
 
 			<!-- fullscreen button -->
 			<div id="fullscreen" class="btn-header transparent pull-right">
-				<span> <a href="javascript:void(0);"
+				<span> <a href="#"
 					data-action="launchFullscreen" title="Full Screen"><i
 						class="fa fa-arrows-alt"></i></a>
+				</span>
+			</div>
+			<div id="article" class="btn-header transparent pull-right">
+				<span> <a href="createpost?" title="Article">Article</a>
 				</span>
 			</div>
 			<!-- end fullscreen button -->
@@ -364,47 +379,6 @@
 			</div>
 			<!-- end voice command -->
 
-			<!-- multiple lang dropdown : find all flags in the flags page -->
-			<!-- <ul class="header-dropdown-list hidden-xs">
-					<li>
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/blank.gif" class="flag flag-us" alt="United States"> <span> English (US) </span> <i class="fa fa-angle-down"></i> </a>
-						<ul class="dropdown-menu pull-right">
-							<li class="active">
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
-							</li>	
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
-							</li>	
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
-							</li>						
-							
-						</ul>
-					</li>
-				</ul> -->
-			<!-- end multiple lang -->
-
 		</div>
 		<!-- end pulled right: nav area -->
 
@@ -417,17 +391,7 @@
 	<aside id="left-panel">
 
 		<!-- User info -->
-		<%
 		
-			String fullname = (String)request.getAttribute("FullName");
-			String gender = (String)request.getAttribute("Gender");
-			String userid = (String)request.getAttribute("userid");
-			String imagid = (String)request.getAttribute("ProfileImage");
-			String logo = "";
-			
-			
-		
-		%>
 
 
 		<!-- User info -->
@@ -473,85 +437,40 @@
 				-->
 
 			<ul>
-				<li><a href="search?"><i
+				<!-- <li><a href="search?"><i
 						class="fa fa-lg fa-fw fa-search-plus"></i> <span
-						class="menu-item-parent">Search</span> </a></li>
+						class="menu-item-parent">Search</span> </a></li> -->
 				<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
 				<li><a href="dashboardsocial?"><i
-						class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
-						class="menu-item-parent">Wall</span> <span
-						class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+						class="fa fa-lg fa-fw fa-retweet"></i> <span
+						class="menu-item-parent">Wall</span></a></li>
 
-				<li class="active"><a href="profile?"><i
+				<!-- <li class="active"><a href="profile?"><i
 						class="fa fa-lg fa-fw fa-info"></i> <span class="menu-item-parent">Profile</span>
-						<span class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-				<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
-						<span class="menu-item-parent">Timeline</span> <span
-						class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-				<li><a href="createpost?" title="NewPost"><i
+						<span class="badge pull-right inbox-badge margin-right-13">14</span></a></li> -->
+				<!-- <li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+						<span class="menu-item-parent">Timeline</span></a></li> -->
+				<!-- <li><a href="createpost?" title="NewPost"><i
 						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post
-							Your Activity</span></a></li>
-				<li><a href="classroom?" title="NewPost"><i
+							Your Activity</span></a></li> -->
+				<!-- <li><a href="classroom?" title="NewPost"><i
 						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-				</li>
+				</li> -->
 				<li><a href="#" title="Dashboard"><i
 						class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
 					<ul>
-						<li class=""><a href="courseEdu?" title="NewPost"><i
-								class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
-						</li>
-						<li class=""><a href="classroom?" title="ClassRoom"><i
-								class="fa fa-lg fa-fw fa-inbox"></i><span
-								class="menu-item-parent">ClassRoom</span></a></li>
-					</ul></li>
-				<!-- <li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
-			<ul>		
-				<li class="active"><a href="#" title="NewCourse"><i
-								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
-								</li>
-				<li class=""><a href="createcourse?" title="NewCourse"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Course</span></a></li>	
-				<li class=""><a href="newspecialization?" title="NewSpecialization"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Specialization</span></a></li>
-				<li class=""><a href="neworganizations?" title="NewInstitution"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>
+				
+				<li class=""><a href="standardguidance?" title="ClassRoom"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Guidance</span></a>
+				</li>
+				<li class=""><a href="standardcourse?" title="ClassRoom"><i
+				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Courses</span></a>
+				</li>
 			</ul>
-		</li> -->
-				<li><a href="#" title="Dashboard"><i
-						class="fa fa-lg fa-fw fa-briefcase"></i> <span
-						class="menu-item-parent">Work</span></a>
-					<ul>
-						<li class=""><a href="ideatoimplement?" title="NewPost"><i
-								class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
-						</li>
-						<li class=""><a href="jobanalysis?" title="NewJob"><i
-								class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional
-									Way</span></a></li>
-
-					</ul></li>
-				<!-- <li class=""><a href="organizations?" title="Organizations"><i
-						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
-				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
-						class="fa fa-plus-square"></i><span class="menu-item-parent">New Opportunity</span></a>
 				</li>
-				<li class=""><a href="companies?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Start New Company</span></a>
-				</li>
-			</ul></li> -->
-				<li class=""><a href="#" title="Organizations"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
-					<ul>
-						<li class=""><a href="createjob?" title="NewJob"><i
-								class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
-						</li>
-						<li class=""><a href="companies?" title="Companies"><i
-								class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
-						</li>
-					</ul></li>
+				
 
 				<li class="chat-users top-menu-invisible"><a href="#"><i
 						class="fa fa-lg fa-fw fa-comment-o"><em
@@ -2172,64 +2091,13 @@
 	<div class="page-footer">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<span class="txt-color-white">SmartAdmin 1.8.2 <span
-					class="hidden-xs"> - Web Application Framework</span> Â© 2014-2015
-				</span>
+				
 			</div>
 
 			<div class="col-xs-6 col-sm-6 text-right hidden-xs">
 				<div class="txt-color-white inline-block">
-					<i class="txt-color-blueLight hidden-mobile">Last account
-						activity <i class="fa fa-clock-o"></i> <strong>52 mins
-							ago &nbsp;</strong>
-					</i>
-					<div class="btn-group dropup">
-						<button
-							class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white"
-							data-toggle="dropdown">
-							<i class="fa fa-link"></i> <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu pull-right text-left">
-							<li>
-								<div class="padding-5">
-									<p class="txt-color-darken font-sm no-margin">Download
-										Progress</p>
-									<div class="progress progress-micro no-margin">
-										<div class="progress-bar progress-bar-success"
-											style="width: 50%;"></div>
-									</div>
-								</div>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<div class="padding-5">
-									<p class="txt-color-darken font-sm no-margin">Server Load</p>
-									<div class="progress progress-micro no-margin">
-										<div class="progress-bar progress-bar-success"
-											style="width: 20%;"></div>
-									</div>
-								</div>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<div class="padding-5">
-									<p class="txt-color-darken font-sm no-margin">
-										Memory Load <span class="text-danger">*critical*</span>
-									</p>
-									<div class="progress progress-micro no-margin">
-										<div class="progress-bar progress-bar-danger"
-											style="width: 70%;"></div>
-									</div>
-								</div>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<div class="padding-5">
-									<button class="btn btn-block btn-default">refresh</button>
-								</div>
-							</li>
-						</ul>
-					</div>
+					
+					
 				</div>
 			</div>
 		</div>
@@ -2242,40 +2110,20 @@
 		-->
 	<div id="shortcut">
 		<ul>
-			<li><a href="inbox.html"
-				class="jarvismetro-tile big-cubes bg-color-blue"> <span
-					class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail
-							<span class="label pull-right bg-color-darken">14</span>
-					</span>
-				</span>
-			</a></li>
 			<li><a href="calendar.html"
 				class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span
 					class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span>
 				</span>
 			</a></li>
-			<li><a href="gmap-xml.html"
-				class="jarvismetro-tile big-cubes bg-color-purple"> <span
-					class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span>
-				</span>
-			</a></li>
-			<li><a href="invoice.html"
-				class="jarvismetro-tile big-cubes bg-color-blueDark"> <span
-					class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice
-							<span class="label pull-right bg-color-darken">99</span>
-					</span>
-				</span>
-			</a></li>
-			<li><a href="gallery.html"
-				class="jarvismetro-tile big-cubes bg-color-greenLight"> <span
-					class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery
-					</span>
-				</span>
-			</a></li>
-			<li><a href="profile.html"
+			<li><a href="profile?"
 				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
 					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My
 							Profile </span>
+				</span>
+			</a></li>
+			<li><a href="timeline?"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>TimeLine </span>
 				</span>
 			</a></li>
 		</ul>

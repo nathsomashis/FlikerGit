@@ -60,9 +60,9 @@ public class LoginController {
 		/*}else if(message.equalsIgnoreCase("timeout")){
 			mv = new ModelAndView("/Error");*/
 		}else {
-			//mv = new ModelAndView("/DashboardSocial"); original one 
+			mv = new ModelAndView("/DashboardSocial"); //original one 
 			
-			mv = new ModelAndView("/Search"); //for fast processing
+			//mv = new ModelAndView("/Search"); //for fast processing
 			
 			session.setAttribute("userid", message);
 			UserPreview userprev = new UserPreview();

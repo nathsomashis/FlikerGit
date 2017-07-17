@@ -152,7 +152,7 @@
 	<div id="logo-group">
 
 		<!-- PLACE YOUR LOGO HERE -->
-		<span id="logo"> <img src="img/logo.png" alt="Fliker">
+		<span id="logo"> <img src="img/logo.png" alt="Medha">
 		</span>
 		<!-- END LOGO PLACEHOLDER -->
 
@@ -168,7 +168,7 @@
 			<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
 			<div class="btn-group btn-group-justified" data-toggle="buttons">
 				<label class="btn btn-default"> <input type="radio"
-					name="activity" id="offlinechatmessages?"> Msgs (14)
+					name="activity" id="offlinechatmessages?"> Msgs
 				</label> <label class="btn btn-default"> <input type="radio"
 					name="activity" id="notifications?"> notify (3)
 				</label> <label class="btn btn-default"> <input type="radio"
