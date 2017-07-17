@@ -5,7 +5,7 @@
 <html lang="en-us" id="extr-page">
 	<head>
 		<meta charset="utf-8">
-		<title> Login</title>
+		<title>Medha</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -77,7 +77,7 @@
 		<header id="header">
 
 			<div id="logo-group">
-				<span id="logo"> <img src="img/logo.png" alt="SmartAdmin"> </span>
+				<span id="logo"> <img src="img/logo.png" alt="Medha"> </span>
 			</div>
 
 			<span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Need an account?</span> <a href="registeruser?" class="btn btn-danger">Create account</a> </span>
@@ -97,7 +97,6 @@
 							<div class="pull-left login-desc-box-l" style="height: 100%; width: 100%">
 								<div class="login-app-icons" style="height: 100%; width: 100%;margin-top: 0px;" >
 									<img src="<c:url value='/resources/img/old-letters-436503_1920.jpg' />" style="height: 100%; width: 100%;" >
-									
 								</div>
 							</div>
 							
@@ -153,9 +152,6 @@
 							</form>
 
 						</div>
-						
-						<h5 class="text-center"> - Or sign in using -</h5>
-															
 						
 					</div>
 				</div>
