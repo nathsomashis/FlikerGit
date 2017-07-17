@@ -29,12 +29,8 @@
 		<link href='<c:url value="/resources/css/smartadmin-rtl.min.css" />' rel="stylesheet">
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">  -->
 
-		<!-- We recommend you use "your_style.css" to override SmartAdmin
-		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
-		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
-
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-		<link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet">
+		<%-- <link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet"> --%>
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
 
 		<!-- #FAVICONS -->
@@ -77,7 +73,7 @@
 		<header id="header">
 
 			<div id="logo-group">
-				<span id="logo"> <img src="img/logo.png" alt="SmartAdmin"> </span>
+				<span id="logo"> <img src="<c:url value='/resources/img/viewlogo.png' />" alt="Medha"> </span>
 			</div>
 
 			<span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Need an account?</span> <a href="registeruser?" class="btn btn-danger">Create account</a> </span>
