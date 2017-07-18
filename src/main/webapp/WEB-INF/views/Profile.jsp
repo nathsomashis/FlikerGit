@@ -61,8 +61,8 @@
 
 <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
-<link href='<c:url value="/resources/css/demo.min.css" />'
-	rel="stylesheet">
+<%-- <link href='<c:url value="/resources/css/demo.min.css" />'
+	rel="stylesheet"> --%>
 
 <!-- #FAVICONS -->
 <link href='<c:url value="/resources/img/favicon/favicon.ico" />'
@@ -221,13 +221,13 @@
 				<!-- end notification content -->
 
 				<!-- footer: refresh area -->
-				<span> Last updated on: 12/12/2013 9:43AM
+				<%-- <span> Last updated on: 12/12/2013 9:43AM
 					<button type="button"
 						data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
 						class="btn btn-xs btn-default pull-right">
 						<i class="fa fa-refresh"></i>
 					</button>
-				</span>
+				</span> --%>
 				<!-- end footer -->
 
 			</div>
@@ -274,28 +274,18 @@
 				class="header-dropdown-list hidden-xs padding-5">
 				<li class=""><a href="#"
 					class="dropdown-toggle no-margin userdropdown"
-					data-toggle="dropdown"> <img src="img/avatars/sunny.png"
-						alt="John Doe" class="online" />
+					data-toggle="dropdown"><img src="/Fliker/imageFromUserid/<%=userid%>" alt="<%=fullname%>" class="online">
 				</a>
 					<ul class="dropdown-menu pull-right">
-						<li><a href="javascript:void(0);"
-							class="padding-10 padding-top-0 padding-bottom-0"><i
-								class="fa fa-cog"></i> Setting</a></li>
-						<li class="divider"></li>
-						<li><a href="profile.html"
+						<!-- <li><a href="profile?"
 							class="padding-10 padding-top-0 padding-bottom-0"> <i
 								class="fa fa-user"></i> <u>P</u>rofile
-						</a></li>
+						</a></li> -->
 						<li class="divider"></li>
 						<li><a href="javascript:void(0);"
 							class="padding-10 padding-top-0 padding-bottom-0"
 							data-action="toggleShortcut"><i class="fa fa-arrow-down"></i>
 								<u>S</u>hortcut</a></li>
-						<li class="divider"></li>
-						<li><a href="javascript:void(0);"
-							class="padding-10 padding-top-0 padding-bottom-0"
-							data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i>
-								Full <u>S</u>creen</a></li>
 						<li class="divider"></li>
 						<li><a href="logout?"
 							class="padding-10 padding-top-5 padding-bottom-5"
@@ -461,21 +451,20 @@
 				<li><a href="#" title="Dashboard"><i
 						class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
 					<ul>
-				
-				<li class=""><a href="standardguidance?" title="ClassRoom"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Guidance</span></a>
-				</li>
-				<li class=""><a href="standardcourse?" title="ClassRoom"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Courses</span></a>
-				</li>
-			</ul>
+						<li class=""><a href="standardguidance?" title="ClassRoom"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Guidance</span></a>
+						</li>
+						<li class=""><a href="standardcourse?" title="ClassRoom"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Courses</span></a>
+						</li>
+					</ul>
 				</li>
 				
 
 				<li class="chat-users top-menu-invisible"><a href="#"><i
 						class="fa fa-lg fa-fw fa-comment-o"><em
 							class="bg-color-pink flash animated">!</em></i> <span
-						class="menu-item-parent">Smart Chat API <sup>beta</sup></span></a>
+						class="menu-item-parent">Online Chat</span></a>
 					<ul>
 						<li>
 							<!-- DISPLAY USERS -->
@@ -593,30 +582,11 @@
 		<!-- RIBBON -->
 		<div id="ribbon">
 
-			<span class="ribbon-button-alignment"> <span id="refresh"
-				class="btn btn-ribbon" data-action="resetWidgets"
-				data-title="refresh" rel="tooltip" data-placement="bottom"
-				data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
-				data-html="true"> <i class="fa fa-refresh"></i>
-			</span>
-			</span>
-
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
 				<li>Profile</li>
 			</ol>
 			<!-- end breadcrumb -->
-
-			<!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right">
-				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-				</span> -->
 
 		</div>
 		<!-- END RIBBON -->
@@ -863,38 +833,24 @@
 										<div class="col-sm-12">
 											<div id="myCarousel" class="carousel fade profile-carousel">
 												<div class="air air-bottom-right padding-10">
-													<a href="javascript:void(0);"
+													<!-- <a href="#"
 														class="btn txt-color-white bg-color-teal btn-sm"><i
-														class="fa fa-check"></i> Follow</a>&nbsp; <a
-														href="javascript:void(0);"
+														class="fa fa-check" onclick="profollow();" ></i> Follow</a> -->&nbsp; <a
+														href="#"
 														class="btn txt-color-white bg-color-pinkDark btn-sm"><i
-														class="fa fa-link"></i> Connect</a>
+														class="fa fa-link" onclick="proconnect();"></i> Connect</a>
 												</div>
-												<div class="air air-top-left padding-10">
-													<h4 class="txt-color-white font-md">Jan 1, 2014</h4>
-												</div>
-												<ol class="carousel-indicators">
+												
+												<!-- <ol class="carousel-indicators">
 													<li data-target="#myCarousel" data-slide-to="0"
 														class="active"></li>
-													<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-													<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-												</ol>
-												<div class="carousel-inner">
+												</ol> -->
+												<div class="carousel-inner" id="backgroundimageid" >
 													<!-- Slide 1 -->
-													<div class="item active">
-														<img src="<c:url value='/resources/img/demo/s1.jpg' />"
+													<%-- <div class="item active">
+														<img  src="<c:url value='/resources/img/demo/s1.jpg' />"
 															alt="demo user">
-													</div>
-													<!-- Slide 2 -->
-													<div class="item">
-														<img src="<c:url value='/resources/img/demo/s2.jpg' />"
-															alt="demo user">
-													</div>
-													<!-- Slide 3 -->
-													<div class="item">
-														<img src="<c:url value='/resources/img/demo/m3.jpg' />"
-															alt="demo user">
-													</div>
+													</div> --%>
 												</div>
 											</div>
 										</div>
@@ -1222,168 +1178,6 @@
 									</div>
 								</form>
 
-								<div class="timeline-seperator text-center">
-									<span>10:30PM January 1st, 2013</span>
-									<div class="btn-group pull-right">
-										<a href="javascript:void(0);" data-toggle="dropdown"
-											class="btn btn-default btn-xs dropdown-toggle"><span
-											class="caret single"></span></a>
-										<ul class="dropdown-menu text-left">
-											<li><a href="javascript:void(0);">Hide this post</a></li>
-											<li><a href="javascript:void(0);">Hide future posts
-													from this user</a></li>
-											<li><a href="javascript:void(0);">Mark as spam</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="chat-body no-padding profile-message">
-									<!-- <ul>
-												<li class="message">
-													<img src="img/avatars/sunny.png" class="online" alt="sunny">
-													<span class="message-text"> <a href="javascript:void(0);" class="username">John Doe <small class="text-muted pull-right ultra-light"> 2 Minutes ago </small></a> Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very
-														image let unto fowl isn't in blessed fill life yielding above all moved </span>
-													<ul class="list-inline font-xs">
-														<li>
-															<a href="javascript:void(0);" class="text-info"><i class="fa fa-reply"></i> Reply</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-muted">Show All Comments (14)</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-primary">Edit</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-danger">Delete</a>
-														</li>
-													</ul>
-												</li>
-												<li class="message message-reply">
-													<img src="img/avatars/3.png" class="online" alt="user">
-													<span class="message-text"> <a href="javascript:void(0);" class="username">Serman Syla</a> Haha! Yeah I know what you mean. Thanks for the file Sadi! <i class="fa fa-smile-o txt-color-orange"></i> </span>
-				
-													<ul class="list-inline font-xs">
-														<li>
-															<a href="javascript:void(0);" class="text-muted">1 minute ago </a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a>
-														</li>
-													</ul>
-				
-												</li>
-												<li class="message message-reply">
-													<img src="img/avatars/4.png" class="online" alt="user">
-													<span class="message-text"> <a href="javascript:void(0);" class="username">Sadi Orlaf </a> Haha! Yeah I know what you mean. Thanks for the file Sadi! <i class="fa fa-smile-o txt-color-orange"></i> </span>
-				
-													<ul class="list-inline font-xs">
-														<li>
-															<a href="javascript:void(0);" class="text-muted">a moment ago </a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a>
-														</li>
-													</ul>
-													<input class="form-control input-xs" placeholder="Type and enter" type="text">
-												</li>
-											</ul> -->
-									Add
-								</div>
-
-								<div class="timeline-seperator text-center">
-									<span>11:30PM November 27th, 2013</span>
-									<div class="btn-group pull-right">
-										<a href="javascript:void(0);" data-toggle="dropdown"
-											class="btn btn-default btn-xs dropdown-toggle"><span
-											class="caret single"></span></a>
-										<ul class="dropdown-menu text-left">
-											<li><a href="javascript:void(0);">Hide this post</a></li>
-											<li><a href="javascript:void(0);">Hide future posts
-													from this user</a></li>
-											<li><a href="javascript:void(0);">Mark as spam</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="chat-body no-padding profile-message">
-									<!-- <ul>
-												<li class="message">
-													<img src="img/avatars/1.png" class="online" alt="user">
-													<span class="message-text"> <a href="javascript:void(0);" class="username">John Doe <small class="text-muted pull-right ultra-light"> 2 Minutes ago </small></a> Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very image let unto fowl isn't in blessed fill life yielding above all moved </span>
-													<ul class="list-inline font-xs">
-														<li>
-															<a href="javascript:void(0);" class="text-info"><i class="fa fa-reply"></i> Reply</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-muted">Show All Comments (14)</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-primary">Hide</a>
-														</li>
-													</ul>
-												</li>
-												<li class="message message-reply">
-													<img src="img/avatars/3.png" class="online" alt="user">
-													<span class="message-text"> <a href="javascript:void(0);" class="username">Serman Syla</a> Haha! Yeah I know what you mean. Thanks for the file Sadi! <i class="fa fa-smile-o txt-color-orange"></i> </span>
-				
-													<ul class="list-inline font-xs">
-														<li>
-															<a href="javascript:void(0);" class="text-muted">1 minute ago </a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a>
-														</li>
-													</ul>
-				
-												</li>
-												<li class="message message-reply">
-													<img src="img/avatars/4.png" class="online" alt="user">
-													<span class="message-text"> <a href="javascript:void(0);" class="username">Sadi Orlaf </a> Haha! Yeah I know what you mean. Thanks for the file Sadi! <i class="fa fa-smile-o txt-color-orange"></i> </span>
-				
-													<ul class="list-inline font-xs">
-														<li>
-															<a href="javascript:void(0);" class="text-muted">a moment ago </a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a>
-														</li>
-													</ul>
-				
-												</li>
-												<li class="message message-reply">
-													<img src="img/avatars/4.png" class="online" alt="user">
-													<span class="message-text"> <a href="javascript:void(0);" class="username">Sadi Orlaf </a> Haha! Yeah I know what you mean. Thanks for the file Sadi! <i class="fa fa-smile-o txt-color-orange"></i> </span>
-				
-													<ul class="list-inline font-xs">
-														<li>
-															<a href="javascript:void(0);" class="text-muted">a moment ago </a>
-														</li>
-														<li>
-															<a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a>
-														</li>
-													</ul>
-				
-												</li>
-												<li>
-													<div class="input-group wall-comment-reply">
-														<input id="btn-input" type="text" class="form-control" placeholder="Type your message here...">
-														<span class="input-group-btn">
-															<button class="btn btn-primary" id="btn-chat">
-																<i class="fa fa-reply"></i> Reply
-															</button> </span>
-													</div>
-												</li>
-											</ul> -->
-
-									Add
-
-								</div>
-
-
 							</div>
 						</div>
 
@@ -1534,72 +1328,7 @@
 				</article>
 			</div>
 			<div class="row">
-				<article class="col-sm-12 col-md-12 col-lg-12">
-
-					<!-- Widget ID (each widget will need unique ID)-->
-					<div class="jarviswidget jarviswidget-color-blueLight"
-						id="articletag" data-widget-colorbutton="false"
-						data-widget-editbutton="false" data-widget-togglebutton="false"
-						data-widget-deletebutton="false"
-						data-widget-fullscreenbutton="false"
-						data-widget-custombutton="false" data-widget-sortable="false">
-						<!-- widget options:
-					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-	
-					data-widget-colorbutton="false"
-					data-widget-editbutton="false"
-					data-widget-togglebutton="false"
-					data-widget-deletebutton="false"
-					data-widget-fullscreenbutton="false"
-					data-widget-custombutton="false"
-					data-widget-collapsed="true"
-					data-widget-sortable="false"
-	
-					-->
-						<header>
-							<span class="widget-icon"> <i class="fa fa-list-alt"></i>
-							</span>
-							<h2>Articles</h2>
-
-							<div class="widget-toolbar hidden-phone">
-								<div class="smart-form">
-									<label class="checkbox">
-										<button class="btn btn-primary" onclick="createNewArticle()">Provide
-											New Achevements</button>
-									</label>
-								</div>
-							</div>
-
-						</header>
-
-						<!-- widget div-->
-						<div>
-
-							<!-- widget edit box -->
-							<div class="jarviswidget-editbox">
-								<!-- This area used as dropdown edit box -->
-
-							</div>
-							<!-- end widget edit box -->
-
-							<!-- widget content -->
-							<div class="widget-body no-padding">
-
-								<div class="panel-group smart-accordion-default" id="articleset">
-
-									<%-- <%=guidanceachievements%> --%>
-								</div>
-
-							</div>
-							<!-- end widget content -->
-
-						</div>
-						<!-- end widget div -->
-
-					</div>
-					<!-- end widget -->
-
-				</article>
+				
 			</div>
 
 			<section id="widget-grid" class="">
@@ -2084,6 +1813,52 @@
 			<!-- /.modal-dialog -->
 		</div>
 		<!-- /.modal -->
+		
+		<div class="modal fade" id="profileImageSettings" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Profile Background Image</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="row">
+							<div class="col-md-12">
+								
+								<div class="form-group">
+									<form id="form2" method="post" action="#"
+										enctype="multipart/form-data">
+										<div class="col-md-10">
+											<input type="file" id="filenewprojectdat" name="filenewprojectdat"
+												class="btn btn-default" id="profilebackground">
+										</div>
+										<button class="col-md-2" type="button"
+											onclick="uploadProjectNewData()">Upload</button>
+									</form>
+									<input type="hidden" class="form-control" value="" required
+										id="projectnewtoken" />
+									<input type="hidden" class="form-control" value="" required
+										id="projectexistingid" />	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Cancel</button>
+						<button type="button" class="btn btn-primary"
+							id="addnewprojectdata" onclick="addDataproject()">Add
+							Projects</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		
 	</div>
 	<!-- END MAIN PANEL -->
 
@@ -2228,7 +2003,7 @@
 	<!-- Demo purpose only -->
 	<%-- <script src="<c:url value='/resources/js/app.config.js' />"></script> --%>
 	<!-- <script src="js/demo.min.js"></script> -->
-	<script src="<c:url value='/resources/js/demo.min.js' />"></script>
+	<%-- <script src="<c:url value='/resources/js/demo.min.js' />"></script> --%>
 
 	<!-- MAIN APP JS FILE -->
 	<script src="<c:url value='/resources/js/app.min.js' />"></script>
@@ -3274,7 +3049,9 @@
 		    });
 		    
 		    
-		    
+		    $('#backgroundimageid').click(function(){
+		    	$('#profileImageSettings').modal('show');
+		    });
 		    
 
 		})
@@ -3653,6 +3430,12 @@
 					}
 				
 		        }); 
+		});
+			
+		}
+		
+		function proconnect(){
+			alert("connect");
 		}
 		
 		</script>
