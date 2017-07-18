@@ -170,9 +170,9 @@
 				<label class="btn btn-default"> <input type="radio"
 					name="activity" id="offlinechatmessages?"> Msgs
 				</label> <label class="btn btn-default"> <input type="radio"
-					name="activity" id="notifications?"> notify (3)
+					name="activity" id="notifications?"> notify
 				</label> <label class="btn btn-default"> <input type="radio"
-					name="activity" id="tasklists?"> Tasks (4)
+					name="activity" id="tasklists?"> Tasks
 				</label>
 			</div>
 
@@ -207,24 +207,23 @@
 	<!-- projects dropdown -->
 	<div class="project-context hidden-xs">
 
-		<span class="label">Projects:</span> <span
-			class="project-selector dropdown-toggle" data-toggle="dropdown">Recent
-			projects <i class="fa fa-angle-down"></i>
-		</span>
+			<span class="label">Say:</span> <span
+				class="project-selector dropdown-toggle" data-toggle="dropdown">Anything<i class="fa fa-angle-down"></i>
+			</span>
 
-		<!-- Suggestion: populate this list with fetch and push technique -->
-		<ul class="dropdown-menu" style="border: 1px solid black">
-			<h5>Daily Note</h5>
-			<li><textarea id="notemessage" class="form-control"
-					name="notemessage" rows="3" style="width: 400px"></textarea></li>
+			<!-- Suggestion: populate this list with fetch and push technique -->
+			<ul class="dropdown-menu" style="border: 1px solid black">
+				<h5>Daily Note</h5>
+				<li><textarea id="notemessage" class="form-control"
+						name="notemessage" rows="3" style="width: 400px"></textarea></li>
 
-			<li class="divider"></li>
-			<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
-					Note Down</a></li>
-		</ul>
-		<!-- end dropdown-menu-->
+				<li class="divider"></li>
+				<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
+						Note Down</a></li>
+			</ul>
+			<!-- end dropdown-menu-->
 
-	</div>
+		</div>
 
 	<!-- end projects dropdown --> <!-- pulled right: nav area -->
 	<div class="pull-right">
@@ -247,30 +246,21 @@
 					alt="John Doe" class="online" />
 			</a>
 				<ul class="dropdown-menu pull-right">
-					<li><a href="javascript:void(0);"
-						class="padding-10 padding-top-0 padding-bottom-0"><i
-							class="fa fa-cog"></i> Setting</a></li>
-					<li class="divider"></li>
-					<li><a href="profile.html"
-						class="padding-10 padding-top-0 padding-bottom-0"> <i
-							class="fa fa-user"></i> <u>P</u>rofile
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="javascript:void(0);"
-						class="padding-10 padding-top-0 padding-bottom-0"
-						data-action="toggleShortcut"><i class="fa fa-arrow-down"></i>
-							<u>S</u>hortcut</a></li>
-					<li class="divider"></li>
-					<li><a href="javascript:void(0);"
-						class="padding-10 padding-top-0 padding-bottom-0"
-						data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i>
-							Full <u>S</u>creen</a></li>
-					<li class="divider"></li>
-					<li><a href="logout?" 
-						class="padding-10 padding-top-5 padding-bottom-5"
-						data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i>
-							<strong><u>L</u>ogout</strong></a></li>
-				</ul></li>
+						<!-- <li><a href="profile?"
+							class="padding-10 padding-top-0 padding-bottom-0"> <i
+								class="fa fa-user"></i> <u>P</u>rofile
+						</a></li> -->
+						<li class="divider"></li>
+						<li><a href="javascript:void(0);"
+							class="padding-10 padding-top-0 padding-bottom-0"
+							data-action="toggleShortcut"><i class="fa fa-arrow-down"></i>
+								<u>S</u>hortcut</a></li>
+						<li class="divider"></li>
+						<li><a href="logout?"
+							class="padding-10 padding-top-5 padding-bottom-5"
+							data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i>
+								<strong><u>L</u>ogout</strong></a></li>
+					</ul></li>
 		</ul>
 
 		<!-- logout button -->
@@ -284,47 +274,24 @@
 		<!-- end logout button -->
 
 		<!-- search mobile button (this is hidden till mobile view port) -->
-		<div id="search-mobile" class="btn-header transparent pull-right">
-			<span> <a href="javascript:void(0)" title="Search"><i
-					class="fa fa-search"></i></a>
-			</span>
-		</div>
-		<!-- end search mobile button -->
+			<div id="search-mobile" class="btn-header transparent pull-right">
+				<span> <a href="searchresults?" title="Search"><i
+						class="fa fa-search"></i></a>
+				</span>
+			</div>
+			<!-- end search mobile button -->
 
-		<!-- input: search field -->
-		<form action="searchresults?" class="header-search pull-right">
-			<input id="search-fld" type="text" name="param"
-				placeholder="Find reports and more"
-				data-autocomplete='[
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"]'>
-			<button type="submit">
-				<i class="fa fa-search"></i>
-			</button>
-			<a href="javascript:void(0);" id="cancel-search-js"
-				title="Cancel Search"><i class="fa fa-times"></i></a>
-		</form>
-		<!-- end input: search field -->
+			<!-- input: search field -->
+			<form action="searchresults?" class="header-search pull-right">
+				<input id="search-fld" type="text" name="param"
+					placeholder="Find reports and more">
+				<button type="submit">
+					<i class="fa fa-search"></i>
+				</button>
+				<a href="javascript:void(0);" id="cancel-search-js"
+					title="Cancel Search"><i class="fa fa-times"></i></a>
+			</form>
+			<!-- end input: search field -->
 
 		<!-- fullscreen button -->
 		<div id="fullscreen" class="btn-header transparent pull-right">
@@ -333,10 +300,14 @@
 					class="fa fa-arrows-alt"></i></a>
 			</span>
 		</div>
+		<div id="article" class="btn-header transparent pull-right">
+				<span> <a href="createpost?" title="Article">Article</a>
+				</span>
+			</div>
 		<!-- end fullscreen button -->
 
 		<!-- #Voice Command: Start Speech -->
-		<div id="speech-btn"
+		<!-- <div id="speech-btn"
 			class="btn-header transparent pull-right hidden-sm hidden-xs">
 			<div>
 				<a href="javascript:void(0)" title="Voice Command"
@@ -364,49 +335,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- end voice command -->
 
-		<!-- multiple lang dropdown : find all flags in the flags page -->
-		<!-- <ul class="header-dropdown-list hidden-xs">
-					<li>
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/blank.gif" class="flag flag-us" alt="United States"> <span> English (US) </span> <i class="fa fa-angle-down"></i> </a>
-						<ul class="dropdown-menu pull-right">
-							<li class="active">
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
-							</li>	
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
-							</li>	
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
-							</li>						
-							
-						</ul>
-					</li>
-				</ul> -->
-		<!-- end multiple lang -->
+		
 
 	</div>
 	<!-- end pulled right: nav area --> </header>
@@ -415,13 +347,26 @@
 	<!-- #NAVIGATION -->
 	<!-- Left panel : Navigation area -->
 	<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+	
+	<%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String gender = (String)request.getAttribute("Gender");
+			String userids = (String)request.getAttribute("userid");
+			String imagid = (String)request.getAttribute("ProfileImage");
+			String logo = "";
+			
+			
+		
+		%>
+	
 	<aside id="left-panel"> <!-- User info -->
 	<div class="login-info">
 		<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 
-			<a href="javascript:void(0);" id="show-shortcut"
+			<a href="#" id="show-shortcut"
 			data-action="toggleShortcut"> <img src="img/avatars/sunny.png"
-				alt="me" class="online" /> <span> john.doe </span> <i
+				alt="me" class="online" /> <span><%=fullname%></span> <i
 				class="fa fa-angle-down"></i>
 		</a>
 
@@ -434,103 +379,57 @@
 				-->
 
 	<ul>
-		<li><a href="searchresults?"><i
-				class="fa fa-lg fa-fw fa-search-plus"></i> <span
-				class="menu-item-parent">Search</span> </a></li>
-		<!-- <li><a href="dashboardanalysis?"><i
+				<!-- <li><a href="search?"><i
+						class="fa fa-lg fa-fw fa-search-plus"></i> <span
+						class="menu-item-parent">Search</span> </a></li> -->
+				<!-- <li><a href="dashboardanalysis?"><i
 				class="fa fa-lg fa-fw fa-briefcase"></i> <span
 				class="menu-item-parent">Dashboard</span> </a></li> -->
-		<li class="active"><a href="dashboardsocial?"><i
-				class="fa fa-lg fa-fw fa-retweet txt-color-blue"></i> <span
-				class="menu-item-parent">Wall</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+				<li><a href="dashboardsocial?"><i
+						class="fa fa-lg fa-fw fa-retweet"></i> <span
+						class="menu-item-parent">Wall</span></a></li>
 
-		<li><a href="profile?"><i class="fa fa-lg fa-fw fa-info"></i>
-				<span class="menu-item-parent">Profile</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		<li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
-				<span class="menu-item-parent">Timeline</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
-		<li><a href="createpost?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post Your Activity</span></a>
-		</li>
-		<!-- <li><a href="classroom?" title="NewPost"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-		</li> -->
-		<li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
-			<ul>
-				<li class=""><a href="courseEdu?" title="NewPost"><i
-						class="fa fa-tags"></i><span class="menu-item-parent">Courses</span></a>
-				</li>
-				<li class=""><a href="classroom?" title="ClassRoom"><i
-				class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
-				</li>
-			</ul></li>
-		 <!-- <li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">#Course Publish</span></a>
-			<ul>		
-				<li class="active"><a href="#" title="NewCourse"><i
-								class="fa fa-plus-square txt-color-red"></i><span class="menu-item-parent">NEW</span></a>
-								</li>
-				<li class=""><a href="createcourse?" title="NewCourse"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Course</span></a></li>	
-				<li class=""><a href="newspecialization?" title="NewSpecialization"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Specialization</span></a></li>
-				<li class=""><a href="neworganizations?" title="NewInstitution"><i
-											class="fa fa-tags"></i><span class="menu-item-parent">Your Institution</span></a></li>
-			</ul>
-		</li> -->
-		<li><a href="#" title="Dashboard"><i
-				class="fa fa-lg fa-fw fa-briefcase"></i> <span
-				class="menu-item-parent">Work</span></a>
-			<ul>
-				<li class=""><a href="ideatoimplement?" title="NewPost"><i
-						class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
-				</li>
-				<li class=""><a href="jobanalysis?" title="NewJob"><i
-						class="fa fa-suitcase"></i><span class="menu-item-parent">Traditional Way</span></a>
+				<!-- <li class="active"><a href="profile?"><i
+						class="fa fa-lg fa-fw fa-info"></i> <span class="menu-item-parent">Profile</span>
+						<span class="badge pull-right inbox-badge margin-right-13">14</span></a></li> -->
+				<!-- <li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+						<span class="menu-item-parent">Timeline</span></a></li> -->
+				<!-- <li><a href="createpost?" title="NewPost"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post
+							Your Activity</span></a></li> -->
+				<!-- <li><a href="classroom?" title="NewPost"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+				</li> -->
+				<li><a href="#" title="Dashboard"><i
+						class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
+					<ul>
+						<li class=""><a href="standardguidance?" title="ClassRoom"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Guidance</span></a>
+						</li>
+						<li class=""><a href="standardcourse?" title="ClassRoom"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Courses</span></a>
+						</li>
+					</ul>
 				</li>
 				
-			</ul></li>
-		<!-- <li class=""><a href="organizations?" title="Organizations"><i
-						class="fa fa-group"></i><span class="menu-item-parent">#Work Publish</span></a>
-				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
-						class="fa fa-plus-square"></i><span class="menu-item-parent">New Opportunity</span></a>
-				</li>
-				<li class=""><a href="companies?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Start New Company</span></a>
-				</li>
-			</ul></li> -->
-		<li class=""><a href="#" title="Organizations"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Guidance</span></a>
-				<ul>
-				<li class=""><a href="createjob?" title="NewJob"><i
-						class="fa fa-plus-square"></i><span class="menu-item-parent">Academic</span></a>
-				</li>
-				<li class=""><a href="companies?" title="Companies"><i
-						class="fa fa-group"></i><span class="menu-item-parent">Professional</span></a>
-				</li>
-			</ul></li>		
 
-		<li class="chat-users top-menu-invisible"><a href="#"><i
-				class="fa fa-lg fa-fw fa-comment-o"><em
-					class="bg-color-pink flash animated">!</em></i> <span
-				class="menu-item-parent">Smart Chat API <sup>beta</sup></span></a>
-			<ul>
-				<li>
-					<!-- DISPLAY USERS -->
-					<div class="display-users">
+				<li class="chat-users top-menu-invisible"><a href="#"><i
+						class="fa fa-lg fa-fw fa-comment-o"><em
+							class="bg-color-pink flash animated">!</em></i> <span
+						class="menu-item-parent">Online Chat</span></a>
+					<ul>
+						<li>
+							<!-- DISPLAY USERS -->
+							<div class="display-users">
 
-						<input class="form-control chat-user-filter" placeholder="Filter"
-							type="text"> <a href="#" class="usr" data-chat-id="cha1"
-							data-chat-fname="Sadi" data-chat-lname="Orlaf"
-							data-chat-status="busy"
-							data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
-							data-chat-alertshow="true" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+								<input class="form-control chat-user-filter"
+									placeholder="Filter" type="text"> <a href="#"
+									class="usr" data-chat-id="cha1" data-chat-fname="Sadi"
+									data-chat-lname="Orlaf" data-chat-status="busy"
+									data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
+									data-chat-alertshow="true" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/5.png' alt='Sadi Orlaf'>
 												<div class='usr-card-content'>
@@ -539,13 +438,13 @@
 												</div>
 											</div>
 										">
-							<i></i>Sadi Orlaf
-						</a> <a href="#" class="usr" data-chat-id="cha2"
-							data-chat-fname="Jessica" data-chat-lname="Dolof"
-							data-chat-status="online" data-chat-alertmsg=""
-							data-chat-alertshow="false" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Sadi Orlaf
+								</a> <a href="#" class="usr" data-chat-id="cha2"
+									data-chat-fname="Jessica" data-chat-lname="Dolof"
+									data-chat-status="online" data-chat-alertmsg=""
+									data-chat-alertshow="false" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/1.png' alt='Jessica Dolof'>
 												<div class='usr-card-content'>
@@ -554,12 +453,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Jessica Dolof
-						</a> <a href="#" class="usr" data-chat-id="cha3"
-							data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
-							data-chat-status="online" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Jessica Dolof
+								</a> <a href="#" class="usr" data-chat-id="cha3"
+									data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
+									data-chat-status="online" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/3.png' alt='Zekarburg Almandalie'>
 												<div class='usr-card-content'>
@@ -568,12 +467,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Zekarburg Almandalie
-						</a> <a href="#" class="usr" data-chat-id="cha4"
-							data-chat-fname="Barley" data-chat-lname="Krazurkth"
-							data-chat-status="away" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Zekarburg Almandalie
+								</a> <a href="#" class="usr" data-chat-id="cha4"
+									data-chat-fname="Barley" data-chat-lname="Krazurkth"
+									data-chat-status="away" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/4.png' alt='Barley Krazurkth'>
 												<div class='usr-card-content'>
@@ -582,12 +481,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Barley Krazurkth
-						</a> <a href="#" class="usr offline" data-chat-id="cha5"
-							data-chat-fname="Farhana" data-chat-lname="Amrin"
-							data-chat-status="incognito" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Barley Krazurkth
+								</a> <a href="#" class="usr offline" data-chat-id="cha5"
+									data-chat-fname="Farhana" data-chat-lname="Amrin"
+									data-chat-status="incognito" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/female.png' alt='Farhana Amrin'>
 												<div class='usr-card-content'>
@@ -596,12 +495,12 @@
 												</div>
 											</div>
 										">
-							<i></i>Farhana Amrin (offline)
-						</a> <a href="#" class="usr offline" data-chat-id="cha6"
-							data-chat-fname="Lezley" data-chat-lname="Jacob"
-							data-chat-status="incognito" data-rel="popover-hover"
-							data-placement="right" data-html="true"
-							data-content="
+									<i></i>Farhana Amrin (offline)
+								</a> <a href="#" class="usr offline" data-chat-id="cha6"
+									data-chat-fname="Lezley" data-chat-lname="Jacob"
+									data-chat-status="incognito" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
 											<div class='usr-card'>
 												<img src='img/avatars/male.png' alt='Lezley Jacob'>
 												<div class='usr-card-content'>
@@ -610,15 +509,15 @@
 												</div>
 											</div>
 										">
-							<i></i>Lezley Jacob (offline)
-						</a> <a href="ajax/chat.html"
-							class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
-							the API</a>
+									<i></i>Lezley Jacob (offline)
+								</a> <a href="ajax/chat.html"
+									class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
+									the API</a>
 
-					</div> <!-- END DISPLAY USERS -->
-				</li>
-			</ul></li>
-	</ul>
+							</div> <!-- END DISPLAY USERS -->
+						</li>
+					</ul></li>
+			</ul>
 	</nav> <span class="minifyme" data-action="minifyMenu"> <i
 		class="fa fa-arrow-circle-left hit"></i>
 	</span> </aside>
@@ -630,19 +529,9 @@
 		<!-- RIBBON -->
 		<div id="ribbon">
 
-			<span class="ribbon-button-alignment"> <span id="refresh"
-				class="btn btn-ribbon" data-action="resetWidgets"
-				data-title="refresh" rel="tooltip" data-placement="bottom"
-				data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
-				data-html="true"> <i class="fa fa-refresh"></i>
-			</span>
-			</span>
-
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
-				<li>Home</li>
-				<li>Dashboard</li>
-				<li>Social Wall</li>
+				<li>Wall</li>
 			</ol>
 			<!-- end breadcrumb -->
 
@@ -666,19 +555,7 @@
 		<div id="content">
 
 			<!-- row -->
-			<div class="row">
-
-				<!-- col -->
-				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-					<h1 class="page-title txt-color-blueDark">
-						<!-- PAGE HEADER -->
-						<i class="fa-fw fa fa-home"></i> Dashboard <span>> Social
-							Wall </span>
-					</h1>
-				</div>
-				<!-- end col -->
-
-			</div>
+			
 			<!-- end row -->
 
 			<!--
