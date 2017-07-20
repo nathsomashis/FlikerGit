@@ -197,13 +197,9 @@
 
 				<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
 				<div class="btn-group btn-group-justified" data-toggle="buttons">
-					<label class="btn btn-default"> <input type="radio"
-						name="activity" id="offlinechatmessages?"> Msgs 
-					</label> <label class="btn btn-default"> <input type="radio"
-						name="activity" id="notifications?"> notify 
-					</label> <label class="btn btn-default"> <input type="radio"
-						name="activity" id="tasklists?"> Tasks 
-					</label>
+					 <label class="btn btn-default"> <input type="radio"
+						name="activity" id="notifications?"> Notification 
+					</label> 
 				</div>
 
 				<!-- notification content -->
