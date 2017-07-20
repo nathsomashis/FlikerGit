@@ -40,7 +40,7 @@
 
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
-		<link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet">
+		<%-- <link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet"> --%>
 
 
 		<!-- #FAVICONS -->
@@ -139,6 +139,7 @@
 			String guidanceid = (String)request.getAttribute("guidanceid");
 			ArrayList consumerlist = (ArrayList)request.getAttribute("consumerlist");
 			ArrayList existingfilelist = (ArrayList)request.getAttribute("existingfilelist");
+			String userid = (String)request.getAttribute("userid");
 			System.out.println("existingfilelist >>"+existingfilelist);
 			ProfilePreview profprev = new ProfilePreview();
 		
@@ -149,7 +150,7 @@
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
+				<span id="logo"> <img src="img/logo.png" alt="Medha"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -162,14 +163,8 @@
 					<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
 					<div class="btn-group btn-group-justified" data-toggle="buttons">
 						<label class="btn btn-default">
-							<input type="radio" name="activity" id="offlinechatmessages?">
-							Msgs (14) </label>
-						<label class="btn btn-default">
 							<input type="radio" name="activity" id="notifications?">
-							notify (3) </label>
-						<label class="btn btn-default">
-							<input type="radio" name="activity" id="tasklists?">
-							Tasks (4) </label>
+							Notification</label>
 					</div>
 
 					<!-- notification content -->
@@ -186,10 +181,6 @@
 					<!-- end notification content -->
 
 					<!-- footer: refresh area -->
-					<span> Last updated on: 12/12/2013 9:43AM
-						<button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..." class="btn btn-xs btn-default pull-right">
-							<i class="fa fa-refresh"></i>
-						</button> </span>
 					<!-- end footer -->
 
 				</div>
@@ -197,25 +188,24 @@
 			</div>
 
 			<!-- projects dropdown -->
-			<div class="project-context hidden-xs" >
+			<div class="project-context hidden-xs">
 
-				<span class="label">Projects:</span>
-				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
-
+				<span class="label">Say:</span> <span
+					class="project-selector dropdown-toggle" data-toggle="dropdown">Anything<i class="fa fa-angle-down"></i>
+				</span>
+	
 				<!-- Suggestion: populate this list with fetch and push technique -->
 				<ul class="dropdown-menu" style="border: 1px solid black">
 					<h5>Daily Note</h5>
-					<li>
-						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
-					</li>
-					
+					<li><textarea id="notemessage" class="form-control"
+							name="notemessage" rows="3" style="width: 400px"></textarea></li>
+	
 					<li class="divider"></li>
-					<li>
-						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
-					</li>
+					<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
+							Note Down</a></li>
 				</ul>
 				<!-- end dropdown-menu-->
-
+	
 			</div>
 			
 			<!-- end projects dropdown -->
@@ -231,34 +221,29 @@
 				
 				<!-- #MOBILE -->
 				<!-- Top menu profile link : this shows only when top menu is active -->
-				<ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
-					<li class="">
-						<a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown"> 
-							<img src="img/avatars/sunny.png" alt="John Doe" class="online" />  
-						</a>
-						<ul class="dropdown-menu pull-right">
-							<li>
-								<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="profile.html" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> <u>P</u>rofile</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full <u>S</u>creen</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="logout?"  class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
-							</li>
-						</ul>
-					</li>
-				</ul>
+				<ul id="mobile-profile-img"
+				class="header-dropdown-list hidden-xs padding-5">
+				<li class=""><a href="#"
+					class="dropdown-toggle no-margin userdropdown"
+					data-toggle="dropdown"><img src="/Fliker/imageFromUserid/<%=userid%>" alt="<%=profilename%>" class="online">
+				</a>
+					<ul class="dropdown-menu pull-right">
+						<!-- <li><a href="profile?"
+							class="padding-10 padding-top-0 padding-bottom-0"> <i
+								class="fa fa-user"></i> <u>P</u>rofile
+						</a></li> -->
+						<li class="divider"></li>
+						<li><a href="javascript:void(0);"
+							class="padding-10 padding-top-0 padding-bottom-0"
+							data-action="toggleShortcut"><i class="fa fa-arrow-down"></i>
+								<u>S</u>hortcut</a></li>
+						<li class="divider"></li>
+						<li><a href="logout?"
+							class="padding-10 padding-top-5 padding-bottom-5"
+							data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i>
+								<strong><u>L</u>ogout</strong></a></li>
+					</ul></li>
+			</ul>
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
@@ -267,42 +252,24 @@
 				<!-- end logout button -->
 
 				<!-- search mobile button (this is hidden till mobile view port) -->
-				<div id="search-mobile" class="btn-header transparent pull-right">
-					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
-				</div>
-				<!-- end search mobile button -->
+			<div id="search-mobile" class="btn-header transparent pull-right">
+				<span> <a href="searchresults?" title="Search"><i
+						class="fa fa-search"></i></a>
+				</span>
+			</div>
+			<!-- end search mobile button -->
 
-				<!-- input: search field -->
-				<form action="searchresults?" class="header-search pull-right">
-					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"]'>
-					<button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-				</form>
-				<!-- end input: search field -->
+			<!-- input: search field -->
+			<form action="searchresults?" class="header-search pull-right">
+				<input id="search-fld" type="text" name="param"
+					placeholder="Find reports and more">
+				<button type="submit">
+					<i class="fa fa-search"></i>
+				</button>
+				<a href="javascript:void(0);" id="cancel-search-js"
+					title="Cancel Search"><i class="fa fa-times"></i></a>
+			</form>
+			<!-- end input: search field -->
 
 				<!-- fullscreen button -->
 				<div id="fullscreen" class="btn-header transparent pull-right">
@@ -310,8 +277,14 @@
 				</div>
 				<!-- end fullscreen button -->
 				
+				<div id="article" class="btn-header transparent pull-right">
+					<span> <a href="createpost?" title="Article">Article</a>
+					</span>
+				</div>
+				<!-- end fullscreen button -->
+				
 				<!-- #Voice Command: Start Speech -->
-				<div id="speech-btn" class="btn-header transparent pull-right hidden-sm hidden-xs">
+				<!-- <div id="speech-btn" class="btn-header transparent pull-right hidden-sm hidden-xs">
 					<div> 
 						<a href="javascript:void(0)" title="Voice Command" data-action="voiceCommand"><i class="fa fa-microphone"></i></a> 
 						<div class="popover bottom"><div class="arrow"></div>
@@ -327,7 +300,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- end voice command -->
 
 				<!-- multiple lang dropdown : find all flags in the flags page -->
@@ -411,11 +384,11 @@
 				-->
 
 				<ul>
-		<li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span
-				class="menu-item-parent">Guidance Dash</span> </a></li>
-		<li class="active"><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-share-square-o txt-color-blue"></i> <span
+		<li ><a href="gotoguidance?guidanceid="<%=guidanceid%>><i	class="fa fa-lg fa-fw fa-puzzle-piece "></i> <span
+				class="menu-item-parent">Guidance Info</span> </a></li>
+		<li><a href="gotoguidancedash?guidanceid="<%=guidanceid%>><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
+				class="menu-item-parent">Guidance Dashboard</span> </a></li>		
+		<li class="active"><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-share-square-o"></i> <span
 				class="menu-item-parent">Guidance Share</span> </a></li>
 
 		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-calendar"></i>
@@ -444,12 +417,6 @@
 			<!-- RIBBON -->
 			<div id="ribbon">
 
-				<span class="ribbon-button-alignment"> 
-					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
-						<i class="fa fa-refresh"></i>
-					</span> 
-				</span>
-
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
 					<li>Shared Drive</li>
@@ -474,7 +441,7 @@
 			<div id="content">
 				<!-- row -->
 				<div class="row">
-					<article class="col-sd-12">
+					<article class="col-sm-9">
 				
 							<!-- Widget ID (each widget will need unique ID)-->
 							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
@@ -523,7 +490,6 @@
 													
 									
 													<!-- widget div-->
-													<div>
 									
 														<!-- widget edit box -->
 														<div class="jarviswidget-editbox">
@@ -541,7 +507,6 @@
 														
 														<!-- end widget content -->
 									
-													</div>
 													<!-- end widget div -->
 									
 												</div>
@@ -691,10 +656,10 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2</span>
+					<!-- <span class="txt-color-white">SmartAdmin 1.8.2</span> -->
 				</div>
 
-				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
+				<!-- <div class="col-xs-6 col-sm-6 text-right hidden-xs">
 					<div class="txt-color-white inline-block">
 						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
 						<div class="btn-group dropup">
@@ -738,7 +703,7 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!-- END PAGE FOOTER -->
@@ -748,27 +713,25 @@
 		you can add as many as you like
 		-->
 		<div id="shortcut">
-			<ul>
-				<li>
-					<a href="inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
-				</li>
-				<li>
-					<a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
-				</li>
-				<li>
-					<a href="gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
-				</li>
-				<li>
-					<a href="invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
-				</li>
-				<li>
-					<a href="gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
-				</li>
-				<li>
-					<a href="profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
-				</li>
-			</ul>
-		</div>
+		<ul>
+			<li><a href="calendar.html"
+				class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span
+					class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span>
+				</span>
+			</a></li>
+			<li><a href="profile?"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My
+							Profile </span>
+				</span>
+			</a></li>
+			<li><a href="timeline?"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>TimeLine </span>
+				</span>
+			</a></li>
+		</ul>
+	</div>
 		<!-- END SHORTCUT AREA -->
 
 		<!--================================================== -->
@@ -851,7 +814,7 @@
 
 		<!-- Demo purpose only -->
 		<!-- <script src="js/demo.min.js"></script> -->
-		<script src="<c:url value='/resources/js/demo.min.js' />"></script>
+		<%-- <script src="<c:url value='/resources/js/demo.min.js' />"></script> --%>
 
 		<!-- MAIN APP JS FILE -->
 		<script src="<c:url value='/resources/js/app.min.js' />"></script>
