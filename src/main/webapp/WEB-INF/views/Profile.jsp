@@ -873,15 +873,11 @@
 														alt="demo user">
 
 													<%} %>
-													<div class="padding-10">
-														<h4 class="font-md">
-															<strong><%=followercount %></strong> <br> <small>Followers</small>
-														</h4>
-														<br>
+													<%-- <div class="padding-10">
 														<h4 class="font-md">
 															<strong><%=connectioncount%></strong> <br> <small>Connections</small>
 														</h4>
-													</div>
+													</div> --%>
 												</div>
 												<div class="col-sm-6">
 													<h1>
@@ -959,26 +955,12 @@
 														</li>
 													</ul>
 													<%} %>
-													<h1>
+													<%-- <h1>
 														<small>Followers</small>
 													</h1>
 													<%if(followercount !=0){ %>
-													<ul class="list-inline friends-list">
-														<%for(int t=0;t<7;t++){ 
-																
-																	Profile profil = (Profile)followerlist.get(t);
-																	String userids = profil.getUserid();
-																	String username = profil.getName();
-																	String userimage = profil.getProfileImageid();
-																
-																%>
-														<li><img src="/Fliker/imageFromUserid/<%=userids%>"
-															alt="<%=username%>"></li>
-														<%} %>
-														<li><a href="javascript:void(0);"><%=followerlist.size()-6%>more</a>
-														</li>
-													</ul>
-													<%} %>
+													
+													<%} %> --%>
 												</div>
 
 											</div>
@@ -2792,7 +2774,7 @@
 			});
 			
 			Dropzone.autoDiscover = false;
-			$("#mydropzone").dropzone({
+			$("#Imagedropzone").dropzone({
 				url: "guidancefile?",
 				paramName: "file",		
 				addRemoveLinks : false,
