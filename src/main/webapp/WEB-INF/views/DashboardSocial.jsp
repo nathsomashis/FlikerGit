@@ -165,42 +165,38 @@
 		<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
 		<div class="ajax-dropdown">
 
-			<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
-			<div class="btn-group btn-group-justified" data-toggle="buttons">
-				<label class="btn btn-default"> <input type="radio"
-					name="activity" id="offlinechatmessages?"> Msgs
-				</label> <label class="btn btn-default"> <input type="radio"
-					name="activity" id="notifications?"> notify
-				</label> <label class="btn btn-default"> <input type="radio"
-					name="activity" id="tasklists?"> Tasks
-				</label>
-			</div>
-
-			<!-- notification content -->
-			<div class="ajax-notifications custom-scroll">
-
-				<div class="alert alert-transparent">
-					<h4>Click a button to show messages here</h4>
-					This blank page message helps protect your privacy, or you can show
-					the first message here automatically.
+				<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
+				<div class="btn-group btn-group-justified" data-toggle="buttons">
+					 <label class="btn btn-default"> <input type="radio"
+						name="activity" id="notifications?"> Notification 
+					</label> 
 				</div>
 
-				<i class="fa fa-lock fa-4x fa-border"></i>
+				<!-- notification content -->
+				<div class="ajax-notifications custom-scroll">
+
+					<div class="alert alert-transparent">
+						<h4>Click a button to show messages here</h4>
+						This blank page message helps protect your privacy, or you can
+						show the first message here automatically.
+					</div>
+
+					<i class="fa fa-lock fa-4x fa-border"></i>
+
+				</div>
+				<!-- end notification content -->
+
+				<!-- footer: refresh area -->
+				<%-- <span> Last updated on: 12/12/2013 9:43AM
+					<button type="button"
+						data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
+						class="btn btn-xs btn-default pull-right">
+						<i class="fa fa-refresh"></i>
+					</button>
+				</span> --%>
+				<!-- end footer -->
 
 			</div>
-			<!-- end notification content -->
-
-			<!-- footer: refresh area -->
-			<span> Last updated on: 12/12/2013 9:43AM
-				<button type="button"
-					data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
-					class="btn btn-xs btn-default pull-right">
-					<i class="fa fa-refresh"></i>
-				</button>
-			</span>
-			<!-- end footer -->
-
-		</div>
 		<!-- END AJAX-DROPDOWN -->
 	</div>
 
@@ -411,7 +407,22 @@
 						</li>
 					</ul>
 				</li>
-				
+				<li><a href="#" title="Dashboard"><i
+					class="fa fa-lg fa-fw fa-briefcase"></i> <span
+					class="menu-item-parent">OSM</span></a>
+				<ul>
+					<li class=""><a href="ideatoimplement?" title="NewPost"><i
+							class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+					</li>
+					<li class=""><a href="osmprojectinfo?" title="NewJob"><i
+							class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
+					</li>
+					<li class=""><a href="osmprojectsubscription?" title="NewJob"><i
+							class="fa fa-suitcase"></i><span class="menu-item-parent">Project Resource</span></a>
+					</li>
+					
+					
+				</ul></li>
 
 				<li class="chat-users top-menu-invisible"><a href="#"><i
 						class="fa fa-lg fa-fw fa-comment-o"><em
