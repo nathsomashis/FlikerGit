@@ -26,7 +26,7 @@ public class ProjectController {
 		
 		
 		
-		mv = new ModelAndView("/ProjectDash");
+		mv = new ModelAndView("/ProjectInfo");
 		
 		
 		

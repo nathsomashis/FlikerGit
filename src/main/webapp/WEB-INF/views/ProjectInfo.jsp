@@ -17,7 +17,7 @@
 			ArrayList specificationlist = (ArrayList)request.getAttribute("specificationlist");
 		
 		%>
-		<title> Project Info </title>
+		<title> Guidance Info </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -132,91 +132,109 @@
 	-->
 	<body class="">
 	
+		<%
+		
+			String fullname = (String)request.getAttribute("FullName");
+			String userids = (String)request.getAttribute("userid");
+			String imagid = (String)request.getAttribute("ProfileImage");
+			
+			
+		
+		%>
+	
 		<!-- HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
-				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo.png" alt="Medha"> </span>
-				<!-- END LOGO PLACEHOLDER -->
-
-				<!-- Note: The activity badge color changes when clicked and resets the number to 0
+			<!-- PLACE YOUR LOGO HERE -->
+			<span id="logo"> <img src="img/logo.png" alt="Medha">
+			</span>
+			<!-- END LOGO PLACEHOLDER -->
+			<input type="hidden" class="form-control" value="" required	id="locationspec" />
+			<!-- Note: The activity badge color changes when clicked and resets the number to 0
 				Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-				<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
+			<span id="activity" class="activity-dropdown"> <i
+				class="fa fa-user"></i> <b class="badge"> 21 </b>
+			</span>
 
-				<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
-				<div class="ajax-dropdown">
+			<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
+			<div class="ajax-dropdown">
 
-					<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
-					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						 <label class="btn btn-default"> <input type="radio"
-							name="activity" id="notifications?"> Notification 
-						</label> 
+				<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
+				<div class="btn-group btn-group-justified" data-toggle="buttons">
+					 <label class="btn btn-default"> <input type="radio"
+						name="activity" id="notifications?"> Notification 
+					</label> 
+				</div>
+
+				<!-- notification content -->
+				<div class="ajax-notifications custom-scroll">
+
+					<div class="alert alert-transparent">
+						<h4>Click a button to show messages here</h4>
+						This blank page message helps protect your privacy, or you can
+						show the first message here automatically.
 					</div>
 
-					<!-- notification content -->
-					<div class="ajax-notifications custom-scroll">
-
-						<div class="alert alert-transparent">
-							<h4>Click a button to show messages here</h4>
-							This blank page message helps protect your privacy, or you can show the first message here automatically.
-						</div>
-
-						<i class="fa fa-lock fa-4x fa-border"></i>
-
-					</div>
-					<!-- end notification content -->
-
-					<!-- footer: refresh area -->
-					<span> Last updated on: 12/12/2013 9:43AM
-						<button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..." class="btn btn-xs btn-default pull-right">
-							<i class="fa fa-refresh"></i>
-						</button> </span>
-					<!-- end footer -->
+					<i class="fa fa-lock fa-4x fa-border"></i>
 
 				</div>
-				<!-- END AJAX-DROPDOWN -->
+				<!-- end notification content -->
+
+				<!-- footer: refresh area -->
+				<%-- <span> Last updated on: 12/12/2013 9:43AM
+					<button type="button"
+						data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
+						class="btn btn-xs btn-default pull-right">
+						<i class="fa fa-refresh"></i>
+					</button>
+				</span> --%>
+				<!-- end footer -->
+
 			</div>
+			<!-- END AJAX-DROPDOWN -->
+		</div>
 
 			<!-- projects dropdown -->
 			<div class="project-context hidden-xs">
 
-				<span class="label">Say:</span> <span
-					class="project-selector dropdown-toggle" data-toggle="dropdown">Anything<i class="fa fa-angle-down"></i>
-				</span>
-	
-				<!-- Suggestion: populate this list with fetch and push technique -->
-				<ul class="dropdown-menu" style="border: 1px solid black">
-					<h5>Daily Note</h5>
-					<li><textarea id="notemessage" class="form-control"
-							name="notemessage" rows="3" style="width: 400px"></textarea></li>
-	
-					<li class="divider"></li>
-					<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
-							Note Down</a></li>
-				</ul>
-				<!-- end dropdown-menu-->
-	
-			</div>
-			
+			<span class="label">Say:</span> <span
+				class="project-selector dropdown-toggle" data-toggle="dropdown">Anything<i class="fa fa-angle-down"></i>
+			</span>
+
+			<!-- Suggestion: populate this list with fetch and push technique -->
+			<ul class="dropdown-menu" style="border: 1px solid black">
+				<h5>Daily Note</h5>
+				<li><textarea id="notemessage" class="form-control"
+						name="notemessage" rows="3" style="width: 400px"></textarea></li>
+
+				<li class="divider"></li>
+				<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
+						Note Down</a></li>
+			</ul>
+			<!-- end dropdown-menu-->
+
+		</div>
 			<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
 			<div class="pull-right">
-				
-				<!-- collapse menu button -->
-				<div id="hide-menu" class="btn-header pull-right">
-					<span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
-				</div>
-				<!-- end collapse menu -->
-				
-				<!-- #MOBILE -->
-				<!-- Top menu profile link : this shows only when top menu is active -->
-				<ul id="mobile-profile-img"
+
+			<!-- collapse menu button -->
+			<div id="hide-menu" class="btn-header pull-right">
+				<span> <a href="javascript:void(0);" data-action="toggleMenu"
+					title="Collapse Menu"><i class="fa fa-reorder"></i></a>
+				</span>
+			</div>
+			<!-- end collapse menu -->
+
+			<!-- #MOBILE -->
+			<!-- Top menu profile link : this shows only when top menu is active -->
+			<ul id="mobile-profile-img"
 				class="header-dropdown-list hidden-xs padding-5">
 				<li class=""><a href="#"
 					class="dropdown-toggle no-margin userdropdown"
-					data-toggle="dropdown"><img src="/Fliker/imageFromUserid/<%=userid%>" alt="<%=profilename%>" class="online">
+					data-toggle="dropdown"><img src="/Fliker/imageFromUserid/<%=userids%>" alt="<%=fullname%>" class="online">
 				</a>
 					<ul class="dropdown-menu pull-right">
 						<!-- <li><a href="profile?"
@@ -277,29 +295,41 @@
 				<span> <a href="createpost?" title="Article">Article</a>
 				</span>
 			</div>
-				<!-- end fullscreen button -->
-				
-				<!-- #Voice Command: Start Speech -->
-				<!-- <div id="speech-btn" class="btn-header transparent pull-right hidden-sm hidden-xs">
-					<div> 
-						<a href="javascript:void(0)" title="Voice Command" data-action="voiceCommand"><i class="fa fa-microphone"></i></a> 
-						<div class="popover bottom"><div class="arrow"></div>
-							<div class="popover-content">
-								<h4 class="vc-title">Voice command activated <br><small>Please speak clearly into the mic</small></h4>
-								<h4 class="vc-title-error text-center">
-									<i class="fa fa-microphone-slash"></i> Voice command failed
-									<br><small class="txt-color-red">Must <strong>"Allow"</strong> Microphone</small>
-									<br><small class="txt-color-red">Must have <strong>Internet Connection</strong></small>
-								</h4>
-								<a href="javascript:void(0);" class="btn btn-success" onclick="commands.help()">See Commands</a> 
-								<a href="javascript:void(0);" class="btn bg-color-purple txt-color-white" onclick="$('#speech-btn .popover').fadeOut(50);">Close Popup</a> 
-							</div>
+			<!-- end fullscreen button -->
+
+			<!-- #Voice Command: Start Speech -->
+			<div id="speech-btn"
+				class="btn-header transparent pull-right hidden-sm hidden-xs">
+				<div>
+					<a href="javascript:void(0)" title="Voice Command"
+						data-action="voiceCommand"><i class="fa fa-microphone"></i></a>
+					<div class="popover bottom">
+						<div class="arrow"></div>
+						<div class="popover-content">
+							<h4 class="vc-title">
+								Voice command activated <br>
+								<small>Please speak clearly into the mic</small>
+							</h4>
+							<h4 class="vc-title-error text-center">
+								<i class="fa fa-microphone-slash"></i> Voice command failed <br>
+								<small class="txt-color-red">Must <strong>"Allow"</strong>
+									Microphone
+								</small> <br>
+								<small class="txt-color-red">Must have <strong>Internet
+										Connection</strong></small>
+							</h4>
+							<a href="javascript:void(0);" class="btn btn-success"
+								onclick="commands.help()">See Commands</a> <a
+								href="javascript:void(0);"
+								class="btn bg-color-purple txt-color-white"
+								onclick="$('#speech-btn .popover').fadeOut(50);">Close Popup</a>
 						</div>
 					</div>
-				</div> -->
-				<!-- end voice command -->
-
+				</div>
 			</div>
+			<!-- end voice command -->
+
+		</div>
 			<!-- end pulled right: nav area -->
 
 		</header>
@@ -310,12 +340,30 @@
 		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
 		<aside id="left-panel">
 
-			<!-- User info -->
-			<div class="login-info">
+		<!-- User info -->
+		
+
+
+		<!-- User info -->
+
+		<%
+		/* if(imageid == ""){
+			if(gender.equalsIgnoreCase("female")){
+				logo = "\""+"<c:url value='/resources/img/avatars/female.png' />"+"\"";
+			}else{
+				logo = "\""+"<c:url value='/resources/img/avatars/male.png' />"+"\"";
+			}
+		}else{
+			
+		} */
+		
+		
+		%>
+		<div class="login-info">
 			<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 
 				<a href="javascript:void(0);" id="show-shortcut"
-				data-action="toggleShortcut"> <%if(profileimage == ""){
+				data-action="toggleShortcut"> <%if(imagid == ""){
 					if(gender.equalsIgnoreCase("female")){
 						%> <img src="<c:url value='/resources/img/avatars/female.png' />"
 					alt="me" class="online" /> <%
@@ -323,47 +371,185 @@
 						%> <img src="<c:url value='/resources/img/avatars/male.png' />"
 					alt="me" class="online" /> <% 
 					}
-				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=profilename%>
+				}else{%> <img src=<%=logo%> alt="me" class="online" /> <%} %> <span><%=fullname%>
 				</span> <i class="fa fa-angle-down"></i>
 			</a>
 
 			</span>
 		</div>
-			<!-- end user info -->
+		<!-- end user info -->
 
-			<nav>
-				<!-- 
+		<nav>
+			<!-- 
 				NOTE: Notice the gaps after each icon usage <i></i>..
 				Please note that these links work a bit different than
 				traditional href="" links. See documentation for details.
 				-->
 
+			<ul>
+				<!-- <li><a href="search?"><i
+						class="fa fa-lg fa-fw fa-search-plus"></i> <span
+						class="menu-item-parent">Search</span> </a></li> -->
+				<!-- <li><a href="dashboardanalysis?"><i
+				class="fa fa-lg fa-fw fa-briefcase"></i> <span
+				class="menu-item-parent">Dashboard</span> </a></li> -->
+				<li><a href="dashboardsocial?"><i
+						class="fa fa-lg fa-fw fa-retweet"></i> <span
+						class="menu-item-parent">Wall</span></a></li>
+
+				<!-- <li class="active"><a href="profile?"><i
+						class="fa fa-lg fa-fw fa-info"></i> <span class="menu-item-parent">Profile</span>
+						<span class="badge pull-right inbox-badge margin-right-13">14</span></a></li> -->
+				<!-- <li><a href="timeline?"><i class="fa fa-lg fa-fw fa-road"></i>
+						<span class="menu-item-parent">Timeline</span></a></li> -->
+				<!-- <li><a href="createpost?" title="NewPost"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Post
+							Your Activity</span></a></li> -->
+				<!-- <li><a href="classroom?" title="NewPost"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">ClassRoom</span></a>
+				</li> -->
+				<li><a href="#" title="Dashboard"><i
+						class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Education</span></a>
+					<ul>
+						<li class=""><a href="standardguidance?" title="ClassRoom"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Guidance</span></a>
+						</li>
+						<li class=""><a href="standardcourse?" title="ClassRoom"><i
+						class="fa fa-lg fa-fw fa-inbox"></i><span class="menu-item-parent">Courses</span></a>
+						</li>
+					</ul>
+				</li>
+				<li class="active"><a href="#" title="Dashboard"><i
+					class="fa fa-lg fa-fw fa-briefcase"></i> <span
+					class="menu-item-parent">OSM</span></a>
 				<ul>
-		<li class="active"><a href="gotoguidance?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-puzzle-piece txt-color-blue"></i> <span
-				class="menu-item-parent">Guidance Info</span> </a></li>
-		<li ><a href="gotoguidancedash?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
-				class="menu-item-parent">Guidance Dashboard</span> </a></li>		
-		<li ><a href="gotoguidanceshare?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
-				class="menu-item-parent">Guidance Share</span> </a></li>
+					<li class="active"><a href="ideatoimplement?" title="NewPost"><i
+							class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+					</li>
+					<li class=""><a href="osmprojectinfo?" title="NewJob"><i
+							class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
+					</li>
+					<li class=""><a href="osmprojectsubscription?" title="NewJob"><i
+							class="fa fa-suitcase"></i><span class="menu-item-parent">Project Resource</span></a>
+					</li>
+					
+					
+				</ul></li>
+				
 
-		<li><a href="gotoguidancecalendar?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-calendar"></i>
-				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
-		</li>
-		<li><a href="gotoguidanceexcersize?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-qrcode"></i>
-				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
-		</li>
-		<li><a href="gotoguidanceproject?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-sitemap"></i>
-				<span class="menu-item-parent">Guidance Project</span> </a></li>
-		</li>
-	</ul>
-			</nav>
-			
+				<li class="chat-users top-menu-invisible"><a href="#"><i
+						class="fa fa-lg fa-fw fa-comment-o"><em
+							class="bg-color-pink flash animated">!</em></i> <span
+						class="menu-item-parent">Online Chat</span></a>
+					<ul>
+						<li>
+							<!-- DISPLAY USERS -->
+							<div class="display-users">
 
-			<span class="minifyme" data-action="minifyMenu"> 
-				<i class="fa fa-arrow-circle-left hit"></i> 
-			</span>
+								<input class="form-control chat-user-filter"
+									placeholder="Filter" type="text"> <a href="#"
+									class="usr" data-chat-id="cha1" data-chat-fname="Sadi"
+									data-chat-lname="Orlaf" data-chat-status="busy"
+									data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
+									data-chat-alertshow="true" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/5.png' alt='Sadi Orlaf'>
+												<div class='usr-card-content'>
+													<h3>Sadi Orlaf</h3>
+													<p>Marketing Executive</p>
+												</div>
+											</div>
+										">
+									<i></i>Sadi Orlaf
+								</a> <a href="#" class="usr" data-chat-id="cha2"
+									data-chat-fname="Jessica" data-chat-lname="Dolof"
+									data-chat-status="online" data-chat-alertmsg=""
+									data-chat-alertshow="false" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/1.png' alt='Jessica Dolof'>
+												<div class='usr-card-content'>
+													<h3>Jessica Dolof</h3>
+													<p>Sales Administrator</p>
+												</div>
+											</div>
+										">
+									<i></i>Jessica Dolof
+								</a> <a href="#" class="usr" data-chat-id="cha3"
+									data-chat-fname="Zekarburg" data-chat-lname="Almandalie"
+									data-chat-status="online" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/3.png' alt='Zekarburg Almandalie'>
+												<div class='usr-card-content'>
+													<h3>Zekarburg Almandalie</h3>
+													<p>Sales Admin</p>
+												</div>
+											</div>
+										">
+									<i></i>Zekarburg Almandalie
+								</a> <a href="#" class="usr" data-chat-id="cha4"
+									data-chat-fname="Barley" data-chat-lname="Krazurkth"
+									data-chat-status="away" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/4.png' alt='Barley Krazurkth'>
+												<div class='usr-card-content'>
+													<h3>Barley Krazurkth</h3>
+													<p>Sales Director</p>
+												</div>
+											</div>
+										">
+									<i></i>Barley Krazurkth
+								</a> <a href="#" class="usr offline" data-chat-id="cha5"
+									data-chat-fname="Farhana" data-chat-lname="Amrin"
+									data-chat-status="incognito" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/female.png' alt='Farhana Amrin'>
+												<div class='usr-card-content'>
+													<h3>Farhana Amrin</h3>
+													<p>Support Admin <small><i class='fa fa-music'></i> Playing Beethoven Classics</small></p>
+												</div>
+											</div>
+										">
+									<i></i>Farhana Amrin (offline)
+								</a> <a href="#" class="usr offline" data-chat-id="cha6"
+									data-chat-fname="Lezley" data-chat-lname="Jacob"
+									data-chat-status="incognito" data-rel="popover-hover"
+									data-placement="right" data-html="true"
+									data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/male.png' alt='Lezley Jacob'>
+												<div class='usr-card-content'>
+													<h3>Lezley Jacob</h3>
+													<p>Sales Director</p>
+												</div>
+											</div>
+										">
+									<i></i>Lezley Jacob (offline)
+								</a> <a href="ajax/chat.html"
+									class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About
+									the API</a>
 
-		</aside>
+							</div> <!-- END DISPLAY USERS -->
+						</li>
+					</ul></li>
+			</ul>
+		</nav>
+
+
+		<span class="minifyme" data-action="minifyMenu"> <i
+			class="fa fa-arrow-circle-left hit"></i>
+		</span>
+
+	</aside>
 		<!-- END NAVIGATION -->
 
 		<!-- MAIN PANEL -->
