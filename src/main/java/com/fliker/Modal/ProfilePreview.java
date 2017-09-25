@@ -444,12 +444,13 @@ public class ProfilePreview {
 		return profileArr;
 	}
 	
+	//taking too much time in the method
 	private HashMap getSkilllist(String skillid) {
 		// TODO Auto-generated method stub
 		HashMap skillmap = new HashMap();
 		MongoConnection mongocon = new MongoConnection();
 		DBCursor resultcursor = mongocon.getDBObject("skillid", skillid, "SkillSet");
-		while(resultcursor.hasNext()){
+		while(resultcursor.hasNext()){ // culprit call taking lot of own time
 			DBObject theObj = resultcursor.next();
 			skillmap.put("skillname", (String)theObj.get("skillname"));
 			ArrayList skillassesreslist = new ArrayList();

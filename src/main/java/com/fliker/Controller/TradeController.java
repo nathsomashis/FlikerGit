@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fliker.Modal.OSMPreview;
 import com.fliker.Modal.ProfilePreview;
 import com.fliker.Modal.TradePreview;
+import com.fliker.Repository.Courses;
 import com.fliker.Repository.User;
 
 @Controller
@@ -58,6 +59,18 @@ public class TradeController {
 		
 		return stockavalable;
 		
+	}
+	
+	
+	@RequestMapping("/stockPreview")
+	public ModelAndView showStockView() {
+		System.out.println("in controller");
+ 
+		ArrayList assignmentlist = new ArrayList<Courses>();
+		
+		
+		ModelAndView mv = new ModelAndView("/TradeStockView");
+		return mv;
 	}
 
 	
