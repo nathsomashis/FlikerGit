@@ -72,6 +72,18 @@ public class TradeController {
 		ModelAndView mv = new ModelAndView("/TradeStockView");
 		return mv;
 	}
+	
+	
+	@RequestMapping("/stockInfo")
+	public ModelAndView showStockInfo() {
+		System.out.println("in controller");
+ 
+		ArrayList assignmentlist = new ArrayList<Courses>();
+		
+		
+		ModelAndView mv = new ModelAndView("/TradeStockInfo");
+		return mv;
+	}
 
 	
 	@RequestMapping("/stockbuying")
