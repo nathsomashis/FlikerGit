@@ -6,7 +6,7 @@
 <html>
 <head>
 		<meta charset="utf-8">
-		<title> Search Unit </title>
+		<title> Market </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -121,18 +121,21 @@
 
 		<!-- #HEADER -->
 		<header id="header">
-			<div id="logo-group">
+	<div id="logo-group">
 
-				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
-				<!-- END LOGO PLACEHOLDER -->
+		<!-- PLACE YOUR LOGO HERE -->
+		<span id="logo"> <img src="img/logo.png" alt="Medha">
+		</span>
+		<!-- END LOGO PLACEHOLDER -->
 
-				<!-- Note: The activity badge color changes when clicked and resets the number to 0
+		<!-- Note: The activity badge color changes when clicked and resets the number to 0
 				Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-				<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
+		<span id="activity" class="activity-dropdown"> <i
+			class="fa fa-user"></i> <b class="badge"> 21 </b>
+		</span>
 
-				<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
-				<div class="ajax-dropdown">
+		<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
+		<div class="ajax-dropdown">
 
 				<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
 				<div class="btn-group btn-group-justified" data-toggle="buttons">
@@ -166,10 +169,10 @@
 				<!-- end footer -->
 
 			</div>
-				<!-- END AJAX-DROPDOWN -->
-			</div>
+		<!-- END AJAX-DROPDOWN -->
+	</div>
 
-			<!-- projects dropdown -->
+	<!-- projects dropdown -->
 	<div class="project-context hidden-xs">
 
 			<span class="label">Say:</span> <span
@@ -189,10 +192,9 @@
 			<!-- end dropdown-menu-->
 
 		</div>
-	<!-- end projects dropdown -->
 
-			<!-- pulled right: nav area -->
-			<div class="pull-right">
+	<!-- end projects dropdown --> <!-- pulled right: nav area -->
+	<div class="pull-right">
 
 		<!-- collapse menu button -->
 		<div id="hide-menu" class="btn-header pull-right">
@@ -240,14 +242,14 @@
 		<!-- end logout button -->
 
 		<!-- search mobile button (this is hidden till mobile view port) -->
-			<!-- <div id="search-mobile" class="btn-header transparent pull-right">
+			<div id="search-mobile" class="btn-header transparent pull-right">
 				<span> <a href="searchresults?" title="Search"><i
 						class="fa fa-search"></i></a>
 				</span>
 			</div>
-			end search mobile button
+			<!-- end search mobile button -->
 
-			input: search field
+			<!-- input: search field -->
 			<form action="searchresults?" class="header-search pull-right">
 				<input id="search-fld" type="text" name="param"
 					placeholder="Find reports and more">
@@ -257,7 +259,7 @@
 				<a href="javascript:void(0);" id="cancel-search-js"
 					title="Cancel Search"><i class="fa fa-times"></i></a>
 			</form>
-			end input: search field -->
+			<!-- end input: search field -->
 
 		<!-- fullscreen button -->
 		<div id="fullscreen" class="btn-header transparent pull-right">
@@ -270,7 +272,6 @@
 				<span> <a href="createpost?" title="Article">Article</a>
 				</span>
 			</div>
-			
 		<!-- end fullscreen button -->
 
 		<!-- #Voice Command: Start Speech -->
@@ -308,9 +309,7 @@
 		
 
 	</div>
-			<!-- end pulled right: nav area -->
-
-		</header>
+	<!-- end pulled right: nav area --> </header>
 		<!-- END HEADER -->
 
 		<!-- #NAVIGATION -->
@@ -380,15 +379,18 @@
 						</li>
 					</ul>
 				</li>
-				<li class="active"><a href="#" title="Dashboard"><i
+				<li><a href="#" title="Dashboard"><i
 					class="fa fa-lg fa-fw fa-briefcase"></i> <span
 					class="menu-item-parent">OSM</span></a>
 				<ul>
+					<li class=""><a href="ideatoimplement?" title="NewPost"><i
+							class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+					</li>
 					<li class=""><a href="osmprojectinfo?" title="NewJob"><i
 							class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
 					</li>
-					<li class="active"><a href="osmprojectsubscription?" title="NewJob"><i
-							class="fa fa-suitcase"></i><span class="menu-item-parent">Trade</span></a>
+					<li class=""><a href="osmprojectsubscription?" title="NewJob"><i
+							class="fa fa-suitcase"></i><span class="menu-item-parent">Project Resource</span></a>
 					</li>
 					
 					
@@ -507,284 +509,626 @@
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
 
+			<!-- RIBBON -->
+			<div id="ribbon">
+
+				<span class="ribbon-button-alignment"> 
+					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
+						<i class="fa fa-refresh"></i>
+					</span> 
+				</span>
+
+				<!-- breadcrumb -->
+				<ol class="breadcrumb">
+					<li>Market</li>
+				</ol>
+				<!-- end breadcrumb -->
+
+				<!-- You can also add more buttons to the
+				ribbon for further usability
+
+				Example below:
+
+				<span class="ribbon-button-alignment pull-right">
+				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+				</span> -->
+
+			</div>
+			<!-- END RIBBON -->
+
 			<!-- MAIN CONTENT -->
 			<div id="content">
-				<div class="col-sm-12 col-md-12 col-lg-12">
-							<!-- product -->
-							<div class="product-content product-wrap clearfix product-deatil">
-								<div class="row">
-										
-										<div class="col-md-12 col-sm-12 col-xs-12">
-									
-										<h2 class="name">
-											Product Name Title Here 
-											<small>Product by <a href="javascript:void(0);">Adeline</a></small>
-											<i class="fa fa-star fa-2x text-primary"></i>
-											<i class="fa fa-star fa-2x text-primary"></i>
-											<i class="fa fa-star fa-2x text-primary"></i>
-											<i class="fa fa-star fa-2x text-primary"></i>
-											<i class="fa fa-star fa-2x text-muted"></i>
-											<span class="fa fa-2x"><h5>(109) Votes</h5></span>	
-											
-											<a href="javascript:void(0);">109 customer reviews</a>
-				 
-										</h2>
-										<hr>
-										<h3 class="price-container">
-											$129.54
-											<small>*includes tax</small>
-											
-										</h3>
-										<div class="certified">
-											<ul>
-												<li><a href="javascript:void(0);">Total Sell<span> 2345</span></a></li>
-											</ul>
-										</div>
-									
-										<hr>
-										<div class="description description-tabs">
 
-
-											<ul id="myTab" class="nav nav-pills">
-												<li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product Description </a></li>
-												<li class=""><a href="#investors" data-toggle="tab">Investors</a></li>
-												<li class=""><a href="#buyers" data-toggle="tab">Buyers</a></li>
-												<li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
-											</ul>
-											<div id="myTabContent" class="tab-content">
-												<div class="tab-pane fade active in" id="more-information">
-													<br>
-													<strong>Description Title</strong>
-													<p>Integer egestas, orci id condimentum eleifend, nibh nisi pulvinar eros, vitae ornare massa neque ut orci. Nam aliquet lectus sed odio eleifend, at iaculis dolor egestas. Nunc elementum pellentesque augue sodales porta. Etiam aliquet rutrum turpis, feugiat sodales ipsum consectetur nec. </p>
-												</div>
-												<div class="tab-pane fade" id="investors">
-													<br>
-													<dl class="">
-															<dt>Investors</dt>
-					                                        <dd>
-					                                        	<div class="row">
-						
-																	<!-- NEW WIDGET START -->
-																	<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-																		
-																		<!-- Widget ID (each widget will need unique ID)-->
-																		<div class="jarviswidget well" id="wid-id-0">
-																			<!-- widget options:
-																				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-																				
-																				data-widget-colorbutton="false"	
-																				data-widget-editbutton="false"
-																				data-widget-togglebutton="false"
-																				data-widget-deletebutton="false"
-																				data-widget-fullscreenbutton="false"
-																				data-widget-custombutton="false"
-																				data-widget-collapsed="true" 
-																				data-widget-sortable="false"
-																				
-																			-->
-																			<header>
-																				<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-																				<h2>Widget Title </h2>				
-																				
-																			</header>
-											
-																			<!-- widget div-->
-																			<div>
-																				
-																				<!-- widget edit box -->
-																				<div class="jarviswidget-editbox">
-																					<!-- This area used as dropdown edit box -->
-																					<input class="form-control" type="text">	
-																				</div>
-																				<!-- end widget edit box -->
-																				
-																				<!-- widget content -->
-																				<div class="widget-body no-padding">
-																					
-																					<table id="example" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-																				        <thead>
-																				            <tr>
-																				                <th></th><th>Projects</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
-																				                <th>Contacts</th>
-																				                <th>Status</th>
-																				                <th><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>
-																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
-																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
-																				                <th>Tracker</th>
-																				            </tr>
-																				        </thead>
-																				    </table>
-											
-																				</div>
-																				<!-- end widget content -->
-																				
-																			</div>
-																			<!-- end widget div -->
-																			
-																		</div>
-																		<!-- end widget -->
-											
-																	</article>
-																	<!-- WIDGET END -->
-																	
-																</div>
-					                                        </dd>
-					                                        <br>
-
-					                                        
-					                                        
-					                                    </dl>
-												</div>
-												<div class="tab-pane fade" id="buyers">
-													<br>
-													<dl class="">
-															<dt>Buyers</dt>
-					                                        <dd>
-					                                        	<div class="row">
-						
-																	<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-																		
-																		<div class="jarviswidget well" id="wid-id-1">
-																			 <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false">
-																				
-																			<header>
-																				<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-																				<h2>Widget Title </h2>				
-																				
-																			</header>
-											
-																			<div>
-																				
-																				<div class="jarviswidget-editbox">
-																					<input class="form-control" type="text">	
-																				</div>
-																				
-																				<div class="widget-body no-padding">
-																					
-																					<table id="example1" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-																				        <thead>
-																				            <tr>
-																				                <th></th><th>Projects</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
-																				                <th>Contacts</th>
-																				                <th>Status</th>
-																				                <th><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>
-																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
-																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
-																				                <th>Tracker</th>
-																				            </tr>
-																				        </thead>
-																				    </table>
-											
-																				</div>
-																				
-																			</div>
-																			
-																		</div>
-											
-																	</article>
-																	
-																</div>
-					                                        </dd>
-					                                        
-					                                    </dl>
-												</div>
-												<div class="tab-pane fade" id="reviews">
-													<br>
-													<form method="post" class="well padding-bottom-10" onsubmit="return false;">
-														<textarea rows="2" class="form-control" placeholder="Write a review"></textarea>
-														<div class="margin-top-10">
-															<button type="submit" class="btn btn-sm btn-primary pull-right">
-																Submit Review
-															</button>
-															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Location"><i class="fa fa-location-arrow"></i></a>
-															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Voice"><i class="fa fa-microphone"></i></a>
-															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Photo"><i class="fa fa-camera"></i></a>
-															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add File"><i class="fa fa-file"></i></a>
-														</div>
-													</form>
-
-													<div class="chat-body no-padding profile-message">
-														<ul>
-															<li class="message">
-																<img src="img/avatars/1.png" class="online">
-																<span class="message-text"> 
-																	<a href="javascript:void(0);" class="username">
-																		Alisha Molly 
-																		<span class="badge">Purchase Verified</span> 
-																		<span class="pull-right">
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-muted"></i>
-																		</span>
-																	</a> 
-																	
-																	
-																	Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very image let unto fowl isn't in blessed fill life yielding above all moved 
-																</span>
-																<ul class="list-inline font-xs">
-																	<li>
-																		<a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
-																	</li>
-																	<li class="pull-right">
-																		<small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
-																	</li>
-																</ul>
+				<!-- row -->
+				
+				<div class="row">
+				
+					<div class="col-sm-12">
+				
+						<ul id="myTab1" class="nav nav-tabs bordered">
+							<li class="active">
+								<a href="#s1" data-toggle="tab">Cart</a>
+							</li>
+							<li>
+								<a href="#s2" data-toggle="tab">Orders</a>
+							</li>
+							<li>
+								<a href="#s3" data-toggle="tab">Sale</a>
+							</li>
+						</ul>
+						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
+							<div class="tab-pane fade in active" id="s1">
+							
+								
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<h2>Cart</h2>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body">
+				
+										<div class="row">
+											<form id="wizard-1" novalidate="novalidate">
+												<div id="bootstrap-wizard-1" class="col-sm-12">
+													<div class="form-bootstrapWizard">
+														<ul class="bootstrapWizard form-wizard">
+															<li class="active" data-target="#step1">
+																<a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span class="title">Basic information</span> </a>
 															</li>
-															<li class="message">
-																<img src="img/avatars/2.png" class="online">
-																<span class="message-text"> 
-																	<a href="javascript:void(0);" class="username">
-																		Aragon Zarko 
-																		<span class="badge">Purchase Verified</span> 
-																		<span class="pull-right">
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																		</span>
-																	</a> 
-																	
-																	
-																	Excellent product, love it!
-																</span>
-																<ul class="list-inline font-xs">
-																	<li>
-																		<a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
-																	</li>
-																	<li class="pull-right">
-																		<small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
-																	</li>
-																</ul>
+															<li data-target="#step2">
+																<a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="title">Billing information</span> </a>
+															</li>
+															<li data-target="#step3">
+																<a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title">Domain Setup</span> </a>
+															</li>
+															<li data-target="#step4">
+																<a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="title">Save Form</span> </a>
 															</li>
 														</ul>
+														<div class="clearfix"></div>
+													</div>
+													<div class="tab-content">
+														<div class="tab-pane active" id="tab1">
+															<br>
+															<h3><strong>Step 1 </strong> - Basic Information</h3>
+				
+															<div class="row">
+				
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
+																			<input class="form-control input-lg" placeholder="email@address.com" type="text" name="email" id="email">
+				
+																		</div>
+																	</div>
+				
+																</div>
+				
+															</div>
+				
+															<div class="row">
+																<div class="col-sm-6">
+																	<div class="form-group">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+																			<input class="form-control input-lg" placeholder="First Name" type="text" name="fname" id="fname">
+				
+																		</div>
+																	</div>
+																</div>
+																<div class="col-sm-6">
+																	<div class="form-group">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+																			<input class="form-control input-lg" placeholder="Last Name" type="text" name="lname" id="lname">
+				
+																		</div>
+																	</div>
+																</div>
+															</div>
+				
+														</div>
+														<div class="tab-pane" id="tab2">
+															<br>
+															<h3><strong>Step 2</strong> - Billing Information</h3>
+				
+															<div class="row">
+																<div class="col-sm-4">
+																	<div class="form-group">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i class="fa fa-flag fa-lg fa-fw"></i></span>
+																			<select name="country" class="form-control input-lg">
+																				<option value="" selected="selected">Select Country</option>
+																				<option value="United States">United States</option>
+																				<option value="United Kingdom">United Kingdom</option>
+																				<option value="Afghanistan">Afghanistan</option>
+																				<option value="Albania">Albania</option>
+																				<option value="Algeria">Algeria</option>
+																				<option value="American Samoa">American Samoa</option>
+																				<option value="Andorra">Andorra</option>
+																				<option value="Angola">Angola</option>
+																				<option value="Anguilla">Anguilla</option>
+																				<option value="Antarctica">Antarctica</option>
+																				<option value="Antigua and Barbuda">Antigua and Barbuda</option>
+																				<option value="Argentina">Argentina</option>
+																				<option value="Armenia">Armenia</option>
+																				<option value="Aruba">Aruba</option>
+																				<option value="Australia">Australia</option>
+																				<option value="Austria">Austria</option>
+																				<option value="Azerbaijan">Azerbaijan</option>
+																				<option value="Bahamas">Bahamas</option>
+																				<option value="Bahrain">Bahrain</option>
+																				<option value="Bangladesh">Bangladesh</option>
+																				<option value="Barbados">Barbados</option>
+																				<option value="Belarus">Belarus</option>
+																				<option value="Belgium">Belgium</option>
+																				<option value="Belize">Belize</option>
+																				<option value="Benin">Benin</option>
+																				<option value="Bermuda">Bermuda</option>
+																				<option value="Bhutan">Bhutan</option>
+																				<option value="Bolivia">Bolivia</option>
+																				<option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+																				<option value="Botswana">Botswana</option>
+																				<option value="Bouvet Island">Bouvet Island</option>
+																				<option value="Brazil">Brazil</option>
+																				<option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+																				<option value="Brunei Darussalam">Brunei Darussalam</option>
+																				<option value="Bulgaria">Bulgaria</option>
+																				<option value="Burkina Faso">Burkina Faso</option>
+																				<option value="Burundi">Burundi</option>
+																				<option value="Cambodia">Cambodia</option>
+																				<option value="Cameroon">Cameroon</option>
+																				<option value="Canada">Canada</option>
+																				<option value="Cape Verde">Cape Verde</option>
+																				<option value="Cayman Islands">Cayman Islands</option>
+																				<option value="Central African Republic">Central African Republic</option>
+																				<option value="Chad">Chad</option>
+																				<option value="Chile">Chile</option>
+																				<option value="China">China</option>
+																				<option value="Christmas Island">Christmas Island</option>
+																				<option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+																				<option value="Colombia">Colombia</option>
+																				<option value="Comoros">Comoros</option>
+																				<option value="Congo">Congo</option>
+																				<option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+																				<option value="Cook Islands">Cook Islands</option>
+																				<option value="Costa Rica">Costa Rica</option>
+																				<option value="Cote D'ivoire">Cote D'ivoire</option>
+																				<option value="Croatia">Croatia</option>
+																				<option value="Cuba">Cuba</option>
+																				<option value="Cyprus">Cyprus</option>
+																				<option value="Czech Republic">Czech Republic</option>
+																				<option value="Denmark">Denmark</option>
+																				<option value="Djibouti">Djibouti</option>
+																				<option value="Dominica">Dominica</option>
+																				<option value="Dominican Republic">Dominican Republic</option>
+																				<option value="Ecuador">Ecuador</option>
+																				<option value="Egypt">Egypt</option>
+																				<option value="El Salvador">El Salvador</option>
+																				<option value="Equatorial Guinea">Equatorial Guinea</option>
+																				<option value="Eritrea">Eritrea</option>
+																				<option value="Estonia">Estonia</option>
+																				<option value="Ethiopia">Ethiopia</option>
+																				<option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+																				<option value="Faroe Islands">Faroe Islands</option>
+																				<option value="Fiji">Fiji</option>
+																				<option value="Finland">Finland</option>
+																				<option value="France">France</option>
+																				<option value="French Guiana">French Guiana</option>
+																				<option value="French Polynesia">French Polynesia</option>
+																				<option value="French Southern Territories">French Southern Territories</option>
+																				<option value="Gabon">Gabon</option>
+																				<option value="Gambia">Gambia</option>
+																				<option value="Georgia">Georgia</option>
+																				<option value="Germany">Germany</option>
+																				<option value="Ghana">Ghana</option>
+																				<option value="Gibraltar">Gibraltar</option>
+																				<option value="Greece">Greece</option>
+																				<option value="Greenland">Greenland</option>
+																				<option value="Grenada">Grenada</option>
+																				<option value="Guadeloupe">Guadeloupe</option>
+																				<option value="Guam">Guam</option>
+																				<option value="Guatemala">Guatemala</option>
+																				<option value="Guinea">Guinea</option>
+																				<option value="Guinea-bissau">Guinea-bissau</option>
+																				<option value="Guyana">Guyana</option>
+																				<option value="Haiti">Haiti</option>
+																				<option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
+																				<option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+																				<option value="Honduras">Honduras</option>
+																				<option value="Hong Kong">Hong Kong</option>
+																				<option value="Hungary">Hungary</option>
+																				<option value="Iceland">Iceland</option>
+																				<option value="India">India</option>
+																				<option value="Indonesia">Indonesia</option>
+																				<option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+																				<option value="Iraq">Iraq</option>
+																				<option value="Ireland">Ireland</option>
+																				<option value="Israel">Israel</option>
+																				<option value="Italy">Italy</option>
+																				<option value="Jamaica">Jamaica</option>
+																				<option value="Japan">Japan</option>
+																				<option value="Jordan">Jordan</option>
+																				<option value="Kazakhstan">Kazakhstan</option>
+																				<option value="Kenya">Kenya</option>
+																				<option value="Kiribati">Kiribati</option>
+																				<option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+																				<option value="Korea, Republic of">Korea, Republic of</option>
+																				<option value="Kuwait">Kuwait</option>
+																				<option value="Kyrgyzstan">Kyrgyzstan</option>
+																				<option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+																				<option value="Latvia">Latvia</option>
+																				<option value="Lebanon">Lebanon</option>
+																				<option value="Lesotho">Lesotho</option>
+																				<option value="Liberia">Liberia</option>
+																				<option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+																				<option value="Liechtenstein">Liechtenstein</option>
+																				<option value="Lithuania">Lithuania</option>
+																				<option value="Luxembourg">Luxembourg</option>
+																				<option value="Macao">Macao</option>
+																				<option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+																				<option value="Madagascar">Madagascar</option>
+																				<option value="Malawi">Malawi</option>
+																				<option value="Malaysia">Malaysia</option>
+																				<option value="Maldives">Maldives</option>
+																				<option value="Mali">Mali</option>
+																				<option value="Malta">Malta</option>
+																				<option value="Marshall Islands">Marshall Islands</option>
+																				<option value="Martinique">Martinique</option>
+																				<option value="Mauritania">Mauritania</option>
+																				<option value="Mauritius">Mauritius</option>
+																				<option value="Mayotte">Mayotte</option>
+																				<option value="Mexico">Mexico</option>
+																				<option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+																				<option value="Moldova, Republic of">Moldova, Republic of</option>
+																				<option value="Monaco">Monaco</option>
+																				<option value="Mongolia">Mongolia</option>
+																				<option value="Montserrat">Montserrat</option>
+																				<option value="Morocco">Morocco</option>
+																				<option value="Mozambique">Mozambique</option>
+																				<option value="Myanmar">Myanmar</option>
+																				<option value="Namibia">Namibia</option>
+																				<option value="Nauru">Nauru</option>
+																				<option value="Nepal">Nepal</option>
+																				<option value="Netherlands">Netherlands</option>
+																				<option value="Netherlands Antilles">Netherlands Antilles</option>
+																				<option value="New Caledonia">New Caledonia</option>
+																				<option value="New Zealand">New Zealand</option>
+																				<option value="Nicaragua">Nicaragua</option>
+																				<option value="Niger">Niger</option>
+																				<option value="Nigeria">Nigeria</option>
+																				<option value="Niue">Niue</option>
+																				<option value="Norfolk Island">Norfolk Island</option>
+																				<option value="Northern Mariana Islands">Northern Mariana Islands</option>
+																				<option value="Norway">Norway</option>
+																				<option value="Oman">Oman</option>
+																				<option value="Pakistan">Pakistan</option>
+																				<option value="Palau">Palau</option>
+																				<option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+																				<option value="Panama">Panama</option>
+																				<option value="Papua New Guinea">Papua New Guinea</option>
+																				<option value="Paraguay">Paraguay</option>
+																				<option value="Peru">Peru</option>
+																				<option value="Philippines">Philippines</option>
+																				<option value="Pitcairn">Pitcairn</option>
+																				<option value="Poland">Poland</option>
+																				<option value="Portugal">Portugal</option>
+																				<option value="Puerto Rico">Puerto Rico</option>
+																				<option value="Qatar">Qatar</option>
+																				<option value="Reunion">Reunion</option>
+																				<option value="Romania">Romania</option>
+																				<option value="Russian Federation">Russian Federation</option>
+																				<option value="Rwanda">Rwanda</option>
+																				<option value="Saint Helena">Saint Helena</option>
+																				<option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+																				<option value="Saint Lucia">Saint Lucia</option>
+																				<option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+																				<option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+																				<option value="Samoa">Samoa</option>
+																				<option value="San Marino">San Marino</option>
+																				<option value="Sao Tome and Principe">Sao Tome and Principe</option>
+																				<option value="Saudi Arabia">Saudi Arabia</option>
+																				<option value="Senegal">Senegal</option>
+																				<option value="Serbia and Montenegro">Serbia and Montenegro</option>
+																				<option value="Seychelles">Seychelles</option>
+																				<option value="Sierra Leone">Sierra Leone</option>
+																				<option value="Singapore">Singapore</option>
+																				<option value="Slovakia">Slovakia</option>
+																				<option value="Slovenia">Slovenia</option>
+																				<option value="Solomon Islands">Solomon Islands</option>
+																				<option value="Somalia">Somalia</option>
+																				<option value="South Africa">South Africa</option>
+																				<option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
+																				<option value="Spain">Spain</option>
+																				<option value="Sri Lanka">Sri Lanka</option>
+																				<option value="Sudan">Sudan</option>
+																				<option value="Suriname">Suriname</option>
+																				<option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+																				<option value="Swaziland">Swaziland</option>
+																				<option value="Sweden">Sweden</option>
+																				<option value="Switzerland">Switzerland</option>
+																				<option value="Syrian Arab Republic">Syrian Arab Republic</option>
+																				<option value="Taiwan, Province of China">Taiwan, Province of China</option>
+																				<option value="Tajikistan">Tajikistan</option>
+																				<option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+																				<option value="Thailand">Thailand</option>
+																				<option value="Timor-leste">Timor-leste</option>
+																				<option value="Togo">Togo</option>
+																				<option value="Tokelau">Tokelau</option>
+																				<option value="Tonga">Tonga</option>
+																				<option value="Trinidad and Tobago">Trinidad and Tobago</option>
+																				<option value="Tunisia">Tunisia</option>
+																				<option value="Turkey">Turkey</option>
+																				<option value="Turkmenistan">Turkmenistan</option>
+																				<option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+																				<option value="Tuvalu">Tuvalu</option>
+																				<option value="Uganda">Uganda</option>
+																				<option value="Ukraine">Ukraine</option>
+																				<option value="United Arab Emirates">United Arab Emirates</option>
+																				<option value="United Kingdom">United Kingdom</option>
+																				<option value="United States">United States</option>
+																				<option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+																				<option value="Uruguay">Uruguay</option>
+																				<option value="Uzbekistan">Uzbekistan</option>
+																				<option value="Vanuatu">Vanuatu</option>
+																				<option value="Venezuela">Venezuela</option>
+																				<option value="Viet Nam">Viet Nam</option>
+																				<option value="Virgin Islands, British">Virgin Islands, British</option>
+																				<option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+																				<option value="Wallis and Futuna">Wallis and Futuna</option>
+																				<option value="Western Sahara">Western Sahara</option>
+																				<option value="Yemen">Yemen</option>
+																				<option value="Zambia">Zambia</option>
+																				<option value="Zimbabwe">Zimbabwe</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-sm-4">
+																	<div class="form-group">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
+																			<select class="form-control input-lg" name="city">
+																				<option value="" selected="selected">Select City</option>
+																				<option>Amsterdam</option>
+																				<option>Atlanta</option>
+																				<option>Baltimore</option>
+																				<option>Boston</option>
+																				<option>Buenos Aires</option>
+																				<option>Calgary</option>
+																				<option>Chicago</option>
+																				<option>Denver</option>
+																				<option>Dubai</option>
+																				<option>Frankfurt</option>
+																				<option>Hong Kong</option>
+																				<option>Honolulu</option>
+																				<option>Houston</option>
+																				<option>Kuala Lumpur</option>
+																				<option>London</option>
+																				<option>Los Angeles</option>
+																				<option>Melbourne</option>
+																				<option>Mexico City</option>
+																				<option>Miami</option>
+																				<option>Minneapolis</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-sm-4">
+																	<div class="form-group">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i class="fa fa-envelope-o fa-lg fa-fw"></i></span>
+																			<input class="form-control input-lg" placeholder="Postal Code" type="text" name="postal" id="postal">
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-sm-6">
+																	<div class="form-group">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i class="fa fa-phone fa-lg fa-fw"></i></span>
+																			<input class="form-control input-lg" data-mask="+99 (999) 999-9999" data-mask-placeholder= "X" placeholder="+1" type="text" name="wphone" id="wphone">
+																		</div>
+																	</div>
+																</div>
+																<div class="col-sm-6">
+																	<div class="form-group">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i class="fa fa-mobile fa-lg fa-fw"></i></span>
+																			<input class="form-control input-lg" data-mask="+99 (999) 999-9999" data-mask-placeholder= "X" placeholder="+01" type="text" name="hphone" id="hphone">
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="tab-pane" id="tab3">
+															<br>
+															<h3><strong>Step 3</strong> - Domain Setup</h3>
+															<div class="alert alert-info fade in">
+																<button class="close" data-dismiss="alert">
+																	×
+																</button>
+																<i class="fa-fw fa fa-info"></i>
+																<strong>Info!</strong> Place an info message box if you wish.
+															</div>
+															<div class="form-group">
+																<label>This is a label</label>
+																<input class="form-control input-lg" placeholder="Another input box here..." type="text" name="etc" id="etc">
+															</div>
+														</div>
+														<div class="tab-pane" id="tab4">
+															<br>
+															<h3><strong>Step 4</strong> - Save Form</h3>
+															<br>
+															<h1 class="text-center text-success"><strong><i class="fa fa-check fa-lg"></i> Complete</strong></h1>
+															<h4 class="text-center">Click next to finish</h4>
+															<br>
+															<br>
+														</div>
+				
+														<div class="form-actions">
+															<div class="row">
+																<div class="col-sm-12">
+																	<ul class="pager wizard no-margin">
+																		<!--<li class="previous first disabled">
+																		<a href="javascript:void(0);" class="btn btn-lg btn-default"> First </a>
+																		</li>-->
+																		<li class="previous disabled">
+																			<a href="javascript:void(0);" class="btn btn-lg btn-default"> Previous </a>
+																		</li>
+																		<!--<li class="next last">
+																		<a href="javascript:void(0);" class="btn btn-lg btn-primary"> Last </a>
+																		</li>-->
+																		<li class="next">
+																			<a href="javascript:void(0);" class="btn btn-lg txt-color-darken"> Next </a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+				
 													</div>
 												</div>
-											</div>
-									
-
+											</form>
 										</div>
-										<hr>
-										<div class="row">
-											<div class="col-sm-12 col-md-6 col-lg-6">
-												
-											</div>
-											<div class="col-sm-12 col-md-6 col-lg-6">
-												<div class="btn-group pull-right">
-						                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist </button>
-						                            <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
-						                        </div>
-											</div>
-										</div>
-										
+				
+									</div>
+									<!-- end widget content -->
+				
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+				
+							</div>
+							<div class="tab-pane fade" id="s2">
+								<h1> Search <span class="semi-bold">Users/Groups/Courses/Job Interviews/Organization/Institutions/Etc..</span></h1>
+								<br>
+								<div class="input-group input-group-lg">
+									<div class="input-group-btn">
+										<button id="searchparamset" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+											User <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li class="active">
+												<a href="javascript:void(0)"></i> Users</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Groups</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Organization</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Institutes</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Courses</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Job Interviews</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)">Specializations</a>
+											</li>
+										</ul>
+									</div>
+									<input class="form-control input-lg" type="text" placeholder="Mention the type(eg: for Groups --> #Group groupname)..." id="searchcontentspecific">
+									<div class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											<i class="fa fa-fw fa-search fa-lg"></i>
+										</button>
 									</div>
 								</div>
+								<h1 class="font-md"> Search Results for <span class="semi-bold">Users</span><small class="text-danger"> &nbsp;&nbsp;(181 results)</small></h1>
+								<br>
+								<div class="row" id="searchcontentspecificresult">
+								
+								</div>
+								
+								<div class="text-center">
+									<hr>
+									<ul class="pagination no-margin">
+										<li class="prev disabled">
+											<a href="javascript:void(0);">Previous</a>
+										</li>
+										<li class="active">
+											<a href="javascript:void(0);">1</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">2</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">3</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">4</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">5</a>
+										</li>
+										<li class="next">
+											<a href="javascript:void(0);">Next</a>
+										</li>
+									</ul>
+									<br>
+									<br>
+									<br>
+								</div>
 							</div>
-							<!-- end product -->
+							<div class="tab-pane fade" id="s3">
+								<h1> Search <span class="semi-bold">history</span></h1>
+								<p class="alert alert-info">
+									Your search history is turned off.
+				
+								</p>
+				
+								<span class="onoffswitch-title">Auto save Search History</span>
+								<span class="onoffswitch">
+									<input type="checkbox" name="save_history" class="onoffswitch-checkbox" id="save_history" checked="checked">
+									<label class="onoffswitch-label" for="save_history"> <span class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></span> <span class="onoffswitch-switch"></span> </label> </span>
+				
+							</div>
 						</div>
 				
+					</div>
+				
+				</div>
+				
+				<!-- end row -->
+
 			</div>
 			<!-- END MAIN CONTENT -->
 
@@ -808,30 +1152,27 @@
 		you can add as many as you like
 		-->
 		<div id="shortcut">
-		<ul>
-			<li><a href="calendar?"
-				class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span
-					class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span>
-				</span>
-			</a></li>
-			<li><a href="profile?"
-				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
-					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My
-							Profile </span>
-				</span>
-			</a></li>
-			<li><a href="timeline?"
-				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
-					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>TimeLine </span>
-				</span>
-			</a></li>
-			<li><a href="market?"
-				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
-					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>Market </span>
-				</span>
-			</a></li>
-		</ul>
-	</div>
+			<ul>
+				<li>
+					<a href="inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
+				</li>
+				<li>
+					<a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
+				</li>
+				<li>
+					<a href="gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
+				</li>
+				<li>
+					<a href="invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
+				</li>
+				<li>
+					<a href="gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
+				</li>
+				<li>
+					<a href="profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
+				</li>
+			</ul>
+		</div>
 		<!-- END SHORTCUT AREA -->
 
 		<!--================================================== -->
@@ -933,19 +1274,10 @@
 
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
-		<script src="<c:url value='/resources/js/plugin/datatables/jquery.dataTables.min.js' />"></script>
-		<!-- <script src="js/plugin/datatables/jquery.dataTables.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.colVis.min.js' />"></script>
-		<!-- <script src="js/plugin/datatables/dataTables.colVis.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.tableTools.min.js' />"></script>
-		<!-- <script src="js/plugin/datatables/dataTables.tableTools.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.bootstrap.min.js' />"></script>
-		<!-- <script src="js/plugin/datatables/dataTables.bootstrap.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/datatable-responsive/datatables.responsive.min.js' />"></script>
-		<!-- <script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script> -->
-		<script src="<c:url value='/resources/js/plugin/superbox/superbox.min.js' />"></script>
-		<!-- <script src="js/plugin/superbox/superbox.min.js"></script> -->
-		
+		<script src="<c:url value='/resources/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js' />"></script>
+		<!-- <script src="js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/fuelux/wizard/wizard.min.js' />"></script>
+		<!-- <script src="js/plugin/fuelux/wizard/wizard.min.js"></script> -->
 
 		<script type="text/javascript">
 
@@ -983,8 +1315,6 @@
 				
 				 pageSetUp();
 				 
-				 $('.superbox').SuperBox();
-				 
 				/*
 				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
 				 * eg alert("my home function");
@@ -1005,101 +1335,98 @@
 				 */
 				 
 				 
-				 function format ( d ) {
-					    // `d` is the original data object for the row
-					    return '<table cellpadding="5" cellspacing="0" border="0" class="table table-hover table-condensed">'+
-					        '<tr>'+
-					            '<td style="width:100px">Project Title:</td>'+
-					            '<td>'+d.name+'</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Deadline:</td>'+
-					            '<td>'+d.ends+'</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Extra info:</td>'+
-					            '<td>And any further details here (images etc)...</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Comments:</td>'+
-					            '<td>'+d.comments+'</td>'+
-					        '</tr>'+
-					        '<tr>'+
-					            '<td>Action:</td>'+
-					            '<td>'+d.action+'</td>'+
-					        '</tr>'+
-					    '</table>';
-					}
-
-					// clears the variable if left blank
-				    var table = $('#example').DataTable( {
-				    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
-							"t"+
-							"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-				        "ajax": "data/dataList.json",
-				        "bDestroy": true,
-				        "iDisplayLength": 15,
-				        "oLanguage": {
-						    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-						},
-				        "columns": [
-				            {
-				                "class":          'details-control',
-				                "orderable":      false,
-				                "data":           null,
-				                "defaultContent": ''
-				            },
-				            { "data": "name" },
-				            { "data": "est" },
-				            { "data": "contacts" },
-				            { "data": "status" },
-				            { "data": "target-actual" },
-				            { "data": "starts" },
-				            { "data": "ends" },
-				            { "data": "tracker" },
-				        ],
-				        "order": [[1, 'asc']],
-				        "fnDrawCallback": function( oSettings ) {
-					       runAllCharts()
+				 var $validator = $("#wizard-1").validate({
+					    
+					    rules: {
+					      email: {
+					        required: true,
+					        email: "Your email address must be in the format of name@domain.com"
+					      },
+					      fname: {
+					        required: true
+					      },
+					      lname: {
+					        required: true
+					      },
+					      country: {
+					        required: true
+					      },
+					      city: {
+					        required: true
+					      },
+					      postal: {
+					        required: true,
+					        minlength: 4
+					      },
+					      wphone: {
+					        required: true,
+					        minlength: 10
+					      },
+					      hphone: {
+					        required: true,
+					        minlength: 10
+					      }
+					    },
+					    
+					    messages: {
+					      fname: "Please specify your First name",
+					      lname: "Please specify your Last name",
+					      email: {
+					        required: "We need your email address to contact you",
+					        email: "Your email address must be in the format of name@domain.com"
+					      }
+					    },
+					    
+					    highlight: function (element) {
+					      $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+					    },
+					    unhighlight: function (element) {
+					      $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+					    },
+					    errorElement: 'span',
+					    errorClass: 'help-block',
+					    errorPlacement: function (error, element) {
+					      if (element.parent('.input-group').length) {
+					        error.insertAfter(element.parent());
+					      } else {
+					        error.insertAfter(element);
+					      }
 					    }
-				    } );
-
+					  });
+					  
+					  $('#bootstrap-wizard-1').bootstrapWizard({
+					    'tabClass': 'form-wizard',
+					    'onNext': function (tab, navigation, index) {
+					      var $valid = $("#wizard-1").valid();
+					      if (!$valid) {
+					        $validator.focusInvalid();
+					        return false;
+					      } else {
+					        $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass(
+					          'complete');
+					        $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step')
+					        .html('<i class="fa fa-check"></i>');
+					      }
+					    }
+					  });
+					  
+				
+					// fuelux wizard
+					  var wizard = $('.wizard').wizard();
+					  
+					  wizard.on('finished', function (e, data) {
+					    //$("#fuelux-wizard").submit();
+					    //console.log("submitted!");
+					    $.smallBox({
+					      title: "Congratulations! Your form was submitted",
+					      content: "<i class='fa fa-clock-o'></i> <i>1 seconds ago...</i>",
+					      color: "#5F895F",
+					      iconSmall: "fa fa-check bounce animated",
+					      timeout: 4000
+					    });
+					    
+					  });
 				 
-					
-				    
-
-					// clears the variable if left blank
-				    var table = $('#example1').DataTable( {
-				    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
-							"t"+
-							"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-				        "ajax": "data/dataList.json",
-				        "bDestroy": true,
-				        "iDisplayLength": 15,
-				        "oLanguage": {
-						    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-						},
-				        "columns": [
-				            {
-				                "class":          'details-control',
-				                "orderable":      false,
-				                "data":           null,
-				                "defaultContent": ''
-				            },
-				            { "data": "name" },
-				            { "data": "est" },
-				            { "data": "contacts" },
-				            { "data": "status" },
-				            { "data": "target-actual" },
-				            { "data": "starts" },
-				            { "data": "ends" },
-				            { "data": "tracker" },
-				        ],
-				        "order": [[1, 'asc']],
-				        "fnDrawCallback": function( oSettings ) {
-					       runAllCharts()
-					    }
-				    } );
 				
 				 
 			})

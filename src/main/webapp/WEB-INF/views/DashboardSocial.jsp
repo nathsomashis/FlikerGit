@@ -1499,7 +1499,7 @@
 		-->
 	<div id="shortcut">
 		<ul>
-			<li><a href="calendar.html"
+			<li><a href="calendar?"
 				class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span
 					class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span>
 				</span>
@@ -1513,6 +1513,11 @@
 			<li><a href="timeline?"
 				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
 					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>TimeLine </span>
+				</span>
+			</a></li>
+			<li><a href="market?"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>Market </span>
 				</span>
 			</a></li>
 		</ul>
