@@ -47,5 +47,34 @@ public class MarketController {
 		return mv;
 	}
 	
+	@RequestMapping("/marketcartremoveitem")
+	public ModelAndView marketremoveitemfromcart(@RequestParam(value = "itemid", required = false) String itemid,
+			HttpSession session, HttpServletRequest request) {
+		System.out.println("in controller");
+ 
+		ArrayList courselist = new ArrayList<Courses>();
+		CoursePreview coursepreview = new CoursePreview();
+			
+		courselist = coursepreview.getCourseList();
+		
+		ServletContext context = request.getSession().getServletContext();
+		User userinf = (User) context.getAttribute("UserValues");
+		String userid = userinf.getUserid();
+		String userfirstname = userinf.getFirstname();
+		String userlastname = userinf.getLastname();
+		String gender = userinf.getGender();
+		
+		ProfilePreview profprev = new ProfilePreview();
+		
+		String profileimageid = profprev.profileimage(userid);
+		System.out.println("courselist"+courselist);
+		
+		ModelAndView mv = new ModelAndView("/Market");
+		mv.addObject("ProfileImage", profileimageid);
+		mv.addObject("Gender", gender);
+		mv.addObject("FullName", userfirstname+" "+userlastname);
+		return mv;
+	}
+	
 	
 }
