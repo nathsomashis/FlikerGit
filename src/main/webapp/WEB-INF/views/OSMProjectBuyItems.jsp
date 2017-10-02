@@ -547,211 +547,327 @@
 			<!-- MAIN CONTENT -->
 			<div id="content">
 				
-				<div class="row">
-								
-						        <div class="col-xs-12 col-sm-6 col-md-3">
-						            <div class="panel panel-darken">
-						            	
-						                <div class="panel-heading">
-						                    <h3 class="panel-title">
-						                        Bronze</h3>
-						                </div>
-						                <div class="panel-body no-padding text-align-center">
-						                    <div class="the-price">
-						                        <h1>
-						                            $10<span class="subscript">/mo</span></h1>
-						                        <small>1 month FREE trial</small>
-						                    </div>
-						                    <table class="table">
-						                        <tr>
-						                            <td>
-						                                1 Account
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                1 Project
-						                            </td>
-						                        </tr>
-						                        <tr>
-						                            <td>
-						                                100K API Access
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                100MB Storage
-						                            </td>
-						                        </tr>
-						                        <tr>
-						                            <td>
-						                                Custom Cloud Services
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                Weekly Reports
-						                            </td>
-						                        </tr>
-						                    </table>
-						                </div>
-						                <div class="panel-footer text-align-center">
-						                    <a href="osmplanbuy?" class="btn btn-success" role="button">Sign Up</a>
-						                    1 month FREE trial</div>
-						            </div>
-						        </div>
-						        <div class="col-xs-12 col-sm-6 col-md-3">
-						            <div class="panel panel-primary">
-						                <img src="img/ribbon.png" class="ribbon" alt="">
-						                <div class="panel-heading">
-						                    <h3 class="panel-title">
-						                        Silver</h3>
-						                </div>
-						                <div class="panel-body no-padding text-align-center">
-						                    <div class="the-price">
-						                        <h1>
-						                            $20<span class="subscript">/mo</span></h1>
-						                        <small>1 month FREE trial</small>
-						                    </div>
-						                    <table class="table">
-						                        <tr>
-						                            <td>
-						                                2 Account
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                5 Project
-						                            </td>
-						                        </tr>
-						                        <tr>
-						                            <td>
-						                                100K API Access
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                200MB Storage
-						                            </td>
-						                        </tr>
-						                        <tr>
-						                            <td>
-						                                Custom Cloud Services
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                Weekly Reports
-						                            </td>
-						                        </tr>
-						                    </table>
-						                </div>
-						                <div class="panel-footer text-align-center">
-						                    <a href="javascript:void(0);" class="btn btn-success" role="button">Sign Up</a>
-						                    1 month FREE trial</div>
-						            </div>
-						        </div>		       
-						        <div class="col-xs-12 col-sm-6 col-md-3">
-						            <div class="panel panel-greenLight">
-						                <div class="panel-heading">
-						                    <h3 class="panel-title">
-						                        Gold</h3>
-						                </div>
-						                <div class="panel-body no-padding text-align-center">
-						                    <div class="the-price">
-						                        <h1>
-						                            $35<span class="subscript">/mo</span></h1>
-						                        <small>1 month FREE trial</small>
-						                    </div>
-						                    <table class="table">
-						                        <tr>
-						                            <td>
-						                                5 Account
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                20 Project
-						                            </td>
-						                        </tr>
-						                        <tr>
-						                            <td>
-						                                300K API Access
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                500MB Storage
-						                            </td>
-						                        </tr>
-						                        <tr>
-						                            <td>
-						                                Custom Cloud Services
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                Weekly Reports
-						                            </td>
-						                        </tr>
-						                    </table>
-						                </div>
-						                <div class="panel-footer text-align-center">
-						                    <a href="javascript:void(0);" class="btn btn-success" role="button">Sign Up</a> 1 month FREE trial</div>
-						            </div>
-						        </div>		        
-						        <div class="col-xs-12 col-sm-6 col-md-3">
-						            <div class="panel panel-primary">
-						                <div class="panel-heading bg-color-blueDark txt-color-white">
-						                    <h3 class="panel-title">
-						                        Diamond</h3>
-						                </div>
-						                <div class="panel-body no-padding text-align-center">
-						                    <div class="the-price">
-						                        <h1>
-						                            $99<span class="subscript">/mo</span></h1>
-						                        <small>1 month FREE trial</small>
-						                    </div>
-						                    <table class="table">
-						                        <tr>
-						                            <td>
-						                                Unlimited Account
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                Unlimited Project
-						                            </td>
-						                        </tr>
-						                        <tr>
-						                            <td>
-						                                3000K API Access
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                Unlimited Storage
-						                            </td>
-						                        </tr>
-						                        <tr>
-						                            <td>
-						                                Custom Cloud Services
-						                            </td>
-						                        </tr>
-						                        <tr class="active">
-						                            <td>
-						                                Weekly Reports
-						                            </td>
-						                        </tr>
-						                    </table>
-						                </div>
-						                <div class="panel-footer text-align-center">
-						                    <a href="javascript:void(0);" class="btn btn-success" role="button">Sign Up</a> 1 month FREE trial</div>
-						            </div>
-						        </div>
-						    			    	
-				    		</div>
-				
+				<section id="widget-grid" class="">
+
+					<!-- row -->
+
+					<div class="row">
+
+						<div class="col-sm-6 col-md-6 col-lg-6">
+							<!-- product -->
+							<div class="product-content product-wrap clearfix">
+								<div class="row">
+										<div class="col-md-5 col-sm-12 col-xs-12">
+											<div class="product-image"> 
+												<img src="img/demo/e-comm/1.png" alt="194x228" class="img-responsive"> 
+												<span class="tag2 hot">
+													HOT
+												</span> 
+											</div>
+										</div>
+										<div class="col-md-7 col-sm-12 col-xs-12">
+										<div class="product-deatil">
+												<h5 class="name">
+													<a href="#">
+														Product Name Title Here <span>Category</span>
+													</a>
+												</h5>
+												<p class="price-container">
+													<span>$99</span>
+												</p>
+												<span class="tag1"></span> 
+										</div>
+										<div class="description">
+											<p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+										</div>
+										<div class="product-info smart-form">
+											<div class="row">
+												<div class="col-md-6 col-sm-6 col-xs-6"> 
+													<a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
+												</div>
+												<div class="col-md-6 col-sm-6 col-xs-6">
+													<div class="rating">
+														<input type="radio" name="stars-rating" id="stars-rating-5">
+														<label for="stars-rating-5"><i class="fa fa-star"></i></label>
+														<input type="radio" name="stars-rating" id="stars-rating-4">
+														<label for="stars-rating-4"><i class="fa fa-star"></i></label>
+														<input type="radio" name="stars-rating" id="stars-rating-3">
+														<label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>
+														<input type="radio" name="stars-rating" id="stars-rating-2">
+														<label for="stars-rating-2"><i class="fa fa-star text-primary"></i></label>
+														<input type="radio" name="stars-rating" id="stars-rating-1">
+														<label for="stars-rating-1"><i class="fa fa-star text-primary"></i></label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end product -->
+						</div>	
+
+						<div class="col-sm-6 col-md-6 col-lg-6">
+							<!-- product -->
+							<div class="product-content product-wrap clearfix">
+								<div class="row">
+										<div class="col-md-5 col-sm-12 col-xs-12">
+											<div class="product-image"> 
+												<img src="img/demo/e-comm/2.png" alt="194x228" class="img-responsive"> 
+												<span class="tag2 sale">
+													Sale
+												</span> 
+											</div>
+										</div>
+										<div class="col-md-7 col-sm-12 col-xs-12">
+										<div class="product-deatil">
+												<h5 class="name">
+													<a href="osmitembuyitemsdetails?">
+														Product Name Title Here <span>Category</span>
+													</a>
+												</h5>
+												<p class="price-container">
+													<span>$109</span>
+												</p>
+												<span class="tag1"></span> 
+										</div>
+										<div class="description">
+												<p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+										</div>
+										<div class="product-info smart-form">
+											<div class="row">
+												<div class="col-md-6 col-sm-6 col-xs-6"> <a href="javascript:void(0);" class="btn btn-success">Add to cart</a> </div>
+												<div class="col-md-6 col-sm-6 col-xs-6">
+													<div class="rating">
+
+														<input type="radio" name="stars-rating" id="stars-rating-5">
+														<label for="stars-rating-5"><i class="fa fa-star"></i></label>
+														<input type="radio" name="stars-rating" id="stars-rating-4">
+														<label for="stars-rating-4"><i class="fa fa-star"></i></label>
+														<input type="radio" name="stars-rating" id="stars-rating-3">
+														<label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>
+														<input type="radio" name="stars-rating" id="stars-rating-2">
+														<label for="stars-rating-2"><i class="fa fa-star text-primary"></i></label>
+														<input type="radio" name="stars-rating" id="stars-rating-1">
+														<label for="stars-rating-1"><i class="fa fa-star text-primary"></i></label>
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end product -->
+						</div>	
+
+						<div class="col-sm-6 col-md-6 col-lg-4">
+							<!-- product -->
+							<div class="product-content product-wrap clearfix">
+								<div class="row">
+										<div class="col-md-5 col-sm-12 col-xs-12">
+											<div class="product-image"> 
+												<img src="img/demo/e-comm/3.png" alt="194x228" class="img-responsive"> 
+												<span class="tag2 hot">
+													HOT
+												</span> 
+											</div>
+										</div>
+										<div class="col-md-7 col-sm-12 col-xs-12">
+										<div class="product-deatil">
+												<h5 class="name">
+													<a href="#">
+														Product Name Title Here <span>Category</span>
+													</a>
+												</h5>
+												<p class="price-container">
+													<span>$399</span>
+												</p>
+												<span class="tag1"></span> 
+										</div>
+										<div class="description">
+												<p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end product -->
+						</div>			
+
+						<div class="col-sm-6 col-md-6 col-lg-4">
+							<!-- product -->
+							<div class="product-content product-wrap clearfix">
+								<div class="row">
+										<div class="col-md-5 col-sm-12 col-xs-12">
+											<div class="product-image"> 
+												<img src="img/demo/e-comm/4.png" alt="194x228" class="img-responsive"> 
+												<span class="tag2 sale">
+													Sale
+												</span> 
+											</div>
+										</div>
+										<div class="col-md-7 col-sm-12 col-xs-12">
+										<div class="product-deatil">
+												<h5 class="name">
+													<a href="#">
+														Product Name Title Here <span>Category</span>
+													</a>
+												</h5>
+												<p class="price-container">
+													<span>$19</span>
+												</p>
+												<span class="tag1"></span> 
+										</div>
+										<div class="description">
+											<p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end product -->
+						</div>	
+
+						<div class="col-sm-6 col-md-6 col-lg-4">
+							<!-- product -->
+							<div class="product-content product-wrap clearfix">
+								<div class="row">
+										<div class="col-md-5 col-sm-12 col-xs-12">
+											<div class="product-image"> 
+												<img src="img/demo/e-comm/5.png" alt="194x228" class="img-responsive"> 
+												<span class="tag2 sale">
+													Sale
+												</span> 
+											</div>
+										</div>
+										<div class="col-md-7 col-sm-12 col-xs-12">
+										<div class="product-deatil">
+												<h5 class="name">
+													<a href="#">
+														Product Name Title Here <span>Category</span>
+													</a>
+												</h5>
+												<p class="price-container">
+													<span>$195</span>
+												</p>
+												<span class="tag1"></span> 
+										</div>
+										<div class="description">
+												<p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end product -->
+						</div>	
+
+						<div class="col-sm-6 col-md-6 col-lg-4">
+							<!-- product -->
+							<div class="product-content product-wrap clearfix">
+								<div class="row">
+										<div class="col-md-5 col-sm-12 col-xs-12">
+											<div class="product-image"> 
+												<img src="img/demo/e-comm/7.png" alt="194x228" class="img-responsive"> 
+												<span class="tag2 sale">
+													Sale
+												</span> 
+											</div>
+										</div>
+										<div class="col-md-7 col-sm-12 col-xs-12">
+										<div class="product-deatil">
+												<h5 class="name">
+													<a href="#">
+														Product Name Title Here <span>Category</span>
+													</a>
+												</h5>
+												<p class="price-container">
+													<span>$99</span>
+												</p>
+												<span class="tag1"></span> 
+										</div>
+										<div class="description">
+											<p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end product -->
+						</div>	
+
+						<div class="col-sm-6 col-md-6 col-lg-4">
+							<!-- product -->
+							<div class="product-content product-wrap clearfix">
+								<div class="row">
+										<div class="col-md-5 col-sm-12 col-xs-12">
+											<div class="product-image"> 
+												<img src="img/demo/e-comm/8.png" alt="194x228" class="img-responsive"> 
+												<span class="tag2 sale">
+													Sale
+												</span> 
+											</div>
+										</div>
+										<div class="col-md-7 col-sm-12 col-xs-12">
+										<div class="product-deatil">
+												<h5 class="name">
+													<a href="#">
+														Product Name Title Here <span>Category</span>
+													</a>
+												</h5>
+												<p class="price-container">
+													<span>$109</span>
+												</p>
+												<span class="tag1"></span> 
+										</div>
+										<div class="description">
+												<p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end product -->
+						</div>	
+
+						<div class="col-sm-6 col-md-6 col-lg-4">
+							<!-- product -->
+							<div class="product-content product-wrap clearfix">
+								<div class="row">
+										<div class="col-md-5 col-sm-12 col-xs-12">
+											<div class="product-image"> 
+												<img src="img/demo/e-comm/9.png" alt="194x228" class="img-responsive"> 
+												<span class="tag2 sale">
+													Sale
+												</span> 
+											</div>
+										</div>
+										<div class="col-md-7 col-sm-12 col-xs-12">
+										<div class="product-deatil">
+												<h5 class="name">
+													<a href="#">
+														Product Name Title Here <span>Category</span>
+													</a>
+												</h5>
+												<p class="price-container">
+													<span>$399</span>
+												</p>
+												<span class="tag1"></span> 
+										</div>
+										<div class="description">
+												<p>Proin in ullamcorper lorem. Maecenas eu ipsum</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end product -->
+						</div>
+						
+						<div class="col-sm-12 text-center">
+							<a href="javascript:void(0);" class="btn btn-primary btn-lg">Load more <i class="fa fa-arrow-down"></i></a>
+						</div>
+
+					</div>
+
+					<!-- end row -->
+
+				</section>
 				
 			</div>
 			<!-- END MAIN CONTENT -->

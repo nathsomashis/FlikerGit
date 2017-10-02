@@ -411,14 +411,11 @@
 					class="fa fa-lg fa-fw fa-briefcase"></i> <span
 					class="menu-item-parent">OSM</span></a>
 				<ul>
-					<li ><a href="ideatoimplement?" title="NewPost"><i
-							class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
-					</li>
-					<li class="active"><a href="osmprojectinfo?" title="NewJob"><i
+					<li class="active	"><a href="osmprojectinfo?" title="NewJob"><i
 							class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
 					</li>
 					<li class=""><a href="osmprojectsubscription?" title="NewJob"><i
-							class="fa fa-suitcase"></i><span class="menu-item-parent">Project Resource</span></a>
+							class="fa fa-suitcase"></i><span class="menu-item-parent">Trade</span></a>
 					</li>
 					
 					
@@ -624,12 +621,16 @@
 				<div class="row">
 				
 					<div class="col-sm-12 col-md-12 col-lg-12">
-						<div class="col-md-10">
+						<div class="col-md-8">
 							<h1 style="text-align:left;text-transform: uppercase;font-weight: bold;">Project Title</h1>
 						</div>
 						<div class="col-md-2">
 							<!-- <a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Invest</a> -->
-							<a href="osmbuyingplan?" id="dialog_link" class="btn btn-primary btn-lg">Plans Available</a>
+							<a href="osmbuyingplan?" id="dialog_link" class="btn btn-primary">Plans Available</a>
+						</div>
+						<div class="col-md-2">
+							<!-- <a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Invest</a> -->
+							<a href="osmitembuyingplan?" id="dialog_link" class="btn btn-primary">Items Available</a>
 						</div>
 					</div>
 					<div class="col-sm-12 col-md-12 col-lg-12">

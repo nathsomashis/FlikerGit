@@ -533,7 +533,13 @@
 										<h3 class="price-container">
 											$129.54
 											<small>*includes tax</small>
+											
 										</h3>
+										<div class="certified">
+											<ul>
+												<li><a href="javascript:void(0);">Total Sell<span> 2345</span></a></li>
+											</ul>
+										</div>
 									
 										<hr>
 										<div class="description description-tabs">
@@ -554,42 +560,132 @@
 												<div class="tab-pane fade" id="investors">
 													<br>
 													<dl class="">
-															<dt>Gravina</dt>
+															<dt>Investors</dt>
 					                                        <dd>
-					                                        	<div class="superbox col-sm-12">
-																	<div class="superbox-list">
-																		<img src="img/superbox/superbox-thumb-1.jpg" data-img="img/superbox/superbox-full-1.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
-																	</div><!--
-																	--><div class="superbox-list">
-																		<img src="img/superbox/superbox-thumb-2.jpg" data-img="img/superbox/superbox-full-2.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Bridge of Edgen" class="superbox-img">
-																	</div>
-																	<div class="superbox-float"></div>
+					                                        	<div class="row">
+						
+																	<!-- NEW WIDGET START -->
+																	<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+																		
+																		<!-- Widget ID (each widget will need unique ID)-->
+																		<div class="jarviswidget well" id="wid-id-0">
+																			<!-- widget options:
+																				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+																				
+																				data-widget-colorbutton="false"	
+																				data-widget-editbutton="false"
+																				data-widget-togglebutton="false"
+																				data-widget-deletebutton="false"
+																				data-widget-fullscreenbutton="false"
+																				data-widget-custombutton="false"
+																				data-widget-collapsed="true" 
+																				data-widget-sortable="false"
+																				
+																			-->
+																			<header>
+																				<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+																				<h2>Widget Title </h2>				
+																				
+																			</header>
+											
+																			<!-- widget div-->
+																			<div>
+																				
+																				<!-- widget edit box -->
+																				<div class="jarviswidget-editbox">
+																					<!-- This area used as dropdown edit box -->
+																					<input class="form-control" type="text">	
+																				</div>
+																				<!-- end widget edit box -->
+																				
+																				<!-- widget content -->
+																				<div class="widget-body no-padding">
+																					
+																					<table id="example" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+																				        <thead>
+																				            <tr>
+																				                <th></th><th>Projects</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
+																				                <th>Contacts</th>
+																				                <th>Status</th>
+																				                <th><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>
+																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
+																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
+																				                <th>Tracker</th>
+																				            </tr>
+																				        </thead>
+																				    </table>
+											
+																				</div>
+																				<!-- end widget content -->
+																				
+																			</div>
+																			<!-- end widget div -->
+																			
+																		</div>
+																		<!-- end widget -->
+											
+																	</article>
+																	<!-- WIDGET END -->
+																	
 																</div>
-																<div class="superbox-show" style="height:300px; display: none"></div>
 					                                        </dd>
 					                                        <br>
 
-					                                        <dt>Test lists</dt>
-					                                        <dd>A description list is perfect for defining terms.</dd>
-					                                        <br>	
+					                                        
 					                                        
 					                                    </dl>
 												</div>
 												<div class="tab-pane fade" id="buyers">
 													<br>
 													<dl class="">
-															<dt>Gravina</dt>
-					                                        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-					                                        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-					                                        <dd>Eget lacinia odio sem nec elit.</dd>
-					                                        <br>
-
-					                                        <dt>Test lists</dt>
-					                                        <dd>A description list is perfect for defining terms.</dd>
-					                                        <br>	
-
-					                                        <dt>Altra porta</dt>
-					                                        <dd>Vestibulum id ligula porta felis euismod semper</dd>
+															<dt>Buyers</dt>
+					                                        <dd>
+					                                        	<div class="row">
+						
+																	<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+																		
+																		<div class="jarviswidget well" id="wid-id-1">
+																			 <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false">
+																				
+																			<header>
+																				<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+																				<h2>Widget Title </h2>				
+																				
+																			</header>
+											
+																			<div>
+																				
+																				<div class="jarviswidget-editbox">
+																					<input class="form-control" type="text">	
+																				</div>
+																				
+																				<div class="widget-body no-padding">
+																					
+																					<table id="example1" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+																				        <thead>
+																				            <tr>
+																				                <th></th><th>Projects</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
+																				                <th>Contacts</th>
+																				                <th>Status</th>
+																				                <th><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>
+																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
+																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
+																				                <th>Tracker</th>
+																				            </tr>
+																				        </thead>
+																				    </table>
+											
+																				</div>
+																				
+																			</div>
+																			
+																		</div>
+											
+																	</article>
+																	
+																</div>
+					                                        </dd>
+					                                        
 					                                    </dl>
 												</div>
 												<div class="tab-pane fade" id="reviews">
@@ -673,8 +769,6 @@
 										<hr>
 										<div class="row">
 											<div class="col-sm-12 col-md-6 col-lg-6">
-												
-													<a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
 												
 											</div>
 											<div class="col-sm-12 col-md-6 col-lg-6">
@@ -846,6 +940,8 @@
 		<!-- <script src="js/plugin/datatables/dataTables.bootstrap.min.js"></script> -->
 		<script src="<c:url value='/resources/js/plugin/datatable-responsive/datatables.responsive.min.js' />"></script>
 		<!-- <script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/superbox/superbox.min.js' />"></script>
+		<!-- <script src="js/plugin/superbox/superbox.min.js"></script> -->
 		
 
 		<script type="text/javascript">
@@ -883,6 +979,8 @@
 				 */
 				
 				 pageSetUp();
+				 
+				 $('.superbox').SuperBox();
 				 
 				/*
 				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
@@ -964,6 +1062,41 @@
 				    } );
 
 				 
+					
+				    
+
+					// clears the variable if left blank
+				    var table = $('#example1').DataTable( {
+				    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
+							"t"+
+							"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+				        "ajax": "data/dataList.json",
+				        "bDestroy": true,
+				        "iDisplayLength": 15,
+				        "oLanguage": {
+						    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+						},
+				        "columns": [
+				            {
+				                "class":          'details-control',
+				                "orderable":      false,
+				                "data":           null,
+				                "defaultContent": ''
+				            },
+				            { "data": "name" },
+				            { "data": "est" },
+				            { "data": "contacts" },
+				            { "data": "status" },
+				            { "data": "target-actual" },
+				            { "data": "starts" },
+				            { "data": "ends" },
+				            { "data": "tracker" },
+				        ],
+				        "order": [[1, 'asc']],
+				        "fnDrawCallback": function( oSettings ) {
+					       runAllCharts()
+					    }
+				    } );
 				
 				 
 			})
