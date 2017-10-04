@@ -424,6 +424,78 @@ public class OSMController {
 			return mv;
 		}
 		
+		//buying items
+		@RequestMapping("/osmitembuyingplan")
+		public ModelAndView itremsforbuying(
+				@RequestParam(value = "ownerid", required = false, defaultValue = "World") String ownerid,
+				@RequestParam(value = "projectsellerid", required = false, defaultValue = "World") String projectsellerid,
+				HttpServletRequest requests) {
+			System.out.println("in controller");
+			
+			OSMPreview osmprev = new OSMPreview();
+			ArrayList existingprojectlist = new ArrayList();
+			ServletContext context = requests.getSession().getServletContext();
+			String token = (String)context.getAttribute("osmid");
+			//osmprev.saveOSMModelBuying(token,ownerid);
+			HashMap totallist = osmprev.generatePaymentOptions(projectsellerid);
+			
+			User userinf = (User) context.getAttribute("UserValues");
+			String userid = userinf.getUserid();
+			String userfirstname = userinf.getFirstname();
+			String userlastname = userinf.getLastname();
+			String gender = userinf.getGender();
+			
+			ProfilePreview profprev = new ProfilePreview();
+			
+			String profileimageid = profprev.profileimage(userid);
+			
+			//existingprojectlist = osmprev.getRelatedOSMModels(ownerid);
+			
+			ModelAndView mv = new ModelAndView("/OSMProjectBuyItems");
+			mv.addObject("ProfileImage", profileimageid);
+			mv.addObject("Gender", gender);
+			mv.addObject("FullName", userfirstname+" "+userlastname);
+			mv.addObject("totallist", totallist);
+			//mv.addObject("existingprojectsdoc", existingprojectsdoc);
+			return mv;
+		}
+		
+		@RequestMapping("/osmitembuyitemsdetails")
+		public ModelAndView itremsdetailsforbuying(
+				@RequestParam(value = "ownerid", required = false) String ownerid,
+				@RequestParam(value = "productid", required = false) String productid,
+				HttpServletRequest requests) {
+			System.out.println("in controller");
+			
+			OSMPreview osmprev = new OSMPreview();
+			ArrayList existingprojectlist = new ArrayList();
+			ServletContext context = requests.getSession().getServletContext();
+			String token = (String)context.getAttribute("osmid");
+			//osmprev.saveOSMModelBuying(token,ownerid);
+			//HashMap totallist = osmprev.generatePaymentOptions(projectsellerid);
+			
+			User userinf = (User) context.getAttribute("UserValues");
+			String userid = userinf.getUserid();
+			String userfirstname = userinf.getFirstname();
+			String userlastname = userinf.getLastname();
+			String gender = userinf.getGender();
+			
+			ProfilePreview profprev = new ProfilePreview();
+			
+			String profileimageid = profprev.profileimage(userid);
+			
+			//existingprojectlist = osmprev.getRelatedOSMModels(ownerid);
+			
+			ModelAndView mv = new ModelAndView("/OSMBuyItemsInfo");
+			mv.addObject("ProfileImage", profileimageid);
+			mv.addObject("Gender", gender);
+			mv.addObject("FullName", userfirstname+" "+userlastname);
+			//mv.addObject("totallist", totallist);
+			//mv.addObject("existingprojectsdoc", existingprojectsdoc);
+			return mv;
+		}
+		
+		
 		//buying plans
 				@RequestMapping("/osmplanbuy")
 				public ModelAndView plantypebuy(

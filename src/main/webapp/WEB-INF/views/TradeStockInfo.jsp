@@ -380,18 +380,15 @@
 						</li>
 					</ul>
 				</li>
-				<li><a href="#" title="Dashboard"><i
+				<li class="active"><a href="#" title="Dashboard"><i
 					class="fa fa-lg fa-fw fa-briefcase"></i> <span
 					class="menu-item-parent">OSM</span></a>
 				<ul>
-					<li class=""><a href="ideatoimplement?" title="NewPost"><i
-							class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
-					</li>
 					<li class=""><a href="osmprojectinfo?" title="NewJob"><i
 							class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
 					</li>
-					<li class=""><a href="osmprojectsubscription?" title="NewJob"><i
-							class="fa fa-suitcase"></i><span class="menu-item-parent">Project Resource</span></a>
+					<li class="active"><a href="osmprojectsubscription?" title="NewJob"><i
+							class="fa fa-suitcase"></i><span class="menu-item-parent">Trade</span></a>
 					</li>
 					
 					
@@ -510,187 +507,284 @@
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
 
-			<!-- RIBBON -->
-			<div id="ribbon">
-
-				<span class="ribbon-button-alignment"> 
-					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
-						<i class="fa fa-refresh"></i>
-					</span> 
-				</span>
-
-				<!-- breadcrumb -->
-				<ol class="breadcrumb">
-					<li>Search Page</li>
-				</ol>
-				<!-- end breadcrumb -->
-
-				<!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right">
-				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-				</span> -->
-
-			</div>
-			<!-- END RIBBON -->
-
 			<!-- MAIN CONTENT -->
 			<div id="content">
-
-				<!-- row -->
-				
-				<div class="row">
-				
-					<div class="col-sm-12">
-				
-						<ul id="myTab1" class="nav nav-tabs bordered">
-							<li class="active">
-								<a href="#s1" data-toggle="tab">Search</a>
-							</li>
-							<li>
-								<a href="#s2" data-toggle="tab">Content Search</a>
-							</li>
-							<li>
-								<a href="#s3" data-toggle="tab">Search History</a>
-							</li>
-							<li class="pull-right hidden-mobile">
-								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
-							</li>
-						</ul>
-						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
-							<div class="tab-pane fade in active" id="s1">
-							
-							<!-- <div class="tab-pane fade in active" id="s1"> -->
-								<!-- <form action="#" id="search-form"> -->
-									<h1> Search <span class="semi-bold">Everything</span></h1>
-									<br>
-									<div class="input-group input-group-lg hidden-mobile">
-										<input class="form-control input-lg" type="text" placeholder="Search again..." id="searchparam">
-										<div class="input-group-btn">
-											<button type="button" class="btn btn-default" id="searchresult">
-												&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
-											</button>
-										</div>
-									</div>
-								<!-- </form> -->
-								<h1 class="font-md"> Search Results for <small class="text-danger" id="searchcount"> &nbsp;&nbsp;</small></h1>
-								<div class="row" id="searchcontent">
-								
-								</div>
-								<div class="text-center">
-									<hr>
-									<input type="hidden" value="" id="currentpageno">
-									<ul class="pagination no-margin" id="searchpagenumbers">
+				<div class="col-sm-12 col-md-12 col-lg-12">
+							<!-- product -->
+							<div class="product-content product-wrap clearfix product-deatil">
+								<div class="row">
 										
-									</ul>
-									<input type="hidden" value="" id="lastpageno">
-									<br>
-									<br>
-									<br>
-								</div>
-				
-							</div>
-							<div class="tab-pane fade" id="s2">
-								<h1> Search <span class="semi-bold">Users/Groups/Courses/Job Interviews/Organization/Institutions/Etc..</span></h1>
-								<br>
-								<div class="input-group input-group-lg">
-									<div class="input-group-btn">
-										<button id="searchparamset" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-											User <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li class="active">
-												<a href="javascript:void(0)"></i> Users</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Groups</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Organization</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Institutes</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Courses</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Job Interviews</a>
-											</li>
-											<li>
-												<a href="javascript:void(0)">Specializations</a>
-											</li>
-										</ul>
+										<div class="col-md-12 col-sm-12 col-xs-12">
+									
+										<h2 class="name">
+											Product Name Title Here 
+											<small>Product by <a href="javascript:void(0);">Adeline</a></small>
+											<i class="fa fa-star fa-2x text-primary"></i>
+											<i class="fa fa-star fa-2x text-primary"></i>
+											<i class="fa fa-star fa-2x text-primary"></i>
+											<i class="fa fa-star fa-2x text-primary"></i>
+											<i class="fa fa-star fa-2x text-muted"></i>
+											<span class="fa fa-2x"><h5>(109) Votes</h5></span>	
+											
+											<a href="javascript:void(0);">109 customer reviews</a>
+				 
+										</h2>
+										<hr>
+										<h3 class="price-container">
+											$129.54
+											<small>*includes tax</small>
+											
+										</h3>
+										<div class="certified">
+											<ul>
+												<li><a href="javascript:void(0);">Total Sell<span> 2345</span></a></li>
+											</ul>
+										</div>
+									
+										<hr>
+										<div class="description description-tabs">
+
+
+											<ul id="myTab" class="nav nav-pills">
+												<li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product Description </a></li>
+												<li class=""><a href="#investors" data-toggle="tab">Investors</a></li>
+												<li class=""><a href="#buyers" data-toggle="tab">Buyers</a></li>
+												<li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
+											</ul>
+											<div id="myTabContent" class="tab-content">
+												<div class="tab-pane fade active in" id="more-information">
+													<br>
+													<strong>Description Title</strong>
+													<p>Integer egestas, orci id condimentum eleifend, nibh nisi pulvinar eros, vitae ornare massa neque ut orci. Nam aliquet lectus sed odio eleifend, at iaculis dolor egestas. Nunc elementum pellentesque augue sodales porta. Etiam aliquet rutrum turpis, feugiat sodales ipsum consectetur nec. </p>
+												</div>
+												<div class="tab-pane fade" id="investors">
+													<br>
+													<dl class="">
+															<dt>Investors</dt>
+					                                        <dd>
+					                                        	<div class="row">
+						
+																	<!-- NEW WIDGET START -->
+																	<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+																		
+																		<!-- Widget ID (each widget will need unique ID)-->
+																		<div class="jarviswidget well" id="wid-id-0">
+																			<!-- widget options:
+																				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+																				
+																				data-widget-colorbutton="false"	
+																				data-widget-editbutton="false"
+																				data-widget-togglebutton="false"
+																				data-widget-deletebutton="false"
+																				data-widget-fullscreenbutton="false"
+																				data-widget-custombutton="false"
+																				data-widget-collapsed="true" 
+																				data-widget-sortable="false"
+																				
+																			-->
+																			<header>
+																				<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+																				<h2>Widget Title </h2>				
+																				
+																			</header>
+											
+																			<!-- widget div-->
+																			<div>
+																				
+																				<!-- widget edit box -->
+																				<div class="jarviswidget-editbox">
+																					<!-- This area used as dropdown edit box -->
+																					<input class="form-control" type="text">	
+																				</div>
+																				<!-- end widget edit box -->
+																				
+																				<!-- widget content -->
+																				<div class="widget-body no-padding">
+																					
+																					<table id="example" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+																				        <thead>
+																				            <tr>
+																				                <th></th><th>Projects</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
+																				                <th>Contacts</th>
+																				                <th>Status</th>
+																				                <th><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>
+																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
+																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
+																				                <th>Tracker</th>
+																				            </tr>
+																				        </thead>
+																				    </table>
+											
+																				</div>
+																				<!-- end widget content -->
+																				
+																			</div>
+																			<!-- end widget div -->
+																			
+																		</div>
+																		<!-- end widget -->
+											
+																	</article>
+																	<!-- WIDGET END -->
+																	
+																</div>
+					                                        </dd>
+					                                        <br>
+
+					                                        
+					                                        
+					                                    </dl>
+												</div>
+												<div class="tab-pane fade" id="buyers">
+													<br>
+													<dl class="">
+															<dt>Buyers</dt>
+					                                        <dd>
+					                                        	<div class="row">
+						
+																	<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+																		
+																		<div class="jarviswidget well" id="wid-id-1">
+																			 <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false">
+																				
+																			<header>
+																				<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+																				<h2>Widget Title </h2>				
+																				
+																			</header>
+											
+																			<div>
+																				
+																				<div class="jarviswidget-editbox">
+																					<input class="form-control" type="text">	
+																				</div>
+																				
+																				<div class="widget-body no-padding">
+																					
+																					<table id="example1" class="display projects-table table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+																				        <thead>
+																				            <tr>
+																				                <th></th><th>Projects</th><th><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th>
+																				                <th>Contacts</th>
+																				                <th>Status</th>
+																				                <th><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>
+																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th>
+																				                <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th>
+																				                <th>Tracker</th>
+																				            </tr>
+																				        </thead>
+																				    </table>
+											
+																				</div>
+																				
+																			</div>
+																			
+																		</div>
+											
+																	</article>
+																	
+																</div>
+					                                        </dd>
+					                                        
+					                                    </dl>
+												</div>
+												<div class="tab-pane fade" id="reviews">
+													<br>
+													<form method="post" class="well padding-bottom-10" onsubmit="return false;">
+														<textarea rows="2" class="form-control" placeholder="Write a review"></textarea>
+														<div class="margin-top-10">
+															<button type="submit" class="btn btn-sm btn-primary pull-right">
+																Submit Review
+															</button>
+															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Location"><i class="fa fa-location-arrow"></i></a>
+															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Voice"><i class="fa fa-microphone"></i></a>
+															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Photo"><i class="fa fa-camera"></i></a>
+															<a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add File"><i class="fa fa-file"></i></a>
+														</div>
+													</form>
+
+													<div class="chat-body no-padding profile-message">
+														<ul>
+															<li class="message">
+																<img src="img/avatars/1.png" class="online">
+																<span class="message-text"> 
+																	<a href="javascript:void(0);" class="username">
+																		Alisha Molly 
+																		<span class="badge">Purchase Verified</span> 
+																		<span class="pull-right">
+																			<i class="fa fa-star fa-2x text-primary"></i>
+																			<i class="fa fa-star fa-2x text-primary"></i>
+																			<i class="fa fa-star fa-2x text-primary"></i>
+																			<i class="fa fa-star fa-2x text-primary"></i>
+																			<i class="fa fa-star fa-2x text-muted"></i>
+																		</span>
+																	</a> 
+																	
+																	
+																	Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very image let unto fowl isn't in blessed fill life yielding above all moved 
+																</span>
+																<ul class="list-inline font-xs">
+																	<li>
+																		<a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
+																	</li>
+																	<li class="pull-right">
+																		<small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
+																	</li>
+																</ul>
+															</li>
+															<li class="message">
+																<img src="img/avatars/2.png" class="online">
+																<span class="message-text"> 
+																	<a href="javascript:void(0);" class="username">
+																		Aragon Zarko 
+																		<span class="badge">Purchase Verified</span> 
+																		<span class="pull-right">
+																			<i class="fa fa-star fa-2x text-primary"></i>
+																			<i class="fa fa-star fa-2x text-primary"></i>
+																			<i class="fa fa-star fa-2x text-primary"></i>
+																			<i class="fa fa-star fa-2x text-primary"></i>
+																			<i class="fa fa-star fa-2x text-primary"></i>
+																		</span>
+																	</a> 
+																	
+																	
+																	Excellent product, love it!
+																</span>
+																<ul class="list-inline font-xs">
+																	<li>
+																		<a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
+																	</li>
+																	<li class="pull-right">
+																		<small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
+																	</li>
+																</ul>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+									
+
+										</div>
+										<hr>
+										<div class="row">
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												
+											</div>
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="btn-group pull-right">
+						                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist </button>
+						                            <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
+						                        </div>
+											</div>
+										</div>
+										
 									</div>
-									<input class="form-control input-lg" type="text" placeholder="Mention the type(eg: for Groups --> #Group groupname)..." id="searchcontentspecific">
-									<div class="input-group-btn">
-										<button type="submit" class="btn btn-default">
-											<i class="fa fa-fw fa-search fa-lg"></i>
-										</button>
-									</div>
-								</div>
-								<h1 class="font-md"> Search Results for <span class="semi-bold">Users</span><small class="text-danger"> &nbsp;&nbsp;(181 results)</small></h1>
-								<br>
-								<div class="row" id="searchcontentspecificresult">
-								
-								</div>
-								
-								<div class="text-center">
-									<hr>
-									<ul class="pagination no-margin">
-										<li class="prev disabled">
-											<a href="javascript:void(0);">Previous</a>
-										</li>
-										<li class="active">
-											<a href="javascript:void(0);">1</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">2</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">3</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">4</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">5</a>
-										</li>
-										<li class="next">
-											<a href="javascript:void(0);">Next</a>
-										</li>
-									</ul>
-									<br>
-									<br>
-									<br>
 								</div>
 							</div>
-							<div class="tab-pane fade" id="s3">
-								<h1> Search <span class="semi-bold">history</span></h1>
-								<p class="alert alert-info">
-									Your search history is turned off.
-				
-								</p>
-				
-								<span class="onoffswitch-title">Auto save Search History</span>
-								<span class="onoffswitch">
-									<input type="checkbox" name="save_history" class="onoffswitch-checkbox" id="save_history" checked="checked">
-									<label class="onoffswitch-label" for="save_history"> <span class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></span> <span class="onoffswitch-switch"></span> </label> </span>
-				
-							</div>
+							<!-- end product -->
 						</div>
 				
-					</div>
-				
-				</div>
-				
-				<!-- end row -->
-
 			</div>
 			<!-- END MAIN CONTENT -->
 
@@ -714,27 +808,30 @@
 		you can add as many as you like
 		-->
 		<div id="shortcut">
-			<ul>
-				<li>
-					<a href="inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
-				</li>
-				<li>
-					<a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
-				</li>
-				<li>
-					<a href="gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
-				</li>
-				<li>
-					<a href="invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
-				</li>
-				<li>
-					<a href="gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
-				</li>
-				<li>
-					<a href="profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
-				</li>
-			</ul>
-		</div>
+		<ul>
+			<li><a href="calendar?"
+				class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span
+					class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span>
+				</span>
+			</a></li>
+			<li><a href="profile?"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My
+							Profile </span>
+				</span>
+			</a></li>
+			<li><a href="timeline?"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>TimeLine </span>
+				</span>
+			</a></li>
+			<li><a href="market?"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>Market </span>
+				</span>
+			</a></li>
+		</ul>
+	</div>
 		<!-- END SHORTCUT AREA -->
 
 		<!--================================================== -->
@@ -836,6 +933,19 @@
 
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
+		<script src="<c:url value='/resources/js/plugin/datatables/jquery.dataTables.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/jquery.dataTables.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.colVis.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.colVis.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.tableTools.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.tableTools.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatables/dataTables.bootstrap.min.js' />"></script>
+		<!-- <script src="js/plugin/datatables/dataTables.bootstrap.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/datatable-responsive/datatables.responsive.min.js' />"></script>
+		<!-- <script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/superbox/superbox.min.js' />"></script>
+		<!-- <script src="js/plugin/superbox/superbox.min.js"></script> -->
+		
 
 		<script type="text/javascript">
 
@@ -873,6 +983,8 @@
 				
 				 pageSetUp();
 				 
+				 $('.superbox').SuperBox();
+				 
 				/*
 				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
 				 * eg alert("my home function");
@@ -893,115 +1005,101 @@
 				 */
 				 
 				 
-				 $("#searchresult").click(function(){
-					    //alert("form has been submitted.");
-					    var searchparam = $('#searchparam').val();
-					    
-					    $.getJSON('searchContentCount?searchparam='+searchparam, function(dataset) {
-					    	
-					    	
-					    	
-					    	console.log(dataset);
-					    	
-					    	var nopages = Math.floor(dataset/10);
-					    	var noofsetremain = dataset%10;
-					    	
-					    	if(noofsetremain === 0){
-					    		nopages = nopages;
-					    	}else{
-					    		nopages = nopages + 1;
-					    	}
-					    	console.log(nopages);
-					    	
-					    	for(var i=0;i<nopages;i++){
-					    		var pagecount = "";
-					    		if(i===0){
-					    			pagecount = '<li class="prev disabled"><a href="getPreviousCallSearch()">Previous</a></li>'+
-					    			'<li class="active"><a href="#" onclick="getPageCallSearch('+1+')" id='+1+'>1</a></li>';
-					    		}else if(i === (nopages-1)){ 
-					    			var nextpage = '<li><a href="#" onclick="getPageCallSearch('+(i+1)+')" id='+(i+1)+'>'+(i+1)+'</a></li>'+
-					    			'<li class="next"><a href="#" onclick="getNextCallSearch()">Next</a></li>';
-					    			pagecount = pagecount +nextpage;
-					    			
-					    		}else{
-					    			var nextpage = '<li><a href="#" onclick="getPageCallSearch()" id='+(i+1)+'>'+(i+1)+'</a></li>';
-					    			pagecount = pagecount +nextpage;
-					    		}
-					    		//pagecount = pagecount + '<li class="next"><a href="#" onclick="getNextCallSearch()">Next</a></li>'
-					    		
-					    		$('#searchpagenumbers').append(pagecount);
-					    	}
-					    	
-					    	$('#currentpageno').val(1);
-					    	$('#lastpageno').val(nopages);
-					    	
-					    	/* <li class="active"><a href="javascript:void(0);">1</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);">2</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);">3</a>
-							</li>
-							<li class="next">
-								<a href="javascript:void(0);">Next</a>
-							</li> */
-					    	
-					    	
-					    });
-					    //var pageno = $('#')
-					    alert(searchparam);
-					    if(searchparam!=null && searchparam!=""){
-					    	
-						    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+'', function(dataset) {
-		                		console.log(dataset);
-		                		var searchcontent = "";
-		                		for(var item in dataset){
-		                			var contentdesc = (dataset[item].contentDescription).split(",");
-		                			var guidancesubject = "";
-		                			var profileimage = "";
-		                			var currentstatus = "";
-		                			var experience = "";
-		                			var contact = "";
-		                			var profileemail = "";
-		                			var profilename = "";
-		                			var contenttype = dataset[item].contentType;
-		                			var guidanceid = dataset[item].searchid;
-		                			
-		                			
-		                			for(var type in contentdesc){
-		                				var contentstate = contentdesc[type].split("::");
-		                				if(contentstate[0] == "Guidance Subject "){
-		                					guidancesubject = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Image "){
-		                					profileimage = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Name "){
-		                					profilename = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Email "){
-		                					profileemail = contentstate[1];
-		                				}else if(contentstate[0] == "Profile CurrenStatus "){
-		                					currentstatus = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Experience "){
-		                					experience = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Contact "){
-		                					contact = contentstate[1];
-		                				}
-		                				
-			                		}
-		                			
-		                			var searchset = '<div class="search-results clearfix smart-form"><h4><i class="fa fa-plus-square txt-color-blue">'+
-            						'</i>&nbsp;<a href="javascript:void(0);">Guidance on'+guidancesubject+' provided by '+profilename+'</a></h4>'+
-            						'<div><br><div class="url text-success">'+profilename+'<i class="fa fa-caret-down"></i><h3 class="margin-top-0"><br>'+
-            						'<small class="font-xs"><i>Currently working as '+currentstatus+' with experience of '+experience+'<i>'+
-            						'Contact: '+contact+','+profileemail+'</i></i></small></h3></div><p><a href="guidanceInfoView?guidanceid='+guidanceid+'" class="btn btn-default btn-xs">Go to Guidance</a></p></div></div>';
-		                			searchcontent = searchcontent + searchset;
-		                		}
-		                		$('#searchcontent').append(searchcontent)
-		                	});
-					    }else return false;
-					    
-					});
+				 function format ( d ) {
+					    // `d` is the original data object for the row
+					    return '<table cellpadding="5" cellspacing="0" border="0" class="table table-hover table-condensed">'+
+					        '<tr>'+
+					            '<td style="width:100px">Project Title:</td>'+
+					            '<td>'+d.name+'</td>'+
+					        '</tr>'+
+					        '<tr>'+
+					            '<td>Deadline:</td>'+
+					            '<td>'+d.ends+'</td>'+
+					        '</tr>'+
+					        '<tr>'+
+					            '<td>Extra info:</td>'+
+					            '<td>And any further details here (images etc)...</td>'+
+					        '</tr>'+
+					        '<tr>'+
+					            '<td>Comments:</td>'+
+					            '<td>'+d.comments+'</td>'+
+					        '</tr>'+
+					        '<tr>'+
+					            '<td>Action:</td>'+
+					            '<td>'+d.action+'</td>'+
+					        '</tr>'+
+					    '</table>';
+					}
+
+					// clears the variable if left blank
+				    var table = $('#example').DataTable( {
+				    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
+							"t"+
+							"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+				        "ajax": "data/dataList.json",
+				        "bDestroy": true,
+				        "iDisplayLength": 15,
+				        "oLanguage": {
+						    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+						},
+				        "columns": [
+				            {
+				                "class":          'details-control',
+				                "orderable":      false,
+				                "data":           null,
+				                "defaultContent": ''
+				            },
+				            { "data": "name" },
+				            { "data": "est" },
+				            { "data": "contacts" },
+				            { "data": "status" },
+				            { "data": "target-actual" },
+				            { "data": "starts" },
+				            { "data": "ends" },
+				            { "data": "tracker" },
+				        ],
+				        "order": [[1, 'asc']],
+				        "fnDrawCallback": function( oSettings ) {
+					       runAllCharts()
+					    }
+				    } );
+
 				 
+					
+				    
+
+					// clears the variable if left blank
+				    var table = $('#example1').DataTable( {
+				    	"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
+							"t"+
+							"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+				        "ajax": "data/dataList.json",
+				        "bDestroy": true,
+				        "iDisplayLength": 15,
+				        "oLanguage": {
+						    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+						},
+				        "columns": [
+				            {
+				                "class":          'details-control',
+				                "orderable":      false,
+				                "data":           null,
+				                "defaultContent": ''
+				            },
+				            { "data": "name" },
+				            { "data": "est" },
+				            { "data": "contacts" },
+				            { "data": "status" },
+				            { "data": "target-actual" },
+				            { "data": "starts" },
+				            { "data": "ends" },
+				            { "data": "tracker" },
+				        ],
+				        "order": [[1, 'asc']],
+				        "fnDrawCallback": function( oSettings ) {
+					       runAllCharts()
+					    }
+				    } );
 				
 				 
 			})

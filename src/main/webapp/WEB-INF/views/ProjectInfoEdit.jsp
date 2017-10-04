@@ -2,16 +2,27 @@
 <%@ page import="java.util.*,com.fliker.Repository.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
 		<meta charset="utf-8">
-		<title> OSM Projects </title>
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+		<%
+			String profileimage = (String)request.getAttribute("ProfileImage");
+			String gender = (String)request.getAttribute("Gender");
+			String profilename = (String)request.getAttribute("FullName");
+			String userid = (String)request.getAttribute("userid");
+			String logo = "";
+			String guidanceid = (String)request.getAttribute("guidanceid");
+			ArrayList specificationlist = (ArrayList)request.getAttribute("specificationlist");
+		
+		%>
+		<title> Guidance Info </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		
+
 		<!-- #CSS Links -->
 		<!-- Basic Styles -->
 		<link href='<c:url value="/resources/css/bootstrap.min.css" />' rel="stylesheet">
@@ -37,7 +48,8 @@
 
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
-		<link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet">
+		<%-- <link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet"> --%>
+
 
 		<!-- #FAVICONS -->
 		<link href='<c:url value="/resources/img/favicon/favicon.ico" />' rel="shortcut icon" type="image/x-icon">
@@ -73,7 +85,7 @@
 		<!-- <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)"> -->
 
 	</head>
-
+	
 	<!--
 
 	TABLE OF CONTENTS.
@@ -93,11 +105,12 @@
 	|  09. #MOBILE                   |  mobile view dropdown          |
 	|  10. #SEARCH                   |  search field                  |
 	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #MAIN PANEL               |  main panel                    |
-	|  13. #MAIN CONTENT             |  content holder                |
-	|  14. #PAGE FOOTER              |  page footer                   |
-	|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  16. #PLUGINS                  |  all scripts and plugins       |
+	|  12. #RIGHT PANEL              |  right panel userlist          |
+	|  13. #MAIN PANEL               |  main panel                    |
+	|  14. #MAIN CONTENT             |  content holder                |
+	|  15. #PAGE FOOTER              |  page footer                   |
+	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  17. #PLUGINS                  |  all scripts and plugins       |
 	
 	===================================================================
 	
@@ -118,19 +131,18 @@
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
 	<body class="">
-
+	
 		<%
 		
 			String fullname = (String)request.getAttribute("FullName");
-			String gender = (String)request.getAttribute("Gender");
 			String userids = (String)request.getAttribute("userid");
 			String imagid = (String)request.getAttribute("ProfileImage");
-			String logo = "";
 			
 			
 		
 		%>
-		<!-- #HEADER -->
+	
+		<!-- HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
@@ -411,11 +423,14 @@
 					class="fa fa-lg fa-fw fa-briefcase"></i> <span
 					class="menu-item-parent">OSM</span></a>
 				<ul>
-					<li class="active	"><a href="osmprojectinfo?" title="NewJob"><i
+					<li class="active"><a href="ideatoimplement?" title="NewPost"><i
+							class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+					</li>
+					<li class=""><a href="osmprojectinfo?" title="NewJob"><i
 							class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
 					</li>
 					<li class=""><a href="osmprojectsubscription?" title="NewJob"><i
-							class="fa fa-suitcase"></i><span class="menu-item-parent">Trade</span></a>
+							class="fa fa-suitcase"></i><span class="menu-item-parent">Project Resource</span></a>
 					</li>
 					
 					
@@ -540,24 +555,12 @@
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
 
-		<%
-			ArrayList projectlist = (ArrayList)request.getAttribute("osmprojectlist");
-			
-		%>
-
-
 			<!-- RIBBON -->
 			<div id="ribbon">
 
-				<span class="ribbon-button-alignment"> 
-					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
-						<i class="fa fa-refresh"></i>
-					</span> 
-				</span>
-
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>OSM Projects</li>
+					<li>Guidance Info</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -576,308 +579,174 @@
 			<!-- END RIBBON -->
 
 			<!-- MAIN CONTENT -->
-			<div id="content">
-				
-				<div class="row">
+			<div class="container">
+				<section id="updates" class="home-section text-center">
+			<div class="heading-contact marginbot-50">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8 col-lg-offset-2">
 
-					<!-- col -->
-					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-						<h1 class="page-title txt-color-blueDark">
-							<!-- PAGE HEADER -->
-							Status<span>
-						</h1>
-					</div>
-					<!-- end col -->
-
-					<!-- right side of the page with the sparkline graphs -->
-					<!-- col -->
-					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-						<!-- sparks -->
-						<ul id="sparks">
-							<li class="sparks-info">
-								<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
-								<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-									1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-								</div>
-							</li>
-							<li class="sparks-info">
-								<h5> Like <span class="txt-color-purple"><i class="fa fa-thumbs-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45</span></h5>
-							</li>
-							<li class="sparks-info">
-								<h5> Share <span class="txt-color-greenDark"><i class="fa fa-share"></i>&nbsp;2447</span></h5>
-							</li>
-							<li class="sparks-info" >
-								<h5> Investors <span class="txt-color-greenDark"><i class="fa fa-barcode" id='investors' ></i>&nbsp;5</span></h5>
-							</li>
-						</ul>
-						<!-- end sparks -->
-					</div>
-					<!-- end col -->
-
-				</div>
-				
-				<!-- row -->
-				
-				<div class="row">
-				
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<div class="col-md-8">
-							<h1 style="text-align:left;text-transform: uppercase;font-weight: bold;">Project Title</h1>
-						</div>
-						<div class="col-md-2">
-							<!-- <a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Invest</a> -->
-							<a href="osmbuyingplan?" id="dialog_link" class="btn btn-primary">Plans Available</a>
-						</div>
-						<div class="col-md-2">
-							<!-- <a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Invest</a> -->
-							<a href="osmitembuyingplan?" id="dialog_link" class="btn btn-primary">Items Available</a>
-						</div>
-					</div>
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<div class="margin-top-10">
-							<iframe allowfullscreen="" frameborder="0" height="310" mozallowfullscreen="" src="http://player.vimeo.com/video/87025094" webkitallowfullscreen="" width="100%"></iframe>
-						</div>
-					</div>
-					
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<h1> Apollo 11</h1>
-
-						<p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p>
-						
-						<p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)" title="Michael Collins (astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module" title="Apollo Command/Service Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-						
-						<h2>Broadcasting and <em>quotes</em> <a id="quotes" name="quotes"></a></h2>
-						
-						<p>Broadcast on live TV to a world-wide audience, Armstrong stepped onto the lunar surface and described the event as:</p>
-						
-						<blockquote>
-						<p>One small step for [a] man, one giant leap for mankind.</p>
-						</blockquote>
-						
-						<p>Apollo 11 effectively ended the <a href="http://en.wikipedia.org/wiki/Space_Race" title="Space Race">Space Race</a> and fulfilled a national goal proposed in 1961 by the late U.S. President <a href="http://en.wikipedia.org/wiki/John_F._Kennedy" title="John F. Kennedy">John F. Kennedy</a> in a speech before the United States Congress:</p>
-						
-						<blockquote>
-						<p>[...] before this decade is out, of landing a man on the Moon and returning him safely to the Earth.</p>
-						</blockquote>
-						
-						<h2>Technical details <a id="tech-details" name="tech-details"></a></h2>
-						
-						<table align="right" border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse; margin:10px 0 10px 15px">
-							<caption><strong>Mission crew</strong></caption>
-							<thead>
-								<tr>
-									<th scope="col">Position</th>
-									<th scope="col">Astronaut</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Commander</td>
-									<td>Neil A. Armstrong</td>
-								</tr>
-								<tr>
-									<td>Command Module Pilot</td>
-									<td>Michael Collins</td>
-								</tr>
-								<tr>
-									<td>Lunar Module Pilot</td>
-									<td>Edwin &quot;Buzz&quot; E. Aldrin, Jr.</td>
-								</tr>
-							</tbody>
-						</table>
-						
-						<p>Launched by a <strong>Saturn V</strong> rocket from <a href="http://en.wikipedia.org/wiki/Kennedy_Space_Center" title="Kennedy Space Center">Kennedy Space Center</a> in Merritt Island, Florida on July 16, Apollo 11 was the fifth manned mission of <a href="http://en.wikipedia.org/wiki/NASA" title="NASA">NASA</a>&#39;s Apollo program. The Apollo spacecraft had three parts:</p>
-						
-						<ol>
-							<li><strong>Command Module</strong> with a cabin for the three astronauts which was the only part which landed back on Earth</li>
-							<li><strong>Service Module</strong> which supported the Command Module with propulsion, electrical power, oxygen and water</li>
-							<li><strong>Lunar Module</strong> for landing on the Moon.</li>
-						</ol>
-						
-						<p>After being sent to the Moon by the Saturn V&#39;s upper stage, the astronauts separated the spacecraft from it and travelled for three days until they entered into lunar orbit. Armstrong and Aldrin then moved into the Lunar Module and landed in the <a href="http://en.wikipedia.org/wiki/Mare_Tranquillitatis" title="Mare Tranquillitatis">Sea of Tranquility</a>. They stayed a total of about 21 and a half hours on the lunar surface. After lifting off in the upper part of the Lunar Module and rejoining Collins in the Command Module, they returned to Earth and landed in the <a href="http://en.wikipedia.org/wiki/Pacific_Ocean" title="Pacific Ocean">Pacific Ocean</a> on July 24.</p>
-						
-						<hr />
-						<p style="text-align:right"><small>Source: <a href="http://en.wikipedia.org/wiki/Apollo_11">Wikipedia.org</a></small></p>
-
-
-					</div>
-					<hr>
-					
-				
-				</div>
-				<div class="row">
-				
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						
-							<div class="inbox-download">
-								2 attachment(s) — <a href="javascript:void(0);"> Download all attachments</a> 
-								
-								<ul class="inbox-download-list">
-									<li>
-										<div class="well well-sm">
-											<span>
-												<img src="img/demo/sample.jpg">
-											</span>
-											<br>
-											<strong>rocketlaunch.jpg</strong> 
-											<br>
-											400 kb 
-											<br> 
-											<a href="imageDownload/d00a59d99412ef193b81a569c65674934b38f6bd1468208234291"> Download</a>  | <a href="javascript:void(0);"> View</a>
-										</div>
-									</li>
-									<li>
-										<div class="well well-sm">
-											<span>
-												<i class="fa fa-file"></i>
-											</span>
-											
-											<br>
-											<strong>timelogs.xsl</strong> 
-											<br>
-											1.3 mb 
-											<br> 
-											<a href="javascript:void(0);"> Download</a> | <a href="javascript:void(0);"> Share</a>
-										</div>
-									</li>
-								</ul>
+							<div class="section-heading">
+								<h2>Fliker</h2>
+								<p>
+									Study --> Skill --> Career --> Share --> Analyse.
+								</p>
+								<p>
+									Its just a way to free think the education and career.
+								</p>
 							</div>
-						
+
+						</div>
 					</div>
 				</div>
-				<div class="row"> 
-					<article class="col-sm-12 col-md-12">
-				
-							<!-- Widget ID (each widget will need unique ID)-->
-							<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-x" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
-								<!-- widget options:
-								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-				
-								data-widget-colorbutton="false"
-								data-widget-editbutton="false"
-								data-widget-togglebutton="false"
-								data-widget-deletebutton="false"
-								data-widget-fullscreenbutton="false"
-								data-widget-custombutton="false"
-								data-widget-collapsed="true"
-								data-widget-sortable="false"
-				
-								-->
-								<header>
-									<span class="widget-icon"> <i class="fa fa-align-justify"></i> </span>
-									<h2>Existing Buyers</h2>
-				
-								</header>
-								
-								<div class="col-sm-12 col-md-12 col-lg-12">
-										<div class="superbox col-sm-12">
-											<div class="superbox-list">
-												<img src="img/superbox/superbox-thumb-1.jpg" data-img="img/superbox/superbox-full-1.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
-											</div><!--
-											--><div class="superbox-list">
-												<img src="img/superbox/superbox-thumb-2.jpg" data-img="img/superbox/superbox-full-2.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Bridge of Edgen" class="superbox-img">
-											</div><!--
-											--><div class="superbox-list">
-												<img src="img/superbox/superbox-thumb-3.jpg" data-img="img/superbox/superbox-full-3.jpg" alt="My first photoshop layer mask on a high end PSD template theme" title="Lines of Friendship" class="superbox-img">
-											</div>
-										</div>
-										<!-- /SuperBox -->
-										
-										<div class="superbox-show" style="height:300px; display: none"></div>	
-											
-								</div>
-								
-				
-							</div>
-							<!-- end widget -->
-				
-						</article>
-				
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="timeline-centered">
+			    
+				<article class="timeline-entry">
 					
+					<div class="timeline-entry-inner">
+						<time class="timeline-time" datetime="2014-01-10T03:45"><span>Student</span></time>
+						
+						<div class="timeline-icon bg-success">
+							<i class="entypo-feather"></i>
+						</div>
+						
+						<div class="timeline-label">
+							<h2><a href="#">Student:</a> </h2>
+							<p>Learning Course and Skills. Sharing the same in profile. Apply for Jobs or Create your own organization of your skills. Visualise your progress and make desicive steps.</p>
+						</div>
+					</div>
 					
+				</article>
+				
+				
+				<article class="timeline-entry left-aligned">
+					
+					<div class="timeline-entry-inner">
+						<time class="timeline-time" datetime="2014-01-10T03:45"><span>Teacher</span> <span>4 weeks ago</span></time>
+						
+						<div class="timeline-icon bg-secondary">
+							<i class="entypo-suitcase"></i>
+						</div>
+						
+						<div class="timeline-label">
+							<h2><a href="#">SmartAdmin goes public!</a></h2>
+							<p>Yahoo buys a share in <strong>SmartAdmin</strong></p>
+						</div>
+					</div>
+					
+				</article>
+				
+				
+				<article class="timeline-entry">
+					
+					<div class="timeline-entry-inner">
+						<time class="timeline-time" datetime="2014-01-09T13:22"><span>03:45 AM</span> <span>3 months ago</span></time>
+						
+						<div class="timeline-icon bg-info">
+							<i class="entypo-location"></i>
+						</div>
+						
+						<div class="timeline-label">
+							<h2><a href="#">SmartAdmin Convention</a> <span>checked in at</span> <a href="#">Laborator</a></h2>
+							
+							<blockquote>Place was booked till 3am!</blockquote>
+							
+							<img src="<%=request.getContextPath()%>/resources/img/map.png" alt="map" class="img-responsive">
+
+
+						</div>
+					</div>
+					
+				</article>
+				
+				
+				<article class="timeline-entry left-aligned">
+					
+					<div class="timeline-entry-inner">
+						<time class="timeline-time" datetime="2014-01-10T03:45"><span>03:45 AM</span> <span>8 months ago</span></time>
+						
+						<div class="timeline-icon bg-warning">
+							<i class="entypo-camera"></i>
+						</div>
+						
+						<div class="timeline-label">
+							<h2><a href="#">We have lift off!</a></h2>
+							
+							<blockquote>SmartAdmin Launched with grace and beauty</blockquote>
+
+						</div>
+					</div>
+					
+				</article>
+				
+				
+				<article class="timeline-entry begin">
+				
+					<div class="timeline-entry-inner">
+						
+						<div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
+							<i class="entypo-flight"></i>
+						</div>
+						
+					</div>
+					
+				</article>
+				
+			</div>
 				</div>
-				
-				<!-- end row -->
-				<a href="javascript:void(0);" class="btn btn-labeled btn-success" > <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span>Buy</a>
+			</div>
+		</section>
 			</div>
 			<!-- END MAIN CONTENT -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="addachievement"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									&times;
 								</button>
-								<h4 class="modal-title" id="myModalLabel">Article Post</h4>
+								<h4 class="modal-title" id="myModalLabel">Provide Achievement</h4>
 							</div>
 							<div class="modal-body">
 				
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Title" required />
+											<input type="text" class="form-control" placeholder="Guidance Subject" required id="guidanceachievement" />
 										</div>
 										<div class="form-group">
-											<textarea class="form-control" placeholder="Content" rows="5" required></textarea>
+											<textarea id="achievementdescribe" class="form-control" placeholder="Provide Information about your guidance. Why you are good on the above mentioned guidance.." rows="5" required></textarea>
 										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
 										<div class="form-group">
-											<label for="category"> Category</label>
-											<select class="form-control" id="category">
-												<option>Articles</option>
-												<option>Tutorials</option>
-												<option>Freebies</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="tags"> Tags</label>
-											<input type="text" class="form-control" id="tags" placeholder="Tags" />
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="well well-sm well-primary">
-											<form class="form form-inline " role="form">
-												<div class="form-group">
-													<input type="text" class="form-control" value="" placeholder="Date" required />
-												</div>
-												<div class="form-group">
-													<select class="form-control">
-														<option>Draft</option>
-														<option>Published</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<button type="submit" class="btn btn-success btn-sm">
-														<span class="glyphicon glyphicon-floppy-disk"></span> Save
-													</button>
-													<button type="button" class="btn btn-default btn-sm">
-														<span class="glyphicon glyphicon-eye-open"></span> Preview
-													</button>
-												</div>
+											<form id="form2" method="post" action="#" enctype="multipart/form-data">
+											<label class="col-md-2 control-label">File input</label>
+											<div class="col-md-10">
+												<input type="file" id="file2" name="file2" class="btn btn-default" id="achievementfile">
+											</div>
+											<button class="col-md-2"  type="button" onclick="uploadFormData()">
+												Upload
+											</button>
 											</form>
+											<input type="hidden" class="form-control" value="" required id="acheivetoken" />
 										</div>
 									</div>
 								</div>
-				
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Cancel
 								</button>
-								<button type="button" class="btn btn-primary">
-									Post Article
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addachieve()">
+									Add
 								</button>
 							</div>
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
-				</div>
+				</div><!-- /.modal -->
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -885,10 +754,53 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin </span>
+					<!-- <span class="txt-color-white">SmartAdmin 1.8.2 </span> -->
 				</div>
 
-				
+				<!-- <div class="col-xs-6 col-sm-6 text-right hidden-xs">
+					<div class="txt-color-white inline-block">
+						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
+						<div class="btn-group dropup">
+							<button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
+								<i class="fa fa-link"></i> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu pull-right text-left">
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Download Progress</p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-success" style="width: 50%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Server Load</p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-success" style="width: 20%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
+										<div class="progress progress-micro no-margin">
+											<div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="padding-5">
+										<button class="btn btn-block btn-default">refresh</button>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div> -->
 			</div>
 		</div>
 		<!-- END PAGE FOOTER -->
@@ -899,7 +811,7 @@
 		-->
 		<div id="shortcut">
 		<ul>
-			<li><a href="calendar?"
+			<li><a href="calendar.html"
 				class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span
 					class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span>
 				</span>
@@ -913,11 +825,6 @@
 			<li><a href="timeline?"
 				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
 					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>TimeLine </span>
-				</span>
-			</a></li>
-			<li><a href="market?"
-				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
-					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>Market </span>
 				</span>
 			</a></li>
 		</ul>
@@ -1004,7 +911,7 @@
 
 		<!-- Demo purpose only -->
 		<!-- <script src="js/demo.min.js"></script> -->
-		<script src="<c:url value='/resources/js/demo.min.js' />"></script>
+		<%-- <script src="<c:url value='/resources/js/demo.min.js' />"></script> --%>
 
 		<!-- MAIN APP JS FILE -->
 		<script src="<c:url value='/resources/js/app.min.js' />"></script>
@@ -1020,135 +927,75 @@
 		<!-- <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script> -->
 		<script src="<c:url value='/resources/js/smart-chat-ui/smart.chat.manager.min.js' />"></script>
 		<!-- <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script> -->
-
-		<!-- PAGE RELATED PLUGIN(S) 
-		<script src="..."></script>-->
 		
+		<!-- PAGE RELATED PLUGIN(S) -->
+		
+		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
+		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.cust.min.js' />"></script>
+		<!-- <script src="js/plugin/flot/jquery.flot.cust.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.resize.min.js' />"></script>
+		<!-- <script src="js/plugin/flot/jquery.flot.resize.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.time.min.js' />"></script>
+		<!-- <script src="js/plugin/flot/jquery.flot.time.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/flot/jquery.flot.tooltip.min.js' />"></script>
+		<!-- <script src="js/plugin/flot/jquery.flot.tooltip.min.js"></script> -->
+		
+		<!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
+		<script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js' />"></script>
+		<!-- <script src="js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js' />"></script>
+		<!-- <script src="js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script> -->
+		
+		<!-- Full Calendar -->
+		<script src="<c:url value='/resources/js/plugin/moment/moment.min.js' />"></script>
+		<!-- <script src="js/plugin/moment/moment.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/fullcalendar/jquery.fullcalendar.min.js' />"></script>
+		<!-- <script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
+		
+		<%-- <script src="<c:url value='/resources/js/plugin/ckeditor/ckeditor.js' />"></script>
+		<script src="http://malsup.github.com/jquery.form.js"></script> --%>
+
 		<script>
-		function showBuyers(){
-			
-			alert("in the buyer");
-			
-			var buyersmodal = "<div class='modal fade' id='buyer' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>"+
-							  "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>"+
-							  "&times;</button><h4 class='modal-title' id='myModalLabel'>Article Post</h4></div></div></div></div>";
-							  
-			$('#content').append(buyersmodal);				  
-			
-		}
-		
-		</script>
-
-		<script type="text/javascript">
-
 			$(document).ready(function() {
-			 	
-				/* DO NOT REMOVE : GLOBAL FUNCTIONS!
-				 *
-				 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
-				 *
-				 * // activate tooltips
-				 * $("[rel=tooltip]").tooltip();
-				 *
-				 * // activate popovers
-				 * $("[rel=popover]").popover();
-				 *
-				 * // activate popovers with hover states
-				 * $("[rel=popover-hover]").popover({ trigger: "hover" });
-				 *
-				 * // activate inline charts
-				 * runAllCharts();
-				 *
-				 * // setup widgets
-				 * setup_widgets_desktop();
-				 *
-				 * // run form elements
-				 * runAllForms();
-				 *
-				 ********************************
-				 *
-				 * pageSetUp() is needed whenever you load a page.
-				 * It initializes and checks for all basic elements of the page
-				 * and makes rendering easier.
-				 *
+
+				// DO NOT REMOVE : GLOBAL FUNCTIONS!
+				pageSetUp();
+
+				/*
+				 * PAGE RELATED SCRIPTS
 				 */
+
+				 /* CKEDITOR.replace( 'guidanceprojecteditor', {
+						height: 300,
+						startupFocus : true,
+						// Configure your file manager integration. This example uses CKFinder 3 for PHP.
+						filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+						filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
+						filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+						filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+					} ); */
 				
-				 pageSetUp();
 				 $('.superbox').SuperBox();
 				 
-				 $('#buyersm').click(function() {
-						$('#dialog_simple').dialog('open');
-						return false;
-				
-					});
-				
-					$('#dialog_simple').dialog({
-						autoOpen : false,
-						width : 600,
-						resizable : false,
-						modal : true,
-						title : "<div class='widget-header'><h4><i class='fa fa-warning'></i> Empty the recycle bin?</h4></div>",
-						buttons : [{
-							html : "<i class='fa fa-trash-o'></i>&nbsp; Delete all items",
-							"class" : "btn btn-danger",
-							click : function() {
-								$(this).dialog("close");
-							}
-						}, {
-							html : "<i class='fa fa-times'></i>&nbsp; Cancel",
-							"class" : "btn btn-default",
-							click : function() {
-								$(this).dialog("close");
-							}
-						}]
-					});
-				 
-				/*
-				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
-				 * eg alert("my home function");
-				 * 
-				 * var pagefunction = function() {
-				 *   ...
-				 * }
-				 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
-				 * 
-				 * TO LOAD A SCRIPT:
-				 * var pagefunction = function (){ 
-				 *  loadScript(".../plugin.js", run_after_loaded);	
-				 * }
-				 * 
-				 * OR
-				 * 
-				 * loadScript(".../plugin.js", run_after_loaded);
-				 */
+				 $('#addnewachievement').click(function() {
+					 alert("new");
+					 
+					 
+				 }); 
 				 
 				 
 				
-			})
-			
-			function gotoCompany(osmmodelid){
-				
-				$.ajax({
-					url : "osmcompanyidentify/osmmodelid="+osmmodelid,
-					method : 'GET',
-					success : function(){
-							
-						
-					}
-				});
-				
-			}
-			
-			
-		
+
+			});
+
 		</script>
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
-				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-				_gaq.push(['_trackPageview']);
-			
+			_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+			_gaq.push(['_trackPageview']);
+
 			(function() {
 				var ga = document.createElement('script');
 				ga.type = 'text/javascript';
@@ -1157,6 +1004,9 @@
 				var s = document.getElementsByTagName('script')[0];
 				s.parentNode.insertBefore(ga, s);
 			})();
+			
+			
+			 
 
 		</script>
 

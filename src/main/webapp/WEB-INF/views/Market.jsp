@@ -6,7 +6,7 @@
 <html>
 <head>
 		<meta charset="utf-8">
-		<title> Search Unit </title>
+		<title> Market </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -121,18 +121,21 @@
 
 		<!-- #HEADER -->
 		<header id="header">
-			<div id="logo-group">
+	<div id="logo-group">
 
-				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="<c:url value='/resources/img/logo.png' />" alt="Fliker"> </span>
-				<!-- END LOGO PLACEHOLDER -->
+		<!-- PLACE YOUR LOGO HERE -->
+		<span id="logo"> <img src="img/logo.png" alt="Medha">
+		</span>
+		<!-- END LOGO PLACEHOLDER -->
 
-				<!-- Note: The activity badge color changes when clicked and resets the number to 0
+		<!-- Note: The activity badge color changes when clicked and resets the number to 0
 				Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-				<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
+		<span id="activity" class="activity-dropdown"> <i
+			class="fa fa-user"></i> <b class="badge"> 21 </b>
+		</span>
 
-				<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
-				<div class="ajax-dropdown">
+		<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
+		<div class="ajax-dropdown">
 
 				<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
 				<div class="btn-group btn-group-justified" data-toggle="buttons">
@@ -166,10 +169,10 @@
 				<!-- end footer -->
 
 			</div>
-				<!-- END AJAX-DROPDOWN -->
-			</div>
+		<!-- END AJAX-DROPDOWN -->
+	</div>
 
-			<!-- projects dropdown -->
+	<!-- projects dropdown -->
 	<div class="project-context hidden-xs">
 
 			<span class="label">Say:</span> <span
@@ -189,10 +192,9 @@
 			<!-- end dropdown-menu-->
 
 		</div>
-	<!-- end projects dropdown -->
 
-			<!-- pulled right: nav area -->
-			<div class="pull-right">
+	<!-- end projects dropdown --> <!-- pulled right: nav area -->
+	<div class="pull-right">
 
 		<!-- collapse menu button -->
 		<div id="hide-menu" class="btn-header pull-right">
@@ -240,14 +242,14 @@
 		<!-- end logout button -->
 
 		<!-- search mobile button (this is hidden till mobile view port) -->
-			<!-- <div id="search-mobile" class="btn-header transparent pull-right">
+			<div id="search-mobile" class="btn-header transparent pull-right">
 				<span> <a href="searchresults?" title="Search"><i
 						class="fa fa-search"></i></a>
 				</span>
 			</div>
-			end search mobile button
+			<!-- end search mobile button -->
 
-			input: search field
+			<!-- input: search field -->
 			<form action="searchresults?" class="header-search pull-right">
 				<input id="search-fld" type="text" name="param"
 					placeholder="Find reports and more">
@@ -257,7 +259,7 @@
 				<a href="javascript:void(0);" id="cancel-search-js"
 					title="Cancel Search"><i class="fa fa-times"></i></a>
 			</form>
-			end input: search field -->
+			<!-- end input: search field -->
 
 		<!-- fullscreen button -->
 		<div id="fullscreen" class="btn-header transparent pull-right">
@@ -270,7 +272,6 @@
 				<span> <a href="createpost?" title="Article">Article</a>
 				</span>
 			</div>
-			
 		<!-- end fullscreen button -->
 
 		<!-- #Voice Command: Start Speech -->
@@ -308,9 +309,7 @@
 		
 
 	</div>
-			<!-- end pulled right: nav area -->
-
-		</header>
+	<!-- end pulled right: nav area --> </header>
 		<!-- END HEADER -->
 
 		<!-- #NAVIGATION -->
@@ -521,7 +520,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Search Page</li>
+					<li>Market</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -550,49 +549,174 @@
 				
 						<ul id="myTab1" class="nav nav-tabs bordered">
 							<li class="active">
-								<a href="#s1" data-toggle="tab">Search</a>
+								<a href="#s1" data-toggle="tab">Cart</a>
 							</li>
 							<li>
-								<a href="#s2" data-toggle="tab">Content Search</a>
+								<a href="#s2" data-toggle="tab">Orders</a>
 							</li>
 							<li>
-								<a href="#s3" data-toggle="tab">Search History</a>
-							</li>
-							<li class="pull-right hidden-mobile">
-								<a href="javascript:void(0);"> <span class="note">About 24,431 results (0.15 seconds) </span> </a>
+								<a href="#s3" data-toggle="tab">Sale</a>
 							</li>
 						</ul>
 						<div id="myTabContent1" class="tab-content bg-color-white padding-10">
 							<div class="tab-pane fade in active" id="s1">
 							
-							<!-- <div class="tab-pane fade in active" id="s1"> -->
-								<!-- <form action="#" id="search-form"> -->
-									<h1> Search <span class="semi-bold">Everything</span></h1>
-									<br>
-									<div class="input-group input-group-lg hidden-mobile">
-										<input class="form-control input-lg" type="text" placeholder="Search again..." id="searchparam">
-										<div class="input-group-btn">
-											<button type="button" class="btn btn-default" id="searchresult">
-												&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
-											</button>
-										</div>
-									</div>
-								<!-- </form> -->
-								<h1 class="font-md"> Search Results for <small class="text-danger" id="searchcount"> &nbsp;&nbsp;</small></h1>
-								<div class="row" id="searchcontent">
 								
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<h2>Cart</h2>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body">
+				
+										<div class="row">
+											<form id="wizard-1" novalidate="novalidate">
+												<div id="bootstrap-wizard-1" class="col-sm-12">
+													<div class="form-bootstrapWizard">
+														<ul class="bootstrapWizard form-wizard">
+															<li class="active" data-target="#step1">
+																<a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span class="title">Items Listing</span> </a>
+															</li>
+															<li data-target="#step2">
+																<a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="title">Billing information</span> </a>
+															</li>
+															<li data-target="#step3">
+																<a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title">Domain Setup</span> </a>
+															</li>
+															<li data-target="#step4">
+																<a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="title">Save Form</span> </a>
+															</li>
+														</ul>
+														<div class="clearfix"></div>
+													</div>
+													<div class="tab-content">
+														<div class="tab-pane active" id="tab1">
+															<br>
+															<h3><strong>Items</strong></h3>
+				
+															<div class="row">
+																<div class="col-md-4">
+																	<img src="img/superbox/superbox-full-19.jpg" class="img-responsive" alt="img">
+																	<ul class="list-inline padding-10">
+																		<li>
+																			<i class="fa fa-calendar"></i>
+																			<a href="javascript:void(0);"> March 12, 2015 </a>
+																		</li>
+																		<li>
+																			<i class="fa fa-comments"></i>
+																			<a href="javascript:void(0);"> 38 Comments </a>
+																		</li>
+																	</ul>
+																</div>
+																<div class="col-md-8 padding-left-0">
+																	<h3 class="margin-top-0"><a href="javascript:void(0);"> Mums favorite shopping malls in USA </a>
+																	<br>
+																	<small class="font-xs"><i>Sold by <a href="javascript:void(0);">John Doe</a></i></small></h3>
+																	<span>
+																		<h3 class="price-container">
+																			$129.54
+																			<small>*includes tax</small>
+																		</h3>
+																	</span>
+																	<a href="marketcartremoveitem?"> Remove </a>
+																</div>
+															</div>
+				
+														</div>
+														<div class="tab-pane" id="tab2">
+															<br>
+															<h3><strong>Step 2</strong> - Billing Information</h3>
+															
+															
+															
+															
+														</div>
+														<div class="tab-pane" id="tab3">
+															<br>
+															<h3><strong>Step 3</strong> - Domain Setup</h3>
+															<div class="alert alert-info fade in">
+																<button class="close" data-dismiss="alert">
+																	×
+																</button>
+																<i class="fa-fw fa fa-info"></i>
+																<strong>Info!</strong> Place an info message box if you wish.
+															</div>
+															<div class="form-group">
+																<label>This is a label</label>
+																<input class="form-control input-lg" placeholder="Another input box here..." type="text" name="etc" id="etc">
+															</div>
+														</div>
+														<div class="tab-pane" id="tab4">
+															<br>
+															<h3><strong>Step 4</strong> - Save Form</h3>
+															<br>
+															<h1 class="text-center text-success"><strong><i class="fa fa-check fa-lg"></i> Complete</strong></h1>
+															<h4 class="text-center">Click next to finish</h4>
+															<br>
+															<br>
+														</div>
+				
+														<div class="form-actions">
+															<div class="row">
+																<div class="col-sm-12">
+																	<ul class="pager wizard no-margin">
+																		<!--<li class="previous first disabled">
+																		<a href="javascript:void(0);" class="btn btn-lg btn-default"> First </a>
+																		</li>-->
+																		<li class="previous disabled">
+																			<a href="javascript:void(0);" class="btn btn-lg btn-default"> Previous </a>
+																		</li>
+																		<!--<li class="next last">
+																		<a href="javascript:void(0);" class="btn btn-lg btn-primary"> Last </a>
+																		</li>-->
+																		<li class="next">
+																			<a href="javascript:void(0);" class="btn btn-lg txt-color-darken"> Next </a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+				
+													</div>
+												</div>
+											</form>
+										</div>
+				
+									</div>
+									<!-- end widget content -->
+				
 								</div>
-								<div class="text-center">
-									<hr>
-									<input type="hidden" value="" id="currentpageno">
-									<ul class="pagination no-margin" id="searchpagenumbers">
-										
-									</ul>
-									<input type="hidden" value="" id="lastpageno">
-									<br>
-									<br>
-									<br>
-								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
 				
 							</div>
 							<div class="tab-pane fade" id="s2">
@@ -836,6 +960,10 @@
 
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
+		<script src="<c:url value='/resources/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js' />"></script>
+		<!-- <script src="js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script> -->
+		<script src="<c:url value='/resources/js/plugin/fuelux/wizard/wizard.min.js' />"></script>
+		<!-- <script src="js/plugin/fuelux/wizard/wizard.min.js"></script> -->
 
 		<script type="text/javascript">
 
@@ -893,114 +1021,97 @@
 				 */
 				 
 				 
-				 $("#searchresult").click(function(){
-					    //alert("form has been submitted.");
-					    var searchparam = $('#searchparam').val();
+				 var $validator = $("#wizard-1").validate({
 					    
-					    $.getJSON('searchContentCount?searchparam='+searchparam, function(dataset) {
-					    	
-					    	
-					    	
-					    	console.log(dataset);
-					    	
-					    	var nopages = Math.floor(dataset/10);
-					    	var noofsetremain = dataset%10;
-					    	
-					    	if(noofsetremain === 0){
-					    		nopages = nopages;
-					    	}else{
-					    		nopages = nopages + 1;
-					    	}
-					    	console.log(nopages);
-					    	
-					    	for(var i=0;i<nopages;i++){
-					    		var pagecount = "";
-					    		if(i===0){
-					    			pagecount = '<li class="prev disabled"><a href="getPreviousCallSearch()">Previous</a></li>'+
-					    			'<li class="active"><a href="#" onclick="getPageCallSearch('+1+')" id='+1+'>1</a></li>';
-					    		}else if(i === (nopages-1)){ 
-					    			var nextpage = '<li><a href="#" onclick="getPageCallSearch('+(i+1)+')" id='+(i+1)+'>'+(i+1)+'</a></li>'+
-					    			'<li class="next"><a href="#" onclick="getNextCallSearch()">Next</a></li>';
-					    			pagecount = pagecount +nextpage;
-					    			
-					    		}else{
-					    			var nextpage = '<li><a href="#" onclick="getPageCallSearch()" id='+(i+1)+'>'+(i+1)+'</a></li>';
-					    			pagecount = pagecount +nextpage;
-					    		}
-					    		//pagecount = pagecount + '<li class="next"><a href="#" onclick="getNextCallSearch()">Next</a></li>'
-					    		
-					    		$('#searchpagenumbers').append(pagecount);
-					    	}
-					    	
-					    	$('#currentpageno').val(1);
-					    	$('#lastpageno').val(nopages);
-					    	
-					    	/* <li class="active"><a href="javascript:void(0);">1</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);">2</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);">3</a>
-							</li>
-							<li class="next">
-								<a href="javascript:void(0);">Next</a>
-							</li> */
-					    	
-					    	
+					    rules: {
+					      email: {
+					        required: true,
+					        email: "Your email address must be in the format of name@domain.com"
+					      },
+					      fname: {
+					        required: true
+					      },
+					      lname: {
+					        required: true
+					      },
+					      country: {
+					        required: true
+					      },
+					      city: {
+					        required: true
+					      },
+					      postal: {
+					        required: true,
+					        minlength: 4
+					      },
+					      wphone: {
+					        required: true,
+					        minlength: 10
+					      },
+					      hphone: {
+					        required: true,
+					        minlength: 10
+					      }
+					    },
+					    
+					    messages: {
+					      fname: "Please specify your First name",
+					      lname: "Please specify your Last name",
+					      email: {
+					        required: "We need your email address to contact you",
+					        email: "Your email address must be in the format of name@domain.com"
+					      }
+					    },
+					    
+					    highlight: function (element) {
+					      $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+					    },
+					    unhighlight: function (element) {
+					      $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+					    },
+					    errorElement: 'span',
+					    errorClass: 'help-block',
+					    errorPlacement: function (error, element) {
+					      if (element.parent('.input-group').length) {
+					        error.insertAfter(element.parent());
+					      } else {
+					        error.insertAfter(element);
+					      }
+					    }
+					  });
+					  
+					  $('#bootstrap-wizard-1').bootstrapWizard({
+					    'tabClass': 'form-wizard',
+					    'onNext': function (tab, navigation, index) {
+					      var $valid = $("#wizard-1").valid();
+					      if (!$valid) {
+					        $validator.focusInvalid();
+					        return false;
+					      } else {
+					        $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass(
+					          'complete');
+					        $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step')
+					        .html('<i class="fa fa-check"></i>');
+					      }
+					    }
+					  });
+					  
+				
+					// fuelux wizard
+					  var wizard = $('.wizard').wizard();
+					  
+					  wizard.on('finished', function (e, data) {
+					    //$("#fuelux-wizard").submit();
+					    //console.log("submitted!");
+					    $.smallBox({
+					      title: "Congratulations! Your form was submitted",
+					      content: "<i class='fa fa-clock-o'></i> <i>1 seconds ago...</i>",
+					      color: "#5F895F",
+					      iconSmall: "fa fa-check bounce animated",
+					      timeout: 4000
 					    });
-					    //var pageno = $('#')
-					    alert(searchparam);
-					    if(searchparam!=null && searchparam!=""){
-					    	
-						    $.getJSON('searchContentResult?searchparam='+searchparam+'&pageno='+'', function(dataset) {
-		                		console.log(dataset);
-		                		var searchcontent = "";
-		                		for(var item in dataset){
-		                			var contentdesc = (dataset[item].contentDescription).split(",");
-		                			var guidancesubject = "";
-		                			var profileimage = "";
-		                			var currentstatus = "";
-		                			var experience = "";
-		                			var contact = "";
-		                			var profileemail = "";
-		                			var profilename = "";
-		                			var contenttype = dataset[item].contentType;
-		                			var guidanceid = dataset[item].searchid;
-		                			
-		                			
-		                			for(var type in contentdesc){
-		                				var contentstate = contentdesc[type].split("::");
-		                				if(contentstate[0] == "Guidance Subject "){
-		                					guidancesubject = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Image "){
-		                					profileimage = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Name "){
-		                					profilename = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Email "){
-		                					profileemail = contentstate[1];
-		                				}else if(contentstate[0] == "Profile CurrenStatus "){
-		                					currentstatus = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Experience "){
-		                					experience = contentstate[1];
-		                				}else if(contentstate[0] == "Profile Contact "){
-		                					contact = contentstate[1];
-		                				}
-		                				
-			                		}
-		                			
-		                			var searchset = '<div class="search-results clearfix smart-form"><h4><i class="fa fa-plus-square txt-color-blue">'+
-            						'</i>&nbsp;<a href="javascript:void(0);">Guidance on'+guidancesubject+' provided by '+profilename+'</a></h4>'+
-            						'<div><br><div class="url text-success">'+profilename+'<i class="fa fa-caret-down"></i><h3 class="margin-top-0"><br>'+
-            						'<small class="font-xs"><i>Currently working as '+currentstatus+' with experience of '+experience+'<i>'+
-            						'Contact: '+contact+','+profileemail+'</i></i></small></h3></div><p><a href="guidanceInfoView?guidanceid='+guidanceid+'" class="btn btn-default btn-xs">Go to Guidance</a></p></div></div>';
-		                			searchcontent = searchcontent + searchset;
-		                		}
-		                		$('#searchcontent').append(searchcontent)
-		                	});
-					    }else return false;
 					    
-					});
+					  });
 				 
 				
 				 

@@ -165,42 +165,38 @@
 		<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
 		<div class="ajax-dropdown">
 
-			<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
-			<div class="btn-group btn-group-justified" data-toggle="buttons">
-				<label class="btn btn-default"> <input type="radio"
-					name="activity" id="offlinechatmessages?"> Msgs
-				</label> <label class="btn btn-default"> <input type="radio"
-					name="activity" id="notifications?"> notify
-				</label> <label class="btn btn-default"> <input type="radio"
-					name="activity" id="tasklists?"> Tasks
-				</label>
-			</div>
-
-			<!-- notification content -->
-			<div class="ajax-notifications custom-scroll">
-
-				<div class="alert alert-transparent">
-					<h4>Click a button to show messages here</h4>
-					This blank page message helps protect your privacy, or you can show
-					the first message here automatically.
+				<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
+				<div class="btn-group btn-group-justified" data-toggle="buttons">
+					 <label class="btn btn-default"> <input type="radio"
+						name="activity" id="notifications?"> Notification 
+					</label> 
 				</div>
 
-				<i class="fa fa-lock fa-4x fa-border"></i>
+				<!-- notification content -->
+				<div class="ajax-notifications custom-scroll">
+
+					<div class="alert alert-transparent">
+						<h4>Click a button to show messages here</h4>
+						This blank page message helps protect your privacy, or you can
+						show the first message here automatically.
+					</div>
+
+					<i class="fa fa-lock fa-4x fa-border"></i>
+
+				</div>
+				<!-- end notification content -->
+
+				<!-- footer: refresh area -->
+				<%-- <span> Last updated on: 12/12/2013 9:43AM
+					<button type="button"
+						data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
+						class="btn btn-xs btn-default pull-right">
+						<i class="fa fa-refresh"></i>
+					</button>
+				</span> --%>
+				<!-- end footer -->
 
 			</div>
-			<!-- end notification content -->
-
-			<!-- footer: refresh area -->
-			<span> Last updated on: 12/12/2013 9:43AM
-				<button type="button"
-					data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
-					class="btn btn-xs btn-default pull-right">
-					<i class="fa fa-refresh"></i>
-				</button>
-			</span>
-			<!-- end footer -->
-
-		</div>
 		<!-- END AJAX-DROPDOWN -->
 	</div>
 
@@ -411,7 +407,22 @@
 						</li>
 					</ul>
 				</li>
-				
+				<li><a href="#" title="Dashboard"><i
+					class="fa fa-lg fa-fw fa-briefcase"></i> <span
+					class="menu-item-parent">OSM</span></a>
+				<ul>
+					<!-- <li class=""><a href="ideatoimplement?" title="NewPost"><i
+							class="fa fa-tags"></i><span class="menu-item-parent">Idea-Implementation</span></a>
+					</li> -->
+					<li class=""><a href="osmprojectinfo?" title="NewJob"><i
+							class="fa fa-suitcase"></i><span class="menu-item-parent">Project List</span></a>
+					</li>
+					<li class=""><a href="stockPreview?" title="NewJob"><i
+							class="fa fa-suitcase"></i><span class="menu-item-parent">Trading</span></a>
+					</li>
+					
+					
+				</ul></li>
 
 				<li class="chat-users top-menu-invisible"><a href="#"><i
 						class="fa fa-lg fa-fw fa-comment-o"><em
@@ -1474,66 +1485,10 @@
 	<div class="page-footer">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<span class="txt-color-white">SmartAdmin 1.8.2 <span
-					class="hidden-xs"> - Web Application Framework</span> © 2014-2015
+				<span class="txt-color-white">Medha
 				</span>
 			</div>
 
-			<div class="col-xs-6 col-sm-6 text-right hidden-xs">
-				<div class="txt-color-white inline-block">
-					<i class="txt-color-blueLight hidden-mobile">Last account
-						activity <i class="fa fa-clock-o"></i> <strong>52 mins
-							ago &nbsp;</strong>
-					</i>
-					<div class="btn-group dropup">
-						<button
-							class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white"
-							data-toggle="dropdown">
-							<i class="fa fa-link"></i> <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu pull-right text-left">
-							<li>
-								<div class="padding-5">
-									<p class="txt-color-darken font-sm no-margin">Download
-										Progress</p>
-									<div class="progress progress-micro no-margin">
-										<div class="progress-bar progress-bar-success"
-											style="width: 50%;"></div>
-									</div>
-								</div>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<div class="padding-5">
-									<p class="txt-color-darken font-sm no-margin">Server Load</p>
-									<div class="progress progress-micro no-margin">
-										<div class="progress-bar progress-bar-success"
-											style="width: 20%;"></div>
-									</div>
-								</div>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<div class="padding-5">
-									<p class="txt-color-darken font-sm no-margin">
-										Memory Load <span class="text-danger">*critical*</span>
-									</p>
-									<div class="progress progress-micro no-margin">
-										<div class="progress-bar progress-bar-danger"
-											style="width: 70%;"></div>
-									</div>
-								</div>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<div class="padding-5">
-									<button class="btn btn-block btn-default">refresh</button>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<!-- END PAGE FOOTER -->
@@ -1544,7 +1499,7 @@
 		-->
 	<div id="shortcut">
 		<ul>
-			<li><a href="calendar.html"
+			<li><a href="calendar?"
 				class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span
 					class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span>
 				</span>
@@ -1558,6 +1513,11 @@
 			<li><a href="timeline?"
 				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
 					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>TimeLine </span>
+				</span>
+			</a></li>
+			<li><a href="market?"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>Market </span>
 				</span>
 			</a></li>
 		</ul>

@@ -7,8 +7,17 @@
 	<head>
 		<meta charset="utf-8">
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
-		<title> Guidance Dash </title>
+		<%
+			String profileimage = (String)request.getAttribute("ProfileImage");
+			String gender = (String)request.getAttribute("Gender");
+			String profilename = (String)request.getAttribute("FullName");
+			String userid = (String)request.getAttribute("userid");
+			String logo = "";
+			String guidanceid = (String)request.getAttribute("guidanceid");
+			ArrayList specificationlist = (ArrayList)request.getAttribute("specificationlist");
+		
+		%>
+		<title> Project Info </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -39,7 +48,7 @@
 
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
-		<link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet">
+		<%-- <link href='<c:url value="/resources/css/demo.min.css" />' rel="stylesheet"> --%>
 
 
 		<!-- #FAVICONS -->
@@ -123,34 +132,12 @@
 	-->
 	<body class="">
 	
-		<%
-			String profileimage = (String)request.getAttribute("ProfileImage");
-			String gender = (String)request.getAttribute("Gender");
-			String profilename = (String)request.getAttribute("FullName");
-			String logo = "";
-			String guidanceid = "";
-			String timetableid = "";
-			String guideshareid = "";
-			String guidedash = "";
-			/* Timetable timeline = (Timetable)request.getAttribute("TimeTable");
-			GuidanceContentShared guidanceshare = (GuidanceContentShared)request.getAttribute("GuidShared");
-			GuidanceContentDashboard guiddash = (GuidanceContentDashboard)request.getAttribute("GuidDashBoard");
-			Blog blogs = (Blog)request.getAttribute("GuidBlog");
-			
-			String guidanceid = (String)request.getAttribute("guidanceid");
-			String timetableid = timeline.getTimeableid();
-			String guideshareid = guidanceshare.getGuidancesharedid();
-			String guidedash = guiddash.getGuidancecontentDashid(); */
-			
-		
-		%>
-
 		<!-- HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo.png" alt="Fliker"> </span>
+				<span id="logo"> <img src="img/logo.png" alt="Medha"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -162,15 +149,9 @@
 
 					<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
 					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						<label class="btn btn-default">
-							<input type="radio" name="activity" id="offlinechatmessages?">
-							Msgs (14) </label>
-						<label class="btn btn-default">
-							<input type="radio" name="activity" id="notifications?">
-							notify (3) </label>
-						<label class="btn btn-default">
-							<input type="radio" name="activity" id="tasklists?">
-							Tasks (4) </label>
+						 <label class="btn btn-default"> <input type="radio"
+							name="activity" id="notifications?"> Notification 
+						</label> 
 					</div>
 
 					<!-- notification content -->
@@ -198,25 +179,24 @@
 			</div>
 
 			<!-- projects dropdown -->
-			<div class="project-context hidden-xs" >
+			<div class="project-context hidden-xs">
 
-				<span class="label">Projects:</span>
-				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
-
+				<span class="label">Say:</span> <span
+					class="project-selector dropdown-toggle" data-toggle="dropdown">Anything<i class="fa fa-angle-down"></i>
+				</span>
+	
 				<!-- Suggestion: populate this list with fetch and push technique -->
 				<ul class="dropdown-menu" style="border: 1px solid black">
 					<h5>Daily Note</h5>
-					<li>
-						<textarea id="notemessage" class="form-control" name="notemessage" rows="3" style="width: 400px"></textarea>
-					</li>
-					
+					<li><textarea id="notemessage" class="form-control"
+							name="notemessage" rows="3" style="width: 400px"></textarea></li>
+	
 					<li class="divider"></li>
-					<li>
-						<a href="#" id="notedown"><i class="fa fa-edit"></i> Note Down</a>
-					</li>
+					<li><a href="#" id="notedown"><i class="fa fa-edit"></i>
+							Note Down</a></li>
 				</ul>
 				<!-- end dropdown-menu-->
-
+	
 			</div>
 			
 			<!-- end projects dropdown -->
@@ -232,87 +212,75 @@
 				
 				<!-- #MOBILE -->
 				<!-- Top menu profile link : this shows only when top menu is active -->
-				<ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
-					<li class="">
-						<a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown"> 
-							<img src="img/avatars/sunny.png" alt="John Doe" class="online" />  
-						</a>
-						<ul class="dropdown-menu pull-right">
-							<li>
-								<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="profile.html" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> <u>P</u>rofile</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full <u>S</u>creen</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="logout?"  class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
-							</li>
-						</ul>
-					</li>
-				</ul>
+				<ul id="mobile-profile-img"
+				class="header-dropdown-list hidden-xs padding-5">
+				<li class=""><a href="#"
+					class="dropdown-toggle no-margin userdropdown"
+					data-toggle="dropdown"><img src="/Fliker/imageFromUserid/<%=userid%>" alt="<%=profilename%>" class="online">
+				</a>
+					<ul class="dropdown-menu pull-right">
+						<!-- <li><a href="profile?"
+							class="padding-10 padding-top-0 padding-bottom-0"> <i
+								class="fa fa-user"></i> <u>P</u>rofile
+						</a></li> -->
+						<li class="divider"></li>
+						<li><a href="javascript:void(0);"
+							class="padding-10 padding-top-0 padding-bottom-0"
+							data-action="toggleShortcut"><i class="fa fa-arrow-down"></i>
+								<u>S</u>hortcut</a></li>
+						<li class="divider"></li>
+						<li><a href="logout?"
+							class="padding-10 padding-top-5 padding-bottom-5"
+							data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i>
+								<strong><u>L</u>ogout</strong></a></li>
+					</ul></li>
+			</ul>
 
-				<!-- logout button -->
-				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="logout?" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
-				</div>
-				<!-- end logout button -->
+			<!-- logout button -->
+			<div id="logout" class="btn-header transparent pull-right">
+				<span> <a href="logout?" title="Sign Out"
+					data-action="userLogout"
+					data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i
+						class="fa fa-sign-out"></i></a>
+				</span>
+			</div>
+			<!-- end logout button -->
 
-				<!-- search mobile button (this is hidden till mobile view port) -->
-				<div id="search-mobile" class="btn-header transparent pull-right">
-					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
-				</div>
-				<!-- end search mobile button -->
+			<!-- search mobile button (this is hidden till mobile view port) -->
+			<div id="search-mobile" class="btn-header transparent pull-right">
+				<span> <a href="searchresults?" title="Search"><i
+						class="fa fa-search"></i></a>
+				</span>
+			</div>
+			<!-- end search mobile button -->
 
-				<!-- input: search field -->
-				<form action="searchresults?" class="header-search pull-right">
-					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"]'>
-					<button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-				</form>
-				<!-- end input: search field -->
+			<!-- input: search field -->
+			<form action="searchresults?" class="header-search pull-right">
+				<input id="search-fld" type="text" name="param"
+					placeholder="Find reports and more">
+				<button type="submit">
+					<i class="fa fa-search"></i>
+				</button>
+				<a href="javascript:void(0);" id="cancel-search-js"
+					title="Cancel Search"><i class="fa fa-times"></i></a>
+			</form>
+			<!-- end input: search field -->
 
-				<!-- fullscreen button -->
-				<div id="fullscreen" class="btn-header transparent pull-right">
-					<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
-				</div>
+			<!-- fullscreen button -->
+			<div id="fullscreen" class="btn-header transparent pull-right">
+				<span> <a href="#"
+					data-action="launchFullscreen" title="Full Screen"><i
+						class="fa fa-arrows-alt"></i></a>
+				</span>
+			</div>
+			<div id="article" class="btn-header transparent pull-right">
+				<span> <a href="createpost?" title="Article">Article</a>
+				</span>
+			</div>
 				<!-- end fullscreen button -->
 				
 				<!-- #Voice Command: Start Speech -->
-				<div id="speech-btn" class="btn-header transparent pull-right hidden-sm hidden-xs">
+				<!-- <div id="speech-btn" class="btn-header transparent pull-right hidden-sm hidden-xs">
 					<div> 
 						<a href="javascript:void(0)" title="Voice Command" data-action="voiceCommand"><i class="fa fa-microphone"></i></a> 
 						<div class="popover bottom"><div class="arrow"></div>
@@ -328,49 +296,8 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- end voice command -->
-
-				<!-- multiple lang dropdown : find all flags in the flags page -->
-				<!-- <ul class="header-dropdown-list hidden-xs">
-					<li>
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/blank.gif" class="flag flag-us" alt="United States"> <span> English (US) </span> <i class="fa fa-angle-down"></i> </a>
-						<ul class="dropdown-menu pull-right">
-							<li class="active">
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> English (US)</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-fr" alt="France"> FranÃ§ais</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> EspaÃ±ol</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> Deutsch</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-jp" alt="Japan"> æ—¥æœ¬èªž</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-cn" alt="China"> ä¸­æ–‡</a>
-							</li>	
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-it" alt="Italy"> Italiano</a>
-							</li>	
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-pt" alt="Portugal"> Portugal</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-ru" alt="Russia"> Ð ÑƒÑÑÐºÐ¸Ð¹ ÑÐ·Ñ‹Ðº</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> í•œêµ­ì–´</a>
-							</li>						
-							
-						</ul>
-					</li>
-				</ul> -->
-				<!-- end multiple lang -->
 
 			</div>
 			<!-- end pulled right: nav area -->
@@ -412,17 +339,21 @@
 				-->
 
 				<ul>
-		<li><a href="gotoguidance?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span
-				class="menu-item-parent">Guidance Dash</span> </a></li>
-		<li ><a href="gotoguidanceshare?guidanceid="<%=guidanceid%>><i
-				class="fa fa-lg fa-fw fa-random"></i> <span
-				class="menu-item-parent">Guidance Share</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+		<li class="active"><a href="gotoguidance?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-puzzle-piece txt-color-blue"></i> <span
+				class="menu-item-parent">Guidance Info</span> </a></li>
+		<li ><a href="gotoguidancedash?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
+				class="menu-item-parent">Guidance Dashboard</span> </a></li>		
+		<li ><a href="gotoguidanceshare?guidanceid=<%=guidanceid%>"><i	class="fa fa-lg fa-fw fa-share-square-o"></i> <span
+				class="menu-item-parent">Guidance Share</span> </a></li>
 
-		<li><a href="gotoguidancecalendar?guidanceid="<%=guidanceid%>><i class="fa fa-lg fa-fw fa-info"></i>
-				<span class="menu-item-parent txt-color-blue">Guidance Calendar</span> <span
-				class="badge pull-right inbox-badge margin-right-13">14</span></a></li>
+		<li><a href="gotoguidancecalendar?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-calendar"></i>
+				<span class="menu-item-parent">Guidance Calendar</span> </a></li>
+		</li>
+		<li><a href="gotoguidanceexcersize?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-qrcode"></i>
+				<span class="menu-item-parent">Guidance Excersize</span> </a></li>
+		</li>
+		<li><a href="gotoguidanceproject?guidanceid=<%=guidanceid%>"><i class="fa fa-lg fa-fw fa-sitemap"></i>
+				<span class="menu-item-parent">Guidance Project</span> </a></li>
 		</li>
 	</ul>
 			</nav>
@@ -441,15 +372,9 @@
 			<!-- RIBBON -->
 			<div id="ribbon">
 
-				<span class="ribbon-button-alignment"> 
-					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
-						<i class="fa fa-refresh"></i>
-					</span> 
-				</span>
-
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>DashBoard</li>
+					<li>Guidance Info</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -470,16 +395,397 @@
 			<!-- MAIN CONTENT -->
 			<div id="content">
 
+				<%
+					
+					HashMap resourcesSearch = (HashMap)request.getAttribute("resourcesSearch");
+					Set resourceset = resourcesSearch.entrySet();
+					Iterator resourseit = resourceset.iterator();
+					String guidancedescription = "";
+					String guidanceprice = "";
+					String guidancesubjectexperience = "";
+					String companies = "";
+					String guidanceachievements="";
+					String guidancecostcurrancy = "";
+					while(resourseit.hasNext()){
+						
+						StringBuffer companylst = new StringBuffer();
+						LinkedList guidanceendorebylist = new LinkedList();
+						LinkedList guidanceachevements = new LinkedList();
+						Map.Entry resourceme = (Map.Entry)resourseit.next();
+						String keyvalue = (String) resourceme.getKey();
+						if (keyvalue.equalsIgnoreCase("guidancedescription")) {
+							guidancedescription = (String)resourceme.getValue();
+						}else if (keyvalue.equalsIgnoreCase("guidanceprice")) {
+							String guidancepr = (String)resourceme.getValue();
+							String[] guidanceperstrarr = guidancepr.split(" ");
+							guidanceprice = guidanceperstrarr[0];
+							if(guidanceperstrarr.length >1){
+								guidancecostcurrancy = guidanceperstrarr[1];
+							}
+						}else if (keyvalue.equalsIgnoreCase("guidancesubjectexperience")) {
+							guidancesubjectexperience = (String)resourceme.getValue();
+						}else if (keyvalue.equalsIgnoreCase("guidanceendorebylist")) {
+							guidanceendorebylist = (LinkedList)resourceme.getValue();
+							for(int u=0;u<guidanceendorebylist.size();u++){
+								
+								HashMap companyinfo = (HashMap)guidanceendorebylist.get(u);
+								Set companyset = companyinfo.entrySet();
+								Iterator companyit = companyset.iterator();
+								while(companyit.hasNext()){
+									Map.Entry companyme = (Map.Entry)companyit.next();
+									String companyname = (String)companyme.getKey();
+									String companylogo = (String)companyme.getValue();
+									String companyadd = "<img src='/Fliker/imageFromUserid/"+companylogo+"' data-img='/Fliker/imageFromUserid/"+companylogo+"' alt='"+companyname+"' title='Rome' class='superbox-img'>";
+									companylst.append(companyadd);
+								}
+							}
+							
+							
+						}else if (keyvalue.equalsIgnoreCase("guidanceachevements")) {
+							guidanceachevements = (LinkedList)resourceme.getValue();
+							StringBuffer achievementbuff = new StringBuffer();
+							
+							for(int s=0;s<guidanceachevements.size();s++){
+								
+								String achievementname = "";
+								String achievementdescr = "";
+								String achievefile = "";
+								String achievetoken="";
+								
+								String achievementdata = (String)guidanceachevements.get(s);
+								//achievementdata = achievementdata.replaceAll("{", "");
+								//achievementdata = achievementdata.replaceAll("}", "");
+								System.out.println(achievementdata);
+								
+								String[] achievementd = achievementdata.split(",");
+								for(int d=0;d<achievementd.length;d++){
+									String[] achieveset = achievementd[d].split(":");
+									String achievefirst = achieveset[0].replaceAll("\"", "");
+									String newachieve = achievefirst.replaceAll("\\{", "");
+									System.out.println(newachieve);
+									if(newachieve.equalsIgnoreCase("achievement")){
+										achievementname = achieveset[1].replaceAll("\"", "");
+									}else if(newachieve.equalsIgnoreCase("achievementdescription")){
+										achievementdescr = achieveset[1].replaceAll("\"", "");
+									}else if(newachieve.equalsIgnoreCase("achievementfile")){
+										achievefile = achieveset[1].replaceAll("\"", "");
+									}else if(newachieve.equalsIgnoreCase("achievementtoken")){
+										achievetoken = achieveset[1].replaceAll("\"", "");
+										achievetoken = achievetoken.replaceAll("\\}", "");
+									}
+									
+									
+								}
+								System.out.println(achievementname+" ::"+achievementdescr+" ::"+achievefile+" ::"+achievetoken);
+								String achievementelement = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse'"+ 
+										"data-parent='#accordion-2' href='#"+achievetoken+"'> <i class='fa fa-fw fa-plus-circle txt-color-green'></i> <i class='fa fa-fw fa-minus-circle"+ 
+										"txt-color-red'></i>"+achievementname+"</a></h4></div><div id="+achievetoken+" class='panel-collapse collapse'>"+
+										"<div class='panel-body'>"+achievementdescr+"</div></div></div>";
+										
+								achievementbuff.append(achievementelement);		
+							}
+							
+							guidanceachievements = achievementbuff.toString();
+						}
+						companies = companylst.toString();
+					}
+					Set<Currency> currencyset = (Set<Currency>)request.getAttribute("currencyset");
+					StringBuffer currencylist = new StringBuffer();
+					for (Currency s : currencyset) {
+						if(s.getCurrencyCode().equalsIgnoreCase(guidancecostcurrancy)){
+							currencylist.append("<option id="+s.getCurrencyCode()+" selected='true'>"+s.getCurrencyCode()+"</option>"); 
+						}else{
+							currencylist.append("<option id="+s.getCurrencyCode()+">"+s.getCurrencyCode()+"</option>"); 
+						}
+					    System.out.println(s.getCurrencyCode());
+					}
+					
+				%>
+
+				<div class="row">
+						
+						<!-- NEW WIDGET START -->
+						<article class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 				
-				<!-- row -->
+							
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
+								<!-- widget options:
+									usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+									data-widget-colorbutton="false"	
+									data-widget-editbutton="false"
+									data-widget-togglebutton="false"
+									data-widget-deletebutton="false"
+									data-widget-fullscreenbutton="false"
+									data-widget-custombutton="false"
+									data-widget-collapsed="true" 
+									data-widget-sortable="false"
+									
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+									<h2>Description</h2>				
+									
+								</header>
 				
+								<!-- widget div-->
+								<div>
+									<textarea class="form-control" id="guidancedescriptioninfo" name="review" rows="8"><%=guidancedescription%></textarea>
+									<!-- widget edit box -->
+									<!-- <div class="jarviswidget-editbox">
+										This area used as dropdown edit box
+										
+									</div>
+									end widget edit box
+									
+									widget content
+									<div class="widget-body no-padding">
+										
+											<textarea name="guidanceprojecteditor">
+												
+				                			</textarea>						
+										
+									</div> -->
+									<!-- end widget content -->
+									
+								</div>
+								<!-- end widget div -->
+								
+							</div>
+							<!-- end widget -->
 				
+						</article>
+						<!-- WIDGET END -->
+						
+					</div>
+					<div class="row">
+								
+						<div class="col-sm-3">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">Experience</span> <input
+										class="form-control input-lg"
+										placeholder="Total Experience" type="text" name="course" value="<%=guidancesubjectexperience%>"
+										id="guidanceexperienceinfo">
+										<span class="input-group-addon">Years</span>
+								</div>
+							</div>
+	
+						</div>
+						
+						<div class="col-sm-2">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">Price</span> <input
+										class="form-control input-lg"
+										placeholder="Minimum investment amount or multiple of it.." type="text" name="course" value="<%=guidanceprice%>"
+										id="guidancecost">
+								</div>
+							</div>
+	
+						</div>
+						<div class="col-sm-2">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon"><select class="form-control" id="costcurrency" >
+												<%=currencylist.toString()%>
+									</select></span>
+								</div>
+							</div>
+	
+						</div>
+						<div class="col-sm-2">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon"><select class="form-control" id="guidancecostduration">
+										<option>Month</option>
+										<option>Day</option>
+									</select>
+								</span>
+								</div>
+							</div>
+	
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+							<div  class="panel-group smart-accordion-default" id="specificationlist">
+						<%
+							if(specificationlist!= null){
+								for(int k=0;k<specificationlist.size();k++){
+								HashMap specificmap = (HashMap)specificationlist.get(k);
+								Set specifset = specificmap.entrySet();
+								Iterator speciit = specifset.iterator();
+								String specificid = "";
+								String specificname = "";
+								String specificdesc = "";
+								String specificper = "";
+								while(speciit.hasNext()){
+									Map.Entry specificme = (Map.Entry)speciit.next();
+									
+									if(((String)specificme.getKey()).equalsIgnoreCase("specificationid")){
+										specificid = (String)specificme.getValue();
+									}else if(((String)specificme.getKey()).equalsIgnoreCase("specificationname")){
+										specificname = (String)specificme.getValue();
+									}else if(((String)specificme.getKey()).equalsIgnoreCase("specificationdetails")){
+										specificdesc = (String)specificme.getValue();
+									}else if(((String)specificme.getKey()).equalsIgnoreCase("specificationpercentage")){
+										specificper = (String)specificme.getValue();
+									}
+									
+								}
+						%>
+							
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title"><a data-toggle="collapse" data-parent="#specificationlist" href="#<%=specificid%>"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i><%=specificname%></a></h4>
+									</div>
+									<div id="<%=specificid%>" class="panel-collapse collapse in">
+										<div class="panel-body">
+											<input type="text" class="form-control" required id="<%=specificname%>" />
+											<textarea id="specificOnedesc" class="form-control" placeholder="Please Describe the specification.." rows="5" required><%=specificdesc%></textarea>
+											<div class="col-md-4 inputGroupContainer"><input type="text" class="slider slider-primary" id="g1" value="" data-slider-max="10" data-slider-value="<%=specificper%>"	data-slider-selection = "before" data-slider-handle="round"></div>
+											<a class="btn btn-primary btn-xs" href="#" onclick="saveSpecific('<%=specificid%>')">Save</a>
+										</div>
+									</div>
+								</div>
+							<%
+								
+								}
+							}
+							%>
+						</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="superbox col-sm-9">
+							<%=companies%>
+						</div>
+						<div class="superbox-show" style="height:300px; display: none"></div>
+					</div>
+					<div class="row">
+						<article class="col-sm-9 col-md-9 col-lg-9">
 				
-				<!-- end row -->
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-10" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-list-alt"></i> </span>
+									<h2>Certification</h2>
+				
+									<div class="widget-toolbar hidden-phone">
+										<div class="smart-form">
+											<label class="checkbox">
+												<button class="btn btn-primary" data-toggle="modal" data-target="#addachievement" onclick="generateToken()">Provide New Achevements</button>
+												</label>
+										</div>
+									</div>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body no-padding">
+				
+										<div class="panel-group smart-accordion-default" id="accordion-2">
+											
+											<%=guidanceachievements%>
+										</div>
+				
+									</div>
+									<!-- end widget content -->
+				
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 col-md-9 col-lg-9">
+							<div class="col-md-2">
+								<a  href="#" onclick="resetGuidanceInfo()"  class="btn btn-labeled btn-primary"> <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Reset Changes</a>
+							</div>
+							<div class="col-md-7">
+							</div>
+							<div class="col-md-2">
+								<a  href="#" onclick="saveGuidanceInfo()" class="btn btn-labeled btn-success"> <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Save Changes</a>
+							</div>
+						</div>
+						
+					</div>
 
 			</div>
 			<!-- END MAIN CONTENT -->
-
+			<div class="modal fade" id="addachievement"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Provide Achievement</h4>
+							</div>
+							<div class="modal-body">
+				
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Guidance Subject" required id="guidanceachievement" />
+										</div>
+										<div class="form-group">
+											<textarea id="achievementdescribe" class="form-control" placeholder="Provide Information about your guidance. Why you are good on the above mentioned guidance.." rows="5" required></textarea>
+										</div>
+										<div class="form-group">
+											<form id="form2" method="post" action="#" enctype="multipart/form-data">
+											<label class="col-md-2 control-label">File input</label>
+											<div class="col-md-10">
+												<input type="file" id="file2" name="file2" class="btn btn-default" id="achievementfile">
+											</div>
+											<button class="col-md-2"  type="button" onclick="uploadFormData()">
+												Upload
+											</button>
+											</form>
+											<input type="hidden" class="form-control" value="" required id="acheivetoken" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+								<button type="button" class="btn btn-primary" id="addnewachievement" onclick="addachieve()">
+									Add
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -487,10 +793,10 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> ÃÂ© 2014-2015</span>
+					<!-- <span class="txt-color-white">SmartAdmin 1.8.2 </span> -->
 				</div>
 
-				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
+				<!-- <div class="col-xs-6 col-sm-6 text-right hidden-xs">
 					<div class="txt-color-white inline-block">
 						<i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
 						<div class="btn-group dropup">
@@ -533,7 +839,7 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!-- END PAGE FOOTER -->
@@ -543,27 +849,25 @@
 		you can add as many as you like
 		-->
 		<div id="shortcut">
-			<ul>
-				<li>
-					<a href="inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
-				</li>
-				<li>
-					<a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
-				</li>
-				<li>
-					<a href="gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
-				</li>
-				<li>
-					<a href="invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
-				</li>
-				<li>
-					<a href="gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
-				</li>
-				<li>
-					<a href="profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
-				</li>
-			</ul>
-		</div>
+		<ul>
+			<li><a href="calendar.html"
+				class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span
+					class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span>
+				</span>
+			</a></li>
+			<li><a href="profile?"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My
+							Profile </span>
+				</span>
+			</a></li>
+			<li><a href="timeline?"
+				class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+					class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>TimeLine </span>
+				</span>
+			</a></li>
+		</ul>
+	</div>
 		<!-- END SHORTCUT AREA -->
 
 		<!--================================================== -->
@@ -646,7 +950,7 @@
 
 		<!-- Demo purpose only -->
 		<!-- <script src="js/demo.min.js"></script> -->
-		<script src="<c:url value='/resources/js/demo.min.js' />"></script>
+		<%-- <script src="<c:url value='/resources/js/demo.min.js' />"></script> --%>
 
 		<!-- MAIN APP JS FILE -->
 		<script src="<c:url value='/resources/js/app.min.js' />"></script>
@@ -686,6 +990,9 @@
 		<!-- <script src="js/plugin/moment/moment.min.js"></script> -->
 		<script src="<c:url value='/resources/js/plugin/fullcalendar/jquery.fullcalendar.min.js' />"></script>
 		<!-- <script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
+		
+		<%-- <script src="<c:url value='/resources/js/plugin/ckeditor/ckeditor.js' />"></script>
+		<script src="http://malsup.github.com/jquery.form.js"></script> --%>
 
 		<script>
 			$(document).ready(function() {
@@ -697,547 +1004,26 @@
 				 * PAGE RELATED SCRIPTS
 				 */
 
-				$(".js-status-update a").click(function() {
-					var selText = $(this).text();
-					var $this = $(this);
-					$this.parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
-					$this.parents('.dropdown-menu').find('li').removeClass('active');
-					$this.parent().addClass('active');
-				});
-
-				/*
-				* TODO: add a way to add more todo's to list
-				*/
-
-				// initialize sortable
-				$(function() {
-					$("#sortable1, #sortable2").sortable({
-						handle : '.handle',
-						connectWith : ".todo",
-						update : countTasks
-					}).disableSelection();
-				});
-
-				// check and uncheck
-				$('.todo .checkbox > input[type="checkbox"]').click(function() {
-					var $this = $(this).parent().parent().parent();
-
-					if ($(this).prop('checked')) {
-						$this.addClass("complete");
-
-						// remove this if you want to undo a check list once checked
-						//$(this).attr("disabled", true);
-						$(this).parent().hide();
-
-						// once clicked - add class, copy to memory then remove and add to sortable3
-						$this.slideUp(500, function() {
-							$this.clone().prependTo("#sortable3").effect("highlight", {}, 800);
-							$this.remove();
-							countTasks();
-						});
-					} else {
-						// insert undo code here...
-					}
-
-				})
-				// count tasks
-				function countTasks() {
-
-					$('.todo-group-title').each(function() {
-						var $this = $(this);
-						$this.find(".num-of-tasks").text($this.next().find("li").size());
-					});
-
-				}
-
-				/*
-				* RUN PAGE GRAPHS
-				*/
-
-				/* TAB 1: UPDATING CHART */
-				// For the demo we use generated data, but normally it would be coming from the server
-
-				var data = [], totalPoints = 200, $UpdatingChartColors = $("#updating-chart").css('color');
-
-				function getRandomData() {
-					if (data.length > 0)
-						data = data.slice(1);
-
-					// do a random walk
-					while (data.length < totalPoints) {
-						var prev = data.length > 0 ? data[data.length - 1] : 50;
-						var y = prev + Math.random() * 10 - 5;
-						if (y < 0)
-							y = 0;
-						if (y > 100)
-							y = 100;
-						data.push(y);
-					}
-
-					// zip the generated y values with the x values
-					var res = [];
-					for (var i = 0; i < data.length; ++i)
-						res.push([i, data[i]])
-					return res;
-				}
-
-				// setup control widget
-				var updateInterval = 1500;
-				$("#updating-chart").val(updateInterval).change(function() {
-
-					var v = $(this).val();
-					if (v && !isNaN(+v)) {
-						updateInterval = +v;
-						$(this).val("" + updateInterval);
-					}
-
-				});
-
-				// setup plot
-				var options = {
-					yaxis : {
-						min : 0,
-						max : 100
-					},
-					xaxis : {
-						min : 0,
-						max : 100
-					},
-					colors : [$UpdatingChartColors],
-					series : {
-						lines : {
-							lineWidth : 1,
-							fill : true,
-							fillColor : {
-								colors : [{
-									opacity : 0.4
-								}, {
-									opacity : 0
-								}]
-							},
-							steps : false
-
-						}
-					}
-				};
-
-				var plot = $.plot($("#updating-chart"), [getRandomData()], options);
-
-				/* live switch */
-				$('input[type="checkbox"]#start_interval').click(function() {
-					if ($(this).prop('checked')) {
-						$on = true;
-						updateInterval = 1500;
-						update();
-					} else {
-						clearInterval(updateInterval);
-						$on = false;
-					}
-				});
-
-				function update() {
-					if ($on == true) {
-						plot.setData([getRandomData()]);
-						plot.draw();
-						setTimeout(update, updateInterval);
-
-					} else {
-						clearInterval(updateInterval)
-					}
-
-				}
-
-				var $on = false;
-
-				/*end updating chart*/
-
-				/* TAB 2: Social Network  */
-
-				$(function() {
-					// jQuery Flot Chart
-					var twitter = [[1, 27], [2, 34], [3, 51], [4, 48], [5, 55], [6, 65], [7, 61], [8, 70], [9, 65], [10, 75], [11, 57], [12, 59], [13, 62]], facebook = [[1, 25], [2, 31], [3, 45], [4, 37], [5, 38], [6, 40], [7, 47], [8, 55], [9, 43], [10, 50], [11, 47], [12, 39], [13, 47]], data = [{
-						label : "Twitter",
-						data : twitter,
-						lines : {
-							show : true,
-							lineWidth : 1,
-							fill : true,
-							fillColor : {
-								colors : [{
-									opacity : 0.1
-								}, {
-									opacity : 0.13
-								}]
-							}
-						},
-						points : {
-							show : true
-						}
-					}, {
-						label : "Facebook",
-						data : facebook,
-						lines : {
-							show : true,
-							lineWidth : 1,
-							fill : true,
-							fillColor : {
-								colors : [{
-									opacity : 0.1
-								}, {
-									opacity : 0.13
-								}]
-							}
-						},
-						points : {
-							show : true
-						}
-					}];
-
-					var options = {
-						grid : {
-							hoverable : true
-						},
-						colors : ["#568A89", "#3276B1"],
-						tooltip : true,
-						tooltipOpts : {
-							//content : "Value <b>$x</b> Value <span>$y</span>",
-							defaultTheme : false
-						},
-						xaxis : {
-							ticks : [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4, "APR"], [5, "MAY"], [6, "JUN"], [7, "JUL"], [8, "AUG"], [9, "SEP"], [10, "OCT"], [11, "NOV"], [12, "DEC"], [13, "JAN+1"]]
-						},
-						yaxes : {
-
-						}
-					};
-
-					var plot3 = $.plot($("#statsChart"), data, options);
-				});
-
-				// END TAB 2
-
-				// TAB THREE GRAPH //
-				/* TAB 3: Revenew  */
-
-				$(function() {
-
-					var trgt = [[1354586000000, 153], [1364587000000, 658], [1374588000000, 198], [1384589000000, 663], [1394590000000, 801], [1404591000000, 1080], [1414592000000, 353], [1424593000000, 749], [1434594000000, 523], [1444595000000, 258], [1454596000000, 688], [1464597000000, 364]], prft = [[1354586000000, 53], [1364587000000, 65], [1374588000000, 98], [1384589000000, 83], [1394590000000, 980], [1404591000000, 808], [1414592000000, 720], [1424593000000, 674], [1434594000000, 23], [1444595000000, 79], [1454596000000, 88], [1464597000000, 36]], sgnups = [[1354586000000, 647], [1364587000000, 435], [1374588000000, 784], [1384589000000, 346], [1394590000000, 487], [1404591000000, 463], [1414592000000, 479], [1424593000000, 236], [1434594000000, 843], [1444595000000, 657], [1454596000000, 241], [1464597000000, 341]], toggles = $("#rev-toggles"), target = $("#flotcontainer");
-
-					var data = [{
-						label : "Target Profit",
-						data : trgt,
-						bars : {
-							show : true,
-							align : "center",
-							barWidth : 30 * 30 * 60 * 1000 * 80
-						}
-					}, {
-						label : "Actual Profit",
-						data : prft,
-						color : '#3276B1',
-						lines : {
-							show : true,
-							lineWidth : 3
-						},
-						points : {
-							show : true
-						}
-					}, {
-						label : "Actual Signups",
-						data : sgnups,
-						color : '#71843F',
-						lines : {
-							show : true,
-							lineWidth : 1
-						},
-						points : {
-							show : true
-						}
-					}]
-
-					var options = {
-						grid : {
-							hoverable : true
-						},
-						tooltip : true,
-						tooltipOpts : {
-							//content: '%x - %y',
-							//dateFormat: '%b %y',
-							defaultTheme : false
-						},
-						xaxis : {
-							mode : "time"
-						},
-						yaxes : {
-							tickFormatter : function(val, axis) {
-								return "$" + val;
-							},
-							max : 1200
-						}
-
-					};
-
-					plot2 = null;
-
-					function plotNow() {
-						var d = [];
-						toggles.find(':checkbox').each(function() {
-							if ($(this).is(':checked')) {
-								d.push(data[$(this).attr("name").substr(4, 1)]);
-							}
-						});
-						if (d.length > 0) {
-							if (plot2) {
-								plot2.setData(d);
-								plot2.draw();
-							} else {
-								plot2 = $.plot(target, d, options);
-							}
-						}
-
-					};
-
-					toggles.find(':checkbox').on('change', function() {
-						plotNow();
-					});
-					plotNow()
-
-				});
-
-				/*
-				 * VECTOR MAP
-				 */
-
-				data_array = {
-					"US" : 4977,
-					"AU" : 4873,
-					"IN" : 3671,
-					"BR" : 2476,
-					"TR" : 1476,
-					"CN" : 146,
-					"CA" : 134,
-					"BD" : 100
-				};
-
-				$('#vector-map').vectorMap({
-					map : 'world_mill_en',
-					backgroundColor : '#fff',
-					regionStyle : {
-						initial : {
-							fill : '#c4c4c4'
-						},
-						hover : {
-							"fill-opacity" : 1
-						}
-					},
-					series : {
-						regions : [{
-							values : data_array,
-							scale : ['#85a8b6', '#4d7686'],
-							normalizeFunction : 'polynomial'
-						}]
-					},
-					onRegionLabelShow : function(e, el, code) {
-						if ( typeof data_array[code] == 'undefined') {
-							e.preventDefault();
-						} else {
-							var countrylbl = data_array[code];
-							el.html(el.html() + ': ' + countrylbl + ' visits');
-						}
-					}
-				});
-
-				/*
-				 * FULL CALENDAR JS
-				 */
-
-				if ($("#calendar").length) {
-					var date = new Date();
-					var d = date.getDate();
-					var m = date.getMonth();
-					var y = date.getFullYear();
-
-					var calendar = $('#calendar').fullCalendar({
-
-						editable : true,
-						draggable : true,
-						selectable : false,
-						selectHelper : true,
-						unselectAuto : false,
-						disableResizing : false,
-						height: "auto",
-
-						header : {
-							left : 'title', //,today
-							center : 'prev, next, today',
-							right : 'month, agendaWeek, agenDay' //month, agendaDay,
-						},
-
-						select : function(start, end, allDay) {
-							var title = prompt('Event Title:');
-							if (title) {
-								calendar.fullCalendar('renderEvent', {
-									title : title,
-									start : start,
-									end : end,
-									allDay : allDay
-								}, true // make the event "stick"
-								);
-							}
-							calendar.fullCalendar('unselect');
-						},
-
-						events : [{
-							title : 'All Day Event',
-							start : new Date(y, m, 1),
-							description : 'long description',
-							className : ["event", "bg-color-greenLight"],
-							icon : 'fa-check'
-						}, {
-							title : 'Long Event',
-							start : new Date(y, m, d - 5),
-							end : new Date(y, m, d - 2),
-							className : ["event", "bg-color-red"],
-							icon : 'fa-lock'
-						}, {
-							id : 999,
-							title : 'Repeating Event',
-							start : new Date(y, m, d - 3, 16, 0),
-							allDay : false,
-							className : ["event", "bg-color-blue"],
-							icon : 'fa-clock-o'
-						}, {
-							id : 999,
-							title : 'Repeating Event',
-							start : new Date(y, m, d + 4, 16, 0),
-							allDay : false,
-							className : ["event", "bg-color-blue"],
-							icon : 'fa-clock-o'
-						}, {
-							title : 'Meeting',
-							start : new Date(y, m, d, 10, 30),
-							allDay : false,
-							className : ["event", "bg-color-darken"]
-						}, {
-							title : 'Lunch',
-							start : new Date(y, m, d, 12, 0),
-							end : new Date(y, m, d, 14, 0),
-							allDay : false,
-							className : ["event", "bg-color-darken"]
-						}, {
-							title : 'Birthday Party',
-							start : new Date(y, m, d + 1, 19, 0),
-							end : new Date(y, m, d + 1, 22, 30),
-							allDay : false,
-							className : ["event", "bg-color-darken"]
-						}, {
-							title : 'Smartadmin Open Day',
-							start : new Date(y, m, 28),
-							end : new Date(y, m, 29),
-							className : ["event", "bg-color-darken"]
-						}],
-
-
-						eventRender : function(event, element, icon) {
-							if (!event.description == "") {
-								element.find('.fc-title').append("<br/><span class='ultra-light'>" + event.description + "</span>");
-							}
-							if (!event.icon == "") {
-								element.find('.fc-title').append("<i class='air air-top-right fa " + event.icon + " '></i>");
-							}
-						}
-					});
-
-				};
-
-				/* hide default buttons */
-				$('.fc-toolbar .fc-right, .fc-toolbar .fc-center').hide();
-
-				// calendar prev
-				$('#calendar-buttons #btn-prev').click(function() {
-					$('.fc-prev-button').click();
-					return false;
-				});
-
-				// calendar next
-				$('#calendar-buttons #btn-next').click(function() {
-					$('.fc-next-button').click();
-					return false;
-				});
-
-				// calendar today
-				$('#calendar-buttons #btn-today').click(function() {
-					$('.fc-button-today').click();
-					return false;
-				});
-
-				// calendar month
-				$('#mt').click(function() {
-					$('#calendar').fullCalendar('changeView', 'month');
-				});
-
-				// calendar agenda week
-				$('#ag').click(function() {
-					$('#calendar').fullCalendar('changeView', 'agendaWeek');
-				});
-
-				// calendar agenda day
-				$('#td').click(function() {
-					$('#calendar').fullCalendar('changeView', 'agendaDay');
-				});
-
-				/*
-				 * CHAT
-				 */
-
-				$.filter_input = $('#filter-chat-list');
-				$.chat_users_container = $('#chat-container > .chat-list-body')
-				$.chat_users = $('#chat-users')
-				$.chat_list_btn = $('#chat-container > .chat-list-open-close');
-				$.chat_body = $('#chat-body');
-
-				/*
-				* LIST FILTER (CHAT)
-				*/
-
-				// custom css expression for a case-insensitive contains()
-				jQuery.expr[':'].Contains = function(a, i, m) {
-					return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
-				};
-
-				function listFilter(list) {// header is any element, list is an unordered list
-					// create and add the filter form to the header
-
-					$.filter_input.change(function() {
-						var filter = $(this).val();
-						if (filter) {
-							// this finds all links in a list that contain the input,
-							// and hide the ones not containing the input while showing the ones that do
-							$.chat_users.find("a:not(:Contains(" + filter + "))").parent().slideUp();
-							$.chat_users.find("a:Contains(" + filter + ")").parent().slideDown();
-						} else {
-							$.chat_users.find("li").slideDown();
-						}
-						return false;
-					}).keyup(function() {
-						// fire the above change event after every letter
-						$(this).change();
-
-					});
-
-				}
-
-				// on dom ready
-				listFilter($.chat_users);
-
-				// open chat list
-				$.chat_list_btn.click(function() {
-					$(this).parent('#chat-container').toggleClass('open');
-				})
-
-				$.chat_body.animate({
-					scrollTop : $.chat_body[0].scrollHeight
-				}, 500);
+				 /* CKEDITOR.replace( 'guidanceprojecteditor', {
+						height: 300,
+						startupFocus : true,
+						// Configure your file manager integration. This example uses CKFinder 3 for PHP.
+						filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+						filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
+						filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+						filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+					} ); */
+				
+				 $('.superbox').SuperBox();
+				 
+				 $('#addnewachievement').click(function() {
+					 alert("new");
+					 
+					 
+				 }); 
+				 
+				 
+				
 
 			});
 
@@ -1257,6 +1043,126 @@
 				var s = document.getElementsByTagName('script')[0];
 				s.parentNode.insertBefore(ga, s);
 			})();
+			
+			
+			 function uploadFormData(){
+				   // $('#result').html('');
+				 
+				   var file2 = $('#file2');
+				   var token = $('#acheivetoken').val();
+				   
+				  var oMyForm = new FormData();
+				  oMyForm.append("file", file2[0].files[0]);
+				  oMyForm.append("token", token);
+				 
+				  $.ajax({
+				    url: 'fileUploadAchieve?',
+				    data: oMyForm,
+				    dataType: 'text',
+				    processData: false,
+				    contentType: false,
+				    type: 'POST',
+				    success: function(data){
+				      alert(data);
+				    }
+				  });
+				  
+			 }
+			 
+			 function  generateToken(){
+				 
+				 var stringLength = 15;
+
+					// list containing characters for the random string
+					var stringArray = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','!','?'];
+
+					//$("#providachieve").click(function (){
+
+						var rndString = "";
+					
+						// build a string with random characters
+						for (var i = 1; i < stringLength; i++) { 
+							var rndNum = Math.ceil(Math.random() * stringArray.length) - 1;
+							rndString = rndString + stringArray[rndNum];
+						};
+						
+						$('#acheivetoken').val(rndString);
+
+					
+				 
+			 }
+					
+			function addachieve(){
+				alert("new ");	
+				
+				var achievementname = $('#guidanceachievement').val();
+				 var achevedesc = $('#achievementdescribe').val();
+				 var token = $('#acheivetoken').val();
+				 var guidanceid = '<%=guidanceid%>';
+				 alert(guidanceid);
+				 
+				 $.ajax({
+						url : "saveguidanceinfoachievement?guidanceachievement="+achievementname+"&achievementdescribe="+achevedesc+"&acheivetoken="+token+"&guidanceid="+guidanceid,
+						method : 'POST',
+						success : function(data){
+							alert(data);
+							//if(data.success == true){ // if true (1)
+							     /*  setTimeout(function(){// wait for 5 secs(2)
+							           location.reload(); // then reload the page.(3)
+							      }, 5000);  */
+							  // }
+							
+						}
+					
+			        }); 
+				  var elementcolapse = 'collapse'+token;	
+				  var element = '<div id='+token+' class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#'+elementcolapse+'"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1 </a></h4>'+
+								'</div><div id="'+elementcolapse+'" class="panel-collapse collapse in"><div class="panel-body"></div></div></div>';
+				 $('accordion-2').prepend($(element));
+				 
+			}
+			
+			
+			function saveGuidanceInfo(){
+				var guidancedesc = $('#guidancedescriptioninfo').val();
+				var guidanceexperience=	$('#guidanceexperienceinfo').val();
+				var guidancecost = $('#guidancecost').val();
+				var guidancecostcurrency = $('#costcurrency :selected').text();
+				var guidancecostper = $('#guidancecostduration :selected').text();
+				var guidanceid = '<%=guidanceid%>';
+				
+				
+				$.ajax({
+					url : "saveguidanceinfo?guidancedesc="+guidancedesc+"&guidanceexperience="+guidanceexperience+"&guidancecost="+guidancecost+"&guidancecostcurrency="+guidancecostcurrency+"&guidancecostper="+guidancecostper+"&guidanceid="+guidanceid,
+					method : 'POST',
+					success : function(data){
+						alert(data);
+						//if(data.success == true){ // if true (1)
+						     /*  setTimeout(function(){// wait for 5 secs(2)
+						           location.reload(); // then reload the page.(3)
+						      }, 5000);  */
+						  // }
+						
+					}
+				
+		        }); 
+			
+			 }
+			
+			function resetGuidanceInfo(){
+				$('#guidancedescriptioninfo').val('<%=guidancedescription%>');
+				$('#guidanceexperienceinfo').val('<%=guidancesubjectexperience%>');
+				$('#guidancecost').val('<%=guidanceprice%>');
+				$('#costcurrency :selected').text('<%=guidancecostcurrancy%>');
+				$('#guidancecostduration :selected').text();
+				
+			
+			}
+			
+			function saveSpecific(specificid){
+				alert("mo");
+				
+			}
 
 		</script>
 
