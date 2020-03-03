@@ -89,8 +89,8 @@ public class LoginController {
 			mv.addObject("FullName", user.getFirstname()+" "+user.getLastname());
 			
 			DashboardSocialPreview dashprev = new DashboardSocialPreview();
-			//ArrayList postlist = dashprev.firstpostlist();
-			//mv.addObject("postlist", postlist);
+			ArrayList postlist = dashprev.firstpostlist();
+			mv.addObject("postlist", postlist);
 			
 			LoggingReview logrev = new LoggingReview();
 			logrev.entryLogging(message);
